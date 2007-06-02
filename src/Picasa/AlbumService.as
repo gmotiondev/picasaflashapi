@@ -11,7 +11,7 @@ import Picasa.tools.Map2;
 import Picasa.tools.ObjectIterator2;
 
 /**
- * @author Michal Gron
+ * @author Michal Gron (michal.gron@gmail.com)
  */
 class Picasa.AlbumService extends Service
 {
@@ -43,7 +43,6 @@ class Picasa.AlbumService extends Service
 		{
 			if(!contains(tID))
 			{
-				trace("Putting album: "+aAlbum.getTitle())
 				__map.put(tID,aAlbum);
 				
 				if(aSetCurrent) { 

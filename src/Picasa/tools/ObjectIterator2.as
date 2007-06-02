@@ -1,9 +1,6 @@
 ﻿import com.bourre.data.iterator.ObjectIterator;
 import Picasa.tools.MathUtils;
 
-/**
- * @author Michal
- */
 class Picasa.tools.ObjectIterator2 extends ObjectIterator
 {
 	public function ObjectIterator2(o)

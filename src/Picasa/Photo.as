@@ -3,53 +3,9 @@
 import Picasa.objects.*;
 
 /**
- * @author Michal Gron
+ * @author Michal Gron (michal.gron@gmail.com)
  */
- 
- /*
-	<id>http://picasaweb.google.com/data/entry/api/user/thisispinkfu/albumid/4997359002061176849/photoid/4997359032372559890</id>
-	<published>2006-11-14T21:05:20.000Z</published>
-	<updated>2006-11-14T21:05:20.000Z</updated>
-	<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#photo"/>
-	<title type="text">IMG_5114.jpg</title>
-	<summary type="text"/>
-	<content type="image/jpeg" src="http://lh3.google.com/image/thisispinkfu/RVovkBOoABI/AAAAAAAAAF0/f8bdQ4MnPZ0/IMG_5114.jpg"/>
-	<link rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml" href="http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/4997359002061176849/photoid/4997359032372559890"/>
-	<link rel="alternate" type="text/html" href="http://picasaweb.google.com/thisispinkfu/IPodVideoWhite60GB/photo#4997359032372559890"/>
-	<link rel="self" type="application/atom+xml" href="http://picasaweb.google.com/data/entry/api/user/thisispinkfu/albumid/4997359002061176849/photoid/4997359032372559890"/>
-	<gphoto:id>4997359032372559890</gphoto:id>
-	<gphoto:version>1163538320000000</gphoto:version>
-	<gphoto:position>0.0</gphoto:position>
-	<gphoto:albumid>4997359002061176849</gphoto:albumid>
-	<gphoto:width>1024</gphoto:width>
-	<gphoto:height>768</gphoto:height>
-	<gphoto:size>111360</gphoto:size>
-	<gphoto:client/>
-	<gphoto:checksum>1d8ae39d</gphoto:checksum>
-	<gphoto:timestamp>1163538320000</gphoto:timestamp>
-	<gphoto:commentingEnabled>true</gphoto:commentingEnabled>
-	<gphoto:commentCount>0</gphoto:commentCount>
-	<exif:tags>
-		<exif:fstop>2.8</exif:fstop>
-		<exif:make>Canon</exif:make>
-		<exif:model>Canon PowerShot A410</exif:model>
-		<exif:distance>0.0</exif:distance>
-		<exif:exposure>0.05</exif:exposure>
-		<exif:flash>false</exif:flash>
-		<exif:focallength>5.4</exif:focallength>
-		<exif:iso>0</exif:iso>
-		<exif:time>1111641798000</exif:time>
-	</exif:tags>
-	<media:group>
-		<media:title type="plain">IMG_5114.jpg</media:title>
-		<media:description type="plain"/>
-		<media:keywords/>
-		<media:content url="http://lh3.google.com/image/thisispinkfu/RVovkBOoABI/AAAAAAAAAF0/f8bdQ4MnPZ0/IMG_5114.jpg" type="image/jpeg" medium="image"/>
-		<media:thumbnail url="http://lh3.google.com/image/thisispinkfu/RVovkBOoABI/AAAAAAAAAF0/f8bdQ4MnPZ0/IMG_5114.jpg?imgmax=72" height="54" width="72"/>
-		<media:thumbnail url="http://lh3.google.com/image/thisispinkfu/RVovkBOoABI/AAAAAAAAAF0/f8bdQ4MnPZ0/IMG_5114.jpg?imgmax=288" height="216" width="288"/>
-		<media:credit>Pink-fu</media:credit>
-	</media:group>
- */
+
 class Picasa.Photo
 {	
 	private var __d:Object;

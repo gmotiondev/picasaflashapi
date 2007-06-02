@@ -1,12 +1,6 @@
 ﻿import com.bourre.data.collections.Map;
 import Picasa.tools.ObjectIterator2;
 
-/**
- * @author Michal
- * 
- * class extends com.bourre.data.collections.Map;
- * 
- */
 class Picasa.tools.Map2 extends Map
 {
 	/**

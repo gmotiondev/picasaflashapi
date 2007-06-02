@@ -7,12 +7,12 @@ import Picasa.tools.Map2;
 import Picasa.tools.ObjectIterator2;
 
 /**
- * @author Michal Gron
+ * @author Michal Gron (michal.gron@gmail.com)
  */
  
 class Picasa.PhotoService extends Service
 {
-	private var __map:Map2;	//
+	private var __map:Map2;
 	private var __current:String;
 	private var __old:String;
 	private var __it:ObjectIterator2;
@@ -39,7 +39,6 @@ class Picasa.PhotoService extends Service
 		{
 			if(!contains(tID))
 			{
-				trace("Putting photo: "+aPhoto.getTitle())
 				__map.put(tID,aPhoto);
 				
 				if(aSetCurrent) { 

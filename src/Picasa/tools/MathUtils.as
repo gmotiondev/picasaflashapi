@@ -1,9 +1,7 @@
-﻿/**
- * @author Michal
- */
-class Picasa.tools.MathUtils
+﻿class Picasa.tools.MathUtils
 {
 	/**
+	 * Taken from vegas project.
 	 * Bounds a numeric value between 2 numbers.
 	 * @param value the value to clamp.
 	 * @param min the min value of the range.

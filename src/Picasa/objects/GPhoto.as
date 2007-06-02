@@ -1,32 +1,6 @@
 ﻿/**
- * @author Michal Gron
+ * @author Michal Gron (michal.gron@gmail.com)
  */
- 
- /*
- 	//album tags
- 	<gphoto:id>5046158866819398449</gphoto:id>
-	<gphoto:name>UnsortedLomo</gphoto:name>
-	<gphoto:location>Various</gphoto:location>
-	<gphoto:access>public</gphoto:access>
-	<gphoto:timestamp>1174892400000</gphoto:timestamp>
-	<gphoto:numphotos>12</gphoto:numphotos>
-	<gphoto:user>thisispinkfu</gphoto:user>
-	<gphoto:nickname>Pink-fu</gphoto:nickname>
-	<gphoto:commentingEnabled>true</gphoto:commentingEnabled>
-	<gphoto:commentCount>0</gphoto:commentCount>
-	
-	//plus photo tags
-	<gphoto:version>1163538320000000</gphoto:version>
-	<gphoto:position>0.0</gphoto:position>
-	<gphoto:albumid>4997359002061176849</gphoto:albumid>
-	<gphoto:width>1024</gphoto:width>
-	<gphoto:height>768</gphoto:height>
-	<gphoto:size>111360</gphoto:size>
-	<gphoto:client/>
-	<gphoto:checksum>1d8ae39d</gphoto:checksum>
-	
- */
- 
 	
 class Picasa.objects.GPhoto
 {

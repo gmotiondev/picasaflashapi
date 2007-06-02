@@ -4,38 +4,7 @@ import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
 
 /**
- * @author Michal Gron
- * 
- *	 <channel>
-		<item>
-			<guid isPermaLink="false">http://picasaweb.google.com/data/entry/api/user/thisispinkfu/albumid/5046158866819398449</guid> 
-			<pubDate>Mon, 26 Mar 2007 07:00:00 +0000</pubDate> 
-			<atom:updated>2007-03-26T09:17:05.000Z</atom:updated> 
-			<category domain="http://schemas.google.com/g/2005#kind">http://schemas.google.com/photos/2007#album</category> 
-			<title>Unsorted Lomo</title> 
-			<description>Unsorted lomos</description> 
-			<link>http://picasaweb.google.com/thisispinkfu/UnsortedLomo</link> 
-			<author>Pink-fu</author> 
-			<gphoto:id>5046158866819398449</gphoto:id> 
-			<gphoto:name>UnsortedLomo</gphoto:name> 
-			<gphoto:location>Various</gphoto:location> 
-			<gphoto:access>public</gphoto:access> 
-			<gphoto:timestamp>1174892400000</gphoto:timestamp> 
-			<gphoto:numphotos>12</gphoto:numphotos> 
-			<gphoto:user>thisispinkfu</gphoto:user> 
-			<gphoto:nickname>Pink-fu</gphoto:nickname> 
-			<gphoto:commentingEnabled>true</gphoto:commentingEnabled> 
-			<gphoto:commentCount>0</gphoto:commentCount> 
-			<media:group>
-				<media:title type="plain">Unsorted Lomo</media:title> 
-				<media:description type="plain">Unsorted lomos</media:description> 
-				<media:keywords /> 
-				<media:content url="http://lh4.google.com/image/thisispinkfu/RgeOwPD1OzE/AAAAAAAAAK0/Fv8N5zvnUHY/UnsortedLomo.jpg" type="image/jpeg" medium="image" /> 
-				<media:thumbnail url="http://lh4.google.com/image/thisispinkfu/RgeOwPD1OzE/AAAAAAAAAK0/Fv8N5zvnUHY/UnsortedLomo.jpg?imgmax=160&crop=1" height="160" width="160" /> 
-				<media:credit>Pink-fu</media:credit> 
-			</media:group>
-		</item>
- *	</channel>
+ * @author Michal Gron (michal.gron@gmail.com)
  *  
  */
 

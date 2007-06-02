@@ -1,19 +1,5 @@
 ﻿/**
- * @author Michal Gron
- */
- 
- /*
- 	<exif:tags>
-		<exif:fstop>2.8</exif:fstop>
-		<exif:make>Canon</exif:make>
-		<exif:model>Canon PowerShot A410</exif:model>
-		<exif:distance>0.0</exif:distance>
-		<exif:exposure>0.05</exif:exposure>
-		<exif:flash>false</exif:flash>
-		<exif:focallength>5.4</exif:focallength>
-		<exif:iso>0</exif:iso>
-		<exif:time>1111641798000</exif:time>
-	</exif:tags>
+ * @author Michal Gron (michal.gron@gmail.com)
  */
  
 class Picasa.objects.Exif
