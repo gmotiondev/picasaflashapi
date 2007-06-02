@@ -28,7 +28,7 @@
  */
  
 	
-class com.kvenda.services.objects.GPhoto
+class Picasa.objects.GPhoto
 {
 	public var id, name, location, access, timestamp, numphotos, user, nickname, commentingEnabled,commentCount;
 	public var version, position,albumid,width,height,size,client,checksum;

@@ -13,7 +13,7 @@
 	</media:group>
  */
  
-class com.kvenda.services.objects.Media
+class Picasa.objects.Media
 {	
 	public var title, description, keywords, credit:String;
 	public var content, thumbnail:Object;
@@ -39,8 +39,4 @@ class com.kvenda.services.objects.Media
 			height 	: tNode.attributes.height
 		};
 	}
-	//public function getThumbnailLink():String
-	//{
-	//	return thumbnail.url;
-	//}
 }

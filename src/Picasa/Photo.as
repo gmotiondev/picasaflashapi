@@ -1,6 +1,6 @@
 ﻿import com.bourre.log.PixlibStringifier;
 
-import com.kvenda.services.objects.*;
+import Picasa.objects.*;
 
 /**
  * @author Michal Gron
@@ -48,8 +48,9 @@ import com.kvenda.services.objects.*;
 		<media:thumbnail url="http://lh3.google.com/image/thisispinkfu/RVovkBOoABI/AAAAAAAAAF0/f8bdQ4MnPZ0/IMG_5114.jpg?imgmax=72" height="54" width="72"/>
 		<media:thumbnail url="http://lh3.google.com/image/thisispinkfu/RVovkBOoABI/AAAAAAAAAF0/f8bdQ4MnPZ0/IMG_5114.jpg?imgmax=288" height="216" width="288"/>
 		<media:credit>Pink-fu</media:credit>
-	</media:group> */
-class com.kvenda.services.Photo
+	</media:group>
+ */
+class Picasa.Photo
 {	
 	private var __d:Object;
 	private var __g:GPhoto;
@@ -72,7 +73,9 @@ class com.kvenda.services.Photo
 			width 				: __d["gphoto:width"],
 			height	 			: __d["gphoto:height"],
 			size 				: __d["gphoto:size"],
-			client	 			: __d["gphoto:client"],			checksum 			: __d["gphoto:checksum"],			timestamp 			: __d["gphoto:timestamp"],
+			client	 			: __d["gphoto:client"],
+			checksum 			: __d["gphoto:checksum"],
+			timestamp 			: __d["gphoto:timestamp"],
 			commentingEnabled 	: __d["gphoto:commentingEnabled"],
 			commentCount 		: __d["gphoto:commentCount"]
 		});

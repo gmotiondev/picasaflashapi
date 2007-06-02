@@ -1,19 +1,16 @@
 ﻿import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
 
-// Iterators
-//import com.bourre.data.collections.Map;
-//import com.bourre.data.iterator.ObjectIterator;
-
-import com.kvenda.services.Photo;import com.kvenda.services.Service;
-import com.kvenda.tools.Map2;
-import com.kvenda.tools.ObjectIterator2;
+import Picasa.Photo;
+import Picasa.Service;
+import Picasa.tools.Map2;
+import Picasa.ObjectIterator2;
 
 /**
  * @author Michal Gron
  */
  
-class com.kvenda.services.PhotoService extends Service
+class Picasa.PhotoService extends Service
 {
 	private var __map:Map2;	//
 	private var __current:String;
@@ -22,7 +19,8 @@ class com.kvenda.services.PhotoService extends Service
 	
 	public var onPhotoServiceEvent:Function;
 	/**
-	 * Constructor	 */
+	 * Constructor
+	 */
 	public function PhotoService(aParent:Object)
 	{
 		super();
@@ -31,7 +29,8 @@ class com.kvenda.services.PhotoService extends Service
 		__old = null;
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function addPhoto(aPhoto:Photo,aSetCurrent:Boolean):Void
 	{
 		var tID:String = aPhoto.getIdString();
@@ -56,7 +55,8 @@ class com.kvenda.services.PhotoService extends Service
 		}
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function removePhoto(aPhoto:Photo):Void
 	{
 		var tID:String = aPhoto.getIdString();
@@ -77,24 +77,31 @@ class com.kvenda.services.PhotoService extends Service
 		}
 	}
 	/**
-	 * 	 */	public function getCurrentPhoto():Photo
+	 * 
+	 */
+	public function getCurrentPhoto():Photo
 	{
 		return getPhoto(__current);
 	}
 	/**
-	 * 	 */	public function setCurrent(aID:String):Void
+	 * 
+	 */
+	public function setCurrent(aID:String):Void
 	{
 		__current = aID;
 		__it.setIndex(__it.searchKey(aID));
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function getCurrent():String
 	{
 		return __current;
 	}
 	/**
-	 * 	 */	public function getPhoto(aID:String):Photo
+	 * 
+	 */
+	public function getPhoto(aID:String):Photo
 	{
 		if(!contains(aID)) {
 			trace("Photo "+aID+" is not available!",Log.ERROR);
@@ -105,11 +112,14 @@ class com.kvenda.services.PhotoService extends Service
 		return __map.get(aID);
 	}
 	/**
-	 * 	 */	public function getPhotos():Void
+	 * 
+	 */
+	public function getPhotos():Void
 	{
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function getNextPhoto():Photo
 	{	
 		if(!__it.hasNext()) {
@@ -119,7 +129,8 @@ class com.kvenda.services.PhotoService extends Service
 		return getPhoto(__it.next());
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function getPrevPhoto():Photo
 	{	
 		if(!__it.hasPrev()) {
@@ -129,7 +140,8 @@ class com.kvenda.services.PhotoService extends Service
 		return getPhoto(__it.prev());
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function getAlbumId():String
 	{
 		return getCurrentPhoto().getAlbumId();
@@ -173,7 +185,8 @@ class com.kvenda.services.PhotoService extends Service
 		return __map.containsKey(aID);
 	}
 	/**
-	 * Called when successfuly loaded xml	 */
+	 * Called when successfuly loaded xml
+	 */
 	private function onInitialize(e:IEvent):Void 
 	{
 		if(__map != undefined) return;
@@ -209,7 +222,8 @@ class com.kvenda.services.PhotoService extends Service
 	{
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	private function onFileError(e:IEvent):Void
 	{
 		trace("com.kvenda.services.PhotoService.onFileError("+e+")");

@@ -1,17 +1,19 @@
 ﻿import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
 
-import com.kvenda.services.Album;import com.kvenda.services.Service;
+import Picasa.Album;
+import Picasa.Service;
 
 // Iterators
-//import com.bourre.data.collections.Map;//import com.bourre.data.iterator.ObjectIterator;
-import com.kvenda.tools.Map2;
-import com.kvenda.tools.ObjectIterator2;
+//import com.bourre.data.collections.Map;
+//import com.bourre.data.iterator.ObjectIterator;
+import Picasa.tools.Map2;
+import Picasa.tools.ObjectIterator2;
 
 /**
  * @author Michal Gron
  */
-class com.kvenda.services.AlbumService extends Service
+class Picasa.AlbumService extends Service
 {
 	private var __map : Map2;	//
 	private var __current : String;
@@ -21,7 +23,8 @@ class com.kvenda.services.AlbumService extends Service
 	public var onServiceLoaded : Function;	//Invokers
 	
 	/**
-	 * Constructor	 */
+	 * Constructor
+	 */
 	public function AlbumService(aParent:Object)
 	{
 		super();
@@ -30,7 +33,8 @@ class com.kvenda.services.AlbumService extends Service
 		__old = null;
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function addAlbum(aAlbum:Album,aSetCurrent:Boolean):Void
 	{
 		var tID:String = aAlbum.getIdString();
@@ -55,7 +59,8 @@ class com.kvenda.services.AlbumService extends Service
 		}
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function removeAlbum(aAlbum:Album):Void
 	{
 		var tID:String = aAlbum.getIdString();
@@ -76,19 +81,22 @@ class com.kvenda.services.AlbumService extends Service
 		}
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function getCurrentAlbum():Album
 	{
 		return getAlbum(__current);
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function setCurrent(aID:String):Void
 	{
 		__current = aID;
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	 public function getCurrent():String
 	{
 		return __current;
@@ -107,20 +115,23 @@ class com.kvenda.services.AlbumService extends Service
 		return __map.get(aID);
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function getNextAlbum():Album
 	{
 		return getAlbum(__it.next());
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function getPrevAlbum():Album
 	{
 		//???
 		return Album({});
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	public function getAlbums()
 	{
 	}
@@ -163,7 +174,8 @@ class com.kvenda.services.AlbumService extends Service
 		return __map.containsKey(aID);
 	} 
 	/**
-	 * Called when successfully loaded xml!	 */
+	 * Called when successfully loaded xml!
+	 */
 	private function onInitialize(e:IEvent):Void 
 	{	
 		if(__map != undefined) return;
@@ -182,7 +194,8 @@ class com.kvenda.services.AlbumService extends Service
 		notifyChanged(e);
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	private function notifyChanged(e:IEvent):Void
 	{
 		onServiceLoaded(e);
@@ -200,7 +213,8 @@ class com.kvenda.services.AlbumService extends Service
 	{
 	}
 	/**
-	 * 	 */
+	 * 
+	 */
 	private function onFileError(e:IEvent):Void
 	{
 		trace("com.kvenda.services.AlbumService.onFileError("+e+")",Log.ERROR);

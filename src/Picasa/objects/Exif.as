@@ -16,7 +16,7 @@
 	</exif:tags>
  */
  
-class com.kvenda.services.objects.Exif
+class Picasa.objects.Exif
 {
 	public var fstop, make, model, distance, exposure, flash, focallength, iso, time;
 	

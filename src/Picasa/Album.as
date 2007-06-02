@@ -1,7 +1,7 @@
 ﻿import com.bourre.log.PixlibStringifier;
 
-import com.kvenda.services.objects.Media;
-import com.kvenda.services.objects.GPhoto;
+import Picasa.objects.Media;
+import Picasa.objects.GPhoto;
 
 /**
  * @author Michal Gron
@@ -42,8 +42,9 @@ import com.kvenda.services.objects.GPhoto;
 			<media:thumbnail url="http://lh4.google.com/image/thisispinkfu/RgeOwPD1OzE/AAAAAAAAAK0/Fv8N5zvnUHY/UnsortedLomo.jpg?imgmax=160&crop=1" height="160" width="160"/>
 			<media:credit>Pink-fu</media:credit>
 		</media:group>
-  </entry>  */
-class com.kvenda.services.Album
+  </entry>
+  */
+class Picasa.Album
 {
 	private var __d:Object;
 	private var __g:GPhoto;
