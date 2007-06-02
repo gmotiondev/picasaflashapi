@@ -1,4 +1,5 @@
 ﻿import com.bourre.data.iterator.ObjectIterator;
+import Picasa.tools.MathUtils;
 
 /**
  * @author Michal
@@ -40,5 +41,13 @@ class Picasa.tools.ObjectIterator2 extends ObjectIterator
 	public function prev()
 	{
 		return _o[ _a[--_i] ];
+	}
+	
+	/**
+	 * Change the position of the internal pointer of the iterator (optional operation).
+	 */
+	public function seek(n:Number):Void 
+	{
+		_i = MathUtils.clamp((n-1), -1, _a.length);
 	}
 }

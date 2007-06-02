@@ -1,6 +1,6 @@
 ﻿import com.bourre.data.libs.XMLToObject;
-import com.bourre.events.IEvent;
 import com.bourre.data.libs.XMLToObjectDeserializer;
+import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
 
 /**

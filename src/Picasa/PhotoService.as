@@ -4,7 +4,7 @@ import com.bourre.log.PixlibStringifier;
 import Picasa.Photo;
 import Picasa.Service;
 import Picasa.tools.Map2;
-import Picasa.ObjectIterator2;
+import Picasa.tools.ObjectIterator2;
 
 /**
  * @author Michal Gron

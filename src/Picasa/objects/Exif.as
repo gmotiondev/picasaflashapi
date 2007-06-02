@@ -20,7 +20,7 @@ class Picasa.objects.Exif
 {
 	public var fstop, make, model, distance, exposure, flash, focallength, iso, time;
 	
-	public function PicasaExifObject(a:Object)
+	public function Exif(a:Object)
 	{
 		fstop 		= a["fstop"];
 		make 		= a["make"];

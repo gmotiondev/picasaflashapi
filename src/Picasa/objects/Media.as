@@ -18,7 +18,7 @@ class Picasa.objects.Media
 	public var title, description, keywords, credit:String;
 	public var content, thumbnail:Object;
 	
-	public function PicasaMediaObject(a:Object)
+	public function Media(a:Object)
 	{
 		title 		= a["media:title"];
 		description = a["media:description"];
