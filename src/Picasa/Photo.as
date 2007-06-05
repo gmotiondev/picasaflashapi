@@ -16,7 +16,7 @@ class Picasa.Photo
 	public function Photo(a:Object)
 	{
 		__d = a;
-		initialize();	//fill media object and gphoto object
+		initialize();
 	}
 	
 	private function initialize()
@@ -39,56 +39,168 @@ class Picasa.Photo
 		__m = new Media(__d["media:group"]);
 	}
 	
+	/**
+	 * Returns Photo full id like:
+	 * http://picasaweb.google.com/data/entry/api/user/thisispinkfu/albumid/4991254969496895505/photoid/4991255318210936850
+	 * @return Full Picasa Photo id.	 */
 	public function getId():String
 	{
-		//<id>http://picasaweb.google.com/data/entry/api/user/thisispinkfu/albumid/4997359002061176849/photoid/4997359032372559890</id>
 		return __d["id"];
 	}
 	public function getThumbnailLink():String
 	{
-		return __m.thumbnail.url
+		return getMedia().thumbnail.url
 	}
+	/**
+	 * Returns Picasa Photo published date like:
+	 * 2006-10-29T10:19:48.000Z
+	 * @return Picasa Photo published date.	 */
 	public function getPublished():String
 	{
-		//<published>2006-11-14T21:05:20.000Z</published>
 		return __d["published"];
 	}
+	/**
+	 * Returns Picasa Photo updated date like:
+	 * 2006-10-29T10:19:48.000Z
+	 * @return Picasa Photo updated date.	 */
 	public function getUpdated():String
 	{
-		//<updated>2006-11-14T21:05:20.000Z</updated>
 		return __d["updated"];
 	}
+	/**
+	 * !TODO
+	 * <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#photo"/>	 */
 	public function getCategory():Void
-	{
-		//<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#photo"/>
+	{	
 	}
+	/**
+	 * Returns Picasa Photo title like:
+	 * Untitled-3.jpg
+	 * @return Picasa Photo title string.	 */
 	public function getTitle():String
 	{
 		//<title type="text">IMG_5114.jpg</title>
 		return __d["title"];
 	}
+	/**
+	 * Returns Picasa Photo summary.
+	 * @return Picasa Photo summary string.	 */
 	public function getSummary():String
 	{
-		//<summary type="text"/>
 		return __d["summary"];
 	}
+	/**
+	 * Returns Picasa Photo url like:
+	 * http://lh3.google.com/image/thisispinkfu/RUSARGE-ABI/AAAAAAAAAAk/bC10dIK1qlo/Untitled-3.jpg
+	 * @return Picasa Photo url string.	 */
 	public function getContent():String
 	{
-		//<content type="image/jpeg" src="http://lh3.google.com/image/thisispinkfu/RVovkBOoABI/AAAAAAAAAF0/f8bdQ4MnPZ0/IMG_5114.jpg"/>
 		return __d["content"].attributes.src;
 	}
+	/**
+	 * Returns Picasa Photo id string. Not full url id! Simple string like:
+	 * 4991255318210936850
+	 * @return Picasa Photo id string.	 */
 	public function getIdString():String
 	{
 		return __g.id;
 	}
+	/**
+	 * Same as getContent();
+	 * 
+	 * Returns Picasa Photo url like:
+	 * http://lh3.google.com/image/thisispinkfu/RUSARGE-ABI/AAAAAAAAAAk/bC10dIK1qlo/Untitled-3.jpg
+	 * @return Picasa Photo url string.	 */
 	public function getLink():String
 	{
 		return getContent();
 	}
+	/**
+	 * Returns Picasa Album id where the Picasa Photo is stored.
+	 * @return Picasa Album id.	 */
 	public function getAlbumId():String
 	{
 		return __g.albumid;
 	}
+	/** like:
+	 * 1162117188000000
+	 * @return 	 */
+	public function getVersion():String
+	{
+		return __g.version;
+	}
+	/** 
+	 * like:
+	 * 0.0	 */
+	public function getPosition():Object
+	{
+		return {x:__g.position.split(".")[0], y: __g.position.split(".")[1]};
+	}
+	/**
+	 * 1024	 */
+	public function getWidth():Number
+	{
+		return parseFloat(__g.width);
+	}
+	/**
+	 * 713	 */
+	public function getHeight():Number
+	{
+		return parseFloat(__g.height);
+	}
+	/**
+	 * 77271	 */
+	public function getSize():Number
+	{
+		return parseFloat(__g.size);
+	}
+	/**
+	 * 	 */
+	public function getClient():String
+	{
+		return __g.client;
+	}
+	/**
+	 * 572b6066	 */
+	public function getChecksum():String
+	{
+		return __g.checksum;
+	}
+	/**
+	 * 1162117188000	 */
+	public function getTimestamp():Number
+	{
+		return Number(__g.timestamp);
+	}
+	/**
+	 * true, false	 */
+	public function isCommentingEnabled():Boolean
+	{
+		return (__g.commentingEnabled == "true");
+	}
+	/**
+	 * 0	 */
+	public function getCommentCount():Number
+	{
+		return parseFloat(__g.commentCount);
+	}
+	/**
+	 * Returns exif object.
+	 * @return Exif object with Exif Picasa Photo data.
+	 */
+	public function getExif():Exif
+	{
+		return __e;
+	}
+	/**
+	 * Returns media object.
+	 * @return Media object with Media Picasa Photo data.	 */
+	public function getMedia():Media
+	{
+		return __m;
+	}
+	/**
+	 * 	 */
 	public function toString():String
 	{
 		return PixlibStringifier.stringify(this);

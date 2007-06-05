@@ -1,4 +1,6 @@
-﻿/**
+﻿import com.bourre.log.PixlibStringifier;
+
+/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 	
@@ -30,5 +32,10 @@ class Picasa.objects.GPhoto
 		size 		= Number(a["size"]);
 		client 		= String(a["client"]);
 		checksum 	= String(a["checksum"]);
+	}
+	
+	public function toString():String
+	{
+		return PixlibStringifier.stringify(this);
 	}
 }

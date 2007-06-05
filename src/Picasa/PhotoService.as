@@ -1,23 +1,18 @@
 ﻿import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
+import com.bourre.data.libs.LibEvent;
 
 import Picasa.Photo;
-import Picasa.Service;
+import Picasa.Service;import Picasa.IService;
 import Picasa.tools.Map2;
-import Picasa.tools.ObjectIterator2;
+//import Picasa.tools.ObjectIterator2;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
  
-class Picasa.PhotoService extends Service
+class Picasa.PhotoService extends Service implements IService
 {
-	private var __map:Map2;
-	private var __current:String;
-	private var __old:String;
-	private var __it:ObjectIterator2;
-	
-	public var onPhotoServiceEvent:Function;
 	/**
 	 * Constructor
 	 */
@@ -26,10 +21,11 @@ class Picasa.PhotoService extends Service
 		super();
 		
 		__current = null;
-		__old = null;
 	}
 	/**
-	 * 
+	 * Adds a Picasa.Photo object to Map.
+	 * @param aPhoto Picasa.Photo object
+	 * @param aSetCurrent Boolean, if true, sets as current id.
 	 */
 	public function addPhoto(aPhoto:Photo,aSetCurrent:Boolean):Void
 	{
@@ -54,7 +50,8 @@ class Picasa.PhotoService extends Service
 		}
 	}
 	/**
-	 * 
+	 * Removes Picasa.Photo object from Map.
+	 * @param aPhoto Picasa.Photo object to be removed.
 	 */
 	public function removePhoto(aPhoto:Photo):Void
 	{
@@ -76,14 +73,16 @@ class Picasa.PhotoService extends Service
 		}
 	}
 	/**
-	 * 
+	 * Returns current Picasa.Photo
+	 * @return Current Picasa.Photo object.
 	 */
 	public function getCurrentPhoto():Photo
 	{
 		return getPhoto(__current);
 	}
 	/**
-	 * 
+	 * Sets a Picasa.Photo id as a current id.
+	 * @param aID String, Picasa.Photo id.
 	 */
 	public function setCurrent(aID:String):Void
 	{
@@ -91,14 +90,17 @@ class Picasa.PhotoService extends Service
 		__it.setIndex(__it.searchKey(aID));
 	}
 	/**
-	 * 
+	 * Returns current photo id(key).
+	 * @return String, current photo id.
 	 */
 	public function getCurrent():String
 	{
 		return __current;
 	}
 	/**
-	 * 
+	 * Returns Picasa.Photo object with specified ID.
+	 * @param aID String, Picasa.Photo id.
+	 * @return Picasa.Photo object with specified ID.
 	 */
 	public function getPhoto(aID:String):Photo
 	{
@@ -111,13 +113,23 @@ class Picasa.PhotoService extends Service
 		return __map.get(aID);
 	}
 	/**
-	 * 
+	 * Returns a Map2 object with Picasa.Photo objects.
+	 * @return Map2 object with Picasa.Photo objects.
 	 */
-	public function getPhotos():Void
+	public function getPhotos():Map2
 	{
+		return __map;
 	}
 	/**
-	 * 
+	 * Returns Picasa Photos count.
+	 * @return Picasa Photos count.	 */
+	public function getPhotosCount():Number
+	{
+		return size();
+	}
+	/**
+	 * Get next photo from current photo.
+	 * @return Next Picasa.Photo object in the map.
 	 */
 	public function getNextPhoto():Photo
 	{	
@@ -128,7 +140,8 @@ class Picasa.PhotoService extends Service
 		return getPhoto(__it.next());
 	}
 	/**
-	 * 
+	 * Get previous photo from current photo.
+	 * @return Previous Picasa.Photo object in the map.
 	 */
 	public function getPrevPhoto():Photo
 	{	
@@ -139,54 +152,17 @@ class Picasa.PhotoService extends Service
 		return getPhoto(__it.prev());
 	}
 	/**
-	 * 
+	 * Get album ID.
+	 * @return ID of the album in which the photo is stored. (album of the photo, parent...)
 	 */
 	public function getAlbumId():String
 	{
 		return getCurrentPhoto().getAlbumId();
 	}
 	/**
-	 * 
-	 */
-	public function clear():Void
-	{
-		__map.clear();
-		__current = null;
-		
-		reset();
-	}
-	/**
-	 * 
-	 */
-	public function reset():Void
-	{
-		if(size() > 0)
-		{
-			__it = __map.getKeysIterator();
-		}
-		else
-		{
-			__it = null ;
-		}
-	}
-	/**
-	 * 
-	 */
-	public function size():Number
-	{
-		return __map.getSize();
-	}
-	/**
-	 * 
-	 */
-	public function contains(aID:String):Boolean
-	{
-		return __map.containsKey(aID);
-	}
-	/**
 	 * Called when successfuly loaded xml
 	 */
-	private function onInitialize(e:IEvent):Void 
+	public function onInitialize(e:LibEvent):Void 
 	{
 		if(__map != undefined) return;
 		
@@ -203,29 +179,36 @@ class Picasa.PhotoService extends Service
 		reset();
 		notifyChanged(e);
 	}
-	
-	private function notifyChanged(e:IEvent):Void
+	/**
+	 * Called after onInitialize is invoked.
+	 * @param e LibEvent event.	 */
+	public function notifyChanged(e:IEvent):Void
 	{
-		onPhotoServiceEvent(e);
+		onServiceLoaded(e);
 	}
 	/**
-	 * 
+	 * Event sent, during xml loading.
+	 * @param e LibEvent event.
 	 */
-	private function onFileProgress(e:IEvent):Void
+	public function onFileProgress(e:LibEvent):Void
 	{
+		trace("Picasa.PhotoService.onFileProgress("+e.getPerCent()+"% loaded from "+e.getLib().getURL()+")",Log.INFO);
 	}
 	/**
-	 * 
+	 * If xml loading timed out.
+	 * @param e LibEvent event.
 	 */
-	private function onFileTimeout(e:IEvent):Void
+	public function onFileTimeout(e:LibEvent):Void
 	{
+		trace("Picasa.PhotoService.onFileTimeout("+e+")",Log.ERROR);
 	}
 	/**
-	 * 
+	 * If xml loading failed.
+	 * @param e LibEvent event.
 	 */
-	private function onFileError(e:IEvent):Void
+	public function onFileError(e:LibEvent):Void
 	{
-		trace("com.kvenda.services.PhotoService.onFileError("+e+")");
+		trace("Picasa.PhotoService.onFileError("+e+")",Log.ERROR);
 	}
 
 	public function toString():String

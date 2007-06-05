@@ -1,21 +1,27 @@
 ﻿import com.bourre.data.libs.XMLToObject;
-import com.bourre.data.libs.XMLToObjectDeserializer;
-import com.bourre.events.IEvent;
+import com.bourre.data.libs.XMLToObjectDeserializer;import com.bourre.data.libs.LibEvent;
+//import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
 
+import Picasa.tools.Map2;
+import Picasa.tools.ObjectIterator2;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
- *  
+ * 
  */
 
 class Picasa.Service
-{
-	private static var __instance:Service;
-	private var __data:XMLToObject;
-	private var __xml:XML;
-
+{	
+	private var __d:XMLToObject;
+	private var __o;
+	
+	private var __map : Map2;
+	private var __current : String;
+	private var __it : ObjectIterator2;
+	public var onServiceLoaded : Function;
+	
 	/**
-	 * 
+	 * Constructor
 	 */	
 	public function Service(aParent:Object)
 	{
@@ -28,69 +34,97 @@ class Picasa.Service
 	{
 		setFeed(aUrl);
 	}
-	
+	/**
+	 * Service initialize	 */
 	private function initialize():Void
 	{
 		XMLToObjectDeserializer.DESERIALIZE_ATTRIBUTES = true;
 		XMLToObjectDeserializer.ATTRIBUTE_TARGETED_PROPERTY_NAME = "attributes";
 		XMLToObjectDeserializer.PUSHINARRAY_IDENTICAL_NODE_NAMES = true;
 	}
+	/**
+	 * Sets feed's url and starts loading xml feed
+	 * @param aFeedURL Complete url string.	 */
 	private function setFeed(aFeedURL:String):Void
 	{
-		__data = new XMLToObject(new Object());
+		__d = new XMLToObject(new Object());
 		
-		var tD = __data.getDeserializer();
+		var tD = __d.getDeserializer();
 			tD.addType("plain",tD,tD.getString);
 			tD.addType("text",tD,tD.getString);
 			tD.addType("image/jpeg",tD,tD.getObjectWithAttributes);
 			tD.addType("application/atom+xml",tD,tD.getObjectWithAttributes);
 		
-		__data.addEventListener(XMLToObject.onLoadInitEVENT,this,onFileLoad);
-		__data.addEventListener(XMLToObject.onLoadProgressEVENT,this,onFileProgress);
-		__data.addEventListener(XMLToObject.onTimeOutEVENT,this,onFileTimeout);
-		__data.addEventListener(XMLToObject.onErrorEVENT,this,onFileError);
+		__d.addEventListener(XMLToObject.onLoadInitEVENT,this,onFileLoad);
+		__d.addEventListener(XMLToObject.onLoadProgressEVENT,this,onFileProgress);
+		__d.addEventListener(XMLToObject.onTimeOutEVENT,this,onFileTimeout);
+		__d.addEventListener(XMLToObject.onErrorEVENT,this,onFileError);
 		
-		__data.load(aFeedURL);
+		__d.load(aFeedURL);
 	}
 	/**
-	 * 
+	 * Returns deserialized xml data.
+	 * @return deserialized xml data
 	 */
-	private function getData():XML
+	private function getData()
 	{
-		return __xml;
-	}	
-	/**
-	 *  Override when extended
-	 */
-	private function onInitialize(e:IEvent):Void
-	{
+		return __o;
 	}
 	/**
-	 * 
+	 * If file loaded successfuly, get the deserialized xml object and invoke onInitialize
+	 * @param e LibEvent event.
 	 */
-	private function onFileLoad(e:IEvent) : Void 
+	private function onFileLoad(e:LibEvent) : Void 
 	{ 
-		__xml = __data.getObject();
+		__o = __d.getObject();
 		onInitialize();
 	}
 	/**
 	 * Override when extended.
 	 */
-	private function onFileProgress(e:IEvent):Void
+	public function onInitialize(e:LibEvent):Void {}
+	public function onFileProgress(e:LibEvent):Void {}
+	public function onFileTimeout(e:LibEvent):Void {}
+	public function onFileError(e:LibEvent):Void { }
+	
+	/**
+	 * Clear and reset map.
+	 */
+	private function clear():Void
 	{
+		__map.clear();
+		__current = null;
+		
+		reset();
 	}
 	/**
-	 * Override when extended.
+	 * Reset map.
 	 */
-	private function onFileTimeout(e:IEvent):Void
+	private function reset():Void
 	{
+		if(size() > 0)
+		{
+			__it = __map.getKeysIterator();
+		}
+		else
+		{
+			__it = null ;
+		}
 	}
 	/**
-	 * Override when extended.
+	 * Get size of the map. Album photos count.
+	 * @return album photos count.
 	 */
-	private function onFileError(e:IEvent):Void
+	private function size():Number
 	{
+		return __map.getSize();
 	}
+	private function contains(aID:String):Boolean
+	{
+		return __map.containsKey(aID);
+	}
+	/**
+	 * 	 */
 	public function toString():String
 	{
 		return PixlibStringifier.stringify(this);

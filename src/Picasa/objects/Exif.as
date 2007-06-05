@@ -1,4 +1,6 @@
-﻿/**
+﻿import com.bourre.log.PixlibStringifier;
+
+/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
  
@@ -17,5 +19,10 @@ class Picasa.objects.Exif
 		focallength = a["focallength"];
 		iso 		= a["iso"];
 		time 		= a["time"];
+	}
+	
+	public function toString():String
+	{
+		return PixlibStringifier.stringify(this);
 	}
 }

@@ -1,27 +1,17 @@
 ﻿import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
+import com.bourre.data.libs.LibEvent;
 
 import Picasa.Album;
-import Picasa.Service;
-
-// Iterators
-//import com.bourre.data.collections.Map;
-//import com.bourre.data.iterator.ObjectIterator;
+import Picasa.Service;import Picasa.IService;
 import Picasa.tools.Map2;
-import Picasa.tools.ObjectIterator2;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
-class Picasa.AlbumService extends Service
+ 
+class Picasa.AlbumService extends Service implements IService
 {
-	private var __map : Map2;	//
-	private var __current : String;
-	private var __old : String;
-	private var __it : ObjectIterator2;
-	
-	public var onServiceLoaded : Function;	//Invokers
-	
 	/**
 	 * Constructor
 	 */
@@ -30,10 +20,11 @@ class Picasa.AlbumService extends Service
 		super();
 		
 		__current = null;
-		__old = null;
 	}
 	/**
-	 * 
+	 * Adds a Picasa.Album object to Map.
+	 * @param aAlbum Picasa.Album object.
+	 * @param aSetCurrent Boolean, if true, sets as current id.
 	 */
 	public function addAlbum(aAlbum:Album,aSetCurrent:Boolean):Void
 	{
@@ -58,7 +49,8 @@ class Picasa.AlbumService extends Service
 		}
 	}
 	/**
-	 * 
+	 * Removes Picasa.Album object from Map.
+	 * @param aAlbum Picasa.Album object to be removed.
 	 */
 	public function removeAlbum(aAlbum:Album):Void
 	{
@@ -80,28 +72,34 @@ class Picasa.AlbumService extends Service
 		}
 	}
 	/**
-	 * 
+	 * Returns current Picasa.Album object.
+	 * @return Current Picasa.Album object.
 	 */
 	public function getCurrentAlbum():Album
 	{
 		return getAlbum(__current);
 	}
 	/**
-	 * 
+	 * Sets a Picasa.Album id as a current id.
+	 * @param aID String, Picasa.Album id.
 	 */
 	public function setCurrent(aID:String):Void
 	{
 		__current = aID;
+		//__it.setIndex(__it.searchKey(aID));	//TEST!!!
 	}
 	/**
-	 * 
+	 * Returns current album id(key).
+	 * @return String, current album id.
 	 */
 	 public function getCurrent():String
 	{
 		return __current;
 	}
 	/**
-	 * 
+	 * Returns Picasa.Album object with specified ID.
+	 * @param aID String, Picasa.Album id.
+	 * @return Picasa.Album object with specified ID.
 	 */
 	public function getAlbum(aID:String):Album
 	{
@@ -114,68 +112,47 @@ class Picasa.AlbumService extends Service
 		return __map.get(aID);
 	}
 	/**
-	 * 
+	 * Get next album from current album.
+	 * @return Next Picasa.Album object in the map.
 	 */
 	public function getNextAlbum():Album
 	{
 		return getAlbum(__it.next());
 	}
 	/**
-	 * 
+	 * Get previous album from current album.
+	 * @return Previous Picasa.Album object in the map.
 	 */
 	public function getPrevAlbum():Album
 	{
-		//???
+		//???? TEST!!!
 		return Album({});
-	}
-	/**
-	 * 
-	 */
-	public function getAlbums()
-	{
-	}
-	/**
-	 * 
-	 */
-	public function clear():Void
-	{
-		__map.clear();
-		__current = null;
 		
-		reset();
+		//if(!__it.hasPrev()) {
+		//	__it.seek(size()+1);
+		//}
+		
+		//return getAlbum(__it.prev());
 	}
 	/**
-	 * 
-	 */
-	public function reset():Void
+	 * Returns Picasa Albums count.
+	 * @return Albums count.	 */
+	public function getAlbumsCount():Number
 	{
-		if(size() > 0)
-		{
-			__it = __map.getKeysIterator();
-		}
-		else
-		{
-			__it = null ;
-		}	
+		return size();
 	}
 	/**
-	 * 
+	 * Returns a Map2 object with Picasa.Album objects.
+	 * @return Map2 object with Picasa.Album objects.
 	 */
-	public function size():Number
+	public function getAlbums():Map2
 	{
-		return __map.getSize();
+		return __map;
 	}
-	/**
-	 * 
-	 */
-	public function contains(aID:String):Boolean
-	{
-		return __map.containsKey(aID);
-	} 
 	/**
 	 * Called when successfully loaded xml!
 	 */
-	private function onInitialize(e:IEvent):Void 
+	public function onInitialize(e:LibEvent):Void 
 	{	
 		if(__map != undefined) return;
 		
@@ -193,32 +170,37 @@ class Picasa.AlbumService extends Service
 		notifyChanged(e);
 	}
 	/**
-	 * 
+	 * Called after onInitialize is invoked.
+	 * @param e LibEvent event.
 	 */
-	private function notifyChanged(e:IEvent):Void
+	public function notifyChanged(e:IEvent):Void
 	{
 		onServiceLoaded(e);
 	}
 	/**
-	 * 
+	 * Event sent, during xml loading.
+	 * @param e LibEvent event.
 	 */
-	private function onFileProgress(e:IEvent):Void
+	public function onFileProgress(e:LibEvent):Void
 	{
+		trace("Picasa.AlbumService.onFileProgress("+e.getPerCent()+"% loaded from "+e.getLib().getURL()+")",Log.INFO);
 	}
 	/**
-	 * 
+	 * If xml loading timed out.
+	 * @param e LibEvent event.
 	 */
-	private function onFileTimeout(e:IEvent):Void
+	public function onFileTimeout(e:LibEvent):Void
 	{
+		trace("Picasa.AlbumService.onFileTimeout("+e+")",Log.ERROR);
 	}
 	/**
-	 * 
+	 * If xml loading failed.
+	 * @param e LibEvent event.
 	 */
-	private function onFileError(e:IEvent):Void
+	public function onFileError(e:LibEvent):Void
 	{
-		trace("com.kvenda.services.AlbumService.onFileError("+e+")",Log.ERROR);
+		trace("Picasa.AlbumService.onFileError("+e+")",Log.ERROR);
 	}
-	
 	public function toString():String
 	{
 		return PixlibStringifier.stringify(this);

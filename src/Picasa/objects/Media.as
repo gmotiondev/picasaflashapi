@@ -1,4 +1,6 @@
-﻿/**
+﻿import com.bourre.log.PixlibStringifier;
+
+/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 
@@ -27,5 +29,10 @@ class Picasa.objects.Media
 			width 	: tNode.attributes.width,
 			height 	: tNode.attributes.height
 		};
+	}
+	
+	public function toString():String
+	{
+		return PixlibStringifier.stringify(this);
 	}
 }

@@ -77,7 +77,7 @@ class models.ModelApplication extends Model
 	public function run():Void
 	{
 		__pps = new Picasa.PhotoService();
-		__pps.onPhotoServiceEvent = function(aEvent:IEvent)
+		__pps.onServiceLoaded = function(aEvent:IEvent)
 		{
 			EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.SERVICE_LOADED,this));
 		}

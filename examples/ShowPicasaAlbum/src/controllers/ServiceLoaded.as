@@ -24,7 +24,7 @@ class controllers.ServiceLoaded implements Command
 		var tContainer = MovieClipHelper.getMovieClipHelper(uilist.THUMBS).view;
 		var tPhotoContainer = MovieClipHelper.getMovieClipHelper(uilist.PHOTO).view;
 		
-		for(var a = 0; a < tPPS.size(); a++)
+		for(var a = 0; a < tPPS.getPhotosCount(); a++)
 		{
 			var tPP:Picasa.Photo = tPPS.getNextPhoto();
 			var tID:String = tPP.getIdString();
