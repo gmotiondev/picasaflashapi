@@ -5,7 +5,6 @@ import com.bourre.data.libs.LibEvent;
 import Picasa.Photo;
 import Picasa.Service;import Picasa.IService;
 import Picasa.tools.Map2;
-//import Picasa.tools.ObjectIterator2;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -20,7 +19,7 @@ class Picasa.PhotoService extends Service implements IService
 	{
 		super();
 		
-		__current = null;
+		iterator = null;
 	}
 	/**
 	 * Adds a Picasa.Photo object to Map.
@@ -35,7 +34,7 @@ class Picasa.PhotoService extends Service implements IService
 		{
 			if(!contains(tID))
 			{
-				__map.put(tID,aPhoto);
+				map.put(tID,aPhoto);
 				
 				if(aSetCurrent) { 
 					setCurrent(tID);
@@ -60,7 +59,7 @@ class Picasa.PhotoService extends Service implements IService
 		{
 			if (contains(tID))
 			{
-				__map.remove(tID);
+				map.remove(tID);
 			}
 			else
 			{
@@ -78,7 +77,7 @@ class Picasa.PhotoService extends Service implements IService
 	 */
 	public function getCurrentPhoto():Photo
 	{
-		return getPhoto(__current);
+		return getPhoto(current);
 	}
 	/**
 	 * Sets a Picasa.Photo id as a current id.
@@ -86,8 +85,8 @@ class Picasa.PhotoService extends Service implements IService
 	 */
 	public function setCurrent(aID:String):Void
 	{
-		__current = aID;
-		__it.setIndex(__it.searchKey(aID));
+		current = aID;
+		iterator.setIndex(iterator.searchKey(aID));
 	}
 	/**
 	 * Returns current photo id(key).
@@ -95,7 +94,7 @@ class Picasa.PhotoService extends Service implements IService
 	 */
 	public function getCurrent():String
 	{
-		return __current;
+		return current;
 	}
 	/**
 	 * Returns Picasa.Photo object with specified ID.
@@ -110,7 +109,7 @@ class Picasa.PhotoService extends Service implements IService
 		
 		setCurrent(aID);
 		
-		return __map.get(aID);
+		return map.get(aID);
 	}
 	/**
 	 * Returns a Map2 object with Picasa.Photo objects.
@@ -118,7 +117,7 @@ class Picasa.PhotoService extends Service implements IService
 	 */
 	public function getPhotos():Map2
 	{
-		return __map;
+		return map;
 	}
 	/**
 	 * Returns Picasa Photos count.
@@ -133,11 +132,11 @@ class Picasa.PhotoService extends Service implements IService
 	 */
 	public function getNextPhoto():Photo
 	{	
-		if(!__it.hasNext()) {
+		if(!iterator.hasNext()) {
 			reset();
 		}
 
-		return getPhoto(__it.next());
+		return getPhoto(iterator.next());
 	}
 	/**
 	 * Get previous photo from current photo.
@@ -145,11 +144,11 @@ class Picasa.PhotoService extends Service implements IService
 	 */
 	public function getPrevPhoto():Photo
 	{	
-		if(!__it.hasPrev()) {
-			__it.seek(size()+1);
+		if(!iterator.hasPrev()) {
+			iterator.seek(size()+1);
 		}
 		
-		return getPhoto(__it.prev());
+		return getPhoto(iterator.prev());
 	}
 	/**
 	 * Get album ID.
@@ -164,9 +163,9 @@ class Picasa.PhotoService extends Service implements IService
 	 */
 	public function onInitialize(e:LibEvent):Void 
 	{
-		if(__map != undefined) return;
+		if(map != undefined) return;
 		
-		__map = new Map2();
+		map = new Map2();
 		
 		var tData = getData();
 		var tEntries = tData.entry;

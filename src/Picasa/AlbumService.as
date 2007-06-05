@@ -19,7 +19,7 @@ class Picasa.AlbumService extends Service implements IService
 	{
 		super();
 		
-		__current = null;
+		current = null;
 	}
 	/**
 	 * Adds a Picasa.Album object to Map.
@@ -34,7 +34,7 @@ class Picasa.AlbumService extends Service implements IService
 		{
 			if(!contains(tID))
 			{
-				__map.put(tID,aAlbum);
+				map.put(tID,aAlbum);
 				
 				if(aSetCurrent) { 
 					setCurrent(tID);
@@ -59,7 +59,7 @@ class Picasa.AlbumService extends Service implements IService
 		{
 			if (contains(tID))
 			{
-				__map.remove(tID);
+				map.remove(tID);
 			}
 			else
 			{
@@ -77,7 +77,7 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function getCurrentAlbum():Album
 	{
-		return getAlbum(__current);
+		return getAlbum(current);
 	}
 	/**
 	 * Sets a Picasa.Album id as a current id.
@@ -85,8 +85,8 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function setCurrent(aID:String):Void
 	{
-		__current = aID;
-		//__it.setIndex(__it.searchKey(aID));	//TEST!!!
+		current = aID;
+		//iterator.setIndex(iterator.searchKey(aID));	//TEST!!!
 	}
 	/**
 	 * Returns current album id(key).
@@ -94,7 +94,7 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	 public function getCurrent():String
 	{
-		return __current;
+		return current;
 	}
 	/**
 	 * Returns Picasa.Album object with specified ID.
@@ -109,7 +109,7 @@ class Picasa.AlbumService extends Service implements IService
 		
 		setCurrent(aID);
 		
-		return __map.get(aID);
+		return map.get(aID);
 	}
 	/**
 	 * Get next album from current album.
@@ -117,7 +117,7 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function getNextAlbum():Album
 	{
-		return getAlbum(__it.next());
+		return getAlbum(iterator.next());
 	}
 	/**
 	 * Get previous album from current album.
@@ -128,11 +128,11 @@ class Picasa.AlbumService extends Service implements IService
 		//???? TEST!!!
 		return Album({});
 		
-		//if(!__it.hasPrev()) {
-		//	__it.seek(size()+1);
+		//if(!iterator.hasPrev()) {
+		//	iterator.seek(size()+1);
 		//}
 		
-		//return getAlbum(__it.prev());
+		//return getAlbum(iterator.prev());
 	}
 	/**
 	 * Returns Picasa Albums count.
@@ -147,16 +147,16 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function getAlbums():Map2
 	{
-		return __map;
+		return map;
 	}
 	/**
 	 * Called when successfully loaded xml!
 	 */
 	public function onInitialize(e:LibEvent):Void 
 	{	
-		if(__map != undefined) return;
+		if(map != undefined) return;
 		
-		__map = new Map2();
+		map = new Map2();
 		
 		var tData = getData();
 		var tEntries = tData.entry;

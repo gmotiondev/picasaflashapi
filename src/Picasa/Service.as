@@ -123,6 +123,30 @@ class Picasa.Service
 	{
 		return __map.containsKey(aID);
 	}
+	private function get current():String
+	{
+		return __current;
+	}
+	private function set current(a:String):Void
+	{
+		__current = a;
+	}
+	private function get map():Map2
+	{
+		return __map;
+	}
+	private function set map(aMap:Map2):Void
+	{
+		__map = aMap;
+	}
+	private function get iterator():ObjectIterator2
+	{
+		return __it;
+	}
+	private function set iterator(aIterator:ObjectIterator2):Void
+	{
+		__it = aIterator;
+	}
 	/**
 	 * 	 */
 	public function toString():String
