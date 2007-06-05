@@ -51,6 +51,13 @@ class Picasa.Photo
 	{
 		return getMedia().thumbnail.url
 	}
+	public function getThumbnailsLinks():Object{
+		return {
+			s : getMedia().thumbnail_s,
+			m : getMedia().thumbnail_m,
+			l : getMedia().thumbnail_l
+		}
+	}
 	/**
 	 * Returns Picasa Photo published date like:
 	 * 2006-10-29T10:19:48.000Z
