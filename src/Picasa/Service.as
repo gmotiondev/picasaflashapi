@@ -59,9 +59,10 @@ class Picasa.Service
 		__d.addEventListener(XMLToObject.onLoadProgressEVENT,this,onFileProgress);
 		__d.addEventListener(XMLToObject.onTimeOutEVENT,this,onFileTimeout);
 		__d.addEventListener(XMLToObject.onErrorEVENT,this,onFileError);
-		
+
 		__d.load(aFeedURL);
 	}
+
 	/**
 	 * Returns deserialized xml data.
 	 * @return deserialized xml data

@@ -8,7 +8,6 @@ class uis.PhotoHolder extends MovieClipHelper
 	public function PhotoHolder(aId:String,aC:MovieClip)
 	{
 		super(aId,aC);
-		
 		initialize();
 	}
 	

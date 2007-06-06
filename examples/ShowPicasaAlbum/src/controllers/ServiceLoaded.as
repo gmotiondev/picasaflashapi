@@ -31,17 +31,18 @@ class controllers.ServiceLoaded implements Command
 			
 			if(!Thumb.exists(tID))
 			{
-				var tThumb:Thumb = new Thumb("pt_"+tPP.getIdString(), tContainer, false);
+				var tThumb:Thumb = new Thumb(tPP.getIdString(), tContainer, false);
 
 					tModel.addEventListener(EventList.PHOTO_THUMB_CLICK,tThumb);
 
 					tThumb.move(0,(a*70));
-					tThumb.setTitle(tPP.getTitle());
+					tThumb.setTitle(tPP.getTitle()+"<br/>"+tPP.getSummary());
 					tThumb.getButton().onRelease = Delegate.create(this, notify, tPP);
 					tThumb.load(tPP.getThumbnailLink());
 				
 				//preload photos
 				var tPhoto:Photo = new Photo(tPP.getIdString(),tPhotoContainer,true);
+					tPhoto.setTitle(tPP.getSummary()+"("+tPP.getTitle()+")")
 					tModel.addListener(tPhoto);
 					tPhoto.load(tPP.getLink());
 					

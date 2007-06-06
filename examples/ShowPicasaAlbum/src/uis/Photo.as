@@ -42,7 +42,16 @@ class uis.Photo extends MovieClipHelper implements ILibListener
 	private function initialize()
 	{
 	}
-		
+	
+	public function setTitle(aString:String):Void
+	{
+		container.createTextField("tf_"+id,2,200,500,200,100);
+		var tField:TextField = container["tf_"+id];
+			tField.multiline = true;
+			tField.html = true;
+			tField.htmlText = "<font face=\"Tahoma\">"+aString+"</font>";
+	}
+	
 	public function load(aUrl:String):Void
 	{
 		var tLibStack:LibStack = new LibStack();

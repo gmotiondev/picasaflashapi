@@ -191,7 +191,7 @@ class Picasa.PhotoService extends Service implements IService
 	 */
 	public function onFileProgress(e:LibEvent):Void
 	{
-		trace("Picasa.PhotoService.onFileProgress("+e.getPerCent()+"% loaded from "+e.getLib().getURL()+")",Log.INFO);
+		//trace("Picasa.PhotoService.onFileProgress("+e.getPerCent()+"% loaded from "+e.getLib().getURL()+")",Log.INFO);
 	}
 	/**
 	 * If xml loading timed out.

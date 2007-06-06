@@ -86,15 +86,14 @@ class Picasa.Photo
 	 * @return Picasa Photo title string.	 */
 	public function getTitle():String
 	{
-		//<title type="text">IMG_5114.jpg</title>
 		return __d["title"];
 	}
 	/**
 	 * Returns Picasa Photo summary.
 	 * @return Picasa Photo summary string.	 */
 	public function getSummary():String
-	{
-		return __d["summary"];
+	{		
+		return (__d["summary"] != null) ? __d["summary"] : "";
 	}
 	/**
 	 * Returns Picasa Photo url like:
