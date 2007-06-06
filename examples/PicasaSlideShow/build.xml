@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="PicasaSlideShow" default="compile" basedir=".">
+
+	<property file="../../../../ames.properties" />
+	<import file="../../../../as2ant_taskdefs.xml" />
+
+	<property name="src.dir" location="src"/>
+	<property name="build.dir" location="bin"/>
+	<property name="pixlib.dir" location="c:\dev\svnworld\pixlib\framework\src"/>
+	<property name="picasa.dir" location="c:\dev\Clients\picasaflashapi\trunk\src"/>
+	<property name="logger.dir" location="c:\eclipse\plugins\org.asdt.logger_0.0.8.build5\lib\flash_classes"/>
+
+	<property name="width" value="800"/>
+	<property name="height" value="600"/>
+	<property name="framerate" value="31"/>
+	<property name="bgcolor" value="FFFFFF"/>
+	<property name="version" value="7"/>
+	
+	<target name="compile" description="builds swf" depends="">
+		<mtasc 	src="${src.dir}/Application.as"
+				classpath="${src.dir}:${logger.dir}:${pixlib.dir}:${picasa.dir}"
+				swf="${build.dir}/Application.swf"
+				main="true" wimp="true" header="${width}:${height}:${framerate}:${bgcolor}"
+				trace="Log.addMessage"/>
+	</target>
+</project>

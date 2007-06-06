@@ -62,7 +62,10 @@ class uis.Photo extends MovieClipHelper implements ILibListener
 		tLibStack.addListener(this);
 		tLibStack.execute();
 	}
-	
+	public static function exists(aID:String):Boolean
+	{
+		return __map.containsKey(aID);
+	}
 	// Listener methods
 	public function onLoadStart(e:LibEvent):Void
 	{
