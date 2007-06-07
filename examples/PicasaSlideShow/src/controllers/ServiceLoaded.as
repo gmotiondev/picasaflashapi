@@ -1,4 +1,5 @@
 ﻿import com.bourre.commands.Command;
+import com.bourre.commands.Delegate;
 import com.bourre.core.Model;
 import com.bourre.events.BasicEvent;
 import com.bourre.visual.MovieClipHelper;
@@ -7,6 +8,7 @@ import com.bourre.log.PixlibStringifier;
 import uis.uilist;
 import uis.Photo;
 import models.*;
+import events.EventList;
 
 /**
   @author Michal Gron (michal.gron@gmail.com)
@@ -30,7 +32,9 @@ class controllers.ServiceLoaded implements Command
 				if(a == 0) tCurrentOnFinished = tID;
 				var tPhoto:Photo = new Photo(tID,tPhotoContainer,(a != 0));
 					tPhoto.setTitle(tPP.getSummary()+"("+tPP.getTitle()+")");
-					tModel.addListener(tPhoto);
+					tPhoto.view.onRelease = Delegate.create(this,onPhotoClick);
+					//tModel.addListener(tPhoto);
+					tModel.addEventListener(EventList.PHOTO_CLICK,tPhoto);					tModel.addEventListener(EventList.PHOTO_CHANGED,tPhoto);
 					tPhoto.load(tPP.getLink());
 			} else
 			{
@@ -40,12 +44,11 @@ class controllers.ServiceLoaded implements Command
 		tModel.setCurrentPhoto(tCurrentOnFinished);
 		tModel.startSlideShow();
 	}
-	
-	public function notify(aPP:Picasa.Photo):Void
+	public function onPhotoClick()
 	{
-		ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION)).PhotoThumbClick(aPP);
+		var tModel = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
+			tModel.photoClick();
 	}
-	
 	public function toString():String
 	{
 		return PixlibStringifier.stringify(this);

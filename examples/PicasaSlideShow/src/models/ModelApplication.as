@@ -1,7 +1,6 @@
 ﻿import com.bourre.core.Model;
 //import com.bourre.events.IEvent;import com.bourre.events.BasicEvent;
 import com.bourre.events.EventBroadcaster;
-import com.bourre.visual.MovieClipHelper;
 import com.bourre.commands.Delegate;import com.bourre.commands.CommandMS;
 
 import models.ModelList;
@@ -12,7 +11,9 @@ import events.EventList;
  */
 class models.ModelApplication extends Model
 {
+	private var __t:CommandMS;
 	private var __c:MovieClip;
+	private var __isPlaying:Boolean = true;
 	private var __pps:Picasa.PhotoService;
 	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5071041246998165969?kind=photo";//	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/4997359002061176849?authkey=jYNMghEYgL0";
 	
@@ -42,7 +43,7 @@ class models.ModelApplication extends Model
 		var tPPS:Picasa.PhotoService = getPhotoService();
 		var tPP:Picasa.Photo = tPPS.getNextPhoto();
 
-		notifyChanged(new BasicEvent(EventList.PHOTO_THUMB_CLICK,tPP));
+		notifyChanged(new BasicEvent(EventList.PHOTO_CHANGED,tPP));
 	}
 	
 	public function getPrevPhoto():Void
@@ -50,7 +51,7 @@ class models.ModelApplication extends Model
 		var tPPS:Picasa.PhotoService = getPhotoService();
 		var tPP:Picasa.Photo = tPPS.getPrevPhoto();
 		
-		notifyChanged(new BasicEvent(EventList.PHOTO_THUMB_CLICK,tPP););
+		notifyChanged(new BasicEvent(EventList.PHOTO_CHANGED,tPP););
 	}
 	
 	public function setCurrentPhoto(aId:String):Void
@@ -63,16 +64,12 @@ class models.ModelApplication extends Model
 		return __pps;
 	}
 	
-	public function PhotoThumbClick(p:Picasa.Photo):Void
-	{	
-		var tE = new BasicEvent(EventList.PHOTO_THUMB_CLICK,p);
+	public function photoClick()
+	{
+		__isPlaying ? __t.stopWithName("slideshow") : __t.resumeWithName("slideshow");
+		__isPlaying = !__isPlaying;
 		
-		var tPhotoId = p.getIdString();
-		var tPhotoMc = MovieClipHelper.getMovieClipHelper(tPhotoId);
-			tPhotoMc.show();
-		
-		setCurrentPhoto(tPhotoId);
-		notifyChanged(tE);
+		notifyChanged(new BasicEvent(EventList.PHOTO_CLICK));
 	}
 	
 	public function run():Void
@@ -88,7 +85,7 @@ class models.ModelApplication extends Model
 	
 	public function startSlideShow():Void
 	{
-		var t:CommandMS = new CommandMS();
-		 	t.push( new Delegate(this, getNextPhoto, t), 5000 );
+		__t = new CommandMS();
+		__t.pushWithName(new Delegate(this, getNextPhoto, __t), 5000, "slideshow");
 	}
 }

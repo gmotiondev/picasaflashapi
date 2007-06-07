@@ -89,7 +89,12 @@ class uis.Photo extends MovieClipHelper implements ILibListener
 		trace("Photo loading time out: "+e.getName(),Log.ERROR);
 	}
 	
-	public function PhotoThumbClick(e:IEvent)
+	public function PhotoClick(e:IEvent)
+	{
+		//trace("uis.Photo.PhotoClick("+e+")",Log.INFO);
+	}
+	
+	public function PhotoChanged(e:IEvent)
 	{
 		var tId = e.getTarget().getIdString();
 		var t:TweenMS = null;
