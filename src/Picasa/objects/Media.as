@@ -2,6 +2,9 @@
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
+ * 
+ * Fine tune with this:
+ * http://code.google.com/apis/picasaweb/reference.html
  */
 
 class Picasa.objects.Media

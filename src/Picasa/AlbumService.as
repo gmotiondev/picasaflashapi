@@ -9,7 +9,11 @@ import Picasa.tools.Map2;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
- 
+
+/**
+ * TODO:
+ * get xml header infos, before entries (album cover, ...)
+ * authKey for unlisted albums? */
 class Picasa.AlbumService extends Service implements IService
 {
 	/**
@@ -159,7 +163,7 @@ class Picasa.AlbumService extends Service implements IService
 		map = new Map2();
 		
 		var tData = getData();
-		var tEntries = tData.entry;
+		var tEntries = tData.entry;	//array with <entry/> nodes
 		
 		for(var a = 0; a < tEntries.length; a++)
 		{

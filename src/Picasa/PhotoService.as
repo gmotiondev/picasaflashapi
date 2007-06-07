@@ -9,7 +9,9 @@ import Picasa.tools.Map2;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
- 
+
+/**
+ * get xml photo header, before entries ...  */
 class Picasa.PhotoService extends Service implements IService
 {
 	/**

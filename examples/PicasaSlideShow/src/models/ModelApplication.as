@@ -14,7 +14,7 @@ class models.ModelApplication extends Model
 {
 	private var __c:MovieClip;
 	private var __pps:Picasa.PhotoService;
-	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5071041246998165969?kind=photo";
+	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5071041246998165969?kind=photo";//	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/4997359002061176849?authkey=jYNMghEYgL0";
 	
 	public function ModelApplication()
 	{
@@ -89,6 +89,6 @@ class models.ModelApplication extends Model
 	public function startSlideShow():Void
 	{
 		var t:CommandMS = new CommandMS();
-	 		t.push( new Delegate(this, getNextPhoto), 5000 );
+		 	t.push( new Delegate(this, getNextPhoto, t), 5000 );
 	}
 }

@@ -5,11 +5,15 @@ import com.bourre.log.PixlibStringifier;
 
 import Picasa.tools.Map2;
 import Picasa.tools.ObjectIterator2;
+
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  * 
  */
 
+/**
+ * 
+ *  */
 class Picasa.Service
 {	
 	private var __d:XMLToObject;
@@ -86,8 +90,7 @@ class Picasa.Service
 	public function onInitialize(e:LibEvent):Void {}
 	public function onFileProgress(e:LibEvent):Void {}
 	public function onFileTimeout(e:LibEvent):Void {}
-	public function onFileError(e:LibEvent):Void { }
-	
+	public function onFileError(e:LibEvent):Void {}
 	/**
 	 * Clear and reset map.
 	 */
