@@ -187,7 +187,7 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function onFileProgress(e:LibEvent):Void
 	{
-		trace("Picasa.AlbumService.onFileProgress("+e.getPerCent()+"% loaded from "+e.getLib().getURL()+")",Log.INFO);
+		//trace("Picasa.AlbumService.onFileProgress("+e.getPerCent()+"% loaded from "+e.getLib().getURL()+")",Log.INFO);
 	}
 	/**
 	 * If xml loading timed out.
