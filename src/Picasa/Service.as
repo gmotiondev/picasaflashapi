@@ -10,14 +10,14 @@ import Picasa.tools.ObjectIterator2;
  * @author Michal Gron (michal.gron@gmail.com)
  * 
  */
-
-/**
- * 
- *  */
+ 
 class Picasa.Service
 {	
 	private var __d:XMLToObject;
 	private var __o;
+	
+	private var __feed:String;
+	private var __kind:String;
 	
 	private var __map : Map2;
 	private var __current : String;
@@ -27,16 +27,18 @@ class Picasa.Service
 	/**
 	 * Constructor
 	 */	
-	public function Service(aParent:Object)
+	public function Service(aUrl:String,aKind:String)
 	{
+		setFeedURL(aUrl,aKind);
 		initialize();
 	}
 	/**
 	 * Load xml from aUrl
 	 */
-	public function load(aUrl:String):Void
+	public function load():Void
 	{
-		setFeed(aUrl);
+		trace("load: "+getFeedURL(),Log.INFO);
+		setRequest(getFeedURL());
 	}
 	/**
 	 * Service initialize	 */
@@ -46,10 +48,19 @@ class Picasa.Service
 		XMLToObjectDeserializer.ATTRIBUTE_TARGETED_PROPERTY_NAME = "attributes";
 		XMLToObjectDeserializer.PUSHINARRAY_IDENTICAL_NODE_NAMES = true;
 	}
+	public function setFeedURL(aUrl:String,aKind:String):Void
+	{
+		__feed = aUrl;
+		__kind = aKind;
+	}
+	public function getFeedURL():String
+	{
+		return __feed+"?kind="+__kind;
+	}
 	/**
 	 * Sets feed's url and starts loading xml feed
 	 * @param aFeedURL Complete url string.	 */
-	private function setFeed(aFeedURL:String):Void
+	private function setRequest(aFeedURL:String):Void
 	{
 		__d = new XMLToObject(new Object());
 		

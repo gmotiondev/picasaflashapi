@@ -15,7 +15,8 @@ class models.ModelApplication extends Model
 	private var __c:MovieClip;
 	private var __isPlaying:Boolean = true;
 	private var __pps:Picasa.PhotoService;
-	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5071041246998165969?kind=photo";//	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/4997359002061176849?authkey=jYNMghEYgL0";
+	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu";
+	private var __albumid:String = "5071041246998165969";
 	
 	public function ModelApplication()
 	{
@@ -74,13 +75,13 @@ class models.ModelApplication extends Model
 	
 	public function run():Void
 	{
-		__pps = new Picasa.PhotoService();
-		__pps.onServiceLoaded = Delegate.create(this,onServiceLoaded);		__pps.load(__feed);
+		__pps = new Picasa.PhotoService(__feed,__albumid);
+		__pps.onServiceLoaded = Delegate.create(this,onServiceLoaded);		__pps.load();
 	}
 	
 	private function onServiceLoaded():Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.SERVICE_LOADED,getPhotoService()));
+		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.SERVICE_LOADED));
 	}
 	
 	public function startSlideShow():Void

@@ -17,10 +17,9 @@ class Picasa.PhotoService extends Service implements IService
 	/**
 	 * Constructor
 	 */
-	public function PhotoService(aParent:Object)
+	public function PhotoService(aUrl:String,aAlbumId)
 	{
-		super();
-		
+		super(aUrl+"/albumid/"+aAlbumId,"photo");	//ugly!!
 		iterator = null;
 	}
 	/**

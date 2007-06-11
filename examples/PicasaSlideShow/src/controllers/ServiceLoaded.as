@@ -18,7 +18,7 @@ class controllers.ServiceLoaded implements Command
 	public function execute(e:BasicEvent):Void 
 	{
 		var tModel = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
-		var tPPS:Picasa.PhotoService = e.getTarget();
+		var tPPS:Picasa.PhotoService = tModel.getPhotoService();
 		var tPhotoContainer = MovieClipHelper.getMovieClipHelper(uilist.PHOTO).view;
 		var tCurrentOnFinished:String = "";
 		

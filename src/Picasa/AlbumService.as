@@ -19,10 +19,9 @@ class Picasa.AlbumService extends Service implements IService
 	/**
 	 * Constructor
 	 */
-	public function AlbumService(aParent:Object)
+	public function AlbumService(aUrl:String)
 	{
-		super();
-		
+		super(aUrl,"album");
 		current = null;
 	}
 	/**

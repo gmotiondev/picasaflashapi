@@ -9,7 +9,7 @@
 	<property name="build.dir" location="bin"/>
 	<property name="pixlib.dir" location="c:\dev\svnworld\pixlib\framework\src"/>
 	<property name="picasa.dir" location="c:\dev\Clients\picasaflashapi\trunk\src"/>
-	<property name="logger.dir" location="c:\eclipse\plugins\org.asdt.logger_0.0.8.build5\lib\flash_classes"/>
+	<property name="logger.dir" location="C:\eclipse\plugins\org.asdt.logger_0.0.9\lib\flash_classes"/>
 
 	<property name="width" value="800"/>
 	<property name="height" value="600"/>
