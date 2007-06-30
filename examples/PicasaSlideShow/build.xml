@@ -10,18 +10,14 @@
 	<property name="pixlib.dir" location="c:\dev\svnworld\pixlib\framework\src"/>
 	<property name="picasa.dir" location="c:\dev\Clients\picasaflashapi\trunk\src"/>
 	<property name="logger.dir" location="C:\eclipse\plugins\org.asdt.logger_0.0.9\lib\flash_classes"/>
-
-	<property name="width" value="800"/>
-	<property name="height" value="600"/>
-	<property name="framerate" value="31"/>
-	<property name="bgcolor" value="FFFFFF"/>
 	<property name="version" value="7"/>
 	
 	<target name="compile" description="builds swf" depends="">
+	<swfmill src="precompile.xml" dest="${build.dir}/Application.swf" cmd="simple"/>	
 		<mtasc 	src="${src.dir}/Application.as"
 				classpath="${src.dir}:${logger.dir}:${pixlib.dir}:${picasa.dir}"
 				swf="${build.dir}/Application.swf"
-				main="true" wimp="true" header="${width}:${height}:${framerate}:${bgcolor}"
+				main="true" wimp="true" keep="true"
 				trace="Log.addMessage"/>
 	</target>
 </project>

@@ -17,7 +17,7 @@ class uis.Photo extends MovieClipHelper implements ILibListener
 
 	private static var __map:Map;
 	
-	public function Photo(aID:String,aContainer:MovieClip,aHide:Boolean)
+	public function Photo(aID:String, aContainer:MovieClip, aHide:Boolean)
 	{
 		if(__map == undefined) {
 			__map = new Map();
@@ -46,11 +46,19 @@ class uis.Photo extends MovieClipHelper implements ILibListener
 	
 	public function setTitle(aString:String):Void
 	{
-		container.createTextField("tf_"+id,2,200,500,200,100);
-		var tField:TextField = container["tf_"+id];
-			tField.multiline = true;
-			tField.html = true;
-			tField.htmlText = "<font face=\"Tahoma\">"+aString+"</font>";
+		var tTF:TextFormat = new TextFormat();
+			tTF.font = "london";
+			tTF.size = 14;
+			tTF.leading = 6;
+			tTF.color = 0xFFFFFF;
+			
+		container.createTextField("tf_"+id,2,10,440,620,40);
+		var tF:TextField = container["tf_"+id];
+			tF.embedFonts = true;
+			tF.multiline = true;
+			tF.html = true;
+			tF.htmlText = ""+aString;
+			tF.setTextFormat(tTF);
 	}
 	
 	public function load(aUrl:String):Void
@@ -101,11 +109,11 @@ class uis.Photo extends MovieClipHelper implements ILibListener
 		
 		if(tId == id)
 		{
-			t = new TweenMS(view, '_alpha', 100, 250, 0);
+			t = new TweenMS(view, '_alpha', 100, 500, 0);
 			show();
 		} else
 		{
-			t = new TweenMS(view, '_alpha', 0, 250, 100);
+			t = new TweenMS(view, '_alpha', 0, 500, 100);
 			t.addEventListener(TweenMS.onMotionFinishedEVENT, this, hide);
 		}
 		t.start();

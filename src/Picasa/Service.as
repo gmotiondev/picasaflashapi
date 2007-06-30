@@ -117,6 +117,7 @@ class Picasa.Service
 	 */
 	private function reset():Void
 	{
+		
 		if(size() > 0)
 		{
 			__it = __map.getKeysIterator();

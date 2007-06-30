@@ -98,6 +98,10 @@ class Picasa.PhotoService extends Service implements IService
 	{
 		return current;
 	}
+	public function getCurrentIndex():Number
+	{
+		return iterator.getIndex();
+	}
 	/**
 	 * Returns Picasa.Photo object with specified ID.
 	 * @param aID String, Picasa.Photo id.
@@ -151,6 +155,14 @@ class Picasa.PhotoService extends Service implements IService
 		}
 		
 		return getPhoto(iterator.prev());
+	}
+	/**
+	 * Get first photo.
+	 * 	 */
+	public function getFirstPhoto():Photo
+	{	
+		reset();
+		return getPhoto(iterator.next());
 	}
 	/**
 	 * Get album ID.

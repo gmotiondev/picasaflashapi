@@ -20,18 +20,13 @@ class uis.Navigation extends MovieClipHelper
 	
 	private function initialize():Void
 	{
-		var tLMC = container.createEmptyMovieClip("l",1000);
-			tLMC._x = 690;
-			tLMC._y = 260;
-			tLMC.createTextField("left_arrow",10,0,0,50,20);
-			tLMC["left_arrow"].html = true;			tLMC["left_arrow"].htmlText = "<font face=\"Tahoma\">&lt; Prev</font>";
-			tLMC.onRelease = Delegate.create(this,onPrevPhoto);
-				var tRMC = container.createEmptyMovieClip("r",1001);
-			tRMC._x = 740;
-			tRMC._y = 260;
-			tRMC.createTextField("right_arrow",10,0,0,50,20);
-			tRMC["right_arrow"].html = true;			tRMC["right_arrow"].htmlText = "<font face=\"Tahoma\">Next &gt;</font>";
-			tRMC.onRelease = Delegate.create(this,onNextPhoto);
+		var l:MovieClip = container.attachMovie("l","l",1002);
+		var r:MovieClip = container.attachMovie("r","r",1003);
+		
+		l._x = 40; l._y = 40;
+		r._x = 620; r._y = 40;
+		
+		l.onRelease = Delegate.create(this,onPrevPhoto);		r.onRelease = Delegate.create(this,onNextPhoto);
 		
 		show();
 	}
