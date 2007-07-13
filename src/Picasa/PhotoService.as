@@ -13,6 +13,7 @@ import Picasa.tools.Map2;
 /**
  * get xml photo header, before entries ...  */
 class Picasa.PhotoService extends Service implements IService
+//class Picasa.PhotoService extends Picasa.JSONService implements IService
 {
 	/**
 	 * Constructor
