@@ -67,11 +67,7 @@ class models.ModelApplication extends Model
 	{	
 		var tE = new BasicEvent(EventList.PHOTO_THUMB_CLICK,p);
 		
-		var tPhotoId = p.getIdString();
-		var tPhotoMc = MovieClipHelper.getMovieClipHelper(tPhotoId);
-			tPhotoMc.show();
-		
-		setCurrentPhoto(tPhotoId);
+		setCurrentPhoto(p.getIdString());
 		notifyChanged(tE);
 	}
 	
