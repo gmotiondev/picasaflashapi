@@ -1,5 +1,6 @@
 ﻿import com.bourre.core.Model;
-//import com.bourre.events.IEvent;import com.bourre.events.BasicEvent;
+//import com.bourre.events.IEvent;
+import com.bourre.data.libs.LibEvent;import com.bourre.events.BasicEvent;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.commands.Delegate;import com.bourre.commands.CommandMS;
 
@@ -15,8 +16,11 @@ class models.ModelApplication extends Model
 	private var __c:MovieClip;
 	private var __isPlaying:Boolean = true;
 	private var __pps:Picasa.PhotoService;
-	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu";
-	private var __albumid:String = "5071041246998165969";
+	
+	private var PROXY_URL:String = "http://prasa.sk/proxy.php?gws_path=";
+	
+	private var __feed:String = PROXY_URL+"http://picasaweb.google.com/data/feed/api/user/thisispinkfu";
+	private var __albumid:String = "5094406297232552993";
 	
 	public function ModelApplication()
 	{
@@ -70,15 +74,26 @@ class models.ModelApplication extends Model
 		__isPlaying ? __t.stopWithName("slideshow") : __t.resumeWithName("slideshow");
 		__isPlaying = !__isPlaying;
 		
-		notifyChanged(new BasicEvent(EventList.PHOTO_CLICK));
+		notifyChanged(new BasicEvent(EventList.PHOTO_CLICK,__isPlaying));
 	}
-	
+	public function pause():Void
+	{
+		if(__isPlaying) photoClick();
+	}
+	public function play():Void
+	{
+		if(!__isPlaying) photoClick();
+	}
 	public function run():Void
 	{
 		__pps = new Picasa.PhotoService(__feed,__albumid);
-		__pps.onServiceLoaded = Delegate.create(this,onServiceLoaded);		__pps.load();
+		__pps.onServiceLoaded = Delegate.create(this, onServiceLoaded);
+		__pps.onFileProgress = Delegate.create(this, onFileProgress);		__pps.load();
 	}
-	
+	private function onFileProgress(e:LibEvent):Void
+	{
+		Application.setConfigLoaderProgress(e.getPerCent());
+	}
 	private function onServiceLoaded():Void
 	{
 		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.SERVICE_LOADED));

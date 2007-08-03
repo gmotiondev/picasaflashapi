@@ -2,6 +2,7 @@
 import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
 
+import events.EventList;
 import models.ModelApplication;
 import uis.PhotoHolder;
 import uis.Navigation;
@@ -20,6 +21,8 @@ class controllers.RunApplication implements Command
 		var tNAV:Navigation = new Navigation(uilist.NAVIGATION,tC.createEmptyMovieClip("navigation",20));
 		
 		var model:ModelApplication = new ModelApplication();
+			model.addEventListener(EventList.PHOTO_CLICK,tNAV);
+			model.addEventListener(EventList.PHOTO_CHANGED,tNAV);
 			model.setContainer(tC);
 			model.initialize();	
 	}

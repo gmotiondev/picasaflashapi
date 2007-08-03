@@ -31,7 +31,7 @@ class controllers.ServiceLoaded implements Command
 			{
 				if(a == 0) tCurrentOnFinished = tID;
 				var tPhoto:Photo = new Photo(tID,tPhotoContainer,(a != 0));
-					tPhoto.setTitle(tPP.getSummary()+"("+tPP.getTitle()+")");
+					tPhoto.setTitle(tPP.getSummary());
 					tPhoto.view.onRelease = Delegate.create(this,onPhotoClick);
 					//tModel.addListener(tPhoto);
 					tModel.addEventListener(EventList.PHOTO_CLICK,tPhoto);					tModel.addEventListener(EventList.PHOTO_CHANGED,tPhoto);

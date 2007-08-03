@@ -6,6 +6,7 @@ import com.bourre.data.libs.LibStack;
 import com.bourre.data.libs.ILibListener;
 import com.bourre.data.collections.Map;
 import com.bourre.transitions.TweenMS;
+import com.bourre.utils.Geom;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -46,13 +47,16 @@ class uis.Photo extends MovieClipHelper implements ILibListener
 	
 	public function setTitle(aString:String):Void
 	{
+		var tBG = Geom.buildRectangle(container,2,320,20, 0x9cdfff, 0x9cdfff);
+			tBG._y = 197;
 		var tTF:TextFormat = new TextFormat();
 			tTF.font = "london";
 			tTF.size = 14;
-			tTF.leading = 6;
-			tTF.color = 0xFFFFFF;
+			tTF.leading = -16;
+			tTF.blockIndent = 10;
+			tTF.color = 0x003C63;
 			
-		container.createTextField("tf_"+id,2,10,440,620,40);
+		container.createTextField("tf_"+id,5,0,200,320,20);
 		var tF:TextField = container["tf_"+id];
 			tF.embedFonts = true;
 			tF.multiline = true;
@@ -86,6 +90,7 @@ class uis.Photo extends MovieClipHelper implements ILibListener
 	public function onLoadProgress(e:LibEvent):Void
 	{
 		//view.onLoadProgress({progress:e.getPerCent()});
+		Application.setConfigLoaderProgress(e.getPerCent());
 	}
 	
 	public function onLoadComplete(e:LibEvent):Void

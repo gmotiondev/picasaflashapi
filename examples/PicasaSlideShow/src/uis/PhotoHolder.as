@@ -14,6 +14,5 @@ class uis.PhotoHolder extends MovieClipHelper
 	private function initialize()
 	{
 		show();
-		move(30,30);
 	}
 }
