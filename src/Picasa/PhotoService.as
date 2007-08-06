@@ -44,11 +44,11 @@ class Picasa.PhotoService extends Service implements IService
 				}
 			} else
 			{
-				trace("Photo "+tID+" already added!", Log.WARNING)
+				trace("Photo "+tID+" already added!")
 			}
 		} else
 		{
-			trace("Photo has null id!", Log.ERROR);
+			trace("Photo has null id!");
 		}
 	}
 	/**
@@ -66,12 +66,12 @@ class Picasa.PhotoService extends Service implements IService
 			}
 			else
 			{
-				trace("Album "+tID+" is not available!",Log.WARNING);
+				trace("Album "+tID+" is not available!");
 			}
 		}
 		else
 		{
-			trace("Album id is null!",Log.ERROR);
+			trace("Album id is null!");
 		}
 	}
 	/**
@@ -111,7 +111,7 @@ class Picasa.PhotoService extends Service implements IService
 	public function getPhoto(aID:String):Photo
 	{
 		if(!contains(aID)) {
-			trace("Photo "+aID+" is not available!",Log.ERROR);
+			trace("Photo "+aID+" is not available!");
 		}
 		
 		setCurrent(aID);
@@ -214,7 +214,7 @@ class Picasa.PhotoService extends Service implements IService
 	 */
 	public function onFileTimeout(e:LibEvent):Void
 	{
-		trace("Picasa.PhotoService.onFileTimeout("+e+")",Log.ERROR);
+		trace("Picasa.PhotoService.onFileTimeout("+e+")");
 	}
 	/**
 	 * If xml loading failed.
@@ -222,7 +222,7 @@ class Picasa.PhotoService extends Service implements IService
 	 */
 	public function onFileError(e:LibEvent):Void
 	{
-		trace("Picasa.PhotoService.onFileError("+e+")",Log.ERROR);
+		trace("Picasa.PhotoService.onFileError("+e+")");
 	}
 
 	public function toString():String

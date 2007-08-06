@@ -62,7 +62,7 @@ class Picasa.objects.GPhoto
 		    	weight 				= Number(a["gphoto:weight"]);
 				break
 			default:
-				trace("GPhoto object type not defined!",Log.ERROR);
+				trace("GPhoto object type not defined!");
 		}	
 	}
 	

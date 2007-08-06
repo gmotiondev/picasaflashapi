@@ -58,7 +58,7 @@ class Picasa.objects.Collection
 	 * !TODO
 	 * <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#photo"/>
 	 */
-	public function getCategory():Void
+	public function getCategory():String
 	{	
 		return __d["category"];
 	}
