@@ -22,16 +22,16 @@ class Application extends MovieClipHelper
 	
 	private function initialize(mc:MovieClip):Void
 	{	
-		var tLB:LoadingBar = new LoadingBar(ViewList.LOADING_BAR,mc.createEmptyMovieClip("loadingBar",10010));
+		var tLB:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, mc.createEmptyMovieClip("loadingBar",10010));
 		
 		Controller.getInstance().initialize();
 		
-		var tPH:PhotoHolder = new PhotoHolder(ViewList.PHOTO,mc.createEmptyMovieClip("photoholder",10));
-		var tNAV:Navigation = new Navigation(ViewList.NAVIGATION,mc.createEmptyMovieClip("navigation",20));
+		var tPH:PhotoHolder = new PhotoHolder(ViewList.PHOTO, mc.createEmptyMovieClip("photoholder",10));
+		var tNAV:Navigation = new Navigation(ViewList.NAVIGATION, mc.createEmptyMovieClip("navigation",20));
 		
 		var m:ModelApplication = new ModelApplication();
-			m.addEventListener(EventList.PHOTO_CLICK,tNAV);
-			m.addEventListener(EventList.PHOTO_CHANGED,tNAV);
+			m.addEventListener(EventList.PHOTO_CLICK, tNAV);
+			m.addEventListener(EventList.PHOTO_CHANGED, tNAV);
 			m.setContainer(mc);
 			m.initialize();	
 	}
