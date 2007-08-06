@@ -1,56 +1,39 @@
 ﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.log.PixlibStringifier;
-import com.bourre.events.BasicEvent;
-import com.bourre.events.EventBroadcaster;
-import com.bourre.utils.Geom;
 
-import uis.uilist;
+import view.ViewList;
+import view.PhotoHolder;
+import view.Navigation;
+import view.LoadingBar;
 import events.EventList;
-import controllers.Controller;
+import control.Controller;
+import model.ModelApplication;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 class Application extends MovieClipHelper
 {
-	private static var CONFIG_LOADER:MovieClip;
-	
-	public function Application(mc:MovieClip)
+	private function Application(mc:MovieClip)
 	{
-		super(uilist.APPLICATION, mc);
+		super(ViewList.APPLICATION, mc);
 		initialize(mc);
 	}
 	
 	private function initialize(mc:MovieClip):Void
-	{
-		buildConfigLoader();
+	{	
+		var tLB:LoadingBar = new LoadingBar(ViewList.LOADING_BAR,mc.createEmptyMovieClip("loadingBar",10010));
+		
 		Controller.getInstance().initialize();
-		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.RUN_APPLICATION,mc));
-	}
-	
-	private function buildConfigLoader():Void
-	{
-		CONFIG_LOADER = Geom.buildRectangle(view, 10005, Stage.width, 4, 0xffffff, 0xffffff);
-	}
-	
-	private static function disableConfigLoader() : Void
-	{
-		Application.CONFIG_LOADER._visible = false;
-	}
-	private static function enableConfigLoader() : Void
-	{
-		Application.CONFIG_LOADER._visible = true;
-	}
-	
-	public static function setConfigLoaderProgress(aPercent:Number):Void
-	{
-		if(aPercent == 100)
-		{
-			Application.disableConfigLoader();
-		} else {
-			Application.enableConfigLoader();
-		}
-		Application.CONFIG_LOADER._xscale = 100 - aPercent;
+		
+		var tPH:PhotoHolder = new PhotoHolder(ViewList.PHOTO,mc.createEmptyMovieClip("photoholder",10));
+		var tNAV:Navigation = new Navigation(ViewList.NAVIGATION,mc.createEmptyMovieClip("navigation",20));
+		
+		var m:ModelApplication = new ModelApplication();
+			m.addEventListener(EventList.PHOTO_CLICK,tNAV);
+			m.addEventListener(EventList.PHOTO_CHANGED,tNAV);
+			m.setContainer(mc);
+			m.initialize();	
 	}
 	
 	public static function main(mc:MovieClip) : Void 

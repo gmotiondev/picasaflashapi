@@ -4,23 +4,26 @@ import com.bourre.core.Model;
 import com.bourre.events.BasicEvent;
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.log.PixlibStringifier;
+import com.bourre.data.libs.LibStack;
+import com.bourre.data.libs.GraphicLib;
 
-import uis.uilist;
-import uis.Photo;
-import models.*;
+import view.ViewList;
+import view.Photo;
+import model.*;
 import events.EventList;
 
 /**
   @author Michal Gron (michal.gron@gmail.com)
  */
-class controllers.ServiceLoaded implements Command
+class commands.ServiceLoaded implements Command
 {
 	public function execute(e:BasicEvent):Void 
 	{
 		var tModel = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 		var tPPS:Picasa.PhotoService = tModel.getPhotoService();
-		var tPhotoContainer = MovieClipHelper.getMovieClipHelper(uilist.PHOTO).view;
+		var tPhotoContainer = MovieClipHelper.getMovieClipHelper(ViewList.PHOTO).view;
 		var tCurrentOnFinished:String = "";
+		var tLibStack:LibStack = new LibStack();
 		
 		for(var a = 0; a < tPPS.getPhotosCount(); a++)
 		{
@@ -32,15 +35,17 @@ class controllers.ServiceLoaded implements Command
 				if(a == 0) tCurrentOnFinished = tID;
 				var tPhoto:Photo = new Photo(tID,tPhotoContainer,(a != 0));
 					tPhoto.setTitle(tPP.getSummary());
-					tPhoto.view.onRelease = Delegate.create(this,onPhotoClick);
-					//tModel.addListener(tPhoto);
-					tModel.addEventListener(EventList.PHOTO_CLICK,tPhoto);					tModel.addEventListener(EventList.PHOTO_CHANGED,tPhoto);
-					tPhoto.load(tPP.getLink());
+					tPhoto.view.onRelease = Delegate.create(this, onPhotoClick);
+					tModel.addEventListener(EventList.PHOTO_CLICK, tPhoto);					tModel.addEventListener(EventList.PHOTO_CHANGED, tPhoto);
+					
+					tLibStack.enqueue(new GraphicLib(tPhoto.view, 1), tID, tPP.getLink());
+					tLibStack.addListener(tPhoto);
 			} else
 			{
 				trace("Thumb "+tID+" already exists. Skipping!",Log.WARNING);
 			}
 		}
+		tLibStack.execute();
 		tModel.setCurrentPhoto(tCurrentOnFinished);
 		tModel.startSlideShow();
 	}
