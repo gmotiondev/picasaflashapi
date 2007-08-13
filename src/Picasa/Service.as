@@ -67,6 +67,7 @@ class Picasa.Service
 		var tD = __d.getDeserializer();
 			tD.addType("plain",tD,tD.getString);
 			tD.addType("text",tD,tD.getString);
+			tD.addType("text/html",tD,tD.getString);
 			tD.addType("image/jpeg",tD,tD.getObjectWithAttributes);
 			tD.addType("application/atom+xml",tD,tD.getObjectWithAttributes);
 		
