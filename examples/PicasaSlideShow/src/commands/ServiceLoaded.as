@@ -20,7 +20,7 @@ class commands.ServiceLoaded implements Command
 	public function execute(e:BasicEvent):Void 
 	{
 		var tModel = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
-		var tPPS:Picasa.PhotoService = tModel.getPhotoService();
+		var tPPS:Picasa.AlbumService = tModel.getAlbumService();
 		var tPhotoContainer = MovieClipHelper.getMovieClipHelper(ViewList.PHOTO).view;
 		var tCurrentOnFinished:String = "";
 		var tLibStack:LibStack = new LibStack();

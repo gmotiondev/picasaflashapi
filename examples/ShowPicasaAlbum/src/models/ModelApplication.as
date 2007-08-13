@@ -1,7 +1,6 @@
 ﻿import com.bourre.core.Model;
 import com.bourre.events.IEvent;import com.bourre.events.BasicEvent;
 import com.bourre.events.EventBroadcaster;
-import com.bourre.visual.MovieClipHelper;
 
 import models.ModelList;
 import events.EventList;
@@ -12,7 +11,7 @@ import events.EventList;
 class models.ModelApplication extends Model
 {
 	private var __c:MovieClip;
-	private var __pps:Picasa.PhotoService;
+	private var __pps:Picasa.AlbumService;
 	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu";
 	private var __albumid:String = "5071041246998165969";
 	
@@ -39,7 +38,7 @@ class models.ModelApplication extends Model
 	
 	public function getNextPhoto():Void
 	{
-		var tPPS:Picasa.PhotoService = getPhotoService();
+		var tPPS:Picasa.AlbumService = getAlbumService();
 		var tPP:Picasa.Photo = tPPS.getNextPhoto();
 
 		notifyChanged(new BasicEvent(EventList.PHOTO_THUMB_CLICK,tPP));
@@ -47,7 +46,7 @@ class models.ModelApplication extends Model
 	
 	public function getPrevPhoto():Void
 	{
-		var tPPS:Picasa.PhotoService = getPhotoService();
+		var tPPS:Picasa.AlbumService = getAlbumService();
 		var tPP:Picasa.Photo = tPPS.getPrevPhoto();
 		
 		notifyChanged(new BasicEvent(EventList.PHOTO_THUMB_CLICK,tPP););
@@ -55,10 +54,10 @@ class models.ModelApplication extends Model
 	
 	public function setCurrentPhoto(aId:String):Void
 	{
-		getPhotoService().setCurrent(aId);
+		getAlbumService().setCurrent(aId);
 	}
 	
-	public function getPhotoService():Picasa.PhotoService
+	public function getAlbumService():Picasa.AlbumService
 	{
 		return __pps;
 	}
@@ -73,7 +72,7 @@ class models.ModelApplication extends Model
 	
 	public function run():Void
 	{
-		__pps = new Picasa.PhotoService(__feed,__albumid);
+		__pps = new Picasa.AlbumService(__feed,__albumid);
 		__pps.onServiceLoaded = function(aEvent:IEvent)
 		{
 			EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.SERVICE_LOADED));

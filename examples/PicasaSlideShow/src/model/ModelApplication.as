@@ -15,7 +15,7 @@ class model.ModelApplication extends Model
 	private var __t:CommandMS;
 	private var __c:MovieClip;
 	private var __isPlaying:Boolean = true;
-	private var __pps:Picasa.PhotoService;
+	private var __pps:Picasa.AlbumService;
 	
 	private var PROXY_URL:String = "http://prasa.sk/proxy.php?gws_path=";
 	
@@ -45,7 +45,7 @@ class model.ModelApplication extends Model
 	
 	public function getNextPhoto():Void
 	{
-		var tPPS:Picasa.PhotoService = getPhotoService();
+		var tPPS:Picasa.AlbumService = getAlbumService();
 		var tPP:Picasa.Photo = tPPS.getNextPhoto();
 
 		notifyChanged(new BasicEvent(EventList.PHOTO_CHANGED,tPP));
@@ -53,7 +53,7 @@ class model.ModelApplication extends Model
 	
 	public function getPrevPhoto():Void
 	{
-		var tPPS:Picasa.PhotoService = getPhotoService();
+		var tPPS:Picasa.AlbumService = getAlbumService();
 		var tPP:Picasa.Photo = tPPS.getPrevPhoto();
 		
 		notifyChanged(new BasicEvent(EventList.PHOTO_CHANGED,tPP););
@@ -61,10 +61,10 @@ class model.ModelApplication extends Model
 	
 	public function setCurrentPhoto(aId:String):Void
 	{
-		getPhotoService().setCurrent(aId);
+		getAlbumService().setCurrent(aId);
 	}
 	
-	public function getPhotoService():Picasa.PhotoService
+	public function getAlbumService():Picasa.AlbumService
 	{
 		return __pps;
 	}
@@ -86,7 +86,7 @@ class model.ModelApplication extends Model
 	}
 	private function run():Void
 	{
-		__pps = new Picasa.PhotoService(__feed,__albumid);
+		__pps = new Picasa.AlbumService(__feed,__albumid);
 		__pps.onServiceLoaded = Delegate.create(this, onServiceLoaded);
 		__pps.onFileProgress = Delegate.create(this, onFileProgress);		__pps.load();
 	}

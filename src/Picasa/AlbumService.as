@@ -2,8 +2,9 @@
 import com.bourre.log.PixlibStringifier;
 import com.bourre.data.libs.LibEvent;
 
-import Picasa.Album;
-import Picasa.Service;import Picasa.IService;
+import Picasa.Photo;
+import Picasa.Service;
+import Picasa.IService;
 import Picasa.tools.Map2;
 
 /**
@@ -11,53 +12,54 @@ import Picasa.tools.Map2;
  */
 
 /**
- * TODO:
- * get xml header infos, before entries (album cover, ...)
- * authKey for unlisted albums? */
+ * get xml photo header, before entries ... 
+ */
 class Picasa.AlbumService extends Service implements IService
+//class Picasa.AlbumService extends Picasa.JSONService implements IService
 {
 	/**
 	 * Constructor
 	 */
-	public function AlbumService(aUrl:String)
+	public function AlbumService(aUrl:String,aAlbumId)
 	{
-		super(aUrl,"album");
-		current = null;
+		super(aUrl+"/albumid/"+aAlbumId,"photo");	//ugly!!
+		iterator = null;
 	}
 	/**
-	 * Adds a Picasa.Album object to Map.
-	 * @param aAlbum Picasa.Album object.
+	 * Adds a Picasa.Photo object to Map.
+	 * @param aPhoto Picasa.Photo object
 	 * @param aSetCurrent Boolean, if true, sets as current id.
 	 */
-	public function addAlbum(aAlbum:Album,aSetCurrent:Boolean):Void
+	public function addPhoto(aPhoto:Photo,aSetCurrent:Boolean):Void
 	{
-		var tID:String = aAlbum.getIdString();
+		
+		var tID:String = aPhoto.getIdString();
 		
 		if(tID != null)
 		{
 			if(!contains(tID))
 			{
-				map.put(tID,aAlbum);
-				
+				map.put(tID,aPhoto);
+
 				if(aSetCurrent) { 
 					setCurrent(tID);
 				}
 			} else
 			{
-				trace("WARN: Album "+tID+" already added!");
+				trace("Photo "+tID+" already added!")
 			}
 		} else
 		{
-			trace("ERROR: Album has null id!");
+			trace("Photo has null id!");
 		}
 	}
 	/**
-	 * Removes Picasa.Album object from Map.
-	 * @param aAlbum Picasa.Album object to be removed.
+	 * Removes Picasa.Photo object from Map.
+	 * @param aPhoto Picasa.Photo object to be removed.
 	 */
-	public function removeAlbum(aAlbum:Album):Void
+	public function removePhoto(aPhoto:Photo):Void
 	{
-		var tID:String = aAlbum.getIdString();
+		var tID:String = aPhoto.getIdString();
 		if (tID != null)
 		{
 			if (contains(tID))
@@ -75,39 +77,43 @@ class Picasa.AlbumService extends Service implements IService
 		}
 	}
 	/**
-	 * Returns current Picasa.Album object.
-	 * @return Current Picasa.Album object.
+	 * Returns current Picasa.Photo
+	 * @return Current Picasa.Photo object.
 	 */
-	public function getCurrentAlbum():Album
+	public function getCurrentPhoto():Photo
 	{
-		return getAlbum(current);
+		return getPhoto(current);
 	}
 	/**
-	 * Sets a Picasa.Album id as a current id.
-	 * @param aID String, Picasa.Album id.
+	 * Sets a Picasa.Photo id as a current id.
+	 * @param aID String, Picasa.Photo id.
 	 */
 	public function setCurrent(aID:String):Void
 	{
 		current = aID;
-		//iterator.setIndex(iterator.searchKey(aID));	//TEST!!!
+		iterator.setIndex(iterator.searchKey(aID));
 	}
 	/**
-	 * Returns current album id(key).
-	 * @return String, current album id.
+	 * Returns current photo id(key).
+	 * @return String, current photo id.
 	 */
-	 public function getCurrent():String
+	public function getCurrent():String
 	{
 		return current;
 	}
+	public function getCurrentIndex():Number
+	{
+		return iterator.getIndex();
+	}
 	/**
-	 * Returns Picasa.Album object with specified ID.
-	 * @param aID String, Picasa.Album id.
-	 * @return Picasa.Album object with specified ID.
+	 * Returns Picasa.Photo object with specified ID.
+	 * @param aID String, Picasa.Photo id.
+	 * @return Picasa.Photo object with specified ID.
 	 */
-	public function getAlbum(aID:String):Album
+	public function getPhoto(aID:String):Photo
 	{
 		if(!contains(aID)) {
-			trace("ERROR: Album "+aID+" is not available!");
+			trace("Photo "+aID+" is not available!");
 		}
 		
 		setCurrent(aID);
@@ -115,58 +121,77 @@ class Picasa.AlbumService extends Service implements IService
 		return map.get(aID);
 	}
 	/**
-	 * Get next album from current album.
-	 * @return Next Picasa.Album object in the map.
+	 * Returns a Map2 object with Picasa.Photo objects.
+	 * @return Map2 object with Picasa.Photo objects.
 	 */
-	public function getNextAlbum():Album
-	{
-		return getAlbum(iterator.next());
-	}
-	/**
-	 * Get previous album from current album.
-	 * @return Previous Picasa.Album object in the map.
-	 */
-	public function getPrevAlbum():Album
-	{
-		//???? TEST!!!
-		return Album({});
-		
-		//if(!iterator.hasPrev()) {
-		//	iterator.seek(size()+1);
-		//}
-		
-		//return getAlbum(iterator.prev());
-	}
-	/**
-	 * Returns Picasa Albums count.
-	 * @return Albums count.	 */
-	public function getAlbumsCount():Number
-	{
-		return size();
-	}
-	/**
-	 * Returns a Map2 object with Picasa.Album objects.
-	 * @return Map2 object with Picasa.Album objects.
-	 */
-	public function getAlbums():Map2
+	public function getPhotos():Map2
 	{
 		return map;
 	}
 	/**
-	 * Called when successfully loaded xml!
+	 * Returns Picasa Photos count.
+	 * @return Picasa Photos count.
+	 */
+	public function getPhotosCount():Number
+	{
+		return size();
+	}
+	/**
+	 * Get next photo from current photo.
+	 * @return Next Picasa.Photo object in the map.
+	 */
+	public function getNextPhoto():Photo
+	{	
+		if(!iterator.hasNext()) {
+			reset();
+		}
+
+		return getPhoto(iterator.next());
+	}
+	/**
+	 * Get previous photo from current photo.
+	 * @return Previous Picasa.Photo object in the map.
+	 */
+	public function getPrevPhoto():Photo
+	{	
+		if(!iterator.hasPrev()) {
+			iterator.seek(size()+1);
+		}
+		
+		return getPhoto(iterator.prev());
+	}
+	/**
+	 * Get first photo.
+	 * 
+	 */
+	public function getFirstPhoto():Photo
+	{	
+		reset();
+		return getPhoto(iterator.next());
+	}
+	/**
+	 * Get album ID.
+	 * @return ID of the album in which the photo is stored. (album of the photo, parent...)
+	 */
+	public function getAlbumId():String
+	{
+		return getCurrentPhoto().getAlbumId();
+	}
+	/**
+	 * Called when successfuly loaded xml
 	 */
 	public function onInitialize(e:LibEvent):Void 
-	{	
+	{
 		if(map != undefined) return;
 		
 		map = new Map2();
 		
 		var tData = getData();
-		var tEntries = tData.entry;	//array with <entry/> nodes
+		var tEntries = tData.entry;
 		
 		for(var a = 0; a < tEntries.length; a++)
 		{
-			addAlbum(new Album(tEntries[a]),(a == 0));
+			addPhoto(new Photo(tEntries[a]),(a == 0));
 		}
 		
 		reset();
@@ -204,6 +229,7 @@ class Picasa.AlbumService extends Service implements IService
 	{
 		trace("ERROR: Picasa.AlbumService.onFileError("+e+")");
 	}
+
 	public function toString():String
 	{
 		return PixlibStringifier.stringify(this);
