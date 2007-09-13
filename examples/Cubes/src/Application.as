@@ -2,6 +2,9 @@ import com.bourre.visual.MovieClipHelper;
 import com.bourre.log.PixlibStringifier;
 
 import view.ViewList;
+import view.CubeView;
+import control.Controller;
+
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
@@ -16,6 +19,13 @@ class Application extends MovieClipHelper
 	private function initialize(mc:MovieClip):Void
 	{	
 		trace("Up and running!");
+		
+		Controller.getInstance().initialize();
+		
+		var tCube:CubeView = new CubeView(ViewList.CUBE, mc.createEmptyMovieClip("cube",10));
+		//var m:ModelApplication = new ModelApplication();
+		//	m.addEventListener(EventList.PHOTO_CLICK, tNAV);
+		//	m.initialize();
 	}
 	
 	public static function main(mc:MovieClip) : Void 

@@ -9,12 +9,15 @@
 	<property name="build.dir" location="bin"/>
 	<property name="picasa.dir" location="c:\dev\Clients\picasaflashapi\trunk\src"/>
 	<property name="logger.dir" location="C:\eclipse\plugins\org.asdt.logger_0.0.9\lib\flash_classes"/>
+	<property name="papervision3d.dir" location="C:\dev\svnworld\papervision3d\as2\trunk\src"/>
+	<property name="std8.dir" location="C:\eclipse\plugins\org.asdt.mtasc_1.0.0\dist\std8"/>
+
 	<property name="version" value="8"/>
 	
 	<target name="compile" description="builds swf" depends="">
-	<swfmill src="precompile.xml" dest="${build.dir}/Application.swf" cmd="simple"/>	
+	<swfmill src="precompile.xml" dest="${build.dir}/Application.swf" cmd="simple"/>
 		<mtasc 	src="${src.dir}/Application.as"
-				classpath="${src.dir}:${logger.dir}:${picasa.dir}"
+				classpath="${src.dir}:${logger.dir}:${picasa.dir}:${papervision3d.dir}:${std8.dir}"
 				swf="${build.dir}/Application.swf"
 				main="true" wimp="true" keep="true"
 				trace="Log.addMessage"/>

@@ -5,4 +5,5 @@
 class view.ViewList
 {
 	public static var APPLICATION:String = "Application";
+	public static var CUBE:String = "cube";
 }
