@@ -75,9 +75,6 @@ class models.ModelApplication extends Model
 	public function run():Void
 	{
 		__pps = new Picasa.AlbumService(__feed,__albumid, {thumbsize:__thumbsize,imgmax:__imgmax});
-		//__pps.setThumbsize(__thumbsize);
-		//__pps.setImagemax(__imgmax);
-		
 		__pps.onServiceLoaded = function(aEvent:IEvent)
 		{
 			EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.SERVICE_LOADED));
