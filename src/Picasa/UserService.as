@@ -1,4 +1,4 @@
-import com.bourre.events.IEvent;
+﻿import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.data.libs.LibEvent;
 
@@ -6,6 +6,7 @@ import Picasa.Album;
 import Picasa.Service;
 import Picasa.IService;
 import Picasa.tools.Map2;
+import Picasa.request.UserRequest;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -18,12 +19,14 @@ import Picasa.tools.Map2;
  */
 class Picasa.UserService extends Service implements IService
 {
+	//private var __kind:String = "album";
 	/**
 	 * Constructor
 	 */
-	public function UserService(aUrl:String)
+	public function UserService(aFeed:String)
 	{
-		super(aUrl,"album");
+		//super(aUrl);
+		super(new UserRequest(aFeed));
 		current = null;
 	}
 	/**

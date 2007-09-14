@@ -17,12 +17,14 @@ import Picasa.tools.Map2;
 class Picasa.PhotoService extends Service implements IService
 //class Picasa.PhotoService extends Picasa.JSONService implements IService
 {
+	private var __kind:String = "comment";
 	/**
 	 * Constructor
 	 */
 	public function PhotoService(aUrl:String,aAlbumId)
 	{
-		super(aUrl+"/albumid/"+aAlbumId,"comment");	//ugly!!
+		//TODO: REWRITE ENTIRE CLASS. can be comments or tags!!!
+		super(aUrl+"/albumid/"+aAlbumId);	//ugly!!
 		iterator = null;
 	}
 	

@@ -26,14 +26,14 @@ class Picasa.objects.Media
 			medium: a["media:content"].attributes.medium
 		};
 
-		var tNode = (a["media:thumbnail"].length != undefined) ? a["media:thumbnail"][0] : a["media:thumbnail"];
+		//var tNode = (a["media:thumbnail"].length != undefined) ? a["media:thumbnail"][0] : a["media:thumbnail"];
 		
 		thumbnail = {
-			url 	: tNode.attributes.url,
-			width 	: tNode.attributes.width,
-			height 	: tNode.attributes.height
+			url 	: a["media:thumbnail"].attributes.url,
+			width 	: a["media:thumbnail"].attributes.width,
+			height 	: a["media:thumbnail"].attributes.height
 		};
-
+		/*
 		thumbnail_s = {
 			url : content.url+"?imgmax=72"
 		};
@@ -43,6 +43,7 @@ class Picasa.objects.Media
 		thumbnail_l = {
 			url : content.url+"?imgmax=288"
 		};
+		*/
 	}
 	
 	public function toString():String

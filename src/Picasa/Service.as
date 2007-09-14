@@ -16,20 +16,27 @@ class Picasa.Service
 	private var __d:XMLToObject;
 	private var __o;
 	
-	private var __feed:String;
-	private var __kind:String;
+	private var __url:String;
+	//private var __feed:String;
+	//private var __kind:String = "album"; 	//default kind parameter
+	//private var __thumbsize:Number = 144;	//default thumbsize parameter
+	//private var __imgmax:Number = 720;		//default imgmax parameter
 	
 	private var __map : Map2;
 	private var __current : String;
 	private var __it : ObjectIterator2;
 	public var onServiceLoaded : Function;
 	
+	
 	/**
 	 * Constructor
 	 */	
-	public function Service(aUrl:String,aKind:String)
+	//public function Service(aUrl:String)
+	public function Service(aRequest:Picasa.request.BasicRequest)
 	{
-		setFeedURL(aUrl,aKind);
+		//setFeedURL(aUrl);
+		//setFeedURL(aRequest.getRequest());
+		__url = aRequest.getRequest();
 		initialize();
 	}
 	/**
@@ -37,8 +44,10 @@ class Picasa.Service
 	 */
 	public function load():Void
 	{
-		trace("load: "+getFeedURL());
-		setRequest(getFeedURL());
+		//trace("load: "+getFeedURL());
+		//trace("load: "+__url);
+		//setRequest(getFeedURL());
+		send();
 	}
 	/**
 	 * Service initialize	 */
@@ -48,20 +57,20 @@ class Picasa.Service
 		XMLToObjectDeserializer.ATTRIBUTE_TARGETED_PROPERTY_NAME = "attributes";
 		XMLToObjectDeserializer.PUSHINARRAY_IDENTICAL_NODE_NAMES = true;
 	}
-	public function setFeedURL(aUrl:String,aKind:String):Void
-	{
-		__feed = aUrl;
-		__kind = aKind;
-	}
-	public function getFeedURL():String
-	{
-		return __feed+"?kind="+__kind;
-	}
+//	public function setFeedURL(aUrl:String,aKind:String):Void
+//	{
+//		__feed = aUrl;
+//	}
+//	public function getFeedURL():String
+//	{
+//		return __feed+"?kind="+__kind+"&thumbsize="+__thumbsize+"&imgmax="+__imgmax;
+//	}
 	/**
 	 * Sets feed's url and starts loading xml feed
 	 * @param aFeedURL Complete url string.	 */
-	private function setRequest(aFeedURL:String):Void
+	public function send():Void
 	{
+		trace("load: "+__url);
 		__d = new XMLToObject(new Object());
 		
 		var tD = __d.getDeserializer();
@@ -76,7 +85,7 @@ class Picasa.Service
 		__d.addEventListener(XMLToObject.onTimeOutEVENT,this,onFileTimeout);
 		__d.addEventListener(XMLToObject.onErrorEVENT,this,onFileError);
 
-		__d.load(aFeedURL);
+		__d.load(__url);
 	}
 
 	/**

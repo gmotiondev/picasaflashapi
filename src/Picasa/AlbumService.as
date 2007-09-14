@@ -6,7 +6,7 @@ import Picasa.Photo;
 import Picasa.Service;
 import Picasa.IService;
 import Picasa.tools.Map2;
-
+import Picasa.request.AlbumRequest;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
@@ -17,12 +17,15 @@ import Picasa.tools.Map2;
 class Picasa.AlbumService extends Service implements IService
 //class Picasa.AlbumService extends Picasa.JSONService implements IService
 {
+	//private var __kind:String = "photo";
 	/**
 	 * Constructor
 	 */
-	public function AlbumService(aUrl:String,aAlbumId)
+	public function AlbumService(aFeed:String, aAlbumId:String, aGetParams:Object)
 	{
-		super(aUrl+"/albumid/"+aAlbumId,"photo");	//ugly!!
+		//super(aFeed+"/albumid/"+aAlbumId);	//ugly!!
+		super(new AlbumRequest(aFeed, aAlbumId, aGetParams));
+		
 		iterator = null;
 	}
 	/**
@@ -177,6 +180,49 @@ class Picasa.AlbumService extends Service implements IService
 	{
 		return getCurrentPhoto().getAlbumId();
 	}
+	/**
+	 * 	 */
+//	public function setThumbsize(aThumbsize:Number):Void
+//	{
+//		__thumbsize = aThumbsize;
+//	}
+	/**
+	 * 	 */
+//	public function getThumbsize():Number
+//	{
+//		return __thumbsize;
+//	}
+	/**
+	 * 	 */
+//	public function setImagemax(aImgmax:Number):Void
+//	{
+//		__imgmax = aImgmax;
+//	}
+	/**
+	 * 	 */
+//	public function getImagemax():Number
+//	{
+//		return __imgmax;
+//	}
+	/**
+	 * 	 */
+//	public function setTag()
+//	{
+//	
+//	}
+//	public function getTag()
+//	{
+//	
+//	}
+//	public function setMaxResults()
+//	{
+//	
+//	}
+//	public function getMaxResults()
+//	{
+//	
+//	}
+	
 	/**
 	 * Called when successfuly loaded xml
 	 */

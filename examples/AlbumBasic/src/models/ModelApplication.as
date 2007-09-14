@@ -14,6 +14,8 @@ class models.ModelApplication extends Model
 	private var __pps:Picasa.AlbumService;
 	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu";
 	private var __albumid:String = "5071041246998165969";
+	private var __thumbsize:Number = 72;
+	private var __imgmax:Number = 720;
 	
 	public function ModelApplication()
 	{
@@ -72,11 +74,14 @@ class models.ModelApplication extends Model
 	
 	public function run():Void
 	{
-		__pps = new Picasa.AlbumService(__feed,__albumid);
+		__pps = new Picasa.AlbumService(__feed,__albumid, {thumbsize:__thumbsize,imgmax:__imgmax});
+		//__pps.setThumbsize(__thumbsize);
+		//__pps.setImagemax(__imgmax);
+		
 		__pps.onServiceLoaded = function(aEvent:IEvent)
 		{
 			EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.SERVICE_LOADED));
 		}
-		__pps.load();
+		__pps.send();
 	}
 }
