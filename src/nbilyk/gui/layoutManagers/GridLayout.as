@@ -108,9 +108,9 @@ class nbilyk.gui.layoutManagers.GridLayout extends LayoutManager {
 		// Calculate positioning.
 		var position_arr = new Array(this.objects_arr.length);
 		var counter = 0;
-		var y = this._topMargin;
+		var y = __t;
 		for (var i=0; i<this._rows; i++) {
-			var x = this._leftMargin;			
+			var x = __l;			
 			for (var j=0; j<this._cols; j++) {				
 				// Horizontal alignment.
 				var hAlign = this.defaultHAlign;
@@ -147,7 +147,7 @@ class nbilyk.gui.layoutManagers.GridLayout extends LayoutManager {
 		}
 		var l = position_arr.length;
 		for (var i=0; i<l; i++) {
-			CoordMath.convertCoords(position_arr[i], this.root_mc, this.objects_arr[i]._parent);
+			//CoordMath.convertCoords(position_arr[i], this.root_mc, this.objects_arr[i]._parent);
 			this.moveObject(this.objects_arr[i], position_arr[i].x, position_arr[i].y);
 		}
 	}
@@ -164,7 +164,7 @@ class nbilyk.gui.layoutManagers.GridLayout extends LayoutManager {
 				var objectIndex = c+r*this._cols;				
 				var w = (typeof(this.objects_arr[objectIndex].width) == "number") ? this.objects_arr[objectIndex].width : this.objects_arr[objectIndex]._width;
 				var currObjDims = { x:w, y:0 };
-				CoordMath.convertDistance(currObjDims, this.objects_arr[objectIndex]._parent, this.root_mc);
+				//CoordMath.convertDistance(currObjDims, this.objects_arr[objectIndex]._parent, this.root_mc);
 				if (currObjDims.x > maxWidth) maxWidth = currObjDims.x;					
 			}
 			var cArrIndex = c;
@@ -178,7 +178,7 @@ class nbilyk.gui.layoutManagers.GridLayout extends LayoutManager {
 				var objectIndex = c+r*this._cols;
 				var h = (typeof(this.objects_arr[objectIndex].height) == "number") ? this.objects_arr[objectIndex].height : this.objects_arr[objectIndex]._height;
 				var currObjDims = { x:0, y:h };
-				CoordMath.convertDistance(currObjDims, this.objects_arr[objectIndex]._parent, this.root_mc);
+				//CoordMath.convertDistance(currObjDims, this.objects_arr[objectIndex]._parent, this.root_mc);
 				if (currObjDims.y > maxHeight) maxHeight = currObjDims.y;
 			}
 			var rArrIndex = r;
@@ -195,7 +195,7 @@ class nbilyk.gui.layoutManagers.GridLayout extends LayoutManager {
 		var l = this._rows;
 		for (var i=0; i<l; i++) {
 			if (isNaN(this.rowSizes_arr[i])) {
-				this.rowSizes_arr[i] = (this.height - totalSize - this._topMargin - this._bottomMargin) / (l - i);
+				this.rowSizes_arr[i] = (this.height - totalSize - __t - __b) / (l - i);
 			} 
 			totalSize += this.rowSizes_arr[i];			
 		}
@@ -213,7 +213,7 @@ class nbilyk.gui.layoutManagers.GridLayout extends LayoutManager {
 		var l = this._cols;
 		for (var i=0; i<l; i++) {
 			if (isNaN(this.colSizes_arr[i])) {				
-				this.colSizes_arr[i] = (this.width - totalSize - this._leftMargin - this._rightMargin) / (l - i);
+				this.colSizes_arr[i] = (this.width - totalSize - __l - __r) / (l - i);
 			}
 			totalSize += this.colSizes_arr[i];			
 		}

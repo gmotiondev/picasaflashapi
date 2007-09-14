@@ -1,4 +1,5 @@
-﻿class nbilyk.utility.Search {	
+﻿class nbilyk.utility.Search
+{	
 	static function binarySearch(arr:Array, val:Number, min:Number, max:Number):Number {
 		// Returns the index of the ordered array where val would belong.
 		if (min == undefined) min = 0;

@@ -1,4 +1,4 @@
-interface  nbilyk.interfaces.DrawInterface {		
+﻿interface  nbilyk.interfaces.DrawInterface {		
 	public function invalidate();
 	public function validate();
 	public function draw();	
