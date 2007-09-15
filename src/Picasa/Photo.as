@@ -57,27 +57,38 @@ class Picasa.Photo extends Collection
 	 * The ordinal position of the photo within the parent album
 	 * 	 * like:
 	 * 0.0	 */
-	public function getPosition():Number
+	public function getPosition():Object
 	{
-		return getGPhoto().position;
+		var p = (getGPhoto().position).split(".");
+		return {x:parseFloat(p[0]), y:parseFloat(p[1])};
 	}
 	/**
 	 * 1024	 */
 	public function getWidth():Number
 	{
-		return getGPhoto().width;
+		return parseFloat(getMedia().content.width);
 	}
 	/**
 	 * 713	 */
 	public function getHeight():Number
 	{
-		return getGPhoto().height;
+		return parseFloat(getMedia().content.height);
 	}
 	/**
 	 * 77271	 */
 	public function getSize():Number
 	{
-		return getGPhoto().size;
+		return parseFloat(getGPhoto().size);
+	}
+	/**
+	 * 	 */
+	public function getThumbWidth():Number
+	{
+		return parseFloat(getMedia().thumbnail.width);
+	}
+	public function getThumbHeight():Number
+	{
+		return parseFloat(getMedia().thumbnail.height);
 	}
 	/**
 	 * Picasa2.6	 */

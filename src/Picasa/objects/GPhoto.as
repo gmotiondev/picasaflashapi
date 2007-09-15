@@ -10,8 +10,8 @@ import Picasa.objects.ObjectList;
 class Picasa.objects.GPhoto
 {
 	public var id, name, location, access, timestamp, user, nickname:String;
-	public var version, albumid, client, checksum, photoid, thumbnail:String;
-	public var numphotos, commentCount, width, height, size, weight, position:Number;
+	public var version, albumid, client, checksum, photoid, thumbnail, position:String;
+	public var numphotos, commentCount, width, height, size, weight:Number;
 	public var bytesUsed, numphotosremaining, rotation, maxPhotosPerAlbum, quotacurrent, quotalimit:Number;
 	public var commentingEnabled:Boolean;
 	
@@ -34,7 +34,7 @@ class Picasa.objects.GPhoto
 				checksum 			= String(a["gphoto:checksum"]);
 				client 				= String(a["gphoto:client"]);
 				height 				= Number(a["gphoto:height"]);
-				position 			= parseFloat(a["gphoto:position"]);
+				position 			= String(a["gphoto:position"]);
 				rotation 			= Number(a["gphoto:rotation"]);
 				size 				= Number(a["gphoto:size"]);
 				timestamp			= Number(a["gphoto:timestamp"]);

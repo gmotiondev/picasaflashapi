@@ -24,4 +24,58 @@
 		}
 		return Math.max(Math.min(value, max), min);
 	}
+	/**
+	 * 
+	 */
+	public static function convertCoords(p:Object, f:MovieClip, t:MovieClip):Object
+	{
+		if (!f || !t) {
+			return p;
+		}
+		
+		f.localToGlobal(p);
+		t.globalToLocal(p);
+		
+		return p;
+	}
+	/**
+	 * 
+	 */
+	public static function convertDistance(d:Object, f:MovieClip, t:MovieClip):Object
+	{
+		var tTL = {x:0, y:0};
+		
+		if (!f || !t) {
+			return null;	
+		}
+
+		MathUtils.convertCoords(tTL, f, t);
+		MathUtils.convertCoords(d, f, t);
+		d.x -= tTL.x;
+		d.y -= tTL.y;
+		
+		return d;
+	}
+	
+	public static function addRange(aArray:Array,aStartIndex:Number,aEndIndex:Number,aOffset:Number):Number
+	{
+		var tRes:Number = 0;
+		
+		for(var a = aStartIndex; a < aEndIndex; a++) {
+			tRes += aArray[a]+aOffset;
+		}
+		
+		return tRes;
+	}
+	
+	public static function getRangeMax(aArray:Array,aStartIndex:Number,aEndIndex:Number):Number
+	{
+		var tRes:Number = 0;
+		
+		for(var a = aStartIndex; a < aEndIndex; a++) {
+			tRes = Math.max(tRes,aArray[a]);
+		}
+		
+		return tRes;
+	}
 }

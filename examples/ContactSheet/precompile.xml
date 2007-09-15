@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<movie width="640" height="480" framerate="31">
+<movie width="800" height="600" framerate="31">
 	<background color="#000000"/>
 	<frame>
 		<library>
-			<!--<clip id="l" import="assets/png/l.png"/>-->
+			<clip id="l" import="assets/png/l.png"/>
+			<clip id="r" import="assets/png/r.png"/>
+			<clip id="c" import="assets/png/c.png"/>
 		</library>
 	</frame>
 </movie>

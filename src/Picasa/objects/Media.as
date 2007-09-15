@@ -23,7 +23,10 @@ class Picasa.objects.Media
 		content = {
 			url: 	a["media:content"].attributes.url,
 			type: 	a["media:content"].attributes.type,
-			medium: a["media:content"].attributes.medium
+			medium: a["media:content"].attributes.medium,
+			width: 	a["media:content"].attributes.width,
+			height:	a["media:content"].attributes.height
+			
 		};
 
 		//var tNode = (a["media:thumbnail"].length != undefined) ? a["media:thumbnail"][0] : a["media:thumbnail"];

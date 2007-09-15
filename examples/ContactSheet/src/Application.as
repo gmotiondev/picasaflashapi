@@ -1,9 +1,18 @@
 ﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.log.PixlibStringifier;
-import nbilyk.gui.layoutManagers.GridLayout;
-import com.bourre.utils.Geom;
+import com.bourre.events.EventBroadcaster;
+import com.bourre.events.BasicEvent;
 
 import view.ViewList;
+import view.PhotoHolder;
+import view.ThumbHolder;
+import view.Navigation;
+import view.LoadingBar;
+import control.Controller;
+import model.ModelApplication;
+import events.EventList;
+
+
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
@@ -17,25 +26,27 @@ class Application extends MovieClipHelper
 	
 	private function initialize(mc:MovieClip):Void
 	{	
-		trace("Up and running!");
+		Stage.addListener(this);
+		Key.addListener(this);
 		
-		var lm:GridLayout = new GridLayout(mc, 2, 3);
-		var mc1:MovieClip = Geom.buildRectangle(mc, 100, 200, 200, 0xff00ff, 0xff00ff);
-		var mc2:MovieClip = Geom.buildRectangle(mc, 101, 150, 150, 0xaa00aa, 0xaa00aa);
-		var mc3:MovieClip = Geom.buildRectangle(mc, 102, 100, 100, 0x770077, 0x770077);
+		var tLB:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, mc.createEmptyMovieClip("loadingBar",10010));
+		
+		Controller.getInstance().initialize();
+		
+		var tTH:ThumbHolder = new ThumbHolder(ViewList.THUMBS,mc.createEmptyMovieClip("thumbholder",5));
+		var tPH:PhotoHolder = new PhotoHolder(ViewList.PHOTO,mc.createEmptyMovieClip("photoholder",10));
+		var tNAV:Navigation = new Navigation(ViewList.NAVIGATION,mc.createEmptyMovieClip("navigation",20));
+		
+		var model:ModelApplication = new ModelApplication();
+			model.addListener(tTH);
+			model.addListener(tNAV);
+			model.setContainer(mc);
+			model.initialize();
+	}
 	
-		var mc4:MovieClip = Geom.buildRectangle(mc, 103, 100, 100, 0xffbbff, 0xffbbff);
-		var mc5:MovieClip = Geom.buildRectangle(mc, 104, 150, 150, 0xaabbaa, 0xaabbaa);
-		var mc6:MovieClip = Geom.buildRectangle(mc, 105, 100, 100, 0x77bb77, 0x77bb77);
-		
-		// Add your MovieClip(s) to the layout manager.
-		lm.addObj(mc3);
-		lm.addObj(mc1);
-		lm.addObj(mc2);
-		lm.addObj(mc4);
-		lm.addObj(mc5);
-		lm.addObj(mc6);
-		lm.draw();		
+	public function onResize():Void
+	{
+		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_RESIZE));
 	}
 	
 	public static function main(mc:MovieClip) : Void 
