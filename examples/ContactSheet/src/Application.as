@@ -8,6 +8,7 @@ import view.PhotoHolder;
 import view.ThumbHolder;
 import view.Navigation;
 import view.LoadingBar;
+import view.Tooltip;
 import control.Controller;
 import model.ModelApplication;
 import events.EventList;

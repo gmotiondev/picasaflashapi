@@ -24,6 +24,7 @@ class view.Photo extends MovieClipHelper implements ILibListener
 	private var loaded:Boolean = false;
 	private var __b:MovieClip;
 	private var __size:Object;
+	private var __title:String = "";
 	private static var __map:Map;
 	
 	public function Photo(aID:String, aLink:String, aContainer:MovieClip, aHide:Boolean)
@@ -60,13 +61,26 @@ class view.Photo extends MovieClipHelper implements ILibListener
 			tClose.onRelease = Delegate.create(this, close);
 	}
 	
-	public function setTitle(aString:String):Void
+	public function setTitle(a:String):Void
 	{
-		container.createTextField("tf_"+id,25,200,500,200,100);
-		var tField:TextField = container["tf_"+id];
-			tField.multiline = true;
-			tField.html = true;
-			tField.htmlText = "<font face=\"Tahoma\">"+aString+"</font>";
+		__title = a;
+			
+		var tTF:TextFormat = new TextFormat();
+			tTF.font = "kroeger";
+			tTF.size = 8;
+			tTF.color = 0x808080;
+			
+		container.createTextField("tf_"+id, 15, 0, -20, 320, 20);
+		var tF:TextField = container["tf_"+id];
+			tF.embedFonts = true;
+			tF.html = true;
+			tF.htmlText = getTitle();
+			tF.setTextFormat(tTF);
+	}
+	
+	public function getTitle():String
+	{
+		return __title;
 	}
 	
 	public function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
@@ -155,7 +169,7 @@ class view.Photo extends MovieClipHelper implements ILibListener
 	 */
 	private function centerize():Void
 	{
-		move((Stage.width/2 - view._width/2), (Stage.height/2 - view._height/2));
+		move(Math.round(Stage.width/2 - view._width/2), Math.round(Stage.height/2 - view._height/2));
 	}
 	/**
 	 * Listening to model

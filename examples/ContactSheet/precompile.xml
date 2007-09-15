@@ -3,6 +3,7 @@
 	<background color="#000000"/>
 	<frame>
 		<library>
+			<font name="kroeger" import="assets/ttf/kr_08_53.ttf"/>
 			<clip id="l" import="assets/png/l.png"/>
 			<clip id="r" import="assets/png/r.png"/>
 			<clip id="c" import="assets/png/c.png"/>

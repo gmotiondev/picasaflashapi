@@ -6,8 +6,10 @@ import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
 import com.bourre.data.collections.Map;
 import com.bourre.utils.Geom;
+import com.bourre.commands.Delegate;
 
 import events.EventList;
+import view.Tooltip;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -43,9 +45,9 @@ class view.Thumb extends MovieClipHelper implements ILibListener
 		container = aContainer.createEmptyMovieClip(id,aContainer.getNextHighestDepth());
 		super(id, container);
 		
-		setVisible(!aHide);	
+		setVisible(!aHide);
 	}
-	
+		
 	private function initialize()
 	{
 		setBackground(0x1A1A1A, 0x808080, 4);

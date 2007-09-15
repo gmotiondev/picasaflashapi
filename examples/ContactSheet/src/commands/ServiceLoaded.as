@@ -51,6 +51,7 @@ class commands.ServiceLoaded implements Command
 				//preload photos
 				var tPhoto:Photo = new Photo(tID, tPP.getLink(), tPhotoContainer, false);
 					tPhoto.setSize(tPP.getWidth(),tPP.getHeight());
+					tPhoto.setTitle(tPP.getSummary());
 					tModel.addListener(tPhoto);
 
 			} else {
