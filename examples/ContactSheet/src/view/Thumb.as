@@ -6,10 +6,9 @@ import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
 import com.bourre.data.collections.Map;
 import com.bourre.utils.Geom;
-import com.bourre.commands.Delegate;
+import com.bourre.log.PixlibStringifier;
 
 import events.EventList;
-import view.Tooltip;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -27,6 +26,8 @@ class view.Thumb extends MovieClipHelper implements ILibListener
 	
 	private static var __map:Map;
 	
+	/**
+	 * Constructor	 */
 	public function Thumb(aID:String,aContainer:MovieClip,aHide:Boolean)
 	{
 		if(__map == undefined) {
@@ -47,12 +48,16 @@ class view.Thumb extends MovieClipHelper implements ILibListener
 		
 		setVisible(!aHide);
 	}
-		
+	
+	/**
+	 * initialize point	 */
 	private function initialize()
 	{
 		setBackground(0x1A1A1A, 0x808080, 4);
 	}
 	
+	/**
+	 * set background	 */
 	public function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
 	{
 		__b = Geom.buildRectangle(view,10,(__size.w+(2*aMargin)),(__size.h+(2*aMargin)),aColor,aColor);
@@ -62,6 +67,8 @@ class view.Thumb extends MovieClipHelper implements ILibListener
 		__b.__h = aHighlight;
 	}
 	
+	/**
+	 * set title	 */
 	public function setTitle(aString:String):Void
 	{
 		container.createTextField("tf_"+id,2,100,0,200,100);
@@ -71,36 +78,49 @@ class view.Thumb extends MovieClipHelper implements ILibListener
 			tField.htmlText = "<font face=\"Tahoma\">"+aString+"</font>";
 	}
 	
+	/**
+	 * set size	 */
 	public function setSize(w:Number,h:Number):Void
 	{
 		__size = {w:w, h:h};
 		initialize();
 	}
 	
+	/**
+	 * get button	 */
 	public function getButton():MovieClip
 	{
 		return container;
 	}
 	
+	/**
+	 * get all thumbs	 */
 	public function getThumbs():Map
 	{
 		return __map;
 	}
 	
+	/**
+	 * get single thumb	 */
 	public static function getThumb(aID:String):Thumb 
 	{
 		return __map.get(aID);
 	}
 	
+	/**
+	 * thumb exists?	 */
 	public static function exists(aID:String):Boolean
 	{
 		return __map.containsKey(aID);
 	}
 	
+	/**
+	 * highlight current thumb	 */
 	private function highlight(aTrigger:Boolean):Void
 	{
 		with(new Color(__b)) { setRGB((aTrigger ? __b.__h : __b.__c)); }
 	}
+	
 	/**
 	 * Listen to LibStatck	 */
 	public function onLoadStart(e:LibEvent):Void
@@ -124,10 +144,19 @@ class view.Thumb extends MovieClipHelper implements ILibListener
 	{
 		trace("ERROR: Thumb loading time out: "+e.getName());
 	}
+	
 	/**
 	 * Listen to Model	 */
 	public function PhotoThumbClick(e:IEvent):Void
 	{
 		highlight(e.getTarget().getIdString() == id);
+	}
+	
+	/**
+	 *	pixlib 
+	 */	
+	public function toString():String 
+	{
+		return PixlibStringifier.stringify(this);
 	}
 }

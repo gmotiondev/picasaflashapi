@@ -8,11 +8,11 @@ import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.LibStack;
 import com.bourre.data.libs.ILibListener;
 import com.bourre.data.collections.Map;
-import com.bourre.transitions.TweenMS;
 import com.bourre.utils.Geom;
 import com.bourre.commands.Delegate;
 
 import events.EventList;
+
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
@@ -27,6 +27,8 @@ class view.Photo extends MovieClipHelper implements ILibListener
 	private var __title:String = "";
 	private static var __map:Map;
 	
+	/**
+	 * Constructor	 */
 	public function Photo(aID:String, aLink:String, aContainer:MovieClip, aHide:Boolean)
 	{
 		if(__map == undefined) {
@@ -35,7 +37,7 @@ class view.Photo extends MovieClipHelper implements ILibListener
 
 		if(__map.containsKey(aID))
 		{
-			trace("Photo "+aID+" already exists! Skipping!",Log.WARNING);
+			trace("WARN: Photo "+aID+" already exists! Skipping!");
 			return;
 		} else {
 			__map.put(aID, this);
@@ -51,6 +53,8 @@ class view.Photo extends MovieClipHelper implements ILibListener
 		initialize();
 	}
 	
+	/**
+	 * initialize point	 */
 	private function initialize()
 	{
 		setBackground(0x1A1A1A, 0x1A1A1A, 10);
@@ -61,6 +65,8 @@ class view.Photo extends MovieClipHelper implements ILibListener
 			tClose.onRelease = Delegate.create(this, close);
 	}
 	
+	/**
+	 * set title	 */
 	public function setTitle(a:String):Void
 	{
 		__title = a;
@@ -78,11 +84,15 @@ class view.Photo extends MovieClipHelper implements ILibListener
 			tF.setTextFormat(tTF);
 	}
 	
+	/**
+	 * get title	 */
 	public function getTitle():String
 	{
 		return __title;
 	}
 	
+	/**
+	 * set background	 */
 	public function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
 	{
 		var tTopbar:Number = 15;
@@ -92,7 +102,9 @@ class view.Photo extends MovieClipHelper implements ILibListener
 		__b.__c = aColor;
 		__b.__h = aHighlight;
 	}
-
+	
+	/**
+	 * set size	 */
 	public function setSize(w:Number,h:Number):Void
 	{
 		__size = {w:w, h:h};
@@ -100,6 +112,8 @@ class view.Photo extends MovieClipHelper implements ILibListener
 		initialize();
 	}
 
+	/**
+	 * load	 */
 	public function load():Void
 	{
 		trace("load: "+url)
@@ -110,11 +124,16 @@ class view.Photo extends MovieClipHelper implements ILibListener
 		tLibStack.addListener(this);
 		tLibStack.execute();
 	}
+	
+	/**
+	 * close	 */
 	public function close():Void
 	{
 		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_CLOSE_PHOTO));
 	}
-	// Listener methods
+	
+	/**
+	 * listen to LibStack	 */
 	public function onLoadStart(e:LibEvent):Void
 	{
 	}
@@ -139,6 +158,8 @@ class view.Photo extends MovieClipHelper implements ILibListener
 		trace("Photo loading time out: "+e.getName(),Log.ERROR);
 	}
 	
+	/**
+	 * listen to model	 */
 	public function PhotoThumbClick(e:IEvent)
 	{	
 		var tId = e.getTarget().getIdString();
@@ -156,6 +177,7 @@ class view.Photo extends MovieClipHelper implements ILibListener
 		}
 		
 	}
+	
 	public function OnClosePhoto(e:IEvent):Void
 	{
 		if(e.getTarget() == id)
@@ -165,12 +187,13 @@ class view.Photo extends MovieClipHelper implements ILibListener
 		}
 	}
 	/**
-	 * 
+	 * centerize photo
 	 */
 	private function centerize():Void
 	{
 		move(Math.round(Stage.width/2 - view._width/2), Math.round(Stage.height/2 - view._height/2));
 	}
+	
 	/**
 	 * Listening to model
 	 */
@@ -178,11 +201,17 @@ class view.Photo extends MovieClipHelper implements ILibListener
 	{
 		centerize();
 	}
+	
+	/**
+	 * protect background items	 */
 	private function protect():Void
 	{
 		var tProtection:MovieClipHelper = new ScreenProtectionUI(_level0,6,"protection");
 			tProtection.view._alpha = 80;
 	}
+	
+	/**
+	 * unprotect background items	 */
 	private function unprotect():Void
 	{
 		var tProtection:MovieClipHelper = MovieClipHelper.getMovieClipHelper("protection");

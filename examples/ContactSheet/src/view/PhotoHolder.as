@@ -5,12 +5,16 @@ import com.bourre.visual.MovieClipHelper;
  */
 class view.PhotoHolder extends MovieClipHelper
 {	
+	/**
+	 * Constructor	 */
 	public function PhotoHolder(aId:String,aC:MovieClip)
 	{
 		super(aId,aC);
 		initialize();
 	}
 	
+	/**
+	 * initialize point	 */
 	private function initialize()
 	{
 		show();

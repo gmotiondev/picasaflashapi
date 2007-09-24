@@ -4,7 +4,6 @@ import com.bourre.commands.Delegate;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.BasicEvent;
 import com.bourre.events.IEvent;
-import com.bourre.transitions.TweenMS;
 
 import events.EventList;
 
@@ -15,6 +14,8 @@ class view.Navigation extends MovieClipHelper
 {
 	public var container:MovieClip;
 
+	/**
+	 * Constructor	 */
 	public function Navigation(sID:String,aC:MovieClip)
 	{
 		super(sID,aC);
@@ -22,6 +23,8 @@ class view.Navigation extends MovieClipHelper
 		initialize();
 	}
 	
+	/**
+	 * initialize point	 */
 	private function initialize():Void
 	{
 		hide();
@@ -40,16 +43,22 @@ class view.Navigation extends MovieClipHelper
 		centerize();
 	}
 	
+	/**
+	 * listen to model	 */
 	public function onResize(e:IEvent):Void
 	{
 		centerize();
 	}
 	
+	/**
+	 * centerize navigation	 */
 	public function centerize():Void
 	{
 		move(Stage.width/2 - view._width/2, Stage.height - 60);
 	}
 	
+	/**
+	 * dispatch events	 */
 	public function onPrevPhoto():Void
 	{
 		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_PREV_PHOTO));
@@ -59,14 +68,11 @@ class view.Navigation extends MovieClipHelper
 	{
 		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_NEXT_PHOTO));
 	}
+	
 	/**
 	 * Listen to model	 */
 	public function OnClosePhoto(e:IEvent):Void
 	{
-//		var t:TweenMS = null;
-//			t = new TweenMS(view, '_alpha', 0, 250, 100);
-//			t.addEventListener(TweenMS.onMotionFinishedEVENT, this, hide);
-//			t.start();
 		hide();
 	}
 	
