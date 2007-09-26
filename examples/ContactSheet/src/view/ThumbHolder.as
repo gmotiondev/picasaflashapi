@@ -12,7 +12,7 @@ class view.ThumbHolder extends MovieClipHelper
 	 */
 	public function ThumbHolder(aId:String,aC:MovieClip)
 	{
-		super(aId,aC);	
+		super(aId,aC);
 		initialize();
 	}
 	
@@ -25,10 +25,27 @@ class view.ThumbHolder extends MovieClipHelper
 	}
 	
 	/**
+	 * set title
+	 */
+	public function setTitle(a:String):Void
+	{			
+		var tTF:TextFormat = new TextFormat();
+			tTF.font = "kroeger";
+			tTF.size = 8;
+			tTF.color = 0x808080;
+			
+		view.createTextField("tf_album_title", 2, 0, -20, 320, 20);
+		var tF:TextField = view["tf_album_title"];
+			tF.embedFonts = true;
+			tF.html = true;
+			tF.htmlText = a;
+			tF.setTextFormat(tTF);
+	}
+	/**
 	 * centerize holder	 */
 	private function centerize():Void
 	{
-		move((Stage.width/2 - view._width/2), (Stage.height/2 - view._height/2));
+		move(Math.round(Stage.width/2 - view._width/2), Math.round(Stage.height/2 - view._height/2));
 	}
 	
 	/**

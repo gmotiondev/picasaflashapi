@@ -22,7 +22,8 @@ class commands.ServiceLoaded implements Command
 	{
 		var tModel = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 		var tPPS:Picasa.AlbumService = tModel.getAlbumService();
-		var tContainer = MovieClipHelper.getMovieClipHelper(ViewList.THUMBS).view;
+		var tThumbHolder = MovieClipHelper.getMovieClipHelper(ViewList.THUMBS);
+		var tContainer = tThumbHolder.view;
 		var tPhotoContainer = MovieClipHelper.getMovieClipHelper(ViewList.PHOTO).view;
 		var tLibStack:LibStack = new LibStack();
 		
@@ -58,6 +59,8 @@ class commands.ServiceLoaded implements Command
 				trace("Thumb "+tID+" already exists. Skipping!",Log.WARNING);
 			}
 		}
+		
+		tThumbHolder.setTitle(tPPS.getAlbum().getTitle()+" ("+tPPS.getAlbum().getPhotosCount()+" photos)");
 		tLibStack.execute();
 		tLM.draw();	
 	}

@@ -25,7 +25,7 @@ class model.ModelApplication extends Model
 	
 	public function initialize():Void
 	{
-		trace("models.ModelApplication.initialize()",Log.INFO);
+		trace("INFO: model.ModelApplication.initialize()");
 		run();
 	}
 	

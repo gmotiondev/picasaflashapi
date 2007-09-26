@@ -43,7 +43,7 @@ class view.Thumb extends MovieClipHelper implements ILibListener
 		}
 		
 		id = aID;
-		container = aContainer.createEmptyMovieClip(id,aContainer.getNextHighestDepth());
+		container = aContainer.createEmptyMovieClip(id,(aContainer.getNextHighestDepth()+100));
 		super(id, container);
 		
 		setVisible(!aHide);

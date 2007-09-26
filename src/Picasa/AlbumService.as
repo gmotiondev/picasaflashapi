@@ -18,6 +18,8 @@ class Picasa.AlbumService extends Service implements IService
 //class Picasa.AlbumService extends Picasa.JSONService implements IService
 {
 	//private var __kind:String = "photo";
+	private var __album:Picasa.Album;
+	
 	/**
 	 * Constructor
 	 */
@@ -180,6 +182,16 @@ class Picasa.AlbumService extends Service implements IService
 	{
 		return getCurrentPhoto().getAlbumId();
 	}
+	
+	public function setAlbum(aObject:Object):Void
+	{
+		__album = new Picasa.Album(aObject);
+	}
+	
+	public function getAlbum():Picasa.Album
+	{
+		return __album;
+	}
 	/**
 	 * 	 */
 //	public function setThumbsize(aThumbsize:Number):Void
@@ -239,6 +251,9 @@ class Picasa.AlbumService extends Service implements IService
 		{
 			addPhoto(new Photo(tEntries[a]),(a == 0));
 		}
+		
+		//20070926 - add album metadata and associate with album service
+		setAlbum(tData);
 		
 		reset();
 		notifyChanged(e);
