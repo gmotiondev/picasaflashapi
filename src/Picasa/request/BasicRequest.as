@@ -1,45 +1,53 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import com.bourre.log.PixlibStringifier;
+import Picasa.request.RequestType;
 
 class Picasa.request.BasicRequest
 {
 	private var __feed:String;
-	private var __kind:String;
+	private var __type:RequestType;
 	private var __params:Object;
 	
-	public function BasicRequest(aFeed:String, aKind:String, aGetParams:Object)
+	public function BasicRequest(aFeed:String, aType:RequestType, aGetParams:Object)
 	{
 		__feed = aFeed;
-		__kind = aKind;
+		__type = aType;
 		__params = aGetParams;
 	}
 	
+	// 
 	public function getFeed():String
 	{
 		return __feed;
 	}
 	
-	public function getKind():String
+	//
+	public function getRequestType():RequestType
 	{
-		return __kind;
+		return __type;
 	}
 	
+	// 
 	public function getParams():String
 	{
 		var tParams:String = "";
 		
-		for(var tKey:String in __params)
-		{
+		for(var tKey:String in __params) {
 			tParams += "&" + tKey + "=" + __params[tKey];
 		}	
 		
 		return tParams;
 	}
-	/**
-	 * OVERRIDE THIS!	 */
-	public function getRequest():String
+
+	// OVERRIDE THIS WHEN EXTENDING!	public function getRequest():String
 	{
 		return null;
+	}
+	
+	public function toString():String 
+	{
+		return PixlibStringifier.stringify(this);
 	}
 }

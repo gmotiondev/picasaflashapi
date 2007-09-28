@@ -1,10 +1,8 @@
-﻿import com.bourre.log.PixlibStringifier;
-
-import Picasa.objects.*;
-
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import com.bourre.log.PixlibStringifier;
+import Picasa.objects.*;
  
 class Picasa.objects.Collection
 {
@@ -139,10 +137,8 @@ class Picasa.objects.Collection
 	{
 		return __m;
 	}
-	/**
-	 * 
-	 */
-	public function toString():String
+	
+	public function toString():String 
 	{
 		return PixlibStringifier.stringify(this);
 	}

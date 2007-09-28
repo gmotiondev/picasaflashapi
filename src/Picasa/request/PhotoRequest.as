@@ -1,17 +1,17 @@
-﻿/**
+/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import Picasa.request.BasicRequest;
 import Picasa.request.RequestList;
 
-class Picasa.request.AlbumRequest extends BasicRequest
+class Picasa.request.PhotoRequest extends BasicRequest
 {
 	private var __id:String;
 	
 	// 
-	public function AlbumRequest(aFeed:String, aId:String, aGetParams:Object)
+	public function PhotoRequest(aFeed:String, aId:String, aGetParams:Object)
 	{
-		super(aFeed, RequestList.ALBUM_REQUEST, aGetParams);
+		super(aFeed, RequestList.PHOTO_REQUEST, aGetParams);
 		__id = aId;
 	}
 	
@@ -27,3 +27,4 @@ class Picasa.request.AlbumRequest extends BasicRequest
 		return getFeed()+"/albumid/"+getId()+"?kind="+getRequestType()+""+getParams();
 	}
 }
+

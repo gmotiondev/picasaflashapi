@@ -12,16 +12,6 @@ class Picasa.Photo extends Collection
 	}
 
 	/**
-	 * Returns a Photo thumbnails link object (s,m,l size) with urls.
-	 * @return Photo thumbnails link object.	 */
-	public function getThumbnailsLinks():Object{
-		return {
-			s : getMedia().thumbnail_s,
-			m : getMedia().thumbnail_m,
-			l : getMedia().thumbnail_l
-		}
-	}
-	/**
 	 * Returns Picasa Photo url like:
 	 * http://lh3.google.com/image/thisispinkfu/RUSARGE-ABI/AAAAAAAAAAk/bC10dIK1qlo/Untitled-3.jpg
 	 * @return Picasa Photo url string.	 */

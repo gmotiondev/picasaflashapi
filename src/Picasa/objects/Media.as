@@ -1,17 +1,15 @@
-﻿import com.bourre.log.PixlibStringifier;
-
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  * 
  * Fine tune with this:
  * http://code.google.com/apis/picasaweb/reference.html
  */
+import Picasa.objects.BasicObject;
 
-class Picasa.objects.Media
+class Picasa.objects.Media extends BasicObject
 {	
 	public var title, description, keywords, credit:String;
 	public var content, thumbnail:Object;
-	public var thumbnail_s, thumbnail_m, thumbnail_l;
 	
 	public function Media(a:Object)
 	{
@@ -36,21 +34,5 @@ class Picasa.objects.Media
 			width 	: a["media:thumbnail"].attributes.width,
 			height 	: a["media:thumbnail"].attributes.height
 		};
-		/*
-		thumbnail_s = {
-			url : content.url+"?imgmax=72"
-		};
-		thumbnail_m = {
-			url : content.url+"?imgmax=144"
-		};
-		thumbnail_l = {
-			url : content.url+"?imgmax=288"
-		};
-		*/
-	}
-	
-	public function toString():String
-	{
-		return PixlibStringifier.stringify(this);
 	}
 }

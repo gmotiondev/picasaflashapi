@@ -1,12 +1,11 @@
-﻿import com.bourre.log.PixlibStringifier;
-
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import Picasa.objects.BasicObject;
  
-class Picasa.objects.Exif
+class Picasa.objects.Exif extends BasicObject
 {
-	public var fstop, make, model, distance, exposure, flash, focallength, iso, time;
+	public var fstop, make, model, distance, exposure, flash, focallength, iso, time:String;
 	
 	public function Exif(a:Object)
 	{
@@ -19,10 +18,5 @@ class Picasa.objects.Exif
 		focallength = a["focallength"];
 		iso 		= a["iso"];
 		time 		= a["time"];
-	}
-	
-	public function toString():String
-	{
-		return PixlibStringifier.stringify(this);
 	}
 }

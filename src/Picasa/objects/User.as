@@ -1,5 +1,9 @@
 ﻿/**
- * @author Michal
+ * @author Michal Gron (michal.gron@gmail.com)
  */
-class Picasa.objects.User {
+import Picasa.objects.BasicObject; 
+
+class Picasa.objects.User extends BasicObject
+{
+
 }

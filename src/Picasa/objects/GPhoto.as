@@ -1,13 +1,12 @@
-﻿import com.bourre.log.PixlibStringifier;
-import Picasa.objects.ObjectList;
-
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  * 
  * http://code.google.com/apis/picasaweb/reference.html
  */
+import Picasa.objects.ObjectList;
+import Picasa.objects.BasicObject;
 
-class Picasa.objects.GPhoto
+class Picasa.objects.GPhoto extends BasicObject
 {
 	public var id, name, location, access, timestamp, user, nickname:String;
 	public var version, albumid, client, checksum, photoid, thumbnail, position:String;
@@ -16,7 +15,7 @@ class Picasa.objects.GPhoto
 	public var commentingEnabled:Boolean;
 	
 	public function GPhoto(a:Object,t:String)
-	{	
+	{
 		switch(t)
 		{
 			case ObjectList.ALBUM:
@@ -62,12 +61,7 @@ class Picasa.objects.GPhoto
 		    	weight 				= Number(a["gphoto:weight"]);
 				break
 			default:
-				trace("GPhoto object type not defined!");
-		}	
-	}
-	
-	public function toString():String
-	{
-		return PixlibStringifier.stringify(this);
+				trace("ERROR: GPhoto object type not defined!");
+		}
 	}
 }

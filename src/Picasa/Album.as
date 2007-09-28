@@ -1,5 +1,4 @@
-﻿import Picasa.objects.Collection;//import Picasa.objects.Media;
-//import Picasa.objects.GPhoto;import Picasa.objects.ObjectList;
+﻿import Picasa.objects.Collection;import Picasa.objects.ObjectList;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)

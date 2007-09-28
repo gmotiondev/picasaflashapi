@@ -1,5 +1,7 @@
-﻿import com.bourre.events.IEvent;
-import com.bourre.log.PixlibStringifier;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+import com.bourre.events.IEvent;
 import com.bourre.data.libs.LibEvent;
 
 import Picasa.Photo;
@@ -8,24 +10,18 @@ import Picasa.IService;
 import Picasa.tools.Map2;
 
 /**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-
-/**
  * get xml photo header, just one entries ... 
  */
 class Picasa.PhotoService extends Service implements IService
-//class Picasa.PhotoService extends Picasa.JSONService implements IService
 {
 	private var __kind:String = "comment";
+
 	/**
 	 * Constructor
 	 */
-	public function PhotoService(aUrl:String,aAlbumId)
+	public function PhotoService(aFeed:String, aAlbumId:String, aGetParams:Object)
 	{
-		//TODO: REWRITE ENTIRE CLASS. can be comments or tags!!!
-		super(aUrl+"/albumid/"+aAlbumId);	//ugly!!
-		iterator = null;
+		super(new AlbumRequest(aFeed, aAlbumId, aGetParams));
 	}
 	
 	/**
@@ -79,10 +75,5 @@ class Picasa.PhotoService extends Service implements IService
 	public function onFileError(e:LibEvent):Void
 	{
 		trace("ERROR: Picasa.PhotoService.onFileError("+e+")");
-	}
-
-	public function toString():String
-	{
-		return PixlibStringifier.stringify(this);
 	}
 }

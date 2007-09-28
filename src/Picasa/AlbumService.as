@@ -1,5 +1,7 @@
-﻿import com.bourre.events.IEvent;
-import com.bourre.log.PixlibStringifier;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+import com.bourre.events.IEvent;
 import com.bourre.data.libs.LibEvent;
 
 import Picasa.Photo;
@@ -7,29 +9,31 @@ import Picasa.Service;
 import Picasa.IService;
 import Picasa.tools.Map2;
 import Picasa.request.AlbumRequest;
-/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
 
 /**
- * get xml photo header, before entries ... 
+ * TODO:
+ * get xml header infos, before entries (album cover, ...)
+ * authKey for unlisted albums?
  */
 class Picasa.AlbumService extends Service implements IService
 //class Picasa.AlbumService extends Picasa.JSONService implements IService
 {
-	//private var __kind:String = "photo";
 	private var __album:Picasa.Album;
 	
 	/**
 	 * Constructor
+	 * Construct an AlbumRequest, 
+	 * 
+	 * @param aFeed url to Picasaweb user feed (http://picasaweb.google.com/data/feed/api/user/USERNAME)
+	 * @param aAlbumId	album id string (5071041246998165969)
+	 * @param aGetParams	e.g. imgmax, thumbsize etc., this is a generic object (array), that is transformed
+	 * 						than to GET params in the request url
 	 */
 	public function AlbumService(aFeed:String, aAlbumId:String, aGetParams:Object)
 	{
-		//super(aFeed+"/albumid/"+aAlbumId);	//ugly!!
 		super(new AlbumRequest(aFeed, aAlbumId, aGetParams));
-		
-		iterator = null;
 	}
+	
 	/**
 	 * Adds a Picasa.Photo object to Map.
 	 * @param aPhoto Picasa.Photo object
@@ -58,6 +62,7 @@ class Picasa.AlbumService extends Service implements IService
 			trace("Photo has null id!");
 		}
 	}
+	
 	/**
 	 * Removes Picasa.Photo object from Map.
 	 * @param aPhoto Picasa.Photo object to be removed.
@@ -73,14 +78,15 @@ class Picasa.AlbumService extends Service implements IService
 			}
 			else
 			{
-				trace("WARN: Album "+tID+" is not available!");
+				trace("WARN: Photo "+tID+" is not available!");
 			}
 		}
 		else
 		{
-			trace("ERROR: Album id is null!");
+			trace("ERROR: Photo id is null!");
 		}
 	}
+	
 	/**
 	 * Returns current Picasa.Photo
 	 * @return Current Picasa.Photo object.
@@ -89,6 +95,7 @@ class Picasa.AlbumService extends Service implements IService
 	{
 		return getPhoto(current);
 	}
+	
 	/**
 	 * Sets a Picasa.Photo id as a current id.
 	 * @param aID String, Picasa.Photo id.
@@ -98,6 +105,7 @@ class Picasa.AlbumService extends Service implements IService
 		current = aID;
 		iterator.setIndex(iterator.searchKey(aID));
 	}
+	
 	/**
 	 * Returns current photo id(key).
 	 * @return String, current photo id.
@@ -106,10 +114,12 @@ class Picasa.AlbumService extends Service implements IService
 	{
 		return current;
 	}
+	
 	public function getCurrentIndex():Number
 	{
 		return iterator.getIndex();
 	}
+	
 	/**
 	 * Returns Picasa.Photo object with specified ID.
 	 * @param aID String, Picasa.Photo id.
@@ -125,6 +135,7 @@ class Picasa.AlbumService extends Service implements IService
 		
 		return map.get(aID);
 	}
+	
 	/**
 	 * Returns a Map2 object with Picasa.Photo objects.
 	 * @return Map2 object with Picasa.Photo objects.
@@ -133,6 +144,7 @@ class Picasa.AlbumService extends Service implements IService
 	{
 		return map;
 	}
+	
 	/**
 	 * Returns Picasa Photos count.
 	 * @return Picasa Photos count.
@@ -141,6 +153,7 @@ class Picasa.AlbumService extends Service implements IService
 	{
 		return size();
 	}
+	
 	/**
 	 * Get next photo from current photo.
 	 * @return Next Picasa.Photo object in the map.
@@ -153,6 +166,7 @@ class Picasa.AlbumService extends Service implements IService
 
 		return getPhoto(iterator.next());
 	}
+	
 	/**
 	 * Get previous photo from current photo.
 	 * @return Previous Picasa.Photo object in the map.
@@ -165,6 +179,7 @@ class Picasa.AlbumService extends Service implements IService
 		
 		return getPhoto(iterator.prev());
 	}
+	
 	/**
 	 * Get first photo.
 	 * 
@@ -174,6 +189,7 @@ class Picasa.AlbumService extends Service implements IService
 		reset();
 		return getPhoto(iterator.next());
 	}
+	
 	/**
 	 * Get album ID.
 	 * @return ID of the album in which the photo is stored. (album of the photo, parent...)
@@ -183,57 +199,23 @@ class Picasa.AlbumService extends Service implements IService
 		return getCurrentPhoto().getAlbumId();
 	}
 	
+	/**
+	 * Creates a new Picasa.Album object to store the album metadata.. (added on 20070926)
+	 * @param aObject 	album data object
+	 */
 	public function setAlbum(aObject:Object):Void
 	{
 		__album = new Picasa.Album(aObject);
 	}
 	
+	/**
+	 * Returns Picasa.Album associated with this photos.
+	 * 
+	 */
 	public function getAlbum():Picasa.Album
 	{
 		return __album;
 	}
-	/**
-	 * 	 */
-//	public function setThumbsize(aThumbsize:Number):Void
-//	{
-//		__thumbsize = aThumbsize;
-//	}
-	/**
-	 * 	 */
-//	public function getThumbsize():Number
-//	{
-//		return __thumbsize;
-//	}
-	/**
-	 * 	 */
-//	public function setImagemax(aImgmax:Number):Void
-//	{
-//		__imgmax = aImgmax;
-//	}
-	/**
-	 * 	 */
-//	public function getImagemax():Number
-//	{
-//		return __imgmax;
-//	}
-	/**
-	 * 	 */
-//	public function setTag()
-//	{
-//	
-//	}
-//	public function getTag()
-//	{
-//	
-//	}
-//	public function setMaxResults()
-//	{
-//	
-//	}
-//	public function getMaxResults()
-//	{
-//	
-//	}
 	
 	/**
 	 * Called when successfuly loaded xml
@@ -258,6 +240,7 @@ class Picasa.AlbumService extends Service implements IService
 		reset();
 		notifyChanged(e);
 	}
+	
 	/**
 	 * Called after onInitialize is invoked.
 	 * @param e LibEvent event.
@@ -266,6 +249,7 @@ class Picasa.AlbumService extends Service implements IService
 	{
 		onServiceLoaded(e);
 	}
+	
 	/**
 	 * Event sent, during xml loading.
 	 * @param e LibEvent event.
@@ -274,6 +258,7 @@ class Picasa.AlbumService extends Service implements IService
 	{
 		//trace("Picasa.AlbumService.onFileProgress("+e.getPerCent()+"% loaded from "+e.getLib().getURL()+")",Log.INFO);
 	}
+	
 	/**
 	 * If xml loading timed out.
 	 * @param e LibEvent event.
@@ -282,6 +267,7 @@ class Picasa.AlbumService extends Service implements IService
 	{
 		trace("ERROR: Picasa.AlbumService.onFileTimeout("+e+")");
 	}
+	
 	/**
 	 * If xml loading failed.
 	 * @param e LibEvent event.
@@ -289,10 +275,5 @@ class Picasa.AlbumService extends Service implements IService
 	public function onFileError(e:LibEvent):Void
 	{
 		trace("ERROR: Picasa.AlbumService.onFileError("+e+")");
-	}
-
-	public function toString():String
-	{
-		return PixlibStringifier.stringify(this);
 	}
 }

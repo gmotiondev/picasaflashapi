@@ -51,7 +51,7 @@ class models.ModelApplication extends Model
 		var tPPS:Picasa.AlbumService = getAlbumService();
 		var tPP:Picasa.Photo = tPPS.getPrevPhoto();
 		
-		notifyChanged(new BasicEvent(EventList.PHOTO_THUMB_CLICK,tPP););
+		notifyChanged(new BasicEvent(EventList.PHOTO_THUMB_CLICK,tPP));
 	}
 	
 	public function setCurrentPhoto(aId:String):Void
@@ -66,7 +66,7 @@ class models.ModelApplication extends Model
 	
 	public function PhotoThumbClick(p:Picasa.Photo):Void
 	{	
-		var tE = new BasicEvent(EventList.PHOTO_THUMB_CLICK,p);
+		var tE:BasicEvent = new BasicEvent(EventList.PHOTO_THUMB_CLICK,p);
 		
 		setCurrentPhoto(p.getIdString());
 		notifyChanged(tE);

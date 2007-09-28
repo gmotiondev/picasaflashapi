@@ -1,5 +1,7 @@
-﻿import com.bourre.events.IEvent;
-import com.bourre.log.PixlibStringifier;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+import com.bourre.events.IEvent;
 import com.bourre.data.libs.LibEvent;
 
 import Picasa.Album;
@@ -9,26 +11,20 @@ import Picasa.tools.Map2;
 import Picasa.request.UserRequest;
 
 /**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-
-/**
  * TODO:
  * get xml header infos, before entries (album cover, ...)
  * authKey for unlisted albums?
  */
 class Picasa.UserService extends Service implements IService
 {
-	//private var __kind:String = "album";
 	/**
 	 * Constructor
 	 */
 	public function UserService(aFeed:String)
 	{
-		//super(aUrl);
 		super(new UserRequest(aFeed));
-		current = null;
 	}
+	
 	/**
 	 * Adds a Picasa.Album object to Map.
 	 * @param aAlbum Picasa.Album object.
@@ -56,6 +52,7 @@ class Picasa.UserService extends Service implements IService
 			trace("ERROR: Album has null id!");
 		}
 	}
+	
 	/**
 	 * Removes Picasa.Album object from Map.
 	 * @param aAlbum Picasa.Album object to be removed.
@@ -79,6 +76,7 @@ class Picasa.UserService extends Service implements IService
 			trace("ERROR: Album id is null!");
 		}
 	}
+	
 	/**
 	 * Returns current Picasa.Album object.
 	 * @return Current Picasa.Album object.
@@ -87,6 +85,7 @@ class Picasa.UserService extends Service implements IService
 	{
 		return getAlbum(current);
 	}
+	
 	/**
 	 * Sets a Picasa.Album id as a current id.
 	 * @param aID String, Picasa.Album id.
@@ -96,14 +95,16 @@ class Picasa.UserService extends Service implements IService
 		current = aID;
 		//iterator.setIndex(iterator.searchKey(aID));	//TEST!!!
 	}
+	
 	/**
 	 * Returns current album id(key).
 	 * @return String, current album id.
 	 */
-	 public function getCurrent():String
+	public function getCurrent():String
 	{
 		return current;
 	}
+	
 	/**
 	 * Returns Picasa.Album object with specified ID.
 	 * @param aID String, Picasa.Album id.
@@ -119,6 +120,7 @@ class Picasa.UserService extends Service implements IService
 		
 		return map.get(aID);
 	}
+	
 	/**
 	 * Get next album from current album.
 	 * @return Next Picasa.Album object in the map.
@@ -127,6 +129,7 @@ class Picasa.UserService extends Service implements IService
 	{
 		return getAlbum(iterator.next());
 	}
+	
 	/**
 	 * Get previous album from current album.
 	 * @return Previous Picasa.Album object in the map.
@@ -142,6 +145,7 @@ class Picasa.UserService extends Service implements IService
 		
 		//return getAlbum(iterator.prev());
 	}
+	
 	/**
 	 * Returns Picasa Albums count.
 	 * @return Albums count.
@@ -150,6 +154,7 @@ class Picasa.UserService extends Service implements IService
 	{
 		return size();
 	}
+	
 	/**
 	 * Returns a Map2 object with Picasa.Album objects.
 	 * @return Map2 object with Picasa.Album objects.
@@ -158,6 +163,7 @@ class Picasa.UserService extends Service implements IService
 	{
 		return map;
 	}
+	
 	/**
 	 * Called when successfully loaded xml!
 	 */
@@ -178,6 +184,7 @@ class Picasa.UserService extends Service implements IService
 		reset();
 		notifyChanged(e);
 	}
+	
 	/**
 	 * Called after onInitialize is invoked.
 	 * @param e LibEvent event.
@@ -186,6 +193,7 @@ class Picasa.UserService extends Service implements IService
 	{
 		onServiceLoaded(e);
 	}
+	
 	/**
 	 * Event sent, during xml loading.
 	 * @param e LibEvent event.
@@ -194,6 +202,7 @@ class Picasa.UserService extends Service implements IService
 	{
 		//trace("Picasa.UserService.onFileProgress("+e.getPerCent()+"% loaded from "+e.getLib().getURL()+")",Log.INFO);
 	}
+	
 	/**
 	 * If xml loading timed out.
 	 * @param e LibEvent event.
@@ -202,6 +211,7 @@ class Picasa.UserService extends Service implements IService
 	{
 		trace("ERROR: Picasa.UserService.onFileTimeout("+e+")");
 	}
+	
 	/**
 	 * If xml loading failed.
 	 * @param e LibEvent event.
@@ -209,9 +219,5 @@ class Picasa.UserService extends Service implements IService
 	public function onFileError(e:LibEvent):Void
 	{
 		trace("ERROR: Picasa.UserService.onFileError("+e+")");
-	}
-	public function toString():String
-	{
-		return PixlibStringifier.stringify(this);
 	}
 }
