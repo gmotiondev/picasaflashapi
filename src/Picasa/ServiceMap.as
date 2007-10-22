@@ -4,37 +4,37 @@
 import Picasa.tools.Map2;
 import Picasa.tools.ObjectIterator2;
 
-class Picasa.ServiceMap
+class Picasa.ServiceMap extends Map2
 {
-	private var __map:Map2;
+	//private var __map:Map2;
 	private var __current:String = null;
 	private var __it:ObjectIterator2 = null;
 	
 	// 
-	private function clear():Void
+	public function clear():Void
 	{
-		__map.clear();
+		super.clear();
 		__current = null;
 		
 		reset();
 	}
 	
 	// 
-	private function reset():Void
+	public function reset():Void
 	{
-		__it = (size() > 0) ? __map.getKeysIterator() : null;
+		__it = (size() > 0) ? super.getKeysIterator() : null;
 	}
 	
 	// 
-	private function size():Number
+	public function size():Number
 	{
-		return __map.getSize();
+		return super.getSize();
 	}
 	
 	// 
-	private function contains(aID:String):Boolean
+	public function contains(aID:String):Boolean
 	{
-		return __map.containsKey(aID);
+		return super.containsKey(aID);
 	}
 	
 	// 
@@ -50,16 +50,16 @@ class Picasa.ServiceMap
 	}
 	
 	// 
-	public function get map():Map2
+	public function get map():ServiceMap
 	{
-		return __map;
+		return this;
 	}
 	
 	// 
-	public function set map(aMap:Map2):Void
-	{
-		__map = aMap;
-	}
+	//public function set map(aMap:Map2):Void
+	//{
+	//	__map = aMap;
+	//}
 	
 	// 
 	public function get iterator():ObjectIterator2

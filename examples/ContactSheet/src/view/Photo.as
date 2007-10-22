@@ -155,7 +155,7 @@ class view.Photo extends MovieClipHelper implements ILibListener
 	
 	public function onTimeOut(e:LibEvent):Void
 	{
-		trace("Photo loading time out: "+e.getName(),Log.ERROR);
+		trace("Error: Photo loading time out: "+e.getName());
 	}
 	
 	/**

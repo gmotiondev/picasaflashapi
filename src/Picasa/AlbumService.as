@@ -3,11 +3,13 @@
  */
 import com.bourre.events.IEvent;
 import com.bourre.data.libs.LibEvent;
+//import com.bourre.log.Logger;
+import com.bourre.log.PixlibDebug;
 
 import Picasa.Photo;
 import Picasa.Service;
+import Picasa.ServiceMap;
 import Picasa.IService;
-import Picasa.tools.Map2;
 import Picasa.request.AlbumRequest;
 
 /**
@@ -19,6 +21,7 @@ class Picasa.AlbumService extends Service implements IService
 //class Picasa.AlbumService extends Picasa.JSONService implements IService
 {
 	private var __album:Picasa.Album;
+	private var map:ServiceMap;
 	
 	/**
 	 * Constructor
@@ -45,7 +48,7 @@ class Picasa.AlbumService extends Service implements IService
 		
 		if(tID != null)
 		{
-			if(!contains(tID))
+			if(!map.contains(tID))
 			{
 				map.put(tID,aPhoto);
 
@@ -71,7 +74,7 @@ class Picasa.AlbumService extends Service implements IService
 		var tID:String = aPhoto.getIdString();
 		if (tID != null)
 		{
-			if (contains(tID))
+			if (map.contains(tID))
 			{
 				map.remove(tID);
 			}
@@ -92,7 +95,7 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function getCurrentPhoto():Photo
 	{
-		return getPhoto(current);
+		return getPhoto(map.current);
 	}
 	
 	/**
@@ -101,8 +104,8 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function setCurrent(aID:String):Void
 	{
-		current = aID;
-		iterator.setIndex(iterator.searchKey(aID));
+		map.current = aID;
+		map.iterator.setIndex(map.iterator.searchKey(aID));
 	}
 	
 	/**
@@ -111,12 +114,12 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function getCurrent():String
 	{
-		return current;
+		return map.current;
 	}
 	
 	public function getCurrentIndex():Number
 	{
-		return iterator.getIndex();
+		return map.iterator.getIndex();
 	}
 	
 	/**
@@ -126,7 +129,7 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function getPhoto(aID:String):Photo
 	{
-		if(!contains(aID)) {
+		if(!map.contains(aID)) {
 			trace("Photo "+aID+" is not available!");
 		}
 		
@@ -139,10 +142,10 @@ class Picasa.AlbumService extends Service implements IService
 	 * Returns a Map2 object with Picasa.Photo objects.
 	 * @return Map2 object with Picasa.Photo objects.
 	 */
-	public function getPhotos():Map2
-	{
-		return map;
-	}
+	//public function getPhotos():ServiceMap
+	//{
+	//	return map;
+	//}
 	
 	/**
 	 * Returns Picasa Photos count.
@@ -150,7 +153,7 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function getPhotosCount():Number
 	{
-		return size();
+		return map.size();
 	}
 	
 	/**
@@ -159,11 +162,11 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function getNextPhoto():Photo
 	{	
-		if(!iterator.hasNext()) {
-			reset();
+		if(!map.iterator.hasNext()) {
+			map.reset();
 		}
 
-		return getPhoto(iterator.next());
+		return getPhoto(map.iterator.next());
 	}
 	
 	/**
@@ -172,11 +175,11 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function getPrevPhoto():Photo
 	{	
-		if(!iterator.hasPrev()) {
-			iterator.seek(size()+1);
+		if(!map.iterator.hasPrev()) {
+			map.iterator.seek(map.size()+1);
 		}
 		
-		return getPhoto(iterator.prev());
+		return getPhoto(map.iterator.prev());
 	}
 	
 	/**
@@ -185,8 +188,8 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function getFirstPhoto():Photo
 	{	
-		reset();
-		return getPhoto(iterator.next());
+		map.reset();
+		return getPhoto(map.iterator.next());
 	}
 	
 	/**
@@ -219,11 +222,11 @@ class Picasa.AlbumService extends Service implements IService
 	/**
 	 * Called when successfuly loaded xml
 	 */
-	public function onInitialize(e:LibEvent):Void 
+	public function onServiceInit(e:LibEvent):Void 
 	{
 		if(map != undefined) return;
 		
-		map = new Map2();
+		map = new ServiceMap();
 		
 		var tData = getData();
 		var tEntries = tData.entry;
@@ -236,7 +239,7 @@ class Picasa.AlbumService extends Service implements IService
 		//20070926 - add album metadata and associate with album service
 		setAlbum(tData);
 		
-		reset();
+		map.reset();
 		notifyChanged(e);
 	}
 	
@@ -253,7 +256,7 @@ class Picasa.AlbumService extends Service implements IService
 	 * Event sent, during xml loading.
 	 * @param e LibEvent event.
 	 */
-	public function onFileProgress(e:LibEvent):Void
+	public function onServiceProgress(e:LibEvent):Void
 	{
 		//trace("Picasa.AlbumService.onFileProgress("+e.getPerCent()+"% loaded from "+e.getLib().getURL()+")",Log.INFO);
 	}
@@ -262,7 +265,7 @@ class Picasa.AlbumService extends Service implements IService
 	 * If xml loading timed out.
 	 * @param e LibEvent event.
 	 */
-	public function onFileTimeout(e:LibEvent):Void
+	public function onServiceTimeout(e:LibEvent):Void
 	{
 		trace("ERROR: Picasa.AlbumService.onFileTimeout("+e+")");
 	}
@@ -271,7 +274,7 @@ class Picasa.AlbumService extends Service implements IService
 	 * If xml loading failed.
 	 * @param e LibEvent event.
 	 */
-	public function onFileError(e:LibEvent):Void
+	public function onServiceError(e:LibEvent):Void
 	{
 		trace("ERROR: Picasa.AlbumService.onFileError("+e+")");
 	}

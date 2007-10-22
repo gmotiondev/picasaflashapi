@@ -55,7 +55,7 @@ class commands.ServiceLoaded implements Command
 					tModel.addListener(tPhoto);
 
 			} else {
-				trace("Thumb "+tID+" already exists. Skipping!",Log.WARNING);
+				trace("Thumb "+tID+" already exists. Skipping!");
 			}
 		}
 		

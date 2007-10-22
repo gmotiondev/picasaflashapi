@@ -30,7 +30,7 @@ class Application extends MovieClipHelper
 	 *	initialize point
 	 */	
 	private function initialize(mc:MovieClip):Void
-	{	
+	{
 		Stage.addListener(this);
 		Key.addListener(this);
 		
@@ -86,7 +86,7 @@ class Application extends MovieClipHelper
 		Stage.align = "TL";
 		Stage.scaleMode = "noScale";
 		
-		var o:Application = new Application(mc);
+		var o:Application = new Application(mc); 
 	}
 	
 	/**
