@@ -1,4 +1,4 @@
-import com.bourre.core.Model;
+﻿import com.bourre.core.Model;
 import com.bourre.events.IEvent;
 import com.bourre.events.BasicEvent;
 import com.bourre.events.EventBroadcaster;
@@ -52,7 +52,7 @@ class model.ModelApplication extends Model
 		var tPPS:Picasa.AlbumService = getAlbumService();
 		var tPP:Picasa.Photo = tPPS.getPrevPhoto();
 		
-		notifyChanged(new BasicEvent(EventList.PHOTO_THUMB_CLICK,tPP););
+		notifyChanged(new BasicEvent(EventList.PHOTO_THUMB_CLICK,tPP));
 	}
 	
 	public function setCurrentPhoto(aId:String):Void

@@ -1,4 +1,4 @@
-import com.bourre.commands.Command;
+﻿import com.bourre.commands.Command;
 import com.bourre.commands.Delegate;
 import com.bourre.core.Model;
 import com.bourre.events.BasicEvent;
@@ -28,7 +28,7 @@ class commands.ServiceLoaded implements Command
 		var tLibStack:LibStack = new LibStack();
 		
 		var tLM:Picasa.tools.layout.GridLayout = new Picasa.tools.layout.GridLayout(6, 6);
-			tLM.addListener(MovieClipHelper.getMovieClipHelper(ViewList.THUMBS));
+			tLM.addListener(tThumbHolder);
 			
 		for(var a = 0; a < tPPS.getPhotosCount(); a++)
 		{
@@ -43,7 +43,6 @@ class commands.ServiceLoaded implements Command
 					tModel.addEventListener(EventList.PHOTO_THUMB_CLICK,tThumb);
 				
 					tLM.addChild(tThumb.view);
-					//tThumb.setTitle(tPP.getTitle()+"<br/>"+tPP.getSummary());
 					tThumb.getButton().onRelease = Delegate.create(this, notify, tPP);
 										
 					tLibStack.enqueue(new GraphicLib(tThumb.view, 20), tID, tPP.getThumbnailLink());
