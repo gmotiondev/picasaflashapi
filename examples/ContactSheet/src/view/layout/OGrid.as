@@ -4,7 +4,7 @@ import com.bourre.log.PixlibStringifier;
 import com.bourre.structures.AbstractGrid;
 import com.bourre.structures.Point;
 
-class Picasa.tools.OGrid extends AbstractGrid
+class view.layout.OGrid extends AbstractGrid
 {
 	
 	//-------------------------------------------------------------------------

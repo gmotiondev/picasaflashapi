@@ -27,7 +27,7 @@ class commands.ServiceLoaded implements Command
 		var tPhotoContainer = MovieClipHelper.getMovieClipHelper(ViewList.PHOTO).view;
 		var tLibStack:LibStack = new LibStack();
 		
-		var tLM:Picasa.tools.layout.GridLayout = new Picasa.tools.layout.GridLayout(6, 6);
+		var tLM:view.layout.GridLayout = new view.layout.GridLayout(6, 6);
 			tLM.addListener(tThumbHolder);
 			
 		for(var a = 0; a < tPPS.getPhotosCount(); a++)

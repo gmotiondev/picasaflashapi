@@ -20,7 +20,7 @@ import com.bourre.events.BasicEvent;
 	UIObject.unload
 */
 
-class Picasa.tools.layout.LayoutManager
+class view.layout.LayoutManager
 {
 	private var __items:IndexedArray;
 	private var __oEB:EventBroadcaster;
