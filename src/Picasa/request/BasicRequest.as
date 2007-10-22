@@ -23,7 +23,7 @@ class Picasa.request.BasicRequest
 		return __feed;
 	}
 	
-	//
+	// 
 	public function getRequestType():RequestType
 	{
 		return __type;
@@ -36,16 +36,11 @@ class Picasa.request.BasicRequest
 		
 		for(var tKey:String in __params) {
 			tParams += "&" + tKey + "=" + __params[tKey];
-		}	
+		}
 		
 		return tParams;
 	}
 
-	// OVERRIDE THIS WHEN EXTENDING!	public function getRequest():String
-	{
-		return null;
-	}
-	
 	public function toString():String 
 	{
 		return PixlibStringifier.stringify(this);

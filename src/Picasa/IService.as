@@ -5,5 +5,5 @@
  */ 
 interface Picasa.IService
 {
-	public function onInitialize(e:LibEvent):Void;	public function onFileError(e:LibEvent):Void;	public function onFileTimeout(e:LibEvent):Void;	public function onFileProgress(e:LibEvent):Void;	public function notifyChanged(e:IEvent):Void;	
+	public function onInitialize(e:LibEvent):Void;	public function notifyChanged(e:IEvent):Void;	
 }

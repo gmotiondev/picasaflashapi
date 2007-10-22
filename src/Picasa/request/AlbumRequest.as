@@ -3,8 +3,9 @@
  */
 import Picasa.request.BasicRequest;
 import Picasa.request.RequestList;
+import Picasa.request.IRequest;
 
-class Picasa.request.AlbumRequest extends BasicRequest
+class Picasa.request.AlbumRequest extends BasicRequest implements IRequest
 {
 	private var __id:String;
 	

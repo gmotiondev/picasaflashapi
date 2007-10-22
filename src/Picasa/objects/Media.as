@@ -7,7 +7,7 @@
 import Picasa.objects.BasicObject;
 
 class Picasa.objects.Media extends BasicObject
-{	
+{
 	public var title, description, keywords, credit:String;
 	public var content, thumbnail:Object;
 	

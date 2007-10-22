@@ -3,8 +3,9 @@
  */
 import Picasa.request.BasicRequest;
 import Picasa.request.RequestList;
+import Picasa.request.IRequest;
 
-class Picasa.request.UserRequest extends BasicRequest
+class Picasa.request.UserRequest extends BasicRequest implements IRequest 
 {
 	// 
 	public function UserRequest(aFeed:String, aGetParams:Object)

@@ -6,20 +6,20 @@ import com.bourre.data.libs.XMLToObject;
 import com.bourre.data.libs.XMLToObjectDeserializer;import com.bourre.data.libs.LibEvent;
 
 import Picasa.ServiceMap;
-import Picasa.request.BasicRequest;
+import Picasa.request.IRequest;
  
 class Picasa.Service extends ServiceMap
 {	
 	private var __d:XMLToObject;
 	private var __o:Object;
-	private var __request:BasicRequest;
+	private var __request:IRequest;
 	
 	public var onServiceLoaded:Function;
 	
 	/**
 	 * Constructor
 	 */	
-	public function Service(aRequest:BasicRequest)
+	public function Service(aRequest:IRequest)
 	{
 		__request = aRequest;
 
@@ -77,8 +77,8 @@ class Picasa.Service extends ServiceMap
 	public function onFileProgress(e:LibEvent):Void {}
 	public function onFileTimeout(e:LibEvent):Void {}
 	public function onFileError(e:LibEvent):Void {}
-	
-	public function toString():String 
+
+	public function toString():String
 	{
 		return PixlibStringifier.stringify(this);
 	}

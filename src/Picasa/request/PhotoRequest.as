@@ -1,10 +1,11 @@
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import Picasa.request.BasicRequest;
 import Picasa.request.RequestList;
+import Picasa.request.IRequest;
 
-class Picasa.request.PhotoRequest extends BasicRequest
+class Picasa.request.PhotoRequest extends BasicRequest implements IRequest
 {
 	private var __id:String;
 	

@@ -41,7 +41,6 @@ class Picasa.AlbumService extends Service implements IService
 	 */
 	public function addPhoto(aPhoto:Photo,aSetCurrent:Boolean):Void
 	{
-		
 		var tID:String = aPhoto.getIdString();
 		
 		if(tID != null)
