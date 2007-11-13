@@ -2,6 +2,7 @@
 //import com.bourre.events.IEvent;
 import com.bourre.data.libs.LibEvent;import com.bourre.events.BasicEvent;
 import com.bourre.events.EventBroadcaster;
+import com.bourre.events.IEvent;
 import com.bourre.commands.Delegate;import com.bourre.commands.CommandMS;
 
 import model.ModelList;
@@ -29,7 +30,14 @@ class model.ModelApplication extends Model
 	public function initialize():Void
 	{
 		service = new PicasaService();
+		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
+		
 		EventBroadcaster.getInstance().dispatchEvent(new InitializeEvent());
 		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5094406297232552993"));
+	}
+	
+	private function onServiceError(e:IEvent):Void
+	{
+		trace("error: "+e.getType());
 	}
 }

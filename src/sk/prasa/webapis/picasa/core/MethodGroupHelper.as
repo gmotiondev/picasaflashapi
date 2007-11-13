@@ -13,6 +13,7 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 	public static function invokeMethod(service:PicasaService, 
 										callBack:Function, 
 										signed:Boolean,
+										suffix:String,
 										params:Array):Void
 	{
 			
@@ -20,21 +21,18 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 		// for the query because during signing we need to sort
 		// these alphabetically
 		var args:Array = new Array();
-		
+		var tSuffix:String = (suffix != "" && suffix != "") ? suffix : "";
 		//args.push(new NameValuePair("api_key", service.api_key));
 		//args.push(new NameValuePair("method", method));
 		
 		
-		// Loop over the params and add them as arguments
 		for(var i:Number = 0; i < params.length; i++)
 		{
-			// Do we have an argument name, or do we create one
 			if (params[i] instanceof NameValuePair)
 			{
 				args.push(params[i]);
 			} else
 			{
-				// Create a unique argument name using our loop counter
 				args.push(new NameValuePair("param"+i, params[i].toString()));
 			}
 		}
@@ -63,31 +61,19 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 		}
 		*/
 		
-		// Construct the query string to send to the Flickr service
-		var query:String = "";
+
+		var query:String = ""+tSuffix+"?";
 		for (var k:Number = 0; k < args.length; k++ )
 		{
-			// This puts 1 too many "&" on the end, but that doesn't
-			// affect the flickr call, so it doesn't matter
 			query += args[k].name + "=" + args[k].value + "&";	
 		}
 		
-		// Use the "internal" flickrservice namespace to be able to
-		// access the urlLoader so we can make the request.
-		var loader:XMLToObject = service.xmlLoader;
-		
-		// Construct a url request with our query string and invoke
-		// the Flickr method
-		loader.addEventListener(XMLToObject.onLoadInitEVENT, callBack);
-		loader.addEventListener(XMLToObject.onErrorEVENT, onError);
-		loader.load(PicasaService.END_POINT + query);
-		
 		trace("loading: "+PicasaService.END_POINT + query);
-	}
-	
-	private static function onError(e:Object)
-	{
-		trace("e: "+e);
+		
+		var tLoader:XMLToObject = service.xmlLoader;
+			tLoader.addEventListener(XMLToObject.onLoadInitEVENT, callBack);
+			
+			tLoader.load(PicasaService.END_POINT + query);			
 	}
 	
 	public static function processAndDispatch(service:PicasaService, response:Object, result:PicasaResultEvent, parseFunction:Function):Void 
@@ -98,18 +84,22 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 		// Copy some properties from the response to the result event
 		result.success = rsp.success;
 		result.data = rsp.data;
-
+		result.error = rsp.error;
+		
 		// Notify everyone listening
-		service.dispatchEvent( result );
+		trace("service ("+service+") should dispatch: "+result.getType()+" event");
+		service.broadcastEvent(result);
 	}
 	
 	public static function processResponse(picasaResponse:Object, parseFunction:Function):Object
 	{
+		//trace(picasaResponse.error.code+":"+picasaResponse.error.message);
+		
 		var result:Object = {};
 			result.data = {};
 			result.error = {};
-			
-		if (picasaResponse.id != null)
+		
+		if (picasaResponse.error == null)
 		{
 			result.success = true;
 			
@@ -125,8 +115,8 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 			result.success = false;
 			
 			var error:PicasaError = new PicasaError();
-				error.code = -1;
-				error.message = picasaResponse.toString();
+				error.code = picasaResponse.error.code;
+				error.message = picasaResponse.error.message;
 				
 				result.error = error;
 		}
@@ -135,9 +125,13 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 	}
 	
 	
-	public static function parsePhotoList(o:Object):Void
+	public static function parsePhotoList(o:Object):Array
 	{
+		for(var a:Number = 0; a < o.entry.length; a++)
+		{
+			
+		}
 		// o should be a parsed xml to object
-		trace("parsePhotoList: "+o);
+		return [];
 	}
 }

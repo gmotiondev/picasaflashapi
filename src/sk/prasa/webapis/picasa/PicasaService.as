@@ -7,7 +7,7 @@ import sk.prasa.webapis.picasa.core.*;
 
 class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase
 {
-	public static var END_POINT:String = "http://picasaweb.google.com/data/feed/api/user/";
+	public static var END_POINT:String = "http://www.prasa.sk/proxy.php?gws_path=http://picasaweb.google.com/data/feed/api/user/";
 	public static var AUTH_END_POINT:String = "http://picasaweb.google.com/data/feed/api/user/";
 	
 	private var __api_key:String;
@@ -20,6 +20,8 @@ class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase
 	
 	public function PicasaService(API_KEY:String)
 	{
+		//super(this);
+
 		__api_key = API_KEY;
 		
 		__auth = new Auth(this);

@@ -81,7 +81,7 @@ class sk.prasa.webapis.picasa.events.PicasaResultEvent extends ServiceEvent
 	
 	public var success:Boolean;
 	public var error:PicasaError;
-		
+
 	public function PicasaResultEvent(type:EventType)
 	{ 
 		super(type);

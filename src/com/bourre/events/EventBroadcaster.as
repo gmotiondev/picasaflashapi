@@ -281,7 +281,7 @@ class com.bourre.events.EventBroadcaster
 	 * @param e an {@link IEvent} instance
 	 */
 	public function broadcastEvent(e:IEvent) : Void
-	{
+	{	
 		if (e.getTarget() == undefined) e.setTarget( _oOwner );
 		var aL:ListenerArray = getListenerArray(e.getType());
 		if (aL != undefined) _broadcast(aL, e);

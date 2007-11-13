@@ -3,36 +3,67 @@
  */
 import sk.prasa.webapis.generic.ServiceBase;
 import sk.prasa.webapis.generic.DynamicXMLService;
+
+import com.bourre.events.BasicEvent;
 import com.bourre.events.IEvent;
 import com.bourre.events.EventType;
+import com.bourre.data.libs.XMLToObject;
+import com.bourre.data.libs.XMLToObjectDeserializer;
+import com.bourre.commands.Delegate;
 
 class sk.prasa.webapis.generic.PicasaServiceBase extends ServiceBase
 {
-	public static var PROGRESS:String 			= "progress";
-	public static var IO_ERROR:String 			= "ioError";
-	public static var SECURITY_ERROR:String 	= "securityError";
+	public static var INIT:EventType 			= new EventType("init");
+	public static var PROGRESS:EventType 		= new EventType("progress");
+	public static var TIMEOUT:EventType 		= new EventType("timeout");
+	public static var ERROR:EventType 			= new EventType("error");
+	
+	public function PicasaServiceBase(owner:Object)
+	{
+		super(owner);
+	}
 	
 	public function getXMLService():DynamicXMLService
 	{
-		var service:DynamicXMLService = new DynamicXMLService();
-			service.addEventListener(new EventType(PROGRESS), this, onProgress);
-			service.addEventListener(new EventType(IO_ERROR), this, onIOError);
-			service.addEventListener(new EventType(SECURITY_ERROR), this, onSecurityError);
-		return service;
+		XMLToObjectDeserializer.ATTRIBUTE_TARGETED_PROPERTY_NAME = "attributes";
+		
+		var tService:DynamicXMLService = new DynamicXMLService();
+			tService.addEventListener(XMLToObject.onErrorEVENT, 		Delegate.create(this,onError));
+			tService.addEventListener(XMLToObject.onLoadProgressEVENT, 	Delegate.create(this,onProgress));
+			tService.addEventListener(XMLToObject.onLoadInitEVENT, 		Delegate.create(this,onInit));
+			tService.addEventListener(XMLToObject.onTimeOutEVENT, 		Delegate.create(this,onTimeout));
+	
+		var tDeserializer = tService.getDeserializer();
+			tDeserializer.addType(undefined,				tDeserializer, tDeserializer.getObjectWithAttributes);
+			tDeserializer.addType("plain",					tDeserializer, tDeserializer.getString);
+			tDeserializer.addType("text",					tDeserializer, tDeserializer.getString);
+			tDeserializer.addType("text/html",				tDeserializer, tDeserializer.getString);
+			tDeserializer.addType("image/jpeg",				tDeserializer, tDeserializer.getObjectWithAttributes);
+			tDeserializer.addType("application/atom+xml",	tDeserializer, tDeserializer.getObjectWithAttributes);
+			
+			tDeserializer.pushInArray = true;
+			tDeserializer.deserializeAttributes = true;
+			
+		return tService;
 	}
 	
-	private function onIOError(event:IEvent):Void
+	private function onError(event:IEvent):Void
 	{
-		dispatchEvent(event);
-	}
-
-	private function onSecurityError(event:IEvent):Void
-	{
-		dispatchEvent(event);
+		broadcastEvent(new BasicEvent(ERROR));
 	}
 
 	private function onProgress(event:IEvent):Void
 	{
-		dispatchEvent(event);
-	}	
+		broadcastEvent(new BasicEvent(PROGRESS));
+	}
+	
+	private function onInit(event:IEvent):Void
+	{
+		broadcastEvent(new BasicEvent(INIT));
+	}
+	
+	private function onTimeout(event:IEvent):Void
+	{
+		broadcastEvent(new BasicEvent(TIMEOUT));
+	}
 }
