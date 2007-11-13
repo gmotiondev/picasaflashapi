@@ -56,7 +56,7 @@ class model.ModelApplication extends Model
 		var tPPS:Picasa.AlbumService = getAlbumService();
 		var tPP:Picasa.Photo = tPPS.getPrevPhoto();
 		
-		notifyChanged(new BasicEvent(EventList.PHOTO_CHANGED,tPP););
+		notifyChanged(new BasicEvent(EventList.PHOTO_CHANGED,tPP));
 	}
 	
 	public function setCurrentPhoto(aId:String):Void
