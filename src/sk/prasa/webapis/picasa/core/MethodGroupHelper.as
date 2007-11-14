@@ -1,6 +1,8 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import sk.prasa.webapis.picasa.Photo;
+
 import sk.prasa.webapis.picasa.PicasaService;
 import sk.prasa.webapis.picasa.PicasaError;
 import sk.prasa.webapis.picasa.core.*;
@@ -85,9 +87,7 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 		result.success = rsp.success;
 		result.data = rsp.data;
 		result.error = rsp.error;
-		
-		// Notify everyone listening
-		trace("service ("+service+") should dispatch: "+result.getType()+" event");
+
 		service.broadcastEvent(result);
 	}
 	
@@ -127,11 +127,14 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 	
 	public static function parsePhotoList(o:Object):Array
 	{
+		var tRes:Array = [];
+		
 		for(var a:Number = 0; a < o.entry.length; a++)
 		{
-			
+			tRes.push(new Photo(o.entry[a]));
 		}
+		
 		// o should be a parsed xml to object
-		return [];
+		return tRes;
 	}
 }

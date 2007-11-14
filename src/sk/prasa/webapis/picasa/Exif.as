@@ -3,22 +3,28 @@
  */
 class sk.prasa.webapis.picasa.Exif
 {
+	public var distance:Number; 	// exif:distance
+	public var exposure:Number; 	// exif:exposure
+	public var flash:Boolean;		// exif:flash
+	public var focallength:Number; 	// exif:focallength
+	public var fstop:Number;		// exif:fstop
+	public var imageUniqueID:String;// exif:imageUniqueID
+	public var iso:Number;			// exif:iso
+	public var make:String;			// exif:make
+	public var model:String;		// exif:model
+	public var time:Number;			// exif:time
 	
+	public function Exif(o:Object)
+	{
+		distance 	= o["exif:distance"];
+		exposure 	= o["exif:exposure"];
+		flash 		= o["exif:flash"];
+		focallength = o["exif:focallength"];
+		fstop 		= o["exif:fstop"];
+		imageUniqueID = o["exif:imageUniqueID"];
+		iso 		= o["exif:iso"];
+		make 		= o["exif:make"];
+		model 		= o["exif:model"];
+		time 		= o["exif:time"];
+	}
 }
-/*
-   1. exif:distance
-   2. exif:exposure
-   3. exif:flash
-   4. exif:focallength
-   5. exif:fstop
-   6. exif:imageUniqueID
-   7. exif:iso
-   8. exif:make
-   9. exif:model
-  10. exif:tags
-  11. exif:time
-<exif:tags>
-  <exif:flash>true</exif:flash> 
-  <exif:imageUniqueID>9edbccc348747b101563e4c587acabe0</exif:imageUniqueID> 
-  </exif:tags>
-*/

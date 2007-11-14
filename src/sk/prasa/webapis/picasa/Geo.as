@@ -1,9 +1,16 @@
-/**
+﻿/**
  *
  */
 class sk.prasa.webapis.picasa.Geo
 {
+	public var latitude:String;
+	public var longitude:String;
 	
+	public function Geo(lat:String, lon:String)
+	{
+		latitude = lat;
+		longitude = lon;
+	}
 }
 /*
 <georss:where>

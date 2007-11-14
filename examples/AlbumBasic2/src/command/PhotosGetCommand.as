@@ -4,6 +4,7 @@
 import com.bourre.commands.Command;
 import com.bourre.core.Model;
 
+import sk.prasa.webapis.picasa.Photo;
 import sk.prasa.webapis.picasa.PicasaError;
 import sk.prasa.webapis.picasa.events.PicasaResultEvent;
 
@@ -29,7 +30,13 @@ class command.PhotosGetCommand implements Command, IResponder
 	
 	public function result(data:Array):Void
 	{
-		trace("PhotosGetCommand success: "+data.length);
+		//trace("PhotosGetCommand success: "+data.length);
+		//trace("data[5].id: "+data[5].id);
+		for(var a:Number = 0; a < data.length; a++)
+		{
+			var tPhoto:Photo = data[a];
+			trace(a+": "+tPhoto.id);
+		}
 	}
 	
 	public function fault(error:PicasaError):Void
