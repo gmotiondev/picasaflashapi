@@ -1,28 +1,32 @@
-﻿import com.bourre.visual.MovieClipHelper;
-import com.bourre.utils.Geom;
-
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
- 
+import com.bourre.visual.MovieClipHelper;
+import com.bourre.utils.Geom;
+import com.bourre.events.EventBroadcaster;
+
+import control.Controller;
+import control.ProgressSetEvent;
+
 class view.LoadingBar extends MovieClipHelper
 {	
-	private var LOADER:MovieClip;
+	private var __loader:MovieClip;
 	
-	public function LoadingBar(aId:String,aC:MovieClip)
+	public function LoadingBar(aId:String, aC:MovieClip)
 	{
 		super(aId,aC);
-		initialize();
-	}
-	
-	private function initialize()
-	{
-		LOADER = Geom.buildRectangle(view, 10005, Stage.width, 4, 0xffffff, 0xffffff);
+
+		EventBroadcaster.getInstance().addEventListener(Controller.PROGRESS_SET_EVENT, onProgressSetEvent);
+
+		__loader = Geom.buildRectangle(view, 10005, Stage.width, 4, 0xffffff, 0xffffff);
 		show();
 	}
 	
-	public function setProgress(aPercent:Number):Void
+	public function onProgressSetEvent(e:ProgressSetEvent):Void
 	{
-		LOADER._xscale = 100 - aPercent;
+		var tPercent:Number = ProgressSetEvent(e).percent;
+		
+		setVisible(tPercent < 100); 
+		__loader._xscale = 100 - tPercent;
 	}	
 }

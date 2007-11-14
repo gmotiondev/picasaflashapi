@@ -1,9 +1,9 @@
 ﻿import com.bourre.log.PixlibStringifier;
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.commands.Delegate;
-import com.bourre.events.EventBroadcaster;import com.bourre.events.BasicEvent;
-import com.bourre.events.IEvent;
+import com.bourre.events.EventBroadcaster;import com.bourre.events.IEvent;
 import com.bourre.transitions.TweenMS;
+
 import control.*;
 
 /**
@@ -15,6 +15,7 @@ class view.Navigation extends MovieClipHelper
 	public function Navigation(sID:String,aC:MovieClip)
 	{
 		super(sID,aC);
+		
 		container = aC.createEmptyMovieClip("nav",2);
 		initialize();
 	}
@@ -42,6 +43,7 @@ class view.Navigation extends MovieClipHelper
 			t = new TweenMS(container, '_alpha', 100, 150, 0);
 			t.start();
 	}
+	
 	private function onContainerOut():Void
 	{
 		container._alpha = 0;
@@ -51,17 +53,18 @@ class view.Navigation extends MovieClipHelper
 	}
 	private function onPrevPhoto():Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_PREV_PHOTO));
-		Controller.getInstance().pause();
+		EventBroadcaster.getInstance().broadcastEvent(new PhotoGetPreviousEvent());
+		//Controller.getInstance().pause();
 		protect();
 	}
 	
 	private function onNextPhoto():Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_NEXT_PHOTO));
-		Controller.getInstance().pause();
+		EventBroadcaster.getInstance().broadcastEvent(new PhotoGetNextEvent());
+		//Controller.getInstance().pause();
 		protect();
 	}
+	
 	private function printMessage(aString:String):Void
 	{
 		var tTF:TextFormat = new TextFormat();
@@ -80,10 +83,12 @@ class view.Navigation extends MovieClipHelper
 			tF.htmlText = ""+aString;
 			tF.setTextFormat(tTF);
 	}
+	
 	private function clearMessage():Void
 	{
 		view.message.removeTextField();
 	}
+	
 	public function PhotoClick(e:IEvent):Void
 	{
 		if(!e.getTarget())
@@ -94,6 +99,7 @@ class view.Navigation extends MovieClipHelper
 			clearMessage();
 		}
 	}
+	
 	private function protect():Void
 	{
 		container.r.onRelease = container.l.onRelease = null;
@@ -104,15 +110,18 @@ class view.Navigation extends MovieClipHelper
 			t.start();
 			
 	}
+	
 	private function unprotect():Void
 	{
 		container.l.onRelease = Delegate.create(this, onPrevPhoto);
 		container.r.onRelease = Delegate.create(this, onNextPhoto);
 	}
+	
 	public function PhotoChanged(e:IEvent):Void
 	{
 		
 	}
+	
 	public function toString():String 
 	{
 		return PixlibStringifier.stringify( this );

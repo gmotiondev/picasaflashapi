@@ -18,17 +18,19 @@ class Application extends MovieClipHelper
 	
 	private function initialize(mc:MovieClip):Void
 	{	
-		trace("Application up and running!");
-		//var tLB:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, mc.createEmptyMovieClip("loadingBar",10010));
+		/* model */
+		var model:ModelApplication = new ModelApplication();
 		
+		/* views */
+		var l_view:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, mc.createEmptyMovieClip("loadingBar",10010));
+		var p_view:PhotoHolder= new PhotoHolder(ViewList.PHOTO_HOLDER, mc.createEmptyMovieClip("photoholder",10));
+		var n_view:Navigation = new Navigation(ViewList.NAVIGATION, mc.createEmptyMovieClip("navigation",20));
+		
+		/* controller */
 		Controller.getInstance().initialize();
-		
-		//var tPH:PhotoHolder = new PhotoHolder(ViewList.PHOTO, mc.createEmptyMovieClip("photoholder",10));
-		//var tNAV:Navigation = new Navigation(ViewList.NAVIGATION, mc.createEmptyMovieClip("navigation",20));
-		
-		var m:ModelApplication = new ModelApplication();
-			m.container = mc;
-			m.initialize();	
+	
+		model.container = mc;
+		model.initialize();	
 	}
 	
 	public static function main(mc:MovieClip) : Void 

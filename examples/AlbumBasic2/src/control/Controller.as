@@ -14,17 +14,16 @@ class control.Controller extends FrontController
 	private static var __instance:Controller;
 	
 	public static var INITIALIZE_EVENT:EventType 	= new EventType("initialize_event");
-	
 	public static var PHOTOS_GET_EVENT:EventType 	= new EventType("photos_get_event");
+	public static var PROGRESS_SET_EVENT:EventType 	= new EventType("progress_set_event");
 	 
 	public static var RUN_APPLICATION:EventType 	= new EventType("RunApplication");
-	public static var SERVICE_LOADED:EventType 		= new EventType("ServiceLoaded");
 	public static var PHOTO_CHANGED:EventType 		= new EventType("PhotoChanged");
 	public static var PHOTO_CLICK:EventType 		= new EventType("PhotoClick");
-	public static var ON_PREV_PHOTO:EventType 		= new EventType("OnPrevPhoto");
-	public static var ON_NEXT_PHOTO:EventType 		= new EventType("OnNextPhoto");
 	
-	public static var SET_LOADER_PROGRESS:EventType = new EventType("OnSetLoaderProgress");
+	public static var PHOTO_GET_NEXT_EVENT:EventType 	= new EventType("photo_get_next_event");
+	public static var PHOTO_GET_PREVIOUS_EVENT:EventType= new EventType("photo_get_previous_event");
+	public static var PHOTO_CHANGED_EVENT:EventType= new EventType("photo_changed_event");
 	
 	public static function getInstance() : Controller 
 	{
@@ -44,7 +43,7 @@ class control.Controller extends FrontController
 	{
 		push(INITIALIZE_EVENT, new InitializeCommand());
 		push(PHOTOS_GET_EVENT, new PhotosGetCommand());
-		push(SERVICE_LOADED, new ServiceLoaded());		push(ON_NEXT_PHOTO, new OnNextPhoto());		push(ON_PREV_PHOTO, new OnPrevPhoto());
-		push(SET_LOADER_PROGRESS, new OnSetLoaderProgress());
+		
+		push(PHOTO_GET_NEXT_EVENT, new PhotoGetNextCommand());		push(PHOTO_GET_PREVIOUS_EVENT, new PhotoGetPreviousCommand());
 	}
 }

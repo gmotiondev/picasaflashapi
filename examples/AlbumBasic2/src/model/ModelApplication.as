@@ -1,12 +1,10 @@
 ﻿import com.bourre.core.Model;
-//import com.bourre.events.IEvent;
-import com.bourre.data.libs.LibEvent;import com.bourre.events.BasicEvent;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.IEvent;
-import com.bourre.commands.Delegate;import com.bourre.commands.CommandMS;
-
+import com.bourre.commands.Delegate;
 import model.ModelList;
 import control.*;
+import vo.Photos;
 
 import sk.prasa.webapis.picasa.PicasaService;
 
@@ -16,6 +14,7 @@ import sk.prasa.webapis.picasa.PicasaService;
 class model.ModelApplication extends Model
 {
 	public var service:PicasaService;
+	public var photos:Photos;
 	public var container:MovieClip;
 	
 	private var PROXY_URL:String = "http://prasa.sk/proxy.php?gws_path=";
@@ -29,10 +28,10 @@ class model.ModelApplication extends Model
 	
 	public function initialize():Void
 	{
+		photos = new Photos();
 		service = new PicasaService();
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 		
-		EventBroadcaster.getInstance().dispatchEvent(new InitializeEvent());
 		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5094406297232552993"));
 	}
 	
