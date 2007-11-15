@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="SlideShowBasic2" default="compile" basedir=".">
+<project name="SlideShowBasic" default="compile" basedir=".">
 
 	<property file="../../../../ames.properties" />
 	<import file="../../../../as2ant_taskdefs.xml" />

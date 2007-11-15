@@ -1,28 +1,36 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
-
 import com.bourre.visual.MovieClipHelper;
-import com.bourre.log.PixlibStringifier;
-import com.bourre.events.BasicEvent;
-import com.bourre.events.EventBroadcaster;
 
-import uis.uilist;
-import events.EventList;
-import controllers.Controller;
+import model.*;
+import view.*;
+import control.*;
 
 class Application extends MovieClipHelper
 {
-	public function Application(mc:MovieClip)
+	private function Application(mc:MovieClip)
 	{
-		super(uilist.APPLICATION, mc);
+		super(ViewList.APPLICATION, mc);
 		initialize(mc);
 	}
 	
 	private function initialize(mc:MovieClip):Void
 	{
+		/* model */
+		var model:ModelApplication = new ModelApplication();
+		
+		/* views, SHOULD LISTEN TO MODEL! */
+		var p_view:PhotoHolder= new PhotoHolder(ViewList.PHOTO_HOLDER, 	mc.createEmptyMovieClip(ViewList.PHOTO_HOLDER, 	10));
+		var t_view:ThumbHolder= new ThumbHolder(ViewList.THUMB_HOLDER, 	mc.createEmptyMovieClip(ViewList.THUMB_HOLDER, 	20));
+		var n_view:Navigation = new Navigation(ViewList.NAVIGATION, 	mc.createEmptyMovieClip(ViewList.NAVIGATION, 	30));
+		var l_view:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, 	mc.createEmptyMovieClip(ViewList.LOADING_BAR, 	40));
+		
+		/* controller */
 		Controller.getInstance().initialize();
-		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.RUN_APPLICATION,mc));
+		model.addListener(p_view);
+		model.container = mc;
+		model.initialize();	
 	}
 	
 	public static function main(mc:MovieClip) : Void 
@@ -31,10 +39,5 @@ class Application extends MovieClipHelper
 		Stage.scaleMode = "noScale";
 		
 		var o:Application = new Application(mc);
-	}
-	
-	public function toString():String 
-	{
-		return PixlibStringifier.stringify(this);
 	}
 }
