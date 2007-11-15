@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-  <classpathentry exported="true" kind="source" path="src" />
-  <classpathentry exported="true" kind="link" path="picasaflashapi" />
-  <classpathentry exported="false" kind="link" path="std" />
-</classpath>
-
