@@ -3,7 +3,6 @@
  */
 import com.bourre.commands.Command;
 import com.bourre.events.IEvent;
-import com.bourre.events.EventBroadcaster;
 import com.bourre.core.Model;
 import com.bourre.data.libs.LibStack;
 import com.bourre.data.libs.GraphicLib;
@@ -11,7 +10,6 @@ import com.bourre.visual.MovieClipHelper;
 import sk.prasa.webapis.picasa.Photo;
 
 import model.*;
-import control.*;
 import view.*;
 
 class command.InitializeCommand implements Command
@@ -29,15 +27,14 @@ class command.InitializeCommand implements Command
 		{
 			var tItem:Photo = model.photos[a];
 			var tContainer:MovieClip = tPhotoHolder.view.createEmptyMovieClip("p_"+tItem.gphoto.id, tPhotoHolder.view.getNextHighestDepth());
-			var tPhotoContainer:PhotoContainer = new PhotoContainer(tItem.gphoto.id, tContainer, true);
-				tPhotoContainer.title = tItem.summary;
+			var tPhotoContainer:PhotoContainer = new PhotoContainer(tItem.gphoto.id, tContainer, (a != 0));
+				
+				model.addListener(tPhotoContainer);
 				
 				tLibStack.enqueue(new GraphicLib(tPhotoContainer.view, 5), tItem.gphoto.id, tItem.content.src);
 				tLibStack.addListener(tPhotoHolder);
 		}
 		
 		tLibStack.execute();
-		
-		EventBroadcaster.getInstance().broadcastEvent(new PhotoChangedEvent(model.photos[0].gphoto.id));
 	}
 }

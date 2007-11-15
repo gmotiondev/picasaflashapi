@@ -5,21 +5,30 @@ import com.bourre.data.collections.IndexedArray;
 
 class vo.Photos extends IndexedArray
 {
-	private var __current:Number = 0;
+	private var __current:Number;
 	
+	// 
 	public function Photos()
 	{
 	}
 	
+	// 
 	public function getNext():String
 	{
-		// fix this
-		return this[++__current].gphoto.id;
+		if(++__current >= this.length || __current == null) __current = 0;
+		return this[__current].gphoto.id;
 	}
 	
+	// 
 	public function getPrevious():String
 	{
-		// fix this
-		return this[--__current].gphoto.id;
+		if(--__current < 0) __current = this.length - 1;
+		return this[__current].gphoto.id;
+	}
+	
+	// 
+	public function getCurrentTitle():String
+	{
+		return this[__current].summary;
 	}
 }

@@ -8,6 +8,6 @@ class control.PhotoGetPreviousEvent extends BasicEvent
 {
 	public function PhotoGetPreviousEvent()
 	{
-		super(Controller.PHOTO_GET_PREVIOUS_EVENT);
+		super(Controller.PHOTO_GET_PREV_EVENT);
 	}
 }

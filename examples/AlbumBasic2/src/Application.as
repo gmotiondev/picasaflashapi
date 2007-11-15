@@ -21,14 +21,14 @@ class Application extends MovieClipHelper
 		/* model */
 		var model:ModelApplication = new ModelApplication();
 		
-		/* views */
+		/* views, SHOULD LISTEN TO MODEL! */
 		var l_view:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, mc.createEmptyMovieClip("loadingBar",10010));
 		var p_view:PhotoHolder= new PhotoHolder(ViewList.PHOTO_HOLDER, mc.createEmptyMovieClip("photoholder",10));
 		var n_view:Navigation = new Navigation(ViewList.NAVIGATION, mc.createEmptyMovieClip("navigation",20));
 		
 		/* controller */
 		Controller.getInstance().initialize();
-	
+		model.addListener(p_view);
 		model.container = mc;
 		model.initialize();	
 	}

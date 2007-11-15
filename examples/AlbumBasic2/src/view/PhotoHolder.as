@@ -12,47 +12,39 @@ import control.*;
 class view.PhotoHolder extends MovieClipHelper implements ILibListener
 {	
 	private var __title:TextField;
+	private var __titleTextFormat:TextFormat;
 	
 	public function PhotoHolder(aId:String,aC:MovieClip)
 	{
 		super(aId,aC);
-		
-		EventBroadcaster.getInstance().addEventListener(Controller.PHOTO_GET_NEXT_EVENT, onPhotoNext);
-		EventBroadcaster.getInstance().addEventListener(Controller.PHOTO_GET_PREVIOUS_EVENT, onPhotoPrevious);
-		
+
 		show();
 	}
 	
-	public function setTitle(aString:String):Void
-	{
-		
-	}
-	
-	private function insertTitle(value:String):Void
+	private function insertTitle():Void
 	{
 		var tBG = Geom.buildRectangle(view,view.getNextHighestDepth(),320,20, 0x9cdfff, 0x9cdfff);
 			tBG._y = 197;
 		
-		var tTF:TextFormat = new TextFormat();
-			tTF.font = "london";
-			tTF.size = 14;
-			tTF.leading = -16;
-			tTF.blockIndent = 10;
-			tTF.color = 0x003C63;
+		__titleTextFormat = new TextFormat();
+		__titleTextFormat.font = "london";
+		__titleTextFormat.size = 14;
+		__titleTextFormat.leading = -16;
+		__titleTextFormat.blockIndent = 10;
+		__titleTextFormat.color = 0x003C63;
 			
 		tBG.createTextField("title", 5, 0, 3, 320, 20);
 		
 		__title = tBG.title;
 		__title.embedFonts = true;
-		__title.multiline = true;
+		__title.multiline = false;
 		__title.html = true;
-		__title.htmlText = ""+value;
-		__title.setTextFormat(tTF);
+		__title.htmlText = "dd";
+		__title.setTextFormat(__titleTextFormat);
 	}
 	
 	public function onLoadInit(e:LibEvent):Void
-	{
-		insertTitle("default");
+	{	
 	}
 	
 	public function onLoadProgress(e:LibEvent):Void
@@ -62,6 +54,10 @@ class view.PhotoHolder extends MovieClipHelper implements ILibListener
 	
 	public function onLoadComplete(e:LibEvent):Void
 	{	
+		insertTitle();
+		
+		EventBroadcaster.getInstance().broadcastEvent(new PhotoGetNextEvent());
+		EventBroadcaster.getInstance().broadcastEvent(new SlideShowStartEvent());
 	} 
 	
 	public function onTimeOut(e:LibEvent):Void
@@ -69,14 +65,10 @@ class view.PhotoHolder extends MovieClipHelper implements ILibListener
 		trace("ERROR: Photo loading time out: "+e.getName());
 	}
 	
-	private function onPhotoNext(e:PhotoGetNextEvent):Void
+	// listen to the model
+	public function photo_set_title_event(e:PhotoSetTitleEvent):Void
 	{
-		trace("onPhotoNext");
+		__title.htmlText = PhotoSetTitleEvent(e).title;
+		__title.setTextFormat(__titleTextFormat);
 	}
-	
-	private function onPhotoPrevious(e:PhotoGetPreviousEvent):Void
-	{
-		trace("onPhotoPrevious");
-	}
-	
 }

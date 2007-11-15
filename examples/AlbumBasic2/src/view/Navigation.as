@@ -1,8 +1,6 @@
-﻿import com.bourre.log.PixlibStringifier;
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.commands.Delegate;
-import com.bourre.events.EventBroadcaster;import com.bourre.events.IEvent;
-import com.bourre.transitions.TweenMS;
+import com.bourre.events.EventBroadcaster;import com.bourre.transitions.TweenMS;
 
 import control.*;
 
@@ -11,6 +9,7 @@ import control.*;
 class view.Navigation extends MovieClipHelper
 {
 	public var container:MovieClip;
+	private var __message:MovieClip;
 	
 	public function Navigation(sID:String,aC:MovieClip)
 	{
@@ -47,26 +46,36 @@ class view.Navigation extends MovieClipHelper
 	private function onContainerOut():Void
 	{
 		container._alpha = 0;
-		//var t:TweenMS = null;
-			//t = new TweenMS(container, '_alpha', 0, 10, 100);
-			//t.start();
 	}
+	
 	private function onPrevPhoto():Void
 	{
+		printMessage("CLICK TO PLAY!");
+		
+		EventBroadcaster.getInstance().broadcastEvent(new SlideShowPauseEvent(true));
 		EventBroadcaster.getInstance().broadcastEvent(new PhotoGetPreviousEvent());
-		//Controller.getInstance().pause();
 		protect();
 	}
 	
 	private function onNextPhoto():Void
 	{
+		printMessage("CLICK TO PLAY!");
+		
+		EventBroadcaster.getInstance().broadcastEvent(new SlideShowPauseEvent(true));
 		EventBroadcaster.getInstance().broadcastEvent(new PhotoGetNextEvent());
-		//Controller.getInstance().pause();
 		protect();
+	}
+	
+	private function onStartSlideShow():Void
+	{
+		EventBroadcaster.getInstance().broadcastEvent(new SlideShowPauseEvent(false));
+		clearMessage();
 	}
 	
 	private function printMessage(aString:String):Void
 	{
+		__message = view.createEmptyMovieClip("message",5);
+		
 		var tTF:TextFormat = new TextFormat();
 			tTF.font = "london";
 			tTF.size = 12;
@@ -74,30 +83,22 @@ class view.Navigation extends MovieClipHelper
 			tTF.blockIndent = 10;
 			tTF.color = 0x003C63;
 			
-		view.createTextField("message",50,0,223,320,20);
-		var tF:TextField = view.message;
+		__message.createTextField("message_text", 2, 0, 0, 320, 20);
+		var tF:TextField = __message.message_text;
 			tF.embedFonts = true;
 			tF.multiline = true;
 			tF.selectable = false;
 			tF.html = true;
 			tF.htmlText = ""+aString;
 			tF.setTextFormat(tTF);
+			
+		__message._y = 223;
+		__message.onRelease = Delegate.create(this, onStartSlideShow);
 	}
 	
 	private function clearMessage():Void
 	{
-		view.message.removeTextField();
-	}
-	
-	public function PhotoClick(e:IEvent):Void
-	{
-		if(!e.getTarget())
-		{
-			printMessage("CLICK TO PLAY!");
-		} else
-		{
-			clearMessage();
-		}
+		__message.removeMovieClip();
 	}
 	
 	private function protect():Void
@@ -108,22 +109,11 @@ class view.Navigation extends MovieClipHelper
 			t = new TweenMS(null, '_alpha', 0, 500, 0);
 			t.addEventListener(TweenMS.onMotionFinishedEVENT, this, unprotect);
 			t.start();
-			
 	}
 	
 	private function unprotect():Void
 	{
 		container.l.onRelease = Delegate.create(this, onPrevPhoto);
 		container.r.onRelease = Delegate.create(this, onNextPhoto);
-	}
-	
-	public function PhotoChanged(e:IEvent):Void
-	{
-		
-	}
-	
-	public function toString():String 
-	{
-		return PixlibStringifier.stringify( this );
 	}
 }

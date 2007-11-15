@@ -4,6 +4,7 @@
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.utils.Geom;
 import com.bourre.events.EventBroadcaster;
+import com.bourre.commands.Delegate;
 
 import control.Controller;
 import control.ProgressSetEvent;
@@ -16,14 +17,16 @@ class view.LoadingBar extends MovieClipHelper
 	{
 		super(aId,aC);
 
-		EventBroadcaster.getInstance().addEventListener(Controller.PROGRESS_SET_EVENT, onProgressSetEvent);
+		EventBroadcaster.getInstance().addEventListener(Controller.PROGRESS_SET_EVENT, Delegate.create(this, onProgressSetEvent));
 
 		__loader = Geom.buildRectangle(view, 10005, Stage.width, 4, 0xffffff, 0xffffff);
 		show();
 	}
 	
+	// listen to progress event
 	public function onProgressSetEvent(e:ProgressSetEvent):Void
 	{
+		
 		var tPercent:Number = ProgressSetEvent(e).percent;
 		
 		setVisible(tPercent < 100); 
