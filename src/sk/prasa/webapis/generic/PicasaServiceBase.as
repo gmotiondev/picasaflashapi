@@ -5,8 +5,10 @@ import sk.prasa.webapis.generic.ServiceBase;
 import sk.prasa.webapis.generic.DynamicXMLService;
 
 import com.bourre.events.BasicEvent;
+import com.bourre.events.NumberEvent;
 import com.bourre.events.IEvent;
 import com.bourre.events.EventType;
+import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.XMLToObject;
 import com.bourre.data.libs.XMLToObjectDeserializer;
 import com.bourre.commands.Delegate;
@@ -52,9 +54,9 @@ class sk.prasa.webapis.generic.PicasaServiceBase extends ServiceBase
 		broadcastEvent(new BasicEvent(ERROR));
 	}
 
-	private function onProgress(event:IEvent):Void
+	private function onProgress(event:LibEvent):Void
 	{
-		broadcastEvent(new BasicEvent(PROGRESS));
+		broadcastEvent(new NumberEvent(PROGRESS,event.getPerCent()));
 	}
 	
 	private function onInit(event:IEvent):Void

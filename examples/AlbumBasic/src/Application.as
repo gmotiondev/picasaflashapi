@@ -1,4 +1,8 @@
-﻿import com.bourre.visual.MovieClipHelper;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
+import com.bourre.visual.MovieClipHelper;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.events.BasicEvent;
 import com.bourre.events.EventBroadcaster;
@@ -7,9 +11,6 @@ import uis.uilist;
 import events.EventList;
 import controllers.Controller;
 
-/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
 class Application extends MovieClipHelper
 {
 	public function Application(mc:MovieClip)
