@@ -1,12 +1,17 @@
 import com.bourre.visual.MovieClipHelper;
-import com.bourre.events.IEvent;
-import com.bourre.log.PixlibStringifier;
+import com.bourre.events.EventBroadcaster;
+import com.bourre.data.libs.LibEvent;
+import com.bourre.data.libs.ILibListener;
+
+import control.*;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
-class view.ThumbHolder extends MovieClipHelper
+class view.ThumbHolder extends MovieClipHelper implements ILibListener
 {	
+	public var grid:view.layout.GridLayout;
+	
 	/**
 	 * Constructor 
 	 */
@@ -24,9 +29,6 @@ class view.ThumbHolder extends MovieClipHelper
 		centerize();
 	}
 	
-	/**
-	 * set title
-	 */
 	public function setTitle(a:String):Void
 	{			
 		var tTF:TextFormat = new TextFormat();
@@ -41,32 +43,40 @@ class view.ThumbHolder extends MovieClipHelper
 			tF.htmlText = a;
 			tF.setTextFormat(tTF);
 	}
-	/**
-	 * centerize holder	 */
+
 	private function centerize():Void
 	{
 		move(Math.round(Stage.width/2 - view._width/2), Math.round(Stage.height/2 - view._height/2));
 	}
 	
-	/**
-	 * Listening to model	 */
-	public function onResize(e:IEvent):Void
+	// Listening to model
+	public function resize_event(e:ResizeEvent):Void
 	{
 		centerize();
 	}
 	
-	/**
-	 * Listening to Layout Manager	 */
-	public function complete(e:IEvent):Void
+	// Listening to Layout Manager
+	public function complete():Void
 	{
 		centerize();
 	}
 	
-	/**
-	 *	pixlib 
-	 */	
-	public function toString():String 
-	{
-		return PixlibStringifier.stringify(this);
+	public function onLoadInit(e:LibEvent):Void
+	{	
 	}
+	
+	public function onLoadProgress(e:LibEvent):Void
+	{
+		EventBroadcaster.getInstance().broadcastEvent(new ProgressSetEvent(e.getPerCent()));
+	}
+	
+	public function onLoadComplete(e:LibEvent):Void
+	{	
+		grid.draw();
+	}
+	
+	public function onTimeOut(e:LibEvent):Void
+	{
+		trace("ERROR: Photo loading time out: "+e.getName());
+	}	
 }

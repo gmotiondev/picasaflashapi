@@ -1,88 +1,92 @@
-import com.bourre.log.PixlibStringifier;
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.commands.Delegate;
-import com.bourre.events.EventBroadcaster;
-import com.bourre.events.BasicEvent;
-import com.bourre.events.IEvent;
+import com.bourre.events.EventBroadcaster;import com.bourre.transitions.TweenMS;
 
-import events.EventList;
+import control.*;
 
 /**
- * @author Michal Gron (michal.gron@gmail.com)
- */
+ * @author Michal Gron (michal.gron@gmail.com) */
 class view.Navigation extends MovieClipHelper
 {
 	public var container:MovieClip;
-
-	/**
-	 * Constructor	 */
+	private var __message:MovieClip;
+	
 	public function Navigation(sID:String,aC:MovieClip)
 	{
 		super(sID,aC);
+		
 		container = aC.createEmptyMovieClip("nav",2);
 		initialize();
 	}
 	
-	/**
-	 * initialize point	 */
 	private function initialize():Void
 	{
-		hide();
+		var l:MovieClip = container.attachMovie("l","l",1002);
+		var r:MovieClip = container.attachMovie("r","r",1003);
 		
-		var tL = view.attachMovie("l","l",1000);
-			tL._x = 0;
-			tL._y = 0;
-			tL.onRelease = Delegate.create(this, onPrevPhoto);
-			
-		var tR = view.attachMovie("r","r",1001);
-			tR._x = tL._width + 5;
-			tR._y = 0;
-			tR.onRelease = Delegate.create(this, onNextPhoto);
-				
-		//show();
+		l._x = 0; l._y = 0;
+		r._x = l._width + 5; r._y = 0;
+		
+		l.onRelease = Delegate.create(this, onPrevPhoto);		r.onRelease = Delegate.create(this, onNextPhoto);
+		
+		l.onRollOver = r.onRollOver = Delegate.create(this, onContainerOver);
+		r.onRollOut = r.onRollOut = Delegate.create(this, onContainerOut);
+		
 		centerize();
+		onContainerOut();
+	}
+	
+	private function onContainerOver():Void
+	{
+		show();
+		var t:TweenMS = null;
+			t = new TweenMS(container, '_alpha', 100, 150, 0);
+			t.start();
+	}
+	
+	private function onContainerOut():Void
+	{
+		container._alpha = 0;
+	}
+	
+	private function onPrevPhoto():Void
+	{	
+		EventBroadcaster.getInstance().broadcastEvent(new PhotoGetPreviousEvent());
+		protect();
+	}
+	
+	private function onNextPhoto():Void
+	{	
+		EventBroadcaster.getInstance().broadcastEvent(new PhotoGetNextEvent());
+		protect();
 	}
 	
 	/**
-	 * listen to model	 */
-	public function onResize(e:IEvent):Void
+	 * listen to model
+	 */
+	public function resize_event(e:ResizeEvent):Void
 	{
 		centerize();
 	}
 	
-	/**
-	 * centerize navigation	 */
 	public function centerize():Void
 	{
 		move(Stage.width/2 - view._width/2, Stage.height - 60);
 	}
 	
-	/**
-	 * dispatch events	 */
-	public function onPrevPhoto():Void
+	private function protect():Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_PREV_PHOTO));
+		container.r.onRelease = container.l.onRelease = null;
+		
+		var t:TweenMS = null;
+			t = new TweenMS(null, '_alpha', 0, 500, 0);
+			t.addEventListener(TweenMS.onMotionFinishedEVENT, this, unprotect);
+			t.start();
 	}
 	
-	public function onNextPhoto():Void
+	private function unprotect():Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_NEXT_PHOTO));
-	}
-	
-	/**
-	 * Listen to model	 */
-	public function OnClosePhoto(e:IEvent):Void
-	{
-		hide();
-	}
-	
-	public function PhotoThumbClick(e:IEvent):Void
-	{
-		show();
-	}
-	
-	public function toString():String 
-	{
-		return PixlibStringifier.stringify(this);
+		container.l.onRelease = Delegate.create(this, onPrevPhoto);
+		container.r.onRelease = Delegate.create(this, onNextPhoto);
 	}
 }

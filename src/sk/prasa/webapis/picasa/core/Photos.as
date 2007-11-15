@@ -20,10 +20,18 @@ class sk.prasa.webapis.picasa.core.Photos
 	
 	// http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=photo
 	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5094406297232552993
-	public function list(userid:String, albumid:String):Void
+	public function list(userid:String, albumid:String, params:Array):Void
 	{
 		var tSuffix:String = ""+userid+"/albumid/"+albumid;
 		var tParams:Array = [new NameValuePair("kind","photo")];
+		
+		if(params != null)
+		{
+			for(var a:Number = 0; a < params.length; a++)
+			{
+				tParams.push(params[a]);
+			}
+		}
 		
 		MethodGroupHelper.invokeMethod(__service, Delegate.create(this, list_complete), false, tSuffix, tParams);
 	}

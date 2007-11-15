@@ -48,11 +48,18 @@ class sk.prasa.webapis.picasa.Media
 	{
 		var tRes = [];
 		
-		for(var a:Number = 0; a < o.length; a++)
+			// if this is just one thumb
+		if(o.attributes.url != undefined)
 		{
-			tRes.push(new MediaThumbnail(o[a].attributes.url, o[a].attributes.width, o[a].attributes.height));
+			tRes.push(new MediaThumbnail(o.attributes.url, o.attributes.width, o.attributes.height));
+		} else
+		{
+			// there are more thumbs
+			for(var a:Number = 0; a < o.length; a++)
+			{
+				tRes.push(new MediaThumbnail(o[a].attributes.url, o[a].attributes.width, o[a].attributes.height));
+			}
 		}
-		
 		return tRes;
 	}
 }

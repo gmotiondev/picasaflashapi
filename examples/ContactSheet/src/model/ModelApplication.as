@@ -1,22 +1,22 @@
 ﻿import com.bourre.core.Model;
-import com.bourre.events.IEvent;
-import com.bourre.events.BasicEvent;
 import com.bourre.events.EventBroadcaster;
+import com.bourre.events.IEvent;
+import com.bourre.commands.Delegate;
 
 import model.ModelList;
-import events.EventList;
+import control.*;
+import vo.Photos;
+
+import sk.prasa.webapis.picasa.PicasaService;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 class model.ModelApplication extends Model
 {
-	private var __c:MovieClip;
-	private var __pps:Picasa.AlbumService;
-	private var __feed:String = "http://picasaweb.google.com/data/feed/api/user/thisispinkfu";
-	private var __albumid:String = "5110367185091112897";
-	public var __thumbsize:Number = 48;	//rewrite to private after picasa bug is closed!
-	private var __imgmax:Number = 512;
+	public var service:PicasaService;
+	public var photos:Photos;
+	public var container:MovieClip;
 	
 	public function ModelApplication()
 	{
@@ -25,72 +25,46 @@ class model.ModelApplication extends Model
 	
 	public function initialize():Void
 	{
-		trace("INFO: model.ModelApplication.initialize()");
-		run();
-	}
-	
-	public function setContainer(mc:MovieClip):Void
-	{
-		__c = mc;
-	}
-	
-	public function getContainer():MovieClip
-	{
-		return __c;
-	}
-	
-	public function getNextPhoto():Void
-	{
-		var tPPS:Picasa.AlbumService = getAlbumService();
-		var tPP:Picasa.Photo = tPPS.getNextPhoto();
+		photos = new Photos();
 
-		notifyChanged(new BasicEvent(EventList.PHOTO_THUMB_CLICK,tPP));
+		service = new PicasaService();
+		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
+
+		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5110367185091112897"));
 	}
 	
-	public function getPrevPhoto():Void
+	public function next():Void
 	{
-		var tPPS:Picasa.AlbumService = getAlbumService();
-		var tPP:Picasa.Photo = tPPS.getPrevPhoto();
+		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getNext());
+		var tTitleEvent:PhotoSetTitleEvent = new PhotoSetTitleEvent(photos.getCurrentTitle());
 		
-		notifyChanged(new BasicEvent(EventList.PHOTO_THUMB_CLICK,tPP));
+		notifyChanged(tChangedEvent);
+		notifyChanged(tTitleEvent);
 	}
 	
-	public function setCurrentPhoto(aId:String):Void
+	public function prev():Void
 	{
-		getAlbumService().setCurrent(aId);
-	}
-	
-	public function getAlbumService():Picasa.AlbumService
-	{
-		return __pps;
-	}
-	
-	public function onClosePhoto():Void
-	{
-		trace("model:onClosePhoto: "+getAlbumService().getCurrent());
-		notifyChanged(new BasicEvent(EventList.ON_CLOSE_PHOTO, getAlbumService().getCurrent()));
-	}
-	
-	public function PhotoThumbClick(p:Picasa.Photo):Void
-	{	
-		var tE = new BasicEvent(EventList.PHOTO_THUMB_CLICK,p);
+		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getPrevious());
+		var tTitleEvent:PhotoSetTitleEvent = new PhotoSetTitleEvent(photos.getCurrentTitle());
 		
-		setCurrentPhoto(p.getIdString());
-		notifyChanged(tE);
+		notifyChanged(tChangedEvent);
+		notifyChanged(tTitleEvent);
 	}
 	
-	public function run():Void
+	public function click(aId:String):Void
 	{
-		__pps = new Picasa.AlbumService(__feed,__albumid, {thumbsize:__thumbsize,imgmax:__imgmax});
-		__pps.onServiceLoaded = function(aEvent:IEvent)
-		{
-			EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.SERVICE_LOADED));
-		}
-		__pps.send();
+		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getClicked(aId));
+		
+		notifyChanged(tChangedEvent);
+	}
+	
+	private function onServiceError(e:IEvent):Void
+	{
+		trace("error: "+e.getType());
 	}
 	
 	public function onResize():Void
 	{
-		notifyChanged(new BasicEvent(EventList.ON_RESIZE));
+		notifyChanged(new ResizeEvent());
 	}
 }

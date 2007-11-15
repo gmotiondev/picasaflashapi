@@ -1,26 +1,28 @@
 ﻿import com.bourre.events.FrontController;
-import com.bourre.log.PixlibStringifier;
+import com.bourre.events.EventType;
 
-import commands.ServiceLoaded;
-import commands.OnNextPhoto;
-import commands.OnPrevPhoto;
-import commands.OnClosePhoto;
-import commands.OnSetLoaderProgress;
-import commands.OnResize;
-import events.EventList;
+import command.*;
 
 /**
   @author Michal Gron (michal.gron@gmail.com)
  */
+ 
 class control.Controller extends FrontController
 {
 	private static var __instance:Controller;
 	
-	private function Controller()
-	{
-		super();
-	}
-
+	public static var INITIALIZE_EVENT:EventType 	= new EventType("initialize_event");
+	public static var PHOTOS_GET_EVENT:EventType  	= new EventType("photos_get_event");
+	public static var PROGRESS_SET_EVENT:EventType 	= new EventType("progress_set_event");
+	 
+	public static var PHOTO_GET_NEXT_EVENT:EventType= new EventType("photo_get_next_event");
+	public static var PHOTO_GET_PREV_EVENT:EventType= new EventType("photo_get_prev_event");
+	public static var PHOTO_CLICK_EVENT:EventType 	= new EventType("photo_click_event"); 
+	public static var PHOTO_CHANGED_EVENT:EventType	= new EventType("photo_changed_event");
+	public static var PHOTO_SET_TITLE_EVENT:EventType=new EventType("photo_set_title_event");
+	
+	public static var RESIZE_EVENT:EventType = new EventType("resize_event");
+	
 	public static function getInstance() : Controller 
 	{
 		if (!__instance) {
@@ -29,19 +31,19 @@ class control.Controller extends FrontController
 		
 		return __instance;
 	}
-		
-	public function initialize() : Void
+	
+	private function Controller()
 	{
-		push(EventList.SET_LOADER_PROGRESS, new OnSetLoaderProgress());
-		push(EventList.SERVICE_LOADED, 		new ServiceLoaded());
-		push(EventList.ON_NEXT_PHOTO, 		new OnNextPhoto());
-		push(EventList.ON_PREV_PHOTO, 		new OnPrevPhoto());
-		push(EventList.ON_CLOSE_PHOTO, 		new OnClosePhoto());
-		push(EventList.ON_RESIZE, 			new OnResize());
+		super();
 	}
 	
-	public function toString():String 
+	public function initialize() : Void
 	{
-		return PixlibStringifier.stringify(this);
+		push(INITIALIZE_EVENT, new InitializeCommand());
+		push(PHOTOS_GET_EVENT, new PhotosGetCommand());
+		
+		push(PHOTO_GET_NEXT_EVENT, new PhotoGetNextCommand());		push(PHOTO_GET_PREV_EVENT, new PhotoGetPrevCommand());
+		push(PHOTO_CLICK_EVENT, new PhotoClickCommand());
+		push(RESIZE_EVENT, new ResizeCommand());
 	}
 }

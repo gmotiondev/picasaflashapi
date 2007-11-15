@@ -3,14 +3,9 @@ import com.bourre.log.PixlibStringifier;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.BasicEvent;
 
-import view.ViewList;
-import view.PhotoHolder;
-import view.ThumbHolder;
-import view.Navigation;
-import view.LoadingBar;
-import control.Controller;
-import model.ModelApplication;
-import events.EventList;
+import view.*;
+import control.*;
+import model.*;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -34,32 +29,26 @@ class Application extends MovieClipHelper
 		Stage.addListener(this);
 		Key.addListener(this);
 		
-		var tLB:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, mc.createEmptyMovieClip("loadingBar",10010));
-		
 		Controller.getInstance().initialize();
 		
-		var tThumbHolder:ThumbHolder = new ThumbHolder(ViewList.THUMBS,mc.createEmptyMovieClip("thumbholder",5));
-		var tPhotoHolder:PhotoHolder = new PhotoHolder(ViewList.PHOTO,mc.createEmptyMovieClip("photoholder",10));
-		var tNavigation:Navigation = new Navigation(ViewList.NAVIGATION,mc.createEmptyMovieClip("navigation",20));
+		var view_l:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, mc.createEmptyMovieClip(ViewList.LOADING_BAR, 10010));
+		var view_t:ThumbHolder = new ThumbHolder(ViewList.THUMB_HOLDER,mc.createEmptyMovieClip(ViewList.THUMB_HOLDER,5));
+		var view_p:PhotoHolder = new PhotoHolder(ViewList.PHOTO_HOLDER,mc.createEmptyMovieClip(ViewList.PHOTO_HOLDER,10));
+		var view_n:Navigation = new Navigation(ViewList.NAVIGATION,mc.createEmptyMovieClip(ViewList.NAVIGATION,20));
 		
 		var model:ModelApplication = new ModelApplication();
-			model.addListener(tThumbHolder);
-			model.addListener(tNavigation);
-			model.setContainer(mc);
+			model.addListener(view_t);
+			model.addListener(view_n);
+			model.addListener(view_l);
+			model.addListener(view_p);
 			model.initialize();
 	}
-	
-	/**
-	 *	Listen to Stage resize
-	 */		
+			
 	public function onResize():Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_RESIZE));
+		EventBroadcaster.getInstance().broadcastEvent(new ResizeEvent());
 	}
 	
-	/**
-	 * Invoked when the user press a key.
-	 */
 	public function onKeyDown():Void
 	{
 		var code:Number = Key.getCode() ;
@@ -67,20 +56,17 @@ class Application extends MovieClipHelper
 		{
 			case Key.RIGHT :
 			{
-				EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_NEXT_PHOTO));
+				EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(Controller.PHOTO_GET_NEXT_EVENT));
 				break ;
 			}
 			case Key.LEFT :
 			{
-				EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_PREV_PHOTO));
+				EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(Controller.PHOTO_GET_PREV_EVENT));
 				break ;
 			}
 		}	
 	}
 	
-	/**
-	 *	mtasc entry point
-	 */
 	public static function main(mc:MovieClip) : Void 
 	{
 		Stage.align = "TL";
@@ -89,9 +75,6 @@ class Application extends MovieClipHelper
 		var o:Application = new Application(mc); 
 	}
 	
-	/**
-	 *	pixlib 
-	 */	
 	public function toString():String 
 	{
 		return PixlibStringifier.stringify(this);
