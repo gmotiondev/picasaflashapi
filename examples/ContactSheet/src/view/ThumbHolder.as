@@ -1,4 +1,4 @@
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
@@ -12,19 +12,10 @@ class view.ThumbHolder extends MovieClipHelper implements ILibListener
 {	
 	public var grid:view.layout.GridLayout;
 	
-	/**
-	 * Constructor 
-	 */
-	public function ThumbHolder(aId:String,aC:MovieClip)
+	public function ThumbHolder(aId:String, aC:MovieClip)
 	{
 		super(aId,aC);
-		initialize();
-	}
-	
-	/**
-	 * initialize point	 */
-	private function initialize()
-	{
+		
 		show();
 		centerize();
 	}

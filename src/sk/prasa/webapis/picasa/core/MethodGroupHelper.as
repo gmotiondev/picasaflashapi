@@ -1,6 +1,7 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import sk.prasa.webapis.picasa.Album;
 import sk.prasa.webapis.picasa.Photo;
 
 import sk.prasa.webapis.picasa.PicasaService;
@@ -131,10 +132,14 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 		
 		for(var a:Number = 0; a < o.entry.length; a++)
 		{
-			tRes.push(new Photo(o.entry[a]));
+			var tPhoto:Photo = new Photo(o.entry[a]);
+				tPhoto.album = new Album(o); 
+			tRes.push(tPhoto);
 		}
 		
 		// o should be a parsed xml to object
 		return tRes;
 	}
+	
+	
 }

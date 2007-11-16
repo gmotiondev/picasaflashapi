@@ -1,4 +1,4 @@
-/**
+﻿/**
  *
  */
 import com.bourre.commands.Command;
@@ -17,5 +17,4 @@ class command.PhotoClickCommand implements Command
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 		model.click(PhotoClickEvent(e).id);
 	}
-
 }

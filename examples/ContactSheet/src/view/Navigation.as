@@ -69,7 +69,7 @@ class view.Navigation extends MovieClipHelper
 		centerize();
 	}
 	
-	public function centerize():Void
+	private function centerize():Void
 	{
 		move(Stage.width/2 - view._width/2, Stage.height - 60);
 	}

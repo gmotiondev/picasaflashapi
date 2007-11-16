@@ -1,9 +1,45 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
-class sk.prasa.webapis.picasa.Album
+import sk.prasa.webapis.picasa.Base;
+import sk.prasa.webapis.picasa.GPhoto;
+import sk.prasa.webapis.picasa.Geo;
+import sk.prasa.webapis.picasa.KindType;
+
+class sk.prasa.webapis.picasa.Album extends Base
 {
+	private var __gphoto:GPhoto;
+	private var __geo:Geo;
+	// TODO: add open search VO
+	//private var __opensearch:OpenSearch;
 	
+	public function Album(o:Object)
+	{
+		super(o);
+		
+		__gphoto = new GPhoto(o, KindType.ALBUM);
+		__geo = new Geo(o);
+	}
+	
+	public function get gphoto():GPhoto
+	{
+		return __gphoto;
+	}
+	
+	public function set gphoto(g:GPhoto):Void
+	{
+		__gphoto = g;
+	}
+	
+	public function get geo():Geo
+	{
+		return __geo;
+	}
+	
+	public function set geo(g:Geo):Void
+	{
+		__geo = g;
+	}
 }
 
 /*

@@ -34,10 +34,7 @@ class view.PhotoContainer extends MovieClipHelper implements ILibListener
 
 	}
 	
-	/**
-	 * set title
-	 */
-	public function setTitle():Void
+	private function setTitle():Void
 	{		
 		var tTF:TextFormat = new TextFormat();
 			tTF.font = "kroeger";
@@ -65,10 +62,7 @@ class view.PhotoContainer extends MovieClipHelper implements ILibListener
 		__b.__h = aHighlight;
 	}
 	
-	/**
-	 * close
-	 */
-	public function close():Void
+	private function close():Void
 	{
 		//EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(EventList.ON_CLOSE_PHOTO));
 		hide();
@@ -77,12 +71,10 @@ class view.PhotoContainer extends MovieClipHelper implements ILibListener
 	
 	private function load():Void
 	{
-		trace("going to load "+url);
-		
 		var tLibStack:LibStack = new LibStack();
-			tLibStack.enqueue(new GraphicLib(view, 5), id, url);
-			tLibStack.addListener(this);
-			tLibStack.execute();
+		tLibStack.enqueue(new GraphicLib(view, 5), id, url);
+		tLibStack.addListener(this);
+		tLibStack.execute();
 	}
 	
 	public function onLoadInit(e:LibEvent):Void
@@ -98,10 +90,9 @@ class view.PhotoContainer extends MovieClipHelper implements ILibListener
 	
 	public function onLoadComplete(e:LibEvent):Void
 	{	
-		//insertTitle();
-		
 		setBackground(0x1A1A1A, 0x1A1A1A, 10);
 		setTitle();
+		
 		var tClose = view.attachMovie("c","c",210);
 			tClose._x = view._width - 33;
 			tClose._y = -17;
@@ -119,7 +110,6 @@ class view.PhotoContainer extends MovieClipHelper implements ILibListener
 	public function photo_changed_event(e:PhotoChangedEvent):Void
 	{
 		//var t:TweenMS = null;
-		trace(id+" == "+PhotoChangedEvent(e).id)
 		if(PhotoChangedEvent(e).id == id)
 		{
 			if(!loaded) load();

@@ -1,4 +1,4 @@
-import com.bourre.commands.Command;
+﻿import com.bourre.commands.Command;
 import com.bourre.core.Model;
 
 import model.*;

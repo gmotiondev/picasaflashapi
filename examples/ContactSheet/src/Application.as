@@ -1,5 +1,4 @@
 ﻿import com.bourre.visual.MovieClipHelper;
-import com.bourre.log.PixlibStringifier;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.BasicEvent;
 
@@ -73,10 +72,5 @@ class Application extends MovieClipHelper
 		Stage.scaleMode = "noScale";
 		
 		var o:Application = new Application(mc); 
-	}
-	
-	public function toString():String 
-	{
-		return PixlibStringifier.stringify(this);
 	}
 }

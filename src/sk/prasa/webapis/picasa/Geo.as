@@ -6,10 +6,12 @@ class sk.prasa.webapis.picasa.Geo
 	public var latitude:String;
 	public var longitude:String;
 	
-	public function Geo(lat:String, lon:String)
+	public function Geo(o:Object)
 	{
-		latitude = lat;
-		longitude = lon;
+		var tGeoArray:Array = o["georss:where"]["gml:Point"]["gml:pos"].split(" ");
+		
+		latitude = tGeoArray[0];
+		longitude = tGeoArray[1];
 	}
 }
 /*

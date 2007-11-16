@@ -1,6 +1,7 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import sk.prasa.webapis.picasa.Album;
 import sk.prasa.webapis.picasa.Base;
 import sk.prasa.webapis.picasa.Content;
 import sk.prasa.webapis.picasa.Exif;
@@ -16,6 +17,7 @@ class sk.prasa.webapis.picasa.Photo extends Base
 	private var __gphoto:GPhoto;
 	private var __media:Media;
 	private var __exif:Exif;
+	private var __album:Album;
 	
 	// 
 	public function Photo(o:Object)
@@ -85,7 +87,18 @@ class sk.prasa.webapis.picasa.Photo extends Base
 		return __exif;
 	}
 	
+	// 
+	public function get album():Album
+	{
+		return __album;
+	}
+	
+	public function set album(a:Album):Void
+	{
+		__album = a;
+	}
 }
+
 /*
 <entry>
   <id>http://picasaweb.google.com/data/entry/api/user/thisispinkfu/albumid/5094406297232552993/photoid/5094406481916146738</id> 
