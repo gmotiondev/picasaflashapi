@@ -1,4 +1,4 @@
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.commands.Delegate;
 //import com.bourre.events.IEvent;
 //import com.bourre.events.BasicEvent;
