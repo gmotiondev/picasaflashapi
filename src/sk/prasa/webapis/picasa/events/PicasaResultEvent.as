@@ -78,6 +78,7 @@ class sk.prasa.webapis.picasa.events.PicasaResultEvent extends ServiceEvent
 	*/
 	
 	public static var PHOTOS_LIST:EventType = new EventType("photosList");
+	public static var ALBUMS_LIST:EventType = new EventType("albumsList");
 	
 	public var success:Boolean;
 	public var error:PicasaError;

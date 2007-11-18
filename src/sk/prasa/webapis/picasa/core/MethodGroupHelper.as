@@ -141,5 +141,18 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 		return tRes;
 	}
 	
-	
+	public static function parseAlbumList(o:Object):Array
+	{
+		var tRes:Array = [];
+		
+		for(var a:Number = 0; a < o.entry.length; a++)
+		{
+			var tAlbum:Album = new Album(o.entry[a]);
+				//tPhoto.album = new Album(o); 
+			tRes.push(tAlbum);
+		}
+		
+		// o should be a parsed xml to object
+		return tRes;
+	}
 }

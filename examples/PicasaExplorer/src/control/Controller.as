@@ -13,6 +13,7 @@ class control.Controller extends FrontController
 	
 	public static var INITIALIZE_EVENT:EventType 	= new EventType("initialize_event");
 	public static var PHOTOS_GET_EVENT:EventType  	= new EventType("photos_get_event");
+	public static var ALBUMS_GET_EVENT:EventType 	= new EventType("albums_get_event");
 	public static var PROGRESS_SET_EVENT:EventType 	= new EventType("progress_set_event");
 	 
 	public static function getInstance() : Controller 
@@ -33,5 +34,6 @@ class control.Controller extends FrontController
 	{
 		push(INITIALIZE_EVENT, new InitializeCommand());
 		push(PHOTOS_GET_EVENT, new PhotosGetCommand());
+		push(ALBUMS_GET_EVENT, new AlbumsGetCommand());
 	}
 }

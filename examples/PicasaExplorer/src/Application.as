@@ -7,6 +7,7 @@ import model.*;
 import view.*;
 import control.*;
 
+// class Application extends mx.screens.Form
 class Application extends MovieClipHelper
 {
 	private function Application(mc:MovieClip)

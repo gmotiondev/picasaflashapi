@@ -31,7 +31,7 @@ class model.ModelApplication extends Model
 		service = new PicasaService();
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 
-		//EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5094406297232552993"));
+		EventBroadcaster.getInstance().dispatchEvent(new AlbumsGetEvent("thisispinkfu"));
 	}
 	
 	private function onServiceError(e:IEvent):Void
