@@ -1,4 +1,7 @@
-﻿import Picasa.objects.*;
+﻿/**
+ * Deprecated, will be deleted
+ */
+ import Picasa.objects.*;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)

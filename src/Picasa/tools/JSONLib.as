@@ -1,4 +1,7 @@
-﻿import com.bourre.commands.Delegate;
+﻿/**
+ * Deprecated, will be deleted
+ */
+ import com.bourre.commands.Delegate;
 import com.bourre.data.libs.AbstractLib;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibStringifier;

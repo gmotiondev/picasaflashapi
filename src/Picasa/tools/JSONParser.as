@@ -1,4 +1,7 @@
-﻿import Picasa.tools.IJSONParser;
+﻿/**
+ * Deprecated, will be deleted
+ */
+ import Picasa.tools.IJSONParser;
 import Picasa.tools.JSONLib;
 import Picasa.tools.JSON;
 

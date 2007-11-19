@@ -1,4 +1,7 @@
 ﻿/**
+ * Deprecated, will be deleted
+ */
+ /**
  * @author Michal Gron (michal.gron@gmail.com)
  * 
  * Fine tune with this:

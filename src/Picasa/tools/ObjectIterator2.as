@@ -1,4 +1,7 @@
-﻿import com.bourre.data.iterator.ObjectIterator;
+﻿/**
+ * Deprecated, will be deleted
+ */
+ import com.bourre.data.iterator.ObjectIterator;
 import Picasa.tools.MathUtils;
 
 class Picasa.tools.ObjectIterator2 extends ObjectIterator

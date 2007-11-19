@@ -1,4 +1,7 @@
 ﻿/**
+ * Deprecated, will be deleted
+ */
+ /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.log.PixlibStringifier;
@@ -85,9 +88,4 @@ class Picasa.Service implements IService
 	public function onServiceTimeout(e:LibEvent):Void {}
 	public function onServiceError(e:LibEvent):Void {}
 	public function notifyChanged(e:IEvent):Void{}
-	
-	public function toString():String
-	{
-		return PixlibStringifier.stringify(this);
-	}
 }

@@ -1,4 +1,4 @@
-﻿import com.bourre.events.IEvent;import com.bourre.data.libs.LibEvent;
+﻿/** * Deprecated, will be deleted */ import com.bourre.events.IEvent;import com.bourre.data.libs.LibEvent;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)

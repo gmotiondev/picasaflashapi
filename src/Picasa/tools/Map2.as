@@ -1,4 +1,7 @@
-﻿import com.bourre.data.collections.Map;
+﻿/**
+ * Deprecated, will be deleted
+ */
+ import com.bourre.data.collections.Map;
 import Picasa.tools.ObjectIterator2;
 
 class Picasa.tools.Map2 extends Map

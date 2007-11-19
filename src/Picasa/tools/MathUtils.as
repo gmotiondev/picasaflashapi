@@ -1,4 +1,7 @@
-﻿class Picasa.tools.MathUtils
+﻿/**
+ * Deprecated, will be deleted
+ */
+ class Picasa.tools.MathUtils
 {
 	/**
 	 * Taken from vegas project.

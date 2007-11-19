@@ -1,4 +1,4 @@
-﻿import Picasa.objects.Collection;import Picasa.objects.ObjectList;
+﻿/** * Deprecated, will be deleted */ import Picasa.objects.Collection;import Picasa.objects.ObjectList;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
