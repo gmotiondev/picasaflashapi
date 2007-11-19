@@ -6,6 +6,7 @@ import sk.prasa.webapis.picasa.Photo;
 
 import sk.prasa.webapis.picasa.PicasaService;
 import sk.prasa.webapis.picasa.PicasaError;
+import sk.prasa.webapis.picasa.UrlParams;
 import sk.prasa.webapis.picasa.core.*;
 import sk.prasa.webapis.picasa.events.PicasaResultEvent;
 
@@ -17,7 +18,7 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 										callBack:Function, 
 										signed:Boolean,
 										suffix:String,
-										params:Array):Void
+										url_params:UrlParams):Void
 	{
 			
 		// Create an array to store our name/value pairs
@@ -27,18 +28,6 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 		var tSuffix:String = (suffix != "" && suffix != "") ? suffix : "";
 		//args.push(new NameValuePair("api_key", service.api_key));
 		//args.push(new NameValuePair("method", method));
-		
-		
-		for(var i:Number = 0; i < params.length; i++)
-		{
-			if (params[i] instanceof NameValuePair)
-			{
-				args.push(params[i]);
-			} else
-			{
-				args.push(new NameValuePair("param"+i, params[i].toString()));
-			}
-		}
 		
 		/*
 		// If a user is authenticated, automatically add their token
@@ -65,11 +54,7 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 		*/
 		
 
-		var query:String = ""+tSuffix+"?";
-		for (var k:Number = 0; k < args.length; k++ )
-		{
-			query += args[k].name + "=" + args[k].value + "&";	
-		}
+		var query:String = ""+tSuffix+""+url_params.toString();
 		
 		trace("loading: "+PicasaService.END_POINT + query);
 		
@@ -153,6 +138,27 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 		}
 		
 		// o should be a parsed xml to object
+		return tRes;
+	}
+	
+	public static function mergeUrlParams(service:PicasaService,request:UrlParams):UrlParams
+	{
+		// request params have priority before service params
+		
+		var tRes:UrlParams = new UrlParams(
+			 service.access
+			,service.thumbsize
+			,service.imgmax
+			,service.max_results
+			,service.start_index);
+			
+		if(request.access) tRes.access = request.access;
+		
+		if(request.thumbsize) tRes.thumbsize = request.thumbsize;
+		if(request.imgmax) tRes.imgmax = request.imgmax;
+		if(request.max_results) tRes.max_results = request.max_results;
+		if(request.start_index) tRes.start_index = request.start_index;
+		
 		return tRes;
 	}
 }

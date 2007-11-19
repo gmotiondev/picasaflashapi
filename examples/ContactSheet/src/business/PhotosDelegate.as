@@ -9,6 +9,7 @@ import com.bourre.events.EventBroadcaster;
 import sk.prasa.webapis.picasa.PicasaService;
 import sk.prasa.webapis.picasa.events.PicasaResultEvent;
 import sk.prasa.webapis.picasa.core.NameValuePair;
+import sk.prasa.webapis.picasa.UrlParams;
 
 import model.*;
 import command.IResponder;
@@ -30,13 +31,14 @@ class business.PhotosDelegate
 		// add progress, but don't chain the classes!
 		// maybe an event service listner, command etc..
 		// EventBroadcaster.getInstance().broadcastEvent(new ProgressSetEvent(e.getPerCent()));
-		var tOptions:Array = [
-			new NameValuePair("thumbsize","48"),
-			new NameValuePair("imgmax","512")
-		]; 
+
+		var tUrlParams:UrlParams = new UrlParams();
+			tUrlParams.thumbsize = 48;
+			tUrlParams.imgmax = 512;
+		
 		__service.addEventListener(PicasaService.PROGRESS, list_progress); 
-		__service.addEventListener(PicasaResultEvent.PHOTOS_LIST, Delegate.create(this, list_complete));
-		__service.photos.list(aUserid, aAlbumid, tOptions);
+		__service.addEventListener(PicasaResultEvent.PHOTOS_GET_LIST, Delegate.create(this, list_complete));
+		__service.photos.list(aUserid, aAlbumid, tUrlParams);
 	}
 
 	public function list_complete(e:PicasaResultEvent):Void
@@ -53,7 +55,7 @@ class business.PhotosDelegate
 			trace("list_complete failed: "+error.message)
 		} finally
 		{
-			__service.removeEventListener(PicasaResultEvent.PHOTOS_LIST, list_complete);
+			__service.removeEventListener(PicasaResultEvent.PHOTOS_GET_LIST, list_complete);
 		}
 	}
 	

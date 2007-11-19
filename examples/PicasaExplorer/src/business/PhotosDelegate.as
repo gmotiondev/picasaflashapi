@@ -30,7 +30,7 @@ class business.PhotosDelegate
 		// maybe an event service listner, command etc..
 		// EventBroadcaster.getInstance().broadcastEvent(new ProgressSetEvent(e.getPerCent()));
 		__service.addEventListener(PicasaService.PROGRESS, list_progress); 
-		__service.addEventListener(PicasaResultEvent.PHOTOS_LIST, Delegate.create(this, list_complete));
+		__service.addEventListener(PicasaResultEvent.PHOTOS_GET_LIST, Delegate.create(this, list_complete));
 		__service.photos.list(aUserid, aAlbumid);
 	}
 
@@ -48,7 +48,7 @@ class business.PhotosDelegate
 			trace("list_complete failed: "+error.message)
 		}
 		
-		__service.removeEventListener(PicasaResultEvent.PHOTOS_LIST, this);
+		__service.removeEventListener(PicasaResultEvent.PHOTOS_GET_LIST, this);
 	}
 	
 	private function list_progress(e:NumberEvent):Void

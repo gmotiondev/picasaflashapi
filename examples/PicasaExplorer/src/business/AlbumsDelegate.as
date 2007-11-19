@@ -30,8 +30,16 @@ class business.AlbumsDelegate
 		// maybe an event service listner, command etc..
 		// EventBroadcaster.getInstance().broadcastEvent(new ProgressSetEvent(e.getPerCent()));
 		__service.addEventListener(PicasaService.PROGRESS, list_progress); 
-		__service.addEventListener(PicasaResultEvent.ALBUMS_LIST, Delegate.create(this, list_complete));
+		
+		__service.addEventListener(PicasaResultEvent.ALBUMS_GET_LIST, Delegate.create(this, list_complete));
 		__service.albums.list(aUserid);
+		
+		//__service.addEventListener(PicasaResultEvent.ALBUMS_GET_LIST_BY_TAG, Delegate.create(this, list_complete));
+		//__service.albums.list_by_tag(aUserid,"resurgere");
+		
+		//__service.addEventListener(PicasaResultEvent.ALBUMS_GET_SEARCH, Delegate.create(this, list_complete));
+		//__service.albums.search(aUserid,"resurgere");
+
 	}
 
 	public function list_complete(e:PicasaResultEvent):Void
@@ -47,7 +55,9 @@ class business.AlbumsDelegate
 		{
 			trace("list_complete failed: "+error.message)
 		} 
-		__service.removeEventListener(PicasaResultEvent.ALBUMS_LIST, this);
+		__service.removeEventListener(PicasaResultEvent.ALBUMS_GET_LIST, this);
+		//__service.removeEventListener(PicasaResultEvent.ALBUMS_GET_LIST_BY_TAG, this);
+		//__service.removeEventListener(PicasaResultEvent.ALBUMS_GET_SEARCH, this);
 	}
 	
 	private function list_progress(e:NumberEvent):Void
