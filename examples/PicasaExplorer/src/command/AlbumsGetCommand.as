@@ -1,16 +1,20 @@
-/**
+﻿/**
  *
  */
-
 import com.bourre.commands.Command;
 import com.bourre.core.Model;
+import com.bourre.events.EventBroadcaster;
+import com.bourre.events.BasicEvent;
 
 import sk.prasa.webapis.picasa.PicasaError;
+import sk.prasa.webapis.picasa.Album;
 
 import command.IResponder;
 import business.*;
 import control.*;
 import model.*;
+
+import vo.Albums;
 
 class command.AlbumsGetCommand implements Command, IResponder
 {
@@ -24,19 +28,21 @@ class command.AlbumsGetCommand implements Command, IResponder
 		
 		var d:AlbumsDelegate = new AlbumsDelegate(this);
 			d.list(tUserid);
-			
-		trace("AlbumsGetCommand.execute("+tUserid+")");
-		
-		
 	}
 	
 	public function result(data:Array):Void
 	{
-		trace("AlbumsGetCommand.result")
+		var tAlbums:Albums = new Albums();
+		for(var a:Number = 0; a < data.length; a++)
+		{
+			var tAlbum:Album = data[a];
+				tAlbums.push(tAlbum);
+		}
+		model.dispatch_change("albums", tAlbums);
 	}
 	
 	public function fault(error:PicasaError):Void
 	{
-		trace("AlbumsGetCommand.fault: ");
+		trace("AlbumsGetCommand.fault!");
 	}
 }

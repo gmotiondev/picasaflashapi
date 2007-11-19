@@ -13,7 +13,7 @@ class sk.prasa.webapis.picasa.Exif
 	public var make:String;			// exif:make
 	public var model:String;		// exif:model
 	public var time:Number;			// exif:time
-	
+
 	public function Exif(o:Object)
 	{
 		distance 	= o["exif:distance"];
@@ -26,5 +26,10 @@ class sk.prasa.webapis.picasa.Exif
 		make 		= o["exif:make"];
 		model 		= o["exif:model"];
 		time 		= o["exif:time"];
+	}
+	
+	public function toString():String
+	{
+		return "[Exit distance="+distance+", exposure="+exposure+", flash="+flash+", focallength="+focallength+", fstop="+fstop+", imageUniqueID="+imageUniqueID+", iso="+iso+", make="+make+", model="+model+", time="+time+"]"
 	}
 }

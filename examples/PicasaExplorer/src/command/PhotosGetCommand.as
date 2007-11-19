@@ -12,6 +12,7 @@ import model.*;
 import command.*;
 import control.*;
 import business.*;
+import vo.Photos;
 
 class command.PhotosGetCommand implements Command, IResponder
 {
@@ -30,13 +31,14 @@ class command.PhotosGetCommand implements Command, IResponder
 	
 	public function result(data:Array):Void
 	{
+		var tPhotos:Photos = new Photos();
+		
 		for(var a:Number = 0; a < data.length; a++)
 		{
 			var tPhoto:Photo = data[a];
-			model.photos.push(tPhoto);
+			tPhotos.push(tPhoto);
 		}
-		
-		EventBroadcaster.getInstance().dispatchEvent(new InitializeEvent());
+		model.dispatch_change("photos", tPhotos);
 	}
 	
 	public function fault(error:PicasaError):Void

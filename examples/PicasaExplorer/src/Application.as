@@ -27,11 +27,14 @@ class Application extends MovieClipHelper
 		//var l_view:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, 	mc.createEmptyMovieClip(ViewList.LOADING_BAR, 	40));
 		
 		var main_view:MainView = new MainView(ViewList.MAIN_VIEW, mc.createEmptyMovieClip(ViewList.MAIN_VIEW, 50));
-		
+		var albums_view:AlbumsView = new AlbumsView(ViewList.ALBUMS_VIEW, main_view.view.createEmptyMovieClip(ViewList.ALBUMS_VIEW, 10));
 		/* controller */
 		Controller.getInstance().initialize();
-		//model.addListener(p_view);
-		model.initialize();	
+		
+		model.addListener(main_view);
+		model.addListener(albums_view);
+		
+		model.initialize();
 	}
 	
 	public static function main(mc:MovieClip) : Void 

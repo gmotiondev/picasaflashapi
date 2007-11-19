@@ -13,6 +13,11 @@ class sk.prasa.webapis.picasa.Geo
 		latitude = tGeoArray[0];
 		longitude = tGeoArray[1];
 	}
+	
+	public function toString():String
+	{
+		return "[Geo latitude="+latitude+" longitude="+longitude+"]";
+	}
 }
 /*
 <georss:where>

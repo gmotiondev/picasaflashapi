@@ -1,4 +1,4 @@
-/**
+﻿/**
  *
  */
 import com.bourre.events.BasicEvent;
@@ -11,7 +11,7 @@ class control.AlbumsGetEvent extends BasicEvent
 	public function AlbumsGetEvent(aUserid:String)
 	{
 		super(Controller.ALBUMS_GET_EVENT);
-		trace("AlbumsGetEvent: "+aUserid)
+
 		userid = aUserid;
 	}
 }

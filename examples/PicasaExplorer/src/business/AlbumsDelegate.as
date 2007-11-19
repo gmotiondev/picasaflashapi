@@ -46,10 +46,8 @@ class business.AlbumsDelegate
 		} catch(error:Error)
 		{
 			trace("list_complete failed: "+error.message)
-		} finally
-		{
-			__service.removeEventListener(PicasaResultEvent.ALBUMS_LIST, list_complete);
-		}
+		} 
+		__service.removeEventListener(PicasaResultEvent.ALBUMS_LIST, this);
 	}
 	
 	private function list_progress(e:NumberEvent):Void

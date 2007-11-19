@@ -1,17 +1,19 @@
-﻿import com.bourre.core.Model;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+import com.bourre.core.Model;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.IEvent;
 import com.bourre.commands.Delegate;
+import com.bourre.visual.ViewHelper;
 
 import model.ModelList;
 import control.*;
+import view.ViewList;
 import vo.*;
 
 import sk.prasa.webapis.picasa.PicasaService;
 
-/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
 class model.ModelApplication extends Model
 {
 	public var service:PicasaService;
@@ -30,8 +32,13 @@ class model.ModelApplication extends Model
 
 		service = new PicasaService();
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
-
+		
 		EventBroadcaster.getInstance().dispatchEvent(new AlbumsGetEvent("thisispinkfu"));
+	}
+	
+	public function dispatch_change(p:String,d:Object):Void
+	{
+		notifyChanged(new control.ChangeEvent(p, d));
 	}
 	
 	private function onServiceError(e:IEvent):Void
