@@ -51,9 +51,9 @@ class sk.prasa.webapis.picasa.GPhoto
 		__kind = k;
 		
 		// multiple kind
-		albumid 			= o["gphoto:albumid"]
-		commentCount 		= o["gphoto:commentCount"] 
-		commentingEnabled 	= o["gphoto:commentingEnabled"] 
+		albumid 			= o["gphoto:albumid"];
+		commentCount 		= parseFloat(o["gphoto:commentCount"]); 
+		commentingEnabled 	= o["gphoto:commentingEnabled"] != "false"; 
 		id 					= o["gphoto:id"];
 		
 		switch(kind)
@@ -81,11 +81,11 @@ class sk.prasa.webapis.picasa.GPhoto
 	private function setAlbumProperties(o:Object):Void
 	{
 		access 		= o["gphoto:access"]; 
-		bytesUsed 	= o["gphoto:bytesUsed"]; 
+		bytesUsed 	= parseFloat(o["gphoto:bytesUsed"]); 
 		location 	= o["gphoto:location"]; 
 		name 		= o["gphoto:name"]; 
-		numphotos 	= o["gphoto:numphotos"]; 
-		numphotosremaining = o["gphoto:numphotosremaining"];
+		numphotos 	= parseFloat(o["gphoto:numphotos"]); 
+		numphotosremaining = parseFloat(o["gphoto:numphotosremaining"]);
 	}
 	
 	// photo kind
@@ -93,22 +93,22 @@ class sk.prasa.webapis.picasa.GPhoto
 	{
 		checksum 	= o["gphoto:checksum"];
 		client 		= o["gphoto:client"]; 
-		height 		= o["gphoto:height"]; 
-		position 	= o["gphoto:position"]; 
-		rotation 	= o["gphoto:rotation"]; 
-		size 		= o["gphoto:size"]; 
-		timestamp 	= o["gphoto:timestamp"]; 
+		height 		= parseFloat(o["gphoto:height"]); 
+		position 	= parseFloat(o["gphoto:position"]); 
+		rotation 	= parseFloat(o["gphoto:rotation"]); 
+		size 		= parseFloat(o["gphoto:size"]); 
+		timestamp 	= parseFloat(o["gphoto:timestamp"]); 
 		version 	= o["gphoto:version"]; 
-		width 		= o["gphoto:width"]; 
+		width 		= parseFloat(o["gphoto:width"]); 
 	}
 	
 	// user kind
 	private function setUserProperties(o:Object):Void
 	{
-		maxPhotosPerAlbum = o["gphoto:maxPhotosPerAlbum"]; 
+		maxPhotosPerAlbum = parseFloat(o["gphoto:maxPhotosPerAlbum"]); 
 		nickname 	= o["gphoto:nickname"]; 
-		quotacurrent= o["gphoto:quotacurrent"]; 
-		quotalimit 	= o["gphoto:quotalimit"]; 
+		quotacurrent= parseFloat(o["gphoto:quotacurrent"]); 
+		quotalimit 	= parseFloat(o["gphoto:quotalimit"]); 
 		thumbnail 	= o["gphoto:thumbnail"]; 
 		user 		= o["gphoto:user"]; 
 	}
@@ -116,7 +116,7 @@ class sk.prasa.webapis.picasa.GPhoto
 	// tag kind
 	private function setTagProperties(o:Object):Void
 	{
-		weight = o["gphoto:weight"];
+		weight = parseFloat(o["gphoto:weight"]);
 	}
 	
 	// comment kind
@@ -124,4 +124,53 @@ class sk.prasa.webapis.picasa.GPhoto
 	{
 		photoid = o["gphoto:photoid"];
 	}
+	
+	public function toString():String
+	{
+		var tRes:Array = [];
+			tRes.push(" albumid=",albumid);
+			tRes.push(", commentCount=",commentCount);
+			tRes.push(", commentingEnabled=",commentingEnabled);
+			tRes.push(", id=",id);
+	
+		switch(kind)
+		{
+			case KindType.ALBUM: 
+				tRes.push(", access=",access);
+				tRes.push(", bytesUsed=",bytesUsed);
+				tRes.push(", location=",location);
+				tRes.push(", name=",name);
+				tRes.push(", numphotos=",numphotos);
+				tRes.push(", numphotosremaining=",numphotosremaining);
+				break;
+			case KindType.PHOTO:
+				tRes.push(", checksum=",checksum);
+				tRes.push(", client=",client);
+				tRes.push(", height=",height);
+				tRes.push(", position=",position);
+				tRes.push(", rotation=",rotation);
+				tRes.push(", size=",size);
+				tRes.push(", timestamp=",timestamp);
+				tRes.push(", version=",version);
+				tRes.push(", width=",width);
+				break; 
+			case KindType.USER:
+				tRes.push(", maxPhotosPerAlbum=",maxPhotosPerAlbum);
+				tRes.push(", nickname=",nickname);
+				tRes.push(", quotacurrent=",quotacurrent);
+				tRes.push(", quotalimit=",quotalimit);
+				tRes.push(", thumbnail=",thumbnail);
+				tRes.push(", user=",user);
+				break;
+			case KindType.TAG:
+				tRes.push(", weight=",weight);
+				break; 
+			case KindType.COMMENT:
+				tRes.push(", photoid=",photoid);
+				break; 
+		}
+		
+		return "[GPhoto "+tRes.join("")+"]";
+	}
+	
 }

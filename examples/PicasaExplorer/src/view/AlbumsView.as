@@ -34,10 +34,11 @@ class view.AlbumsView extends MovieClipHelper
 	{
 		dg = view.createClassObject(DataGrid, "dg_mc", 5, {columnNames:["Property", "Value"]});
 		dg.move(330, 0);
-		dg.setSize(320, 320);
+		dg.setSize(480, 320);
+		dg.hScrollPolicy = "on";
+
 		
 		tree = view.createClassObject(Tree,"tree_mc", 6);
-		tree.dataProvider = (new XML("<node><node label=\"My Bookmarks\"><node label=\"Macromedia Web site\" url=\"http://www.macromedia.com\" /><node label=\"MXNA blog aggregator\" url=\"http://www.markme.com/mxna\" /></node><node label=\"Google\" url=\"http://www.google.com\" /></node>")).firstChild;
 		tree.setSize(320, 320);
 		tree.addEventListener("nodeOpen", Delegate.create(this, onNodeOpen));
 		tree.addEventListener("change", Delegate.create(this, onTreeChange));
@@ -139,7 +140,7 @@ class view.AlbumsView extends MovieClipHelper
 		}
 		
 		for(var tKey in tItem) {
-			tDP.push({key:tKey, value:tItem[tKey].toString()});
+			tDP.push({key:tKey, value:tItem[tKey].toString(),dummy:""});
 		}
 		
 		dg.dataProvider = tDP;

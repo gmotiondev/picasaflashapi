@@ -36,4 +36,9 @@ class sk.prasa.webapis.picasa.Content
 	{
 		__src = v;
 	}
+	
+	public function toString():String
+	{
+		return "[Content type="+type+", src="+src+"]";
+	}
 }

@@ -97,6 +97,18 @@ class sk.prasa.webapis.picasa.Photo extends Base
 	{
 		__album = a;
 	}
+	
+	public function toString():String
+	{
+		var tRes = [];
+			tRes.push(" summary=",summary);
+			tRes.push(", content=",content.toString());
+			tRes.push(", published=",published);
+			tRes.push(", gphoto=",gphoto.toString());
+			tRes.push(", media=",media.toString());
+			tRes.push(", exit=",exif.toString());
+		return "[Photo "+tRes.join("")+"]";
+	}
 }
 
 /*

@@ -53,4 +53,9 @@ class sk.prasa.webapis.picasa.Link
 	{
 		__rel = v;
 	}
+	
+	public function toString():String
+	{
+		return "[Link href="+href+", type="+type+", rel="+rel+"]";
+	}
 }

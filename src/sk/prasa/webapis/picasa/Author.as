@@ -50,4 +50,9 @@ class sk.prasa.webapis.picasa.Author
 	{
 		__uri = v;
 	}
+	
+	public function toString():String
+	{
+		return "[Author name="+name+", email="+email+", uri="+uri+"]";
+	}
 }

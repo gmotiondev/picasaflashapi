@@ -53,4 +53,9 @@ class sk.prasa.webapis.picasa.Generator
 	{
 		__uri = v;
 	}
+	
+	public function toString():String
+	{
+		return "[Generator name="+name+", version="+version+", uri="+uri+"]";
+	}
 }

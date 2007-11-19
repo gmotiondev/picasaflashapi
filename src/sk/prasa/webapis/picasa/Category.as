@@ -37,4 +37,9 @@ class sk.prasa.webapis.picasa.Category
 	{
 		__scheme = v;
 	}
+	
+	public function toString():String
+	{
+		return "[Category term="+term+", scheme="+scheme+"]";
+	}
 }

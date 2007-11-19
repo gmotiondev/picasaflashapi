@@ -40,6 +40,11 @@ class sk.prasa.webapis.picasa.Album extends Base
 	{
 		__geo = g;
 	}
+	
+	public function toString():String
+	{
+		return "[Album gphoto="+gphoto.toString()+", geo="+geo.toString()+"]"
+	}
 }
 
 /*
