@@ -29,10 +29,11 @@ class sk.prasa.webapis.picasa.Base
 		__links = getLinks(o.link);	
 		__subtitle = o.subtitle;
 		__rights = o.rights;
+		
 		__author = new Author(o.author.name, o.author.email, o.author.uri);
 		__updated = o.updated;
 		__category = new Category(o.category.attributes.term, o.category.attributes.scheme);
-		__generator = new Generator(o.generator.data,o.generator.attributes.version,o.generator.attributes.uri);
+		__generator = new Generator(o.generator);
 		__icon = o.icon;
 		__logo = o.logo;
 	}

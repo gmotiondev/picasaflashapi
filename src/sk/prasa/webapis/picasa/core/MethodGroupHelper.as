@@ -7,6 +7,7 @@ import sk.prasa.webapis.picasa.Photo;
 import sk.prasa.webapis.picasa.PicasaService;
 import sk.prasa.webapis.picasa.PicasaError;
 import sk.prasa.webapis.picasa.UrlParams;
+import sk.prasa.webapis.picasa.User;
 import sk.prasa.webapis.picasa.core.*;
 import sk.prasa.webapis.picasa.events.PicasaResultEvent;
 
@@ -143,12 +144,13 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 			for(var a:Number = 0; a < o.entry.length; a++)
 			{
 				var tAlbum:Album = new Album(o.entry[a]);
-					//tPhoto.album = new Album(o); 
+					tAlbum.user = new User(o);
 				tRes.push(tAlbum);
 			}
 		} else
 		{
 			var tSingleAlbum:Album = new Album(o.entry);
+				tSingleAlbum.user = new User(o);
 			tRes.push(tSingleAlbum);
 		}
 		

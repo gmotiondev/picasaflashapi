@@ -5,52 +5,34 @@ import asunit.framework.TestCaseXml;
 import asunit.framework.TestCase;
 
 import sk.prasa.webapis.picasa.*;
+import sk.prasa.webapis.picasa.events.*;
 import sk.prasa.webapis.picasa.core.*;
 
 class sk.prasa.webapis.picasa.tests.PicasaServiceTest extends TestCase
 {
 	private var className:String = "PicasaServiceTest";
-	private var instance:PicasaService;
+	private var service:PicasaService;
 	private var xmlData:TestCaseXml;
 
 	public function PicasaServiceTest(testMethod:String) {
 		super(testMethod);
 	}
-	
-	/*public function run():Void {
-		xmlData = new TestCaseXml("pathToYourXmlFile.xml", this);
-	}*/
-
-	/*public function onXmlLoaded(node:XMLNode):Void {
-		super.run();
-	}*/
 
 	public function setUp():Void {
-		//var data:XMLNode = xmlData.cloneNode(true);
-		instance = new PicasaService();
+		service = new PicasaService();
 	}
 
 	public function tearDown():Void {
-		delete instance;
+		delete service;
 	}
 
 	public function testInstantiated():Void {
-		assertTrue("PicasaService instantiated", instance instanceof PicasaService);
+		assertTrue("PicasaService instantiated", service instanceof PicasaService);
 	}
 
-	/*public function test():Void {
-		assertTrue("failing test", false);
-	}*/
-
-	/*public function testAdd():Void
-	{
-		var result:Number = instance.add(2,3);
-		assertTrue("Expected:5 Received:"+result, result==5);
-	}*/
-	
 	public function test_api_key():Void
 	{
-		assertUndefined("api_key is "+instance.api_key+", picasa doesn't use api_key right now!", instance.api_key);
+		assertUndefined("api_key is "+service.api_key+", picasa doesn't use api_key right now!", service.api_key);
 
 		/*
 		assertTrue(msg:Object, assertion:Boolean)
@@ -67,11 +49,11 @@ class sk.prasa.webapis.picasa.tests.PicasaServiceTest extends TestCase
 	
 	public function test_core_methods():Void
 	{
-		assertTrue("Auth not initialized", instance.auth instanceof Auth);
-		assertTrue("Photos not initialized", instance.photos instanceof Photos);
-		assertTrue("Albums not initialized", instance.albums instanceof Albums);
-		assertTrue("Tags not initialized", instance.tags instanceof Tags);
-		assertTrue("Comments not initialized", instance.comments instanceof Comments);
-		assertTrue("Community not initialized", instance.community instanceof Community);
+		assertTrue("Auth not initialized", service.auth instanceof Auth);
+		assertTrue("Photos not initialized", service.photos instanceof Photos);
+		assertTrue("Albums not initialized", service.albums instanceof Albums);
+		assertTrue("Tags not initialized", service.tags instanceof Tags);
+		assertTrue("Comments not initialized", service.comments instanceof Comments);
+		assertTrue("Community not initialized", service.community instanceof Community);
 	}
 }

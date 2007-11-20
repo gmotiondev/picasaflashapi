@@ -5,9 +5,11 @@ import sk.prasa.webapis.picasa.Base;
 import sk.prasa.webapis.picasa.GPhoto;
 import sk.prasa.webapis.picasa.Geo;
 import sk.prasa.webapis.picasa.KindType;
+import sk.prasa.webapis.picasa.User;
 
 class sk.prasa.webapis.picasa.Album extends Base
 {
+	private var __user:User;
 	private var __gphoto:GPhoto;
 	private var __geo:Geo;
 	// TODO: add open search VO
@@ -19,6 +21,16 @@ class sk.prasa.webapis.picasa.Album extends Base
 		
 		__gphoto = new GPhoto(o, KindType.ALBUM);
 		__geo = new Geo(o);
+	}
+	
+	public function get user():User
+	{
+		return __user;
+	}
+	
+	public function set user(v:User):Void
+	{
+		__user = v;
 	}
 	
 	public function get gphoto():GPhoto
