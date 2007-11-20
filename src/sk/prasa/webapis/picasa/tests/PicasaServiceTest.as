@@ -3,7 +3,9 @@
  */
 import asunit.framework.TestCaseXml;
 import asunit.framework.TestCase;
-import sk.prasa.webapis.picasa.PicasaService;
+
+import sk.prasa.webapis.picasa.*;
+import sk.prasa.webapis.picasa.core.*;
 
 class sk.prasa.webapis.picasa.tests.PicasaServiceTest extends TestCase
 {
@@ -36,9 +38,9 @@ class sk.prasa.webapis.picasa.tests.PicasaServiceTest extends TestCase
 		assertTrue("PicasaService instantiated", instance instanceof PicasaService);
 	}
 
-	public function test():Void {
+	/*public function test():Void {
 		assertTrue("failing test", false);
-	}
+	}*/
 
 	/*public function testAdd():Void
 	{
@@ -48,7 +50,7 @@ class sk.prasa.webapis.picasa.tests.PicasaServiceTest extends TestCase
 	
 	public function test_api_key():Void
 	{
-		assertNotUndefined("api_key is "+instance.api_key+", picasa doesn't use api_key right now!", instance.api_key);
+		assertUndefined("api_key is "+instance.api_key+", picasa doesn't use api_key right now!", instance.api_key);
 
 		/*
 		assertTrue(msg:Object, assertion:Boolean)
@@ -61,5 +63,15 @@ class sk.prasa.webapis.picasa.tests.PicasaServiceTest extends TestCase
 		assertNotUndefined(msg:Object, assertion:Object)
 		fail( userMessage:String )
 		*/
+	}
+	
+	public function test_core_methods():Void
+	{
+		assertTrue("Auth not initialized", instance.auth instanceof Auth);
+		assertTrue("Photos not initialized", instance.photos instanceof Photos);
+		assertTrue("Albums not initialized", instance.albums instanceof Albums);
+		assertTrue("Tags not initialized", instance.tags instanceof Tags);
+		assertTrue("Comments not initialized", instance.comments instanceof Comments);
+		assertTrue("Community not initialized", instance.community instanceof Community);
 	}
 }

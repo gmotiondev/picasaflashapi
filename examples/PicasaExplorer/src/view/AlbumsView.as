@@ -121,7 +121,7 @@ class view.AlbumsView extends MovieClipHelper
 	{
 		var tAlbumid:String = event.node.attributes.data;
 		
-		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu",tAlbumid));
+		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("picasaflashapi",tAlbumid));
 	}
 	
 	private function onTreeChange(event:Object)

@@ -115,11 +115,19 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 	{
 		var tRes:Array = [];
 		
-		for(var a:Number = 0; a < o.entry.length; a++)
+		if(o.entry instanceof Array)
 		{
-			var tPhoto:Photo = new Photo(o.entry[a]);
-				tPhoto.album = new Album(o); 
-			tRes.push(tPhoto);
+			for(var a:Number = 0; a < o.entry.length; a++)
+			{
+				var tPhoto:Photo = new Photo(o.entry[a]);
+					tPhoto.album = new Album(o); 
+				tRes.push(tPhoto);
+			}
+		} else
+		{
+			var tSinglePhoto:Photo = new Photo(o.entry);
+				tSinglePhoto.album = new Album(o); 
+			tRes.push(tSinglePhoto);
 		}
 		
 		// o should be a parsed xml to object
@@ -130,11 +138,18 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 	{
 		var tRes:Array = [];
 		
-		for(var a:Number = 0; a < o.entry.length; a++)
+		if(o.entry instanceof Array)
 		{
-			var tAlbum:Album = new Album(o.entry[a]);
-				//tPhoto.album = new Album(o); 
-			tRes.push(tAlbum);
+			for(var a:Number = 0; a < o.entry.length; a++)
+			{
+				var tAlbum:Album = new Album(o.entry[a]);
+					//tPhoto.album = new Album(o); 
+				tRes.push(tAlbum);
+			}
+		} else
+		{
+			var tSingleAlbum:Album = new Album(o.entry);
+			tRes.push(tSingleAlbum);
 		}
 		
 		// o should be a parsed xml to object

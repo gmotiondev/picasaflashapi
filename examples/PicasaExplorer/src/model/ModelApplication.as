@@ -33,7 +33,7 @@ class model.ModelApplication extends Model
 		service = new PicasaService();
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 		
-		EventBroadcaster.getInstance().dispatchEvent(new AlbumsGetEvent("thisispinkfu"));
+		EventBroadcaster.getInstance().dispatchEvent(new AlbumsGetEvent("picasaflashapi"));
 	}
 	
 	public function dispatch_change(p:String,d:Object):Void

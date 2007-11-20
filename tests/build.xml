@@ -20,7 +20,7 @@
 	<mtasc 	src="${src.dir}/Application.as"
 			classpath="${src.dir}:${picasa.dir}:${asunit.dir}"
 			swf="${bin.dir}/Application.swf" version="${version}"
-			main="true" wimp="true" trace="Log.addMessage"
+			main="true" wimp="true" trace="asunit.runner.BaseTestRunner.trace"
 			header="${width}:${height}:${framerate}:${bgcolor}"/>
 	</target>
 </project>
