@@ -2,7 +2,9 @@
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import sk.prasa.webapis.picasa.Album;
+import sk.prasa.webapis.picasa.Comment;
 import sk.prasa.webapis.picasa.Photo;
+import sk.prasa.webapis.picasa.Tag;
 
 import sk.prasa.webapis.picasa.PicasaService;
 import sk.prasa.webapis.picasa.PicasaError;
@@ -126,9 +128,13 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 			}
 		} else
 		{
-			var tSinglePhoto:Photo = new Photo(o.entry);
-				tSinglePhoto.album = new Album(o); 
-			tRes.push(tSinglePhoto);
+			// there are no photos?
+			if(o.entry != undefined)
+			{
+				var tSinglePhoto:Photo = new Photo(o.entry);
+					tSinglePhoto.album = new Album(o); 
+				tRes.push(tSinglePhoto);
+			}
 		}
 		
 		// o should be a parsed xml to object
@@ -149,15 +155,69 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 			}
 		} else
 		{
-			var tSingleAlbum:Album = new Album(o.entry);
-				tSingleAlbum.user = new User(o);
-			tRes.push(tSingleAlbum);
+			// there are no albums?
+			if(o.entry != undefined)
+			{
+				var tSingleAlbum:Album = new Album(o.entry);
+					tSingleAlbum.user = new User(o);
+				tRes.push(tSingleAlbum);
+			}
 		}
 		
 		// o should be a parsed xml to object
 		return tRes;
 	}
 	
+	public static function parseCommentList(o:Object):Array
+	{
+		var tRes:Array = [];
+		// there is more than one entry
+		if(o.entry instanceof Array)
+		{
+			for(var a:Number = 0; a < o.entry.length; a++)
+			{
+				var tComment:Comment = new Comment(o.entry[a]);
+				
+				tRes.push(tComment);
+			}
+		} else
+		{
+			// there are no comments?
+			if(o.entry != undefined)
+			{
+				var tSingleComment:Comment = new Comment(o.entry);
+				tRes.push(tSingleComment);
+			}
+		}
+		
+		return tRes;
+	}
+	
+	public static function parseTagList(o:Object):Array
+	{
+		var tRes:Array = [];
+		
+		// there is more than one tag
+		if(o.entry instanceof Array)
+		{
+			for(var a:Number = 0; a < o.entry.length; a++)
+			{
+				var tTag:Tag = new Tag(o.entry[a]);
+				tRes.push(tTag);
+			}
+		} else
+		{
+			// there are no tags?
+			if(o.entry != undefined)
+			{
+				var tSingleTag:Tag = new Tag(o.entry);
+				tRes.push(tSingleTag);
+			}
+		}
+		
+		return tRes;
+	}
+		
 	public static function mergeUrlParams(service:PicasaService,request:UrlParams):UrlParams
 	{
 		// request params have priority before service params

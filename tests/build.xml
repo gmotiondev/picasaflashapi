@@ -2,13 +2,13 @@
 
 <project name="PicasaTestRunner" default="compile" basedir=".">
 
-	<property name="as2ant.dir" location="h:/tools/as2ant/bin"/>
+	<property name="as2ant.dir" location="c:/tools/as2ant/bin"/>
 	<taskdef name="mtasc" classname="org.as2lib.ant.Mtasc" classpath="${as2ant.dir}"/>
 
 	<property name="src.dir" location="."/>
 	<property name="bin.dir" location="."/>
 	<property name="picasa.dir" location="../src"/>
-	<property name="asunit.dir" location="h:\Program Files\AsUnit\framework\as25\"/>
+	<property name="asunit.dir" location="c:\Program Files\AsUnit\framework\as25\"/>
 
 	<property name="width" value="800"/>
 	<property name="height" value="600"/>

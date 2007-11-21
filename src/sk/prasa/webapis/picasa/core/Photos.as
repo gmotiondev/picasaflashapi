@@ -25,7 +25,6 @@ class sk.prasa.webapis.picasa.core.Photos
 	// scheme: http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=photo
 	// normal: http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5094406297232552993
 	// private: http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/4997359002061176849?kind=photo&authkey=jYNMghEYgL0
-	// by tags: http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897?tag=resurgere
 	public function list(userid:String, albumid:String, params:UrlParams):Void
 	{
 		var tSuffix:String = ""+userid+"/albumid/"+albumid;
@@ -47,13 +46,31 @@ class sk.prasa.webapis.picasa.core.Photos
 											tResultEvent,	
 											MethodGroupHelper.parsePhotoList);	
 	}
-	
-	public function list_by_tag(userid:String, albumid:String, tag:String, params:Array):Void
+	// by tags: http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897?tag=resurgere
+	public function list_by_tag(userid:String, albumid:String, tag:String, params:UrlParams):Void
 	{
+		var tSuffix:String = ""+userid+"/albumid/"+albumid;
 		
+		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service, params);
+			tUrlParams.kind = "photo";	// overwrite!
+			tUrlParams.tag = tag;
+			tUrlParams.q = null;
+		
+		MethodGroupHelper.invokeMethod(__service, Delegate.create(this, list_by_tag_complete), false, tSuffix, tUrlParams);		
 	}
 	
 	private function list_by_tag_complete(event:XMLToObjectEvent):Void
 	{
+		var tResultEvent:PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.PHOTOS_GET_LIST_BY_TAG);
+
+		MethodGroupHelper.processAndDispatch(__service, event.getObject(), tResultEvent, MethodGroupHelper.parsePhotoList);
 	}
+	
+	//public function single(userid:String, albumid:String, photoid:String, params:UrlParams):Void
+	//{
+	//}
+	
+	//private function single_complete(event:XMLToObjectEvent):Void
+	//{
+	//}
 }

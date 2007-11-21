@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import asunit.framework.TestCaseXml;
@@ -8,14 +8,14 @@ import sk.prasa.webapis.picasa.*;
 import sk.prasa.webapis.picasa.events.*;
 import sk.prasa.webapis.picasa.core.*;
 
-class sk.prasa.webapis.picasa.tests.photos.PhotosListByTag extends TestCase
+class sk.prasa.webapis.picasa.tests.comments.CommentsPhoto extends TestCase
 {
-	private var className:String = "PhotosListByTag";
+	private var className:String = "CommentsPhoto";
 	private var service:PicasaService;
-	private var xmlData:Albums;
+	private var xmlData:Comments;
 	private var event:PicasaResultEvent;
 	
-	public function PhotosListByTag(testMethod:String)
+	public function CommentsPhoto(testMethod:String)
 	{
 		super(testMethod);
 	}
@@ -24,11 +24,11 @@ class sk.prasa.webapis.picasa.tests.photos.PhotosListByTag extends TestCase
 	{
 		service = new PicasaService();
 		
-		service.addEventListener(PicasaResultEvent.PHOTOS_GET_LIST_BY_TAG, this);
-		service.photos.list_by_tag("picasaflashapi","5134889498689547361","even");
+		service.addEventListener(PicasaResultEvent.COMMENTS_GET_PHOTO, this);
+		service.comments.photo("picasaflashapi","5134889498689547361","5134889597473795202");
 	}
 
-	private function photosGetListByTag(evt:PicasaResultEvent):Void
+	private function commentsGetPhoto(evt:PicasaResultEvent):Void
 	{
 		event = evt;
 		
@@ -51,14 +51,14 @@ class sk.prasa.webapis.picasa.tests.photos.PhotosListByTag extends TestCase
 	
 	public function test_success():Void
 	{
-		assertTrue("photo list by tag failed: "+event.error.message, event.success);
+		assertTrue("comments photo failed: "+event.error.message, event.success);
 	}
 	
 	public function test_data():Void
 	{
 		for(var a:Number = 0; a < event.data.length; a++)
 		{
-			assertTrue("is even? "+event.data[a].media.keywords[0], event.data[a].media.keywords[0] == "even");
+			assertNotUndefined("comment ("+event.data[a].content+") for photo "+event.data[a].gphoto.photoid+" is undefined", event.data[a].content);
 		}
 	}
 }
