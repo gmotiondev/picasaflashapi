@@ -8,6 +8,8 @@ import com.bourre.data.libs.XMLToObjectEvent;
 [Event(name="tagsGetAlbum", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
 [Event(name="tagsGetPhoto", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
 
+// http://picasaweb.google.com/data/entry/api/user/thisispinkfu/tag/lomo
+
 class sk.prasa.webapis.picasa.core.Tags
 {
 	private var __service:PicasaService;
@@ -17,7 +19,8 @@ class sk.prasa.webapis.picasa.core.Tags
 		__service = service;
 	}
 	
-	// http://picasaweb.google.com/data/feed/api/user/userID?kind=tag
+	// list tags for specified user
+	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu?kind=tag
 	public function user(userid:String):Void
 	{
 	}
@@ -26,7 +29,8 @@ class sk.prasa.webapis.picasa.core.Tags
 	{
 	}
 	
-	// http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=tag
+	// list tags for specified album
+	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897?kind=tag
 	public function album(userid:String,albumid:String):Void
 	{
 	}
@@ -34,8 +38,9 @@ class sk.prasa.webapis.picasa.core.Tags
 	private function album_complete(event:XMLToObjectEvent):Void
 	{
 	}
-	
-	// http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID/photoid/photoID?kind=tag
+
+	// list tags for specified photo
+	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897/photoid/5110368147163787298?kind=tag
 	public function photo(userid:String,albumid:String,photoid:String):Void
 	{
 	}
