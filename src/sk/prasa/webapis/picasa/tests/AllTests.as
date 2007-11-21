@@ -4,6 +4,7 @@ import sk.prasa.webapis.picasa.tests.albums.*;
 import sk.prasa.webapis.picasa.tests.photos.*;
 import sk.prasa.webapis.picasa.tests.comments.*;
 import sk.prasa.webapis.picasa.tests.tags.*;
+import sk.prasa.webapis.picasa.tests.community.*;
 
 class sk.prasa.webapis.picasa.tests.AllTests extends TestSuite
 {
@@ -25,6 +26,7 @@ class sk.prasa.webapis.picasa.tests.AllTests extends TestSuite
 		addTest(new TagsAlbum());
 		addTest(new TagsPhoto());
 
+		addTest(new CommunitySearch());
 		// addTest(new PicasaErrorTest());
 		// addTest(new PicasaVOTest());
 	}

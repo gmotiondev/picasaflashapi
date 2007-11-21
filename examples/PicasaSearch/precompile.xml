@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<movie width="640" height="480" framerate="31">
+<movie width="768" height="576" framerate="25">
 	<background color="#000000"/>
 	<frame>
 		<library>
-			<!--<clip id="l" import="assets/png/l.png"/>-->
+			<font name="kroeger" import="assets/ttf/kr_08_53.ttf"/>
+			<clip id="l" import="assets/png/l.png"/>
+			<clip id="r" import="assets/png/r.png"/>
+			<clip id="c" import="assets/png/c.png"/>
 		</library>
 	</frame>
 </movie>

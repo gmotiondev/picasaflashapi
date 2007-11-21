@@ -28,7 +28,7 @@ class sk.prasa.webapis.picasa.core.Tags
 	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu?kind=tag
 	public function user(userid:String):Void
 	{
-		var tSuffix:String = ""+userid;
+		var tSuffix:String = "user/"+userid;
 		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service);
 			tUrlParams.kind = "tag";	// overwrite!
 			tUrlParams.tag = null;
@@ -48,7 +48,7 @@ class sk.prasa.webapis.picasa.core.Tags
 	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897?kind=tag
 	public function album(userid:String,albumid:String):Void
 	{
-		var tSuffix:String = ""+userid+"/albumid/"+albumid;
+		var tSuffix:String = "user/"+userid+"/albumid/"+albumid;
 		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service);
 			tUrlParams.kind = "tag";	// overwrite!
 			tUrlParams.tag = null;
@@ -69,7 +69,7 @@ class sk.prasa.webapis.picasa.core.Tags
 	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897/photoid/5110368147163787298?kind=tag
 	public function photo(userid:String,albumid:String,photoid:String):Void
 	{
-		var tSuffix:String = ""+userid+"/albumid/"+albumid+"/photoid/"+photoid;
+		var tSuffix:String = "user/"+userid+"/albumid/"+albumid+"/photoid/"+photoid;
 		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service);
 			tUrlParams.kind = "tag";	// overwrite!
 			tUrlParams.tag = null;

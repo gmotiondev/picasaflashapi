@@ -27,7 +27,7 @@ class sk.prasa.webapis.picasa.core.Photos
 	// private: http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/4997359002061176849?kind=photo&authkey=jYNMghEYgL0
 	public function list(userid:String, albumid:String, params:UrlParams):Void
 	{
-		var tSuffix:String = ""+userid+"/albumid/"+albumid;
+		var tSuffix:String = "user/"+userid+"/albumid/"+albumid;
 		
 		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service, params);
 			tUrlParams.kind = "photo";	// overwrite!
@@ -49,7 +49,7 @@ class sk.prasa.webapis.picasa.core.Photos
 	// by tags: http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897?tag=resurgere
 	public function list_by_tag(userid:String, albumid:String, tag:String, params:UrlParams):Void
 	{
-		var tSuffix:String = ""+userid+"/albumid/"+albumid;
+		var tSuffix:String = "user/"+userid+"/albumid/"+albumid;
 		
 		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service, params);
 			tUrlParams.kind = "photo";	// overwrite!

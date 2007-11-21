@@ -25,7 +25,7 @@ class sk.prasa.webapis.picasa.core.Albums
 	// http://picasaweb.google.com/data/feed/api/user/userID?kind=album
 	public function list(userid:String, params:UrlParams):Void
 	{
-		var tSuffix:String = ""+userid;
+		var tSuffix:String = "user/"+userid;
 		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service, params);
 			tUrlParams.kind = "album";	// overwrite!
 			tUrlParams.tag = null;
@@ -48,7 +48,7 @@ class sk.prasa.webapis.picasa.core.Albums
 	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu?kind=photo&tag=resurgere
 	public function list_by_tag(userid:String, tag:String, params:UrlParams):Void
 	{
-		var tSuffix:String = ""+userid;
+		var tSuffix:String = "user/"+userid;
 		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service, params);
 			tUrlParams.kind = "photo";	// overwrite!
 			tUrlParams.tag = tag;
@@ -70,7 +70,7 @@ class sk.prasa.webapis.picasa.core.Albums
 	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu?kind=photo&q=resurgere
 	public function search(userid:String, query:String, params:UrlParams):Void
 	{
-		var tSuffix:String = ""+userid;
+		var tSuffix:String = "user/"+userid;
 		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service, params);
 			tUrlParams.kind = "photo";	// overwrite!
 			tUrlParams.tag = null;

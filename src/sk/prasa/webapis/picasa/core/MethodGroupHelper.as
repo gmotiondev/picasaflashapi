@@ -217,7 +217,12 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 		
 		return tRes;
 	}
-		
+
+	public static function parseCommunityPhotoList(o:Object):Array
+	{
+		return MethodGroupHelper.parsePhotoList(o);
+	}
+	
 	public static function mergeUrlParams(service:PicasaService,request:UrlParams):UrlParams
 	{
 		// request params have priority before service params

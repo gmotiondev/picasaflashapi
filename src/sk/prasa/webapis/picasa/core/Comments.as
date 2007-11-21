@@ -26,7 +26,7 @@ class sk.prasa.webapis.picasa.core.Comments
 	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu?kind=comment
 	public function user(userid:String):Void
 	{
-		var tSuffix:String = ""+userid;
+		var tSuffix:String = "user/"+userid;
 		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service);
 			tUrlParams.kind = "comment";	// overwrite!
 			tUrlParams.tag = null;
@@ -47,7 +47,7 @@ class sk.prasa.webapis.picasa.core.Comments
 	// http://www.prasa.sk/proxy.php?gws_path=http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897?kind=comment
 	public function album(userid:String, albumid:String):Void
 	{
-		var tSuffix:String = ""+userid+"/albumid/"+albumid;
+		var tSuffix:String = "user/"+userid+"/albumid/"+albumid;
 		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service);
 			tUrlParams.kind = "comment";	// overwrite!
 			tUrlParams.tag = null;
@@ -67,7 +67,7 @@ class sk.prasa.webapis.picasa.core.Comments
 	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu/album/SampleAlbum/photoid/5094407740341564914?kind=comment
 	public function photo(userid:String, albumid:String, photoid:String):Void
 	{	
-		var tSuffix:String = ""+userid+"/albumid/"+albumid+"/photoid/"+photoid;
+		var tSuffix:String = "user/"+userid+"/albumid/"+albumid+"/photoid/"+photoid;
 		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service);
 			tUrlParams.kind = "comment";	// overwrite!
 			tUrlParams.tag = null;
