@@ -1,4 +1,4 @@
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.BasicEvent;
 
@@ -29,7 +29,7 @@ class Application extends MovieClipHelper
 		Key.addListener(this);
 		
 		Controller.getInstance().initialize();
-		
+			
 		var view_l:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, mc.createEmptyMovieClip(ViewList.LOADING_BAR, 10010));
 		var view_t:ThumbHolder = new ThumbHolder(ViewList.THUMB_HOLDER,mc.createEmptyMovieClip(ViewList.THUMB_HOLDER,5));
 		var view_n:Navigation = new Navigation(ViewList.NAVIGATION,mc.createEmptyMovieClip(ViewList.NAVIGATION,20));
