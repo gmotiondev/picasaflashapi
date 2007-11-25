@@ -36,6 +36,7 @@ class view.ThumbHolder extends MovieClipHelper implements ILibListener
 	
 	public function onLoadInit(e:LibEvent):Void
 	{	
+		grid.draw();
 	}
 	
 	public function onLoadProgress(e:LibEvent):Void

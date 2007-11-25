@@ -29,6 +29,8 @@ class command.GetPhotosCommand implements Command, IResponder
 	
 	public function result(data:Array):Void
 	{
+		model.photos.init();
+		trace("found "+data.length+" images.");
 		for(var a:Number = 0; a < data.length; a++)
 		{
 			var tPhoto:Photo = data[a];

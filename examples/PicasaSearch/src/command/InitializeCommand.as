@@ -30,7 +30,7 @@ class command.InitializeCommand implements Command
 		for(var a:Number = 0; a < model.photos.length; a++)
 		{
 			var tItem:Photo = model.photos[a];			
-			var tTC:MovieClip = tThumbHolder.view.createEmptyMovieClip("p_"+tItem.gphoto.id, tThumbHolder.view.getNextHighestDepth());
+			var tTC:MovieClip = tThumbHolder.view.createEmptyMovieClip("p_"+tItem.gphoto.id, (a+100));
 			var tThumbContainer:ThumbContainer = new ThumbContainer(tItem.gphoto.id, tTC, tItem.summary);
 				
 			tThumbHolder.grid.addChild(tThumbContainer.view);

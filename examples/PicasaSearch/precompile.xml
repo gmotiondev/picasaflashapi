@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <movie width="768" height="576" framerate="25">
-	<background color="#000000"/>
+	<background color="#333333"/>
 	<frame>
 		<library>
 			<font name="kroeger" import="assets/ttf/kr_08_53.ttf"/>

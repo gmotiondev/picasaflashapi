@@ -28,11 +28,11 @@ class model.ModelApplication extends Model
 		photos = new Photos();
 
 		service = new PicasaService();
-		service.max_results = 200;
+		service.max_results = 192;
 		service.thumbsize = 48;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 
-		EventBroadcaster.getInstance().dispatchEvent(new GetPhotosEvent("lomo"));
+		// EventBroadcaster.getInstance().dispatchEvent(new GetPhotosEvent("lomo"));
 	}
 	
 	private function onServiceError(e:IEvent):Void
