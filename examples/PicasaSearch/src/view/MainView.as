@@ -7,6 +7,7 @@ import be.netdust.visual.containers.HBox;
 import be.netdust.visual.containers.Panel;
 import be.netdust.visual.object.TextBox;
 import be.netdust.visual.object.Button;
+import be.netdust.visual.object.Label;
 import be.netdust.visual.layout.styles.Style;
 
 import com.bourre.commands.Delegate;
@@ -67,6 +68,20 @@ class view.MainView extends MovieClipHelper
 			}
 	}
 	
+	private function onNoneFound(e):Void
+	{
+		var tAppView:ApplicationView = new ApplicationView();
+			tAppView.setUI(view.createEmptyMovieClip("nonefoundholder",3));
+		
+		var tLabel:Label = new Label("None found!");
+		var tOKButton:Button = new Button("OK");
+		
+			tAppView.addChild(tLabel);
+			tAppView.addChild(tOKButton);
+			
+			tAppView.create();
+	}
+	
 	private function onClick(e):Void
 	{
 		EventBroadcaster.getInstance().dispatchEvent(new GetPhotosEvent(escape(__q)));
@@ -74,8 +89,7 @@ class view.MainView extends MovieClipHelper
 	
 	private function onChanged(e):Void
 	{
-		__q = escape(e.text);
-		trace("got changed to "+__q);
+		__q = e.text;
 	}
 	
 	private function centerize():Void

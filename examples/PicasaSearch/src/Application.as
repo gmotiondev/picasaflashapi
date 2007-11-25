@@ -9,18 +9,12 @@ import model.*;
  */
 class Application extends MovieClipHelper
 {
-	/**
-	 *	Constructor
-	 */
 	private function Application(mc:MovieClip)
 	{
 		super(ViewList.APPLICATION, mc);
 		initialize(mc);
 	}
 	
-	/**
-	 *	initialize point
-	 */	
 	private function initialize(mc:MovieClip):Void
 	{
 		Stage.addListener(this);
