@@ -20,6 +20,9 @@ class command.InitializeCommand implements Command
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 
+		var tMainView = MovieClipHelper.getMovieClipHelper(ViewList.MAIN_VIEW);
+			tMainView.setSearchResult("Found "+model.photos.length+" entries.");
+			
 		var tThumbHolder = MovieClipHelper.getMovieClipHelper(ViewList.THUMB_HOLDER);
 			tThumbHolder.grid = new view.layout.GridLayout(12, 16);
 			tThumbHolder.grid.addListener(tThumbHolder);

@@ -35,6 +35,26 @@ class Application extends MovieClipHelper
 			model.initialize();
 	}
 	
+	public function onResize():Void
+	{
+		//EventBroadcaster.getInstance().broadcastEvent(new ResizeEvent());
+	}
+	
+	public function onKeyDown():Void
+	{
+		var code:Number = Key.getCode() ;
+		switch (code)
+		{
+			case Key.RIGHT :
+				// EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(Controller.PHOTO_GET_NEXT_EVENT));
+				break ;
+			case Key.LEFT :
+				// EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(Controller.PHOTO_GET_PREV_EVENT));
+				break ;
+			default: break;
+		}
+	}
+	
 	public static function main(mc:MovieClip) : Void 
 	{
 		Stage.align = "TL";

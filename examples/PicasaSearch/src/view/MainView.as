@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.visual.MovieClipHelper;
@@ -8,6 +8,8 @@ import be.netdust.visual.containers.Panel;
 import be.netdust.visual.object.TextBox;
 import be.netdust.visual.object.Button;
 import be.netdust.visual.object.Label;
+import be.netdust.visual.object.Description;
+import be.netdust.visual.tools.ToolTip;
 import be.netdust.visual.layout.styles.Style;
 
 import com.bourre.commands.Delegate;
@@ -68,18 +70,13 @@ class view.MainView extends MovieClipHelper
 			}
 	}
 	
-	private function onNoneFound(e):Void
+	private function setSearchResult(aResultString:String):Void
 	{
 		var tAppView:ApplicationView = new ApplicationView();
-			tAppView.setUI(view.createEmptyMovieClip("nonefoundholder",3));
-		
-		var tLabel:Label = new Label("None found!");
-		var tOKButton:Button = new Button("OK");
-		
-			tAppView.addChild(tLabel);
-			tAppView.addChild(tOKButton);
-			
+			tAppView.setUI(view.createEmptyMovieClip("resultholder",3));
+	
 			tAppView.create();
+			
 	}
 	
 	private function onClick(e):Void

@@ -42,6 +42,6 @@ class command.GetPhotosCommand implements Command, IResponder
 	
 	public function fault(error:PicasaError):Void
 	{
-		trace("PhotosGetCommand failed: "+error.message);
+		trace("GetPhotosCommand failed: "+error.message);
 	}
 }
