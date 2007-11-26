@@ -11,6 +11,7 @@ import be.netdust.visual.object.Label;
 import be.netdust.visual.object.Description;
 import be.netdust.visual.tools.ToolTip;
 import be.netdust.visual.layout.styles.Style;
+import be.netdust.visual.UICore;
 
 import com.bourre.commands.Delegate;
 import com.bourre.events.EventType;
@@ -41,12 +42,11 @@ class view.MainView extends MovieClipHelper
 			tSearchBox.width = 300;
 			tSearchBox.height = 28;
 		
-		
 		var tTextAreaStyle:Style = Style.getStyle("TextBox"); 
 			tTextAreaStyle.setFormat("fu", {font:"Tahoma", multiLine: false, size:18, color: 0x000000, bold:false, underline:false });
 			
 		var tSubmitButton:Button = new Button("Search");
-			tSubmitButton.addEventListener(new EventType("onClick"),this);
+			tSubmitButton.addEventListener(new EventType("onClick"),this);			
 
 			tHBox.addChild(tSearchBox);
 			tHBox.addChild(tSubmitButton);
@@ -72,10 +72,11 @@ class view.MainView extends MovieClipHelper
 	
 	private function setSearchResult(aResultString:String):Void
 	{
-		var tAppView:ApplicationView = new ApplicationView();
-			tAppView.setUI(view.createEmptyMovieClip("resultholder",3));
-	
-			tAppView.create();
+		trace("setSearchResult("+aResultString+")");
+		
+//		var tAppView:ApplicationView = new ApplicationView();
+//			tAppView.setUI(view.createEmptyMovieClip("resultholder",3));
+//			tAppView.create();
 			
 	}
 	
