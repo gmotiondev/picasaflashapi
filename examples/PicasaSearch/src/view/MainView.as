@@ -32,9 +32,10 @@ class view.MainView extends MovieClipHelper
 		EventBroadcaster.getInstance().dispatchEvent(new GetPhotosEvent(escape(e.getString())));
 	}
 	
-	private function setSearchResult(aResultString:String):Void
+	private function setSearchResult(aResults:String):Void
 	{
-		trace("setSearchResult("+aResultString+")");
+		trace("setSearchResult("+aResults+")");
+		__dialog.displayResults(aResults);
 	}
 	
 	private function centerize():Void

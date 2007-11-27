@@ -6,6 +6,7 @@ import sk.prasa.webapis.picasa.GPhoto;
 import sk.prasa.webapis.picasa.Geo;
 import sk.prasa.webapis.picasa.KindType;
 import sk.prasa.webapis.picasa.User;
+import sk.prasa.webapis.picasa.OpenSearch;
 
 class sk.prasa.webapis.picasa.Album extends Base
 {
@@ -13,7 +14,7 @@ class sk.prasa.webapis.picasa.Album extends Base
 	private var __gphoto:GPhoto;
 	private var __geo:Geo;
 	// TODO: add open search VO
-	//private var __opensearch:OpenSearch;
+	private var __opensearch:OpenSearch;
 	
 	public function Album(o:Object)
 	{
@@ -21,6 +22,7 @@ class sk.prasa.webapis.picasa.Album extends Base
 		
 		__gphoto = new GPhoto(o, KindType.ALBUM);
 		__geo = new Geo(o);
+		__opensearch = new OpenSearch(o);
 	}
 	
 	public function get user():User
@@ -53,9 +55,19 @@ class sk.prasa.webapis.picasa.Album extends Base
 		__geo = g;
 	}
 	
+	public function get openSearch():OpenSearch
+	{
+		return __opensearch;
+	}
+	
+	public function set openSearch(v:OpenSearch):Void
+	{
+		__opensearch = v;
+	}
+	
 	public function toString():String
 	{
-		return "[Album gphoto="+gphoto.toString()+", geo="+geo.toString()+"]"
+		return "[Album gphoto="+gphoto.toString()+", geo="+geo.toString()+", opensearch="+openSearch.toString()+"]"
 	}
 }
 

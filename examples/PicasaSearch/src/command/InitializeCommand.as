@@ -11,40 +11,38 @@ import sk.prasa.webapis.picasa.Photo;
 
 import model.*;
 import view.*;
+import control.InitializeEvent;
 
 class command.InitializeCommand implements Command
 {
 	private var model:ModelApplication; 
+	private var __libstack:LibStack;
 	
-	public function execute(e:IEvent):Void
+	public function execute(event:InitializeEvent):Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
-
+		
 		var tMainView = MovieClipHelper.getMovieClipHelper(ViewList.MAIN_VIEW);
-			tMainView.setSearchResult("Found "+model.photos.length+" entries.");
+			tMainView.setSearchResult("Found "+event.totalResults+" photos ("+event.startIndex+" to "+(event.startIndex+(event.totalResults < event.itemsPerPage ? event.totalResults : event.itemsPerPage) - (event.totalResults == 0 ? 0 : 1))+").");
 			
 		var tThumbHolder = MovieClipHelper.getMovieClipHelper(ViewList.THUMB_HOLDER);
-			tThumbHolder.grid = new view.layout.GridLayout(12, 16);
-			tThumbHolder.grid.addListener(tThumbHolder);
+			tThumbHolder.removeAllChildren();
 		
-		var tTLibStack:LibStack = new LibStack();
+		__libstack.clear();
+		__libstack.release();
+		__libstack.removeListener(tThumbHolder);
 		
-			
+		__libstack = new LibStack();
+		__libstack.addListener(tThumbHolder);
+		
 		for(var a:Number = 0; a < model.photos.length; a++)
 		{
 			var tItem:Photo = model.photos[a];			
-			var tTC:MovieClip = tThumbHolder.view.createEmptyMovieClip("p_"+tItem.gphoto.id, (a+100));
-			var tThumbContainer:ThumbContainer = new ThumbContainer(tItem.gphoto.id, tTC, tItem.summary);
-				
-			tThumbHolder.grid.addChild(tThumbContainer.view);
-			tThumbHolder.setTitle(tItem.album.title+" ("+tItem.album.gphoto.numphotos+")");
-
-			model.addListener(tThumbContainer);
-
-			tTLibStack.enqueue(new GraphicLib(tThumbContainer.view, 5), tItem.gphoto.id, tItem.media.thumbnail[0].url);
-			tTLibStack.addListener(tThumbHolder);
+			var tThumbContainer:ThumbContainer = tThumbHolder.addChild(tItem.gphoto.id);
+			
+			__libstack.enqueue(new GraphicLib(tThumbContainer.view, 5), tItem.gphoto.id, tItem.media.thumbnail[0].url);
 		}
-		
-		tTLibStack.execute();
+
+		__libstack.execute();
 	}
 }

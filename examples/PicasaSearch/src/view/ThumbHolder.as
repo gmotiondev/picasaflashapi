@@ -4,39 +4,51 @@ import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
 
 import control.*;
+import view.ThumbContainer;
+import view.layout.GridLayout;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 class view.ThumbHolder extends MovieClipHelper implements ILibListener
 {	
-	public var grid:view.layout.GridLayout;
+	private var __grid:GridLayout;
+	private var __children:Array = [];
 	
 	public function ThumbHolder(aId:String, aC:MovieClip)
 	{
 		super(aId,aC);
 		
 		show();
+		
+		__grid = new GridLayout(12, 16);
 	}
 	
-	public function setTitle(a:String):Void
-	{			
-		var tTF:TextFormat = new TextFormat();
-			tTF.font = "kroeger";
-			tTF.size = 8;
-			tTF.color = 0x808080;
-			
-		view.createTextField("tf_album_title", 2, 0, -20, 320, 20);
-		var tF:TextField = view["tf_album_title"];
-			tF.embedFonts = true;
-			tF.html = true;
-			tF.htmlText = a;
-			tF.setTextFormat(tTF);
+	public function addChild(aID:String):ThumbContainer
+	{
+		var tHolder:MovieClip = view.createEmptyMovieClip("p_"+aID, view.getNextHighestDepth());
+		var tThumb:ThumbContainer = new ThumbContainer(aID, tHolder);
+		
+		__grid.addChild(tHolder);
+		__children.push(tHolder);
+		
+		return tThumb;
+	}
+	
+	public function removeAllChildren():Void
+	{	
+		for(var a:Number = 0; a < __children.length; a++)
+		{
+			__children[a].removeMovieClip();
+		}
+		
+		__grid.reset();
+		__children = [];
 	}
 	
 	public function onLoadInit(e:LibEvent):Void
 	{	
-		grid.draw();
+		__grid.draw();
 	}
 	
 	public function onLoadProgress(e:LibEvent):Void
@@ -46,7 +58,7 @@ class view.ThumbHolder extends MovieClipHelper implements ILibListener
 	
 	public function onLoadComplete(e:LibEvent):Void
 	{	
-		grid.draw();
+		__grid.draw();
 	}
 	
 	public function onTimeOut(e:LibEvent):Void

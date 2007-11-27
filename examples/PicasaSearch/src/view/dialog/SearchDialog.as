@@ -11,7 +11,7 @@ import be.netdust.visual.object.Description;
 import be.netdust.visual.tools.ToolTip;
 import be.netdust.visual.layout.styles.Style;
 import be.netdust.visual.UICore;
-import be.netdust.visual.events.BubbleEvent; 
+import be.netdust.visual.events.*; 
 
 import com.bourre.commands.Delegate;
 import com.bourre.events.EventType;
@@ -19,6 +19,8 @@ import com.bourre.events.StringEvent;
 
 class view.dialog.SearchDialog extends ApplicationView
 {	
+	//TODO: CleanUp please!
+	
 	private var __q:String = "Type to search";
 	private var __searchPanel:Panel;
 	private var __resultPanel:Panel;
@@ -30,14 +32,41 @@ class view.dialog.SearchDialog extends ApplicationView
 		setUI(aHolder.createEmptyMovieClip("app",2));
 		decorate();
 		
-		this.addChild(getSearchPanel());
-		this.create();			
+		var tSearchPanel:Panel = getSearchPanel();
+			tSearchPanel.onFocus = this.onFocus;
+			tSearchPanel.setObserver(this);
+		this.addChild(tSearchPanel);
+
+		this.create();
+
+		//Mouse.addListener(this);
+		Key.addListener(this);
+	}
+	
+	public function displayResults(aResults:String)
+	{		
+		var tResultLabel:Label = Label(__searchPanel.getChild(1));
+			tResultLabel.setLabel(aResults);
+		//this.removeChild(1);
+		//this.addChild(getResultPanel(aResults));
+		//Panel(this.getChild(0)).addChild(getResultPanel(aResults));
+		
+		//this.paint();
 	}
 	
 	private function decorate():Void
 	{
 		var tTextAreaStyle:Style = Style.getStyle("TextBox");
 			tTextAreaStyle.setFormat("fu", {font:"Tahoma", multiLine: false, size:18, color: 0x000000, bold:false, underline:false });
+	}
+	
+	private function getResultPanel(aResult:String):Panel
+	{
+		__resultPanel.destroy();
+		__resultPanel = new Panel("Search results"); 
+		__resultPanel.addChild(new Label(aResult));
+
+		return __resultPanel;
 	}
 	
 	private function getSearchPanel():Panel
@@ -51,16 +80,19 @@ class view.dialog.SearchDialog extends ApplicationView
 			
 		var tSubmitButton:Button = new Button("Search");
 			tSubmitButton.addEventListener(new EventType("onClick"),this);
-
+			
 		var tHBox:HBox = new HBox();
 			tHBox.addChild(tSearchBox);
 			tHBox.addChild(tSubmitButton);
 			
 		__searchPanel.addChild(tHBox);
+		__searchPanel.addChild(new Label(" "));
 		
-		Mouse.addListener(this);
-		Key.addListener(this);
-
+		tSearchBox.setObserver(this);
+		
+		//TODO: 
+		// tSearchBox.setFocus();
+		
 		return __searchPanel;
 	}
 
@@ -77,22 +109,28 @@ class view.dialog.SearchDialog extends ApplicationView
 		this.getUI().stopDrag();
 	}
 	
-	private function onKeyDown(e)
+	private function onKeyDown()
 	{	
 		if(Key.isDown(Key.ENTER))
 		{
-			trace("enter !");
+			onClick();
 		}
 	}
 
-	public function onFocus(e):Void
+	public function onChanged(e)
 	{
-		trace("got focus!")
+		__q = e.getTarget().getTextField().text;
+	}
+	
+	private function onFocus(e:BubbleEvent):Void
+	{
+		var tSource = e.getSource();
+		var tHandle = e.getHandle();
 	}
 	
 	private function onClick(e):Void
 	{
+		displayResults("Searching ...");
 		this.dispatchEvent(new StringEvent(new EventType("onStartSearch"),__q));
-		
 	}
 }

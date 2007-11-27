@@ -90,7 +90,7 @@ class be.netdust.visual.object.TextBox extends Label
 			Key.addListener( this );
 			_labeltf.onChanged = Delegate( this, _checkForValue );
 		}
-		
+		_labeltf.onChanged = Delegate( this, callObserver, "onChanged" );
 		_labeltf.onSetFocus = Delegate( this, callObserver, "onFocus" );
 	};
 	
