@@ -2,26 +2,16 @@
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.visual.MovieClipHelper;
-import be.netdust.visual.containers.ApplicationView;
-import be.netdust.visual.containers.HBox;
-import be.netdust.visual.containers.Panel;
-import be.netdust.visual.object.TextBox;
-import be.netdust.visual.object.Button;
-import be.netdust.visual.object.Label;
-import be.netdust.visual.object.Description;
-import be.netdust.visual.tools.ToolTip;
-import be.netdust.visual.layout.styles.Style;
-import be.netdust.visual.UICore;
-
-import com.bourre.commands.Delegate;
-import com.bourre.events.EventType;
 import com.bourre.events.EventBroadcaster;
+import com.bourre.events.EventType;
+import com.bourre.events.StringEvent;
 
 import control.*;
+import view.dialog.*;
 
 class view.MainView extends MovieClipHelper
 {
-	private var __q:String = "Type to search";
+	private var __dialog:SearchDialog;
 	
 	public function MainView(aID:String, aContainer:MovieClip)
 	{
@@ -32,62 +22,19 @@ class view.MainView extends MovieClipHelper
 	}
 	
 	private function initialize():Void
-	{			 
-		var tAppView:ApplicationView = new ApplicationView();
-			tAppView.setUI(view.createEmptyMovieClip("appholder",2));
-		var tPanel:Panel = new Panel("Search picasaweb");
-		var tHBox:HBox = new HBox();
+	{
+		__dialog = new SearchDialog(view);
+		__dialog.addEventListener(new EventType("onStartSearch"),this);
+	}
 
-		var tSearchBox:TextBox = new TextBox(__q);
-			tSearchBox.width = 300;
-			tSearchBox.height = 28;
-		
-		var tTextAreaStyle:Style = Style.getStyle("TextBox"); 
-			tTextAreaStyle.setFormat("fu", {font:"Tahoma", multiLine: false, size:18, color: 0x000000, bold:false, underline:false });
-			
-		var tSubmitButton:Button = new Button("Search");
-			tSubmitButton.addEventListener(new EventType("onClick"),this);			
-
-			tHBox.addChild(tSearchBox);
-			tHBox.addChild(tSubmitButton);
-			tPanel.addChild(tHBox)
-			tAppView.addChild(tPanel);
-			tAppView.create();
-			
-			tSearchBox.setFocus();
-			tSearchBox.getUI().label.onChanged = Delegate.create(this,onChanged);
-			
-			tPanel.getUI().onMouseDown = function()
-			{
-				if(this.header.hitTest(_root._xmouse,_root._ymouse,true))
-				{
-					this.startDrag();
-				}
-			}
-			tPanel.getUI().onMouseUp = function()
-			{
-				this.stopDrag();
-			}
+	private function onStartSearch(e:StringEvent):Void
+	{
+		EventBroadcaster.getInstance().dispatchEvent(new GetPhotosEvent(escape(e.getString())));
 	}
 	
 	private function setSearchResult(aResultString:String):Void
 	{
 		trace("setSearchResult("+aResultString+")");
-		
-//		var tAppView:ApplicationView = new ApplicationView();
-//			tAppView.setUI(view.createEmptyMovieClip("resultholder",3));
-//			tAppView.create();
-			
-	}
-	
-	private function onClick(e):Void
-	{
-		EventBroadcaster.getInstance().dispatchEvent(new GetPhotosEvent(escape(__q)));
-	}
-	
-	private function onChanged(e):Void
-	{
-		__q = e.text;
 	}
 	
 	private function centerize():Void
