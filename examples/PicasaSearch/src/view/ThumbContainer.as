@@ -1,12 +1,7 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
-import com.bourre.events.EventBroadcaster;
 import com.bourre.visual.MovieClipHelper;
-import com.bourre.commands.Delegate;
-import com.bourre.utils.Geom;
-
-import control.*;
 
 class view.ThumbContainer extends MovieClipHelper
 {
@@ -20,5 +15,20 @@ class view.ThumbContainer extends MovieClipHelper
 		
 		id = aID;
 		title = aTitle;
+	}
+	
+	private function onRollOver():Void
+	{
+		// zoom in and show infos
+	}
+	
+	private function onRollOut():Void
+	{
+		// zoom out and hide infos
+	}
+	
+	private function onRelease():Void
+	{
+		// open browser window with link on the photo
 	}
 }

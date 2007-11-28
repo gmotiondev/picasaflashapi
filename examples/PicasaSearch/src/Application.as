@@ -37,11 +37,13 @@ class Application extends MovieClipHelper
 	
 	public function onResize():Void
 	{
+		//TODO:
 		//EventBroadcaster.getInstance().broadcastEvent(new ResizeEvent());
 	}
 	
 	public function onKeyDown():Void
 	{
+		//TODO:
 		var code:Number = Key.getCode() ;
 		switch (code)
 		{

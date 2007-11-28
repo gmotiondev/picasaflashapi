@@ -23,7 +23,6 @@ class view.dialog.SearchDialog extends ApplicationView
 	
 	private var __q:String = "Type to search";
 	private var __searchPanel:Panel;
-	private var __resultPanel:Panel;
 	
 	public function SearchDialog(aHolder:MovieClip)
 	{
@@ -43,30 +42,16 @@ class view.dialog.SearchDialog extends ApplicationView
 		Key.addListener(this);
 	}
 	
-	public function displayResults(aResults:String)
+	public function displayResults(aResults:String):Void
 	{		
 		var tResultLabel:Label = Label(__searchPanel.getChild(1));
 			tResultLabel.setLabel(aResults);
-		//this.removeChild(1);
-		//this.addChild(getResultPanel(aResults));
-		//Panel(this.getChild(0)).addChild(getResultPanel(aResults));
-		
-		//this.paint();
 	}
 	
 	private function decorate():Void
 	{
 		var tTextAreaStyle:Style = Style.getStyle("TextBox");
 			tTextAreaStyle.setFormat("fu", {font:"Tahoma", multiLine: false, size:18, color: 0x000000, bold:false, underline:false });
-	}
-	
-	private function getResultPanel(aResult:String):Panel
-	{
-		__resultPanel.destroy();
-		__resultPanel = new Panel("Search results"); 
-		__resultPanel.addChild(new Label(aResult));
-
-		return __resultPanel;
 	}
 	
 	private function getSearchPanel():Panel
@@ -109,15 +94,14 @@ class view.dialog.SearchDialog extends ApplicationView
 		this.getUI().stopDrag();
 	}
 	
-	private function onKeyDown()
+	private function onKeyDown():Void
 	{	
-		if(Key.isDown(Key.ENTER))
-		{
+		if(Key.isDown(Key.ENTER)) {
 			onClick();
 		}
 	}
 
-	public function onChanged(e)
+	public function onChanged(e):Void
 	{
 		__q = e.getTarget().getTextField().text;
 	}

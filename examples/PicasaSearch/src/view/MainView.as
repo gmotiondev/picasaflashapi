@@ -34,7 +34,6 @@ class view.MainView extends MovieClipHelper
 	
 	private function setSearchResult(aResults:String):Void
 	{
-		trace("setSearchResult("+aResults+")");
 		__dialog.displayResults(aResults);
 	}
 	

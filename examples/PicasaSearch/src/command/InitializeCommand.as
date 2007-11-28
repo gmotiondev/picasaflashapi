@@ -2,7 +2,6 @@
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.commands.Command;
-import com.bourre.events.IEvent;
 import com.bourre.core.Model;
 import com.bourre.data.libs.LibStack;
 import com.bourre.data.libs.GraphicLib;

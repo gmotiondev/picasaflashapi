@@ -1,11 +1,9 @@
-﻿import com.bourre.visual.MovieClipHelper;
-import com.bourre.commands.Delegate;
-import com.bourre.events.EventBroadcaster;import com.bourre.transitions.TweenMS;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+import com.bourre.visual.MovieClipHelper;
 
-import control.*;
-
-/**
- * @author Michal Gron (michal.gron@gmail.com) */
+//TODO: Pagination
 class view.Navigation extends MovieClipHelper
 {
 	public var container:MovieClip;

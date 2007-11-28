@@ -25,8 +25,7 @@ class view.LoadingBar extends MovieClipHelper
 	
 	// listen to progress event
 	public function onSetProgressEvent(e:SetProgressEvent):Void
-	{
-		
+	{	
 		var tPercent:Number = SetProgressEvent(e).percent;
 		
 		setVisible(tPercent < 100); 
