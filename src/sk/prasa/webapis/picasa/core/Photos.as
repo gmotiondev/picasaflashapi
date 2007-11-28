@@ -8,7 +8,6 @@ import sk.prasa.webapis.picasa.PicasaService;
 import sk.prasa.webapis.picasa.UrlParams;
 import sk.prasa.webapis.picasa.events.PicasaResultEvent;
 import sk.prasa.webapis.picasa.core.MethodGroupHelper;
-import sk.prasa.webapis.picasa.core.NameValuePair;
 
 [Event(name="photosGetList", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
 [Event(name="photosGetListByTag", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]

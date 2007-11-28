@@ -22,15 +22,7 @@
 
 import com.bourre.data.collections.IndexedList;
 import com.bourre.data.collections.Map;
-
-import com.bourre.data.iterator.Iterator;
 import com.bourre.log.PixlibStringifier;
-
-import com.bourre.events.ChannelBroadcaster;
-import com.bourre.events.EventBroadcaster;
-import com.bourre.events.BasicEvent;
-import com.bourre.events.EventType;
-import com.bourre.events.IEvent;
 
 import be.netdust.visual.managers.ITabGroup;
 import be.netdust.visual.managers.IFocus;

@@ -20,14 +20,11 @@
  */
 import be.netdust.visual.managers.FocusManager;
 import be.netdust.visual.managers.IFocus;
-
 import be.netdust.visual.events.BubbleEvent;
 import be.netdust.visual.layout.styles.Style;
+import be.netdust.visual.UIContainer;
 
 import com.bourre.events.IEvent;
-
-import be.netdust.visual.UIContainer;
-import be.netdust.visual.UICore;
 
 class be.netdust.visual.containers.Panel extends UIContainer implements be.netdust.visual.managers.ITabGroup
 {

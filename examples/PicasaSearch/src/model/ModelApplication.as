@@ -2,7 +2,6 @@
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.core.Model;
-import com.bourre.events.EventBroadcaster;
 import com.bourre.events.IEvent;
 import com.bourre.commands.Delegate;
 
@@ -31,8 +30,11 @@ class model.ModelApplication extends Model
 		service.max_results = 192;
 		service.thumbsize = 48;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
-
-		// EventBroadcaster.getInstance().dispatchEvent(new GetPhotosEvent("lomo"));
+	}
+	
+	public function onScreenResize(e:ScreenResizeEvent):Void
+	{
+		notifyChanged(e);
 	}
 	
 	private function onServiceError(e:IEvent):Void

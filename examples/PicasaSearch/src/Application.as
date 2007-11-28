@@ -1,4 +1,5 @@
 ﻿import com.bourre.visual.MovieClipHelper;
+import com.bourre.events.EventBroadcaster;
 
 import view.*;
 import control.*;
@@ -37,8 +38,7 @@ class Application extends MovieClipHelper
 	
 	public function onResize():Void
 	{
-		//TODO:
-		//EventBroadcaster.getInstance().broadcastEvent(new ResizeEvent());
+		EventBroadcaster.getInstance().broadcastEvent(new ScreenResizeEvent());
 	}
 	
 	public function onKeyDown():Void
@@ -48,10 +48,10 @@ class Application extends MovieClipHelper
 		switch (code)
 		{
 			case Key.RIGHT :
-				// EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(Controller.PHOTO_GET_NEXT_EVENT));
+				// EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(Controller.PAGE_NEXT_EVENT));
 				break ;
 			case Key.LEFT :
-				// EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(Controller.PHOTO_GET_PREV_EVENT));
+				// EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(Controller.PAGE_PREV_EVENT));
 				break ;
 			default: break;
 		}

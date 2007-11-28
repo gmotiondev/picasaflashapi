@@ -22,7 +22,6 @@ import be.netdust.visual.managers.FocusManager;
 import be.netdust.visual.managers.IFocus;
 
 import be.netdust.visual.events.BubbleEvent;
-import be.netdust.visual.containers.VBox;
 import be.netdust.visual.UICore;
 
 import com.bourre.events.IEvent;

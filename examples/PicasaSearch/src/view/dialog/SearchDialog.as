@@ -7,13 +7,9 @@ import be.netdust.visual.containers.Panel;
 import be.netdust.visual.object.TextBox;
 import be.netdust.visual.object.Button;
 import be.netdust.visual.object.Label;
-import be.netdust.visual.object.Description;
-import be.netdust.visual.tools.ToolTip;
 import be.netdust.visual.layout.styles.Style;
-import be.netdust.visual.UICore;
 import be.netdust.visual.events.*; 
 
-import com.bourre.commands.Delegate;
 import com.bourre.events.EventType;
 import com.bourre.events.StringEvent;
 

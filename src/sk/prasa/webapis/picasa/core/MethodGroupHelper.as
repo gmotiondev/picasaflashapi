@@ -1,17 +1,8 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
-import sk.prasa.webapis.picasa.Album;
-import sk.prasa.webapis.picasa.Comment;
-import sk.prasa.webapis.picasa.Photo;
-import sk.prasa.webapis.picasa.Tag;
-
-import sk.prasa.webapis.picasa.PicasaService;
-import sk.prasa.webapis.picasa.PicasaError;
-import sk.prasa.webapis.picasa.UrlParams;
-import sk.prasa.webapis.picasa.User;
-import sk.prasa.webapis.picasa.core.*;
-import sk.prasa.webapis.picasa.events.PicasaResultEvent;
+import sk.prasa.webapis.picasa.*;
+import sk.prasa.webapis.picasa.events.*;
 
 import com.bourre.data.libs.XMLToObject;
 

@@ -41,4 +41,10 @@ class view.MainView extends MovieClipHelper
 	{
 		move(Math.round(Stage.width/2 - view._width/2), Math.round(Stage.height/2 - view._height/2));
 	}
+	
+	// listen to the model.
+	public function onResize(e:ScreenResizeEvent):Void
+	{
+		centerize();
+	}
 }
