@@ -8,11 +8,13 @@ import sandy.core.World3D;
 import sandy.core.scenegraph.*;
 import sandy.primitive.*;
 import sandy.materials.*;
+import sandy.core.transform.*;
 
 //TODO: Pagination
 class view.Navigation extends MovieClipHelper
 {
 	public var container:MovieClip;
+	private var tg:TransformGroup;
 	
 	public function Navigation(aID:String,aMC:MovieClip)
 	{
@@ -33,11 +35,27 @@ class view.Navigation extends MovieClipHelper
 		var myCamera:Camera3D = new Camera3D(500, 500);
 		World3D.getInstance().camera = myCamera;
 		World3D.getInstance().root.addChild(myCamera);		
+		
 	        // we need to call ourself now the render method.
 	        // Here we use the enterframe event, using a Delegate command.
+		World3D.getInstance().addEventListener( World3D.onRenderEVENT, this, camMove );
 		tContainer.onEnterFrame = Delegate.create(this, _onRender);
 	}
 	
+	private function camMove():Void
+	{
+		var cam:Camera3D = World3D.getInstance().camera;
+		// Move the camera along its x and y axes
+		if (Key.isDown (Key.UP)){tg.rotateY -=2; trace("tg: "+tg.rotateY)}
+		if (Key.isDown (Key.DOWN)){cam.moveUpwards(-5);}
+		if (Key.isDown (Key.LEFT)){cam.moveSideways(5);}
+		if (Key.isDown (Key.RIGHT)){cam.moveSideways(-5);}
+		// Move the camera along its direction of view axis
+		if (Key.isDown (Key.HOME)){cam.moveForward(5);}
+		if (Key.isDown (Key.END)){cam.moveForward(-5);}
+		cam.lookAt( 0, 0, 0 );
+	}
+
 	private function _createScene( Void ):Group
 	{
 		var g:Group = new Group("root");
@@ -48,9 +66,26 @@ class view.Navigation extends MovieClipHelper
 		myBox.y = -20;
 		myBox.z = 300;
 		// we apply the bitmap appearance
-		myBox.appearance = new Appearance( new ColorMaterial( 0xcecece, 50 ) );
+		
+		
+	     var material:Material = new ColorMaterial( 0xFFCC33, 50);
+	     	material.lightingEnable = true;
+	     var app:Appearance = new Appearance( material );
+
+		myBox.appearance = app;
 		// link the object to the group to make it displayable.
 		g.addChild( myBox );
+		
+		tg = new TransformGroup('myGroup');
+		var tRot:Transform3D = new Transform3D();
+			//tRot.matrix = Mat 
+			tg.transform = tRot;
+			tg.rotateX = 50
+			tg.rotateZ = -55;
+			tg.addChild(myBox);
+			
+		g.addChild(tg);
+			
 		return g;
 	}
 

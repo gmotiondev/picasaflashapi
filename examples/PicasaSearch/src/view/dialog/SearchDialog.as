@@ -34,8 +34,8 @@ class view.dialog.SearchDialog extends ApplicationView
 
 		this.create();
 
-		//Mouse.addListener(this);
-		Key.addListener(this);
+		// Mouse.addListener(this);
+		// Key.addListener(this);
 	}
 	
 	public function displayResults(aResults:String):Void
