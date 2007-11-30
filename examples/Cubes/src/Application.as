@@ -1,13 +1,11 @@
-﻿import com.bourre.visual.MovieClipHelper;
-import com.bourre.log.PixlibStringifier;
-
-import view.ViewList;
-import view.CubeView;
-import control.Controller;
-
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import com.bourre.visual.MovieClipHelper;
+
+import view.*;
+import control.Controller;
+
 class Application extends MovieClipHelper
 {
 	private function Application(mc:MovieClip)
@@ -34,10 +32,5 @@ class Application extends MovieClipHelper
 		Stage.scaleMode = "noScale";
 		
 		var o:Application = new Application(mc);
-	}
-	
-	public function toString():String 
-	{
-		return PixlibStringifier.stringify(this);
 	}
 }
