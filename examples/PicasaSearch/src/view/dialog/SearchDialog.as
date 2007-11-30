@@ -11,7 +11,7 @@ import be.netdust.visual.layout.styles.Style;
 import be.netdust.visual.events.*; 
 
 import com.bourre.events.EventType;
-import com.bourre.events.StringEvent;
+import com.bourre.events.BasicEvent;
 
 class view.dialog.SearchDialog extends ApplicationView
 {	
@@ -108,9 +108,14 @@ class view.dialog.SearchDialog extends ApplicationView
 		var tHandle = e.getHandle();
 	}
 	
-	private function onClick(e):Void
+	private function onClick():Void
 	{
 		displayResults("Searching ...");
-		this.dispatchEvent(new StringEvent(new EventType("onStartSearch"),__q));
+		this.dispatchEvent(new BasicEvent(new EventType("onStartSearch")));
+	}
+	
+	public function getQuery():String
+	{
+		return __q;
 	}
 }

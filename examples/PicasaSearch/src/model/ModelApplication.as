@@ -29,7 +29,22 @@ class model.ModelApplication extends Model
 		service = new PicasaService();
 		service.max_results = 192;
 		service.thumbsize = 48;
+		service.start_index = 1;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
+	}
+	
+	public function nextPage():Void
+	{
+		service.start_index += service.max_results;
+		trace("get index at "+service.start_index);
+		notifyChanged(new GetPageEvent("next"));
+	}
+	
+	public function prevPage():Void
+	{
+		service.start_index = (service.start_index <= service.max_results) ? 1 : service.start_index - service.max_results;
+		trace("get index at "+service.start_index);
+		notifyChanged(new GetPageEvent("prev"));
 	}
 	
 	public function onScreenResize(e:ScreenResizeEvent):Void

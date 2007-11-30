@@ -14,6 +14,7 @@ class control.Controller extends FrontController
 	public static var GET_PHOTOS_EVENT:EventType  	= new EventType("get_photos_event");
 	public static var SET_PROGRESS_EVENT:EventType 	= new EventType("set_progress_event");
 	public static var SCREEN_RESIZE_EVENT:EventType = new EventType("onResize");
+	public static var GET_PAGE_EVENT:EventType 		= new EventType("get_page_event");
 	
 	public static function getInstance() : Controller 
 	{
@@ -34,5 +35,6 @@ class control.Controller extends FrontController
 		push(INITIALIZE_EVENT, new InitializeCommand());
 		push(GET_PHOTOS_EVENT, new GetPhotosCommand());
 		push(SCREEN_RESIZE_EVENT, new ScreenResizeCommand());
+		push(GET_PAGE_EVENT, new GetPageCommand());
 	}
 }

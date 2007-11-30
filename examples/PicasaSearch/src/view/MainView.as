@@ -4,7 +4,7 @@
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.EventType;
-import com.bourre.events.StringEvent;
+import com.bourre.events.BasicEvent;
 
 import control.*;
 import view.dialog.*;
@@ -27,9 +27,9 @@ class view.MainView extends MovieClipHelper
 		__dialog.addEventListener(new EventType("onStartSearch"),this);
 	}
 
-	private function onStartSearch(e:StringEvent):Void
+	private function onStartSearch(e:BasicEvent):Void
 	{
-		EventBroadcaster.getInstance().dispatchEvent(new GetPhotosEvent(escape(e.getString())));
+		EventBroadcaster.getInstance().dispatchEvent(new GetPhotosEvent(escape(__dialog.getQuery())));
 	}
 	
 	private function setSearchResult(aResults:String):Void
@@ -40,6 +40,12 @@ class view.MainView extends MovieClipHelper
 	private function centerize():Void
 	{
 		move(Math.round(Stage.width/2 - view._width/2), Math.round(Stage.height/2 - view._height/2));
+	}
+	
+	// listen to the model.
+	public function get_page_event(e:GetPageEvent):Void
+	{
+		onStartSearch();
 	}
 	
 	// listen to the model.
