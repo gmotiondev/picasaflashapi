@@ -1,6 +1,7 @@
-﻿import com.bourre.visual.MovieClipHelper;
-import com.bourre.commands.Delegate;
-import com.bourre.events.BasicEvent;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+import com.bourre.visual.MovieClipHelper;
 
 import sandy.core.data.Vector;
 import sandy.core.group.*;
@@ -12,9 +13,6 @@ import sandy.util.Ease;
 import sandy.core.transform.*;
 import sandy.events.*;
 
-/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
 class view.CubeView extends MovieClipHelper
 {
 	private var _mc : MovieClip;
