@@ -229,12 +229,15 @@ class sandy.core.Object3D extends Leaf
 	{
 		var centerX:Number = 0;
 		var centerY:Number = 0;
+		var a:Number = 0;
+		
 		for (var i:Number = 0; i < aPoints.length; i++) {
 			centerX += aPoints[i].sx;
 			centerY += aPoints[i].sy;
+			a = i;
 		}
-		centerX = centerX / i;
-		centerY = centerY / i;
+		centerX = centerX / a;
+		centerY = centerY / a;
 		// This could return a 2D Point instead, but I went with Vector since
 		// it is part of the Sandy libraries can we can control the toString(); method.
 		return new Vector (centerX, centerY, 0);
