@@ -2,7 +2,6 @@
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.core.Model;
-// import com.bourre.commands.Delegate;
 import com.bourre.events.NumberEvent;
 import com.bourre.events.EventBroadcaster;
 

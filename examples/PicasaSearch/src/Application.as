@@ -1,13 +1,13 @@
-﻿import com.bourre.visual.MovieClipHelper;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 
 import view.*;
 import control.*;
 import model.*;
 
-/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
 class Application extends MovieClipHelper
 {
 	private function Application(mc:MovieClip)

@@ -1,15 +1,15 @@
-﻿import com.bourre.visual.MovieClipHelper;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
 
 import control.*;
 import view.ThumbContainer;
-import view.layout.GridLayout;
+import sk.prasa.visual.layout.GridLayout;
 
-/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
 class view.ThumbHolder extends MovieClipHelper implements ILibListener
 {	
 	private var __grid:GridLayout;

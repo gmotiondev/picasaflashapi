@@ -36,14 +36,12 @@ class model.ModelApplication extends Model
 	public function nextPage():Void
 	{
 		service.start_index += service.max_results;
-		trace("get index at "+service.start_index);
 		notifyChanged(new GetPageEvent("next"));
 	}
 	
 	public function prevPage():Void
 	{
 		service.start_index = (service.start_index <= service.max_results) ? 1 : service.start_index - service.max_results;
-		trace("get index at "+service.start_index);
 		notifyChanged(new GetPageEvent("prev"));
 	}
 	

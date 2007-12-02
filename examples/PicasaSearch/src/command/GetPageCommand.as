@@ -18,12 +18,8 @@ class command.GetPageCommand implements Command
 		
 		switch(tDirection)
 		{
-			case "next": trace("next page!");
-				model.nextPage();
-				break;
-			case "prev": trace("prev page!");
-				model.prevPage();
-				break;
+			case "next": model.nextPage(); break;
+			case "prev": model.prevPage(); break;
 		}
 	}
 }
