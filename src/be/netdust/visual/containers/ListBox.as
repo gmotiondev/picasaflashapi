@@ -23,10 +23,8 @@ import be.netdust.visual.object.ListItem;
 import be.netdust.visual.UICore;
 import com.bourre.events.IEvent;
 
-class be.netdust.visual.containers.ListBox 
-extends be.netdust.visual.UIViewStack
+class be.netdust.visual.containers.ListBox extends be.netdust.visual.UIViewStack
 {
-
 	public var styleClass:String = "ListBox";
 	public var currentItem:ListItem = null;	
 
