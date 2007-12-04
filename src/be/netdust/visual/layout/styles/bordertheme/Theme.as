@@ -388,13 +388,13 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		o.backgroundColor = 0xffffff;
 		o.backgroundPosition = {x:0,y:0};
 
-		o.cornerBottomRight = 10;
-		o.cornerBottomLeft = 10;
-		o.cornerTopRight = 10;
-		o.cornerTopLeft = 10;	
+		o.cornerBottomRight = 5;
+		o.cornerBottomLeft = 5;
+		o.cornerTopRight = 5;
+		o.cornerTopLeft = 5;	
 		
 		s = o.subStyle("header");
-		s.height = 40;
+		s.height = 30;
 		
 		s.marginTop = 1;
 		s.marginBottom = 1;
@@ -412,10 +412,10 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		s.backgroundColor = 0xffffff;
 		s.backgroundPosition = {x:0,y:0};
 
-		s.cornerBottomRight = 10;
-		s.cornerBottomLeft = 10;
-		s.cornerTopRight = 10;
-		s.cornerTopLeft = 10;	
+		s.cornerBottomRight = 5;
+		s.cornerBottomLeft = 5;
+		s.cornerTopRight = 5;
+		s.cornerTopLeft = 5;	
 		
 /** style for DeckBox class **/		
 		o = Style.newStyle("DeckBox");		

@@ -29,9 +29,9 @@ class model.ModelApplication extends Model
 	{
 		photos = new Photos();
 		tags = new Tags();
-		userid = "thisispinkfu"
+		userid = "thisispinkfu";
 		service = new PicasaService();
-		service.max_results = 10;
+		service.max_results = 25;
 		service.thumbsize = 48;
 
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));

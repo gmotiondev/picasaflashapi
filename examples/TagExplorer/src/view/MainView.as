@@ -8,6 +8,8 @@ import com.bourre.events.BasicEvent;
 
 import be.netdust.visual.data.DataProvider;
 import be.netdust.visual.object.ListItem;
+import be.netdust.visual.object.Label;
+import be.netdust.visual.containers.TitleBox;
 
 import control.*;
 import view.dialog.*;

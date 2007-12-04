@@ -88,6 +88,7 @@ class be.netdust.visual.containers.Panel extends UIContainer implements be.netdu
 		header._y = _headerstyle.marginTop;
 		
 		childs_mc._y += ( _headerstyle.height?_headerstyle.height:0 );
+		
 	}
 	
 	/**

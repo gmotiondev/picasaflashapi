@@ -109,8 +109,10 @@ implements be.netdust.visual.managers.ITabGroup
 	*/
 	public function show( ref:String ) : Void 
 	{
-		if( ref == undefined ) var child:UICore = getChild( _index );
-		else var child:UICore = _findChild( ref );
+		var child:UICore;
+		
+		if( ref == undefined ) child = getChild( _index );
+		else child = _findChild( ref );
 
 		if( child != currentItem ) {
 			child.ui._visible = true;
