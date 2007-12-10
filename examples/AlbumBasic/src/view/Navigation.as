@@ -30,7 +30,7 @@ class view.Navigation extends MovieClipHelper
 		l.onRelease = Delegate.create(this, onPrevPhoto);		r.onRelease = Delegate.create(this, onNextPhoto);
 		
 		l.onRollOver = r.onRollOver = Delegate.create(this, onContainerOver);
-		r.onRollOut = r.onRollOut = Delegate.create(this, onContainerOut);
+		l.onRollOut = r.onRollOut = Delegate.create(this, onContainerOut);
 		
 		onContainerOut();
 	}

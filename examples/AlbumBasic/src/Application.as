@@ -20,7 +20,7 @@ class Application extends MovieClipHelper
 		/* model */
 		var model:ModelApplication = new ModelApplication();
 		
-		/* views, SHOULD LISTEN TO MODEL! */
+		/* views */
 		var p_view:PhotoHolder= new PhotoHolder(ViewList.PHOTO_HOLDER, 	mc.createEmptyMovieClip(ViewList.PHOTO_HOLDER, 	10));
 		var t_view:ThumbHolder= new ThumbHolder(ViewList.THUMB_HOLDER, 	mc.createEmptyMovieClip(ViewList.THUMB_HOLDER, 	20));
 		var n_view:Navigation = new Navigation(ViewList.NAVIGATION, 	mc.createEmptyMovieClip(ViewList.NAVIGATION, 	30));

@@ -1,4 +1,7 @@
-﻿import com.bourre.core.Model;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+import com.bourre.core.Model;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.IEvent;
 import com.bourre.commands.Delegate;
@@ -9,9 +12,6 @@ import vo.Photos;
 
 import sk.prasa.webapis.picasa.PicasaService;
 
-/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
 class model.ModelApplication extends Model
 {
 	public var service:PicasaService;
@@ -28,6 +28,8 @@ class model.ModelApplication extends Model
 		photos = new Photos();
 
 		service = new PicasaService();
+		service.imgmax = 320;
+		service.thumbsize = 72;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 
 		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5094406297232552993"));
@@ -52,12 +54,12 @@ class model.ModelApplication extends Model
 	}
 	
 	public function click(aId:String):Void
-	{
-		trace("clicked: "+aId);
-		
+	{	
 		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getClicked(aId));
+		var tTitleEvent:PhotoSetTitleEvent = new PhotoSetTitleEvent(photos.getCurrentTitle());
 		
 		notifyChanged(tChangedEvent);
+		notifyChanged(tTitleEvent);
 	}
 	
 	private function onServiceError(e:IEvent):Void
