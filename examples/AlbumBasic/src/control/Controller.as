@@ -21,6 +21,8 @@ class control.Controller extends FrontController
 	public static var PHOTO_CHANGED_EVENT:EventType	= new EventType("photo_changed_event");
 	public static var PHOTO_SET_TITLE_EVENT:EventType=new EventType("photo_set_title_event");
 	
+	public static var SCREEN_RESIZE_EVENT:EventType = new EventType("onResize");
+		
 	public static function getInstance() : Controller 
 	{
 		if (!__instance) {
@@ -42,5 +44,6 @@ class control.Controller extends FrontController
 		
 		push(PHOTO_GET_NEXT_EVENT, new PhotoGetNextCommand());		push(PHOTO_GET_PREV_EVENT, new PhotoGetPrevCommand());
 		push(PHOTO_CLICK_EVENT, new PhotoClickCommand());
+		push(SCREEN_RESIZE_EVENT, new ScreenResizeCommand());
 	}
 }

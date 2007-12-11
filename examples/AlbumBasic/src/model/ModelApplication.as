@@ -30,6 +30,7 @@ class model.ModelApplication extends Model
 		service = new PicasaService();
 		service.imgmax = 320;
 		service.thumbsize = 72;
+		service.max_results = 24;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 
 		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5094406297232552993"));
@@ -60,6 +61,11 @@ class model.ModelApplication extends Model
 		
 		notifyChanged(tChangedEvent);
 		notifyChanged(tTitleEvent);
+	}
+	
+	public function onScreenResize(e:ScreenResizeEvent):Void
+	{
+		notifyChanged(e);
 	}
 	
 	private function onServiceError(e:IEvent):Void

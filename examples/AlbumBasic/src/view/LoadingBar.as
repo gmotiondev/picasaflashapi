@@ -6,8 +6,7 @@ import com.bourre.utils.Geom;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.commands.Delegate;
 
-import control.Controller;
-import control.ProgressSetEvent;
+import control.*;
 
 class view.LoadingBar extends MovieClipHelper
 {	
@@ -19,7 +18,7 @@ class view.LoadingBar extends MovieClipHelper
 
 		EventBroadcaster.getInstance().addEventListener(Controller.PROGRESS_SET_EVENT, Delegate.create(this, onProgressSetEvent));
 
-		__loader = Geom.buildRectangle(view, 10005, Stage.width, 4, 0xffffff, 0xffffff);
+		__loader = Geom.buildRectangle(view, 10005, 320, 4, 0xefefef, 0xefefef);
 		show();
 	}
 	
@@ -31,5 +30,11 @@ class view.LoadingBar extends MovieClipHelper
 		
 		setVisible(tPercent < 100); 
 		__loader._xscale = 100 - tPercent;
-	}	
+	}
+	
+	// listen to model
+	public function onResize(event:ScreenResizeEvent):Void
+	{
+		__loader = Geom.buildRectangle(view, 10005, Stage.width, 4, 0xefefef, 0xefefef);
+	}
 }

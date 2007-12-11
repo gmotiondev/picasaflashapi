@@ -23,10 +23,11 @@ class view.ThumbHolder extends MovieClipHelper implements ILibListener
 	{
 		super(aId,aC);
 
-		move(326, 6);
+		move(325, 5);
 		show();
 		
-		__grid = new GridLayout(4, 7);
+		__grid = new GridLayout(4, 6);
+		__grid.padding = 5;
 	}
 	
 	public function addChild(aID:String, aTitle:String):ThumbContainer
@@ -35,7 +36,7 @@ class view.ThumbHolder extends MovieClipHelper implements ILibListener
 		var tThumb:ThumbContainer = new ThumbContainer(aID, tHolder, aTitle);
 		
 		__grid.addChild(tHolder);
-		__children.push(tHolder);
+		__children.push(tThumb);
 		
 		return tThumb;
 	}
@@ -52,7 +53,7 @@ class view.ThumbHolder extends MovieClipHelper implements ILibListener
 	}
 	
 	public function onLoadInit(e:LibEvent):Void
-	{	
+	{
 		__grid.draw();
 	}
 	
@@ -64,6 +65,11 @@ class view.ThumbHolder extends MovieClipHelper implements ILibListener
 	public function onLoadComplete(e:LibEvent):Void
 	{	
 		__grid.draw();
+		
+		for(var a:Number = 0; a < __children.length; a++)
+		{
+			__children[a].initialize();
+		}
 	}
 	
 	public function onTimeOut(e:LibEvent):Void

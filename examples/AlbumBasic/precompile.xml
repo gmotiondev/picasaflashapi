@@ -3,7 +3,7 @@
 	<background color="#000000"/>
 	<frame>
 		<library>
-			<font name="london" import="assets/ttf/LondonMM.ttf"/>
+			<!--<font name="london" import="assets/ttf/LondonMM.ttf"/>-->
 			<clip id="l" import="assets/png/l.png"/>
 			<clip id="r" import="assets/png/r.png"/>
 		</library>

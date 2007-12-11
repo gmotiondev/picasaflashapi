@@ -1,4 +1,4 @@
-import com.bourre.structures.Point;
+﻿import com.bourre.structures.Point;
 import com.bourre.log.PixlibStringifier;
 
 
@@ -70,6 +70,17 @@ class sk.prasa.visual.layout.GridLayout extends LayoutManager
 	private function move(o:Object, p:Point) {
 		o._x = p.x;
 		o._y = p.y;
+	}
+	
+	public function get padding():Number
+	{
+		return __hGap;
+	}
+	
+	public function set padding(a:Number)
+	{
+		__hGap = a;
+		__vGap = a;
 	}
 	
 	public function toString():String

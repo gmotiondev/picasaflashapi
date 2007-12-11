@@ -3,7 +3,6 @@
  */
 import com.bourre.events.EventBroadcaster;
 import com.bourre.visual.MovieClipHelper;
-import com.bourre.transitions.TweenMS;
 import com.bourre.commands.Delegate;
 import com.bourre.utils.Geom;
 
@@ -14,7 +13,6 @@ class view.ThumbContainer extends MovieClipHelper
 	private var id:String;
 	private var __b:MovieClip;
 	public var title:String;
-	private var title_tf:TextField;
 	
 	public function ThumbContainer(aID:String, aContainer:MovieClip, aTitle:String)
 	{
@@ -22,24 +20,23 @@ class view.ThumbContainer extends MovieClipHelper
 		
 		id = aID;
 		title = aTitle;
-		
-		setBackground(0xffffff, 0xe2007a, 4);
-		view.onRelease = Delegate.create(this, onThumbRelease);
-		view.onRollOver = Delegate.create(this, onThumbRollOver);
-		view.onRollOut = Delegate.create(this, onThumbRollOut);	
 	}
 	
-	public function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
+	public function initialize():Void
 	{
-		__b = Geom.buildRectangle(view,2,(10+(2*aMargin)),(10+(2*aMargin)),aColor,aColor);
+		view.onRelease = Delegate.create(this, onThumbRelease);
+		view.onRollOver = Delegate.create(this, onThumbRollOver);
+		view.onRollOut = Delegate.create(this, onThumbRollOut);
+		setBackground(0xffffff, 0xe2007a, 5);	
+	}
+	
+	private function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
+	{
+		__b = Geom.buildRectangle(view,2,(0+(1*aMargin)),(0+(1*aMargin)),aColor,aColor);
 		__b._x = -aMargin;
 		__b._y = -aMargin;
 		__b.__c = aColor;
 		__b.__h = aHighlight;
-	}
-	
-	public function setTitle(aString:String):Void
-	{
 	}
 	
 	private function highlight(aTrigger:Boolean):Void
@@ -57,14 +54,13 @@ class view.ThumbContainer extends MovieClipHelper
 		view.swapDepths(view._parent.getNextHighestDepth());
 		
 		var tF:TextFormat = new TextFormat();
-			tF.size = 14;
+			tF.size = 11;
 			tF.color = 0xffffff;
-			tF.font = "london";
+			tF.font = "Tahoma";
 			
 		view.createTextField("title_tf", 20, 0, 0, 100, 1);
 		var tField:TextField = view.title_tf;
 			tField.autoSize = "left";
-			tField.embedFonts = true;
 			tField.multiline = true;
 			tField.html = true;
 			tField.background = true;
@@ -72,6 +68,8 @@ class view.ThumbContainer extends MovieClipHelper
 			tField.htmlText = title;
 			
 		tField.setTextFormat(tF);
+		
+		if(tField._width > (Stage.width - _root._xmouse)) {	tField._x -= tField._width; }
 	}
 	
 	private function onThumbRollOut():Void

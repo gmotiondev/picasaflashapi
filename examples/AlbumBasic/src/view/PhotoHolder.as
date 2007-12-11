@@ -27,16 +27,15 @@ class view.PhotoHolder extends MovieClipHelper implements ILibListener
 			tBG._y = 197;
 		
 		__titleTextFormat = new TextFormat();
-		__titleTextFormat.font = "london";
-		__titleTextFormat.size = 14;
-		__titleTextFormat.leading = -16;
+		__titleTextFormat.font = "Tahoma";
+		__titleTextFormat.size = 13;
+
 		__titleTextFormat.blockIndent = 10;
 		__titleTextFormat.color = 0xffffff;
 			
-		tBG.createTextField("title", 5, 0, 3, 320, 20);
+		tBG.createTextField("title", 5, 0, 1, 320, 20);
 		
 		__title = tBG.title;
-		__title.embedFonts = true;
 		__title.multiline = false;
 		__title.html = true;
 		__title.htmlText = "dd";
