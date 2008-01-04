@@ -1,4 +1,4 @@
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.log.PixlibStringifier;
 
 import view.ViewList;
