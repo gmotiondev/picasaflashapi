@@ -26,27 +26,9 @@ class view.Navigation extends MovieClipHelper
 		var r:MovieClip = container.attachMovie("r","r",1003);
 		
 		l._x = 5; l._y = 5;
-		r._x = 275; r._y = 5;
+		r._x = 25; r._y = 5;
 		
 		l.onRelease = Delegate.create(this, onPrevPhoto);		r.onRelease = Delegate.create(this, onNextPhoto);
-		
-		l.onRollOver = r.onRollOver = Delegate.create(this, onContainerOver);
-		l.onRollOut = r.onRollOut = Delegate.create(this, onContainerOut);
-		
-		onContainerOut();
-	}
-	
-	private function onContainerOver():Void
-	{
-		show();
-		var t:TweenMS = null;
-			t = new TweenMS(container, '_alpha', 100, 150, 0);
-			t.start();
-	}
-	
-	private function onContainerOut():Void
-	{
-		container._alpha = 0;
 	}
 	
 	private function onPrevPhoto():Void

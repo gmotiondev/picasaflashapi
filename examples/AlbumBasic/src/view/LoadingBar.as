@@ -18,7 +18,7 @@ class view.LoadingBar extends MovieClipHelper
 
 		EventBroadcaster.getInstance().addEventListener(Controller.PROGRESS_SET_EVENT, Delegate.create(this, onProgressSetEvent));
 
-		__loader = Geom.buildRectangle(view, 10005, 320, 4, 0xefefef, 0xefefef);
+		__loader = Geom.buildRectangle(view, 10005, 320, 2, 0xD40073, 0xD40073);
 		show();
 	}
 	
@@ -35,6 +35,6 @@ class view.LoadingBar extends MovieClipHelper
 	// listen to model
 	public function onResize(event:ScreenResizeEvent):Void
 	{
-		__loader = Geom.buildRectangle(view, 10005, Stage.width, 4, 0xefefef, 0xefefef);
+		__loader = Geom.buildRectangle(view, 10005, Stage.width, 2, 0xD40073, 0xD40073);
 	}
 }

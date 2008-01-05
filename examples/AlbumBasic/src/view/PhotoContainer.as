@@ -19,6 +19,7 @@ class view.PhotoContainer extends MovieClipHelper
 		container = aContainer;
 	
 		setVisible(!aHide);
+		move(0, 21);
 	}
 	
 	// listen to the model

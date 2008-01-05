@@ -23,8 +23,7 @@ class view.PhotoHolder extends MovieClipHelper implements ILibListener
 	
 	private function insertTitle():Void
 	{
-		var tBG = Geom.buildRectangle(view,view.getNextHighestDepth(),320,20, 0xe2007a, 0xe2007a);
-			tBG._y = 197;
+		var tBG = Geom.buildRectangle(view,view.getNextHighestDepth(), Stage.width, 20, 0xD40073, 0xD40073);
 		
 		__titleTextFormat = new TextFormat();
 		__titleTextFormat.font = "Tahoma";
@@ -33,7 +32,7 @@ class view.PhotoHolder extends MovieClipHelper implements ILibListener
 		__titleTextFormat.blockIndent = 10;
 		__titleTextFormat.color = 0xffffff;
 			
-		tBG.createTextField("title", 5, 0, 1, 320, 20);
+		tBG.createTextField("title", 5, 30, 0, Stage.width, 20);
 		
 		__title = tBG.title;
 		__title.multiline = false;
