@@ -1,11 +1,12 @@
-﻿import com.bourre.visual.MovieClipHelper;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+import com.bourre.visual.MovieClipHelper;
 import com.bourre.commands.Delegate;
 import com.bourre.events.EventBroadcaster;import com.bourre.transitions.TweenMS;
 
 import control.*;
 
-/**
- * @author Michal Gron (michal.gron@gmail.com) */
 class view.Navigation extends MovieClipHelper
 {
 	public var container:MovieClip;
@@ -24,30 +25,12 @@ class view.Navigation extends MovieClipHelper
 		var l:MovieClip = container.attachMovie("l","l",1002);
 		var r:MovieClip = container.attachMovie("r","r",1003);
 		
-		l._x = 5; l._y = 5;
-		r._x = 275; r._y = 5;
+		l._x = 330; l._y = 245;
+		r._x = 345; r._y = 245;
 		
-		l.onRelease = Delegate.create(this, onPrevPhoto);		r.onRelease = Delegate.create(this, onNextPhoto);
+		l.onRelease = Delegate.create(this, onPrevPhoto);		r.onRelease = Delegate.create(this, onNextPhoto);		
+	}
 		
-		l.onRollOver = r.onRollOver = Delegate.create(this, onContainerOver);
-		r.onRollOut = r.onRollOut = Delegate.create(this, onContainerOut);
-		
-		onContainerOut();
-	}
-	
-	private function onContainerOver():Void
-	{
-		show();
-		var t:TweenMS = null;
-			t = new TweenMS(container, '_alpha', 100, 150, 0);
-			t.start();
-	}
-	
-	private function onContainerOut():Void
-	{
-		container._alpha = 0;
-	}
-	
 	private function onPrevPhoto():Void
 	{
 		printMessage("CLICK TO PLAY!");
@@ -81,9 +64,9 @@ class view.Navigation extends MovieClipHelper
 			tTF.size = 12;
 			tTF.leading = -16;
 			tTF.blockIndent = 10;
-			tTF.color = 0x003C63;
+			tTF.color = 0x000000;
 			
-		__message.createTextField("message_text", 2, 0, 0, 320, 20);
+		__message.createTextField("message_text", 2, 0, 0, 320, 240);
 		var tF:TextField = __message.message_text;
 			tF.embedFonts = true;
 			tF.multiline = true;
@@ -92,7 +75,7 @@ class view.Navigation extends MovieClipHelper
 			tF.htmlText = ""+aString;
 			tF.setTextFormat(tTF);
 			
-		__message._y = 223;
+		__message._y = 10;
 		__message.onRelease = Delegate.create(this, onStartSlideShow);
 	}
 	

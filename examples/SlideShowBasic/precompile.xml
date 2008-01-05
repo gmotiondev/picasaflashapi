@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<movie width="320" height="240" framerate="31">
-	<background color="#000000"/>
+<movie width="360" height="260" framerate="31">
+	<background color="#ffffff"/>
 	<frame>
 		<library>
 			<font name="london" import="assets/ttf/LondonMM.ttf"/>
