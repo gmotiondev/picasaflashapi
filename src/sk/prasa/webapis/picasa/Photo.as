@@ -37,7 +37,7 @@ class sk.prasa.webapis.picasa.Photo extends Base
 	// 
 	public function get summary():String
 	{
-		return __summary;
+		return (typeof __summary) == "string" ? __summary : "";
 	}
 	
 	// 
