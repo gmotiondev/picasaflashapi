@@ -2,8 +2,6 @@
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.visual.MovieClipHelper;
-import com.bourre.events.EventBroadcaster;
-
 import com.bourre.utils.Geom;
 
 import control.*;
@@ -38,7 +36,7 @@ class view.PhotoHolder extends MovieClipHelper
 		__title.embedFonts = true;
 		__title.multiline = false;
 		__title.html = true;
-		__title.htmlText = "dd";
+		__title.htmlText = "";
 		__title.setTextFormat(__titleTextFormat);
 	}
 	

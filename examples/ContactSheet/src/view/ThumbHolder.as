@@ -10,7 +10,7 @@ import control.*;
  */
 class view.ThumbHolder extends MovieClipHelper implements ILibListener
 {	
-	public var grid:view.layout.GridLayout;
+	public var grid:sk.prasa.visual.layout.GridLayout;
 	
 	public function ThumbHolder(aId:String, aC:MovieClip)
 	{
@@ -25,11 +25,14 @@ class view.ThumbHolder extends MovieClipHelper implements ILibListener
 		var tTF:TextFormat = new TextFormat();
 			tTF.font = "kroeger";
 			tTF.size = 8;
-			tTF.color = 0x808080;
+			tTF.blockIndent = 5;
+			tTF.color = 0xffffff;
 			
-		view.createTextField("tf_album_title", 2, 0, -20, 320, 20);
+		view.createTextField("tf_album_title", 2, 0, -20, 313, 16);
 		var tF:TextField = view["tf_album_title"];
 			tF.embedFonts = true;
+			tF.background = true;
+			tF.backgroundColor = 0xd40073;
 			tF.html = true;
 			tF.htmlText = a;
 			tF.setTextFormat(tTF);

@@ -28,7 +28,7 @@ class view.ThumbContainer extends MovieClipHelper
 	
 	private function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
 	{
-		__b = Geom.buildRectangle(view,2,(10+(2*aMargin)),(10+(2*aMargin)),aColor,aColor);
+		__b = Geom.buildRectangle(view,2,(0+(2*aMargin)),(0+(2*aMargin)),aColor,aColor);
 		__b._x = -aMargin;
 		__b._y = -aMargin;
 		__b.__c = aColor;

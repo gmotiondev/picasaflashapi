@@ -29,7 +29,7 @@ class vo.Photos extends IndexedArray
 	// 
 	public function getCurrentTitle():String
 	{
-		return this[__current].summary;
+		return "ss"+(typeof(this[__current].summary) == "string" ? this[__current].summary : "___");
 	}
 	
 	// 

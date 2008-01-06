@@ -2,7 +2,6 @@
  *
  */
 import com.bourre.events.BasicEvent;
-import com.bourre.events.EventType;
 
 import control.Controller;
 
@@ -16,5 +15,4 @@ class control.PhotoClickEvent extends BasicEvent
 		
 		id = aId;
 	}
-
 }

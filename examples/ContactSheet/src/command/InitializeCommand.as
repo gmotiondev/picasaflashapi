@@ -25,21 +25,18 @@ class command.InitializeCommand implements Command
 		
 		var tTLibStack:LibStack = new LibStack();
 		
-			tThumbHolder.grid = new view.layout.GridLayout(6, 6);
+			tThumbHolder.grid = new sk.prasa.visual.layout.GridLayout(6, 6);
 			tThumbHolder.grid.addListener(tThumbHolder);
 			
 		for(var a:Number = 0; a < model.photos.length; a++)
 		{
 			var tItem:Photo = model.photos[a];
-			
 			var tPC:MovieClip = tPhotoHolder.view.createEmptyMovieClip("p_"+tItem.gphoto.id, tPhotoHolder.view.getNextHighestDepth());
 			var tTC:MovieClip = tThumbHolder.view.createEmptyMovieClip("p_"+tItem.gphoto.id, tThumbHolder.view.getNextHighestDepth());
 			
-			var tPhotoContainer:PhotoContainer = new PhotoContainer(tItem.gphoto.id, tPC, true, tItem.media.content.url, (tItem.summary != undefined ? tItem.summary : ""));
+			var tPhotoContainer:PhotoContainer = new PhotoContainer(tItem.gphoto.id, tPC, true, tItem.media.content.url, tItem.summary);
 			var tThumbContainer:ThumbContainer = new ThumbContainer(tItem.gphoto.id, tTC, tItem.summary);
-			
-			// TODO.. read photos album object, get album title and photos count	
-				
+							
 			tThumbHolder.grid.addChild(tThumbContainer.view);
 			tThumbHolder.setTitle(tItem.album.title+" ("+tItem.album.gphoto.numphotos+")");
 			

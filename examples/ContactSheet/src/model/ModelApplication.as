@@ -28,9 +28,11 @@ class model.ModelApplication extends Model
 		photos = new Photos();
 
 		service = new PicasaService();
+		service.max_results = 36;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 
-		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5110367185091112897"));
+		// EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5110367185091112897"));
+		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5135051345581734225"));
 	}
 	
 	public function next():Void

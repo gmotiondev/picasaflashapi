@@ -8,7 +8,6 @@ import com.bourre.events.EventBroadcaster;
 
 import sk.prasa.webapis.picasa.PicasaService;
 import sk.prasa.webapis.picasa.events.PicasaResultEvent;
-import sk.prasa.webapis.picasa.core.NameValuePair;
 import sk.prasa.webapis.picasa.UrlParams;
 
 import model.*;

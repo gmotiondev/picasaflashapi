@@ -1,7 +1,6 @@
 ﻿import com.bourre.events.EventBroadcaster;
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.visual.ScreenProtectionUI 
-import com.bourre.transitions.TweenMS;
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
 import com.bourre.data.libs.LibStack;
@@ -31,7 +30,6 @@ class view.PhotoContainer extends MovieClipHelper implements ILibListener
 		url = aUrl;
 		title = aTitle;	
 		setVisible(!aHide);
-
 	}
 	
 	private function setTitle():Void
@@ -39,7 +37,7 @@ class view.PhotoContainer extends MovieClipHelper implements ILibListener
 		var tTF:TextFormat = new TextFormat();
 			tTF.font = "kroeger";
 			tTF.size = 8;
-			tTF.color = 0x808080;
+			tTF.color = 0xd40073;
 			
 		view.createTextField("title_tf", 15, 0, -20, 320, 20);
 		var tF:TextField = view.title_tf;
@@ -90,7 +88,7 @@ class view.PhotoContainer extends MovieClipHelper implements ILibListener
 	
 	public function onLoadComplete(e:LibEvent):Void
 	{	
-		setBackground(0x1A1A1A, 0x1A1A1A, 10);
+		setBackground(0xffffff, 0xffffff, 10);
 		setTitle();
 		
 		var tClose = view.attachMovie("c","c",210);
@@ -109,12 +107,10 @@ class view.PhotoContainer extends MovieClipHelper implements ILibListener
 	// listen to the model
 	public function photo_changed_event(e:PhotoChangedEvent):Void
 	{
-		//var t:TweenMS = null;
 		if(PhotoChangedEvent(e).id == id)
 		{
 			if(!loaded) load();
-			
-			//t = new TweenMS(view, '_alpha', 100, 500, 0);	
+				
 			show();
 			centerize();
 			protect();
@@ -122,18 +118,14 @@ class view.PhotoContainer extends MovieClipHelper implements ILibListener
 		{
 			if(isVisible())
 			{
-				//t = new TweenMS(view, '_alpha', 0, 500, 100);
-				//t.addEventListener(TweenMS.onMotionFinishedEVENT, this, hide);
 				hide();
 			}
 		}
-		
-		//t.start();
 	}
 	
 	private function centerize():Void
 	{
-		move(Math.round(Stage.width/2 - view._width/2), Math.round(Stage.height/2 - view._height/2));
+		move(Math.round(Stage.width/2 - view._width/2 + 10), Math.round(Stage.height/2 - view._height/2));
 	}
 	
 	// Listening to model
@@ -145,7 +137,7 @@ class view.PhotoContainer extends MovieClipHelper implements ILibListener
 	private function protect():Void
 	{
 		var tProtection:MovieClipHelper = new ScreenProtectionUI(_level0,6,"protection");
-			tProtection.view._alpha = 80;
+			tProtection.view._alpha = 20;
 	}
 	
 	private function unprotect():Void
