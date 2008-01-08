@@ -22,7 +22,8 @@ class command.SetPhotosCommand implements Command
 	public function execute(e:SetPhotosEvent):Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
-		trace("show "+model.photos.length+" photos");
+		model.notifyChanged(e);
+		//trace("show "+model.photos.length+" photos");
 		
 		var tMainView = MovieClipHelper.getMovieClipHelper(ViewList.MAIN_VIEW);
 		

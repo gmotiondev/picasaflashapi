@@ -37,14 +37,19 @@ class view.MainView extends MovieClipHelper
 
 		for(var a:Number = 0; a < o.length; a++)
 		{
-			tDP.addItem(new ListItem(o[a].summary));
+			tDP.addItem(new ListItem(o[a].summary+" ("+o[a].gphoto.weight+")",o[a].summary));
 		}
-		
 		__dialog.setTagList(tDP);
 	}
 	
 	// listen to the model.
 	public function onResize(e:ScreenResizeEvent):Void
 	{
+	}
+	
+	public function set_photos_event():Void
+	{
+		var tPageDialog:PageDialog = new PageDialog(view);
+		trace("got photos list!");
 	}
 }

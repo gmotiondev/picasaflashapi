@@ -36,7 +36,12 @@ class view.dialog.SearchDialog extends Panel
 	{
 		var tListBox:ListBox = new ListBox();
 			tListBox.rows = 15;
-			tListBox.dataprovider = aDP;
+			//tListBox.dataprovider = aDP; // cause duplicate on ListItems!
+			for(var a:Number = 0; a < aDP.length; a++)
+			{
+				tListBox.addChild(ListItem(aDP.getItemAt(a)));
+			}
+			
 			tListBox.addEventListener(new EventType("onClick", this));
 			
 		return tListBox;
@@ -44,6 +49,6 @@ class view.dialog.SearchDialog extends Panel
 	
 	private function onClick(event:IEvent):Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new GetPhotosEvent(event.getTarget().currentItem.getLabel()));
+		EventBroadcaster.getInstance().broadcastEvent(new GetPhotosEvent(event.getTarget().currentItem.getValue()));
 	}
 }

@@ -70,7 +70,7 @@ extends UIScrollView
 	*/
 	public function set dataprovider( _dp : DataProvider )
 	{
-		_data = _dp!=null ? _dp : new DataProvider( )
+		_data = _dp!=null ? _dp : new DataProvider( );
 		_data.addListener( this );
 		_createChilds();
 	};
@@ -161,7 +161,7 @@ extends UIScrollView
 		if( dataprovider.length ) {
 			clear();
 			while( l < dataprovider.length-1 ) 
-			addChild( UIViewStack.createInstance( childInstance, dataprovider.getItemAt(++l) ) );
+			addChild( UIViewStack.createInstance(childInstance, dataprovider.getItemAt(++l)));
 		};
 
 	};

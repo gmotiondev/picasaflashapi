@@ -89,6 +89,11 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		var greenUnderLine:Object = {color:0x99CC33, bold:false, underline:true};
 		var greenBoldUnderLine:Object = {color:0x99CC33, bold:true, underline:true};		
 		
+		var magenta:Object = {color: 0xD40073, bold:false, underline:false};
+		var magentaBold:Object = {color: 0xD40073, bold:true, underline:false};
+		var magentaUnderLine:Object = {color:0xD40073, bold:false, underline:true};
+		var magentaBoldUnderLine:Object = {color:0xD40073, bold:true, underline:true};
+		
 		var black:Object = {color:0x666666, bold:false, underline:false};
 		var blackBold:Object = {color:0x666666, bold:true, underline:false};
 		var blackUnderLine:Object = {color:0x666666, bold:false, underline:true};
@@ -118,7 +123,7 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		o.paddingLeft = 2;
 		o.paddingRight = 2;
 		
-		o.setFormat("fu", black);
+		o.setFormat("fu", white);
 		
 /** style for Description class **/
 		o = Style.newStyle("Description");
@@ -375,23 +380,23 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		o = Style.newStyle("Panel");
 		
 		o.marginTop = 10;
-		o.marginBottom = 10;
+		o.marginBottom = 5;
 		o.marginLeft = 10;
 		o.marginRight = 10;
 		
 		o.paddingLeft = 10;
 		o.paddingRight = 10;
-		o.paddingBottom = 10;
+		o.paddingBottom = 5;
 		o.paddingTop = 10;
 		
 		o.backgroundAlpha = 100;
-		o.backgroundColor = 0xffffff;
+		o.backgroundColor = 0xD40073;
 		o.backgroundPosition = {x:0,y:0};
 
-		o.cornerBottomRight = 5;
-		o.cornerBottomLeft = 5;
-		o.cornerTopRight = 5;
-		o.cornerTopLeft = 5;	
+		o.cornerBottomRight = 0;
+		o.cornerBottomLeft = 0;
+		o.cornerTopRight = 0;
+		o.cornerTopLeft = 0;	
 		
 		s = o.subStyle("header");
 		s.height = 30;
@@ -406,16 +411,16 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		s.paddingBottom = 10;
 		s.paddingTop = 10;
 
-		s.setFormat("fu",  {font:"Verdana", size:10, color: 0x99CC33, bold:false, underline:false });
+		s.setFormat("fu",  {font:"Verdana", size:14, color: 0xffffff, bold:true, underline:false });
 		
 		s.backgroundAlpha = 100;
-		s.backgroundColor = 0xffffff;
+		s.backgroundColor = 0xD40073;
 		s.backgroundPosition = {x:0,y:0};
 
-		s.cornerBottomRight = 5;
-		s.cornerBottomLeft = 5;
-		s.cornerTopRight = 5;
-		s.cornerTopLeft = 5;	
+		s.cornerBottomRight = 0;
+		s.cornerBottomLeft = 0;
+		s.cornerTopRight = 0;
+		s.cornerTopLeft = 0;	
 		
 /** style for DeckBox class **/		
 		o = Style.newStyle("DeckBox");		
@@ -588,10 +593,10 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		o.paddingLeft = 10;
 		o.paddingRight = 10;
 		
-		o.setFormat("fu", black);		
+		o.setFormat("fu", white);		
 
 		o.backgroundAlpha = 100;
-		o.backgroundColor = 0x99CC33;
+		o.backgroundColor = 0xD40073;
 		o.backgroundPosition = {x:0,y:0};
 
 		o.cornerBottomRight = 0;
@@ -602,6 +607,10 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		// over
 		s = o.subStyle("over", true);
 		s.setFormat("fu", black);	
+		
+		s.backgroundAlpha = 100;
+		s.backgroundColor = 0xffffff;
+		s.backgroundPosition = {x:0, y:0};
 		
 		// press
 		s = o.subStyle("press", true);

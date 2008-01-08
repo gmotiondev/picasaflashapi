@@ -20,7 +20,7 @@ class view.ThumbHolder extends MovieClipHelper implements ILibListener
 		super(aId,aC);
 		
 		show();
-		move(350,20);
+		move(330,20);
 		__grid = new GridLayout(5, 5);
 	}
 	
