@@ -49,7 +49,7 @@ class view.MainView extends MovieClipHelper
 	
 	public function set_photos_event():Void
 	{
-		var tPageDialog:PageDialog = new PageDialog(view);
+		var tPageDialog:PageDialog = new PageDialog(view, 110, 25);
 		trace("got photos list!");
 	}
 }
