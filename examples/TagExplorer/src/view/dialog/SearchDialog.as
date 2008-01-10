@@ -10,9 +10,12 @@ import com.bourre.events.EventBroadcaster;
 import com.bourre.events.EventType;
 
 import control.GetPhotosEvent;
+import control.GetPageEvent;
 
 class view.dialog.SearchDialog extends Panel
 {	
+	private var __lb:ListBox;
+	
 	public function SearchDialog(aHolder:MovieClip)
 	{
 		super("Tag list");
@@ -34,21 +37,33 @@ class view.dialog.SearchDialog extends Panel
 	
 	private function getTagList(aDP:DataProvider):ListBox
 	{
-		var tListBox:ListBox = new ListBox();
-			tListBox.rows = 15;
-			//tListBox.dataprovider = aDP; // cause duplicate on ListItems!
-			for(var a:Number = 0; a < aDP.length; a++)
-			{
-				tListBox.addChild(ListItem(aDP.getItemAt(a)));
-			}
+		__lb = new ListBox();
+		__lb.rows = 15;
+
+		//__lb.dataprovider = aDP; // cause duplicate on ListItems!
+		for(var a:Number = 0; a < aDP.length; a++)
+		{
+			__lb.addChild(ListItem(aDP.getItemAt(a)));
+		}
+		
+		__lb.addEventListener(new EventType("onClick", this));
 			
-			tListBox.addEventListener(new EventType("onClick", this));
-			
-		return tListBox;
+		return __lb;
+	}
+	
+	public function getCurrentItem():ListItem
+	{
+		return __lb.currentItem;
 	}
 	
 	private function onClick(event:IEvent):Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new GetPhotosEvent(event.getTarget().currentItem.getValue()));
+		EventBroadcaster.getInstance().broadcastEvent(new GetPhotosEvent(getCurrentItem().getValue()));
+	}
+	
+	public function get_page_event(event:GetPageEvent):Void
+	{
+		trace("SearchDialog::get_page_event");
+		onClick();
 	}
 }

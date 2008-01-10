@@ -9,7 +9,7 @@ import com.bourre.events.IEvent;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.EventType;
 
-import control.GetPhotosEvent;
+import control.GetPageEvent;
 
 class view.dialog.PageDialog extends Panel
 {	
@@ -60,7 +60,7 @@ class view.dialog.PageDialog extends Panel
 	
 	private function onClick(event:IEvent):Void
 	{
-		trace("got onClick from "+event.getTarget());
-		//EventBroadcaster.getInstance().broadcastEvent(new GetPhotosEvent(event.getTarget().currentItem.getValue()));
+		trace("got onClick from "+event.getTarget().getLabel());
+		EventBroadcaster.getInstance().broadcastEvent(new GetPageEvent(event.getTarget().getLabel()));
 	}
 }

@@ -16,7 +16,8 @@ import view.dialog.*;
 
 class view.MainView extends MovieClipHelper
 {
-	private var __dialog:SearchDialog;
+	private var __sdialog:SearchDialog;
+	private var __pdialog:PageDialog;
 	
 	public function MainView(aID:String, aContainer:MovieClip)
 	{
@@ -27,8 +28,8 @@ class view.MainView extends MovieClipHelper
 	
 	private function initialize():Void
 	{
-		__dialog = new SearchDialog(view);
-		__dialog.addEventListener(new EventType("onStartSearch"),this);
+		__sdialog = new SearchDialog(view);
+		__sdialog.addEventListener(new EventType("onStartSearch"),this);
 	}
 
 	public function setTags(o:Object):Void
@@ -39,7 +40,7 @@ class view.MainView extends MovieClipHelper
 		{
 			tDP.addItem(new ListItem(o[a].summary+" ("+o[a].gphoto.weight+")",o[a].summary));
 		}
-		__dialog.setTagList(tDP);
+		__sdialog.setTagList(tDP);
 	}
 	
 	// listen to the model.
@@ -49,7 +50,13 @@ class view.MainView extends MovieClipHelper
 	
 	public function set_photos_event():Void
 	{
-		var tPageDialog:PageDialog = new PageDialog(view, 110, 25);
+		__pdialog = new PageDialog(view, 110, 25);
 		trace("got photos list!");
+	}
+	
+	public function get_page_event(event:GetPageEvent):Void
+	{
+		__sdialog.get_page_event(event);
+		//__pdialog.get_page_event(event);
 	}
 }
