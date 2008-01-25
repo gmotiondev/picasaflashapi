@@ -19,11 +19,16 @@ class command.GetPhotosCommand implements Command, IResponder
 {
 	private var model:ModelApplication; 
 	
-	public function execute(e:GetPhotosEvent):Void
+	public function execute(event:GetPhotosEvent):Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 		
-		var tTag:String = escape(e.tag);
+		if(event.hasChanged)
+		{
+			model.service.start_index = 1;
+		}
+		
+		var tTag:String = escape(event.tag);
 		
 		var d:PhotosDelegate = new PhotosDelegate(this);
 			d.list(model.userid, tTag);
@@ -32,14 +37,17 @@ class command.GetPhotosCommand implements Command, IResponder
 	public function result(data:Array):Void
 	{
 		model.photos.init();
-
+		
 		for(var a:Number = 0; a < data.length; a++)
 		{
 			var tPhoto:Photo = data[a];
 			model.photos.push(tPhoto);
 		}
 		
-		EventBroadcaster.getInstance().dispatchEvent(new SetPhotosEvent());
+		var tTotalResults:Number = model.photos[0].album.openSearch.totalResults;
+		var tItemsPerPage:Number = model.photos[0].album.openSearch.itemsPerPage;
+		
+		EventBroadcaster.getInstance().dispatchEvent(new SetPhotosEvent(tTotalResults, tItemsPerPage));
 	}
 	
 	public function fault(error:PicasaError):Void

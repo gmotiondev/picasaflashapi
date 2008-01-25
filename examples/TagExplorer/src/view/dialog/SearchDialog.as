@@ -16,6 +16,7 @@ class view.dialog.SearchDialog extends Panel
 {	
 	private var __lb:ListBox;
 	
+	
 	public function SearchDialog(aHolder:MovieClip)
 	{
 		super("Tag list");
@@ -56,14 +57,18 @@ class view.dialog.SearchDialog extends Panel
 		return __lb.currentItem;
 	}
 	
+	private function dispatchGetPhotosEvent(aHasChanged:Boolean):Void
+	{
+		EventBroadcaster.getInstance().broadcastEvent(new GetPhotosEvent(getCurrentItem().getValue(), aHasChanged));
+	}
+
 	private function onClick(event:IEvent):Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new GetPhotosEvent(getCurrentItem().getValue()));
+		dispatchGetPhotosEvent(true);
 	}
 	
 	public function get_page_event(event:GetPageEvent):Void
 	{
-		trace("SearchDialog::get_page_event");
-		onClick();
+		dispatchGetPhotosEvent(false);
 	}
 }

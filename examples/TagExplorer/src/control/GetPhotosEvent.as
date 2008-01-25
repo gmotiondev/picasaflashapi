@@ -7,10 +7,12 @@ import control.Controller;
 class control.GetPhotosEvent extends BasicEvent
 {
 	public var tag:String;
-	
-	public function GetPhotosEvent(aTag:String)
+	public var hasChanged:Boolean = true;
+	public function GetPhotosEvent(aTag:String, aHasChanged:Boolean)
 	{
 		super(Controller.GET_PHOTOS_EVENT);
+		
 		tag = aTag;
+		hasChanged = aHasChanged;
 	}
 }

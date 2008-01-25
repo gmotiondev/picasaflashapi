@@ -83,6 +83,14 @@ class sk.prasa.visual.layout.GridLayout extends LayoutManager
 		__vGap = a;
 	}
 	
+	public function reset():Void
+	{
+		super.reset();
+		
+		delete __grid;
+		__grid = new OGrid(__cols, __rows);
+	}
+	
 	public function toString():String
 	{
 		return PixlibStringifier.stringify(this);

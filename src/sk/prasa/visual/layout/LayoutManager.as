@@ -1,4 +1,4 @@
-import com.bourre.data.collections.IndexedArray;
+﻿import com.bourre.data.collections.IndexedArray;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.EventType;

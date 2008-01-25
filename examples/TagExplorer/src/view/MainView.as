@@ -48,10 +48,10 @@ class view.MainView extends MovieClipHelper
 	{
 	}
 	
-	public function set_photos_event():Void
+	// just replicate to the PageDialog
+	public function set_photos_event(event:SetPhotosEvent):Void
 	{
-		__pdialog = new PageDialog(view, 110, 25);
-		trace("got photos list!");
+		__pdialog = new PageDialog(view, event.totalResults, event.itemsPerPage);
 	}
 	
 	public function get_page_event(event:GetPageEvent):Void
