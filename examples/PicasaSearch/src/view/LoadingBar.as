@@ -19,7 +19,7 @@ class view.LoadingBar extends MovieClipHelper
 
 		EventBroadcaster.getInstance().addEventListener(Controller.SET_PROGRESS_EVENT, Delegate.create(this, onSetProgressEvent));
 
-		__loader = Geom.buildRectangle(view, 10005, Stage.width, 4, 0xffffff, 0xffffff);
+		__loader = Geom.buildRectangle(view, 10005, Stage.width, 4, 0xD40073, 0xD40073);
 		show();
 	}
 	

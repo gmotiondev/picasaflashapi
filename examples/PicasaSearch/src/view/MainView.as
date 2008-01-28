@@ -32,9 +32,13 @@ class view.MainView extends MovieClipHelper
 		EventBroadcaster.getInstance().dispatchEvent(new GetPhotosEvent(escape(__dialog.getQuery())));
 	}
 	
-	private function setSearchResult(aResults:String):Void
+	private function setSearchResult(event:InitializeEvent):Void
 	{
-		__dialog.displayResults(aResults);
+		var tFrom:Number = event.startIndex;
+		var tTo:Number = ((event.startIndex + event.itemsPerPage) > event.totalResults ? event.totalResults : (event.itemsPerPage + event.startIndex));		
+		var tRes:String = (event.totalResults == 0) ? "None found" : "Found "+event.totalResults+" photos ("+tFrom+" - "+tTo+").";
+		
+		__dialog.displayResults(tRes);
 	}
 	
 	private function centerize():Void
@@ -42,8 +46,12 @@ class view.MainView extends MovieClipHelper
 		move(Math.round(Stage.width/2 - view._width/2), Math.round(Stage.height/2 - view._height/2));
 	}
 	
-	// listen to the model.
-	public function get_page_event(e:GetPageEvent):Void
+	public function get_next_page_event(e:GetNextPageEvent):Void
+	{
+		onStartSearch();
+	}
+	
+	public function get_prev_page_event(event:GetPrevPageEvent):Void
 	{
 		onStartSearch();
 	}

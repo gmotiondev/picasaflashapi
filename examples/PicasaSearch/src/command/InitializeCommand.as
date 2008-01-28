@@ -22,7 +22,11 @@ class command.InitializeCommand implements Command
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 		
 		var tMainView = MovieClipHelper.getMovieClipHelper(ViewList.MAIN_VIEW);
-			tMainView.setSearchResult("Found "+event.totalResults+" photos ("+event.startIndex+" to "+(event.startIndex+(event.totalResults < event.itemsPerPage ? event.totalResults : event.itemsPerPage) - (event.totalResults == 0 ? 0 : 1))+").");
+		var tNavView = MovieClipHelper.getMovieClipHelper(ViewList.NAVIGATION);
+		
+			// tMainView.setSearchResult("Found "+event.totalResults+" photos ("+event.startIndex+" to "+(event.startIndex+(event.totalResults < event.itemsPerPage ? event.totalResults : event.itemsPerPage) - (event.totalResults == 0 ? 0 : 1))+").");
+			tMainView.setSearchResult(event);
+			tNavView.setNavigation(event);
 			
 		var tThumbHolder = MovieClipHelper.getMovieClipHelper(ViewList.THUMB_HOLDER);
 			tThumbHolder.removeAllChildren();

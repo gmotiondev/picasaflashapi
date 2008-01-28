@@ -39,7 +39,7 @@ class view.dialog.SearchDialog extends ApplicationView
 	}
 	
 	public function displayResults(aResults:String):Void
-	{		
+	{	
 		var tResultLabel:Label = Label(__searchPanel.getChild(1));
 			tResultLabel.setLabel(aResults);
 	}
@@ -47,7 +47,7 @@ class view.dialog.SearchDialog extends ApplicationView
 	private function decorate():Void
 	{
 		var tTextAreaStyle:Style = Style.getStyle("TextBox");
-			tTextAreaStyle.setFormat("fu", {font:"Tahoma", multiLine: false, size:18, color: 0x000000, bold:false, underline:false });
+			tTextAreaStyle.setFormat("fu", {font:"Verdana", multiLine: false, size:14, color: 0x666666, bold:false, underline:false });
 	}
 	
 	private function getSearchPanel():Panel
@@ -67,7 +67,11 @@ class view.dialog.SearchDialog extends ApplicationView
 			tHBox.addChild(tSubmitButton);
 			
 		__searchPanel.addChild(tHBox);
-		__searchPanel.addChild(new Label(" "));
+		var tResultLabel:Label = new Label(" ");
+		var tResultLabelStyle:Style = Style.newStyle("LabelSmall");
+			tResultLabelStyle.setFormat("fu", {font:"Verdana", multiLine: false, size:10, color: 0x990066, bold:false, underline:false });
+			tResultLabel.setStyle(tResultLabelStyle);
+		__searchPanel.addChild(tResultLabel);
 		
 		tSearchBox.setObserver(this);
 		

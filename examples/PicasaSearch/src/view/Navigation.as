@@ -7,7 +7,6 @@ import com.bourre.events.EventBroadcaster;
 
 import control.*;
 
-//TODO: Pagination
 class view.Navigation extends MovieClipHelper
 {
 	public var container:MovieClip;
@@ -15,6 +14,8 @@ class view.Navigation extends MovieClipHelper
 	public function Navigation(aID:String,aMC:MovieClip)
 	{
 		super(aID,aMC);
+		
+		Key.addListener(this);
 		
 		container = view.createEmptyMovieClip("nav",2);
 		initialize();
@@ -27,20 +28,26 @@ class view.Navigation extends MovieClipHelper
 		
 		l.onRelease = Delegate.create(this, onPrevPage);		r.onRelease = Delegate.create(this, onNextPage);
 		
-		//l.onRollOver = r.onRollOver = Delegate.create(this, onContainerOver);
-		//r.onRollOut = r.onRollOut = Delegate.create(this, onContainerOut);
+		l._visible = false;
+		r._visible = false;
 		
-		centerize();		
+		centerize();	
 	}
 	
 	private function onPrevPage():Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new GetPageEvent("prev"));
+		if(container.l._visible)
+		{
+			EventBroadcaster.getInstance().broadcastEvent(new GetPrevPageEvent());
+		}
 	}
 	
 	private function onNextPage():Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new GetPageEvent("next"));
+		if(container.r._visible)
+		{
+			EventBroadcaster.getInstance().broadcastEvent(new GetNextPageEvent());
+		}
 	}
 	
 	private function centerize():Void
@@ -50,6 +57,22 @@ class view.Navigation extends MovieClipHelper
 		
 		container.r._x = Stage.width - container.r._width - 20;
 		container.r._y = Stage.height - container.r._height - 20;
+	}
+	
+	public function setNavigation(event:InitializeEvent):Void
+	{	
+		container.l._visible = event.startIndex > event.itemsPerPage;
+		container.r._visible = event.startIndex + event.itemsPerPage < event.totalResults;
+	}
+	
+	public function onKeyDown():Void
+	{
+		switch(Key.getCode())
+		{
+			case Key.RIGHT: onNextPage(); break;
+			case Key.LEFT: onPrevPage(); break;
+			default: break;
+		}
 	}
 	
 	public function onResize(event:ScreenResizeEvent):Void

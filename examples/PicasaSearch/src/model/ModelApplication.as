@@ -33,16 +33,16 @@ class model.ModelApplication extends Model
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 	}
 	
-	public function nextPage():Void
+	// next page button clicked
+	public function setNextPage():Void
 	{
 		service.start_index += service.max_results;
-		notifyChanged(new GetPageEvent("next"));
 	}
 	
-	public function prevPage():Void
+	// prev page button clicked
+	public function setPrevPage():Void
 	{
-		service.start_index = (service.start_index <= service.max_results) ? 1 : service.start_index - service.max_results;
-		notifyChanged(new GetPageEvent("prev"));
+		service.start_index = (service.start_index - service.max_results) >= 1 ? (service.start_index - service.max_results) : 1;
 	}
 	
 	public function onScreenResize(e:ScreenResizeEvent):Void
