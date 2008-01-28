@@ -5,7 +5,6 @@ import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
-import com.bourre.utils.Geom;
 
 import sk.prasa.visual.layout.GridLayout;
 

@@ -2,7 +2,6 @@
  *
  */
 import com.bourre.events.BasicEvent;
-import com.bourre.events.EventType;
 
 import control.Controller;
 

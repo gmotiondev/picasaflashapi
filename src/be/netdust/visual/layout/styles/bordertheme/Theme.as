@@ -94,6 +94,11 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		var magentaUnderLine:Object = {color:0xD40073, bold:false, underline:true};
 		var magentaBoldUnderLine:Object = {color:0xD40073, bold:true, underline:true};
 		
+		var violet:Object = {color: 0x990066, bold:false, underline:false};
+		var violetBold:Object = {color: 0x990066, bold:true, underline:false};
+		var violetUnderLine:Object = {color:0x990066, bold:false, underline:true};
+		var violetBoldUnderLine:Object = {color:0x990066, bold:true, underline:true};
+		
 		var black:Object = {color:0x666666, bold:false, underline:false};
 		var blackBold:Object = {color:0x666666, bold:true, underline:false};
 		var blackUnderLine:Object = {color:0x666666, bold:false, underline:true};
@@ -158,27 +163,27 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		
 		o.setFormat("fu", Disabled);		
 
-		o.borderBottomWidth = 2;
+		o.borderBottomWidth = 1;
 		o.borderBottomAlpha = 100;
-		o.borderBottomColor = 0x666666;
-		o.borderTopWidth = 2;
+		o.borderBottomColor = 0x990066;
+		o.borderTopWidth = 1;
 		o.borderTopAlpha = 100;
-		o.borderTopColor = 0x666666;
-		o.borderRightWidth = 2;
+		o.borderTopColor = 0x990066;
+		o.borderRightWidth = 1;
 		o.borderRightAlpha = 100;
-		o.borderRightColor = 0x666666;
-		o.borderLeftWidth = 2;
+		o.borderRightColor = 0x990066;
+		o.borderLeftWidth = 1;
 		o.borderLeftAlpha = 100;
-		o.borderLeftColor = 0x666666;
+		o.borderLeftColor = 0x990066;
 		
 		o.backgroundAlpha = 100;
 		o.backgroundColor = 0xFFFFFF;
 		o.backgroundPosition = {x:0,y:0};
 		
-		o.cornerBottomRight = 4;
-		o.cornerBottomLeft = 4;
-		o.cornerTopRight = 4;
-		o.cornerTopLeft = 4;
+		o.cornerBottomRight = 0;
+		o.cornerBottomLeft = 0;
+		o.cornerTopRight = 0;
+		o.cornerTopLeft = 0;
 		
 /** style for TextArea class **/
 		o = Style.newStyle("TextArea");
@@ -227,21 +232,21 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		o.marginLeft = 2;
 		o.marginRight = 2;
 		
-		o.paddingLeft = 10;
-		o.paddingRight = 10;
+		o.paddingLeft = 5;
+		o.paddingRight = 5;
 		o.paddingBottom = 5;
 		o.paddingTop = 5;
 		
 		o.setFormat("fu", white);
 		
 		o.backgroundAlpha = 100;
-		o.backgroundColor = 0x99CC33;
+		o.backgroundColor = 0x990066;
 		o.backgroundPosition = {x:0,y:0};
 
-		o.cornerBottomRight = 8;
-		o.cornerBottomLeft = 8;
-		o.cornerTopRight = 8;
-		o.cornerTopLeft = 8;
+		o.cornerBottomRight = 0;
+		o.cornerBottomLeft = 0;
+		o.cornerTopRight = 0;
+		o.cornerTopLeft = 0;
 		
 		// over
 		s = o.subStyle("over", true);
