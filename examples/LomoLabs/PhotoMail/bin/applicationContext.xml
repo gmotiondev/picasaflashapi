@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
+	<application-loader url="loader.swf" 
+						name-callback="cb.onNameCallBack" 
+						progress-callback="cb.onProgressCallback" 
+						built-callback="cb.onBuildCallback" 
+						depth="1000" />
+
+	<dll url="picasa.swf"/>	
 	<dll url="dialog.swf"/>
-	<dll url="grid.swf"/>
 	<dll url="mailer.swf"/>
-	<dll url="picasa.swf"/>
+	<dll url="grid.swf"/>
  
+	<plugin id="picasa" channel="c-picasa" type="plugins.picasa.picasa">
+		<listen channel="c-grid"/>
+	</plugin>
 	<plugin id="dialog" channel="c-dialog" type="plugins.dialog.dialog">
 		<listen channel="c-grid"/>		
 		<listen channel="c-mailer"/>
 	</plugin>
-	<plugin id="grid" channel="c-grid" type="plugins.grid.grid">
-		<listen channel="c-picasa"/>
-		<listen channel="c-dialog"/>
-	</plugin>
 	<plugin id="mailer" channel="c-mailer" type="plugins.mailer.mailer">
 		<listen channel="c-picasa"/>
 	</plugin>
-	<plugin id="picasa" changel="c-picasa" type="plugins.picasa.picasa">
-		<listen channel="c-grid"/>
+	<plugin id="grid" channel="c-grid" type="plugins.grid.grid">
+		<listen channel="c-picasa"/>
+		<listen channel="c-dialog"/>
+		<method-call name="initialize">
+			<argument type="String" value="c-picasa"/>
+			<argument type="String" value="thisispinkfu"/>
+			<argument type="String" value="51242154521452452215"/>
+		</method-call>
 	</plugin>
 </beans>

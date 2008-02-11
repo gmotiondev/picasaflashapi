@@ -8,5 +8,12 @@ class plugins.dialog.dialog extends AbstractPlugin
 	public function dialog()
 	{
 		super();
+		
+		initialize();
+	}
+	
+	private function initialize():Void
+	{
+		trace("dialog up and running!");
 	}
 }

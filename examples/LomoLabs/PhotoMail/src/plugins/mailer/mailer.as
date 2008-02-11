@@ -8,5 +8,12 @@ class plugins.mailer.mailer extends AbstractPlugin
 	public function mailer()
 	{
 		super();
+		
+		initialize();
+	}
+	
+	private function initialize():Void
+	{
+		trace("mailer up and running!");
 	}
 }
