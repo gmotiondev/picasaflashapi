@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<dll url="dialog.swf"/>
+	<dll url="grid.swf"/>
+	<dll url="mailer.swf"/>
+	<dll url="picasa.swf"/>
+ 
+	<plugin id="dialog" channel="c-dialog" type="plugins.dialog.dialog">
+		<listen channel="c-grid"/>		
+		<listen channel="c-mailer"/>
+	</plugin>
+	<plugin id="grid" channel="c-grid" type="plugins.grid.grid">
+		<listen channel="c-picasa"/>
+		<listen channel="c-dialog"/>
+	</plugin>
+	<plugin id="mailer" channel="c-mailer" type="plugins.mailer.mailer">
+		<listen channel="c-picasa"/>
+	</plugin>
+	<plugin id="picasa" changel="c-picasa" type="plugins.picasa.picasa">
+		<listen channel="c-grid"/>
+	</plugin>
+</beans>
