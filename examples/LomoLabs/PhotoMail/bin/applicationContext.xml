@@ -6,6 +6,11 @@
 						built-callback="cb.onBuildCallback" 
 						depth="1000" />
 
+	<root id="root">
+		<clip id="mc-grid" depth="10" url="../assets/grid_library.swf"/>
+		<clip id="mc-dialog" depth="20"/>
+	</root>
+
 	<dll url="loader.swf"/>
 	<dll url="picasa.swf"/>	
 	<dll url="dialog.swf"/>
@@ -13,15 +18,16 @@
 	<dll url="grid.swf"/>
  
 	<plugin id="loader" channel="c-loader" type="content.loader.loader">
-		<listen channel="c-picasa"/>		
+		<listen channel="c-picasa"/>
+		<listen channel="c-grid"/>
 		<listen channel="c-mailer"/>
 	</plugin>
 	<plugin id="picasa" channel="c-picasa" type="plugins.picasa.picasa">
 		<listen channel="c-grid"/>
 		<method-call name="initialize">
-			<argument type="Number" value="320"/><!-- imgmax -->
-			<argument type="Number" value="72"/><!-- thumbsize -->
-			<argument type="Number" value="24"/><!-- max_results -->
+			<argument type="Number" value="320"/><!-- service imgmax -->
+			<argument type="Number" value="72"/><!-- service thumbsize -->
+			<argument type="Number" value="24"/><!-- service max_results -->
 		</method-call>
 	</plugin>
 	<plugin id="dialog" channel="c-dialog" type="plugins.dialog.dialog">
@@ -32,12 +38,13 @@
 		<listen channel="c-picasa"/>
 	</plugin>
 	<plugin id="grid" channel="c-grid" type="plugins.grid.grid">
+		<argument ref="mc-grid"/>
 		<listen channel="c-picasa"/>
 		<listen channel="c-dialog"/>
 		<method-call name="initialize">
-			<argument type="String" value="c-picasa"/>
-			<argument type="String" value="thisispinkfu"/>
-			<argument type="String" value="5094406297232552993"/>
+			<argument type="String" value="c-picasa"/><!-- call this channel -->
+			<argument type="String" value="thisispinkfu"/><!-- user name -->
+			<argument type="String" value="5094406297232552993"/><!-- album id -->
 		</method-call>
 	</plugin>
 </beans>

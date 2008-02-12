@@ -22,7 +22,6 @@ class plugins.picasa.model.PicasaModel extends AbstractModel
 		//photos = new Photos();
 
 		service = new PicasaService();
-		/* get these variables from config at runtime ! */
 		service.imgmax = aImgmax;
 		service.thumbsize = aThumbsize;
 		service.max_results = aMax_results;
