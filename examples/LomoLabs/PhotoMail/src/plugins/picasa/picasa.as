@@ -12,11 +12,9 @@ class plugins.picasa.picasa extends AbstractPlugin
 	public function picasa()
 	{
 		super();
-		
-		initialize();
 	}
 	
-	private function initialize():Void
+	private function initialize(aImgmax:Number, aThumbsize:Number, aMax_results:Number):Void
 	{
 		trace("picasa up and running!");
 		
@@ -24,6 +22,7 @@ class plugins.picasa.picasa extends AbstractPlugin
 		
 		var tModel:PicasaModel = new PicasaModel(this, ModelList.PICASA_MODEL);
 		// tModel.addListener ...
+			tModel.initialize(aImgmax, aThumbsize, aMax_results);
 	}
 	
 	public function getPhotosEvent(evt:IEvent):Void

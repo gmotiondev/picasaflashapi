@@ -6,13 +6,23 @@
 						built-callback="cb.onBuildCallback" 
 						depth="1000" />
 
+	<dll url="loader.swf"/>
 	<dll url="picasa.swf"/>	
 	<dll url="dialog.swf"/>
 	<dll url="mailer.swf"/>
 	<dll url="grid.swf"/>
  
+	<plugin id="loader" channel="c-loader" type="content.loader.loader">
+		<listen channel="c-picasa"/>		
+		<listen channel="c-mailer"/>
+	</plugin>
 	<plugin id="picasa" channel="c-picasa" type="plugins.picasa.picasa">
 		<listen channel="c-grid"/>
+		<method-call name="initialize">
+			<argument type="Number" value="320"/><!-- imgmax -->
+			<argument type="Number" value="72"/><!-- thumbsize -->
+			<argument type="Number" value="24"/><!-- max_results -->
+		</method-call>
 	</plugin>
 	<plugin id="dialog" channel="c-dialog" type="plugins.dialog.dialog">
 		<listen channel="c-grid"/>		
@@ -27,7 +37,7 @@
 		<method-call name="initialize">
 			<argument type="String" value="c-picasa"/>
 			<argument type="String" value="thisispinkfu"/>
-			<argument type="String" value="51242154521452452215"/>
+			<argument type="String" value="5094406297232552993"/>
 		</method-call>
 	</plugin>
 </beans>

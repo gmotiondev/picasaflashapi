@@ -25,4 +25,10 @@ class plugins.grid.grid extends AbstractPlugin
 
 		fireExternalEvent(tEvt,aChannelCallback);
 	}
+	
+	public function onGetPhotosEvent(evt:IEvent)
+	{
+		trace("grid received "+evt.getTarget().length+" photos");
+		//firePrivateEvent(evt);
+	}
 }
