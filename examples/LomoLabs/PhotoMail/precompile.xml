@@ -7,6 +7,7 @@
 			<clip id="l" import="assets/png/l.png"/>
 			<clip id="r" import="assets/png/r.png"/>
 			<clip id="c" import="assets/png/c.png"/>
+			<clip id="s" import="assets/png/s.png"/>
 		</library>
 	</frame>
 </movie>

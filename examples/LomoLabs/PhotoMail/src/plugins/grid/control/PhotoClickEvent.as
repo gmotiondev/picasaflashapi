@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.events.BasicEvent;

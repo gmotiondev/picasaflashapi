@@ -1,12 +1,10 @@
-/**
+﻿/**
  * @author michal.gron@gmail.com
  */
  
 import com.bourre.ioc.visual.AbstractMovieClipHelper;
 import com.bourre.ioc.plugin.IPlugin;
-import com.bourre.data.libs.GraphicLib;
 import com.bourre.commands.Delegate;
-import com.bourre.visual.MovieClipHelper;
 import com.bourre.utils.Geom;
 
 import plugins.grid.control.PhotoClickEvent;
@@ -15,20 +13,15 @@ import plugins.grid.control.PhotoChangedEvent;
 class plugins.grid.view.Thumb extends AbstractMovieClipHelper
 {	
 	public var id:String;
-	public var summary:String;
-	
 	private var background:MovieClip;
 	
-	public function Thumb(owner:IPlugin, name:String, mc:MovieClip, aSummary:String)
+	public function Thumb(owner:IPlugin, name:String, mc:MovieClip)
 	{
 		super(owner, name, mc);
-		//super(aId, aContainer)
-		view.onRelease = Delegate.create(this, onThumbRelease);
-		
-		id = name;
-		summary = aSummary;
-		
+
+		id = name;		
 		setBackground(0xffffff, 0xe2007a, 4);
+		view.onRelease = Delegate.create(this, onThumbRelease);
 	}
 	
 	private function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
@@ -45,13 +38,13 @@ class plugins.grid.view.Thumb extends AbstractMovieClipHelper
 		with(new Color(background)) { setRGB((b ? background.__h : background.__c)); }
 	}
 	
-	public function photo_changed_event(evt:PhotoChangedEvent):Void
-	{	
-		highlight(evt.id == id);
-	}
-	
 	private function onThumbRelease():Void
 	{
 		getOwner().firePrivateEvent(new PhotoClickEvent(id));
+	}
+	
+	public function photo_changed_event(evt:PhotoChangedEvent):Void
+	{	
+		highlight(evt.id == id);
 	}
 }

@@ -1,16 +1,15 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
-
 import com.bourre.ioc.plugin.BasicPluginEvent;
 import com.bourre.ioc.plugin.IPlugin;
 
 import plugins.grid.control.Controller;
 
-class plugins.grid.control.ShowPhotosEvent extends BasicPluginEvent
+class plugins.grid.control.PhotoGetPreviousEvent extends BasicPluginEvent
 {
-	public function ShowPhotosEvent(owner:IPlugin)
+	public function PhotoGetPreviousEvent(owner:IPlugin)
 	{
-		super(Controller.SHOW_PHOTOS_EVENT, owner);
+		super(Controller.PHOTO_GET_PREV_EVENT, owner);
 	}
 }

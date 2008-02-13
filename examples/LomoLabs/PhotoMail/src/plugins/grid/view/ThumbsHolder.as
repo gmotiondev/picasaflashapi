@@ -1,15 +1,15 @@
-/**
+﻿/**
  * @author michal.gron@gmai.com
  */
 
 import com.bourre.ioc.visual.AbstractMovieClipHelper;
 import com.bourre.ioc.plugin.IPlugin;
-import com.bourre.commands.Delegate;
 import com.bourre.data.libs.GraphicLib;
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
-import plugins.grid.control.PhotoClickEvent;
+
 import plugins.grid.control.PhotoChangedEvent;
+import plugins.grid.control.ResizeEvent;
 import plugins.grid.view.Thumb;
 
 class plugins.grid.view.ThumbsHolder extends AbstractMovieClipHelper implements ILibListener
@@ -26,11 +26,11 @@ class plugins.grid.view.ThumbsHolder extends AbstractMovieClipHelper implements 
 		centerize();
 	}
 	
-	public function addChild(aId:String, aUrl:String, aSummary:String):Void
+	public function addChild(aId:String, aUrl:String):Void
 	{
 		var tHolder:MovieClip = view.createEmptyMovieClip("thumb_holder_"+aId,view.getNextHighestDepth());
 		var tGL:GraphicLib = new GraphicLib(tHolder, 5, true);
-		var tThumb:Thumb = new Thumb(getOwner(), aId, tHolder, aSummary);
+		var tThumb:Thumb = new Thumb(getOwner(), aId, tHolder);
 			
 			addListener(tThumb);
 			
@@ -69,8 +69,14 @@ class plugins.grid.view.ThumbsHolder extends AbstractMovieClipHelper implements 
 		trace("ERROR: Photo loading time out: "+e.getName());
 	}
 	
+	// listen to the model and dispatch to children
 	public function photo_changed_event(evt:PhotoChangedEvent):Void
 	{	
 		notifyChanged(evt);
+	}
+	
+	public function resize_event(evt:ResizeEvent):Void
+	{
+		centerize();
 	}
 }

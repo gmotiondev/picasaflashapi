@@ -1,14 +1,12 @@
-/**
+﻿/**
  * @author michal.gron@gmail.com
  */
 
 import com.bourre.ioc.visual.AbstractMovieClipHelper;
 import com.bourre.ioc.visual.ScreenProtection;
 import com.bourre.ioc.plugin.IPlugin;
-
 import com.bourre.events.NumberEvent;
 import com.bourre.events.EventType;
-import com.bourre.visual.MovieClipHelper; 
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
 import com.bourre.data.libs.LibStack;
@@ -17,6 +15,7 @@ import com.bourre.commands.Delegate;
 import com.bourre.utils.Geom;
 
 import plugins.grid.control.PhotoChangedEvent;
+import plugins.grid.control.ResizeEvent;
 
 class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibListener
 {	
@@ -76,6 +75,19 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 			tLibStack.execute();
 	}
 	
+	private function protect():Void
+	{
+	}
+	
+	private function unprotect():Void
+	{
+	}
+	
+	private function centerize():Void
+	{
+		move(Math.round(Stage.width/2 - view._width/2 + 10), Math.round(Stage.height/2 - view._height/2));
+	}
+	
 	public function onLoadInit(e:LibEvent):Void
 	{
 		loaded = true;
@@ -105,20 +117,12 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 		trace("ERROR: Photo loading time out: "+e.getName());
 	}
 	
-	private function centerize():Void
+	// listen to the model
+	public function resize_event(evt:ResizeEvent):Void
 	{
-		move(Math.round(Stage.width/2 - view._width/2 + 10), Math.round(Stage.height/2 - view._height/2));
+		centerize();
 	}
 	
-	private function protect():Void
-	{
-	}
-	
-	private function unprotect():Void
-	{
-	}
-	
-		// listen to the model
 	public function photo_changed_event(e:PhotoChangedEvent):Void
 	{
 		if(PhotoChangedEvent(e).id == id)
