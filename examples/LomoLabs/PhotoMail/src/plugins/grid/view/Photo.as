@@ -3,7 +3,6 @@
  */
 
 import com.bourre.ioc.visual.AbstractMovieClipHelper;
-import com.bourre.ioc.visual.ScreenProtection;
 import com.bourre.ioc.plugin.IPlugin;
 import com.bourre.events.NumberEvent;
 import com.bourre.events.EventType;
@@ -16,6 +15,8 @@ import com.bourre.utils.Geom;
 
 import plugins.grid.control.PhotoChangedEvent;
 import plugins.grid.control.ResizeEvent;
+import plugins.grid.control.ProtectionEvent;
+import plugins.grid.view.dialog.SendDialog;
 
 class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibListener
 {	
@@ -61,6 +62,12 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 			tF.setTextFormat(tTF);
 	}
 	
+	private function addSendDialog():Void
+	{
+		var tSendDialog:SendDialog = new SendDialog(getOwner(), "send_dialog_"+id, view.createEmptyMovieClip("send_dialog_holder",100));
+			tSendDialog.move(0, 250);
+	}
+	
 	private function close():Void
 	{
 		hide();
@@ -77,10 +84,12 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	
 	private function protect():Void
 	{
+		getOwner().firePrivateEvent(new ProtectionEvent(getOwner(), true));
 	}
 	
 	private function unprotect():Void
 	{
+		getOwner().firePrivateEvent(new ProtectionEvent(getOwner(), false));
 	}
 	
 	private function centerize():Void
@@ -91,6 +100,7 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	public function onLoadInit(e:LibEvent):Void
 	{
 		loaded = true;
+		addSendDialog();
 	}
 	
 	public function onLoadProgress(e:LibEvent):Void

@@ -29,11 +29,13 @@ class plugins.grid.grid extends AbstractPlugin
 		Controller.getInstance(this).initialize();
 
 		var view_t:ThumbsHolder = new ThumbsHolder(this, ViewList.THUMBS_HOLDER, __holder.createEmptyMovieClip(ViewList.THUMBS_HOLDER,5));
+		var view_r:Protection = new Protection(this, ViewList.PROTECTION, __holder.createEmptyMovieClip(ViewList.PROTECTION,8));
 		var view_p:PhotosHolder = new PhotosHolder(this, ViewList.PHOTOS_HOLDER, __holder.createEmptyMovieClip(ViewList.PHOTOS_HOLDER,10));
 		var view_n:Navigation 	= new Navigation(this, ViewList.NAVIGATION, __holder.createEmptyMovieClip(ViewList.NAVIGATION,15));
 		
 		var tModel:GridModel = new GridModel(this, ModelList.GRID_MODEL);
 			tModel.addListener(view_t);
+			tModel.addListener(view_r);
 			tModel.addListener(view_p);
 			tModel.addListener(view_n);
 		

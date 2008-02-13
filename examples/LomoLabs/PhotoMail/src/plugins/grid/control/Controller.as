@@ -22,6 +22,7 @@ class plugins.grid.control.Controller
 	public static var PHOTO_CHANGED_EVENT:EventType	= new EventType("photo_changed_event");
 	//public static var PHOTO_SET_TITLE_EVENT:EventType=new EventType("photo_set_title_event");
 	public static var RESIZE_EVENT:EventType = new EventType("resize_event");
+	public static var PROTECTION_EVENT:EventType = new EventType("protection_event");
 	
 	private function Controller(plugin:IPlugin)
 	{
@@ -53,5 +54,6 @@ class plugins.grid.control.Controller
 		getController().pushCommandClass(PHOTO_GET_PREV_EVENT, PhotoGetPrevCommand);
 		
 		getController().pushCommandClass(RESIZE_EVENT, ResizeCommand);
+		getController().pushCommandClass(PROTECTION_EVENT, ProtectionCommand);
 	}
 }
