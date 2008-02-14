@@ -35,7 +35,7 @@
 		<listen channel="c-mailer"/>
 	</plugin>
 	<plugin id="mailer" channel="c-mailer" type="plugins.mailer.mailer">
-		<listen channel="c-picasa"/>
+		<listen channel="c-grid"/>
 	</plugin>
 	<plugin id="grid" channel="c-grid" type="plugins.grid.grid">
 		<argument ref="mc-grid"/>

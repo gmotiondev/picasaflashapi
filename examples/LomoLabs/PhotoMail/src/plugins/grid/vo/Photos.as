@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.data.collections.IndexedArray;
@@ -30,6 +30,12 @@ class plugins.grid.vo.Photos extends IndexedArray
 	public function getCurrentTitle():String
 	{
 		return (typeof(this[__current].summary) == "string" ? this[__current].summary : "___");
+	}
+	
+	// 
+	public function getCurrentUrl():String
+	{
+		return this[__current].media.content.url;
 	}
 	
 	// 

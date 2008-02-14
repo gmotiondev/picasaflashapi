@@ -5,17 +5,23 @@
 import com.bourre.ioc.visual.AbstractMovieClipHelper;
 import com.bourre.ioc.plugin.IPlugin;
 
+import com.bourre.commands.Delegate;
+
+import plugins.grid.control.PhotoSendEvent;
+
 class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 {
 	private var __desc:TextField;
 	private var __from:TextField;
 	private var __to:TextField;
 	private var __send:MovieClip;
+	private var __id:String;
 	
 	public function SendDialog(owner:IPlugin, name:String, mc:MovieClip)
 	{
-		super(owner, name, mc);
+		super(owner, "send_dialog_"+name, mc);
 		
+		__id = name;
 		initialize();
 	}
 	
@@ -31,7 +37,7 @@ class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 		
 		__send = view.attachMovie("s", "s", 8);
 		__send._x = 0; __send._y = 170;
-		
+		__send.onRelease = Delegate.create(this, onSend);
 		decorate(__desc);
 		decorate(__from);
 		decorate(__to);
@@ -55,5 +61,10 @@ class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 		aField.wordWrap = true;
 		aField.type = "input";
 		aField.setTextFormat(tFormat);
+	}
+	
+	private function onSend():Void
+	{
+		getOwner().firePrivateEvent(new PhotoSendEvent(getOwner(), __from.text, __to.text, __desc.text, __id));
 	}
 }

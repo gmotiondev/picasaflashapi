@@ -64,7 +64,7 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	
 	private function addSendDialog():Void
 	{
-		var tSendDialog:SendDialog = new SendDialog(getOwner(), "send_dialog_"+id, view.createEmptyMovieClip("send_dialog_holder",100));
+		var tSendDialog:SendDialog = new SendDialog(getOwner(), id, view.createEmptyMovieClip("send_dialog_holder",100));
 			tSendDialog.move(0, 250);
 	}
 	
