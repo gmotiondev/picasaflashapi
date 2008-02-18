@@ -7,6 +7,7 @@ import com.bourre.events.EventType;
 import com.bourre.events.BasicEvent;
 
 import plugins.grid.control.*;
+import plugins.grid.control.dialog.*;
 import plugins.grid.model.*;
 import plugins.grid.view.*;
 
@@ -51,6 +52,14 @@ class plugins.grid.grid extends AbstractPlugin
 	public function onGetPhotosEvent(evt:IEvent)
 	{
 		firePrivateEvent(new InitializeEvent(this, evt.getTarget()));
+	}
+	
+	public function onPhotoSent(evt:BasicEvent):Void
+	{
+		var tMessage:String = evt.getTarget().message;
+		var tId:String = evt.getTarget().id;
+		
+		firePrivateEvent(new GetSentDialogEvent(this, tId, tMessage));
 	}
 	
 	public function onResize():Void

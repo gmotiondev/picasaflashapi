@@ -30,7 +30,7 @@ class plugins.picasa.command.GetPhotosCommand extends AbstractCommand implements
 	
 	public function progress(percents:Number):Void
 	{
-		__model.getOwner().firePublicEvent(new NumberEvent(new EventType("onProgress"),percents));
+		getOwner().firePublicEvent(new NumberEvent(new EventType("onProgress"),percents));
 	}
 	
 	public function result(data:Array):Void
@@ -39,10 +39,10 @@ class plugins.picasa.command.GetPhotosCommand extends AbstractCommand implements
 		
 		if(!__callbackChannel)
 		{
-			__model.getOwner().firePublicEvent(tEvent);
+			getOwner().firePublicEvent(tEvent);
 		} else
 		{
-			__model.getOwner().fireExternalEvent(tEvent,__callbackChannel);
+			getOwner().fireExternalEvent(tEvent,__callbackChannel);
 		}
 	}
 	

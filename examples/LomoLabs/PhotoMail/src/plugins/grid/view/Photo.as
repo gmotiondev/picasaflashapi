@@ -13,34 +13,39 @@ import com.bourre.data.libs.GraphicLib;
 import com.bourre.commands.Delegate;
 import com.bourre.utils.Geom;
 
-import plugins.grid.control.PhotoChangedEvent;
-import plugins.grid.control.ResizeEvent;
-import plugins.grid.control.ProtectionEvent;
-import plugins.grid.view.dialog.SendDialog;
+import plugins.grid.control.*;
+import plugins.grid.control.dialog.*;
+import plugins.grid.view.dialog.*;
 
 class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibListener
 {	
 	public var id:String;
 	public var url:String;
-	public var title:String;
+	public var summary:String;
 	
 	private var background:MovieClip;
 	private var loaded:Boolean = false;
 	
-	public function Photo(owner:IPlugin, name:String, mc:MovieClip, aHide:Boolean, aUrl:String, aTitle:String)
+	private var __send_dialog:SendDialog;
+	private var __sent_dialog:SentDialog;
+	private var __sending_dialog:SendingDialog;
+	
+	public function Photo(owner:IPlugin, name:String, mc:MovieClip, aHide:Boolean, aUrl:String, aSummary:String)
 	{
 		super(owner, "p_"+name, mc);
 		
 		id = name;
 		url = aUrl;
-		title = aTitle;	
+		summary = aSummary;	
 		setVisible(!aHide);
 	}
 
 	private function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
 	{
 		var tTopbar:Number = 15;
-		background = Geom.buildRectangle(view, 4, (view._width+(2*aMargin)), (view._height+(2*aMargin) + tTopbar),aColor,aColor);
+		var tBottombar:Number = 30;
+		
+		background = Geom.buildRectangle(view, 4, (view._width+(2*aMargin)), (view._height+(2*aMargin) + tTopbar + tBottombar),aColor,aColor);
 		background._x = -aMargin;
 		background._y = -aMargin - tTopbar;
 		background.__c = aColor;
@@ -58,20 +63,19 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 		var tF:TextField = view.title_tf;
 			tF.embedFonts = true;
 			tF.html = true;
-			tF.htmlText = title;
+			tF.htmlText = summary;
 			tF.setTextFormat(tTF);
-	}
-	
-	private function addSendDialog():Void
-	{
-		var tSendDialog:SendDialog = new SendDialog(getOwner(), id, view.createEmptyMovieClip("send_dialog_holder",100));
-			tSendDialog.move(0, 250);
 	}
 	
 	private function close():Void
 	{
 		hide();
 		unprotect();
+	}
+	
+	private function send():Void
+	{
+		getOwner().firePrivateEvent(new GetSendDialogEvent(getOwner(), id));
 	}
 	
 	private function load():Void
@@ -100,12 +104,11 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	public function onLoadInit(e:LibEvent):Void
 	{
 		loaded = true;
-		addSendDialog();
 	}
 	
 	public function onLoadProgress(e:LibEvent):Void
 	{
-		getOwner().firePublicEvent(new NumberEvent(new EventType("onProgress"),e.getPerCent()));
+		getOwner().firePublicEvent(new NumberEvent(new EventType("onProgress"), e.getPerCent()));
 	}
 	
 	public function onLoadComplete(e:LibEvent):Void
@@ -113,12 +116,16 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 		setBackground(0xffffff, 0xffffff, 10);
 		setTitle();
 		
-		var tClose = view.attachMovie("c", "c", 210);
-		var tClose_mc = 
+		var tClose = view.attachMovie("c", "c", 210); 
 			tClose._x = view._width - 33;
 			tClose._y = -17;
 			tClose.onRelease = Delegate.create(this, close);
 
+		var tSend = view.attachMovie("f", "f", 212);
+			tSend._x = view._width - tSend._width - 23;
+			tSend._y = view._height - 57;
+			tSend.onRelease = Delegate.create(this, send);
+			
 		centerize();
 	} 
 	
@@ -149,5 +156,55 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 				hide();
 			}
 		}
+	}
+	
+	public function get_send_dialog_event(evt:GetSendDialogEvent):Void
+	{
+		if(evt.id == id)
+		{
+			__send_dialog = new SendDialog(getOwner(), id, view.createEmptyMovieClip("send_dialog_holder",100));
+			__send_dialog.summary = summary;
+			__send_dialog.move(330, 20);
+		} else 
+		{
+			delete __send_dialog;
+			view.send_dialog_holder.removeMovieClip();
+		}
+		
+		centerize();
+	}
+	
+	public function get_sending_dialog_event(evt:GetSendingDialogEvent):Void
+	{
+		if(evt.id == id)
+		{
+			__sending_dialog = new SendingDialog(getOwner(), id, view.createEmptyMovieClip("sending_dialog_holder", 101));
+			__sending_dialog.move(330, 20);
+			
+			getOwner().firePrivateEvent(new GetSendDialogEvent(getOwner(), null));
+		} else
+		{
+			delete __sending_dialog;
+			view.sending_dialog_holder.removeMovieClip();
+		}
+		
+		centerize();
+	}
+	
+	public function get_sent_dialog_event(evt:GetSentDialogEvent):Void
+	{
+		if(evt.id == id)
+		{
+			__sent_dialog = new SentDialog(getOwner(), id, view.createEmptyMovieClip("sent_dialog_holder", 102), evt.message);
+			__sent_dialog.move(330, 20);
+			
+			getOwner().firePrivateEvent(new GetSendingDialogEvent(getOwner(), null));
+		} else
+		{
+			delete __sent_dialog;
+			view.sent_dialog_holder.removeMovieClip();
+		}
+		
+		centerize();
 	}
 }

@@ -1,4 +1,7 @@
-﻿import com.bourre.visual.MovieClipHelper;
+﻿/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.BasicEvent;
 
@@ -6,23 +9,14 @@ import view.*;
 import control.*;
 import model.*;
 
-/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
 class Application extends MovieClipHelper
 {
-	/**
-	 *	Constructor
-	 */
 	private function Application(mc:MovieClip)
 	{
 		super(ViewList.APPLICATION, mc);
 		initialize(mc);
 	}
 	
-	/**
-	 *	initialize point
-	 */	
 	private function initialize(mc:MovieClip):Void
 	{
 		Stage.addListener(this);

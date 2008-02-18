@@ -8,6 +8,8 @@
 			<clip id="r" import="assets/png/r.png"/>
 			<clip id="c" import="assets/png/c.png"/>
 			<clip id="s" import="assets/png/s.png"/>
+			<clip id="f" import="assets/png/f.png"/>
+			<clip id="h" import="assets/png/h.png"/>
 		</library>
 	</frame>
 </movie>

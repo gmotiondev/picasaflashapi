@@ -4,6 +4,7 @@
 
 import com.bourre.ioc.visual.AbstractMovieClipHelper;
 import com.bourre.ioc.plugin.IPlugin;
+import com.bourre.ioc.plugin.BasicPluginEvent;
 
 import plugins.grid.view.Photo;
 import plugins.grid.control.PhotoChangedEvent;
@@ -25,12 +26,7 @@ class plugins.grid.view.PhotosHolder extends AbstractMovieClipHelper
 	}
 	
 	// listen to the model and dispatch to children
-	public function photo_changed_event(evt:PhotoChangedEvent):Void
-	{
-		notifyChanged(evt);
-	}
-	
-	public function resize_event(evt:ResizeEvent):Void
+	public function handleEvent(evt:BasicPluginEvent):Void
 	{
 		notifyChanged(evt);
 	}

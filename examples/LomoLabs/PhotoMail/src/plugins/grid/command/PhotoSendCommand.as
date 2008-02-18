@@ -8,6 +8,7 @@ import com.bourre.events.BasicEvent;
 import com.bourre.events.EventType;
 
 import plugins.grid.control.*;
+import plugins.grid.control.dialog.*;
 import plugins.grid.model.*;
 
 class plugins.grid.command.PhotoSendCommand extends AbstractCommand
@@ -22,9 +23,11 @@ class plugins.grid.command.PhotoSendCommand extends AbstractCommand
 			from: evt.from,
 			to: evt.to,
 			desc: evt.desc,
-			url: __model.photos.getCurrentUrl()
+			url: __model.photos.getCurrentUrl(),
+			id: evt.id
 		});
 		
 		getOwner().firePublicEvent(tEvent);
+		getOwner().firePrivateEvent(new GetSendingDialogEvent(getOwner(), evt.id));
 	}
 }

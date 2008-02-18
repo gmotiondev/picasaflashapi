@@ -9,6 +9,7 @@
 	<root id="root">
 		<clip id="mc-grid" depth="10" url="../assets/grid_library.swf"/>
 		<clip id="mc-dialog" depth="20"/>
+		<clip id="mc-loader" depth="10000"/>
 	</root>
 
 	<dll url="loader.swf"/>
@@ -18,6 +19,7 @@
 	<dll url="grid.swf"/>
  
 	<plugin id="loader" channel="c-loader" type="content.loader.loader">
+		<argument ref="mc-loader"/>
 		<listen channel="c-picasa"/>
 		<listen channel="c-grid"/>
 		<listen channel="c-mailer"/>
@@ -41,6 +43,7 @@
 		<argument ref="mc-grid"/>
 		<listen channel="c-picasa"/>
 		<listen channel="c-dialog"/>
+		<listen channel="c-mailer"/>
 		<method-call name="initialize">
 			<argument type="String" value="c-picasa"/><!-- call this channel -->
 			<argument type="String" value="thisispinkfu"/><!-- user name -->

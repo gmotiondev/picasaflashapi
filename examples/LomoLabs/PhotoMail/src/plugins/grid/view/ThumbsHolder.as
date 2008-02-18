@@ -7,6 +7,8 @@ import com.bourre.ioc.plugin.IPlugin;
 import com.bourre.data.libs.GraphicLib;
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
+import com.bourre.events.EventType;
+import com.bourre.events.NumberEvent;
 
 import plugins.grid.control.PhotoChangedEvent;
 import plugins.grid.control.ResizeEvent;
@@ -56,8 +58,9 @@ class plugins.grid.view.ThumbsHolder extends AbstractMovieClipHelper implements 
 		grid.draw();
 	}
 	
-	public function onLoadProgress(e:LibEvent):Void
+	public function onLoadProgress(evt:LibEvent):Void
 	{
+		getOwner().firePublicEvent(new NumberEvent(new EventType("onProgress"), evt.getPerCent()));
 	}
 	
 	public function onLoadComplete(e:LibEvent):Void

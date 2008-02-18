@@ -6,6 +6,7 @@ import com.bourre.ioc.control.PluginController;
 import com.bourre.events.EventType;
 
 import plugins.grid.command.*;
+import plugins.grid.command.dialog.*;
 
 class plugins.grid.control.Controller
 {
@@ -23,6 +24,10 @@ class plugins.grid.control.Controller
 	//public static var PHOTO_SET_TITLE_EVENT:EventType=new EventType("photo_set_title_event");
 	public static var RESIZE_EVENT:EventType = new EventType("resize_event");
 	public static var PROTECTION_EVENT:EventType = new EventType("protection_event");
+	
+	public static var GET_SEND_DIALOG_EVENT:EventType = new EventType("get_send_dialog_event");
+	public static var GET_SENDING_DIALOG_EVENT:EventType = new EventType("get_sending_dialog_event");
+	public static var GET_SENT_DIALOG_EVENT:EventType = new EventType("get_sent_dialog_event");
 	
 	private function Controller(plugin:IPlugin)
 	{
@@ -56,5 +61,9 @@ class plugins.grid.control.Controller
 		
 		getController().pushCommandClass(RESIZE_EVENT, ResizeCommand);
 		getController().pushCommandClass(PROTECTION_EVENT, ProtectionCommand);
+		
+		getController().pushCommandClass(GET_SENDING_DIALOG_EVENT, GetSendingDialogCommand);
+		getController().pushCommandClass(GET_SEND_DIALOG_EVENT, GetSendDialogCommand);
+		getController().pushCommandClass(GET_SENT_DIALOG_EVENT, GetSentDialogCommand);
 	}
 }

@@ -15,6 +15,5 @@ class plugins.grid.control.PhotoChangedEvent extends BasicEvent
 		super(Controller.PHOTO_CHANGED_EVENT);
 		
 		id = aId;
-	}
-	
+	}	
 }
