@@ -72,6 +72,25 @@ implements ILibListener
 		_oViewLoader.load( url );
 	}
 	
+	// mgron 
+	public function parseExternal(aXml:XML):Void
+	{						
+		_oViewLoader.addEventListener( XMLToObject.onLoadInitEVENT, this, onXMLParsingDone );
+		_oViewLoader.addEventListener( XMLToObject.onLoadProgressEVENT, this );
+		_oViewLoader.addEventListener( XMLToObject.onTimeOutEVENT, this );
+		
+		_oViewLoader.setContent(aXml);
+		_oViewLoader.setObject(new View());
+
+		//_oViewLoader.setObject( new View( ));
+		trace("@@@: "+_oViewLoader);
+		//var tEvent:XMLToObjectEvent = new XMLToObjectEvent(XMLToObject.onLoadInitEVENT, _oViewLoader);
+			
+		//	trace("XXX: "+tEvent.getObject()["applicationViewID"]);
+		//_oViewLoader.fireEvent(tEvent);
+		_oViewLoader.fireEventType(XMLToObject.onLoadInitEVENT);
+	}
+	
 	/**
 	* @method      ViewBuilder.register
 	* @description registers parsed view class to a specified scope and displays view
@@ -79,8 +98,9 @@ implements ILibListener
 	* 
 	* @usage       <code>ViewBuilder.register():Void;</code>
 	*/
-	public function register( _scope ) {
-		
+	public function register( _scope )
+	{
+		trace("be.netdust.visual.assembler.ViewBuilder.register("+_scope+","+_oViewReference["applicationViewID"]+")");
 		//ScriptExpert.getInstance( _oViewInstance ).registerMethods( _scope );
 		//KeyExpert
 		//ToolTipExpert.getInstance( _oViewInstance );
@@ -174,8 +194,13 @@ implements ILibListener
 	
 	private function onXMLParsingDone( e : IEvent ) : Void
 	{
-		_oViewReference = View( XMLToObjectEvent(e).getObject() );
-		_oViewLoader.removeListener( this );
+		trace("be.netdust.visual.assembler.ViewBuilder.onXMLParsingDone("+e+")");
+		
+		_oViewReference = View( XMLToObjectEvent(e).getObject());
+		trace("!!!0: "+XMLToObjectEvent(e).getLib());
+		trace("!!!1: "+XMLToObjectEvent(e).getObject());
+		trace("!!!2: "+XMLToObjectEvent(e).getObject()["applicationViewID"]);
+		//_oViewLoader.removeListener( this );
 		
 		ViewParser( XMLToObjectEvent(e).getLib().getDeserializer() ).deserializeAttributes( this );
 	}
@@ -187,11 +212,13 @@ implements ILibListener
 	
 	private function onViewInit( e : IEvent ) : Void
 	{
+		trace("be.netdust.visual.assembler.ViewBuilder.onViewInit(e)");
 		_oEB.broadcastEvent( new ViewBuilderEvent( ViewBuilder.onViewInitEVENT, this ) );
 	}	
 
 	private function onViewBuilt( e : IEvent ) : Void
 	{
+		trace("be.netdust.visual.assembler.ViewBuilder.onViewBuilt(e)");
 		_oEB.broadcastEvent( new ViewBuilderEvent( ViewBuilder.onViewBuiltEVENT, this ) );
 	}
 

@@ -163,7 +163,9 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 		if(evt.id == id)
 		{
 			__send_dialog = new SendDialog(getOwner(), id, view.createEmptyMovieClip("send_dialog_holder",100));
+			//__send_dialog = new SendDialog(id, view);
 			__send_dialog.summary = summary;
+			//__send_dialog.setPosition(330, 20);
 			__send_dialog.move(330, 20);
 		} else 
 		{

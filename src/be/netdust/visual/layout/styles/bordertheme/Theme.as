@@ -56,10 +56,10 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 	{		
 		// init default textformat styles
 		for (var i:String in Theme.InheritableStyle) {
-			this[i] = new Style( {font:"Verdana", size:12} );
+			this[i] = new Style( {font:"kroeger", size:8} );
 		};
 		
-		embedFonts = false;
+		embedFonts = true;
 		width = height = 0;		
 		backgroundAlpha = 0;
 		backgroundImage = "";
@@ -416,7 +416,7 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		s.paddingBottom = 10;
 		s.paddingTop = 10;
 
-		s.setFormat("fu",  {font:"Verdana", size:14, color: 0xffffff, bold:true, underline:false });
+		s.setFormat("fu",  {font:"kroeger", size:8, color: 0xffffff, bold:false, underline:false });
 		
 		s.backgroundAlpha = 100;
 		s.backgroundColor = 0xD40073;

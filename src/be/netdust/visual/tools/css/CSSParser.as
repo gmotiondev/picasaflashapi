@@ -66,7 +66,9 @@ extends Tokenizer {
 	private function _parseword( t:Array ) {
 		
 		var _end:Number = _findNext( CURLYBR0 );
-			
+		var _scope:Style;
+		var _aTok:Array;
+		
 		if( t[0] == WORD && t[1].indexOf(".") != -1  )
 		{
 			// parse pseudo-classes source for this style
@@ -78,7 +80,7 @@ extends Tokenizer {
 				scope[ _oParent._sID+"."+_style ] = _oParent._substyles[_style] = Style.cloneStyle( _oParent );
 				scope[ _oParent._sID+"."+_style ]._sID = _style;
 			} else scope[ _oParent._sID+"."+_style ] = _oParent.getSubStyle(_style);
-			var _scope:Style = scope[ _oParent._sID+"."+_style ];
+			_scope = scope[ _oParent._sID+"."+_style ];
 		}
 		else if( t[0] == WORD ) 
 		{
@@ -87,12 +89,12 @@ extends Tokenizer {
 				scope[t[1]] = Style.newStyle(t[1]);
 			}	
 			else scope[t[1]] = Style.getStyle( t[1] );
-			var _scope:Style = scope[t[1]];
+			_scope = scope[t[1]];
 		}
 		
 		while( cnt < _end ) {
 			
-			var _aTok:Array = getToken();
+			_aTok = getToken();
 			if (_aTok[0] ==  CURLYBR1 ) _aTok = getToken();
 			else if (_aTok[0] ==  CURLYBR0 ) return;
 
@@ -103,7 +105,7 @@ extends Tokenizer {
 				var _oParent = Style.getStyle( source[cnt-1][1] );
 				if( _oParent == undefined ) _oParent = scope[source[cnt-1][1]];
 
-				var _aTok:Array = getToken();			
+				_aTok = getToken();			
 
 				if( _oParent.getSubStyle(_aTok[1]) == undefined ) 
 				{
@@ -111,8 +113,8 @@ extends Tokenizer {
 				} else scope[ _oParent._sID+":"+_aTok[1] ] = _oParent.getSubStyle( _aTok[1] );
 				
 				cnt++;
-				var _scope:Style = scope[ _oParent._sID+":"+_aTok[1] ];
-				var _aTok:Array = getToken();	
+				_scope = scope[ _oParent._sID+":"+_aTok[1] ];
+				_aTok = getToken();	
 			}
 			
 			// parse		
@@ -231,9 +233,10 @@ extends Tokenizer {
 	*/
 	private function _margin( style:Object ) {
 		var _aTok:Array = getToken();
+		var _end:Number;
 		
 		if( _aTok[0] == COLON ) {
-			var _end:Number = _findNext( END );
+			_end = _findNext( END );
 			_aTok = getToken();
 
 			if( _end-1 == cnt || ( _end-2 == cnt && source[_end-1][0] == WORD ) ) {

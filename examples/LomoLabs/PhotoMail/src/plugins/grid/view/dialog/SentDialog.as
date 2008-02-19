@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @author michal.gron@gmail.com
  */
 import com.bourre.ioc.visual.AbstractMovieClipHelper;
