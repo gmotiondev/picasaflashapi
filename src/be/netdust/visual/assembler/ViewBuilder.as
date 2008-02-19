@@ -73,22 +73,13 @@ implements ILibListener
 	}
 	
 	// mgron 
-	public function parseExternal(aXml:XML):Void
-	{						
-		_oViewLoader.addEventListener( XMLToObject.onLoadInitEVENT, this, onXMLParsingDone );
-		_oViewLoader.addEventListener( XMLToObject.onLoadProgressEVENT, this );
-		_oViewLoader.addEventListener( XMLToObject.onTimeOutEVENT, this );
+	public function parseExternal(aXML:XML):Void
+	{
+		_oViewLoader.setContent(aXML);
+		_oViewLoader.readData();
+		_oViewReference = View(_oViewLoader.getObject()); //object to decorate
 		
-		_oViewLoader.setContent(aXml);
-		_oViewLoader.setObject(new View());
-
-		//_oViewLoader.setObject( new View( ));
-		trace("@@@: "+_oViewLoader);
-		//var tEvent:XMLToObjectEvent = new XMLToObjectEvent(XMLToObject.onLoadInitEVENT, _oViewLoader);
-			
-		//	trace("XXX: "+tEvent.getObject()["applicationViewID"]);
-		//_oViewLoader.fireEvent(tEvent);
-		_oViewLoader.fireEventType(XMLToObject.onLoadInitEVENT);
+		ViewParser( _oViewLoader.getDeserializer() ).deserializeAttributes( this );
 	}
 	
 	/**

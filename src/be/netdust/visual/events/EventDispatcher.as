@@ -104,11 +104,9 @@ class be.netdust.visual.events.EventDispatcher
 		}
 		else if( f == BubbleEvent.ONFOCUS || f == BubbleEvent.REGISTERFOCUS )
 		{
-			trace("dispatching on focus to "+_oEB+" from "+this)
 			_oEB.broadcastEvent( new BubbleEvent( BubbleEvent.ONFOCUS, this, this, f ), _oBubble );
 		}
 		else {
-			trace("dispatching "+f)
 			_oEB.broadcastEvent( new ObserverEvent( new EventType(f), this ), _oObserver );
 		}
 	};

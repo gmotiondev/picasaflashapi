@@ -37,9 +37,14 @@ class be.netdust.visual.object.Label extends UIObject implements be.netdust.visu
 	};
 	
 	public function getLabel() : String
-	{
+	{		
 		return label!=null?label:"";
 	};
+	
+	public function getText():String
+	{
+		return _labeltf.text;
+	}
 	
 	public function setFocus () : Void
 	{

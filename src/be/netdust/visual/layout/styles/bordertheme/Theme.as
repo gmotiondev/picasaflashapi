@@ -202,27 +202,27 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		
 		o.setFormat("fu", Disabled);
 		
-		o.borderBottomWidth = 2;
+		o.borderBottomWidth = 1;
 		o.borderBottomAlpha = 100;
-		o.borderBottomColor = 0x666666;
-		o.borderTopWidth = 2;
+		o.borderBottomColor = 0x990066;
+		o.borderTopWidth = 1;
 		o.borderTopAlpha = 100;
-		o.borderTopColor = 0x666666;
-		o.borderRightWidth = 2;
+		o.borderTopColor = 0x990066;
+		o.borderRightWidth = 1;
 		o.borderRightAlpha = 100;
-		o.borderRightColor = 0x666666;
-		o.borderLeftWidth = 2;
+		o.borderRightColor = 0x990066;
+		o.borderLeftWidth = 1;
 		o.borderLeftAlpha = 100;
-		o.borderLeftColor = 0x666666;		
+		o.borderLeftColor = 0x990066;		
 		
 		o.backgroundAlpha = 100;
 		o.backgroundColor = 0xFFFFFF;
 		o.backgroundPosition = {x:0,y:0};
 		
-		o.cornerBottomRight = 8;
-		o.cornerBottomLeft = 8;
-		o.cornerTopRight = 8;
-		o.cornerTopLeft = 8;
+		o.cornerBottomRight = 0;
+		o.cornerBottomLeft = 0;
+		o.cornerTopRight = 0;
+		o.cornerTopLeft = 0;
 		
 /** style for Button class **/
 		o = Style.newStyle("Button");
@@ -343,41 +343,38 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		
 /** style for ScrollBar class **/
 		o = Style.newStyle("ScrollBar");
-		o.width = 15;
+		o.width = 10;
 		o.height = 30;
 		
-		o.backgroundAlpha = 100;
+		o.backgroundAlpha = 10;
 		o.backgroundColor = 0xFFFFFF;
-		o.backgroundPosition = {x:0,y:0};		
+		o.backgroundPosition = {x:0,y:2};		
 
 		s = o.subStyle("track", true);		
 		s.backgroundAlpha = 100;
 		s.backgroundColor = 0x666666;
-		s.backgroundPosition = {x:0,y:0};	
+		s.backgroundPosition = {x:0,y:2};	
 		
 			ss = s.subStyle("thumb", true);
-			ss.width = 15;
-			ss.height = 15;
+			ss.width = 10;
+			ss.height = 10;
 			ss.backgroundColor = 0xCCCCCC;
 
 		
 		s = o.subStyle("min");
-		s.width = 15;
-		s.height = 15;
+		s.width = 10;
+		s.height = 10;
 		s.backgroundAlpha = 100;
 		s.backgroundColor = 0xF3F3F3;
-		s.backgroundPosition = {x:0,y:0};
+		s.backgroundPosition = {x:0,y:2};
 
 		
 		s = o.subStyle("plus");
-		s.width = 15;
-		s.height = 15;
+		s.width = 10;
+		s.height = 10;
 		s.backgroundAlpha = 100;
 		s.backgroundColor = 0xF3F3F3;
 		s.backgroundPosition = {x:0,y:0};
-
-
-
 		
 // STYLE CONTAINERS
 

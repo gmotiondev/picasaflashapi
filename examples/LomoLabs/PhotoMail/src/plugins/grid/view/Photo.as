@@ -27,8 +27,6 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	private var loaded:Boolean = false;
 	
 	private var __send_dialog:SendDialog;
-	private var __sent_dialog:SentDialog;
-	private var __sending_dialog:SendingDialog;
 	
 	public function Photo(owner:IPlugin, name:String, mc:MovieClip, aHide:Boolean, aUrl:String, aSummary:String)
 	{
@@ -40,6 +38,14 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 		setVisible(!aHide);
 	}
 
+	private function initialize():Void
+	{
+		loaded = true;
+		
+		__send_dialog = new SendDialog(getOwner(), id, view.createEmptyMovieClip("send_dialog_holder",100), summary);
+		__send_dialog.hide();
+	}
+	
 	private function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
 	{
 		var tTopbar:Number = 15;
@@ -102,8 +108,7 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	}
 	
 	public function onLoadInit(e:LibEvent):Void
-	{
-		loaded = true;
+	{	
 	}
 	
 	public function onLoadProgress(e:LibEvent):Void
@@ -127,7 +132,8 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 			tSend.onRelease = Delegate.create(this, send);
 			
 		centerize();
-	} 
+		initialize();
+	}
 	
 	public function onTimeOut(e:LibEvent):Void
 	{
@@ -162,15 +168,8 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	{
 		if(evt.id == id)
 		{
-			__send_dialog = new SendDialog(getOwner(), id, view.createEmptyMovieClip("send_dialog_holder",100));
-			//__send_dialog = new SendDialog(id, view);
-			__send_dialog.summary = summary;
-			//__send_dialog.setPosition(330, 20);
+			__send_dialog.setDialog("send");
 			__send_dialog.move(330, 20);
-		} else 
-		{
-			delete __send_dialog;
-			view.send_dialog_holder.removeMovieClip();
 		}
 		
 		centerize();
@@ -180,14 +179,8 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	{
 		if(evt.id == id)
 		{
-			__sending_dialog = new SendingDialog(getOwner(), id, view.createEmptyMovieClip("sending_dialog_holder", 101));
-			__sending_dialog.move(330, 20);
-			
-			getOwner().firePrivateEvent(new GetSendDialogEvent(getOwner(), null));
-		} else
-		{
-			delete __sending_dialog;
-			view.sending_dialog_holder.removeMovieClip();
+			__send_dialog.setDialog("sending");
+			__send_dialog.move(330, 20);
 		}
 		
 		centerize();
@@ -197,14 +190,9 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	{
 		if(evt.id == id)
 		{
-			__sent_dialog = new SentDialog(getOwner(), id, view.createEmptyMovieClip("sent_dialog_holder", 102), evt.message);
-			__sent_dialog.move(330, 20);
-			
-			getOwner().firePrivateEvent(new GetSendingDialogEvent(getOwner(), null));
-		} else
-		{
-			delete __sent_dialog;
-			view.sent_dialog_holder.removeMovieClip();
+			__send_dialog.setDialog("sent");
+			__send_dialog.setResult(evt.message);
+			__send_dialog.move(330, 20);
 		}
 		
 		centerize();
