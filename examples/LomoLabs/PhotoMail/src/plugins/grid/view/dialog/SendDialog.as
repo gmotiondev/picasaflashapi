@@ -67,7 +67,9 @@ class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 			'			<DeckBox id="deck" selectedIndex="1">' +
 			'				<VBox id="send">' +
 			'					<TextArea id="desc" label="'+__summary+'" width="300" height="100"/>' +
+			'					<Label label="From:"/>' +
 			'					<TextBox id="from" label="from@you.com" width="300"/>' +
+			'					<Label label="To:"/>' +
 			'					<TextBox id="to" label="to@someone.com" width="300"/>' +
 			'					<HBox>' +
 			'						<Button id="send_button" label="Send"/>' +

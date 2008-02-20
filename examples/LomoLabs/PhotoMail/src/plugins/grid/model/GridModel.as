@@ -3,8 +3,6 @@
  */
 import com.bourre.ioc.model.AbstractModel;
 import com.bourre.ioc.plugin.IPlugin;
-import com.bourre.commands.Delegate;
-import com.bourre.events.IEvent;
 
 import plugins.grid.control.*;
 import plugins.grid.vo.*;
@@ -20,20 +18,12 @@ class plugins.grid.model.GridModel extends AbstractModel
 	
 	public function next():Void
 	{
-		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getNext());
-		//var tTitleEvent:PhotoSetTitleEvent = new PhotoSetTitleEvent(photos.getCurrentTitle());
-		
-		notifyChanged(tChangedEvent);
-		//notifyChanged(tTitleEvent);
+		notifyChanged(new PhotoChangedEvent(photos.getNext()));
 	}
 	
 	public function prev():Void
 	{
-		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getPrevious());
-		//var tTitleEvent:PhotoSetTitleEvent = new PhotoSetTitleEvent(photos.getCurrentTitle());
-		
-		notifyChanged(tChangedEvent);
-		//notifyChanged(tTitleEvent);
+		notifyChanged(new PhotoChangedEvent(photos.getPrevious()));
 	}
 	
 	public function click(aId:String):Void

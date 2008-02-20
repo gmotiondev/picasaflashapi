@@ -12,6 +12,7 @@ import com.bourre.data.libs.LibStack;
 import com.bourre.data.libs.GraphicLib;
 import com.bourre.commands.Delegate;
 import com.bourre.utils.Geom;
+import com.bourre.transitions.MultiTweenMS;
 
 import plugins.grid.control.*;
 import plugins.grid.control.dialog.*;
@@ -104,7 +105,10 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	
 	private function centerize():Void
 	{
-		move(Math.round(Stage.width/2 - view._width/2 + 10), Math.round(Stage.height/2 - view._height/2));
+		var t:MultiTweenMS = new MultiTweenMS(	view,	["_x", "_y"],
+												[Math.round(Stage.width/2 - view._width/2 + 10), Math.round(Stage.height/2 - view._height/2)],
+												500, null, com.robertpenner.easing.Quad.easeOut);
+			t.start();
 	}
 	
 	public function onLoadInit(e:LibEvent):Void

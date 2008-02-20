@@ -227,15 +227,15 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 /** style for Button class **/
 		o = Style.newStyle("Button");
 		
-		o.marginTop = 2;
-		o.marginBottom = 2;
-		o.marginLeft = 2;
-		o.marginRight = 2;
+		o.marginTop = 5;
+		o.marginBottom = 5;
+		o.marginLeft = 5;
+		o.marginRight = 5;
 		
 		o.paddingLeft = 5;
 		o.paddingRight = 5;
-		o.paddingBottom = 5;
-		o.paddingTop = 5;
+		o.paddingBottom = 2;
+		o.paddingTop = 2;
 		
 		o.setFormat("fu", white);
 		
@@ -248,6 +248,18 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		o.cornerTopRight = 0;
 		o.cornerTopLeft = 0;
 		
+		o.borderBottomWidth = 2;
+		o.borderBottomAlpha = 100;
+		o.borderBottomColor = 0xffffff;
+		o.borderTopWidth = 0;
+		o.borderTopAlpha = 0;
+		o.borderTopColor = 0xffffff;
+		o.borderRightWidth = 2;
+		o.borderRightAlpha = 100;
+		o.borderRightColor = 0xffffff;
+		o.borderLeftWidth = 0;
+		o.borderLeftAlpha = 0;
+		o.borderLeftColor = 0xffffff;				
 		// over
 		s = o.subStyle("over", true);
 		s.setFormat("fu", whiteUnderLine);
@@ -381,15 +393,15 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 /** style for Panel class **/
 		o = Style.newStyle("Panel");
 		
-		o.marginTop = 10;
+		o.marginTop = 5;
 		o.marginBottom = 5;
-		o.marginLeft = 10;
-		o.marginRight = 10;
+		o.marginLeft = 5;
+		o.marginRight = 5;
 		
 		o.paddingLeft = 10;
 		o.paddingRight = 10;
-		o.paddingBottom = 5;
-		o.paddingTop = 10;
+		o.paddingBottom = 10;
+		o.paddingTop = 5;
 		
 		o.backgroundAlpha = 100;
 		o.backgroundColor = 0xD40073;
@@ -401,17 +413,17 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 		o.cornerTopLeft = 0;	
 		
 		s = o.subStyle("header");
-		s.height = 30;
+		s.height = 20;
 		
-		s.marginTop = 1;
-		s.marginBottom = 1;
-		s.marginLeft = 1;
-		s.marginRight = 1;
+		s.marginTop = 0;
+		s.marginBottom = 0;
+		s.marginLeft = 5;
+		s.marginRight = 0;
 		
-		s.paddingLeft = 10;
-		s.paddingRight = 10;
-		s.paddingBottom = 10;
-		s.paddingTop = 10;
+		s.paddingLeft = 5;
+		s.paddingRight = 5;
+		s.paddingBottom = 5;
+		s.paddingTop = 5;
 
 		s.setFormat("fu",  {font:"kroeger", size:8, color: 0xffffff, bold:false, underline:false });
 		
@@ -427,14 +439,14 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 /** style for DeckBox class **/		
 		o = Style.newStyle("DeckBox");		
 		
-		o.marginBottom = 5;
-		o.marginLeft = 5;
-		o.marginRight = 5;
+		o.marginBottom = 0;
+		o.marginLeft = 0;
+		o.marginRight = 0;
 		
-		o.paddingLeft = 10;
-		o.paddingRight = 10;
-		o.paddingBottom = 10;
-		o.paddingTop = 10;
+		o.paddingLeft = 0;
+		o.paddingRight = 0;
+		o.paddingBottom = 0;
+		o.paddingTop = 0;
 		
 		
 /** style for TitleBox class **/
