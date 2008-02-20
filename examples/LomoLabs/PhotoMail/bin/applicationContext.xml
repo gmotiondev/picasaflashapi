@@ -8,13 +8,11 @@
 
 	<root id="root">
 		<clip id="mc-grid" depth="10" url="../assets/grid_library.swf"/>
-		<clip id="mc-dialog" depth="20"/>
 		<clip id="mc-loader" depth="10000"/>
 	</root>
 
 	<dll url="loader.swf"/>
 	<dll url="picasa.swf"/>	
-	<dll url="dialog.swf"/>
 	<dll url="mailer.swf"/>
 	<dll url="grid.swf"/>
  
@@ -32,20 +30,15 @@
 			<argument type="Number" value="24"/><!-- service max_results -->
 		</method-call>
 	</plugin>
-	<plugin id="dialog" channel="c-dialog" type="plugins.dialog.dialog">
-		<listen channel="c-grid"/>		
-		<listen channel="c-mailer"/>
-	</plugin>
 	<plugin id="mailer" channel="c-mailer" type="plugins.mailer.mailer">
 		<listen channel="c-grid"/>
 	</plugin>
 	<plugin id="grid" channel="c-grid" type="plugins.grid.grid">
 		<argument ref="mc-grid"/>
 		<listen channel="c-picasa"/>
-		<listen channel="c-dialog"/>
 		<listen channel="c-mailer"/>
 		<method-call name="initialize">
-			<argument type="String" value="c-picasa"/><!-- call this channel -->
+			<argument type="String" value="c-picasa"/><!-- callback channel -->
 			<argument type="String" value="thisispinkfu"/><!-- user name -->
 			<argument type="String" value="5094406297232552993"/><!-- album id -->
 		</method-call>
