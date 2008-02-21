@@ -25,8 +25,8 @@
 	<plugin id="picasa" channel="c-picasa" type="plugins.picasa.picasa">
 		<listen channel="c-grid"/>
 		<method-call name="initialize">
-			<argument type="Number" value="320"/><!-- service imgmax -->
-			<argument type="Number" value="72"/><!-- service thumbsize -->
+			<argument type="Number" value="512"/><!-- service imgmax -->
+			<argument type="Number" value="64"/><!-- service thumbsize -->
 			<argument type="Number" value="24"/><!-- service max_results -->
 		</method-call>
 	</plugin>
@@ -40,7 +40,7 @@
 		<method-call name="initialize">
 			<argument type="String" value="c-picasa"/><!-- callback channel -->
 			<argument type="String" value="thisispinkfu"/><!-- user name -->
-			<argument type="String" value="5094406297232552993"/><!-- album id -->
+			<argument type="String" value="5094406297232552993"/><!-- album id 5150986992011782785 -->
 		</method-call>
 	</plugin>
 </beans>

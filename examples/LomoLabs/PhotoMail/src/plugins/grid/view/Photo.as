@@ -16,7 +16,6 @@ import com.bourre.transitions.MultiTweenMS;
 
 import plugins.grid.control.*;
 import plugins.grid.control.dialog.*;
-import plugins.grid.view.dialog.*;
 
 class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibListener
 {	
@@ -27,7 +26,6 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	private var background:MovieClip;
 	private var loaded:Boolean = false;
 	
-	private var __send_dialog:SendDialog;
 	
 	public function Photo(owner:IPlugin, name:String, mc:MovieClip, aHide:Boolean, aUrl:String, aSummary:String)
 	{
@@ -39,14 +37,6 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 		setVisible(!aHide);
 	}
 
-	private function initialize():Void
-	{
-		loaded = true;
-		
-		__send_dialog = new SendDialog(getOwner(), id, view.createEmptyMovieClip("send_dialog_holder",100), summary);
-		__send_dialog.hide();
-	}
-	
 	private function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
 	{
 		var tTopbar:Number = 15;
@@ -122,6 +112,8 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	
 	public function onLoadComplete(e:LibEvent):Void
 	{	
+		loaded = true;
+		
 		setBackground(0xffffff, 0xffffff, 10);
 		setTitle();
 		
@@ -136,7 +128,6 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 			tSend.onRelease = Delegate.create(this, send);
 			
 		centerize();
-		initialize();
 	}
 	
 	public function onTimeOut(e:LibEvent):Void
@@ -166,39 +157,5 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 				hide();
 			}
 		}
-	}
-	
-	public function get_send_dialog_event(evt:GetSendDialogEvent):Void
-	{
-		if(evt.id == id)
-		{
-			__send_dialog.setDialog("send");
-			__send_dialog.move(330, 20);
-		}
-		
-		centerize();
-	}
-	
-	public function get_sending_dialog_event(evt:GetSendingDialogEvent):Void
-	{
-		if(evt.id == id)
-		{
-			__send_dialog.setDialog("sending");
-			__send_dialog.move(330, 20);
-		}
-		
-		centerize();
-	}
-	
-	public function get_sent_dialog_event(evt:GetSentDialogEvent):Void
-	{
-		if(evt.id == id)
-		{
-			__send_dialog.setDialog("sent");
-			__send_dialog.setResult(evt.message);
-			__send_dialog.move(330, 20);
-		}
-		
-		centerize();
 	}
 }

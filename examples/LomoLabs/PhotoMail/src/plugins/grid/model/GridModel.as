@@ -18,17 +18,26 @@ class plugins.grid.model.GridModel extends AbstractModel
 	
 	public function next():Void
 	{
-		notifyChanged(new PhotoChangedEvent(photos.getNext()));
+		var tId:String = photos.getNext();
+		var tSum:String = photos.getCurrentTitle();
+
+		notifyChanged(new PhotoChangedEvent(tId, tSum));
 	}
 	
 	public function prev():Void
 	{
-		notifyChanged(new PhotoChangedEvent(photos.getPrevious()));
+		var tId:String = photos.getPrevious();
+		var tSum:String = photos.getCurrentTitle();
+		
+		notifyChanged(new PhotoChangedEvent(tId, tSum));
 	}
 	
 	public function click(aId:String):Void
 	{
-		notifyChanged(new PhotoChangedEvent(photos.getClicked(aId)));
+		var tId:String = photos.getClicked(aId);
+		var tSum:String = photos.getCurrentTitle();
+		
+		notifyChanged(new PhotoChangedEvent(tId, tSum));
 	}
 	
 	public function onResize():Void

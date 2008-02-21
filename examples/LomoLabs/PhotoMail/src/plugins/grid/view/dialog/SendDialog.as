@@ -9,7 +9,8 @@ import com.bourre.commands.Delegate;
 import com.bourre.events.EventType;
 
 import plugins.grid.control.PhotoSendEvent;
-import plugins.grid.control.dialog.GetSendDialogEvent;
+import plugins.grid.control.*;
+import plugins.grid.control.dialog.*;
 
 import be.netdust.visual.assembler.ViewBuilder
 import be.netdust.visual.containers.*;
@@ -33,12 +34,9 @@ class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 	
 	private var __vb:ViewBuilder;
 	
-	public function SendDialog(owner:IPlugin, name:String, mc:MovieClip, summary:String)
+	public function SendDialog(owner:IPlugin, name:String, mc:MovieClip)
 	{
 		super(owner, "send_dialog_"+name, mc);
-		
-		__id = name;
-		__summary = summary;
 		
 		initialize();
 	}
@@ -46,7 +44,6 @@ class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 	public function setDialog(aId:String):Void
 	{
 		show();
-		view._xscale = 100;
 		
 		var tDeck:DeckBox = __vb.getChildByID("deck");
 			tDeck.show(aId);
@@ -55,7 +52,21 @@ class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 	public function setResult(aMessage:String):Void
 	{
 		var tTextBox:TextBox = __vb.getChildByID("result_message");
-			tTextBox.setLabel(tTextBox.getLabel()+aMessage);
+			tTextBox.setLabel(aMessage);
+	}
+	
+	public function setSummary(aSummary:String):Void
+	{
+		__summary = aSummary;
+		
+		var tTextArea:TextArea = __vb.getChildByID("desc");
+			tTextArea.setLabel(__summary);
+			tTextArea.refresh();
+	}
+	
+	public function setId(aId:String):Void
+	{
+		__id = aId;
 	}
 	
 	private function initialize():Void
@@ -122,8 +133,11 @@ class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 	private function onClose():Void
 	{
 		hide();
-		view._xscale = 0;
-		
-		getOwner().firePrivateEvent(new GetSendDialogEvent(getOwner(), null));
+	}
+	
+	public function photo_changed_event(evt:PhotoChangedEvent):Void
+	{
+		setId(PhotoChangedEvent(evt).id);
+		setSummary(PhotoChangedEvent(evt).summary);
 	}
 }

@@ -29,7 +29,7 @@ class plugins.grid.vo.Photos extends IndexedArray
 	// 
 	public function getCurrentTitle():String
 	{
-		return (typeof(this[__current].summary) == "string" ? this[__current].summary : "___");
+		return this[__current].summary;
 	}
 	
 	// 

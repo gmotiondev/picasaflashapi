@@ -9,11 +9,13 @@ import plugins.grid.control.Controller;
 class plugins.grid.control.PhotoChangedEvent extends BasicEvent
 {
 	public var id:String;
+	public var summary:String;
 	
-	public function PhotoChangedEvent(aId:String)
+	public function PhotoChangedEvent(aId:String, aSummary:String)
 	{
 		super(Controller.PHOTO_CHANGED_EVENT);
 		
 		id = aId;
+		summary = aSummary;
 	}	
 }

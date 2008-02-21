@@ -19,8 +19,6 @@ class plugins.picasa.model.PicasaModel extends AbstractModel
 	
 	public function initialize(aImgmax:Number, aThumbsize:Number, aMax_results:Number):Void
 	{
-		//photos = new Photos();
-
 		service = new PicasaService();
 		service.imgmax = aImgmax;
 		service.thumbsize = aThumbsize;
