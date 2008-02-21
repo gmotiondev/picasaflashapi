@@ -4,6 +4,7 @@
 
 import com.bourre.ioc.visual.AbstractMovieClipHelper;
 import com.bourre.ioc.plugin.IPlugin;
+import com.bourre.transitions.MultiTweenMS;
 
 import plugins.grid.view.*;
 import plugins.grid.view.dialog.*;
@@ -22,7 +23,7 @@ class plugins.grid.view.PhotosHolder extends AbstractMovieClipHelper
 	
 	private function initialize():Void
 	{
-		__send_dialog = new SendDialog(getOwner(), "__send_dialog", view.createEmptyMovieClip("send_dialog_holder",view.getNextHighestDepth()));
+		__send_dialog = new SendDialog(getOwner(), "__send_dialog", view.createEmptyMovieClip("send_dialog_holder",2));
 		__send_dialog.hide();
 		
 		addListener(__send_dialog);
@@ -34,31 +35,30 @@ class plugins.grid.view.PhotosHolder extends AbstractMovieClipHelper
 		var tPhoto:Photo = new Photo(getOwner(), aId, tHolder, true, aUrl, aSummary)
 			
 		addListener(tPhoto);
+		__send_dialog.addListener(tPhoto);
 	}
-	
+		
 	// listen to the model and dispatch to children
 	public function get_send_dialog_event(evt:GetSendDialogEvent):Void
-	{
-		if(view.send_dialog_holder.getDepth()< (view.getNextHighestDepth() - 1))
-		{
-			view.send_dialog_holder.swapDepths(view.getNextHighestDepth());
-		}
-		
+	{		
 		__send_dialog.setDialog("send");
-		__send_dialog.move(330, 20);
+		
+		notifyChanged(evt);
 	}
 	
 	public function get_sending_dialog_event(evt:GetSendingDialogEvent):Void
 	{
 		__send_dialog.setDialog("sending");
-		__send_dialog.move(330, 20);
+		
+		notifyChanged(evt);
 	}
 	
 	public function get_sent_dialog_event(evt:GetSentDialogEvent):Void
 	{
 		__send_dialog.setDialog("sent");
 		__send_dialog.setResult(evt.message);
-		__send_dialog.move(330, 20);
+		
+		notifyChanged(evt);
 	}
 	
 	public function resize_event(evt:ResizeEvent):Void
@@ -67,6 +67,11 @@ class plugins.grid.view.PhotosHolder extends AbstractMovieClipHelper
 	}
 	
 	public function photo_changed_event(evt:PhotoChangedEvent):Void
+	{
+		notifyChanged(evt);
+	}
+	
+	public function photo_closed_event(evt:PhotoClosedEvent):Void
 	{
 		notifyChanged(evt);
 	}

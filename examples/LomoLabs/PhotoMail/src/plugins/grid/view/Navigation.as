@@ -44,7 +44,7 @@ class plugins.grid.view.Navigation extends AbstractMovieClipHelper
 	
 	private function centerize():Void
 	{
-		move(Stage.width/2 - view._width/2, Stage.height - 60);
+		move(Math.round((Stage.width - view._width)/2), Math.round(Stage.height - 60));
 	}
 
 	private function protect():Void

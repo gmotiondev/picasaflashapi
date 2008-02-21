@@ -7,6 +7,8 @@ import com.bourre.ioc.plugin.IPlugin;
 
 import com.bourre.commands.Delegate;
 import com.bourre.events.EventType;
+import com.bourre.events.BasicEvent;
+import com.bourre.transitions.MultiTweenMS;
 
 import plugins.grid.control.PhotoSendEvent;
 import plugins.grid.control.*;
@@ -43,7 +45,7 @@ class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 	
 	public function setDialog(aId:String):Void
 	{
-		show();
+		centerize(false);
 		
 		var tDeck:DeckBox = __vb.getChildByID("deck");
 			tDeck.show(aId);
@@ -67,6 +69,28 @@ class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 	public function setId(aId:String):Void
 	{
 		__id = aId;
+	}
+	
+	public function centerize(aHide:Boolean):Void
+	{
+		var t:MultiTweenMS;
+		
+		if(!aHide)
+		{
+			show();
+			
+			t = new MultiTweenMS(view,	["_x", "_y"],
+								[Math.round(Stage.width/2), Math.round((Stage.height - view._height)/2)],
+								500, null, com.robertpenner.easing.Quad.easeOut);
+		} else
+		{
+			t = new MultiTweenMS(view,	["_x", "_y"],
+								[Math.round((Stage.width - view._width)/2), Math.round((Stage.height - view._height)/2)],
+								500, null, com.robertpenner.easing.Quad.easeOut);
+			t.addEventListener(MultiTweenMS.onMotionFinishedEVENT, this, hide);			
+		}
+		
+		t.start();
 	}
 	
 	private function initialize():Void
@@ -132,12 +156,24 @@ class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 	
 	private function onClose():Void
 	{
+		centerize(true);
+		notifyChanged(new BasicEvent(new EventType("onSendDialogClosed"),{id:__id}));
+	}
+	
+	public function photo_closed_event(evt:PhotoClosedEvent):Void
+	{
 		hide();
+		onClose();
 	}
 	
 	public function photo_changed_event(evt:PhotoChangedEvent):Void
 	{
 		setId(PhotoChangedEvent(evt).id);
 		setSummary(PhotoChangedEvent(evt).summary);
+	}
+	
+	public function resize_event(evt:ResizeEvent):Void
+	{
+		if(isVisible()) centerize(false);
 	}
 }

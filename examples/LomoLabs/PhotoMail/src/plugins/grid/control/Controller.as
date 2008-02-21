@@ -21,6 +21,7 @@ class plugins.grid.control.Controller
 	public static var PHOTO_SEND_EVENT:EventType= new EventType("photo_send_event");
 	public static var PHOTO_CLICK_EVENT:EventType 	= new EventType("photo_click_event"); 
 	public static var PHOTO_CHANGED_EVENT:EventType	= new EventType("photo_changed_event");
+	public static var PHOTO_CLOSED_EVENT:EventType	= new EventType("photo_closed_event");
 	//public static var PHOTO_SET_TITLE_EVENT:EventType=new EventType("photo_set_title_event");
 	public static var RESIZE_EVENT:EventType = new EventType("resize_event");
 	public static var PROTECTION_EVENT:EventType = new EventType("protection_event");
@@ -54,6 +55,7 @@ class plugins.grid.control.Controller
 		getController().pushCommandClass(INITIALIZE_EVENT, InitializeCommand);
 		getController().pushCommandClass(SHOW_PHOTOS_EVENT, ShowPhotosCommand);
 		getController().pushCommandClass(PHOTO_CLICK_EVENT, PhotoClickCommand);
+		getController().pushCommandClass(PHOTO_CLOSED_EVENT, PhotoClosedCommand);
 		
 		getController().pushCommandClass(PHOTO_GET_NEXT_EVENT, PhotoGetNextCommand);
 		getController().pushCommandClass(PHOTO_GET_PREV_EVENT, PhotoGetPrevCommand);

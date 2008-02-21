@@ -13,6 +13,7 @@ import com.bourre.data.libs.GraphicLib;
 import com.bourre.commands.Delegate;
 import com.bourre.utils.Geom;
 import com.bourre.transitions.MultiTweenMS;
+import com.bourre.transitions.TweenMS;
 
 import plugins.grid.control.*;
 import plugins.grid.control.dialog.*;
@@ -25,7 +26,7 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	
 	private var background:MovieClip;
 	private var loaded:Boolean = false;
-	
+	private var __dialog_visible:Boolean = false;
 	
 	public function Photo(owner:IPlugin, name:String, mc:MovieClip, aHide:Boolean, aUrl:String, aSummary:String)
 	{
@@ -66,8 +67,7 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	
 	private function close():Void
 	{
-		hide();
-		unprotect();
+		getOwner().firePrivateEvent(new PhotoClosedEvent());
 	}
 	
 	private function send():Void
@@ -95,14 +95,41 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	
 	private function centerize():Void
 	{
-		var t:MultiTweenMS = new MultiTweenMS(	view,	["_x", "_y"],
-												[Math.round(Stage.width/2 - view._width/2 + 10), Math.round(Stage.height/2 - view._height/2)],
-												500, null, com.robertpenner.easing.Quad.easeOut);
+		var t:MultiTweenMS;
+		
+		if(!__dialog_visible)
+		{
+			t = new MultiTweenMS(view, ["_x", "_y"],
+								[Math.round((Stage.width - view._width)/2 ) + 10, Math.round((Stage.height - view._height)/2) + 30],
+								500, null, com.robertpenner.easing.Quad.easeOut);
+		} else {
+			t = new MultiTweenMS(view, ["_x", "_y"],
+								[Math.round(Stage.width/2 - view._width) + 10, Math.round((Stage.height - view._height)/2) + 30],
+								500, null, com.robertpenner.easing.Quad.easeOut);	
+		}
+		
+		t.start();
+	}
+	
+	public function fadeIn():Void
+	{
+		show();
+		
+		var t:TweenMS = new TweenMS(view, "_alpha", 100, 250, 0);
 			t.start();
+	}
+	
+	public function fadeOut():Void
+	{
+		//var t:TweenMS = new TweenMS(view, "_alpha", 0, 500, 100);
+		//	t.addEventListener(TweenMS.onMotionFinishedEVENT, this, hide);
+		//	t.start();
+		hide();
 	}
 	
 	public function onLoadInit(e:LibEvent):Void
 	{	
+		loaded = true;
 	}
 	
 	public function onLoadProgress(e:LibEvent):Void
@@ -112,7 +139,11 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	
 	public function onLoadComplete(e:LibEvent):Void
 	{	
-		loaded = true;
+		if(!loaded)
+		{
+			// photo isn't loaded, display refresh button!
+			return;
+		}
 		
 		setBackground(0xffffff, 0xffffff, 10);
 		setTitle();
@@ -127,12 +158,19 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 			tSend._y = view._height - 57;
 			tSend.onRelease = Delegate.create(this, send);
 			
+		move(Math.round((Stage.width - view._width)/2)+10, Math.round((Stage.height - view._height)/2) + 30);
 		centerize();
 	}
 	
 	public function onTimeOut(e:LibEvent):Void
 	{
 		trace("ERROR: Photo loading time out: "+e.getName());
+	}
+	
+	private function onSendDialogClosed():Void
+	{
+		__dialog_visible = false;
+		centerize();
 	}
 	
 	// listen to the model
@@ -147,15 +185,35 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 		{
 			if(!loaded) load();
 				
-			show();
-			centerize();
+			fadeIn();
 			protect();
 		} else
 		{
 			if(isVisible())
 			{
-				hide();
+				fadeOut();
 			}
 		}
+	}
+	
+	public function photo_closed_event(evt:PhotoClosedEvent):Void
+	{
+		fadeOut();
+		unprotect();
+	}
+	
+	public function get_send_dialog_event(evt:GetSendDialogEvent):Void
+	{
+		__dialog_visible = true; 
+		
+		centerize();
+	}
+	
+	public function get_sending_dialog_event(evt:GetSendingDialogEvent):Void
+	{
+	}
+	
+	public function get_sent_dialog_event(evt:GetSentDialogEvent):Void
+	{
 	}
 }
