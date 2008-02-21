@@ -38,7 +38,7 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 		setVisible(!aHide);
 	}
 
-	private function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
+	public function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
 	{
 		var tTopbar:Number = 15;
 		var tBottombar:Number = 30;
@@ -50,7 +50,7 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 		background.__h = aHighlight;
 	}
 	
-	private function setTitle():Void
+	public function setTitle():Void
 	{		
 		var tTF:TextFormat = new TextFormat();
 			tTF.font = "kroeger";
@@ -111,7 +111,7 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 		t.start();
 	}
 	
-	public function fadeIn():Void
+	private function fadeIn():Void
 	{
 		show();
 		
@@ -119,7 +119,7 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 			t.start();
 	}
 	
-	public function fadeOut():Void
+	private function fadeOut():Void
 	{
 		//var t:TweenMS = new TweenMS(view, "_alpha", 0, 500, 100);
 		//	t.addEventListener(TweenMS.onMotionFinishedEVENT, this, hide);
@@ -174,12 +174,12 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 	}
 	
 	// listen to the model
-	public function resize_event(evt:ResizeEvent):Void
+	private function resize_event(evt:ResizeEvent):Void
 	{
 		centerize();
 	}
 	
-	public function photo_changed_event(e:PhotoChangedEvent):Void
+	private function photo_changed_event(e:PhotoChangedEvent):Void
 	{
 		if(PhotoChangedEvent(e).id == id)
 		{
@@ -196,24 +196,24 @@ class plugins.grid.view.Photo extends AbstractMovieClipHelper implements ILibLis
 		}
 	}
 	
-	public function photo_closed_event(evt:PhotoClosedEvent):Void
+	private function photo_closed_event(evt:PhotoClosedEvent):Void
 	{
 		fadeOut();
 		unprotect();
 	}
 	
-	public function get_send_dialog_event(evt:GetSendDialogEvent):Void
+	private function get_send_dialog_event(evt:GetSendDialogEvent):Void
 	{
 		__dialog_visible = true; 
 		
 		centerize();
 	}
 	
-	public function get_sending_dialog_event(evt:GetSendingDialogEvent):Void
+	private function get_sending_dialog_event(evt:GetSendingDialogEvent):Void
 	{
 	}
 	
-	public function get_sent_dialog_event(evt:GetSentDialogEvent):Void
+	private function get_sent_dialog_event(evt:GetSentDialogEvent):Void
 	{
 	}
 }

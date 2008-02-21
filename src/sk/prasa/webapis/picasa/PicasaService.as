@@ -7,6 +7,7 @@ import sk.prasa.webapis.picasa.core.*;
 
 class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase
 {
+	public static var POLICY_FILE:String = "http://photos.googleapis.com/data/crossdomain.xml";  
 	public static var END_POINT:String = "http://photos.googleapis.com/data/feed/api/";
 	public static var AUTH_END_POINT:String = "http://photos.googleapis.com/data/feed/api/user/";
 	
@@ -26,9 +27,10 @@ class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase
 	private var __community:Community
 	
 	public function PicasaService(API_KEY:String)
-	{
+	{	
 		//super(this);
-
+		System.security.loadPolicyFile(POLICY_FILE);
+		
 		__api_key = API_KEY;
 		
 		__auth = new Auth(this);
@@ -37,8 +39,6 @@ class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase
 		__tags = new Tags(this);
 		__comments = new Comments(this);
 		__community = new Community(this);
-		
-		
 	}
 	
 	public function get api_key():String

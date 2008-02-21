@@ -393,10 +393,10 @@ class be.netdust.visual.layout.styles.bordertheme.Theme
 /** style for Panel class **/
 		o = Style.newStyle("Panel");
 		
-		o.marginTop = 5;
-		o.marginBottom = 5;
-		o.marginLeft = 5;
-		o.marginRight = 5;
+		o.marginTop = 0;
+		o.marginBottom = 0;
+		o.marginLeft = 0;
+		o.marginRight = 0;
 		
 		o.paddingLeft = 10;
 		o.paddingRight = 10;

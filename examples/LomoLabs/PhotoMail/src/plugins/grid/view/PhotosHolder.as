@@ -28,9 +28,9 @@ class plugins.grid.view.PhotosHolder extends AbstractMovieClipHelper
 		
 		addListener(__send_dialog);
 	}
-	
+		
 	public function addChild(aId:String, aUrl:String, aSummary:String):Void
-	{
+	{	
 		var tHolder:MovieClip = view.createEmptyMovieClip("photo_holder_"+aId, view.getNextHighestDepth());
 		var tPhoto:Photo = new Photo(getOwner(), aId, tHolder, true, aUrl, aSummary)
 			
