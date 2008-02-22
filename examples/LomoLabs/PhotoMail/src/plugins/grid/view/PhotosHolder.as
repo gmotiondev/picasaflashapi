@@ -4,12 +4,10 @@
 
 import com.bourre.ioc.visual.AbstractMovieClipHelper;
 import com.bourre.ioc.plugin.IPlugin;
-import com.bourre.transitions.MultiTweenMS;
+import com.bourre.ioc.plugin.BasicPluginEvent;
 
 import plugins.grid.view.*;
 import plugins.grid.view.dialog.*;
-import plugins.grid.control.*;
-import plugins.grid.control.dialog.*;
 
 class plugins.grid.view.PhotosHolder extends AbstractMovieClipHelper
 {
@@ -39,39 +37,7 @@ class plugins.grid.view.PhotosHolder extends AbstractMovieClipHelper
 	}
 		
 	// listen to the model and dispatch to children
-	public function get_send_dialog_event(evt:GetSendDialogEvent):Void
-	{		
-		__send_dialog.setDialog("send");
-		
-		notifyChanged(evt);
-	}
-	
-	public function get_sending_dialog_event(evt:GetSendingDialogEvent):Void
-	{
-		__send_dialog.setDialog("sending");
-		
-		notifyChanged(evt);
-	}
-	
-	public function get_sent_dialog_event(evt:GetSentDialogEvent):Void
-	{
-		__send_dialog.setDialog("sent");
-		__send_dialog.setResult(evt.message);
-		
-		notifyChanged(evt);
-	}
-	
-	public function resize_event(evt:ResizeEvent):Void
-	{
-		notifyChanged(evt);
-	}
-	
-	public function photo_changed_event(evt:PhotoChangedEvent):Void
-	{
-		notifyChanged(evt);
-	}
-	
-	public function photo_closed_event(evt:PhotoClosedEvent):Void
+	public function handleEvent(evt:BasicPluginEvent):Void
 	{
 		notifyChanged(evt);
 	}

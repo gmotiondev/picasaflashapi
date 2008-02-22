@@ -176,4 +176,20 @@ class plugins.grid.view.dialog.SendDialog extends AbstractMovieClipHelper
 	{
 		if(isVisible()) centerize(false);
 	}
+	
+	public function get_send_dialog_event(evt:GetSendDialogEvent):Void
+	{		
+		setDialog("send");
+	}
+	
+	public function get_sending_dialog_event(evt:GetSendingDialogEvent):Void
+	{
+		setDialog("sending");
+	}
+	
+	public function get_sent_dialog_event(evt:GetSentDialogEvent):Void
+	{
+		setDialog("sent");
+		setResult(evt.message);
+	}
 }
