@@ -7,7 +7,6 @@ import com.bourre.core.Model;
 import com.bourre.data.libs.LibStack;
 import com.bourre.data.libs.GraphicLib;
 import com.bourre.visual.MovieClipHelper;
-import sk.prasa.webapis.picasa.Photo;
 
 import model.*;
 import view.*;
@@ -22,31 +21,22 @@ class command.InitializeCommand implements Command
 
 		var tPhotoHolder = MovieClipHelper.getMovieClipHelper(ViewList.PHOTO_HOLDER);
 		var tThumbHolder = MovieClipHelper.getMovieClipHelper(ViewList.THUMB_HOLDER);
-		
 		var tTLibStack:LibStack = new LibStack();
 		
-			tThumbHolder.grid = new sk.prasa.visual.layout.GridLayout(6, 6);
-			tThumbHolder.grid.addListener(tThumbHolder);
-			
 		for(var a:Number = 0; a < model.photos.length; a++)
 		{
-			var tItem:Photo = model.photos[a];
-			var tPC:MovieClip = tPhotoHolder.view.createEmptyMovieClip("p_"+tItem.gphoto.id, tPhotoHolder.view.getNextHighestDepth());
-			var tTC:MovieClip = tThumbHolder.view.createEmptyMovieClip("p_"+tItem.gphoto.id, tThumbHolder.view.getNextHighestDepth());
+			var tItem:sk.prasa.webapis.picasa.Photo = model.photos[a];
+			var tPhoto:view.Photo = tPhotoHolder.addChild(tItem.gphoto.id, tItem.media.content.url);
+			var tThumb:view.Thumb = tThumbHolder.addChild(tItem.gphoto.id, tItem.summary);
 			
-			var tPhotoContainer:PhotoContainer = new PhotoContainer(tItem.gphoto.id, tPC, true, tItem.media.content.url, tItem.summary);
-			var tThumbContainer:ThumbContainer = new ThumbContainer(tItem.gphoto.id, tTC, tItem.summary);
-							
-			tThumbHolder.grid.addChild(tThumbContainer.view);
-			tThumbHolder.setTitle(tItem.album.title+" ("+tItem.album.gphoto.numphotos+")");
-			
-			model.addListener(tPhotoContainer);
-			model.addListener(tThumbContainer);
+			model.addListener(tPhoto);
+			model.addListener(tThumb);
 
-			tTLibStack.enqueue(new GraphicLib(tThumbContainer.view, 5), tItem.gphoto.id, tItem.media.thumbnail[0].url);
+			tTLibStack.enqueue(new GraphicLib(tThumb.view, 5), tItem.gphoto.id, tItem.media.thumbnail[0].url);
 			tTLibStack.addListener(tThumbHolder);
 		}
 		
+		tThumbHolder.setTitle(model.photos[0].album.title+" ("+model.photos[0].album.gphoto.numphotos+")");
 		tTLibStack.execute();
 	}
 }

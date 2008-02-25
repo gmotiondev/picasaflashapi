@@ -3,7 +3,6 @@
  */
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
-import com.bourre.events.BasicEvent;
 
 import view.*;
 import control.*;
@@ -44,20 +43,11 @@ class Application extends MovieClipHelper
 	
 	public function onKeyDown():Void
 	{
-		var code:Number = Key.getCode() ;
-		switch (code)
+		switch (Key.getCode())
 		{
-			case Key.RIGHT :
-			{
-				EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(Controller.PHOTO_GET_NEXT_EVENT));
-				break ;
-			}
-			case Key.LEFT :
-			{
-				EventBroadcaster.getInstance().broadcastEvent(new BasicEvent(Controller.PHOTO_GET_PREV_EVENT));
-				break ;
-			}
-		}	
+			case Key.RIGHT: EventBroadcaster.getInstance().broadcastEvent(new PhotoGetNextEvent()); break ;
+			case Key.LEFT :	EventBroadcaster.getInstance().broadcastEvent(new PhotoGetPreviousEvent());	break;
+		}
 	}
 	
 	public static function main(mc:MovieClip) : Void 

@@ -16,7 +16,6 @@ class model.ModelApplication extends Model
 {
 	public var service:PicasaService;
 	public var photos:Photos;
-	public var container:MovieClip;
 	
 	public function ModelApplication()
 	{
@@ -31,33 +30,31 @@ class model.ModelApplication extends Model
 		service.max_results = 36;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 
-		// EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5110367185091112897"));
 		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5135051345581734225"));
 	}
 	
 	public function next():Void
 	{
-		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getNext());
-		var tTitleEvent:PhotoSetTitleEvent = new PhotoSetTitleEvent(photos.getCurrentTitle());
+		var tId:String = photos.getNext();
+		var tTitle:String = photos.getCurrentTitle();
 		
-		notifyChanged(tChangedEvent);
-		notifyChanged(tTitleEvent);
+		notifyChanged(new PhotoChangedEvent(tId, tTitle));
 	}
 	
 	public function prev():Void
 	{
-		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getPrevious());
-		var tTitleEvent:PhotoSetTitleEvent = new PhotoSetTitleEvent(photos.getCurrentTitle());
-		
-		notifyChanged(tChangedEvent);
-		notifyChanged(tTitleEvent);
+		var tId:String = photos.getPrevious();
+		var tTitle:String = photos.getCurrentTitle();
+
+		notifyChanged(new PhotoChangedEvent(tId, tTitle));
 	}
 	
 	public function click(aId:String):Void
 	{
-		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getClicked(aId));
+		var tId:String = photos.getClicked(aId);
+		var tTitle:String = photos.getCurrentTitle();
 		
-		notifyChanged(tChangedEvent);
+		notifyChanged(new PhotoChangedEvent(tId, tTitle));
 	}
 	
 	private function onServiceError(e:IEvent):Void

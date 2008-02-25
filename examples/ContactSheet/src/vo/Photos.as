@@ -29,7 +29,7 @@ class vo.Photos extends IndexedArray
 	// 
 	public function getCurrentTitle():String
 	{
-		return (typeof(this[__current].summary) == "string" ? this[__current].summary : "___");
+		return this[__current].summary;
 	}
 	
 	// 
@@ -40,6 +40,7 @@ class vo.Photos extends IndexedArray
 		return aId;
 	}
 	
+	// 
 	private function getIndexById(aId:String):Number
 	{
 		for(var a:Number = 0; a < this.length; a++)

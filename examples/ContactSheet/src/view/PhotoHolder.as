@@ -5,6 +5,7 @@ import com.bourre.visual.MovieClipHelper;
 import com.bourre.utils.Geom;
 
 import control.*;
+import view.Photo;
 
 class view.PhotoHolder extends MovieClipHelper
 {	
@@ -16,6 +17,12 @@ class view.PhotoHolder extends MovieClipHelper
 		super(aId,aC);
 
 		show();
+	}
+	
+	public function addChild(aId:String, aUrl:String):Photo
+	{
+		var tHolder:MovieClip = view.createEmptyMovieClip("p_"+aId, view.getNextHighestDepth());
+		return new Photo(aId, tHolder, true, aUrl);
 	}
 	
 	private function insertTitle():Void
@@ -41,9 +48,9 @@ class view.PhotoHolder extends MovieClipHelper
 	}
 	
 	// listen to the model
-	public function photo_set_title_event(e:PhotoSetTitleEvent):Void
+	public function photo_changed_event(evt:PhotoChangedEvent):Void
 	{
-		__title.htmlText = PhotoSetTitleEvent(e).title;
+		__title.htmlText = evt.title;
 		__title.setTextFormat(__titleTextFormat);
 	}
 }
