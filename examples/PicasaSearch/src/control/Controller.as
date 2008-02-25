@@ -17,7 +17,7 @@ class control.Controller extends FrontController
 	
 	public static var GET_NEXT_PAGE_EVENT:EventType = new EventType("get_next_page_event");
 	public static var GET_PREV_PAGE_EVENT:EventType = new EventType("get_prev_page_event");
-	
+		
 	public static function getInstance() : Controller 
 	{
 		if (!__instance) {

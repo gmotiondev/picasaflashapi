@@ -7,7 +7,7 @@ import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
 
 import control.*;
-import view.ThumbContainer;
+import view.Thumb;
 import sk.prasa.visual.layout.GridLayout;
 
 class view.ThumbHolder extends MovieClipHelper implements ILibListener
@@ -24,10 +24,10 @@ class view.ThumbHolder extends MovieClipHelper implements ILibListener
 		__grid = new GridLayout(12, 16);
 	}
 	
-	public function addChild(aID:String):ThumbContainer
+	public function addChild(aID:String):Thumb
 	{
 		var tHolder:MovieClip = view.createEmptyMovieClip("p_"+aID, view.getNextHighestDepth());
-		var tThumb:ThumbContainer = new ThumbContainer(aID, tHolder);
+		var tThumb:Thumb = new Thumb(aID, tHolder);
 		
 		__grid.addChild(tHolder);
 		__children.push(tHolder);

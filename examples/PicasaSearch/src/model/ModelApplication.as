@@ -15,7 +15,6 @@ class model.ModelApplication extends Model
 {
 	public var service:PicasaService;
 	public var photos:Photos;
-	public var container:MovieClip;
 	
 	public function ModelApplication()
 	{
@@ -31,6 +30,7 @@ class model.ModelApplication extends Model
 		service.thumbsize = 48;
 		service.start_index = 1;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
+		service.addEventListener(PicasaService.TIMEOUT, Delegate.create(this, onServiceTimeout));
 	}
 	
 	// next page button clicked
@@ -53,5 +53,10 @@ class model.ModelApplication extends Model
 	private function onServiceError(e:IEvent):Void
 	{
 		trace("error: "+e.getType());
-	}	
+	}
+	
+	private function onServiceTimeout(e:IEvent):Void
+	{
+		trace("timeout: "+e.getType());
+	}
 }

@@ -3,13 +3,13 @@
  */
 import com.bourre.visual.MovieClipHelper;
 
-class view.ThumbContainer extends MovieClipHelper
+class view.Thumb extends MovieClipHelper
 {
 	private var title:String;
 	private var id:String;
 	private var __b:MovieClip;
 	
-	public function ThumbContainer(aID:String, aContainer:MovieClip, aTitle:String)
+	public function Thumb(aID:String, aContainer:MovieClip, aTitle:String)
 	{
 		super(aID, aContainer);
 		

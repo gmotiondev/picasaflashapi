@@ -59,10 +59,10 @@ class view.Navigation extends MovieClipHelper
 		container.r._y = Stage.height - container.r._height - 20;
 	}
 	
-	public function setNavigation(event:InitializeEvent):Void
-	{	
-		container.l._visible = event.startIndex > event.itemsPerPage;
-		container.r._visible = event.startIndex + event.itemsPerPage < event.totalResults;
+	public function initialize_event(evt:InitializeEvent):Void
+	{
+		container.l._visible = evt.startIndex > evt.itemsPerPage;
+		container.r._visible = evt.startIndex + evt.itemsPerPage < evt.totalResults;
 	}
 	
 	public function onKeyDown():Void

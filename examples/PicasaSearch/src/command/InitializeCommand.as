@@ -20,14 +20,7 @@ class command.InitializeCommand implements Command
 	public function execute(event:InitializeEvent):Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
-		
-		var tMainView = MovieClipHelper.getMovieClipHelper(ViewList.MAIN_VIEW);
-		var tNavView = MovieClipHelper.getMovieClipHelper(ViewList.NAVIGATION);
-		
-			// tMainView.setSearchResult("Found "+event.totalResults+" photos ("+event.startIndex+" to "+(event.startIndex+(event.totalResults < event.itemsPerPage ? event.totalResults : event.itemsPerPage) - (event.totalResults == 0 ? 0 : 1))+").");
-			tMainView.setSearchResult(event);
-			tNavView.setNavigation(event);
-			
+
 		var tThumbHolder = MovieClipHelper.getMovieClipHelper(ViewList.THUMB_HOLDER);
 			tThumbHolder.removeAllChildren();
 		
@@ -41,9 +34,9 @@ class command.InitializeCommand implements Command
 		for(var a:Number = 0; a < model.photos.length; a++)
 		{
 			var tItem:Photo = model.photos[a];			
-			var tThumbContainer:ThumbContainer = tThumbHolder.addChild(tItem.gphoto.id);
+			var tThumb:Thumb = tThumbHolder.addChild(tItem.gphoto.id);
 			
-			__libstack.enqueue(new GraphicLib(tThumbContainer.view, 5), tItem.gphoto.id, tItem.media.thumbnail[0].url);
+			__libstack.enqueue(new GraphicLib(tThumb.view, 5), tItem.gphoto.id, tItem.media.thumbnail[0].url);
 		}
 
 		__libstack.execute();

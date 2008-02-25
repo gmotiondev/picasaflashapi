@@ -1,97 +1,87 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
-import be.netdust.visual.containers.ApplicationView;
-import be.netdust.visual.containers.HBox;
-import be.netdust.visual.containers.Panel;
-import be.netdust.visual.object.TextBox;
-import be.netdust.visual.object.Button;
-import be.netdust.visual.object.Label;
-import be.netdust.visual.layout.styles.Style;
-import be.netdust.visual.events.*; 
+import be.netdust.visual.assembler.ViewBuilder
+import be.netdust.visual.containers.*;
+import be.netdust.visual.object.*;
 
 import com.bourre.events.EventType;
-import com.bourre.events.BasicEvent;
+import com.bourre.events.EventBroadcaster;
+import com.bourre.visual.MovieClipHelper;
 
-class view.dialog.SearchDialog extends ApplicationView
-{	
-	//TODO: CleanUp please!
+import control.*;
+
+class view.dialog.SearchDialog extends MovieClipHelper
+{		
+	private var __def_label:String = "Search picasaweb";
+	private var __def_query:String = "Type to search";
+	private var __vb:ViewBuilder;
 	
-	private var __q:String = "Type to search";
-	private var __searchPanel:Panel;
+	// just to get the classes included!
+	private var __app:ApplicationView;
+	private var __panel:Panel;
+	private var __textbox:TextBox;
+	private var __vbox:VBox;
+	private var __hbox:HBox;
+	private var __button:Button;
+	// 
 	
-	public function SearchDialog(aHolder:MovieClip)
+	public function SearchDialog(aID:String, aContainer:MovieClip)
 	{
-		super();
-		
-		setUI(aHolder.createEmptyMovieClip("app",2));
-		decorate();
-		
-		var tSearchPanel:Panel = getSearchPanel();
-			tSearchPanel.onFocus = this.onFocus;
-			tSearchPanel.setObserver(this);
-		this.addChild(tSearchPanel);
-
-		this.create();
+		super(aID, aContainer);
 
 		// Mouse.addListener(this);
 		Key.addListener(this);
+		
+		initialize();
 	}
 	
-	public function displayResults(aResults:String):Void
+	private function initialize():Void
+	{
+		var tXml:XML = new XML('<?xml version="1.0"?>'+
+			'<beans>' +
+			'	<view id="main">' +
+			'		<Panel id="dialog_panel" label="'+__def_label+'">' +
+			'			<VBox>' +
+			'				<HBox>' +
+			'					<TextBox id="query" label="'+__def_query+'" width="300"/>' +
+			'					<Button id="button_submit" label="Search"/>' +
+			'				</HBox>' +
+			' 			</VBox>' +
+			'		</Panel>' +
+			'	</view>' +
+			'</beans>');
+			
+		__vb = new ViewBuilder();
+		__vb.addListener(this)
+		__vb.parseExternal(tXml);
+	}
+	
+	private function onViewInit():Void
+	{
+		__vb.register(view);
+		
+		var tSendButton:Button = __vb.getChildByID("button_submit");
+			tSendButton.addEventListener(new EventType("onClick"), this);
+			
+		centerize();
+	}
+	
+	public function getQuery():String
+	{
+		return __vb.getChildByID("query").getText();
+	}
+	
+	public function setSearchStatus(aStatus:String):Void
 	{	
-		var tResultLabel:Label = Label(__searchPanel.getChild(1));
-			tResultLabel.setLabel(aResults);
-	}
-	
-	private function decorate():Void
-	{
-		var tTextAreaStyle:Style = Style.getStyle("TextBox");
-			tTextAreaStyle.setFormat("fu", {font:"Verdana", multiLine: false, size:14, color: 0x666666, bold:false, underline:false });
-	}
-	
-	private function getSearchPanel():Panel
-	{
-		__searchPanel.destroy();
-		__searchPanel = new Panel("Search picasaweb");
-
-		var tSearchBox:TextBox = new TextBox(__q);
-			tSearchBox.width = 300;
-			tSearchBox.height = 28;
-			
-		var tSubmitButton:Button = new Button("Search");
-			tSubmitButton.addEventListener(new EventType("onClick"),this);
-			
-		var tHBox:HBox = new HBox();
-			tHBox.addChild(tSearchBox);
-			tHBox.addChild(tSubmitButton);
-			
-		__searchPanel.addChild(tHBox);
-		var tResultLabel:Label = new Label(" ");
-		var tResultLabelStyle:Style = Style.newStyle("LabelSmall");
-			tResultLabelStyle.setFormat("fu", {font:"Verdana", multiLine: false, size:10, color: 0x990066, bold:false, underline:false });
-			tResultLabel.setStyle(tResultLabelStyle);
-		__searchPanel.addChild(tResultLabel);
-		
-		tSearchBox.setObserver(this);
-		
-		//TODO: 
-		// tSearchBox.setFocus();
-		
-		return __searchPanel;
+		//TODO: doesn't work!
+		var tPanel:Panel = __vb.getChildByID("dialog_panel");
+			tPanel.setLabel(__def_label+" - "+aStatus);
 	}
 
-	private function onMouseDown():Void
+	private function centerize():Void
 	{
-		if(__searchPanel.getUI().hitTest(_root._xmouse,_root._ymouse,true))
-		{
-			this.getUI().startDrag();
-		}
-	}
-	
-	private function onMouseUp():Void
-	{
-		this.getUI().stopDrag();
+		move(Math.round(Stage.width/2 - view._width/2), Math.round(Stage.height/2 - view._height/2));
 	}
 	
 	private function onKeyDown():Void
@@ -101,25 +91,35 @@ class view.dialog.SearchDialog extends ApplicationView
 		}
 	}
 
-	public function onChanged(e):Void
-	{
-		__q = e.getTarget().getTextField().text;
-	}
-	
-	private function onFocus(e:BubbleEvent):Void
-	{
-		var tSource = e.getSource();
-		var tHandle = e.getHandle();
-	}
-	
 	private function onClick():Void
 	{
-		displayResults("Searching ...");
-		this.dispatchEvent(new BasicEvent(new EventType("onStartSearch")));
+		setSearchStatus("Searching ...");
+		
+		EventBroadcaster.getInstance().broadcastEvent(new GetPhotosEvent(escape(getQuery())));
 	}
 	
-	public function getQuery():String
+	// listen to the model.
+	public function onResize(e:ScreenResizeEvent):Void
 	{
-		return __q;
+		centerize();
+	}
+		
+	public function initialize_event(evt:InitializeEvent):Void
+	{
+		var tFrom:Number = evt.startIndex;
+		var tTo:Number = ((evt.startIndex + evt.itemsPerPage) > evt.totalResults ? evt.totalResults : (evt.itemsPerPage + evt.startIndex));		
+		var tRes:String = (evt.totalResults == 0) ? "None found" : "Found "+evt.totalResults+" photos ("+tFrom+" - "+tTo+").";
+		
+		setSearchStatus(tRes);
+	}
+	
+	public function get_next_page_event(e:GetNextPageEvent):Void
+	{
+		onClick();
+	}
+	
+	public function get_prev_page_event(event:GetPrevPageEvent):Void
+	{
+		onClick();
 	}
 }

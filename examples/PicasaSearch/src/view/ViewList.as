@@ -5,8 +5,11 @@
 class view.ViewList
 {
 	public static var APPLICATION:String = "application";
-	public static var MAIN_VIEW:String 	 = "main_view";
 	public static var THUMB_HOLDER:String= "thumb_holder";
 	public static var NAVIGATION:String  = "navigation";
 	public static var LOADING_BAR:String = "loading_bar";
+	public static var SEARCH_DIALOG:String="search_dialog";
+	
+	public static var ALERT_DIALOG:String = "alert_dialog";
+	public static var CONFIRM_DIALOG:String = "cofirm_dialog";
 }
