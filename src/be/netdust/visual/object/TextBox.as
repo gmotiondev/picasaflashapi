@@ -41,6 +41,9 @@ class be.netdust.visual.object.TextBox extends Label
 	};
 	
 	public function set multiline( b:Boolean ) {
+		
+		if(b) _labeltf.wordWrap = true;
+		
 		_multiline = b;
 	};
 	

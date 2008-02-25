@@ -38,6 +38,7 @@ class Application extends MovieClipHelper
 			model.addListener(view_d);
 			
 			model.addListener(view_alert);
+			model.addListener(view_confirm);
 			
 			model.initialize();
 	}

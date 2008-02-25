@@ -18,6 +18,7 @@ class view.dialog.AlertDialog extends MovieClipHelper
 	private var __app:ApplicationView;
 	private var __panel:Panel;
 	private var __label:Label;
+	private var __textbox:TextBox;
 	private var __vbox:VBox;
 	private var __button:Button;
 	// 
@@ -36,7 +37,7 @@ class view.dialog.AlertDialog extends MovieClipHelper
 			'	<view id="main_alert">' +
 			'		<Panel id="alert_panel" label="Alert">' +
 			'			<VBox>' +
-			'				<Label id="query" label="this is some alert box" width="200" height="100"/>' +
+			'				<TextBox id="message" label="this is some alert box" width="200" height="100"/>' +
 			'				<Button id="button_close" label="Close"/>' +
 			' 			</VBox>' +
 			'		</Panel>' +
@@ -60,6 +61,13 @@ class view.dialog.AlertDialog extends MovieClipHelper
 		centerize();
 	}
 	
+	private function setMessage(aMessage:String):Void
+	{
+		var tLabel:TextBox = __vb.getChildByID("message");
+			tLabel.multiline = true;
+			tLabel.setLabel(aMessage);
+	}
+	
 	private function centerize():Void
 	{
 		move(Math.round((Stage.width - view._width)/2), Math.round((Stage.height - view._height)/2));
@@ -68,7 +76,6 @@ class view.dialog.AlertDialog extends MovieClipHelper
 	private function onClick():Void
 	{
 		hide();
-		trace("closing ...");
 	}
 	
 	public function onResize(evt:ScreenResizeEvent):Void
@@ -76,9 +83,11 @@ class view.dialog.AlertDialog extends MovieClipHelper
 		centerize();
 	}
 	
-	public function timeout_event():Void
+	public function alert_event(evt:AlertEvent):Void
 	{
 		show();
+		setMessage(evt.message);
+		
 	}
 	
 	public function error_event():Void

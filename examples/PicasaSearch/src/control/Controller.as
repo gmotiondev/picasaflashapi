@@ -18,6 +18,8 @@ class control.Controller extends FrontController
 	public static var GET_NEXT_PAGE_EVENT:EventType = new EventType("get_next_page_event");
 	public static var GET_PREV_PAGE_EVENT:EventType = new EventType("get_prev_page_event");
 		
+	public static var ALERT_EVENT:EventType = new EventType("alert_event");
+	
 	public static function getInstance() : Controller 
 	{
 		if (!__instance) {
@@ -40,5 +42,7 @@ class control.Controller extends FrontController
 		
 		push(GET_NEXT_PAGE_EVENT, new GetNextPageCommand());
 		push(GET_PREV_PAGE_EVENT, new GetPrevPageCommand());
+		
+		push(ALERT_EVENT, new AlertCommand());
 	}
 }

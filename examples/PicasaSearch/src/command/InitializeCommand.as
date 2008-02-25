@@ -10,7 +10,7 @@ import sk.prasa.webapis.picasa.Photo;
 
 import model.*;
 import view.*;
-import control.InitializeEvent;
+import control.*;
 
 class command.InitializeCommand implements Command
 {
@@ -20,7 +20,7 @@ class command.InitializeCommand implements Command
 	public function execute(event:InitializeEvent):Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
-
+		
 		var tThumbHolder = MovieClipHelper.getMovieClipHelper(ViewList.THUMB_HOLDER);
 			tThumbHolder.removeAllChildren();
 		
