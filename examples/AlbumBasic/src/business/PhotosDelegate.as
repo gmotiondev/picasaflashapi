@@ -26,9 +26,6 @@ class business.PhotosDelegate
 	
 	public function list(aUserid:String, aAlbumid:String):Void
 	{
-		// add progress, but don't chain the classes!
-		// maybe an event service listner, command etc..
-		// EventBroadcaster.getInstance().broadcastEvent(new ProgressSetEvent(e.getPerCent()));
 		__service.addEventListener(PicasaService.PROGRESS, list_progress); 
 		__service.addEventListener(PicasaResultEvent.PHOTOS_GET_LIST, Delegate.create(this, list_complete));
 		__service.photos.list(aUserid, aAlbumid);

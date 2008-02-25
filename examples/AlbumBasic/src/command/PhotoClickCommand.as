@@ -1,5 +1,5 @@
 /**
- *
+ * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.commands.Command;
 import com.bourre.core.Model;
@@ -9,13 +9,12 @@ import control.PhotoClickEvent;
 
 class command.PhotoClickCommand implements Command
 {
-	
 	private var model:ModelApplication; 
 	
-	public function execute(e:PhotoClickEvent):Void
+	public function execute(evt:PhotoClickEvent):Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
-		model.click(PhotoClickEvent(e).id);
+		model.click(evt.id);
 	}
 
 }

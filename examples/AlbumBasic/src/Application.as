@@ -22,17 +22,15 @@ class Application extends MovieClipHelper
 		Stage.addListener(this);
 		Key.addListener(this);
 		
-		/* model */
+		Controller.getInstance().initialize();
+
 		var model:ModelApplication = new ModelApplication();
 		
-		/* views */
 		var p_view:PhotoHolder= new PhotoHolder(ViewList.PHOTO_HOLDER, 	mc.createEmptyMovieClip(ViewList.PHOTO_HOLDER, 	10));
 		var t_view:ThumbHolder= new ThumbHolder(ViewList.THUMB_HOLDER, 	mc.createEmptyMovieClip(ViewList.THUMB_HOLDER, 	20));
 		var n_view:Navigation = new Navigation(ViewList.NAVIGATION, 	mc.createEmptyMovieClip(ViewList.NAVIGATION, 	30));
 		var l_view:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, 	mc.createEmptyMovieClip(ViewList.LOADING_BAR, 	40));
 
-		/* controller */
-		Controller.getInstance().initialize();
 		model.addListener(p_view);
 		model.addListener(l_view);
 		model.container = mc;
@@ -46,15 +44,10 @@ class Application extends MovieClipHelper
 	
 	public function onKeyDown():Void
 	{
-		var code:Number = Key.getCode() ;
-		switch (code)
+		switch (Key.getCode())
 		{
-			case Key.RIGHT :
-				EventBroadcaster.getInstance().broadcastEvent(new PhotoGetNextEvent());
-				break ;
-			case Key.LEFT :
-				EventBroadcaster.getInstance().broadcastEvent(new PhotoGetPreviousEvent());
-				break ;
+			case Key.RIGHT: EventBroadcaster.getInstance().broadcastEvent(new PhotoGetNextEvent()); break;
+			case Key.LEFT : EventBroadcaster.getInstance().broadcastEvent(new PhotoGetPreviousEvent()); break;
 			default: break;
 		}
 	}

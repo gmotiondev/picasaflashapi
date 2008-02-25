@@ -8,6 +8,7 @@ import com.bourre.data.libs.ILibListener;
 import com.bourre.utils.Geom;
 
 import control.*;
+import view.Photo;
 
 class view.PhotoHolder extends MovieClipHelper implements ILibListener
 {	
@@ -19,6 +20,13 @@ class view.PhotoHolder extends MovieClipHelper implements ILibListener
 		super(aId,aC);
 
 		show();
+	}
+	
+	public function addChild(aId:String, aHide:Boolean):Photo
+	{
+		var tHolder:MovieClip = view.createEmptyMovieClip("p_"+aId, view.getNextHighestDepth());
+		
+		return new Photo(aId, tHolder, aHide);
 	}
 	
 	private function insertTitle():Void
@@ -37,7 +45,7 @@ class view.PhotoHolder extends MovieClipHelper implements ILibListener
 		__title = tBG.title;
 		__title.multiline = false;
 		__title.html = true;
-		__title.htmlText = "dd";
+		__title.htmlText = "";
 		__title.setTextFormat(__titleTextFormat);
 	}
 	
@@ -63,9 +71,9 @@ class view.PhotoHolder extends MovieClipHelper implements ILibListener
 	}
 	
 	// listen to the model
-	public function photo_set_title_event(e:PhotoSetTitleEvent):Void
+	public function photo_changed_event(evt:PhotoChangedEvent):Void
 	{
-		__title.htmlText = PhotoSetTitleEvent(e).title;
+		__title.htmlText = evt.title;
 		__title.setTextFormat(__titleTextFormat);
 	}
 }

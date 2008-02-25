@@ -9,7 +9,7 @@ import com.bourre.data.libs.ILibListener;
 import sk.prasa.visual.layout.GridLayout;
 
 import control.*;
-import view.ThumbContainer;
+import view.Thumb;
 
 class view.ThumbHolder extends MovieClipHelper implements ILibListener
 {	
@@ -29,10 +29,10 @@ class view.ThumbHolder extends MovieClipHelper implements ILibListener
 		__grid.padding = 5;
 	}
 	
-	public function addChild(aID:String, aTitle:String):ThumbContainer
+	public function addChild(aID:String, aTitle:String):Thumb
 	{
 		var tHolder:MovieClip = view.createEmptyMovieClip("p_"+aID, view.getNextHighestDepth());
-		var tThumb:ThumbContainer = new ThumbContainer(aID, tHolder, aTitle);
+		var tThumb:Thumb = new Thumb(aID, tHolder, aTitle);
 		
 		__grid.addChild(tHolder);
 		__children.push(tThumb);

@@ -37,35 +37,32 @@ class model.ModelApplication extends Model
 	}
 	
 	public function next():Void
-	{
-		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getNext());
-		var tTitleEvent:PhotoSetTitleEvent = new PhotoSetTitleEvent(photos.getCurrentTitle());
+	{ 
+		var tId:String = photos.getNext();
+		var tTitle:String = photos.getCurrentTitle();
 		
-		notifyChanged(tChangedEvent);
-		notifyChanged(tTitleEvent);
+		notifyChanged(new PhotoChangedEvent(tId, tTitle));
 	}
 	
 	public function prev():Void
 	{
-		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getPrevious());
-		var tTitleEvent:PhotoSetTitleEvent = new PhotoSetTitleEvent(photos.getCurrentTitle());
+		var tId:String = photos.getPrevious();
+		var tTitle:String = photos.getCurrentTitle();
 		
-		notifyChanged(tChangedEvent);
-		notifyChanged(tTitleEvent);
+		notifyChanged(new PhotoChangedEvent(tId, tTitle));
 	}
 	
 	public function click(aId:String):Void
 	{	
-		var tChangedEvent:PhotoChangedEvent = new PhotoChangedEvent(photos.getClicked(aId));
-		var tTitleEvent:PhotoSetTitleEvent = new PhotoSetTitleEvent(photos.getCurrentTitle());
+		var tId:String = photos.getClicked(aId);
+		var tTitle:String = photos.getCurrentTitle();
 		
-		notifyChanged(tChangedEvent);
-		notifyChanged(tTitleEvent);
+		notifyChanged(new PhotoChangedEvent(tId, tTitle));
 	}
 	
-	public function onScreenResize(e:ScreenResizeEvent):Void
+	public function onScreenResize(evt:ScreenResizeEvent):Void
 	{
-		notifyChanged(e);
+		notifyChanged(evt);
 	}
 	
 	private function onServiceError(e:IEvent):Void

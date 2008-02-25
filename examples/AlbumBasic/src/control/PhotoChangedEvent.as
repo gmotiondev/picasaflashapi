@@ -7,11 +7,13 @@ import control.Controller;
 class control.PhotoChangedEvent extends BasicEvent
 {
 	public var id:String;
+	public var title:String;
 	
-	public function PhotoChangedEvent(pid:String)
+	public function PhotoChangedEvent(aId:String, aTitle:String)
 	{
 		super(Controller.PHOTO_CHANGED_EVENT);
 		
-		id = pid;
+		id = aId;
+		title = aTitle;
 	}
 }

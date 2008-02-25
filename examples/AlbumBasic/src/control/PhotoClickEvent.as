@@ -1,5 +1,5 @@
 /**
- *
+ * @author michal.gron@gmail.com
  */
 import com.bourre.events.BasicEvent;
 
@@ -15,5 +15,4 @@ class control.PhotoClickEvent extends BasicEvent
 		
 		id = aId;
 	}
-
 }

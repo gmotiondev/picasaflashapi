@@ -8,13 +8,13 @@ import com.bourre.utils.Geom;
 
 import control.*;
 
-class view.ThumbContainer extends MovieClipHelper
+class view.Thumb extends MovieClipHelper
 {
 	private var id:String;
 	private var __b:MovieClip;
-	public var title:String;
+	private var title:String;
 	
-	public function ThumbContainer(aID:String, aContainer:MovieClip, aTitle:String)
+	public function Thumb(aID:String, aContainer:MovieClip, aTitle:String)
 	{
 		super(aID, aContainer);
 		
@@ -27,6 +27,7 @@ class view.ThumbContainer extends MovieClipHelper
 		view.onRelease = Delegate.create(this, onThumbRelease);
 		view.onRollOver = Delegate.create(this, onThumbRollOver);
 		view.onRollOut = Delegate.create(this, onThumbRollOut);
+		
 		setBackground(0xffffff, 0xe2007a, 5);	
 	}
 	
@@ -78,8 +79,8 @@ class view.ThumbContainer extends MovieClipHelper
 	}
 	
 	// listen to the model
-	public function photo_changed_event(e:PhotoChangedEvent):Void
+	public function photo_changed_event(evt:PhotoChangedEvent):Void
 	{	
-		highlight(PhotoChangedEvent(e).id == id);
+		highlight(PhotoChangedEvent(evt).id == id);
 	}
 }
