@@ -10,12 +10,12 @@ import control.*;
 import view.Thumb;
 import sk.prasa.visual.layout.GridLayout;
 
-class view.ThumbHolder extends MovieClipHelper implements ILibListener
+class view.Grid extends MovieClipHelper implements ILibListener
 {	
 	private var __grid:GridLayout;
 	private var __children:Array = [];
 	
-	public function ThumbHolder(aId:String, aC:MovieClip)
+	public function Grid(aId:String, aC:MovieClip)
 	{
 		super(aId,aC);
 		

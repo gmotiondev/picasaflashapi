@@ -24,7 +24,7 @@ class Application extends MovieClipHelper
 		Controller.getInstance().initialize();
 	
 		var view_l:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, mc.createEmptyMovieClip(ViewList.LOADING_BAR, 10010));
-		var view_t:ThumbHolder = new ThumbHolder(ViewList.THUMB_HOLDER,mc.createEmptyMovieClip(ViewList.THUMB_HOLDER,20));
+		var view_t:Grid = new Grid(ViewList.GRID, mc.createEmptyMovieClip(ViewList.GRID, 20));
 		var view_n:Navigation = new Navigation(ViewList.NAVIGATION,mc.createEmptyMovieClip(ViewList.NAVIGATION,30));
 		var view_d:SearchDialog = new SearchDialog(ViewList.SEARCH_DIALOG, mc.createEmptyMovieClip(ViewList.SEARCH_DIALOG, 40));
 		

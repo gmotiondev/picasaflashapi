@@ -32,6 +32,7 @@ class command.GetPhotosCommand implements Command, IResponder
 		var tTotalResults:Number = (data.length != 0) ? data[0].album.openSearch.totalResults : 0;
 		var tStartIndex:Number = (data.length != 0) ? data[0].album.openSearch.startIndex: 0;
 		var tItemsPerPage:Number = (data.length != 0) ? data[0].album.openSearch.itemsPerPage: 0;
+		
 		model.photos.init();
 
 		for(var a:Number = 0; a < data.length; a++)
@@ -40,7 +41,7 @@ class command.GetPhotosCommand implements Command, IResponder
 			model.photos.push(tPhoto);
 		}
 		
-		EventBroadcaster.getInstance().dispatchEvent(new InitializeEvent(tTotalResults, tStartIndex, tItemsPerPage));
+		EventBroadcaster.getInstance().broadcastEvent(new InitializeEvent(tTotalResults, tStartIndex, tItemsPerPage));
 	}
 	
 	public function fault(error:PicasaError):Void

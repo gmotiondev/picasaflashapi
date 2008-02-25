@@ -5,7 +5,7 @@
 class view.ViewList
 {
 	public static var APPLICATION:String = "application";
-	public static var THUMB_HOLDER:String= "thumb_holder";
+	public static var GRID:String= "grid";
 	public static var NAVIGATION:String  = "navigation";
 	public static var LOADING_BAR:String = "loading_bar";
 	public static var SEARCH_DIALOG:String="search_dialog";

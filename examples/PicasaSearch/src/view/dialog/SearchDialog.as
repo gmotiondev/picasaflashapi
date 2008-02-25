@@ -21,6 +21,7 @@ class view.dialog.SearchDialog extends MovieClipHelper
 	private var __app:ApplicationView;
 	private var __panel:Panel;
 	private var __textbox:TextBox;
+	private var __label:Label;
 	private var __vbox:VBox;
 	private var __hbox:HBox;
 	private var __button:Button;
@@ -47,6 +48,7 @@ class view.dialog.SearchDialog extends MovieClipHelper
 			'					<TextBox id="query" label="'+__def_query+'" width="300"/>' +
 			'					<Button id="button_submit" label="Search"/>' +
 			'				</HBox>' +
+			'				<Label id="status" labe=" "/>' +
 			' 			</VBox>' +
 			'		</Panel>' +
 			'	</view>' +
@@ -74,9 +76,8 @@ class view.dialog.SearchDialog extends MovieClipHelper
 	
 	public function setSearchStatus(aStatus:String):Void
 	{	
-		//TODO: doesn't work!
-		var tPanel:Panel = __vb.getChildByID("dialog_panel");
-			tPanel.setLabel(__def_label+" - "+aStatus);
+		var tL:Label = __vb.getChildByID("status");
+			tL.setLabel(aStatus);
 	}
 
 	private function centerize():Void
