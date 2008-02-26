@@ -83,12 +83,14 @@ class view.Photo extends MovieClipHelper implements ILibListener
 				map.draw(tSlice, m, null, "normal", null, true);
 			}
 		}
+		show();
 	}
 	
 	private function disable():Void
 	{
 		oef.map.dispose();
 		oef.removeMovieClip();
+		hide();
 	}
 	
 	private function load():Void
@@ -111,6 +113,7 @@ class view.Photo extends MovieClipHelper implements ILibListener
 	
 	public function onLoadComplete(evt:LibEvent):Void
 	{
+		enable();
 	}
 	
 	public function onTimeOut(evt:LibEvent):Void
@@ -122,7 +125,7 @@ class view.Photo extends MovieClipHelper implements ILibListener
 	{
 		if(evt.id == id)
 		{
-			enable();
+			if(loaded) enable();
 		} else
 		{
 			if(isVisible()) disable();
