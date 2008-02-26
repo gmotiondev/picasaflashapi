@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.visual.MovieClipHelper;
@@ -6,6 +6,8 @@ import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
 import com.bourre.data.libs.LibStack;
 import com.bourre.data.libs.GraphicLib;
+
+import control.*;
 
 class view.Photo extends MovieClipHelper implements ILibListener
 {
@@ -48,5 +50,16 @@ class view.Photo extends MovieClipHelper implements ILibListener
 	public function onTimeOut(e:LibEvent):Void
 	{
 		trace("ERROR: Photo loading time out: "+e.getName());
+	}
+	
+	public function photo_changed_event(evt:PhotoChangedEvent):Void
+	{
+		if(evt.id == id)
+		{
+			show();
+		} else
+		{
+			if(isVisible()) hide();
+		}
 	}
 }

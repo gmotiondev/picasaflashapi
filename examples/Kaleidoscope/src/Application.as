@@ -1,4 +1,4 @@
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 
 import model.*;
@@ -38,15 +38,6 @@ class Application extends MovieClipHelper
 	public function onResize():Void
 	{
 		EventBroadcaster.getInstance().broadcastEvent(new ResizeEvent());
-	}
-	
-	public function onKeyDown():Void
-	{
-		switch (Key.getCode())
-		{
-			case Key.RIGHT: EventBroadcaster.getInstance().broadcastEvent(new GetNextPhotoEvent()); break;
-			case Key.LEFT :	EventBroadcaster.getInstance().broadcastEvent(new GetPrevPhotoEvent());	break;
-		}
 	}
 	
 	public static function main(mc:MovieClip) : Void 

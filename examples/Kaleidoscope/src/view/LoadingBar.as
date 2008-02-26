@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.visual.MovieClipHelper;
@@ -16,13 +16,15 @@ class view.LoadingBar extends MovieClipHelper
 	public function LoadingBar(aId:String, aC:MovieClip)
 	{
 		super(aId,aC);
-
+		
 		__loader = Geom.buildRectangle(view, 10005, Stage.width, 4, 0xD40073, 0xD40073);
+		hide();
 	}
 	
 	// listen to progress event
 	public function progres_event(evt:ProgressEvent):Void
 	{
+		trace("progress_event: "+evt.percent);
 		setVisible(evt.percent < 100); 
 		__loader._xscale = 100 - evt.percent;
 	}	
