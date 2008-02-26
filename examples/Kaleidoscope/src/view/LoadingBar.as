@@ -3,10 +3,7 @@
  */
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.utils.Geom;
-import com.bourre.events.EventBroadcaster;
-import com.bourre.commands.Delegate;
 
-import control.Controller;
 import control.ProgressEvent;
 
 class view.LoadingBar extends MovieClipHelper
@@ -18,13 +15,11 @@ class view.LoadingBar extends MovieClipHelper
 		super(aId,aC);
 		
 		__loader = Geom.buildRectangle(view, 10005, Stage.width, 4, 0xD40073, 0xD40073);
-		hide();
 	}
 	
 	// listen to progress event
-	public function progres_event(evt:ProgressEvent):Void
+	public function progress_event(evt:ProgressEvent):Void
 	{
-		trace("progress_event: "+evt.percent);
 		setVisible(evt.percent < 100); 
 		__loader._xscale = 100 - evt.percent;
 	}	

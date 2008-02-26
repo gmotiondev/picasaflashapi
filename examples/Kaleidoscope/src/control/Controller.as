@@ -37,5 +37,6 @@ class control.Controller extends FrontController
 		push(RESIZE_EVENT, new ResizeCommand());
 		push(GET_NEXT_PHOTO_EVENT, new GetNextPhotoCommand());
 		push(GET_PREV_PHOTO_EVENT, new GetPrevPhotoCommand());
+		push(PROGRESS_EVENT, new ProgressCommand());
 	}
 }

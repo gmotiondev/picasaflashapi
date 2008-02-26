@@ -27,8 +27,6 @@ class view.Kaleidoscope extends MovieClipHelper
 	
 	public function photo_changed_event(evt:PhotoChangedEvent):Void
 	{
-		trace("photo_changed_event: "+evt.id);
-		
 		if(!__children.containsKey(evt.id))
 		{
 			var tPhoto:Photo = new Photo(evt.id, view.createEmptyMovieClip("p_"+evt.id, view.getNextHighestDepth()), evt.url);

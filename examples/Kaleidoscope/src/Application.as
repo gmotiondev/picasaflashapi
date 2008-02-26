@@ -7,7 +7,7 @@ import control.*;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
- * @see based on http://www.quasimondo.com/archives/000579.php
+ * @see effect based on http://www.quasimondo.com/archives/000579.php
  */
 class Application extends MovieClipHelper
 {

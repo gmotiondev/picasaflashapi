@@ -4,6 +4,7 @@
 import com.bourre.core.Model;
 import com.bourre.events.IEvent;
 import com.bourre.events.EventBroadcaster;
+import com.bourre.events.NumberEvent;
 import com.bourre.commands.Delegate;
 
 import model.ModelList;
@@ -27,8 +28,9 @@ class model.ModelApplication extends Model
 		photos = new Photos();
 
 		service = new PicasaService();
-		service.max_results = 5;
+		service.max_results = 15;
 		service.imgmax = 512;
+		service.addEventListener(PicasaService.PROGRESS, Delegate.create(this, onServiceProgress));
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 		service.addEventListener(PicasaService.TIMEOUT, Delegate.create(this, onServiceTimeout));
 		
@@ -56,13 +58,18 @@ class model.ModelApplication extends Model
 		notifyChanged(new ResizeEvent());
 	}
 	
-	private function onServiceError(e:IEvent):Void
+	private function onServiceProgress(evt:NumberEvent):Void
 	{
-		trace("error: "+e.getType());
+		notifyChanged(new ProgressEvent(evt.getNumber()));	
 	}
 	
-	private function onServiceTimeout(e:IEvent):Void
+	private function onServiceError(evt:IEvent):Void
 	{
-		trace("timeout: "+e.getType());
+		trace("error: "+evt.getType());
+	}
+	
+	private function onServiceTimeout(evt:IEvent):Void
+	{
+		trace("timeout: "+evt.getType());
 	}
 }
