@@ -2,96 +2,85 @@
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.visual.MovieClipHelper;
+import com.bourre.commands.Delegate;
 
-import sandy.core.data.Vector;
-import sandy.core.group.*;
-import sandy.primitive.*;
-import sandy.view.*;
-import sandy.core.*;
-import sandy.skin.*;
-import sandy.util.Ease;
-import sandy.core.transform.*;
-import sandy.events.*;
+import org.papervision3d.cameras.Camera3D;
+import org.papervision3d.materials.*;
+import org.papervision3d.objects.Plane;
+import org.papervision3d.scenes.Scene3D;
 
 class view.CubeView extends MovieClipHelper
 {
-	private var _mc : MovieClip;
- 
+
+	// _______________________________________________________________________
+	//                                                                  vars3D
+	var container :MovieClip;
+	var scene     :Scene3D;
+	var camera    :Camera3D;
+
+	// _______________________________________________________________________
+	//                                                                    Main
 	public function CubeView(aID:String, aContainer:MovieClip, aHide:Boolean)
 	{
 		super(aID, aContainer);
-		_mc = view.createEmptyMovieClip("world", 100);
-		
-		initialize();
+		init3D();
+
+		view.onEnterFrame = Delegate.create(this,loop3D);
+
 	}
 	
-	private function initialize ( Void ):Void
+	// _______________________________________________________________________
+	//                                                                  Init3D
+	function init3D()
 	{
-		var w:World3D = World3D.getInstance();
-			w.setRootGroup( __createScene() );
-		__createCams();
-		w.render();
-	}
-	
-	private function __createCams ( Void ):Void
-	{
-		var mc:MovieClip;
-			mc = _mc.createEmptyMovieClip("screen", 10);
-		
-		var screen:ClipScreen;
-			screen = new ClipScreen(300, 300, 0xff00ff );
-	
-		var cam:Camera3D;
-			cam = new Camera3D( 700, 500 );
-			cam.setPosition( 0, 0, 0 );
-		
-		World3D.getInstance().addCamera( cam );
-	}
-	
-	private function __createScene ( Void ):Group
-	{
-		var bg:Group = new Group();
-		// -- interpolator
-		var myEase:Ease = new Ease();
-		var tgRotation:TransformGroup = new TransformGroup();
-		var tgTranslation:TransformGroup = new TransformGroup();
-		//
-		var translation:Transform3D = new Transform3D();
-			translation.translate( 0, 0, 500 );
-			tgTranslation.setTransform( translation );
-		//
-		var rotint:RotationInterpolator = new RotationInterpolator( myEase.create(), 500 );
-		// -- listener
-			rotint.addEventListener( InterpolationEvent.onEndEVENT, this, __yoyo );
-			rotint.addEventListener( InterpolationEvent.onProgressEVENT, this, __playMouse );
-		// -- earth
-		var box:Box = new Box( 100, 80, 50, "tri", 2 );
-		var skin:Skin;
-			//skin = new TextureSkin( _b );
-			skin = new MixedSkin( 0xFF0000, 100, 0x0, 50, 2 );
+		// Create container movieclip and center it
+		container = view.createEmptyMovieClip( "container", view.getNextHighestDepth() );
+		container._x = 320;
+		container._y = 240;
+		// Create scene
+		scene = new Scene3D( container );
+
+		// Create camera
+		camera = new Camera3D();
+		camera.z = -2000;
+		camera.zoom = 1;
+		camera.focus = 500;
+
+		// Create material
+		//var material :BitmapAssetMaterial = new BitmapAssetMaterial("Bitmap");
+		var material:ColorMaterial = new ColorMaterial();
+		material.oneSide = false; // Make it double sided
+
+		// Create Planes x50
+		var radius:Number = 2500;
+
+		for( var i:Number = 0; i < 20; i++ )
+		{
+			var plane :Plane = new Plane( material, 110, 50, 5, 5);
+
+			// Randomize position
+			plane.x = Math.random() * radius - radius/2;
+			plane.y = Math.random() * radius - radius/2;
+			plane.z = Math.random() * radius - radius/2;
+
+			// Randomize rotation
+			plane.rotationX = Math.random() * 360;
+			plane.rotationY = Math.random() * 360;
+			plane.rotationZ = Math.random() * 360;
 			
-		box.setSkin( skin );
-		//
-		tgRotation.setTransform( rotint );
-		tgRotation.addChild( box );
-		tgTranslation.addChild( tgRotation );
-		
-		bg.addChild( tgTranslation );
-		//
-		return bg;
+			// Include in scene
+			scene.push( plane );
+		}
 	}
-	
-	private function __yoyo( e:InterpolationEvent ):Void
+
+	// _______________________________________________________________________
+	//                                                                    Loop
+	function loop3D()
 	{
-		e.getTarget().redo();
-	}
-	
-	private function __playMouse( e:InterpolationEvent ):Void
-	{
-		var difX:Number = 150 - _mc._xmouse;
-		var difY:Number = 150 - _mc._ymouse;
-		var dist:Number = Math.sqrt( difX*difX  + difY*difY );
-		RotationInterpolator(e.getTarget()).setAxisOfRotation( new Vector( -difY, difX, 0 ) );
-		RotationInterpolator(e.getTarget()).setDuration( 10000 / dist );
+		camera.x = -container._xmouse;
+		camera.y = -container._ymouse;
+
+		// Render
+		scene.renderCamera( camera );
 	}
 }
