@@ -11,26 +11,18 @@ import org.papervision3d.scenes.Scene3D;
 
 class view.CubeView extends MovieClipHelper
 {
-
-	// _______________________________________________________________________
-	//                                                                  vars3D
 	var container :MovieClip;
 	var scene     :Scene3D;
 	var camera    :Camera3D;
 
-	// _______________________________________________________________________
-	//                                                                    Main
 	public function CubeView(aID:String, aContainer:MovieClip, aHide:Boolean)
 	{
 		super(aID, aContainer);
 		init3D();
 
-		view.onEnterFrame = Delegate.create(this,loop3D);
-
+		view.onEnterFrame = Delegate.create(this, loop3D);
 	}
-	
-	// _______________________________________________________________________
-	//                                                                  Init3D
+
 	function init3D()
 	{
 		// Create container movieclip and center it
@@ -48,15 +40,14 @@ class view.CubeView extends MovieClipHelper
 
 		// Create material
 		//var material :BitmapAssetMaterial = new BitmapAssetMaterial("Bitmap");
-		var material:ColorMaterial = new ColorMaterial();
+		var material:WireframeMaterial = new WireframeMaterial();
 		material.oneSide = false; // Make it double sided
 
-		// Create Planes x50
 		var radius:Number = 2500;
 
 		for( var i:Number = 0; i < 20; i++ )
 		{
-			var plane :Plane = new Plane( material, 110, 50, 5, 5);
+			var plane :Plane = new Plane( material, 110, 50);
 
 			// Randomize position
 			plane.x = Math.random() * radius - radius/2;
