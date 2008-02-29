@@ -71,6 +71,41 @@ class com.bourre.log.PixlibDebug
 	{
 		if (PixlibDebug.isOn) Logger.LOG( o, LogLevel.FATAL, PixlibDebug.channel );
 	}
+	/* mgron */
+	public static function LOG(msg:String, method:String, file:String, lineNr:Number):Void
+	{
+		var ch:String = msg.charAt(0).toLowerCase();
+		if( msg.length == 1){
+			msg = "";
+		} else if( msg.charAt(1) == " "){
+			msg = msg.substr(2);
+		}
+		var newMsg:String = method.split(".").pop() + " "+lineNr+">> " + msg;
+
+		switch(ch){
+			case "d":
+				PixlibDebug.DEBUG(newMsg);
+				break;
+			case "i":
+				PixlibDebug.INFO(newMsg);
+				break;
+			case "w":
+				PixlibDebug.WARN(newMsg);
+				break;
+			case "e":
+				PixlibDebug.ERROR(newMsg);
+				break;
+			case "f":
+				PixlibDebug.FATAL(newMsg);
+				break;
+			case "t":
+				PixlibDebug.INFO(newMsg);
+				break;
+			default:
+				PixlibDebug.DEBUG(newMsg);
+				break;
+		}
+	}
 	
 	/**
 	 * Returns the string representation of this instance.
