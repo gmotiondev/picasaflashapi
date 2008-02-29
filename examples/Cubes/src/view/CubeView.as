@@ -21,6 +21,7 @@ class view.CubeView extends MovieClipHelper
 		init3D();
 
 		view.onEnterFrame = Delegate.create(this, loop3D);
+		trace("CubeView is here");
 	}
 
 	function init3D()
@@ -34,7 +35,7 @@ class view.CubeView extends MovieClipHelper
 
 		// Create camera
 		camera = new Camera3D();
-		camera.z = -2000;
+		camera.z = -1000;
 		camera.zoom = 1;
 		camera.focus = 500;
 
@@ -45,19 +46,19 @@ class view.CubeView extends MovieClipHelper
 
 		var radius:Number = 2500;
 
-		for( var i:Number = 0; i < 20; i++ )
+		for( var i:Number = 0; i < 10; i++ )
 		{
-			var plane :Plane = new Plane( material, 110, 50);
+			var plane :Plane = new Plane( material, 200, 200);
 
 			// Randomize position
-			plane.x = Math.random() * radius - radius/2;
-			plane.y = Math.random() * radius - radius/2;
-			plane.z = Math.random() * radius - radius/2;
+			plane.x = -radius/4;
+			plane.y = i/10 * radius - radius/4;
+			plane.z = 0.5 * radius - radius/2;
 
 			// Randomize rotation
-			plane.rotationX = Math.random() * 360;
-			plane.rotationY = Math.random() * 360;
-			plane.rotationZ = Math.random() * 360;
+//			plane.rotationX = Math.random() * 360;
+//			plane.rotationY = Math.random() * 360;
+//			plane.rotationZ = Math.random() * 360;
 			
 			// Include in scene
 			scene.push( plane );

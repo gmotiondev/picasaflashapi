@@ -16,7 +16,7 @@ class Application extends MovieClipHelper
 	}
 	
 	private function initialize(mc:MovieClip):Void
-	{	
+	{
 		Controller.getInstance().initialize();
 		
 		var tCube:CubeView = new CubeView(ViewList.CUBE, mc.createEmptyMovieClip("cube",10));
