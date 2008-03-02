@@ -50,7 +50,7 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 
 		var query:String = ""+tSuffix+""+url_params.toString();
 		
-		trace("loading: "+PicasaService.END_POINT + query);
+		trace("loading: "+unescape(PicasaService.END_POINT + query));
 		
 		var tLoader:XMLToObject = service.xmlLoader;
 			tLoader.addEventListener(XMLToObject.onLoadInitEVENT, callBack);
