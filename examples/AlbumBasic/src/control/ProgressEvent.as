@@ -4,13 +4,13 @@
 import com.bourre.events.BasicEvent;
 import control.Controller;
 
-class control.ProgressSetEvent extends BasicEvent
+class control.ProgressEvent extends BasicEvent
 {
 	public var percent:Number;
 	
-	public function ProgressSetEvent(p:Number)
+	public function ProgressEvent(p:Number)
 	{
-		super(Controller.PROGRESS_SET_EVENT);
+		super(Controller.PROGRESS_EVENT);
 		
 		percent = p;
 	}

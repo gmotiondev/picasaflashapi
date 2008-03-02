@@ -9,10 +9,9 @@ import control.*;
 
 class command.PhotoGetNextCommand implements Command
 {
-	private var model:ModelApplication; 
+	private var model : ModelApplication; 
 	
-	// 
-	public function execute(e:PhotoGetNextEvent):Void
+	public function execute(evt : PhotoGetNextEvent) : Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 		model.next();

@@ -21,11 +21,11 @@ class view.Photo extends MovieClipHelper
 	}
 	
 	// listen to the model
-	public function photo_changed_event(evt:PhotoChangedEvent):Void
+	public function photo_changed_event(evt : PhotoChangedEvent) : Void
 	{
 		var t:TweenMS = null;
 		
-		if(PhotoChangedEvent(evt).id == id)
+		if(evt.id == id)
 		{	
 			t = new TweenMS(view, '_alpha', 100, 250, 0);	
 			show();

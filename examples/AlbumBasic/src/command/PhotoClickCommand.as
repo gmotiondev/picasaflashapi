@@ -9,9 +9,9 @@ import control.PhotoClickEvent;
 
 class command.PhotoClickCommand implements Command
 {
-	private var model:ModelApplication; 
+	private var model : ModelApplication; 
 	
-	public function execute(evt:PhotoClickEvent):Void
+	public function execute(evt : PhotoClickEvent) : Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 		model.click(evt.id);

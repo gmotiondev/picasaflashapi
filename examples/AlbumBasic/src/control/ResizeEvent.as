@@ -4,10 +4,10 @@
 import com.bourre.events.BasicEvent;
 import control.Controller;
 
-class control.ScreenResizeEvent extends BasicEvent
+class control.ResizeEvent extends BasicEvent
 {
-	public function ScreenResizeEvent()
+	public function ResizeEvent()
 	{
-		super(Controller.SCREEN_RESIZE_EVENT);
+		super(Controller.RESIZE_EVENT);
 	}
 }

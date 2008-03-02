@@ -1,6 +1,7 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import com.bourre.events.IEvent;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.commands.Delegate;
@@ -10,9 +11,10 @@ import control.*;
 
 class view.Thumb extends MovieClipHelper
 {
-	private var id:String;
-	private var __b:MovieClip;
-	private var title:String;
+	private var t : TextField;
+	private var id : String;
+	private var b : MovieClip;
+	private var title : String;
 	
 	public function Thumb(aID:String, aContainer:MovieClip, aTitle:String)
 	{
@@ -33,16 +35,16 @@ class view.Thumb extends MovieClipHelper
 	
 	private function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
 	{
-		__b = Geom.buildRectangle(view,2,(0+(1*aMargin)),(0+(1*aMargin)),aColor,aColor);
-		__b._x = -aMargin;
-		__b._y = -aMargin;
-		__b.__c = aColor;
-		__b.__h = aHighlight;
+		b = Geom.buildRectangle(view,2,(0+(1*aMargin)),(0+(1*aMargin)),aColor,aColor);
+		b._x = -aMargin;
+		b._y = -aMargin;
+		b.color = aColor;
+		b.highlight = aHighlight;
 	}
 	
 	private function highlight(aTrigger:Boolean):Void
 	{
-		with(new Color(__b)) { setRGB((aTrigger ? __b.__h : __b.__c)); }
+		with(new Color(b)) { setRGB((aTrigger ? b.highlight : b.color)); }
 	}
 	
 	private function onThumbRelease():Void
@@ -54,30 +56,28 @@ class view.Thumb extends MovieClipHelper
 	{
 		view.swapDepths(view._parent.getNextHighestDepth());
 		
-		var tF:TextFormat = new TextFormat();
-			tF.size = 11;
-			tF.color = 0xffffff;
-			tF.font = "Tahoma";
+		var f:TextFormat = new TextFormat("kroeger", 8, 0xffffff);
 			
-		view.createTextField("title_tf", 20, 0, 0, 100, 1);
-		var tField:TextField = view.title_tf;
-			tField.autoSize = "left";
-			tField.multiline = true;
-			tField.html = true;
-			tField.background = true;
-			tField.backgroundColor = 0xe2007a;
-			tField.htmlText = title;
-			
-		tField.setTextFormat(tF);
+		view.createTextField("tooltip", 20, 0, 0, 100, 1);
+		t = view["tooltip"];
+		t.embedFonts = true;
+		t.autoSize = "left"; t.background = true; t.backgroundColor = 0xe2007a;
+		t.text = title;
+		t.setTextFormat(f);
 		
-		if(tField._width > (Stage.width - _root._xmouse)) {	tField._x -= tField._width; }
+		if(t._width > (Stage.width - _root._xmouse)) t._x -= t._width;
 	}
 	
 	private function onThumbRollOut():Void
 	{
-		view.title_tf.removeTextField();
+		t.removeTextField();
 	}
 	
+	public function onInitialize(evt : IEvent) : Void
+	{
+		initialize();
+	}
+
 	// listen to the model
 	public function photo_changed_event(evt:PhotoChangedEvent):Void
 	{	

@@ -15,9 +15,9 @@ import business.*;
 
 class command.PhotosGetCommand implements Command, IResponder
 {
-	private var model:ModelApplication; 
+	private var model : ModelApplication; 
 	
-	public function execute(e:PhotosGetEvent):Void
+	public function execute(e:PhotosGetEvent) : Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 		
@@ -28,7 +28,7 @@ class command.PhotosGetCommand implements Command, IResponder
 			d.list(tUserid, tAlbumid);
 	}
 	
-	public function result(data:Array):Void
+	public function result(data:Array) : Void
 	{
 		for(var a:Number = 0; a < data.length; a++)
 		{
@@ -39,7 +39,7 @@ class command.PhotosGetCommand implements Command, IResponder
 		EventBroadcaster.getInstance().dispatchEvent(new InitializeEvent());
 	}
 	
-	public function fault(error:PicasaError):Void
+	public function fault(error:PicasaError) : Void
 	{
 		trace("PhotosGetCommand failed: "+error.message);
 	}

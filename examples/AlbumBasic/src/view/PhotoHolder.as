@@ -12,68 +12,56 @@ import view.Photo;
 
 class view.PhotoHolder extends MovieClipHelper implements ILibListener
 {	
-	private var __title:TextField;
-	private var __titleTextFormat:TextFormat;
+	private var t : TextField;
+	private var f : TextFormat;
 	
-	public function PhotoHolder(aId:String,aC:MovieClip)
+	public function PhotoHolder(aId : String, aC : MovieClip)
 	{
-		super(aId,aC);
-
-		show();
+		super(aId, aC);
 	}
 	
-	public function addChild(aId:String, aHide:Boolean):Photo
+	private function initialize() : Void
+	{
+		Geom.buildRectangle(view, view.getNextHighestDepth(), Stage.width, 20, 0xD40073, 0xD40073);
+		
+		f = new TextFormat("kroeger", 8, 0xffffff);
+		view.createTextField("title", view.getNextHighestDepth(), 50, 3, Stage.width, 20);
+		t = view["title"]; 
+		t.embedFonts = true;
+	}
+
+	public function addChild(aId:String, aHide:Boolean) : Photo
 	{
 		var tHolder:MovieClip = view.createEmptyMovieClip("p_"+aId, view.getNextHighestDepth());
 		
 		return new Photo(aId, tHolder, aHide);
 	}
 	
-	private function insertTitle():Void
-	{
-		var tBG = Geom.buildRectangle(view,view.getNextHighestDepth(), Stage.width, 20, 0xD40073, 0xD40073);
-		
-		__titleTextFormat = new TextFormat();
-		__titleTextFormat.font = "Tahoma";
-		__titleTextFormat.size = 13;
-
-		__titleTextFormat.blockIndent = 10;
-		__titleTextFormat.color = 0xffffff;
-			
-		tBG.createTextField("title", 5, 30, 0, Stage.width, 20);
-		
-		__title = tBG.title;
-		__title.multiline = false;
-		__title.html = true;
-		__title.htmlText = "";
-		__title.setTextFormat(__titleTextFormat);
-	}
-	
-	public function onLoadInit(e:LibEvent):Void
+	public function onLoadInit(evt : LibEvent) : Void
 	{	
 	}
 	
-	public function onLoadProgress(e:LibEvent):Void
+	public function onLoadProgress(evt : LibEvent) : Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new ProgressSetEvent(e.getPerCent()));
+		EventBroadcaster.getInstance().broadcastEvent(new ProgressEvent(evt.getPerCent()));
 	}
 	
-	public function onLoadComplete(e:LibEvent):Void
-	{	
-		insertTitle();
+	public function onLoadComplete(evt : LibEvent) : Void
+	{
+		initialize();
 		
 		EventBroadcaster.getInstance().broadcastEvent(new PhotoGetNextEvent());
 	} 
 	
-	public function onTimeOut(e:LibEvent):Void
+	public function onTimeOut(evt : LibEvent) : Void
 	{
-		trace("ERROR: Photo loading time out: "+e.getName());
+		trace("ERROR: Photo loading time out: "+evt.getName());
 	}
 	
 	// listen to the model
-	public function photo_changed_event(evt:PhotoChangedEvent):Void
+	public function photo_changed_event(evt : PhotoChangedEvent) : Void
 	{
-		__title.htmlText = evt.title;
-		__title.setTextFormat(__titleTextFormat);
+		t.text = evt.title;
+		t.setTextFormat(f);
 	}
 }

@@ -4,9 +4,9 @@
 import com.bourre.events.BasicEvent;
 import control.Controller;
 
-class control.PhotoGetPreviousEvent extends BasicEvent
+class control.PhotoGetPrevEvent extends BasicEvent
 {
-	public function PhotoGetPreviousEvent()
+	public function PhotoGetPrevEvent()
 	{
 		super(Controller.PHOTO_GET_PREV_EVENT);
 	}

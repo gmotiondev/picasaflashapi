@@ -51,6 +51,6 @@ class business.PhotosDelegate
 	
 	private function list_progress(e:NumberEvent):Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new ProgressSetEvent(NumberEvent(e).getNumber()));
+		EventBroadcaster.getInstance().broadcastEvent(new ProgressEvent(NumberEvent(e).getNumber()));
 	}
 }

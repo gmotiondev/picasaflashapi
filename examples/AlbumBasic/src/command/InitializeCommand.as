@@ -1,8 +1,9 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import control.InitializeEvent;
+
 import com.bourre.commands.Command;
-import com.bourre.events.IEvent;
 import com.bourre.core.Model;
 import com.bourre.data.libs.LibStack;
 import com.bourre.data.libs.GraphicLib;
@@ -15,12 +16,12 @@ class command.InitializeCommand implements Command
 {
 	private var model:ModelApplication; 
 	
-	public function execute(e:IEvent):Void
+	public function execute(evt : InitializeEvent) : Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 
-		var tPhotoHolder = MovieClipHelper.getMovieClipHelper(ViewList.PHOTO_HOLDER);
-		var tThumbHolder = MovieClipHelper.getMovieClipHelper(ViewList.THUMB_HOLDER);
+		var tPhotoHolder : PhotoHolder = PhotoHolder(MovieClipHelper.getMovieClipHelper(ViewList.PHOTO_HOLDER));
+		var tThumbHolder : ThumbHolder = ThumbHolder(MovieClipHelper.getMovieClipHelper(ViewList.THUMB_HOLDER));
 
 		var tPLibStack:LibStack = new LibStack();
 			tPLibStack.addListener(tPhotoHolder);

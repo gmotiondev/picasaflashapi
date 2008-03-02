@@ -33,13 +33,13 @@ class Application extends MovieClipHelper
 
 		model.addListener(p_view);
 		model.addListener(l_view);
-		model.container = mc;
+
 		model.initialize();	
 	}
 	
 	public function onResize():Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new ScreenResizeEvent());
+		EventBroadcaster.getInstance().broadcastEvent(new ResizeEvent());
 	}
 	
 	public function onKeyDown():Void
@@ -47,7 +47,7 @@ class Application extends MovieClipHelper
 		switch (Key.getCode())
 		{
 			case Key.RIGHT: EventBroadcaster.getInstance().broadcastEvent(new PhotoGetNextEvent()); break;
-			case Key.LEFT : EventBroadcaster.getInstance().broadcastEvent(new PhotoGetPreviousEvent()); break;
+			case Key.LEFT : EventBroadcaster.getInstance().broadcastEvent(new PhotoGetPrevEvent()); break;
 			default: break;
 		}
 	}

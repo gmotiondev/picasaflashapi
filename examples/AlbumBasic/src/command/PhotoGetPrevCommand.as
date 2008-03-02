@@ -9,8 +9,9 @@ import control.*;
 
 class command.PhotoGetPrevCommand implements Command
 {
-	private var model:ModelApplication; 
-	public function execute(e:PhotoGetPreviousEvent):Void
+	private var model:ModelApplication;
+	
+	public function execute(evt : PhotoGetPrevEvent):Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 		model.prev();

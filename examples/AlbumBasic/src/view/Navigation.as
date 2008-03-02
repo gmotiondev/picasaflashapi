@@ -27,12 +27,12 @@ class view.Navigation extends MovieClipHelper
 		l.onRelease = Delegate.create(this, onPrevPhoto);		r.onRelease = Delegate.create(this, onNextPhoto);
 	}
 	
-	private function onPrevPhoto():Void
+	private function onPrevPhoto() : Void
 	{	
-		EventBroadcaster.getInstance().broadcastEvent(new PhotoGetPreviousEvent());
+		EventBroadcaster.getInstance().broadcastEvent(new PhotoGetPrevEvent());
 	}
 	
-	private function onNextPhoto():Void
+	private function onNextPhoto() : Void
 	{	
 		EventBroadcaster.getInstance().broadcastEvent(new PhotoGetNextEvent());
 	}

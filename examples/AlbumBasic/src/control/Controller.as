@@ -13,14 +13,14 @@ class control.Controller extends FrontController
 	
 	public static var INITIALIZE_EVENT:EventType 	= new EventType("initialize_event");
 	public static var PHOTOS_GET_EVENT:EventType  	= new EventType("photos_get_event");
-	public static var PROGRESS_SET_EVENT:EventType 	= new EventType("progress_set_event");
-	 
+	
 	public static var PHOTO_GET_NEXT_EVENT:EventType= new EventType("photo_get_next_event");
 	public static var PHOTO_GET_PREV_EVENT:EventType= new EventType("photo_get_prev_event");
 	public static var PHOTO_CLICK_EVENT:EventType 	= new EventType("photo_click_event"); 
 	public static var PHOTO_CHANGED_EVENT:EventType	= new EventType("photo_changed_event");
 	
-	public static var SCREEN_RESIZE_EVENT:EventType = new EventType("onResize");
+	public static var RESIZE_EVENT:EventType = new EventType("onResize");
+	public static var PROGRESS_EVENT:EventType 	= new EventType("onProgress");
 		
 	public static function getInstance() : Controller 
 	{
@@ -43,6 +43,8 @@ class control.Controller extends FrontController
 		
 		push(PHOTO_GET_NEXT_EVENT, new PhotoGetNextCommand());		push(PHOTO_GET_PREV_EVENT, new PhotoGetPrevCommand());
 		push(PHOTO_CLICK_EVENT, new PhotoClickCommand());
-		push(SCREEN_RESIZE_EVENT, new ScreenResizeCommand());
+		
+		push(RESIZE_EVENT, new ResizeCommand());
+		push(PROGRESS_EVENT, new ProgressCommand());
 	}
 }

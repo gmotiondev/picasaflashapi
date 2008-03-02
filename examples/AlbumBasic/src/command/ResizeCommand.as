@@ -5,15 +5,15 @@ import com.bourre.commands.Command;
 import com.bourre.core.Model;
 
 import model.*;
-import control.ScreenResizeEvent;
+import control.ResizeEvent;
 
-class command.ScreenResizeCommand implements Command
+class command.ResizeCommand implements Command
 {
 	private var model:ModelApplication; 
 	
-	public function execute(event:ScreenResizeEvent):Void
+	public function execute(evt : ResizeEvent):Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
-		model.onScreenResize(event);
+		model.notifyChanged(evt);
 	}
 }

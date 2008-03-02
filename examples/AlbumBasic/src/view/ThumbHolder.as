@@ -1,10 +1,13 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
-import com.bourre.visual.MovieClipHelper;
+import com.bourre.events.EventType;
+import com.bourre.events.BasicEvent;
+import com.bourre.events.IEvent;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
+import com.bourre.visual.MovieClipHelper;
 
 import sk.prasa.visual.layout.GridLayout;
 
@@ -12,67 +15,55 @@ import control.*;
 import view.Thumb;
 
 class view.ThumbHolder extends MovieClipHelper implements ILibListener
-{	
-	private var __title:TextField;
-	private var __titleTextFormat:TextFormat;
-	private var __grid:GridLayout;
-	private var __children:Array = [];
+{
+	private var grid:GridLayout;
 	
-	public function ThumbHolder(aId:String,aC:MovieClip)
+	public function ThumbHolder(aId : String, aC : MovieClip)
 	{
 		super(aId,aC);
 
 		move(325, 26);
-		show();
 		
-		__grid = new GridLayout(4, 6);
-		__grid.padding = 5;
+		grid = new GridLayout(4, 6);
+		grid.padding = 5;
 	}
 	
-	public function addChild(aID:String, aTitle:String):Thumb
+	public function addChild(aID : String, aTitle : String) : Thumb
 	{
 		var tHolder:MovieClip = view.createEmptyMovieClip("p_"+aID, view.getNextHighestDepth());
 		var tThumb:Thumb = new Thumb(aID, tHolder, aTitle);
 		
-		__grid.addChild(tHolder);
-		__children.push(tThumb);
+		grid.addChild(tHolder);
+		
+		addListener(tThumb);
 		
 		return tThumb;
 	}
+
+	public function notifyChanged(evt : IEvent) : Void
+	{
+		_oEB.broadcastEvent(evt);
+	}
+
+	public function onLoadInit(evt : LibEvent):Void
+	{
+		grid.draw();
+	}
 	
-	public function removeAllChildren():Void
+	public function onLoadProgress(evt : LibEvent):Void
+	{
+		EventBroadcaster.getInstance().broadcastEvent(new ProgressEvent(evt.getPerCent()));
+	}
+	
+	public function onLoadComplete(evt : LibEvent):Void
 	{	
-		for(var a:Number = 0; a < __children.length; a++)
-		{
-			__children[a].removeMovieClip();
-		}
+		grid.draw();
 		
-		__grid.reset();
-		__children = [];
+		notifyChanged(new BasicEvent(new EventType("onInitialize")));
 	}
 	
-	public function onLoadInit(e:LibEvent):Void
+	public function onTimeOut(evt : LibEvent):Void
 	{
-		__grid.draw();
-	}
-	
-	public function onLoadProgress(e:LibEvent):Void
-	{
-		EventBroadcaster.getInstance().broadcastEvent(new ProgressSetEvent(e.getPerCent()));
-	}
-	
-	public function onLoadComplete(e:LibEvent):Void
-	{	
-		__grid.draw();
-		
-		for(var a:Number = 0; a < __children.length; a++)
-		{
-			__children[a].initialize();
-		}
-	}
-	
-	public function onTimeOut(e:LibEvent):Void
-	{
-		trace("ERROR: Photo loading time out: "+e.getName());
+		trace("ERROR: Photo loading time out: "+evt.getName());
 	}	
 }

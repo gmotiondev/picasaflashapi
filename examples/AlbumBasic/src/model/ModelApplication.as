@@ -16,8 +16,10 @@ class model.ModelApplication extends Model
 {
 	public var service:PicasaService;
 	public var photos:Photos;
-	public var container:MovieClip;
 	
+	public static var USERID : String = "thisispinkfu";
+	public static var ALBUMID : String = "5094406297232552993";
+
 	public function ModelApplication()
 	{
 		super(ModelList.MODEL_APPLICATION);
@@ -33,9 +35,9 @@ class model.ModelApplication extends Model
 		service.max_results = 24;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 
-		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent("thisispinkfu","5094406297232552993"));
+		EventBroadcaster.getInstance().dispatchEvent(new PhotosGetEvent(USERID, ALBUMID));
 	}
-	
+
 	public function next():Void
 	{ 
 		var tId:String = photos.getNext();
@@ -58,11 +60,6 @@ class model.ModelApplication extends Model
 		var tTitle:String = photos.getCurrentTitle();
 		
 		notifyChanged(new PhotoChangedEvent(tId, tTitle));
-	}
-	
-	public function onScreenResize(evt:ScreenResizeEvent):Void
-	{
-		notifyChanged(evt);
 	}
 	
 	private function onServiceError(e:IEvent):Void
