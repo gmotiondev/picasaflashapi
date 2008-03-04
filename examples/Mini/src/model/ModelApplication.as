@@ -29,9 +29,10 @@ class model.ModelApplication extends Model
 	{
 		photos = Photos.getInstance();
 		service = new PicasaService();
+		service.start_index = 1;
 		service.max_results = 9;
 		service.thumbsize = 48;
-		service.imgmax = 288;
+		service.imgmax = 144;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 
 		EventBroadcaster.getInstance().dispatchEvent(new GetAlbumEvent(USERID, ALBUMID));
@@ -55,10 +56,13 @@ class model.ModelApplication extends Model
 	
 	public function click(aId : String) : Void
 	{
-		var tId:String = photos.getClicked(aId);
-		var tTitle:String = photos.getCurrentTitle();
+		photos.setClicked(aId);
+
+		notifyChanged(new LoadPhotoEvent(photos.getCurrentId(), photos.getCurrentUrl()));
+//		var tId : String = photos.getClicked(aId);
+//		var tTitle : String = photos.getCurrentTitle();
 		
-		notifyChanged(new PhotoChangedEvent(tId, tTitle));
+//		notifyChanged(new PhotoChangedEvent(tId, tTitle));
 	}
 	
 	private function onServiceError(evt : IEvent) : Void

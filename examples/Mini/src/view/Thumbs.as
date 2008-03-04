@@ -1,3 +1,5 @@
+import control.PhotoClickEvent;
+import control.ThumbClickEvent;
 import control.ProgressEvent;
 
 import com.bourre.events.EventBroadcaster;
@@ -21,6 +23,7 @@ class view.Thumbs extends MovieClipHelper implements ILibListener
 		super(name, mc);
 		
 		grid = new GridLayout(3, 3);
+		grid.padding = 2;
 	}
 	
 	public function addChild(aId : String) : Thumb
@@ -29,6 +32,7 @@ class view.Thumbs extends MovieClipHelper implements ILibListener
 		var tT = new Thumb(aId, tH);
 		
 		grid.addChild(tT.view);
+		addListener(tT);
 		
 		return tT;
 	}
@@ -36,6 +40,7 @@ class view.Thumbs extends MovieClipHelper implements ILibListener
 	public function onLoadInit(evt : LibEvent) : Void
 	{
 		grid.draw();
+		centerize();
 	}
 	
 	public function onLoadProgress(evt : LibEvent) : Void
@@ -46,9 +51,25 @@ class view.Thumbs extends MovieClipHelper implements ILibListener
 	public function onLoadComplete(evt : LibEvent) : Void
 	{
 		grid.draw();
+		centerize();
 	}
 	
 	public function onTimeOut(evt : LibEvent) : Void
 	{
+	}
+	
+	private function centerize() : Void
+	{
+		move(Math.round((Stage.width - view._width) / 2), 15);
+	}
+	
+	public function thumb_click_event(evt : ThumbClickEvent) : Void
+	{
+		hide();
+	}
+	
+	public function photo_click_event(evt : PhotoClickEvent) : Void
+	{
+		show();
 	}
 }

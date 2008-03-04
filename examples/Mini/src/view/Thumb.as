@@ -1,3 +1,4 @@
+import control.ThumbClickEvent;
 import control.PhotoClickEvent;
 import control.PhotoChangedEvent;
 
@@ -10,7 +11,7 @@ import com.bourre.visual.MovieClipHelper;
  */
 class view.Thumb extends MovieClipHelper
 {
-	private var id : String;
+//	private var id : String;
 
 	public function Thumb(name : String, mc : MovieClip)
 	{
@@ -21,11 +22,11 @@ class view.Thumb extends MovieClipHelper
 	
 	private function onThumbRelease() : Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new PhotoClickEvent(id));
+		EventBroadcaster.getInstance().broadcastEvent(new ThumbClickEvent(getName()));
 	}
 	
-	public function photo_changed_event(evt : PhotoChangedEvent) : Void
-	{
+//	public function photo_changed_event(evt : PhotoChangedEvent) : Void
+//	{
 		// highlight?
-	}
+//	}
 }

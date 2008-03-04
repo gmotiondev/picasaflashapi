@@ -61,11 +61,18 @@ class vo.Photos extends IndexedArray
 	
 	/**
 	 * 
+	 */
+	public function getCurrentId() : String
+	{
+		return this[__current].gphoto.id;
+	}
+	
+	/**
+	 * 
 	 */ 
-	public function getClicked(aId:String) : String
+	public function setClicked(aId:String) : Void
 	{
 		__current = getIndexById(aId);
-		return aId;
 	}
 	
 	/**

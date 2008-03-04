@@ -14,6 +14,6 @@ class command.PhotoClickCommand implements Command
 	public function execute(evt : PhotoClickEvent) : Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
-		model.click(evt.id);
+		model.notifyChanged(evt);
 	}
 }

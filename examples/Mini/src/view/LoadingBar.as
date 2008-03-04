@@ -15,12 +15,12 @@ class view.LoadingBar extends MovieClipHelper
 	public function LoadingBar(name : String, mc : MovieClip)
 	{
 		super(name, mc);
-		
-		l = Geom.buildRectangle(view, 10005, Stage.width, 2, c, c);
 	}
 	
 	public function onProgress(evt : ProgressEvent) : Void
 	{	
+		if(!l) l = Geom.buildRectangle(view, 10005, Stage.width, 2, c, c);
+		
 		setVisible(evt.percent < 100); 
 		l._xscale = 100 - evt.percent;
 	}	

@@ -28,13 +28,9 @@ class business.PhotosDelegate
 	
 	public function list(aUserid:String, aAlbumid:String):Void
 	{
-		var tUrlParams:UrlParams = new UrlParams();
-			tUrlParams.thumbsize = 48;
-			tUrlParams.imgmax = 512;
-		
 		__service.addEventListener(PicasaService.PROGRESS, list_progress); 
 		__service.addEventListener(PicasaResultEvent.PHOTOS_GET_LIST, Delegate.create(this, list_complete));
-		__service.photos.list(aUserid, aAlbumid, tUrlParams);
+		__service.photos.list(aUserid, aAlbumid);
 	}
 
 	public function list_complete(e:PicasaResultEvent):Void

@@ -12,13 +12,16 @@ class control.Controller extends FrontController
 	
 	public static var GET_ALBUM_EVENT : EventType = new EventType("get_album_event");
 	public static var LOAD_THUMBS_EVENT : EventType = new EventType("load_thumbs_event");
+	public static var LOAD_PHOTO_EVENT : EventType = new EventType("load_photo_event");
 	 
 	public static var PHOTO_GET_NEXT_EVENT : EventType = new EventType("photo_get_next_event");
 	public static var PHOTO_GET_PREV_EVENT : EventType = new EventType("photo_get_prev_event");
 	public static var PHOTO_CLICK_EVENT : EventType = new EventType("photo_click_event"); 
 	public static var PHOTO_CHANGED_EVENT : EventType = new EventType("photo_changed_event");
 	
-	public static var PROGRESS_EVENT : EventType = new EventType("progress_event");
+	public static var THUMB_CLICK_EVENT : EventType = new EventType("thumb_click_event");
+	
+	public static var PROGRESS_EVENT : EventType = new EventType("onProgress");
 	
 	public static function getInstance() : Controller 
 	{
@@ -40,6 +43,7 @@ class control.Controller extends FrontController
 		push(PHOTO_GET_NEXT_EVENT, new PhotoGetNextCommand());
 		push(PHOTO_GET_PREV_EVENT, new PhotoGetPrevCommand());
 		push(PHOTO_CLICK_EVENT, new PhotoClickCommand());
+		push(THUMB_CLICK_EVENT, new ThumbClickCommand());
 		
 		push(PROGRESS_EVENT, new ProgressCommand());
 	}

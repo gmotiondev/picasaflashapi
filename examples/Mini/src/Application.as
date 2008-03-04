@@ -30,14 +30,14 @@ class Application extends MovieClipHelper
 		Controller.getInstance().initialize();
 		
 		var view_l : LoadingBar = new LoadingBar(ViewList.LOADINGBAR, mc.createEmptyMovieClip(ViewList.LOADINGBAR, 10010));
-		var view_t : Thumbs = new Thumbs(ViewList.THUMBS, mc.createEmptyMovieClip(ViewList.THUMBS, 5));
-		//var view_p : PhotoHolder = new PhotoHolder(ViewList.PHOTO_HOLDER,mc.createEmptyMovieClip(ViewList.PHOTO_HOLDER,10));
+		var view_t : Thumbs = new Thumbs(ViewList.THUMBSVIEW, mc.createEmptyMovieClip(ViewList.THUMBSVIEW, 5));
+		var view_p : PhotoView = new PhotoView(ViewList.PHOTOVIEW, mc.createEmptyMovieClip(ViewList.PHOTOVIEW, 10));
 		var view_n : Navigation = new Navigation(ViewList.NAVIGATION, mc.createEmptyMovieClip(ViewList.NAVIGATION, 20));
 		
 		var model : ModelApplication = new ModelApplication();
 			model.addListener(view_l);
 			model.addListener(view_t);
-//			model.addListener(view_p);
+			model.addListener(view_p);
 			model.addListener(view_n);
 			
 			model.initialize();
