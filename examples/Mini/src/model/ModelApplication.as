@@ -41,27 +41,32 @@ class model.ModelApplication extends Model
 	public function next() : Void
 	{
 		var tId:String = photos.getNext();
-		var tTitle:String = photos.getCurrentTitle();
+		var tUrl : String = photos.getCurrentUrl();
+//		var tTitle:String = photos.getCurrentTitle();
 		
-		notifyChanged(new PhotoChangedEvent(tId, tTitle));
+//		notifyChanged(new PhotoChangedEvent(tId, tTitle));
+		notifyChanged(new LoadPhotoEvent(tId, tUrl));
 	}
 	
 	public function prev() : Void
 	{
 		var tId:String = photos.getPrevious();
-		var tTitle:String = photos.getCurrentTitle();
+		var tUrl : String = photos.getCurrentUrl();
+//		var tTitle:String = photos.getCurrentTitle();
 
-		notifyChanged(new PhotoChangedEvent(tId, tTitle));
+//		notifyChanged(new PhotoChangedEvent(tId, tTitle));
+		notifyChanged(new LoadPhotoEvent(tId, tUrl));
 	}
 	
 	public function click(aId : String) : Void
 	{
 		photos.setClicked(aId);
 
-		notifyChanged(new LoadPhotoEvent(photos.getCurrentId(), photos.getCurrentUrl()));
-//		var tId : String = photos.getClicked(aId);
+		var tId:String = photos.getCurrentId();
+		var tUrl : String = photos.getCurrentUrl();
 //		var tTitle : String = photos.getCurrentTitle();
 		
+		notifyChanged(new LoadPhotoEvent(tId, tUrl));
 //		notifyChanged(new PhotoChangedEvent(tId, tTitle));
 	}
 	
