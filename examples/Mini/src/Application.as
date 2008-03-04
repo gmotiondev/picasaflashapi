@@ -25,7 +25,7 @@ class Application extends MovieClipHelper
 	
 	private function initialize(mc : MovieClip) : Void
 	{
-		Logger.getInstance().addLogListener(SosTracer.getInstance());
+		//Logger.getInstance().addLogListener(SosTracer.getInstance());
 		
 		Controller.getInstance().initialize();
 		

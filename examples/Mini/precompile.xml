@@ -6,6 +6,8 @@
 			<font name="kroeger" import="assets/ttf/kr_08_53.ttf"/>
 			<clip id="l" import="assets/png/l.png"/>
 			<clip id="r" import="assets/png/r.png"/>
+			<clip id="q" import="assets/png/q.png"/>
+			<clip id="c" import="assets/png/c.png"/>
 		</library>
 	</frame>
 </movie>

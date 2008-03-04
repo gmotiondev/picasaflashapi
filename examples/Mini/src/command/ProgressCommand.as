@@ -1,3 +1,4 @@
+import com.bourre.events.IEvent;
 import com.bourre.commands.Command;
 import com.bourre.core.Model;
 

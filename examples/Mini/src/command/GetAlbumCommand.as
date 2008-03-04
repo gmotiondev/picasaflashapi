@@ -1,3 +1,5 @@
+import com.bourre.events.IEvent;
+
 import business.*;
 import control.*;
 import command.IResponder;
@@ -22,7 +24,7 @@ class command.GetAlbumCommand implements Command, IResponder
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 		
 		var d : PhotosDelegate = new PhotosDelegate(this);
-			d.list(evt.userid, evt.albumid);
+		d.list(evt.userid, evt.albumid);
 	}
 	
 	public function result(data : Array) : Void

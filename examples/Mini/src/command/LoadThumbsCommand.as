@@ -1,3 +1,4 @@
+import com.bourre.events.IEvent;
 import com.bourre.data.libs.GraphicLib;
 
 import sk.prasa.webapis.picasa.Photo;
@@ -30,7 +31,6 @@ class command.LoadThumbsCommand implements Command
 		{
 			var tItem : Photo = model.photos[a];
 			var tThumb : Thumb = tThumbs.addChild(tItem.gphoto.id);
-			
 			tStack.enqueue(new GraphicLib(tThumb.view, 2), "gl_"+tItem.gphoto.id, tItem.media.thumbnail[0].url);
 			tStack.addListener(tThumbs);
 		}
