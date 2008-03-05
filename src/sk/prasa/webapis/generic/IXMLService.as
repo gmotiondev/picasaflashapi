@@ -1,4 +1,3 @@
-import com.bourre.data.libs.XMLToObjectDeserializer;
 import com.bourre.data.libs.ILibListener;
 import com.bourre.events.EventType;
 import com.bourre.data.libs.IXMLToObjectDeserializer;

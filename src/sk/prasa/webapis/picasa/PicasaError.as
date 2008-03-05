@@ -1,6 +1,7 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+
 class sk.prasa.webapis.picasa.PicasaError
 {
 	public static var LOGIN_FAILED : String = "The login details or auth token passed were invalid.";

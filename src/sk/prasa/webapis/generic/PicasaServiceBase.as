@@ -1,6 +1,4 @@
-﻿import com.bourre.data.libs.IXMLToObjectDeserializer;
-
-import sk.prasa.webapis.generic.IXMLService;
+﻿import sk.prasa.webapis.generic.IXMLService;
 import sk.prasa.webapis.generic.ServiceBase;
 import sk.prasa.webapis.generic.DynamicXMLService;
 
@@ -9,7 +7,6 @@ import com.bourre.events.NumberEvent;
 import com.bourre.events.IEvent;
 import com.bourre.events.EventType;
 import com.bourre.data.libs.LibEvent;
-import com.bourre.data.libs.XMLToObject;
 import com.bourre.data.libs.XMLToObjectDeserializer;
 import com.bourre.commands.Delegate;
 

@@ -1,6 +1,7 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+
 class sk.prasa.webapis.picasa.Geo
 {
 	public var latitude : String;

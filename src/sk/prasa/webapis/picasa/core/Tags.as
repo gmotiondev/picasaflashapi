@@ -1,22 +1,19 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import sk.prasa.webapis.generic.IPicasaService;
-
-import com.bourre.data.libs.XMLToObjectEvent;
+﻿import com.bourre.data.libs.XMLToObjectEvent;
 import com.bourre.commands.Delegate;
 
-import sk.prasa.webapis.picasa.PicasaService;
+import sk.prasa.webapis.generic.IPicasaService;
 import sk.prasa.webapis.picasa.UrlParams;
 import sk.prasa.webapis.picasa.events.PicasaResultEvent;
 import sk.prasa.webapis.picasa.core.MethodGroupHelper;
 
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ * http://picasaweb.google.com/data/entry/api/user/thisispinkfu/tag/lomo
+ */
+
 [Event(name="tagsGetUser", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
 [Event(name="tagsGetAlbum", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
 [Event(name="tagsGetPhoto", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
-
-// http://picasaweb.google.com/data/entry/api/user/thisispinkfu/tag/lomo
-
 class sk.prasa.webapis.picasa.core.Tags
 {
 	private var __service : IPicasaService;
