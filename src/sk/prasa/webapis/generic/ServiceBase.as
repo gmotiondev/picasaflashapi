@@ -5,7 +5,7 @@ import com.bourre.events.EventBroadcaster;
 
 class sk.prasa.webapis.generic.ServiceBase extends EventBroadcaster
 {
-	public function ServiceBase(owner:Object)
+	public function ServiceBase(owner : Object)
 	{
 		super(owner);
 	}

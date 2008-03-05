@@ -15,17 +15,17 @@ import com.bourre.commands.Delegate;
 
 class sk.prasa.webapis.generic.PicasaServiceBase extends ServiceBase
 {
-	public static var INIT:EventType 			= new EventType("init");
-	public static var PROGRESS:EventType 		= new EventType("progress");
-	public static var TIMEOUT:EventType 		= new EventType("timeout");
-	public static var ERROR:EventType 			= new EventType("error");
+	public static var INIT : EventType 		= new EventType("init");
+	public static var PROGRESS : EventType 	= new EventType("progress");
+	public static var TIMEOUT : EventType 	= new EventType("timeout");
+	public static var ERROR : EventType 	= new EventType("error");
 	
 	public function PicasaServiceBase(owner:Object)
 	{
 		super(owner);
 	}
 	
-	public function getXMLService():DynamicXMLService
+	public function getXMLService() : DynamicXMLService
 	{
 		XMLToObjectDeserializer.ATTRIBUTE_TARGETED_PROPERTY_NAME = "attributes";
 		
@@ -49,22 +49,23 @@ class sk.prasa.webapis.generic.PicasaServiceBase extends ServiceBase
 		return tService;
 	}
 	
-	private function onError(event:IEvent):Void
+	public function onError(evt : IEvent) : Void
 	{
 		broadcastEvent(new BasicEvent(ERROR));
 	}
 
-	private function onProgress(event:LibEvent):Void
+	public function onProgress(evt : IEvent) : Void
 	{
-		broadcastEvent(new NumberEvent(PROGRESS,event.getPerCent()));
+		var tEvt : LibEvent = LibEvent(evt);
+		broadcastEvent(new NumberEvent(PROGRESS,tEvt.getPerCent()));
 	}
 	
-	private function onInit(event:IEvent):Void
+	public function onInit(evt : IEvent) : Void
 	{
 		broadcastEvent(new BasicEvent(INIT));
 	}
 	
-	private function onTimeout(event:IEvent):Void
+	public function onTimeout(evt : IEvent) : Void
 	{
 		broadcastEvent(new BasicEvent(TIMEOUT));
 	}
