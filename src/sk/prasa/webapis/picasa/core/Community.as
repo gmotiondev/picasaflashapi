@@ -1,6 +1,8 @@
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import sk.prasa.webapis.generic.IPicasaService;
+
 import com.bourre.data.libs.XMLToObjectEvent;
 import com.bourre.commands.Delegate;
 
@@ -13,28 +15,31 @@ import sk.prasa.webapis.picasa.core.MethodGroupHelper;
 	
 class sk.prasa.webapis.picasa.core.Community
 {
-	private var __service:PicasaService;
-	
-	public function Community(service:PicasaService)
+	private var __service : IPicasaService;
+	private var __core : MethodGroupHelper;
+
+	public function Community(service : IPicasaService)
 	{
 		__service = service;
+		__core = MethodGroupHelper.getInstance();
 	}
-	
-	// http://picasaweb.google.com/data/feed/api/all?kind=photo&q=searchTerm&max-results=10
-	public function search(query:String,url_params:UrlParams):Void
-	{
-		var tSuffix:String = "all";
-		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service, url_params);
-			tUrlParams.kind = "photo";	// overwrite!
-			tUrlParams.tag = null;
-			tUrlParams.q = query;
 
-		MethodGroupHelper.invokeMethod(__service, Delegate.create(this, search_complete), false, tSuffix, tUrlParams);
+	// http://picasaweb.google.com/data/feed/api/all?kind=photo&q=searchTerm&max-results=10
+	public function search(query : String, params : UrlParams) : Void
+	{
+		var s : String = "all";
+		var p : UrlParams = __service.mergeUrlParams(params);
+			p.kind = "photo";	// overwrite!
+			p.tag = null;
+			p.q = query;
+
+		__core.invokeMethod(__service, Delegate.create(this, search_complete), false, s, p);
 	}
 	
-	private function search_complete(event:XMLToObjectEvent):Void
+	private function search_complete(evt : XMLToObjectEvent) : Void
 	{
-		var tResultEvent:PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.COMMUNITY_GET_SEARCH);
-		MethodGroupHelper.processAndDispatch(__service, event.getObject(), tResultEvent, MethodGroupHelper.parseCommunityPhotoList);
+		var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.COMMUNITY_GET_SEARCH);
+		
+		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseCommunityPhotoList);
 	}
 }

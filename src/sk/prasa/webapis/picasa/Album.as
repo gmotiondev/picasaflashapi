@@ -1,7 +1,4 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import sk.prasa.webapis.picasa.Base;
+﻿import sk.prasa.webapis.picasa.Base;
 import sk.prasa.webapis.picasa.GPhoto;
 import sk.prasa.webapis.picasa.Media;
 import sk.prasa.webapis.picasa.Geo;
@@ -9,74 +6,31 @@ import sk.prasa.webapis.picasa.KindType;
 import sk.prasa.webapis.picasa.User;
 import sk.prasa.webapis.picasa.OpenSearch;
 
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
 class sk.prasa.webapis.picasa.Album extends Base
 {
-	private var __user:User;
-	private var __media:Media;
-	private var __gphoto:GPhoto;
-	private var __geo:Geo;
-	// TODO: add open search VO
-	private var __opensearch:OpenSearch;
+	public var user : User;
+	public var media : Media;
+	public var gphoto : GPhoto;
+	public var geo : Geo;
+	public var opensearch : OpenSearch;
 	
-	public function Album(o:Object)
+	public function Album(o : Object)
 	{
 		super(o);
 		
-		__gphoto = new GPhoto(o, KindType.ALBUM);
-		__media = new Media(o["media:group"]);
-		__geo = new Geo(o);
-		__opensearch = new OpenSearch(o);
+		gphoto = new GPhoto(o, KindType.ALBUM);
+		media = new Media(o["media:group"]);
+		geo = new Geo(o);
+		opensearch = new OpenSearch(o);
 	}
 	
-	public function get user():User
+	public function toString() : String
 	{
-		return __user;
-	}
-	
-	public function set user(v:User):Void
-	{
-		__user = v;
-	}
-	
-	// 
-	public function get media():Media
-	{
-		return __media;
-	}
-	
-	public function get gphoto():GPhoto
-	{
-		return __gphoto;
-	}
-	
-	public function set gphoto(g:GPhoto):Void
-	{
-		__gphoto = g;
-	}
-	
-	public function get geo():Geo
-	{
-		return __geo;
-	}
-	
-	public function set geo(g:Geo):Void
-	{
-		__geo = g;
-	}
-	
-	public function get openSearch():OpenSearch
-	{
-		return __opensearch;
-	}
-	
-	public function set openSearch(v:OpenSearch):Void
-	{
-		__opensearch = v;
-	}
-	
-	public function toString():String
-	{
-		return "[Album gphoto="+gphoto.toString()+", media="+media.toString()+", geo="+geo.toString()+", opensearch="+openSearch.toString()+"]"
+		return "[Album gphoto=" + gphoto.toString() + ", media=" + media.toString() + ", geo=" + geo.toString() + ", opensearch=" + opensearch.toString() + "]";
 	}
 }
 

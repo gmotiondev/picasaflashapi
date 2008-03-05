@@ -1,52 +1,73 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import com.bourre.events.BasicEvent;
+﻿import com.bourre.events.IEvent;
 import com.bourre.events.EventType;
 
-class sk.prasa.webapis.generic.events.ServiceEvent extends BasicEvent
-{	
-	private var __data:Object = {};
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
 
-	// 
-	public function ServiceEvent(type:EventType)
+class sk.prasa.webapis.generic.events.ServiceEvent implements IEvent
+{	
+	private var __o : Object = {};
+	private var __t : EventType;
+	 
+	public function ServiceEvent(t : EventType, o : Object)
 	{
-		super(type);
+		__t = t;
+		__o = o;
 	}
 	
-	public function get data():Object
-	{
-		return __data;
+	public function getType() : EventType
+	{ 
+		return __t; 
 	}
 	
-	public function set data(o:Object):Void
-	{
-		__data = o;
+	public function setType(t : EventType) : Void 
+	{ 
+		__t = t; 
 	}
 	
-	public function get type():EventType
-	{
-		return super.getType();
+	public function getTarget()
+	{ 
+		return __o; 
 	}
 	
-	public function set type(e:EventType):Void
-	{
-		super.setType(e);
+	public function setTarget(o) : Void 
+	{ 
+		__o = o; 
 	}
 	
-	public function get target():Object
+	public function get data() : Object
 	{
-		return super.getTarget();
+		return __o;
 	}
 	
-	public function set target(o:Object):Void
+	public function set data(o : Object) : Void
 	{
-		super.setTarget(o);
+		__o = o;
 	}
 	
-	// 
-	public function toString():String
+	public function get type() : EventType
 	{
-		return "[ServiceEvent type="+type.toString()+" target="+target.toString()+"]";
+		return getType();
+	}
+	
+	public function set type(t : EventType):Void
+	{
+		setType(t);
+	}
+	
+	public function get target() : Object
+	{
+		return getTarget();
+	}
+	
+	public function set target(o : Object):Void
+	{
+		setTarget(o);
+	}
+	
+	public function toString() : String
+	{
+		return "[ServiceEvent type=" + getType().toString() + " target=" + getTarget().toString() + "]";
 	}
 }

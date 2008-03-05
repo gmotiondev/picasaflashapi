@@ -1,171 +1,45 @@
-﻿/**
- *
- */
-import sk.prasa.webapis.picasa.Author;
+﻿import sk.prasa.webapis.picasa.Author;
 import sk.prasa.webapis.picasa.Category;
 import sk.prasa.webapis.picasa.Generator;
 import sk.prasa.webapis.picasa.Link;
 
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
 class sk.prasa.webapis.picasa.Base
 {
-	private var __title:String;
-	private var __id:String;
-	private var __links:Array;
-	private var __subtitle:String;
-	private var __rights:String
-	private var __author:Author;
-	private var __updated:String;
-	private var __category:Category;
-	private var __generator:Generator;
-	private var __icon:String;
-	private var __logo:String;
+	public var title : String;
+	public var id : String;
+	public var links : Array;
+	public var subtitle : String;
+	public var rights : String;
+	public var author : Author;
+	public var updated : String;
+	public var category : Category;
+	public var generator : Generator;
+	public var icon : String;
+	public var logo : String;
 	
-	public function Base(o:Object)
+	public function Base(o : Object)
 	{
-		__links = [];
+		links = [];
 		
-		__title = o.title;
-		__id = o.id;
-		__links = getLinks(o.link);	
-		__subtitle = o.subtitle;
-		__rights = o.rights;
+		title = o.title;
+		id = o.id;
+		links = getLinks(o.link);
+		subtitle = o.subtitle;
+		rights = o.rights;
 		
-		__author = new Author(o.author.name, o.author.email, o.author.uri);
-		__updated = o.updated;
-		__category = new Category(o.category.attributes.term, o.category.attributes.scheme);
-		__generator = new Generator(o.generator);
-		__icon = o.icon;
-		__logo = o.logo;
+		author = new Author(o.author.name, o.author.email, o.author.uri);
+		updated = o.updated;
+		category = new Category(o.category.attributes.term, o.category.attributes.scheme);
+		generator = new Generator(o.generator);
+		icon = o.icon;
+		logo = o.logo;
 	}
 	
-	// 
-	public function get title():String
-	{
-		return __title;
-	}
-	
-	// 
-	public function set title(v:String)
-	{
-		__title = v;
-	}
-	
-	// 
-	public function get id():String
-	{
-		return __id;
-	}
-	// 
-	public function set id(v:String):Void
-	{
-		__id = v;
-	}
-
-	public function get links():Array
-	{
-		return __links;
-	}
-	
-	public function set links(a:Array):Void
-	{
-		__links = a;
-	}
-	
-	// 
-	public function get subtitle():String
-	{
-		return __subtitle;
-	}
-	
-	// 
-	public function set subtitle(v:String):Void
-	{
-		__subtitle = v;
-	}
-	
-	// 
-	public function get rights():String
-	{
-		return __rights;
-	}
-	
-	// 
-	public function set rights(v:String):Void
-	{
-		__rights = v;
-	}
-	
-	// 
-	public function get author():Author
-	{
-		return __author;
-	}
-	
-	// 
-	public function set author(v:Author):Void
-	{
-		__author = v;
-	}
-	
-	public function get updated():String
-	{
-		return __updated;
-	}
-	
-	public function set updated(v:String):Void
-	{
-		__updated = v;
-	}
-	
-	// 
-	public function get category():Category
-	{
-		return __category;
-	}
-	
-	// 
-	public function set category(v:Category):Void
-	{
-		__category = v;
-	}
-	
-	//
-	public function get generator():Generator
-	{
-		return __generator;
-	}
-	
-	// 
-	public function set generator(v:Generator):Void
-	{
-		__generator = v;
-	}
-
-	// 
-	public function get icon():String
-	{
-		return __icon;
-	}
-	
-	// 
-	public function set icon(v:String)
-	{
-		__icon = v;
-	}
-	
-	// 
-	public function get logo():String
-	{
-		return __logo;
-	}
-	
-	// 
-	public function set logo(v:String)
-	{
-		__logo = v;
-	}
-	
-	private function getLinks(o:Object):Array
+	private function getLinks(o : Object) : Array
 	{
 		var tLinks:Array = [];
 		

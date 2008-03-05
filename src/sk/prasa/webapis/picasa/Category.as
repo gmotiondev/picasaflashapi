@@ -4,42 +4,18 @@
 
 class sk.prasa.webapis.picasa.Category
 {
-	private var __term:String;
-	private var __scheme:String;
+	public var term:String;
+	public var scheme:String;
 	
 	// 
-	public function Category(t:String, s:String)
+	public function Category(t : String, s : String)
 	{
-		__term = t;
-		__scheme = s;
+		term = t;
+		scheme = s;
 	}
 	
-	// 
-	public function get term():String
+	public function toString() : String
 	{
-		return __term;
-	}
-	
-	// 
-	public function set term(v:String):Void
-	{
-		__term = v;
-	}
-	
-	// 
-	public function get scheme():String
-	{
-		return __scheme;
-	}
-	
-	// 
-	public function set scheme(v:String):Void
-	{
-		__scheme = v;
-	}
-	
-	public function toString():String
-	{
-		return "[Category term="+term+", scheme="+scheme+"]";
+		return "[Category term=" + term + ", scheme=" + scheme + "]";
 	}
 }

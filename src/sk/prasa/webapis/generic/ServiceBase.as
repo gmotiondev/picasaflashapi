@@ -1,12 +1,15 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
+﻿import sk.prasa.webapis.generic.IServiceBase;
+
 import com.bourre.events.EventBroadcaster;
 
-class sk.prasa.webapis.generic.ServiceBase extends EventBroadcaster
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
+class sk.prasa.webapis.generic.ServiceBase extends EventBroadcaster implements IServiceBase
 {
 	public function ServiceBase(owner : Object)
 	{
-		super(owner);
+		super( owner );
 	}
 }

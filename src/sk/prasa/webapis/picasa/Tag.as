@@ -1,46 +1,27 @@
-/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
 import sk.prasa.webapis.picasa.Base;
 import sk.prasa.webapis.picasa.KindType;
 import sk.prasa.webapis.picasa.GPhoto;
 
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
 class sk.prasa.webapis.picasa.Tag extends Base
 {
-	private var __summary:String;
-	private var __gphoto:GPhoto;
+	public var summary : String;
+	public var gphoto : GPhoto;
 	
-	public function Tag(o:Object)
+	public function Tag(o : Object)
 	{
 		super(o);
 		
-		__summary = o.summary;
-		__gphoto = new GPhoto(o, KindType.TAG);
+		summary = o.summary;
+		gphoto = new GPhoto(o, KindType.TAG);
 	}
 	
-	public function get summary():String
+	public function toString() : String
 	{
-		return __summary;
-	}
-	
-	public function set summary(v:String):Void
-	{
-		__summary = v;
-	}
-	
-	public function get gphoto():GPhoto
-	{
-		return __gphoto;
-	}
-	
-	public function set gphoto(v:GPhoto):Void
-	{
-		__gphoto = v;
-	}
-	
-	public function toString():String
-	{
-		return "[Tag "+super.toString()+", summary="+summary+", gphoto="+gphoto.toString()+"]";
+		return "[Tag " + super.toString() + ", summary=" + summary + ", gphoto=" + gphoto.toString() + "]";
 	}
 }
 

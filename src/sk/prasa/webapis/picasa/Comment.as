@@ -1,70 +1,31 @@
-/**
- *
- */
 import sk.prasa.webapis.picasa.Base;
 import sk.prasa.webapis.picasa.GPhoto;
 import sk.prasa.webapis.picasa.KindType;
 
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
 class sk.prasa.webapis.picasa.Comment extends Base
 {
-	private var __published:String;
-	private var __summary:String;
-	private var __content:String;
-	private var __gphoto:GPhoto;
+	public var published : String;
+	public var summary : String;
+	public var content : String;
+	public var gphoto : GPhoto;
 	
 	public function Comment(o:Object)
 	{
 		super(o);
 		
-		__published = o.published;
-		__summary = o.summary;
-		__content = o.content;
-		__gphoto = new GPhoto(o, KindType.COMMENT);
+		published = o.published;
+		summary = o.summary;
+		content = o.content;
+		gphoto = new GPhoto(o, KindType.COMMENT);
 	}
 	
-	public function get published():String
+	public function toString() : String
 	{
-		return __published;
-	}
-	
-	public function set published(v:String):Void
-	{
-		__published = v;
-	}
-	
-	public function get summary():String
-	{
-		return __summary;
-	}
-	
-	public function set summary(v:String):Void
-	{
-		__summary = v;
-	}
-	
-	public function get content():String
-	{
-		return __content;
-	}
-	
-	public function set content(v:String):Void
-	{
-		__content = v;
-	}
-	
-	public function get gphoto():GPhoto
-	{
-		return __gphoto;
-	}
-	
-	public function set gphoto(g:GPhoto):Void
-	{
-		__gphoto = g;
-	}
-	
-	public function toString():String
-	{
-		return "[Comment "+super.toString()+", published="+published+", summary="+summary+", content="+content+", gphoto="+gphoto.toString()+"]";
+		return "[Comment " + super.toString() + ", published=" + published + ", summary=" + summary + ", content=" + content + ", gphoto=" + gphoto.toString() + "]";
 	}
 }
 /*

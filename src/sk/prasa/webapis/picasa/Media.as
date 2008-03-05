@@ -1,89 +1,30 @@
-﻿/**
- *
- */
-import sk.prasa.webapis.picasa.MediaContent;
+﻿import sk.prasa.webapis.picasa.MediaContent;
 import sk.prasa.webapis.picasa.MediaThumbnail;
+
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
 
 class sk.prasa.webapis.picasa.Media
 {
-	private var __content:MediaContent;	// media:content
-	private var __credit:String; 			// media:credit
-	private var __description:String; 		// media:description
-	private var __keywords:Array = []; 		// media:keywords
-	private var __thumbnail:Array = [];			// media:thumbnail	//Array of MediaThumbnail
-	private var __title:String;			// media:title
+	public var content : MediaContent;	// media:content
+	public var credit : String; 		// media:credit
+	public var description : String; 	// media:description
+	public var keywords : Array = []; 	// media:keywords
+	public var thumbnail : Array = [];	// media:thumbnail	//Array of MediaThumbnail
+	public var title : String;			// media:title
 	
 	public function Media(o:Object)
 	{
-		__content = getMediaContent(o["media:content"]);
-		__credit = o["media:credit"];
-		__description = o["media:description"]
-		__keywords = getKeywords(o["media:keywords"]);
-		__thumbnail = getThumbnails(o["media:thumbnail"])
-		__title = o["title"];
+		content = getMediaContent(o["media:content"]);
+		credit = o["media:credit"];
+		description = o["media:description"];
+		keywords = getKeywords(o["media:keywords"]);
+		thumbnail = getThumbnails(o["media:thumbnail"]);
+		title = o["title"];
 	}
 	
-	public function get content():MediaContent
-	{
-		return __content;
-	}
-	
-	public function set content(v:MediaContent)
-	{
-		__content = v;
-	}
-	
-	public function get credit():String
-	{
-		return __credit;
-	}
-	
-	public function set credit(v:String)
-	{
-		__credit = v;
-	}
-	
-	public function get description():String
-	{
-		return __description;
-	}
-	
-	public function set description(v:String)
-	{
-		__description = v;
-	}
-	
-	public function get keywords():Array
-	{
-		return __keywords;
-	}
-	
-	public function set keywords(v:Array)
-	{
-		__keywords = v;
-	}
-	
-	public function get thumbnail():Array
-	{
-		return __thumbnail;
-	}
-	
-	public function set thumbnail(v:Array)
-	{
-		__thumbnail = v;
-	}
-	
-	public function get title():String
-	{
-		return __title;
-	}
-	
-	public function set title(v:String)
-	{
-		__title = v;
-	}
-	
-	private function getMediaContent(o:Object):MediaContent
+	private function getMediaContent(o : Object) : MediaContent
 	{
 		return new MediaContent(
 			o.attributes.url,
@@ -94,25 +35,25 @@ class sk.prasa.webapis.picasa.Media
 			parseFloat(o.attributes.fileSize));
 	}
 	
-	private function getKeywords(k:String):Array
+	private function getKeywords(k : String) : Array
 	{
 		var tKeywords:String = k.split(" ").join("");
 		
 		return tKeywords.split(","); 
 	}
 	
-	private function getThumbnails(o:Object):Array
+	private function getThumbnails(o : Object) : Array
 	{
 		var tRes = [];
 		
-			// if this is just one thumb
+		// if this is just one thumb
 		if(o.attributes.url != undefined)
 		{
 			tRes.push(new MediaThumbnail(o.attributes.url, parseFloat(o.attributes.width), parseFloat(o.attributes.height)));
 		} else
 		{
 			// there are more thumbs
-			for(var a:Number = 0; a < o.length; a++)
+			for(var a : Number = 0; a < o.length; a++)
 			{
 				tRes.push(new MediaThumbnail(o[a].attributes.url, parseFloat(o[a].attributes.width), parseFloat(o[a].attributes.height)));
 			}
@@ -120,9 +61,9 @@ class sk.prasa.webapis.picasa.Media
 		return tRes;
 	}
 	
-	public function toString():String
+	public function toString() : String
 	{
-		return "[Media content="+content.toString()+", credit="+credit+", description="+description+", keywords="+keywords.toString()+", thumbnail="+thumbnail.toString()+", title="+title+"]";
+		return "[Media content=" + content.toString() + ", credit=" + credit + ", description=" + description + ", keywords=" + keywords.toString() + ", thumbnail=" + thumbnail.toString() + ", title=" + title + "]";
 	}
 }
 /*

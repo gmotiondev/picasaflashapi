@@ -1,36 +1,27 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import sk.prasa.webapis.picasa.Base;
+﻿import sk.prasa.webapis.picasa.Base;
 import sk.prasa.webapis.picasa.GPhoto;
 import sk.prasa.webapis.picasa.KindType;
+
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
  
 class sk.prasa.webapis.picasa.User extends Base
 {
 	// TODO:
-	//private var __opensearch:OpenSearch;
-	private var __gphoto:GPhoto;
+	//public var opensearch : OpenSearch;
+	public var gphoto : GPhoto;
 	
-	public function User(o:Object)
+	public function User(o : Object)
 	{
 		super(o);
 		
-		__gphoto = new GPhoto(o, KindType.USER);
+		gphoto = new GPhoto(o, KindType.USER);
 	}
-	
-	public function get gphoto():GPhoto
+		
+	public function toString() : String
 	{
-		return __gphoto;
-	}
-	
-	public function set gphoto(g:GPhoto):Void
-	{
-		__gphoto = g;
-	}
-	
-	public function toString():String
-	{
-		return "[User "+super.toString()+", gphoto="+gphoto.toString()+"]";
+		return "[User " + super.toString() + ", gphoto=" + gphoto.toString() + "]";
 	}
 }
 

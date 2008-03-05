@@ -1,6 +1,8 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import sk.prasa.webapis.generic.IPicasaService;
+
 import com.bourre.data.libs.XMLToObjectEvent;
 import com.bourre.commands.Delegate;
 
@@ -17,72 +19,73 @@ import sk.prasa.webapis.picasa.core.MethodGroupHelper;
 
 class sk.prasa.webapis.picasa.core.Tags
 {
-	private var __service:PicasaService;
-	
-	public function Tags(service:PicasaService)
+	private var __service : IPicasaService;
+	private var __core : MethodGroupHelper;
+
+	public function Tags(service : IPicasaService)
 	{
 		__service = service;
+		__core = MethodGroupHelper.getInstance();
 	}
-	
+
 	// list tags for specified user
 	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu?kind=tag
-	public function user(userid:String):Void
+	public function user(userid : String) : Void
 	{
-		var tSuffix:String = "user/"+userid;
-		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service);
-			tUrlParams.kind = "tag";	// overwrite!
-			tUrlParams.tag = null;
-			tUrlParams.q = null;
+		var s : String = "user/" + userid;
+		var p : UrlParams = __service.mergeUrlParams();
+			p.kind = "tag";	// overwrite!
+			p.tag = null;
+			p.q = null;
 
-		MethodGroupHelper.invokeMethod(__service, Delegate.create(this, user_complete), false, tSuffix, tUrlParams);
+		__core.invokeMethod(__service, Delegate.create(this, user_complete), false, s, p);
 	}
 	
-	private function user_complete(event:XMLToObjectEvent):Void
+	private function user_complete(evt : XMLToObjectEvent) : Void
 	{
-		var tResultEvent:PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.TAGS_GET_USER);
+		var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.TAGS_GET_USER);
 
-		MethodGroupHelper.processAndDispatch(__service, event.getObject(), tResultEvent, MethodGroupHelper.parseTagList);
+		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseTagList);
 	}
 	
 	// list tags for specified album
 	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897?kind=tag
-	public function album(userid:String,albumid:String):Void
+	public function album(userid : String, albumid : String) : Void
 	{
-		var tSuffix:String = "user/"+userid+"/albumid/"+albumid;
-		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service);
-			tUrlParams.kind = "tag";	// overwrite!
-			tUrlParams.tag = null;
-			tUrlParams.q = null;
+		var s : String = "user/" + userid + "/albumid/" + albumid;
+		var p : UrlParams = __service.mergeUrlParams();
+			p.kind = "tag";	// overwrite!
+			p.tag = null;
+			p.q = null;
 
-		MethodGroupHelper.invokeMethod(__service, Delegate.create(this, album_complete), false, tSuffix, tUrlParams);
+		__core.invokeMethod(__service, Delegate.create(this, album_complete), false, s, p);
 	}
 
-	private function album_complete(event:XMLToObjectEvent):Void
+	private function album_complete(evt : XMLToObjectEvent) : Void
 	{
-		var tResultEvent:PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.TAGS_GET_ALBUM);
+		var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.TAGS_GET_ALBUM);
 
-		MethodGroupHelper.processAndDispatch(__service, event.getObject(), tResultEvent, MethodGroupHelper.parseTagList);
+		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseTagList);
 	}
 
 	// list tags for specified photo
 	// with this, the gphoto.weight isn't set!, logical :)
 	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897/photoid/5110368147163787298?kind=tag
-	public function photo(userid:String,albumid:String,photoid:String):Void
+	public function photo(userid : String, albumid : String, photoid : String) : Void
 	{
-		var tSuffix:String = "user/"+userid+"/albumid/"+albumid+"/photoid/"+photoid;
-		var tUrlParams:UrlParams = MethodGroupHelper.mergeUrlParams(__service);
-			tUrlParams.kind = "tag";	// overwrite!
-			tUrlParams.tag = null;
-			tUrlParams.q = null;
+		var s : String = "user/" + userid + "/albumid/" + albumid + "/photoid/" + photoid;
+		var p : UrlParams = __service.mergeUrlParams();
+			p.kind = "tag";	// overwrite!
+			p.tag = null;
+			p.q = null;
 
-		MethodGroupHelper.invokeMethod(__service, Delegate.create(this, photo_complete), false, tSuffix, tUrlParams);
+		__core.invokeMethod(__service, Delegate.create(this, photo_complete), false, s, p);
 	}
 	
-	private function photo_complete(event:XMLToObjectEvent):Void
+	private function photo_complete(evt : XMLToObjectEvent) : Void
 	{
-		var tResultEvent:PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.TAGS_GET_PHOTO);
+		var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.TAGS_GET_PHOTO);
 
-		MethodGroupHelper.processAndDispatch(__service, event.getObject(), tResultEvent, MethodGroupHelper.parseTagList);
+		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseTagList);
 	}
-	
 }

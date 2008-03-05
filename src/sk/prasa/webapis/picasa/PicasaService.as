@@ -1,37 +1,38 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
+﻿import sk.prasa.webapis.picasa.UrlParams;
+import sk.prasa.webapis.generic.IPicasaService;
 import sk.prasa.webapis.generic.PicasaServiceBase;
-import com.bourre.data.libs.XMLToObject;
 import sk.prasa.webapis.picasa.core.*;
 
-class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase
-{
-	public static var POLICY_FILE:String = "http://photos.googleapis.com/data/crossdomain.xml";  
-	public static var END_POINT:String = "http://photos.googleapis.com/data/feed/api/";
-	public static var AUTH_END_POINT:String = "http://photos.googleapis.com/data/feed/api/user/";
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
+class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase implements IPicasaService
+{	
+	// unused
+	public var api_key : String;
 	
-	private var __api_key:String;
+	// properties
+	public var access : String;
+	public var thumbsize : Number;
+	public var imgmax : Number;
+	public var max_results : Number;
+	public var start_index : Number;
 	
-	private var __access:String;
-	private var __thumbsize:Number
-	private var __imgmax:Number;
-	private var __max_results:Number;
-	private var __start_index:Number;
+	// methods
+	private var __auth : Auth;
+	private var __albums : Albums;
+	private var __photos : Photos;
+	private var __tags : Tags;
+	private var __comments : Comments;
+	private var __community : Community;
 	
-	private var __auth:Auth;
-	private var __albums:Albums;
-	private var __photos:Photos;
-	private var __tags:Tags;
-	private var __comments:Comments;
-	private var __community:Community
-	
-	public function PicasaService(API_KEY:String)
+	public function PicasaService(API_KEY : String)
 	{	
 		//super(this);
-		System.security.loadPolicyFile(POLICY_FILE);
+		System.security.loadPolicyFile(Auth.POLICY_POINT);
 		
-		__api_key = API_KEY;
+		api_key = API_KEY;
 		
 		__auth = new Auth(this);
 		__photos = new Photos(this);
@@ -41,98 +42,55 @@ class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase
 		__community = new Community(this);
 	}
 	
-	public function get api_key():String
-	{
-		return __api_key;
-	}
 	
-	public function set api_key(value:String):Void
-	{
-		__api_key = value;
-	}
-	
-	public function get auth():Auth
+	public function get auth() : Auth
 	{
 		return __auth;
 	}
 	
-	public function get photos():Photos
+	public function get photos() : Photos
 	{
 		return __photos;
 	}
 	
-	public function get albums():Albums
+	public function get albums() : Albums
 	{
 		return __albums;
 	}
 	
-	public function get tags():Tags
+	public function get tags() : Tags
 	{
 		return __tags;
 	}
 	
-	public function get comments():Comments
+	public function get comments() : Comments
 	{
 		return __comments;
 	}
 	
-	public function get community():Community
+	public function get community() : Community
 	{
 		return __community;
 	}
 	
-	public function get access():String
+	public function mergeUrlParams(request : UrlParams) : UrlParams
 	{
-		return __access;
-	}
-	
-	public function set access(v:String):Void
-	{
-		__access = v;
-	}
-	
-	public function get thumbsize():Number
-	{
-		return __thumbsize;
-	}
-	
-	public function set thumbsize(v:Number):Void
-	{
-		__thumbsize = v;
-	}
-	
-	public function get imgmax():Number
-	{
-		return __imgmax;
-	}
-	
-	public function set imgmax(v:Number):Void
-	{
-		__imgmax = v;
-	}
-	
-	public function get max_results():Number
-	{
-		return __max_results;
-	}
-	
-	public function set max_results(v:Number)
-	{
-		__max_results = v;
-	}
-	
-	public function get start_index():Number
-	{
-		return __start_index;
-	}
-	
-	public function set start_index(v:Number):Void
-	{
-		__start_index = v;
-	}
-	
-	public function get xmlLoader():XMLToObject
-	{
-		return getXMLService();
+		// request params have priority before service params
+		
+		var tRes : UrlParams = new UrlParams(
+			 access
+			,thumbsize
+			,imgmax
+			,max_results
+			,start_index);
+			
+		if(request.access) tRes.access = request.access;
+		
+		if(request.thumbsize) tRes.thumbsize = request.thumbsize;
+		if(request.imgmax) tRes.imgmax = request.imgmax;
+		if(request.max_results) tRes.max_results = request.max_results;
+		if(request.start_index) tRes.start_index = request.start_index;
+		
+		return tRes;
 	}
 }

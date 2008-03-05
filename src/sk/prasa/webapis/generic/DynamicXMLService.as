@@ -1,9 +1,12 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
+﻿import sk.prasa.webapis.generic.IXMLService;
+
 import com.bourre.data.libs.XMLToObject;
 
-class sk.prasa.webapis.generic.DynamicXMLService extends XMLToObject
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
+class sk.prasa.webapis.generic.DynamicXMLService extends XMLToObject implements IXMLService
 {
 	public function DynamicXMLService()
 	{

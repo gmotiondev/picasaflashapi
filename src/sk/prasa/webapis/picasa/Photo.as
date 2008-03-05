@@ -1,7 +1,4 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import sk.prasa.webapis.picasa.Album;
+﻿import sk.prasa.webapis.picasa.Album;
 import sk.prasa.webapis.picasa.Base;
 import sk.prasa.webapis.picasa.Content;
 import sk.prasa.webapis.picasa.Exif;
@@ -9,106 +6,55 @@ import sk.prasa.webapis.picasa.GPhoto;
 import sk.prasa.webapis.picasa.KindType;
 import sk.prasa.webapis.picasa.Media;
 
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
 class sk.prasa.webapis.picasa.Photo extends Base
 {
-	private var __summary:String;
-	private var __content:Content;
-	private var __published:String;
-	private var __gphoto:GPhoto;
-	private var __media:Media;
-	private var __exif:Exif;
-	private var __album:Album;
+	public var content : Content;
+	public var published : String;
+	public var gphoto : GPhoto;
+	public var media : Media;
+	public var exif : Exif;
+	public var album : Album;
+
+	private var __summary : String;
 	
 	//TODO: Geo VO
-	// 
-	public function Photo(o:Object)
+	public function Photo(o : Object)
 	{
 		super(o);
 		
 		__summary = o.summary;
-		__content = new Content(o.content.attributes.type, o.content.attributes.src);
-		__published = o.published;
+		content = new Content(o.content.attributes.type, o.content.attributes.src);
+		published = o.published;
 		
-		__gphoto = new GPhoto(o, KindType.PHOTO);
-		__media = new Media(o["media:group"]);
-		__exif = new Exif(o["exif:tags"]);
+		gphoto = new GPhoto(o, KindType.PHOTO);
+		media = new Media(o["media:group"]);
+		exif = new Exif(o["exif:tags"]);
 	}
-	
-	// 
-	public function get summary():String
+	 
+	public function get summary() : String
 	{
 		return (typeof __summary) == "string" ? __summary : "";
 	}
-	
-	// 
-	public function set summary(v:String):Void
+	 
+	public function set summary(v : String) : Void
 	{
 		__summary = v;
 	}
-
-	// 
-	public function get content():Content
-	{
-		return __content;
-	}
 	
-	// 
-	public function set content(v:Content):Void
-	{
-		__content = v;
-	}
-
-	// 
-	public function get published():String
-	{
-		return __published;
-	}
-	
-	// 
-	public function set published(v:String):Void
-	{
-		__published = v;
-	}
-	
-	// 
-	public function get gphoto():GPhoto
-	{
-		return __gphoto;
-	}
-	
-	// 
-	public function get media():Media
-	{
-		return __media;
-	}
-	
-	// 
-	public function get exif():Exif
-	{
-		return __exif;
-	}
-	
-	// 
-	public function get album():Album
-	{
-		return __album;
-	}
-	
-	public function set album(a:Album):Void
-	{
-		__album = a;
-	}
-	
-	public function toString():String
+	public function toString() : String
 	{
 		var tRes = [];
-			tRes.push(" summary=",summary);
-			tRes.push(", content=",content.toString());
-			tRes.push(", published=",published);
-			tRes.push(", gphoto=",gphoto.toString());
-			tRes.push(", media=",media.toString());
-			tRes.push(", exit=",exif.toString());
-		return "[Photo "+tRes.join("")+"]";
+			tRes.push(" summary=", summary);
+			tRes.push(", content=", content.toString());
+			tRes.push(", published=", published);
+			tRes.push(", gphoto=", gphoto.toString());
+			tRes.push(", media=", media.toString());
+			tRes.push(", exit=", exif.toString());
+		return "[Photo " + tRes.join("") + "]";
 	}
 }
 
