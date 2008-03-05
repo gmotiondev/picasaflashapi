@@ -24,7 +24,13 @@ class sk.prasa.webapis.picasa.core.Albums
 		__core = MethodGroupHelper.getInstance();
 	}
 
-	// http://picasaweb.google.com/data/feed/api/user/userID?kind=album
+	/**
+	 * List all albums from user
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=album
+	 * 
+	 * @param userid String Picasaweb user id
+	 * @param params UrlParams Parameters to alter the feed url
+	 */ 
 	public function list(userid : String, params : UrlParams) : Void
 	{
 		var s : String = "user/" + userid;
@@ -43,8 +49,14 @@ class sk.prasa.webapis.picasa.core.Albums
 		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseAlbumList);	
 	}
 	
-	
-	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu?kind=photo&tag=resurgere
+	/**
+	 * List photos from all albums by tag
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=photo&tag=sometag
+	 * 
+	 * @param userid String Picasaweb user id
+	 * @param tag String Tag
+	 * @param params UrlParams Parameters to alter the feed url
+	 */
 	public function list_by_tag(userid : String, tag : String, params : UrlParams) : Void
 	{
 		var s : String = "user/" + userid;
@@ -63,7 +75,14 @@ class sk.prasa.webapis.picasa.core.Albums
 		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parsePhotoList);
 	}
 	
-	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu?kind=photo&q=resurgere
+	/**
+	 * Search in albums by query
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=photo&q=somequery
+	 * 
+	 * @param userid String Picasaweb user id
+	 * @param query String Search query
+	 * @param params UrlParams Parameters to alter the feed url
+	 */
 	public function search(userid : String, query : String, params : UrlParams) : Void
 	{
 		var s : String = "user/" + userid;

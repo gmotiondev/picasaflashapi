@@ -1,10 +1,11 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import com.bourre.events.BasicEvent;
+﻿import com.bourre.events.BasicEvent;
 import control.Controller;
 
-class control.PhotoGetPrevEvent extends BasicEvent
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
+class control.photo.PhotoGetPrevEvent extends BasicEvent
 {
 	public function PhotoGetPrevEvent()
 	{

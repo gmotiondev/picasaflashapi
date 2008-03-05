@@ -1,48 +1,58 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 
 import model.*;
-import view.*;
-import control.*;
 
+import view.LoadingBar;
+import view.Navigation;
+import view.ViewList;
+import view.thumb.ThumbsHolder;
+import view.photo.PhotosHolder;
+
+import control.Controller;
+import control.ResizeEvent;
+import control.photo.PhotoGetNextEvent;
+import control.photo.PhotoGetPrevEvent;
+
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+ 
 class Application extends MovieClipHelper
 {
-	private function Application(mc:MovieClip)
+	private function Application(mc : MovieClip)
 	{
 		super(ViewList.APPLICATION, mc);
 		
 		initialize(mc);
 	}
 	
-	private function initialize(mc:MovieClip):Void
+	private function initialize(mc : MovieClip) : Void
 	{
 		Stage.addListener(this);
 		Key.addListener(this);
 		
 		Controller.getInstance().initialize();
 
-		var model:ModelApplication = new ModelApplication();
+		var model : ModelApplication = new ModelApplication();
 		
-		var p_view:PhotoHolder= new PhotoHolder(ViewList.PHOTO_HOLDER, 	mc.createEmptyMovieClip(ViewList.PHOTO_HOLDER, 	10));
-		var t_view:ThumbHolder= new ThumbHolder(ViewList.THUMB_HOLDER, 	mc.createEmptyMovieClip(ViewList.THUMB_HOLDER, 	20));
-		var n_view:Navigation = new Navigation(ViewList.NAVIGATION, 	mc.createEmptyMovieClip(ViewList.NAVIGATION, 	30));
-		var l_view:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, 	mc.createEmptyMovieClip(ViewList.LOADING_BAR, 	40));
+		var p_view : PhotosHolder = new PhotosHolder(ViewList.PHOTOS_HOLDER, mc.createEmptyMovieClip(ViewList.PHOTOS_HOLDER, 10));
+		var t_view : ThumbsHolder = new ThumbsHolder(ViewList.THUMBS_HOLDER, mc.createEmptyMovieClip(ViewList.THUMBS_HOLDER, 20));
+		var n_view : Navigation = new Navigation(ViewList.NAVIGATION, mc.createEmptyMovieClip(ViewList.NAVIGATION, 30));
+		var l_view : LoadingBar = new LoadingBar(ViewList.LOADING_BAR, mc.createEmptyMovieClip(ViewList.LOADING_BAR, 40));
 
 		model.addListener(p_view);
 		model.addListener(l_view);
 
-		model.initialize();	
+		model.initialize(mc.userid, mc.albumid);	
 	}
 	
-	public function onResize():Void
+	public function onResize() : Void
 	{
 		EventBroadcaster.getInstance().broadcastEvent(new ResizeEvent());
 	}
 	
-	public function onKeyDown():Void
+	public function onKeyDown() : Void
 	{
 		switch (Key.getCode())
 		{
@@ -52,11 +62,11 @@ class Application extends MovieClipHelper
 		}
 	}
 	
-	public static function main(mc:MovieClip) : Void 
+	public static function main(mc : MovieClip) : Void 
 	{
 		Stage.align = "TL";
 		Stage.scaleMode = "noScale";
 		
-		var o:Application = new Application(mc);
+		var o : Application = new Application(mc);
 	}
 }

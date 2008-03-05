@@ -2,19 +2,19 @@
 import com.bourre.core.Model;
 
 import model.*;
-import control.ResizeEvent;
+import control.photo.PhotoGetPrevEvent;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 
-class command.ResizeCommand implements Command
+class command.photo.PhotoGetPrevCommand implements Command
 {
-	private var model : ModelApplication; 
+	private var model : ModelApplication;
 	
-	public function execute(evt : ResizeEvent):Void
+	public function execute(evt : PhotoGetPrevEvent) : Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
-		model.notifyChanged(evt);
+		model.prev();
 	}
 }

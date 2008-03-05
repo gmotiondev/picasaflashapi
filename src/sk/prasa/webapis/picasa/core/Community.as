@@ -22,7 +22,14 @@ class sk.prasa.webapis.picasa.core.Community
 		__core = MethodGroupHelper.getInstance();
 	}
 
-	// http://picasaweb.google.com/data/feed/api/all?kind=photo&q=searchTerm&max-results=10
+	// 
+	/**
+	 * List photos in community by given query 
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/all?kind=photo&q=searchTerm
+	 * 
+	 * @param query String Query
+	 * @param params String Params to alter the feed url
+	 */
 	public function search(query : String, params : UrlParams) : Void
 	{
 		var s : String = "all";

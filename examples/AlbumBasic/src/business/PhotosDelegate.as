@@ -16,23 +16,23 @@ import control.*;
 
 class business.PhotosDelegate
 {
-	private var __command:IResponder;
-	private var __service:PicasaService;
+	private var __command : IResponder;
+	private var __service : PicasaService;
 	
-	public function PhotosDelegate(command:IResponder)
+	public function PhotosDelegate(command : IResponder)
 	{
 		__command = command;
 		__service = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION)).service;
 	}
 	
-	public function list(aUserid:String, aAlbumid:String):Void
+	public function list(aUserid : String, aAlbumid : String) : Void
 	{
 		__service.addEventListener(PicasaService.PROGRESS, list_progress); 
 		__service.addEventListener(PicasaResultEvent.PHOTOS_GET_LIST, Delegate.create(this, list_complete));
 		__service.photos.list(aUserid, aAlbumid);
 	}
 
-	public function list_complete(e:PicasaResultEvent):Void
+	public function list_complete(e : PicasaResultEvent) : Void
 	{
 		try
 		{
@@ -50,8 +50,8 @@ class business.PhotosDelegate
 		}
 	}
 	
-	private function list_progress(e:NumberEvent):Void
+	private function list_progress(evt : NumberEvent):Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new ProgressEvent(NumberEvent(e).getNumber()));
+		EventBroadcaster.getInstance().broadcastEvent(new ProgressEvent(evt.getNumber()));
 	}
 }

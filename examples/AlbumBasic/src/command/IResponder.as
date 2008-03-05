@@ -6,6 +6,6 @@ import sk.prasa.webapis.picasa.PicasaError;
 
 interface command.IResponder
 {
-	public function result(data:Object):Void
-	public function fault(error:PicasaError):Void
+	public function result(data : Object) : Void
+	public function fault(error : PicasaError) : Void
 }

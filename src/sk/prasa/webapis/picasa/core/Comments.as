@@ -25,8 +25,12 @@ class sk.prasa.webapis.picasa.core.Comments
 		__core = MethodGroupHelper.getInstance();
 	}
 
-	// list all comments for specified user
-	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu?kind=comment
+	/**
+	 * Get list of all comments for specified user
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=comment
+	 * 
+	 * @param userid String Picasaweb user id
+	 */
 	public function user(userid : String) : Void
 	{
 		var s : String = "user/" + userid;
@@ -37,8 +41,7 @@ class sk.prasa.webapis.picasa.core.Comments
 
 		__core.invokeMethod(__service, Delegate.create(this, user_complete), false, s, p);
 	}
-	
-	// 
+	 
 	private function user_complete(evt : XMLToObjectEvent) : Void
 	{
 		var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.COMMENTS_GET_USER);
@@ -46,8 +49,13 @@ class sk.prasa.webapis.picasa.core.Comments
 		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseCommentList);
 	}
 	
-	// list comments for specified album
-	// http://www.prasa.sk/proxy.php?gws_path=http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897?kind=comment
+	/**
+	 * List album comments for specified user
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=comment
+	 * 
+	 * @param userid String Picasaweb user id
+	 * @param albumid String Picasaweb album id
+	 */
 	public function album(userid : String, albumid : String) : Void
 	{
 		var s : String = "user/" + userid + "/albumid/" + albumid;
@@ -66,8 +74,14 @@ class sk.prasa.webapis.picasa.core.Comments
 		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseCommentList);
 	}
 	
-	// list comments for specified photo
-	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu/album/SampleAlbum/photoid/5094407740341564914?kind=comment
+	/**
+	 * List photo comments for specified user and album 
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID/photoid/photoID?kind=comment
+	 * 
+	 * @param userid String Picasaweb user id
+	 * @param albumid String Picasaweb album id
+	 * @param photoid String Picasaweb photo id
+	 */
 	public function photo(userid : String, albumid : String, photoid : String) : Void
 	{	
 		var s : String = "user/" + userid + "/albumid/" + albumid + "/photoid/" + photoid;
@@ -79,7 +93,6 @@ class sk.prasa.webapis.picasa.core.Comments
 		__core.invokeMethod(__service, Delegate.create(this, photo_complete), false, s, p);
 	}
 	
-	// 
 	private function photo_complete(evt : XMLToObjectEvent) : Void
 	{
 		var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.COMMENTS_GET_PHOTO);

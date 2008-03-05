@@ -1,30 +1,32 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import com.bourre.events.IEvent;
+﻿import com.bourre.events.IEvent;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.commands.Delegate;
 import com.bourre.utils.Geom;
 
-import control.*;
+import control.photo.PhotoChangedEvent;
+import control.thumb.ThumbClickEvent;
 
-class view.Thumb extends MovieClipHelper
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
+class view.thumb.Thumb extends MovieClipHelper
 {
 	private var t : TextField;
-	private var id : String;
 	private var b : MovieClip;
+	private var id : String;
 	private var title : String;
 	
-	public function Thumb(aID:String, aContainer:MovieClip, aTitle:String)
+	public function Thumb(aId : String, aContainer : MovieClip, aTitle : String)
 	{
-		super(aID, aContainer);
+		super(aId, aContainer);
 		
-		id = aID;
+		id = aId;
 		title = aTitle;
 	}
 	
-	public function initialize():Void
+	public function initialize() : Void
 	{
 		view.onRelease = Delegate.create(this, onThumbRelease);
 		view.onRollOver = Delegate.create(this, onThumbRollOver);
@@ -33,7 +35,7 @@ class view.Thumb extends MovieClipHelper
 		setBackground(0xffffff, 0xe2007a, 5);	
 	}
 	
-	private function setBackground(aColor:Number, aHighlight:Number, aMargin:Number):Void
+	private function setBackground(aColor : Number, aHighlight : Number, aMargin : Number) : Void
 	{
 		b = Geom.buildRectangle(view,2,(0+(1*aMargin)),(0+(1*aMargin)),aColor,aColor);
 		b._x = -aMargin;
@@ -42,21 +44,21 @@ class view.Thumb extends MovieClipHelper
 		b.highlight = aHighlight;
 	}
 	
-	private function highlight(aTrigger:Boolean):Void
+	private function highlight(aTrigger : Boolean) : Void
 	{
 		with(new Color(b)) { setRGB((aTrigger ? b.highlight : b.color)); }
 	}
 	
-	private function onThumbRelease():Void
+	private function onThumbRelease() : Void
 	{
-		EventBroadcaster.getInstance().broadcastEvent(new PhotoClickEvent(id));
+		EventBroadcaster.getInstance().broadcastEvent(new ThumbClickEvent(id));
 	}
 	
-	private function onThumbRollOver():Void
+	private function onThumbRollOver() : Void
 	{
 		view.swapDepths(view._parent.getNextHighestDepth());
 		
-		var f:TextFormat = new TextFormat("kroeger", 8, 0xffffff);
+		var f : TextFormat = new TextFormat("kroeger", 8, 0xffffff);
 			
 		view.createTextField("tooltip", 20, 0, 0, 100, 1);
 		t = view["tooltip"];
@@ -68,7 +70,7 @@ class view.Thumb extends MovieClipHelper
 		if(t._width > (Stage.width - _root._xmouse)) t._x -= t._width;
 	}
 	
-	private function onThumbRollOut():Void
+	private function onThumbRollOut() : Void
 	{
 		t.removeTextField();
 	}
@@ -79,8 +81,8 @@ class view.Thumb extends MovieClipHelper
 	}
 
 	// listen to the model
-	public function photo_changed_event(evt:PhotoChangedEvent):Void
+	public function photo_changed_event(evt : PhotoChangedEvent):Void
 	{	
-		highlight(PhotoChangedEvent(evt).id == id);
+		highlight(evt.id == id);
 	}
 }

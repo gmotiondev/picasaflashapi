@@ -27,12 +27,14 @@ class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase implements
 	private var __comments : Comments;
 	private var __community : Community;
 	
-	public function PicasaService(API_KEY : String)
+	/**
+	 * Constructs the new PicasaService service.
+	 * Available methods are auth, photos, albums, tags, comments and community.
+	 */
+	public function PicasaService()
 	{	
 		//super(this);
 		System.security.loadPolicyFile(Auth.POLICY_POINT);
-		
-		api_key = API_KEY;
 		
 		__auth = new Auth(this);
 		__photos = new Photos(this);
@@ -42,32 +44,49 @@ class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase implements
 		__community = new Community(this);
 	}
 	
-	
+	/**
+	 * Bridge to Authentification methods
+	 */
 	public function get auth() : Auth
 	{
 		return __auth;
 	}
-	
+
+	/**
+	 * Bridge to Photos methods
+	 */	
 	public function get photos() : Photos
 	{
 		return __photos;
 	}
 	
+	/**
+	 * Bridge to Album methods
+	 */	
 	public function get albums() : Albums
 	{
 		return __albums;
 	}
 	
+	/**
+	 * Bridge to Tags methods
+	 */	
 	public function get tags() : Tags
 	{
 		return __tags;
 	}
 	
+	/**
+	 * Bridge to Comments methods
+	 */	
 	public function get comments() : Comments
 	{
 		return __comments;
 	}
 	
+	/**
+	 * Bridge to Community methods
+	 */	
 	public function get community() : Community
 	{
 		return __community;

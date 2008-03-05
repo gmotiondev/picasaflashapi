@@ -5,8 +5,8 @@
 class view.ViewList
 {
 	public static var APPLICATION:String = "application";
-	public static var PHOTO_HOLDER:String= "photo_holder";
-	public static var THUMB_HOLDER:String= "thumb_holder";
+	public static var PHOTOS_HOLDER:String= "photos_holder";
+	public static var THUMBS_HOLDER:String= "thumbs_holder";
 	public static var NAVIGATION:String  = "navigation";
 	public static var LOADING_BAR:String = "loading_bar";
 }

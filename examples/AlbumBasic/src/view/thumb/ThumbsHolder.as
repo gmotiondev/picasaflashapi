@@ -1,7 +1,4 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import com.bourre.events.EventType;
+﻿import com.bourre.events.EventType;
 import com.bourre.events.BasicEvent;
 import com.bourre.events.IEvent;
 import com.bourre.events.EventBroadcaster;
@@ -12,13 +9,17 @@ import com.bourre.visual.MovieClipHelper;
 import sk.prasa.visual.layout.GridLayout;
 
 import control.*;
-import view.Thumb;
+import view.thumb.Thumb;
 
-class view.ThumbHolder extends MovieClipHelper implements ILibListener
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
+class view.thumb.ThumbsHolder extends MovieClipHelper implements ILibListener
 {
 	private var grid:GridLayout;
 	
-	public function ThumbHolder(aId : String, aC : MovieClip)
+	public function ThumbsHolder(aId : String, aC : MovieClip)
 	{
 		super(aId,aC);
 

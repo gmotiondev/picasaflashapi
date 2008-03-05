@@ -1,13 +1,14 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import com.bourre.commands.Command;
+﻿import com.bourre.commands.Command;
 import com.bourre.core.Model;
 
 import model.*;
-import control.*;
+import control.photo.PhotoGetNextEvent;
 
-class command.PhotoGetNextCommand implements Command
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
+class command.photo.PhotoGetNextCommand implements Command
 {
 	private var model : ModelApplication; 
 	

@@ -1,11 +1,13 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.commands.Delegate;
 import com.bourre.events.EventBroadcaster;
 
-import control.*;
+import control.photo.PhotoGetPrevEvent;
+import control.photo.PhotoGetNextEvent;
+
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
 
 class view.Navigation extends MovieClipHelper
 {	

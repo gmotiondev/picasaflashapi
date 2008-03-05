@@ -1,12 +1,13 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.transitions.TweenMS;
 
-import control.*;
+import control.photo.PhotoChangedEvent;
 
-class view.Photo extends MovieClipHelper
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
+class view.photo.Photo extends MovieClipHelper
 {
 	private var id:String;
 

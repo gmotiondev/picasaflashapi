@@ -1,19 +1,21 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.utils.Geom;
 
-import control.*;
+import control.ProgressEvent;
+import control.ResizeEvent;
+
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
 
 class view.LoadingBar extends MovieClipHelper
 {	
-	private var l:MovieClip;
-	private var c:Number = 0xD40073;
+	private var l : MovieClip;
+	private var c : Number = 0xD40073;
 	
-	public function LoadingBar(aId:String, aC:MovieClip)
+	public function LoadingBar(name : String, mc : MovieClip)
 	{
-		super(aId,aC);
+		super(name, mc);
 	}
 	
 	private function initialize() : Void
@@ -21,14 +23,13 @@ class view.LoadingBar extends MovieClipHelper
 		l = Geom.buildRectangle(view, 10005, Stage.width, 2, c, c);
 	}
 	
-	// listen to model
-	public function onProgress(evt : ProgressEvent):Void
+	public function onProgress(evt : ProgressEvent) : Void
 	{
 		setVisible(evt.percent < 100); 
 		l._xscale = 100 - evt.percent;
 	}
 	
-	public function onResize(evt : ResizeEvent):Void
+	public function onResize(evt : ResizeEvent) : Void
 	{
 		initialize();
 	}

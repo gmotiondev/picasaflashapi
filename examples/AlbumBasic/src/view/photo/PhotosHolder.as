@@ -1,21 +1,23 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.ILibListener;
 import com.bourre.utils.Geom;
 
 import control.*;
-import view.Photo;
+import control.photo.*;
+import view.photo.Photo;
 
-class view.PhotoHolder extends MovieClipHelper implements ILibListener
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
+class view.photo.PhotosHolder extends MovieClipHelper implements ILibListener
 {	
 	private var t : TextField;
 	private var f : TextFormat;
 	
-	public function PhotoHolder(aId : String, aC : MovieClip)
+	public function PhotosHolder(aId : String, aC : MovieClip)
 	{
 		super(aId, aC);
 	}

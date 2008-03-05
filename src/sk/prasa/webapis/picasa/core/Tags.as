@@ -25,8 +25,12 @@ class sk.prasa.webapis.picasa.core.Tags
 		__core = MethodGroupHelper.getInstance();
 	}
 
-	// list tags for specified user
-	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu?kind=tag
+	/**
+	 * List all tags for specified user
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=tag 
+	 * 
+	 * @param userid String Picasaweb user id
+	 */
 	public function user(userid : String) : Void
 	{
 		var s : String = "user/" + userid;
@@ -45,8 +49,13 @@ class sk.prasa.webapis.picasa.core.Tags
 		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseTagList);
 	}
 	
-	// list tags for specified album
-	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897?kind=tag
+	/**
+	 * List tags for specified album  
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=tag 
+	 * 
+	 * @param userid String Picasaweb user id
+	 * @param albumid String Picasaweb album id
+	 */
 	public function album(userid : String, albumid : String) : Void
 	{
 		var s : String = "user/" + userid + "/albumid/" + albumid;
@@ -65,9 +74,15 @@ class sk.prasa.webapis.picasa.core.Tags
 		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseTagList);
 	}
 
-	// list tags for specified photo
-	// with this, the gphoto.weight isn't set!, logical :)
-	// http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897/photoid/5110368147163787298?kind=tag
+	/**
+	 * List tags for specified photo
+	 *  - with this, the gphoto.weight isn't set!, logical :)  
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID/photoid/photiID?kind=tag 
+	 * 
+	 * @param userid String Picasaweb user id
+	 * @param albumid String Picasaweb album id
+	 * @param photoid String Picasaweb photo id
+	 */
 	public function photo(userid : String, albumid : String, photoid : String) : Void
 	{
 		var s : String = "user/" + userid + "/albumid/" + albumid + "/photoid/" + photoid;

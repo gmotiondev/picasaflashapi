@@ -22,10 +22,15 @@ class sk.prasa.webapis.picasa.core.Photos
 		__service = service;
 		__core = MethodGroupHelper.getInstance();
 	}
-
-	// scheme: http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=photo
-	// normal: http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5094406297232552993
-	// private: http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/4997359002061176849?kind=photo&authkey=jYNMghEYgL0
+ 
+	/**
+	 * List of users photos in specified album 
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=photo
+	 * 
+	 * @param userid String Picasaweb user id
+	 * @param albumid String Picasaweb album id
+	 * @param params String Params to alter the feed url
+	 */
 	public function list(userid : String, albumid : String, params : UrlParams) : Void
 	{
 		var s : String = "user/" + userid + "/albumid/" + albumid;
@@ -44,7 +49,15 @@ class sk.prasa.webapis.picasa.core.Photos
 		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parsePhotoList);	
 	}
 	
-	// by tags: http://picasaweb.google.com/data/feed/api/user/thisispinkfu/albumid/5110367185091112897?tag=resurgere
+	/**
+	 * List of tagged users photos in specified album  
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?tag=sometag
+	 * 
+	 * @param userid String Picasaweb user id
+	 * @param albumid String Picasaweb album id
+	 * @param tag String Tag
+	 * @param params String Params to alter the feed url
+	 */
 	public function list_by_tag(userid : String, albumid : String, tag : String, params : UrlParams) : Void
 	{
 		var s:String = "user/" + userid + "/albumid/" + albumid;
@@ -63,6 +76,16 @@ class sk.prasa.webapis.picasa.core.Photos
 		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parsePhotoList);
 	}
 	
+	/**
+	 * Retrieves single photo entry
+	 * NOT YET IMPLEMENTED  
+	 * Loads e.g. 
+	 * 
+	 * @param userid String Picasaweb user id
+	 * @param albumid String Picasaweb album id
+	 * @param photoid String Picasaweb photo id
+	 * @param params String Params to alter the feed url
+	 */
 	public function single(userid : String, albumid : String, photoid : String, params : UrlParams) : Void
 	{
 		trace("Not yet implemented!");

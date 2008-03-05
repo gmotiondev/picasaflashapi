@@ -4,7 +4,8 @@ import com.bourre.events.IEvent;
 import com.bourre.commands.Delegate;
 
 import model.ModelList;
-import control.*;
+import control.photo.PhotosGetEvent;
+import control.photo.PhotoChangedEvent;
 import vo.Photos;
 
 import sk.prasa.webapis.picasa.PicasaService;
@@ -15,8 +16,8 @@ import sk.prasa.webapis.picasa.PicasaService;
 
 class model.ModelApplication extends Model
 {
-	public var service:PicasaService;
-	public var photos:Photos;
+	public var service : PicasaService;
+	public var photos : Photos;
 	
 	public static var USERID : String = "thisispinkfu";
 	public static var ALBUMID : String = "5094406297232552993";
@@ -26,9 +27,12 @@ class model.ModelApplication extends Model
 		super(ModelList.MODEL_APPLICATION);
 	}
 	
-	public function initialize():Void
+	public function initialize(aUserid : String, aAlbumid : String) : Void
 	{
-		photos = new Photos();
+		if(aUserid != undefined) USERID = aUserid;
+		if(aAlbumid != undefined) ALBUMID = aAlbumid;
+		
+		photos = Photos.getInstance();
 
 		service = new PicasaService();
 		service.imgmax = 320;
