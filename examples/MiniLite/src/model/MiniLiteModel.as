@@ -1,3 +1,5 @@
+import control.LoadThumbsEvent;
+
 import sk.prasa.webapis.picasa.Photo;
 import sk.prasa.webapis.picasa.events.PicasaResultEvent;
 
@@ -76,7 +78,14 @@ class model.MiniLiteModel extends AbstractModel
 	
 	private function loadThumbsCommand() : Void
 	{
-		//here!
+		trace("MiniLiteModel.loadThumbsCommand()");
+		var tRes : Array = [];
+		for(var a : Number = 0; a < photos.length; a++)
+		{
+			tRes.push({id:photos[a].gphoto.id, url:photos[a].media.thumbnail[0].url});
+		}
+		setChanged();
+		notifyChanged(new LoadThumbsEvent(tRes));
 	}
 
 	public function next() : Void

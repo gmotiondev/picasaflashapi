@@ -3,7 +3,11 @@
  */
 class control.LoadThumbsEvent 
 {
-	public function LoadThumbsEvent()
+	public var thumbs : Array;
+	public var type : String = "load_thumbs_event";
+	
+	public function LoadThumbsEvent(aThumbs : Array)
 	{
+		thumbs = aThumbs;
 	}
 }
