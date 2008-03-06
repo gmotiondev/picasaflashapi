@@ -34,7 +34,7 @@ class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase implements
 	public function PicasaService()
 	{	
 		//super(this);
-		System.security.loadPolicyFile(Auth.POLICY_POINT);
+		System.security.loadPolicyFile("http://photos.googleapis.com/data/crossdomain.xml");
 		
 		__auth = new Auth(this);
 		__photos = new Photos(this);
