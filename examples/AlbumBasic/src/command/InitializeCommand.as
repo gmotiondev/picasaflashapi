@@ -25,8 +25,8 @@ class command.InitializeCommand implements Command
 		var tPhotosHolder : PhotosHolder = PhotosHolder(MovieClipHelper.getMovieClipHelper(ViewList.PHOTOS_HOLDER));
 		var tThumbsHolder : ThumbsHolder = ThumbsHolder(MovieClipHelper.getMovieClipHelper(ViewList.THUMBS_HOLDER));
 
-		var tPLibStack : LibStack = new LibStack();
-			tPLibStack.addListener(tPhotosHolder);
+//		var tPLibStack : LibStack = new LibStack();
+//			tPLibStack.addListener(tPhotosHolder);
 			
 		var tTLibStack : LibStack = new LibStack();
 			tTLibStack.addListener(tThumbsHolder);
@@ -37,14 +37,14 @@ class command.InitializeCommand implements Command
 			var tPhoto : Photo = tPhotosHolder.addChild(tItem.gphoto.id, (a != 0));
 			var tThumb : Thumb = tThumbsHolder.addChild(tItem.gphoto.id, tItem.summary);
 		
-			model.addListener(tPhoto);
+//			model.addListener(tPhoto);
 			model.addListener(tThumb);
 			
-			tPLibStack.enqueue(new GraphicLib(tPhoto.view, 5), tItem.gphoto.id, tItem.content.src);			
+//			tPLibStack.enqueue(new GraphicLib(tPhoto.view, 5), tItem.gphoto.id, tItem.content.src);			
 			tTLibStack.enqueue(new GraphicLib(tThumb.view, 5), tItem.gphoto.id, tItem.media.thumbnail[0].url);
 		}
 		
 		tTLibStack.execute();
-		tPLibStack.execute();
+//		tPLibStack.execute();
 	}
 }

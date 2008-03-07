@@ -11,7 +11,7 @@ import control.ResizeEvent;
 class view.LoadingBar extends MovieClipHelper
 {	
 	private var l : MovieClip;
-	private var c : Number = 0xD40073;
+	private var c : Number = 0xffffff;	// 0xD40073
 	
 	public function LoadingBar(name : String, mc : MovieClip)
 	{

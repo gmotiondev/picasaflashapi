@@ -16,15 +16,19 @@ class view.photo.PhotosHolder extends MovieClipHelper implements ILibListener
 {	
 	private var t : TextField;
 	private var f : TextFormat;
+	private var b : MovieClip; 
+	private var c : Number = 0xD40073;
 	
 	public function PhotosHolder(aId : String, aC : MovieClip)
 	{
 		super(aId, aC);
+		
+		b = Geom.buildRectangle(view, 5, Stage.width, 20, c, c);
 	}
 	
 	private function initialize() : Void
 	{
-		Geom.buildRectangle(view, view.getNextHighestDepth(), Stage.width, 20, 0xD40073, 0xD40073);
+		//Geom.buildRectangle(view, view.getNextHighestDepth(), Stage.width, 20, 0xD40073, 0xD40073);
 		
 		f = new TextFormat("kroeger", 8, 0xffffff);
 		view.createTextField("title", view.getNextHighestDepth(), 50, 3, Stage.width, 20);
