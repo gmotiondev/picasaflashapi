@@ -11,17 +11,17 @@ import control.photo.PhotoGetNextEvent;
 
 class view.Navigation extends MovieClipHelper
 {	
-	public function Navigation(sID:String,aC:MovieClip)
+	public function Navigation(aId : String, aC : MovieClip)
 	{
-		super(sID,aC);
+		super(aId, aC);
 
 		initialize();
 	}
 	
-	private function initialize():Void
+	private function initialize() : Void
 	{
-		var l:MovieClip = view.attachMovie("l","l",1002);
-		var r:MovieClip = view.attachMovie("r","r",1003);
+		var l : MovieClip = view.attachMovie("l", "l", 1002);
+		var r : MovieClip = view.attachMovie("r", "r", 1003);
 		
 		l._x = 5; l._y = 5;
 		r._x = 25; r._y = 5;

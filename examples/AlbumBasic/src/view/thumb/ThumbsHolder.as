@@ -31,11 +31,10 @@ class view.thumb.ThumbsHolder extends MovieClipHelper implements ILibListener
 	
 	public function addChild(aID : String, aTitle : String) : Thumb
 	{
-		var tHolder:MovieClip = view.createEmptyMovieClip("p_"+aID, view.getNextHighestDepth());
-		var tThumb:Thumb = new Thumb(aID, tHolder, aTitle);
+		var tHolder : MovieClip = view.createEmptyMovieClip("p_"+aID, view.getNextHighestDepth());
+		var tThumb : Thumb = new Thumb(aID, tHolder, aTitle);
 		
 		grid.addChild(tHolder);
-		
 		addListener(tThumb);
 		
 		return tThumb;
@@ -51,20 +50,20 @@ class view.thumb.ThumbsHolder extends MovieClipHelper implements ILibListener
 		grid.draw();
 	}
 	
-	public function onLoadProgress(evt : LibEvent):Void
+	public function onLoadProgress(evt : LibEvent) : Void
 	{
 		EventBroadcaster.getInstance().broadcastEvent(new ProgressEvent(evt.getPerCent()));
 	}
 	
-	public function onLoadComplete(evt : LibEvent):Void
+	public function onLoadComplete(evt : LibEvent) : Void
 	{	
 		grid.draw();
 		
 		notifyChanged(new BasicEvent(new EventType("onInitialize")));
 	}
 	
-	public function onTimeOut(evt : LibEvent):Void
+	public function onTimeOut(evt : LibEvent) : Void
 	{
-		trace("ERROR: Photo loading time out: "+evt.getName());
+		trace("ERROR: Thumb loading time out: "+evt.getName());
 	}	
 }

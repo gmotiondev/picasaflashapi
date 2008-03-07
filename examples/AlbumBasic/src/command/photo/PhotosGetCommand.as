@@ -23,15 +23,15 @@ class command.photo.PhotosGetCommand implements Command, IResponder
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
 		
-		var d:PhotosDelegate = new PhotosDelegate(this);
+		var d : PhotosDelegate = new PhotosDelegate(this);
 			d.list(evt.userid, evt.albumid);
 	}
 	
 	public function result(data : Array) : Void
 	{
-		for(var a:Number = 0; a < data.length; a++)
+		for(var a : Number = 0; a < data.length; a++)
 		{
-			var tPhoto:Photo = data[a];
+			var tPhoto : Photo = data[a];
 			model.photos.push(tPhoto);
 		}
 		
@@ -40,6 +40,6 @@ class command.photo.PhotosGetCommand implements Command, IResponder
 	
 	public function fault(error : PicasaError) : Void
 	{
-		trace("PhotosGetCommand failed: "+error.message);
+		trace("PhotosGetCommand failed: " + error.message);
 	}
 }

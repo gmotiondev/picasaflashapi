@@ -8,9 +8,9 @@ import control.Controller;
 
 class control.thumb.ThumbClickEvent extends BasicEvent
 {
-	public var id:String;
+	public var id : String;
 	
-	public function ThumbClickEvent(aId:String)
+	public function ThumbClickEvent(aId : String)
 	{
 		super(Controller.THUMB_CLICK_EVENT);
 		

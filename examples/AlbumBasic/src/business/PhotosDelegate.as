@@ -41,9 +41,9 @@ class business.PhotosDelegate
 			} else {
 				__command.fault(e.error);
 			}
-		} catch(error:Error)
+		} catch(error : Error)
 		{
-			trace("list_complete failed: "+error.message)
+			trace("list_complete failed: "+error.message);
 		} finally
 		{
 			__service.removeEventListener(PicasaResultEvent.PHOTOS_GET_LIST, list_complete);

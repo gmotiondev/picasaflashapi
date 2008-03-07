@@ -9,13 +9,13 @@ import control.photo.PhotoChangedEvent;
 
 class view.photo.Photo extends MovieClipHelper
 {
-	private var id:String;
+	private var id : String;
 
-	public function Photo(aID:String, aContainer:MovieClip, aHide:Boolean)
+	public function Photo(aId : String, aC : MovieClip, aHide : Boolean)
 	{
-		super(aID, aContainer);
+		super(aId, aC);
 		
-		id = aID;
+		id = aId;
 	
 		setVisible(!aHide);
 		move(0, 21);
@@ -24,17 +24,17 @@ class view.photo.Photo extends MovieClipHelper
 	// listen to the model
 	public function photo_changed_event(evt : PhotoChangedEvent) : Void
 	{
-		var t:TweenMS = null;
+		var t : TweenMS = null;
 		
 		if(evt.id == id)
 		{	
-			t = new TweenMS(view, '_alpha', 100, 250, 0);	
+			t = new TweenMS(view, "_alpha", 100, 250, 0);	
 			show();
 		} else
 		{
 			if(isVisible())
 			{
-				t = new TweenMS(view, '_alpha', 0, 250, 100);
+				t = new TweenMS(view, "_alpha", 0, 250, 100);
 				t.addEventListener(TweenMS.onMotionFinishedEVENT, this, hide);
 			}
 		}

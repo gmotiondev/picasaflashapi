@@ -34,7 +34,7 @@ class view.photo.PhotosHolder extends MovieClipHelper implements ILibListener
 
 	public function addChild(aId:String, aHide:Boolean) : Photo
 	{
-		var tHolder:MovieClip = view.createEmptyMovieClip("p_"+aId, view.getNextHighestDepth());
+		var tHolder : MovieClip = view.createEmptyMovieClip("p_"+aId, view.getNextHighestDepth());
 		
 		return new Photo(aId, tHolder, aHide);
 	}

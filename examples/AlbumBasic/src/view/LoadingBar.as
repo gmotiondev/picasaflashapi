@@ -16,6 +16,8 @@ class view.LoadingBar extends MovieClipHelper
 	public function LoadingBar(name : String, mc : MovieClip)
 	{
 		super(name, mc);
+		
+		initialize();
 	}
 	
 	private function initialize() : Void

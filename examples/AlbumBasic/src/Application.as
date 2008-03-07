@@ -1,4 +1,6 @@
-﻿import com.bourre.visual.MovieClipHelper;
+﻿import com.bourre.utils.SosTracer;
+import com.bourre.log.Logger;
+import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 
 import model.*;
@@ -32,6 +34,7 @@ class Application extends MovieClipHelper
 		Stage.addListener(this);
 		Key.addListener(this);
 		
+		Logger.getInstance().addLogListener(SosTracer.getInstance());
 		Controller.getInstance().initialize();
 
 		var model : ModelApplication = new ModelApplication();
@@ -44,7 +47,7 @@ class Application extends MovieClipHelper
 		model.addListener(p_view);
 		model.addListener(l_view);
 
-		model.initialize(mc.userid, mc.albumid);	
+		model.initialize(mc.userid, mc.albumid);
 	}
 	
 	public function onResize() : Void

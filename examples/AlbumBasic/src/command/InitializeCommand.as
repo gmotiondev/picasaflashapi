@@ -25,15 +25,15 @@ class command.InitializeCommand implements Command
 		var tPhotosHolder : PhotosHolder = PhotosHolder(MovieClipHelper.getMovieClipHelper(ViewList.PHOTOS_HOLDER));
 		var tThumbsHolder : ThumbsHolder = ThumbsHolder(MovieClipHelper.getMovieClipHelper(ViewList.THUMBS_HOLDER));
 
-		var tPLibStack:LibStack = new LibStack();
+		var tPLibStack : LibStack = new LibStack();
 			tPLibStack.addListener(tPhotosHolder);
 			
-		var tTLibStack:LibStack = new LibStack();
+		var tTLibStack : LibStack = new LibStack();
 			tTLibStack.addListener(tThumbsHolder);
 
-		for(var a:Number = 0; a < model.photos.length; a++)
+		for(var a : Number = 0; a < model.photos.length; a++)
 		{
-			var tItem:sk.prasa.webapis.picasa.Photo = model.photos[a];
+			var tItem : sk.prasa.webapis.picasa.Photo = model.photos[a];
 			var tPhoto : Photo = tPhotosHolder.addChild(tItem.gphoto.id, (a != 0));
 			var tThumb : Thumb = tThumbsHolder.addChild(tItem.gphoto.id, tItem.summary);
 		

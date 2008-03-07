@@ -80,8 +80,7 @@ class view.thumb.Thumb extends MovieClipHelper
 		initialize();
 	}
 
-	// listen to the model
-	public function photo_changed_event(evt : PhotoChangedEvent):Void
+	public function photo_changed_event(evt : PhotoChangedEvent) : Void
 	{	
 		highlight(evt.id == id);
 	}
