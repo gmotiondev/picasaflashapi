@@ -1,6 +1,4 @@
-﻿import System.security;
-
-import sk.prasa.webapis.picasa.UrlParams;
+﻿import sk.prasa.webapis.picasa.UrlParams;
 import sk.prasa.webapis.generic.IPicasaService;
 import sk.prasa.webapis.generic.PicasaServiceBase;
 import sk.prasa.webapis.picasa.core.*;

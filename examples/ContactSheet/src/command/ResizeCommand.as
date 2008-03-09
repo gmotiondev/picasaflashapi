@@ -7,9 +7,10 @@ import control.*;
 /**
  * @author Michal Gron
  */
+
 class command.ResizeCommand implements Command
 {	
-	public function execute(e:ResizeEvent):Void
+	public function execute(evt : ResizeEvent) : Void
 	{
 		ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION)).onResize();
 	}

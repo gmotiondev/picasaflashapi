@@ -1,8 +1,9 @@
-﻿/**
+﻿import com.bourre.events.BasicEvent;
+import control.Controller;
+
+/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
-import com.bourre.events.BasicEvent;
-import control.Controller;
 
 class control.InitializeEvent extends BasicEvent
 {

@@ -1,53 +1,21 @@
-﻿/**
+﻿import sk.prasa.mvc.vo.PhotosVO;
+
+/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
-import com.bourre.data.collections.IndexedArray;
 
-class vo.Photos extends IndexedArray
+class vo.Photos extends PhotosVO
 {
-	private var __current:Number;
+	private static var __instance : Photos;
 	
-	// 
-	public function Photos()
+	private function Photos()
 	{
 	}
 	
-	// 
-	public function getNext():String
+	public static function getInstance() : Photos
 	{
-		if(++__current >= this.length || __current == null) __current = 0;
-		return this[__current].gphoto.id;
-	}
-	
-	// 
-	public function getPrevious():String
-	{
-		if(--__current < 0) __current = this.length - 1;
-		return this[__current].gphoto.id;
-	}
-	
-	// 
-	public function getCurrentTitle():String
-	{
-		return this[__current].summary;
-	}
-	
-	// 
-	public function getClicked(aId:String):String
-	{
-		__current = getIndexById(aId);
+		if(!__instance) __instance = new Photos();
 		
-		return aId;
-	}
-	
-	// 
-	private function getIndexById(aId:String):Number
-	{
-		for(var a:Number = 0; a < this.length; a++)
-		{
-			if(this[a].gphoto.id == aId) return getIndex(this[a]);
-		}
-		
-		return 0;
+		return __instance;
 	}
 }

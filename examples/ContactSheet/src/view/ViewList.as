@@ -4,9 +4,11 @@
 
 class view.ViewList
 {
-	public static var APPLICATION:String = "application";
-	public static var PHOTO_HOLDER:String= "photo_holder";
-	public static var THUMB_HOLDER:String= "thumb_holder";
-	public static var NAVIGATION:String  = "navigation";
-	public static var LOADING_BAR:String = "loading_bar";
+	public static var APPLICATION_VIEW : String = "application";
+	
+	public static var PHOTOS_VIEW : String= "photos_view";
+	public static var THUMBS_VIEW : String= "thumb_view";
+	
+	public static var NAVIGATION_VIEW : String = "navigation";
+	public static var LOADING_BAR_VIEW : String = "loading_bar";
 }
