@@ -29,7 +29,7 @@ class business.PhotosDelegate
 	public function list(aUserid : String, aAlbumid : String) : Void
 	{
 		var p : UrlParams = new UrlParams();
-			p.thumbsize = 64;
+			p.thumbsize = 48;
 			p.imgmax = 512;
 		
 		__s.addEventListener(PicasaService.PROGRESS, list_progress); 

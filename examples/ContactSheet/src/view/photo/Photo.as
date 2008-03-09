@@ -4,8 +4,6 @@ import com.bourre.visual.*;
 import com.bourre.data.libs.*;
 import com.bourre.utils.Geom;
 
-import gs.TweenLite;
-
 import control.*;
 import control.photo.*;
 
@@ -58,7 +56,7 @@ class view.photo.Photo extends MovieClipHelper implements ILibListener
 	
 	private function centerize() : Void
 	{
-		TweenLite.to(view, 0.5, {_x : Math.round((Stage.width - view._width)/2), _y : Math.round((Stage.height - view._height)/2)});
+		move(Math.round((Stage.width - view._width)/2),Math.round((Stage.height - view._height)/2));
 	}
 	
 	private function protect() : Void
@@ -77,7 +75,7 @@ class view.photo.Photo extends MovieClipHelper implements ILibListener
 	{
 		var s : LibStack = new LibStack();
 		
-		s.enqueue(new GraphicLib(view, 5), id, url);
+		s.enqueue(new GraphicLib(view, 5), "photo_gl_" + id, url);
 		s.addListener(this);
 		s.execute();
 	}

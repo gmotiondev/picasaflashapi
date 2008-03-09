@@ -29,7 +29,7 @@ class view.thumb.Thumb extends MovieClipHelper
 	
 	private function setBackground(aColor : Number, aHighlight : Number, aMargin : Number) : Void
 	{
-		b = Geom.buildRectangle(view, 2, (0+(2*aMargin)), (0+(2*aMargin)), aColor, aColor);
+		b = Geom.buildRectangle(view, 2, 2 * aMargin, 2 * aMargin, aColor, aColor);
 		b._x = -aMargin;
 		b._y = -aMargin;
 		b["color"] = aColor;

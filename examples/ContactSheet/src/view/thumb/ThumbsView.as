@@ -27,9 +27,8 @@ class view.thumb.ThumbsView extends MovieClipHelper implements ILibListener
 	
 	public function addChild(aId : String) : Thumb
 	{
-		var tHolder : MovieClip = view.createEmptyMovieClip("thumb_holder_"+aId, view.getNextHighestDepth());
+		var tHolder : MovieClip = view.createEmptyMovieClip("thumb_holder_" + aId, view.getNextHighestDepth());
 		var tThumb : Thumb = new Thumb(aId, tHolder);
-		
 		grid.addChild(tThumb.view);
 		
 		return tThumb;
@@ -37,7 +36,7 @@ class view.thumb.ThumbsView extends MovieClipHelper implements ILibListener
 	
 	public function setTitle(s : String) : Void
 	{			
-		view.createTextField("tf_album_title", 2, 0, -20, 313, 16);
+		view.createTextField("tf_album_title", view.getNextHighestDepth(), 0, -20, 313, 16);
 		
 		var f : TextFormat = new TextFormat("kroeger", 8, 0xffffff);
 			f.indent = 5;

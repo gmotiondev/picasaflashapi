@@ -27,7 +27,8 @@ class command.InitializeCommand implements Command
 
 		var tPhotosView : PhotosView = PhotosView(MovieClipHelper.getMovieClipHelper(ViewList.PHOTOS_VIEW));
 		var tThumbsView : ThumbsView = ThumbsView(MovieClipHelper.getMovieClipHelper(ViewList.THUMBS_VIEW));
-		
+			tThumbsView.setTitle(model.photos[0].album.title+" ("+model.photos[0].album.gphoto.numphotos+")");
+			
 		var tStack : LibStack = new LibStack();
 		
 		for(var a : Number = 0; a < model.photos.length; a++)
@@ -43,7 +44,6 @@ class command.InitializeCommand implements Command
 			tStack.addListener(tThumbsView);
 		}
 		
-		tThumbsView.setTitle(model.photos[0].album.title+" ("+model.photos[0].album.gphoto.numphotos+")");
 		tStack.execute();
 	}
 }
