@@ -65,7 +65,7 @@ class be.netdust.visual.object.ScrollBar extends UIContainer
 		update();
     } 
 	
-    public function get scrollTarget() : Object  {
+    //public function get scrollTarget() : Object  {    public function get scrollTarget() : UICore  {
         return (__target);
     } 
 	

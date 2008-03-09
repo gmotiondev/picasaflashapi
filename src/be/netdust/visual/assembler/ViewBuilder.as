@@ -188,10 +188,7 @@ implements ILibListener
 		trace("be.netdust.visual.assembler.ViewBuilder.onXMLParsingDone("+e+")");
 		
 		_oViewReference = View( XMLToObjectEvent(e).getObject());
-		trace("!!!0: "+XMLToObjectEvent(e).getLib());
-		trace("!!!1: "+XMLToObjectEvent(e).getObject());
-		trace("!!!2: "+XMLToObjectEvent(e).getObject()["applicationViewID"]);
-		//_oViewLoader.removeListener( this );
+		_oViewLoader.removeListener( this );
 		
 		ViewParser( XMLToObjectEvent(e).getLib().getDeserializer() ).deserializeAttributes( this );
 	}
@@ -203,13 +200,11 @@ implements ILibListener
 	
 	private function onViewInit( e : IEvent ) : Void
 	{
-		trace("be.netdust.visual.assembler.ViewBuilder.onViewInit(e)");
 		_oEB.broadcastEvent( new ViewBuilderEvent( ViewBuilder.onViewInitEVENT, this ) );
 	}	
 
 	private function onViewBuilt( e : IEvent ) : Void
 	{
-		trace("be.netdust.visual.assembler.ViewBuilder.onViewBuilt(e)");
 		_oEB.broadcastEvent( new ViewBuilderEvent( ViewBuilder.onViewBuiltEVENT, this ) );
 	}
 
