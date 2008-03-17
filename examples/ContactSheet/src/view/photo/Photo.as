@@ -125,6 +125,9 @@ class view.photo.Photo extends MovieClipHelper implements ILibListener
 	
 	private function resize_event(evt : ResizeEvent) : Void
 	{
-		centerize();
+		if(isVisible()) {
+			protect();
+			centerize();
+		}
 	}
 }
