@@ -27,8 +27,8 @@ class sk.prasa.webapis.picasa.events.PicasaResultEvent extends ServiceEvent
 	
 	public static var COMMUNITY_GET_SEARCH : EventType = new EventType("communityGetSearch");
 	
-	public var success:Boolean;
-	public var error:PicasaError;
+	public var success : Boolean;
+	public var error : PicasaError;
 
 	public function PicasaResultEvent(type : EventType)
 	{

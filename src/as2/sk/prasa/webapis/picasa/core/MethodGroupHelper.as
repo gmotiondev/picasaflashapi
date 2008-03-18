@@ -60,12 +60,7 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 		} else
 		{
 			tResult.success = false;
-			
-			var e : PicasaError = new PicasaError();
-				e.code = picasaResponse.error.code;
-				e.message = picasaResponse.error.message;
-				
-				tResult.error = e;
+			tResult.error = new PicasaError(picasaResponse.error.message);
 		}
 		
 		return tResult;			
