@@ -1,10 +1,6 @@
-﻿import com.bourre.data.libs.XMLToObjectEvent;
-import com.bourre.commands.Delegate;
-
-import sk.prasa.webapis.generic.IPicasaService;
-import sk.prasa.webapis.picasa.UrlParams;
-import sk.prasa.webapis.picasa.events.PicasaResultEvent;
-import sk.prasa.webapis.picasa.core.MethodGroupHelper;
+﻿import sk.prasa.webapis.picasa.*;
+import sk.prasa.webapis.picasa.core.command.*;
+import sk.prasa.webapis.picasa.core.receiver.*;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -14,17 +10,9 @@ import sk.prasa.webapis.picasa.core.MethodGroupHelper;
 [Event(name="tagsGetUser", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
 [Event(name="tagsGetAlbum", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
 [Event(name="tagsGetPhoto", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
+
 class sk.prasa.webapis.picasa.core.Tags
 {
-	private var __service : IPicasaService;
-	private var __core : MethodGroupHelper;
-
-	public function Tags(service : IPicasaService)
-	{
-		__service = service;
-		__core = MethodGroupHelper.getInstance();
-	}
-
 	/**
 	 * List all tags for specified user
 	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=tag 
@@ -34,19 +22,17 @@ class sk.prasa.webapis.picasa.core.Tags
 	public function user(userid : String) : Void
 	{
 		var s : String = "user/" + userid;
-		var p : UrlParams = __service.mergeUrlParams();
-			p.kind = "tag";	// overwrite!
+		var p : UrlParams = PicasaService.getInstance().mergeUrlParams();
+			p.kind = "tag";	// override!
 			p.tag = null;
 			p.q = null;
 
-		__core.invokeMethod(__service, Delegate.create(this, user_complete), false, s, p);
-	}
-	
-	private function user_complete(evt : XMLToObjectEvent) : Void
-	{
-		var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.TAGS_GET_USER);
-
-		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseTagList);
+		var tReceiver : IReceiver = new TagsUserReceiver();
+		var tCommand : ICommand = new LoadFeedCommand(tReceiver, s, p);
+		var tInvoker : Invoker = new Invoker();
+		
+		tInvoker.setCommand(tCommand);
+		tInvoker.executeCommand();
 	}
 	
 	/**
@@ -59,21 +45,19 @@ class sk.prasa.webapis.picasa.core.Tags
 	public function album(userid : String, albumid : String) : Void
 	{
 		var s : String = "user/" + userid + "/albumid/" + albumid;
-		var p : UrlParams = __service.mergeUrlParams();
-			p.kind = "tag";	// overwrite!
+		var p : UrlParams = PicasaService.getInstance().mergeUrlParams();
+			p.kind = "tag";	// override!
 			p.tag = null;
 			p.q = null;
 
-		__core.invokeMethod(__service, Delegate.create(this, album_complete), false, s, p);
+		var tReceiver : IReceiver = new TagsAlbumReceiver();
+		var tCommand : ICommand = new LoadFeedCommand(tReceiver, s, p);
+		var tInvoker : Invoker = new Invoker();
+		
+		tInvoker.setCommand(tCommand);
+		tInvoker.executeCommand();
 	}
-
-	private function album_complete(evt : XMLToObjectEvent) : Void
-	{
-		var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.TAGS_GET_ALBUM);
-
-		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseTagList);
-	}
-
+	
 	/**
 	 * List tags for specified photo
 	 *  - with this, the gphoto.weight isn't set!, logical :)  
@@ -86,18 +70,16 @@ class sk.prasa.webapis.picasa.core.Tags
 	public function photo(userid : String, albumid : String, photoid : String) : Void
 	{
 		var s : String = "user/" + userid + "/albumid/" + albumid + "/photoid/" + photoid;
-		var p : UrlParams = __service.mergeUrlParams();
-			p.kind = "tag";	// overwrite!
+		var p : UrlParams = PicasaService.getInstance().mergeUrlParams();
+			p.kind = "tag";	// override!
 			p.tag = null;
 			p.q = null;
 
-		__core.invokeMethod(__service, Delegate.create(this, photo_complete), false, s, p);
-	}
-	
-	private function photo_complete(evt : XMLToObjectEvent) : Void
-	{
-		var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.TAGS_GET_PHOTO);
-
-		__core.processAndDispatch(__service, evt.getObject(), tEvt, __core.parseTagList);
+		var tReceiver : IReceiver = new TagsPhotoReceiver();
+		var tCommand : ICommand = new LoadFeedCommand(tReceiver, s, p);
+		var tInvoker : Invoker = new Invoker();
+		
+		tInvoker.setCommand(tCommand);
+		tInvoker.executeCommand();
 	}
 }

@@ -10,8 +10,8 @@ class sk.prasa.webapis.picasa.UrlParams
 	public var max_results : Number;
 	public var start_index : Number;
 	
-	// overwriten
-	public var kind : String;	// !!! default is photo !!!
+	// overriden
+	public var kind : String;	// default is photo!
 	public var tag : String;
 	public var q : String;
 	public var l : String;

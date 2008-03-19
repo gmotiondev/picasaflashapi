@@ -20,8 +20,3 @@ class sk.prasa.webapis.picasa.OpenSearch
 		return "[OpenSearch totalResults=" + totalResults + ", startIndex=" + startIndex + ", itemsPerPage=" + itemsPerPage + "]";
 	}
 }
-
-/*
-<openSearch:totalResults>24759</openSearch:totalResults>
-<openSearch:startIndex>1</openSearch:startIndex>
-<openSearch:itemsPerPage>192</openSearch:itemsPerPage>  */

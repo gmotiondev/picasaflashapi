@@ -1,30 +1,35 @@
 ﻿import sk.prasa.webapis.generic.IPicasaService;
-import sk.prasa.webapis.picasa.core.Auth;
 import sk.prasa.webapis.generic.DynamicXMLService;
 import sk.prasa.webapis.generic.IXMLService;
+
 import sk.prasa.webapis.picasa.*;
 import sk.prasa.webapis.picasa.events.*;
+import sk.prasa.webapis.picasa.core.Auth;
+import sk.prasa.webapis.picasa.core.command.ICommand;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
+ * this should be a command, 
+ * receiver would be e.g. Photos class
  */
 
 class sk.prasa.webapis.picasa.core.MethodGroupHelper
 {
-	private static var __instance : MethodGroupHelper;
+	//private static var __instance : MethodGroupHelper;
 
-	private function MethodGroupHelper()
+	/*private function MethodGroupHelper()
 	{
-	}
-	
+	}*/
+	/*
 	public static function getInstance() : MethodGroupHelper
 	{
 		if(!__instance) __instance = new MethodGroupHelper();
 		
 		return __instance;
 	}
-
-	public function invokeMethod(service : IPicasaService, callBack : Function, signed : Boolean, suffix : String, params : UrlParams) : Void
+*/
+	/*
+	public function execute(service : IPicasaService, callBack : Function, suffix : String, params : UrlParams) : Void
 	{
 		var s : String = (suffix != "" && suffix != "") ? suffix : "";		
 		var q : String = "" + s + "" + params.toString();
@@ -36,39 +41,40 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 			l.load(Auth.FEEDS_POINT + q);
 	}
 	
-	public function processAndDispatch(service : IPicasaService, response : Object, result : PicasaResultEvent, parseFunction : Function) : Void 
+	public function process(service : IPicasaService, response : Object, result : PicasaResultEvent, parseFunction : Function) : Void 
 	{
-		var tRsp : Object = processResponse(response, parseFunction);
+		var tRsp : Object = getResponse(response, parseFunction);
 
-		result.success = tRsp.success;
-		result.data = tRsp.data;
-		result.error = tRsp.error;
+		result.success = tRsp["success"];
+		result.data = tRsp["data"];
+		result.error = tRsp["error"];
 
 		service.broadcastEvent(result);
 	}
 	
-	public function processResponse(picasaResponse : Object, parseFunction : Function):Object
+	private function getResponse(resp : Object, func : Function) : Object
 	{
 		var tResult : Object = {};
-			tResult.data = {};
-			tResult.error = {};
+			tResult["data"] = {};
+			tResult["error"] = {};
 		
-		if (picasaResponse.error == null)
+		if (resp["error"] == null)
 		{
-			tResult.success = true;
-			tResult.data = (parseFunction == null) ? picasaResponse : parseFunction(picasaResponse);			
+			tResult["success"] = true;
+			tResult["data"] = (func == null) ? resp : func(resp);			
 		} else
 		{
-			tResult.success = false;
-			tResult.error = new PicasaError(picasaResponse.error.message);
+			tResult["success"] = false;
+			tResult["error"] = new PicasaError(resp["error"]["message"]);
 		}
 		
-		return tResult;			
+		return tResult;	
 	}
-	
 	
 	public function parsePhotoList(o : Object) : Array
 	{
+		trace("MethodGroupHelper.parsePhotoList(o)");
+		
 		var tRes : Array = [];
 		
 		if(o.entry instanceof Array)
@@ -183,4 +189,5 @@ class sk.prasa.webapis.picasa.core.MethodGroupHelper
 	{
 		return parsePhotoList(o);
 	}
+	*/
 }

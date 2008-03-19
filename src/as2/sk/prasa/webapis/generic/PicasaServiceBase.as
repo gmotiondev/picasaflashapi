@@ -25,7 +25,7 @@ class sk.prasa.webapis.generic.PicasaServiceBase extends ServiceBase
 	{
 		super( owner );
 	}
-	
+
 	public function getXMLService() : IXMLService
 	{
 		XMLToObjectDeserializer.ATTRIBUTE_TARGETED_PROPERTY_NAME = "attributes";
@@ -58,7 +58,7 @@ class sk.prasa.webapis.generic.PicasaServiceBase extends ServiceBase
 	public function onProgress(evt : IEvent) : Void
 	{
 		var tEvt : LibEvent = LibEvent(evt);
-		broadcastEvent(new NumberEvent(PROGRESS,tEvt.getPerCent()));
+		broadcastEvent(new NumberEvent(PROGRESS, tEvt.getPerCent()));
 	}
 	
 	public function onInit(evt : IEvent) : Void
