@@ -11,21 +11,21 @@ import sk.prasa.webapis.picasa.PicasaService;
 class plugins.picasa.model.PicasaModel extends AbstractModel
 {
 	public var service:PicasaService;
-	
+
 	public function PicasaModel(owner:IPlugin, name:String)
 	{
 		super(owner, name);
 	}
-	
+
 	public function initialize(aImgmax:Number, aThumbsize:Number, aMax_results:Number):Void
 	{
-		service = new PicasaService();
+		service = PicasaService.getInstance();
 		service.imgmax = aImgmax;
 		service.thumbsize = aThumbsize;
 		service.max_results = aMax_results;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 	}
-	
+
 	private function onServiceError(e:IEvent):Void
 	{
 		trace("error: "+e.getType());

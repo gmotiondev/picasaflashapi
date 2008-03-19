@@ -20,7 +20,7 @@ class view.photo.Photo extends MovieClipHelper implements ILibListener
 
 	public function Photo(aId : String, aC : MovieClip, aUrl : String)
 	{
-		super(aId, aC);
+		super("photo_" + aId, aC);
 		
 		id = aId;
 		url = aUrl;

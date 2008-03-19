@@ -34,7 +34,7 @@ class model.ModelApplication extends Model
 		
 		photos = Photos.getInstance();
 
-		service = new PicasaService();
+		service = PicasaService.getInstance();
 		service.imgmax = 320;
 		service.thumbsize = 64;
 		service.max_results = 24;

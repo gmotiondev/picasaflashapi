@@ -31,7 +31,7 @@ class view.thumb.ThumbsHolder extends MovieClipHelper implements ILibListener
 	
 	public function addChild(aID : String, aTitle : String) : Thumb
 	{
-		var tHolder : MovieClip = view.createEmptyMovieClip("p_"+aID, view.getNextHighestDepth());
+		var tHolder : MovieClip = view.createEmptyMovieClip("thumb_holder_" + aID, view.getNextHighestDepth());
 		var tThumb : Thumb = new Thumb(aID, tHolder, aTitle);
 		
 		grid.addChild(tHolder);

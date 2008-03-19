@@ -20,7 +20,7 @@ class view.thumb.Thumb extends MovieClipHelper
 	
 	public function Thumb(aId : String, aContainer : MovieClip, aTitle : String)
 	{
-		super(aId, aContainer);
+		super("thumb_" + aId, aContainer);
 		
 		id = aId;
 		title = aTitle;

@@ -39,7 +39,7 @@ class view.photo.PhotosHolder extends MovieClipHelper
 
 	public function addChild(aId : String, aUrl : String) : Photo
 	{
-		var tHolder : MovieClip = view.createEmptyMovieClip("p_"+aId, view.getNextHighestDepth());
+		var tHolder : MovieClip = view.createEmptyMovieClip("photo_holder_"+aId, view.getNextHighestDepth());
 			tHolder._y = 21;
 			
 		return new Photo(aId, tHolder, aUrl);

@@ -1,4 +1,4 @@
-﻿import com.bourre.utils.SosTracer;
+﻿import com.bourre.utils.LuminicTracer;
 import com.bourre.log.Logger;
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
@@ -34,7 +34,7 @@ class Application extends MovieClipHelper
 		Stage.addListener(this);
 		Key.addListener(this);
 		
-		Logger.getInstance().addLogListener(SosTracer.getInstance());
+		Logger.getInstance().addLogListener(LuminicTracer.getInstance());
 		Controller.getInstance().initialize();
 
 		var model : ModelApplication = new ModelApplication();
