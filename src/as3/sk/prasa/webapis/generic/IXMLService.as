@@ -1,6 +1,6 @@
 package sk.prasa.webapis.generic 
 {
-
+	import flash.net.URLRequest;	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
@@ -9,5 +9,6 @@ package sk.prasa.webapis.generic
 	{
 		function removeEventListener(type : String, listener : Function, useCapture : Boolean = false) : void;
 		function addEventListener(type : String, listener : Function, useCapture : Boolean = false, priority : int = 0, useWeakReference : Boolean = false) : void;
+		function load(request : URLRequest) : void;
 	}
 }

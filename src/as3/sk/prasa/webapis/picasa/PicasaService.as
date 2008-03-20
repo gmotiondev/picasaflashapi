@@ -15,6 +15,8 @@ package sk.prasa.webapis.picasa
 	
 	public class PicasaService extends PicasaServiceBase implements IPicasaService 
 	{
+		private static var __instance : PicasaService;
+		
 		// unused
 		public var api_key : String;
 		
@@ -36,16 +38,23 @@ package sk.prasa.webapis.picasa
 		private var __comments : Comments;
 		private var __community : Community;
 
-		public function PicasaService()
+		private function PicasaService()
 		{
-			Security.loadPolicyFile("http://photos.googleapis.com/data/crossdomain.xm");
+			Security.loadPolicyFile(Auth.POLICY_POINT);
 			
-			__auth = new Auth(this);
-			__photos = new Photos(this);
-			__albums = new Albums(this);
-			__tags = new Tags(this);
-			__comments = new Comments(this);
-			__community = new Community(this);
+			__auth = new Auth();
+			__photos = new Photos();
+			__albums = new Albums();
+			__tags = new Tags();
+			__comments = new Comments();
+			__community = new Community();
+		}
+		
+		public static function getInstance() : PicasaService
+		{
+			if(!__instance) __instance = new PicasaService();
+			
+			return __instance;
 		}
 		
 		/**
