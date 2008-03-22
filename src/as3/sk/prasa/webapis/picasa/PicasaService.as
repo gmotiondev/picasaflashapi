@@ -1,27 +1,23 @@
 package sk.prasa.webapis.picasa 
 {
-	import sk.prasa.webapis.generic.IPicasaService;	
+	import mx.rpc.http.HTTPService;
 	
-	import flash.system.Security;		
+	import flash.system.Security;
 		
 	import sk.prasa.webapis.generic.PicasaServiceBase;
-	import sk.prasa.webapis.generic.IXMLService;
-	
+	import sk.prasa.webapis.picasa.picasaservice_internal;
 	import sk.prasa.webapis.picasa.core.*;
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class PicasaService extends PicasaServiceBase implements IPicasaService 
+	public class PicasaService extends PicasaServiceBase 
 	{
 		private static var __instance : PicasaService;
 		
 		// unused
 		public var api_key : String;
-		
-		// namespace
-		public namespace picasaservice_internal = "http://www.prasa.sk/webapis/picasa/internal"; 
 		
 		// properties
 		public var access : String;
@@ -38,10 +34,10 @@ package sk.prasa.webapis.picasa
 		private var __comments : Comments;
 		private var __community : Community;
 
-		private function PicasaService()
+		public function PicasaService(pvt : PicasaServicePrivateClass)
 		{
 			Security.loadPolicyFile(Auth.POLICY_POINT);
-			
+
 			__auth = new Auth();
 			__photos = new Photos();
 			__albums = new Albums();
@@ -52,9 +48,12 @@ package sk.prasa.webapis.picasa
 		
 		public static function getInstance() : PicasaService
 		{
-			if(!__instance) __instance = new PicasaService();
+			if(PicasaService.__instance == null)
+			{
+				PicasaService.__instance = new PicasaService(new PicasaServicePrivateClass());
+			}
 			
-			return __instance;
+			return PicasaService.__instance;
 		}
 		
 		/**
@@ -104,10 +103,38 @@ package sk.prasa.webapis.picasa
 		{
 			return __community;
 		}
-
-		picasaservice_internal function getXMLService() : IXMLService
+		
+		/**
+		 * Merges request and service defined parameters
+		 * @param request UrlParams VO with url parameters
+		 */
+		public function mergeUrlParams(request : UrlParams = null) : UrlParams
 		{
-			return getXMLService();
+			// request params have priority before service params
+			var tRes : UrlParams = new UrlParams(
+				 access
+				,thumbsize
+				,imgmax
+				,max_results
+				,start_index);
+				
+			if(request != null && request.access != null) tRes.access = request.access;
+			if(request != null && !isNaN(request.thumbsize)) tRes.thumbsize = request.thumbsize;
+			if(request != null && !isNaN(request.imgmax)) tRes.imgmax = request.imgmax;
+			if(request != null && !isNaN(request.max_results)) tRes.max_results = request.max_results;
+			if(request != null && !isNaN(request.start_index)) tRes.start_index = request.start_index;
+			
+			return tRes;
 		}
+		
+		picasaservice_internal function get httpService() : HTTPService
+		{
+			return getHTTPService();
+		}		
 	}
+}
+
+class PicasaServicePrivateClass
+{
+	public function PicasaServicePrivateClass(){}
 }

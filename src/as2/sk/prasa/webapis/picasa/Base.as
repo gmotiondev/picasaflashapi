@@ -34,7 +34,7 @@ class sk.prasa.webapis.picasa.Base
 		author = new Author(o.author.name, o.author.email, o.author.uri);
 		updated = o.updated;
 		category = new Category(o.category.attributes.term, o.category.attributes.scheme);
-		generator = new Generator(o.generator);
+		generator = new Generator(o.generator.name, o.generator.version, o.generator.uri);
 		icon = o.icon;
 		logo = o.logo;
 	}

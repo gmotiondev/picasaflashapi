@@ -28,8 +28,12 @@ package sk.prasa.webapis.picasa.events
 		
 		public static const COMMUNITY_GET_SEARCH : String = "communityGetSearch";
 		
-		protected var __s : Boolean;
-		protected var __e : PicasaError;
+		public static const PROGRESS_EVENT : String = "progress";
+		public static const IO_ERROR_EVENT : String = "ioError";
+		public static const SECURITY_ERROR_EVENT : String = "securityError";
+		
+		private var __s : Boolean;
+		private var __e : PicasaError;
 
 		public function PicasaResultEvent(type : String, target : Object = null)
 		{

@@ -7,9 +7,9 @@ package sk.prasa.webapis.generic.events
 	 */
 	
 	public class ServiceEvent extends Event 
-	{
-		protected var __o : Object;
-		protected var __t : String;
+	{	
+		private var __o : Object;
+		private var __t : String;
 		
 		public function ServiceEvent(type : String, target : Object = null)
 		{

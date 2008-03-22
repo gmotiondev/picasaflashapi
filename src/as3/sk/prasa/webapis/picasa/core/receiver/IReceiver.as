@@ -1,13 +1,16 @@
 package sk.prasa.webapis.picasa.core.receiver 
 {
-	import flash.events.Event;	
+	import mx.rpc.events.ResultEvent;	
+	import mx.rpc.events.FaultEvent;	
+	import mx.rpc.IResponder;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public interface IReceiver 
+	public interface IReceiver
 	{
-		function complete(evt : Event) : void;
+		function result(evt : ResultEvent) : void;
+		function fault(evt : FaultEvent) : void;
 	}
 }
