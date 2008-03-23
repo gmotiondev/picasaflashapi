@@ -1,6 +1,7 @@
 package sk.prasa.webapis.picasa.core.receiver.community
-{	
-	import mx.rpc.events.ResultEvent;
+{
+	import flash.net.URLLoader;
+	import flash.events.Event;
 	
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
@@ -12,9 +13,10 @@ package sk.prasa.webapis.picasa.core.receiver.community
 	
 	public class CommunitySearchReceiver extends GetFeedReceiver implements IReceiver 
 	{
-		override public function result(evt : ResultEvent) : void
+		override public function result(evt : Event) : void
 		{
-			process(evt.result as XML, PicasaEvent.COMMUNITY_GET_SEARCH);
+			var loader : URLLoader = URLLoader(evt.target);
+			process(new XML(loader.data), PicasaEvent.COMMUNITY_GET_SEARCH);
 		}
 	}
 }

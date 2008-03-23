@@ -1,7 +1,8 @@
 package sk.prasa.webapis.picasa.core.receiver.tags
 {
-	import mx.rpc.events.ResultEvent;
-	
+	import flash.net.URLLoader;	
+	import flash.events.Event;	
+
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
 	import sk.prasa.webapis.picasa.events.PicasaEvent;
@@ -12,9 +13,10 @@ package sk.prasa.webapis.picasa.core.receiver.tags
 	
 	public class TagsAlbumReceiver extends GetFeedReceiver implements IReceiver 
 	{
-		override public function result(evt : ResultEvent) : void
+		override public function result(evt : Event) : void
 		{
-			process(evt.result as XML, PicasaEvent.TAGS_GET_ALBUM);	
+			var loader : URLLoader = URLLoader(evt.target);
+			process(new XML(loader.data), PicasaEvent.TAGS_GET_ALBUM);	
 		}
 	}
 }

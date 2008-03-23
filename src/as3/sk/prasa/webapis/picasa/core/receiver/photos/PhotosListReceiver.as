@@ -1,6 +1,7 @@
 package sk.prasa.webapis.picasa.core.receiver.photos
 {
-	import mx.rpc.events.ResultEvent;
+	import flash.net.URLLoader;
+	import flash.events.Event;
 	
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
@@ -12,9 +13,10 @@ package sk.prasa.webapis.picasa.core.receiver.photos
 	
 	public class PhotosListReceiver extends GetFeedReceiver implements IReceiver 
 	{
-		override public function result(evt : ResultEvent) : void
+		override public function result(evt : Event) : void
 		{
-			process(evt.result as XML, PicasaEvent.PHOTOS_GET_LIST);
+			var loader : URLLoader = URLLoader(evt.target);
+			process(new XML(loader.data), PicasaEvent.PHOTOS_GET_LIST);
 		}
 	}
 }

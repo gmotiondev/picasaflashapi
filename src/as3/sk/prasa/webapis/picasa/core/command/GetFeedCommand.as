@@ -1,10 +1,10 @@
 package sk.prasa.webapis.picasa.core.command 
 {
-	import mx.rpc.IResponder;
-	import mx.rpc.Responder;	
-	import mx.rpc.AsyncToken;	
-	import mx.rpc.http.HTTPService;	
-			
+	import flash.events.IOErrorEvent;	
+	import flash.net.URLRequest;	
+	import flash.events.Event;	
+	import flash.net.URLLoader;			
+
 	import sk.prasa.webapis.picasa.core.Auth;	
 	import sk.prasa.webapis.picasa.PicasaService;	
 	import sk.prasa.webapis.picasa.picasaservice_internal;
@@ -36,13 +36,18 @@ package sk.prasa.webapis.picasa.core.command
 			
 			trace("loading: " + Auth.FEEDS_POINT + q);
 			
-			var tSrv : HTTPService = service.picasaservice_internal::httpService;
-				tSrv.url = Auth.FEEDS_POINT + q;
-				tSrv.resultFormat = HTTPService.RESULT_FORMAT_E4X;
+			var tReq : URLRequest = new URLRequest(Auth.FEEDS_POINT + q);
+			var tSrv : URLLoader = service.picasaservice_internal::service;
+				tSrv.addEventListener(Event.COMPLETE, receiver.result);
+				tSrv.addEventListener(IOErrorEvent.IO_ERROR, receiver.fault);
 			
-			var tResp : Responder = new Responder(receiver.result, receiver.fault);
-			var tToken : AsyncToken = tSrv.send();
-				tToken.addResponder(tResp);
+			try
+			{
+				tSrv.load(tReq);
+			} catch(e : Error)
+			{
+				throw new Error(e);
+			}
 		}		
 	}
 }

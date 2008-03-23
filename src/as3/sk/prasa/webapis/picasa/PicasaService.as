@@ -1,7 +1,6 @@
 package sk.prasa.webapis.picasa 
 {
-	import mx.rpc.http.HTTPService;
-	
+	import flash.net.URLLoader;	
 	import flash.system.Security;
 		
 	import sk.prasa.webapis.generic.PicasaServiceBase;
@@ -127,10 +126,10 @@ package sk.prasa.webapis.picasa
 			return tRes;
 		}
 		
-		picasaservice_internal function get httpService() : HTTPService
+		picasaservice_internal function get service() : URLLoader
 		{
-			return getHTTPService();
-		}		
+			return getService();
+		}
 	}
 }
 

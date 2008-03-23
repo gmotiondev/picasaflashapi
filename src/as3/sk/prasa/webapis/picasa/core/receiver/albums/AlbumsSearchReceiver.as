@@ -1,6 +1,7 @@
 package sk.prasa.webapis.picasa.core.receiver.albums
-{	
-	import mx.rpc.events.ResultEvent;
+{
+	import flash.net.URLLoader;
+	import flash.events.Event;
 	
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
@@ -12,8 +13,9 @@ package sk.prasa.webapis.picasa.core.receiver.albums
 	
 	public class AlbumsSearchReceiver extends GetFeedReceiver implements IReceiver 
 	{
-		override public function result(evt : ResultEvent) : void
-		{			process(evt.result as XML, PicasaEvent.ALBUMS_GET_SEARCH);
+		override public function result(evt : Event) : void
+		{
+			var loader : URLLoader = URLLoader(evt.target); 			process(new XML(loader.data), PicasaEvent.ALBUMS_GET_SEARCH);
 		}
 	}
 }

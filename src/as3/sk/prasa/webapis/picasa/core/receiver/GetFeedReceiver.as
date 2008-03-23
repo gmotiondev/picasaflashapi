@@ -1,5 +1,6 @@
 package sk.prasa.webapis.picasa.core.receiver 
 {
+	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	
 	import sk.prasa.webapis.picasa.Tag;
@@ -7,10 +8,6 @@ package sk.prasa.webapis.picasa.core.receiver
 	import sk.prasa.webapis.picasa.Photo;
 	import sk.prasa.webapis.picasa.Album;
 	import sk.prasa.webapis.picasa.KindType;
-	
-	import mx.collections.ArrayCollection;
-	import mx.rpc.events.FaultEvent;
-	import mx.rpc.events.ResultEvent;
 
 	import sk.prasa.webapis.picasa.PicasaError;
 	import sk.prasa.webapis.picasa.events.PicasaEvent;
@@ -46,13 +43,13 @@ package sk.prasa.webapis.picasa.core.receiver
 			}
 		}
 		
-		private function parse(o : XML) : ArrayCollection
+		private function parse(o : XML) : Array
 		{
 			use namespace atom;
 			
 			try
 			{
-				var tRes : ArrayCollection = new ArrayCollection();
+				var tRes : Array = new Array();
 				var tParent : XML = new XML(o);
 					delete tParent.entry;
 				
@@ -64,10 +61,10 @@ package sk.prasa.webapis.picasa.core.receiver
 					
 					switch(tKind)
 					{
-						case KindType.ALBUM	: tRes.addItem(new Album(tItem, tParent)); break;
-						case KindType.PHOTO	: tRes.addItem(new Photo(tItem, tParent)); break;
-						case KindType.COMMENT : tRes.addItem(new Comment(tItem, tParent)); break;
-						case KindType.TAG : tRes.addItem(new Tag(tItem, tParent)); break;
+						case KindType.ALBUM	: tRes.push(new Album(tItem, tParent)); break;
+						case KindType.PHOTO	: tRes.push(new Photo(tItem, tParent)); break;
+						case KindType.COMMENT : tRes.push(new Comment(tItem, tParent)); break;
+						case KindType.TAG : tRes.push(new Tag(tItem, tParent)); break;
 						default: break;
 					}
 				}
@@ -81,16 +78,16 @@ package sk.prasa.webapis.picasa.core.receiver
 			return null;
 		}
 		
-		public function result(evt : ResultEvent) : void
+		public function result(evt : Event) : void
 		{
 			throw new Error(PicasaError.ABSTRACT_METHOD_ERROR);
 		}
 
-		public function fault(evt : FaultEvent) : void
+		public function fault(evt : IOErrorEvent) : void
 		{
 			var tEvt : PicasaEvent = new PicasaEvent(IOErrorEvent.IO_ERROR);
 				tEvt.success = false;
-				tEvt.error = new PicasaError(evt.fault.faultString);
+				tEvt.error = new PicasaError(evt.text);
 			
 			service.dispatchEvent(tEvt);
 		}
