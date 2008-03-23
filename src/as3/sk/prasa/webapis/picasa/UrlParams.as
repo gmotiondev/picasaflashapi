@@ -17,7 +17,7 @@ package sk.prasa.webapis.picasa
 		public var tag : String;
 		public var q : String;
 		public var l : String;
-				
+		
 		public function UrlParams(	aAccess : String,
 									aThumbSize : Number,
 									aImgmax : Number,

@@ -1,17 +1,19 @@
 package sk.prasa.webapis.picasa.core.receiver 
 {
-	import sk.prasa.webapis.picasa.Tag;	
-	import sk.prasa.webapis.picasa.Comment;	
-	import sk.prasa.webapis.picasa.Photo;	
-	import sk.prasa.webapis.picasa.Album;	
-	import sk.prasa.webapis.picasa.KindType;	
+	import flash.events.IOErrorEvent;
 	
-	import mx.collections.ArrayCollection;	
+	import sk.prasa.webapis.picasa.Tag;
+	import sk.prasa.webapis.picasa.Comment;
+	import sk.prasa.webapis.picasa.Photo;
+	import sk.prasa.webapis.picasa.Album;
+	import sk.prasa.webapis.picasa.KindType;
+	
+	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 
 	import sk.prasa.webapis.picasa.PicasaError;
-	import sk.prasa.webapis.picasa.events.PicasaResultEvent;
+	import sk.prasa.webapis.picasa.events.PicasaEvent;
 	import sk.prasa.webapis.picasa.PicasaService;
 	import sk.prasa.webapis.generic.events.ServiceEvent;
 	
@@ -33,9 +35,9 @@ package sk.prasa.webapis.picasa.core.receiver
 		{
 			try
 			{
-				var tEvt : PicasaResultEvent = new PicasaResultEvent(eventType);
+				var tEvt : PicasaEvent = new PicasaEvent(eventType);
 					tEvt.success = true;
-					tEvt.target = parse(response);
+					tEvt.data = parse(response);
 					
 					service.dispatchEvent(tEvt);
 			} catch(e : Error)
@@ -52,14 +54,14 @@ package sk.prasa.webapis.picasa.core.receiver
 			{
 				var tRes : ArrayCollection = new ArrayCollection();
 				var tParent : XML = new XML(o);
-					delete tParent.entry; 
+					delete tParent.entry;
 				
 				//var tRg : RegExp = /#([\w\-]+)/;
 				
 				for each(var tItem : XML in o.entry)
 				{
 					var tKind : String = (tItem.category.@term).split("#")[1];
-					trace("parsing "+tKind);
+					
 					switch(tKind)
 					{
 						case KindType.ALBUM	: tRes.addItem(new Album(tItem, tParent)); break;
@@ -69,13 +71,13 @@ package sk.prasa.webapis.picasa.core.receiver
 						default: break;
 					}
 				}
-				
+
 				return tRes;
 			} catch(e : Error)
 			{
 				throw new Error(e);
 			}
-			
+
 			return null;
 		}
 		
@@ -86,7 +88,7 @@ package sk.prasa.webapis.picasa.core.receiver
 
 		public function fault(evt : FaultEvent) : void
 		{
-			var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.IO_ERROR_EVENT);
+			var tEvt : PicasaEvent = new PicasaEvent(IOErrorEvent.IO_ERROR);
 				tEvt.success = false;
 				tEvt.error = new PicasaError(evt.fault.faultString);
 			

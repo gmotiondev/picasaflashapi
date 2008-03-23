@@ -4,7 +4,7 @@ package sk.prasa.webapis.picasa.core.receiver.albums
 	
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.events.PicasaResultEvent;
+	import sk.prasa.webapis.picasa.events.PicasaEvent;
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -13,7 +13,7 @@ package sk.prasa.webapis.picasa.core.receiver.albums
 	public class AlbumsSearchReceiver extends GetFeedReceiver implements IReceiver 
 	{
 		override public function result(evt : ResultEvent) : void
-		{			process(evt.result as XML, PicasaResultEvent.ALBUMS_GET_SEARCH);
+		{			process(evt.result as XML, PicasaEvent.ALBUMS_GET_SEARCH);
 		}
 	}
 }

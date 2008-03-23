@@ -11,12 +11,12 @@ package sk.prasa.webapis.generic.events
 		private var __o : Object;
 		private var __t : String;
 		
-		public function ServiceEvent(type : String, target : Object = null)
+		public function ServiceEvent(type : String, data : Object = null)
 		{
 			super(type);
 			
 			__t = type;
-			__o = target;
+			__o = data;
 		}
 
 		public override function get type() : String
@@ -39,22 +39,22 @@ package sk.prasa.webapis.generic.events
 			return __t;
 		}
 
-		public override function get target() : Object
+		public function get data() : Object
 		{ 
 			return __o; 
 		}
 
-		public function set target( o : Object ) : void 
+		public function set data( o : Object ) : void 
 		{ 
 			__o = o; 
 		}
 		
-		public function setTarget( o : Object ) : void 
+		public function setData( o : Object ) : void 
 		{ 
 			__o = o; 
 		}
 
-		public function getTarget() : Object
+		public function getData() : Object
 		{ 
 			return __o; 
 		}

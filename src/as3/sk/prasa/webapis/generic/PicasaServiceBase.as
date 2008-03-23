@@ -38,11 +38,7 @@ package sk.prasa.webapis.generic
 	[Event(name="securityError", type="flash.events.SecurityErrorEvent")]
 	
 	public class PicasaServiceBase extends ServiceBase 
-	{
-		public static const PROGRESS_EVENT : String = "progress";
-		public static const IO_ERROR_EVENT : String = "ioError";
-		public static const SECURITY_ERROR_EVENT : String = "securityError";
-		
+	{	
 		public function PicasaServiceBase(target : IEventDispatcher = null)
 		{
 			super(target);
@@ -51,9 +47,9 @@ package sk.prasa.webapis.generic
 		public function getHTTPService() : HTTPService
 		{
 			var tService : HTTPService = new DynamicHTTPService();
-				tService.addEventListener(PROGRESS_EVENT, onProgress);
-				tService.addEventListener(IO_ERROR_EVENT, onIOError);
-				tService.addEventListener(SECURITY_ERROR_EVENT, onSecurityError);
+				tService.addEventListener(ProgressEvent.PROGRESS, onProgress);
+				tService.addEventListener(IOErrorEvent.IO_ERROR, onIOError);
+				tService.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecurityError);
 				
 			return tService;
 		}
@@ -70,6 +66,7 @@ package sk.prasa.webapis.generic
 		
 		private function onProgress(evt : ProgressEvent) : void
 		{
+			trace("dispatching onProgress");
 			dispatchEvent(evt);
 		}
 	}

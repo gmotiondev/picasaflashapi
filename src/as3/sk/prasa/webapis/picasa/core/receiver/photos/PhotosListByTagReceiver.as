@@ -4,7 +4,7 @@ package sk.prasa.webapis.picasa.core.receiver.photos
 	
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.events.PicasaResultEvent;
+	import sk.prasa.webapis.picasa.events.PicasaEvent;
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -14,7 +14,7 @@ package sk.prasa.webapis.picasa.core.receiver.photos
 	{
 		override public function result(evt : ResultEvent) : void
 		{
-			process(evt.result as XML, PicasaResultEvent.PHOTOS_GET_LIST_BY_TAG);
+			process(evt.result as XML, PicasaEvent.PHOTOS_GET_LIST_BY_TAG);
 		}
 	}
 }

@@ -1,10 +1,10 @@
 package sk.prasa.webapis.picasa.core.receiver.comments
 {
-	import mx.rpc.events.ResultEvent;	
+	import mx.rpc.events.ResultEvent;
 	
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.events.PicasaResultEvent;
+	import sk.prasa.webapis.picasa.events.PicasaEvent;
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -14,7 +14,7 @@ package sk.prasa.webapis.picasa.core.receiver.comments
 	{
 		override public function result(evt : ResultEvent) : void
 		{
-			process(evt.result as XML, PicasaResultEvent.COMMENTS_GET_USER);
+			process(evt.result as XML, PicasaEvent.COMMENTS_GET_USER);
 		}
 	}
 }

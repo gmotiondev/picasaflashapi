@@ -7,7 +7,7 @@ package sk.prasa.webapis.picasa.events
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class PicasaResultEvent extends ServiceEvent 
+	public class PicasaEvent extends ServiceEvent 
 	{
 		//public static var AUTH_GET_TOKEN : String = "authGetToken";
 	
@@ -28,16 +28,12 @@ package sk.prasa.webapis.picasa.events
 		
 		public static const COMMUNITY_GET_SEARCH : String = "communityGetSearch";
 		
-		public static const PROGRESS_EVENT : String = "progress";
-		public static const IO_ERROR_EVENT : String = "ioError";
-		public static const SECURITY_ERROR_EVENT : String = "securityError";
-		
 		private var __s : Boolean;
 		private var __e : PicasaError;
 
-		public function PicasaResultEvent(type : String, target : Object = null)
+		public function PicasaEvent(type : String, data : Object = null)
 		{
-			super(type, target);
+			super(type, data);
 		}
 		
 		public function get success() : Boolean
