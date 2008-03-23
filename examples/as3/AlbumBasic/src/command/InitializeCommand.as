@@ -1,5 +1,10 @@
 package command 
 {
+	import flash.display.Sprite;	
+	import flash.display.DisplayObject;	
+	
+	import view.thumb.Thumb;	
+	
 	import flash.net.URLRequest;	
 	
 	import sk.prasa.webapis.picasa.Photo;	
@@ -47,7 +52,10 @@ package command
 			 
 			for each(var item : Photo in __model.photos)
 			{
-				tQueue.add(new GraphicLoader(tThumbsHolder.view as DisplayObjectContainer), item.gphoto.id, new URLRequest(item.media.thumbnail[0].url));
+				var tThumb : Sprite = tThumbsHolder.addChild(new Thumb()) as Sprite;
+				var tGL : GraphicLoader = new GraphicLoader(tThumb);
+					tGL.addListener(tThumbsHolder);
+				//				tQueue.add(new GraphicLoader(tThumbsHolder.view as DisplayObjectContainer), item.gphoto.id, new URLRequest(item.media.thumbnail[0].url));				tQueue.add(tGL, item.gphoto.id, new URLRequest(item.media.thumbnail[0].url));
 			}
 			
 			tQueue.run();
