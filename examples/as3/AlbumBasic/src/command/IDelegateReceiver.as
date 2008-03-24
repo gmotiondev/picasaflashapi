@@ -1,7 +1,6 @@
 package command 
 {
-	import sk.prasa.webapis.picasa.PicasaError;	
-	
+	import sk.prasa.webapis.picasa.PicasaError;		
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

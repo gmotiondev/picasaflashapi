@@ -1,9 +1,8 @@
 package control.photo 
 {
-	import com.bourre.events.BasicEvent;	
+	import com.bourre.events.BasicEvent;
 	
-	import control.Controller;	
-	
+	import control.Controller;		
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
@@ -12,13 +11,15 @@ package control.photo
 	{
 		public var id : String;
 		public var title : String;
+		public var url : String;
 		
-		public function PhotoChangedEvent(aId : String, aTitle : String)
+		public function PhotoChangedEvent(aId : String, aTitle : String, aUrl : String)
 		{
 			super(Controller.PHOTO_CHANGED_EVENT);
 			
 			id = aId;
 			title = aTitle;
+			url = aUrl;
 		}
 	}
 }

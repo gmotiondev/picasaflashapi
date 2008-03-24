@@ -2,8 +2,7 @@ package control.photo
 {
 	import com.bourre.events.BasicEvent;
 	
-	import control.Controller;
-	
+	import control.Controller;	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

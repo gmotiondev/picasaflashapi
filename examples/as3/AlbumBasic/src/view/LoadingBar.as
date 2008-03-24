@@ -1,14 +1,14 @@
 package view 
 {
-	import control.ProgressEvent;	
-	import control.ResizeEvent;	
-	
-	import flash.display.Sprite;
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
+	import flash.display.Sprite;
 	
 	import com.bourre.plugin.Plugin;
 	import com.bourre.view.AbstractView;
 	
+	import control.ProgressEvent;
+	import control.ResizeEvent;	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
@@ -16,27 +16,27 @@ package view
 	public class LoadingBar extends AbstractView 
 	{
 		private var l : Sprite;
-		private var c : Number = 0xD40073;
 
-		public function LoadingBar(owner : Plugin, name : String, mc : DisplayObjectContainer)
+		public function LoadingBar(owner : Plugin, name : String, mc : DisplayObject)
 		{
 			super( owner, name, mc );
-			
+
 			initialize();
 		}
 		
 		private function initialize() : void
 		{
 			l = new Sprite();
-			l.graphics.beginFill(c);
-			l.graphics.drawRect(0, 0, (view as DisplayObjectContainer).stage.stageWidth, 2);
+			l.graphics.beginFill(0xffffff);
+			l.graphics.drawRect(0, 0, 10, 2);
 			l.graphics.endFill();
 			
 			(view as DisplayObjectContainer).addChild(l);
 		}
+		
 		public function onProgress(evt : ProgressEvent) : void
 		{
-			setVisible(evt.percent < 100); 
+			l.visible = (evt.percent < 100);
 			l.scaleX = 100 - evt.percent;
 		}
 			

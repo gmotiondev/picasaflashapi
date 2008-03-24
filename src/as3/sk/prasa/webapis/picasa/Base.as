@@ -4,47 +4,39 @@ package sk.prasa.webapis.picasa
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	public class Base 
-	{
-		public var title : String;
-		public var id : String;
-		public var links : Array;
-		public var subtitle : String;
-		public var rights : String;
-		public var author : Author;
-		public var updated : String;
-		public var category : Category;
-		public var generator : Generator;
-		public var icon : String;
-		public var logo : String;
+	{	
+		private var parent : Base;
 		
-		public function Base(o : Object)
+		public function Base(item : XML)
 		{
-			links = [];
-			
-			title = o.title;
-			id = o.id;
-			links = getLinks(o.link);
-			subtitle = o.subtitle;
-			rights = o.rights;
-			
-			author = new Author(o.author.name, o.author.email, o.author.uri);
-			updated = o.updated;
-			category = new Category(o.category.attributes.term, o.category.attributes.scheme);
-			generator = new Generator(o.generator.name, o.generator.version, o.generator.uri);
-			icon = o.icon;
-			logo = o.logo;
+			parent = getParentItem(item);
 		}
 		
-		private function getLinks(o : Object) : Array
+		public function getParentItem(item : XML) : Base
 		{
-			var tLinks:Array = [];
-			
-			for(var a:Number = 0; a < o.length; a++)
+			switch(getParentKindType(item))
 			{
-				tLinks.push(new Link(o[a].attributes.href, o[a].attributes.type, o[a].attributes.rel));
+				case KindType.ALBUM : 	return new Album(item);
+				case KindType.PHOTO : 	return new Photo(item);
+				case KindType.COMMENT : return new Comment(item);
+				case KindType.TAG : 	return new Tag(item);
+			}
+		}
+		
+		public function getParentKindType(item : XML) : String
+		{
+			return KindType.getKindType((item.category.@term).split("#")[1]);
+		}
+
+		private function getLinks(item : XML) : Array
+		{
+			var tRes : Array = [];
+			
+			for each(var link : XML in item.link) {
+				tRes.push(new Link(link.@href, link.@type, link.@rel));
 			}
 			
-			return tLinks;
+			return tRes;
 		}
 		
 		public function toString() : String

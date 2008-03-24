@@ -1,27 +1,24 @@
 package command.photo 
 {
-	import control.InitializeEvent;	
-	
-	import com.bourre.events.EventBroadcaster;	
-	
-	import model.ModelList;	
-	
-	import com.bourre.model.ModelLocator;	
-	
-	import model.ModelApplication;	
-	
-	import sk.prasa.webapis.picasa.Photo;	
-	import sk.prasa.webapis.picasa.PicasaError;	
-	
 	import flash.events.Event;
 	
-	import command.IDelegateReceiver;
-	import business.PhotosDelegate;
-	import control.photo.PhotosGetEvent;
-
-	import com.bourre.commands.Command;
 	import com.bourre.commands.AbstractCommand;
+	import com.bourre.commands.Command;
+	import com.bourre.events.EventBroadcaster;
+	import com.bourre.model.ModelLocator;
 	
+	import business.PhotosDelegate;
+	
+	import command.IDelegateReceiver;
+	
+	import control.InitializeEvent;
+	import control.photo.PhotosGetEvent;
+	
+	import model.ModelApplication;
+	import model.ModelList;
+	
+	import sk.prasa.webapis.picasa.Photo;
+	import sk.prasa.webapis.picasa.PicasaError;		
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
@@ -42,7 +39,7 @@ package command.photo
 		{
 			for each(var item : Photo in data)
 			{
-				__model.photos.addItem(item);
+				__model.photos.push(item);
 			}
 			
 			EventBroadcaster.getInstance().broadcastEvent(new InitializeEvent());

@@ -1,18 +1,13 @@
 package command 
 {
-	import model.ModelList;	
+	import flash.events.Event;
 	
-	import com.bourre.model.ModelLocator;	
-	
-	import model.ModelApplication;	
-	
-	import flash.events.Event;	
-	
+	import com.bourre.commands.AbstractCommand;
 	import com.bourre.commands.Command;
-	import com.bourre.commands.AbstractCommand;	
+	import com.bourre.model.ModelLocator;
 	
-	import control.ResizeEvent;
-	
+	import model.ModelApplication;
+	import model.ModelList;		
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

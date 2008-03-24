@@ -4,8 +4,7 @@ package control
 	
 	import command.*;
 	import command.photo.*;
-	import command.thumb.*;
-	
+	import command.thumb.*;	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

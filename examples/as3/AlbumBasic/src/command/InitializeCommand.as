@@ -1,40 +1,26 @@
 package command 
 {
-	import flash.display.Sprite;	
-	import flash.display.DisplayObject;	
+	import flash.events.Event;
+	import flash.net.URLRequest;
 	
-	import view.thumb.Thumb;	
-	
-	import flash.net.URLRequest;	
-	
-	import sk.prasa.webapis.picasa.Photo;	
-	
-	import flash.display.DisplayObjectContainer;	
-	
-	import com.bourre.load.GraphicLoader;	
-	import com.bourre.load.QueueLoader;	
-	
-	import view.ViewList;	
-	
-	import com.bourre.view.ViewLocator;	
-	
-	import view.thumb.ThumbsHolder;	
-	
-	import model.ModelList;	
-	
-	import com.bourre.model.ModelLocator;	
-	
-	import model.ModelApplication;	
-	
-	import flash.events.Event;	
-	
+	import com.bourre.commands.AbstractCommand;
 	import com.bourre.commands.Command;
-	import com.bourre.commands.AbstractCommand;	
+	import com.bourre.load.GraphicLoader;
+	import com.bourre.load.QueueLoader;
+	import com.bourre.model.ModelLocator;
+	import com.bourre.view.ViewLocator;
 	
-	import control.InitializeEvent;
-
+	import model.ModelApplication;
+	import model.ModelList;
+	
 	import sk.prasa.webapis.picasa.GPhoto;
-	import sk.prasa.webapis.picasa.Media;	
+	import sk.prasa.webapis.picasa.Media;
+	import sk.prasa.webapis.picasa.Photo;
+	
+	import view.ViewList;
+	import view.photo.PhotosHolder;
+	import view.thumb.Thumb;
+	import view.thumb.ThumbsHolder;	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
@@ -48,17 +34,24 @@ package command
 			__model = ModelApplication(ModelLocator.getInstance().getModel(ModelList.MODEL_APPLICATION));
 			 
 			var tThumbsHolder : ThumbsHolder = ThumbsHolder(ViewLocator.getInstance().getView(ViewList.THUMBS_HOLDER));
+			var tPhotosHolder : PhotosHolder = PhotosHolder(ViewLocator.getInstance().getView(ViewList.PHOTOS_HOLDER));
+			
 			var tQueue : QueueLoader = new QueueLoader();
-			 
+			
 			for each(var item : Photo in __model.photos)
 			{
-				var tThumb : Sprite = tThumbsHolder.addChild(new Thumb()) as Sprite;
+				var tThumb : view.thumb.Thumb = new view.thumb.Thumb(item.gphoto.id, item.summary);
+					tThumbsHolder.addChild(tThumb);
+				var tPhoto : view.photo.Photo = new view.photo.Photo(item.gphoto.id);
+					tPhotosHolder.addChild(tPhoto);
+					
 				var tGL : GraphicLoader = new GraphicLoader(tThumb);
-					tGL.addListener(tThumbsHolder);
-				//				tQueue.add(new GraphicLoader(tThumbsHolder.view as DisplayObjectContainer), item.gphoto.id, new URLRequest(item.media.thumbnail[0].url));				tQueue.add(tGL, item.gphoto.id, new URLRequest(item.media.thumbnail[0].url));
+					tGL.addListener(tThumbsHolder);				tQueue.add(tGL, item.gphoto.id, new URLRequest(item.media.thumbnail[0].url));
 			}
 			
 			tQueue.run();
+			
+			__model.next();	// load first photo;
 		}
 	}
 }

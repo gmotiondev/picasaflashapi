@@ -3,22 +3,27 @@ package sk.prasa.webapis.picasa
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
-	
+	 
+	// extends basic feed and entry
 	public class Photo
 	{
 		public var id : String;
 		public var published : String;
 		public var updated : String;
 		public var category : Category;
+		public var content : Content;		// !
 		public var title : String;
+		
 		public var links : Array;
 		public var gphoto : GPhoto;
+		public var author : Author;
 		public var media : Media;
-		public var content : Content;
 		public var exif : Exif;
 		public var geo : Geo;
-		public var album : Album;
 		
+		public var album : Album;	//COULD BE USER, ALBUM
+		
+		public var rights : String;			// !
 		private var __summary : String;
 		
 		default xml namespace = "http://www.w3.org/2005/Atom";
@@ -40,7 +45,7 @@ package sk.prasa.webapis.picasa
 			geo = new Geo(item);
 			exif = new Exif(item);
 			
-			trace(toString());
+//			trace(toString());
 		}
 		 
 		public function get summary() : String

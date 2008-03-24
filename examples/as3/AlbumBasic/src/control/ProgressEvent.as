@@ -1,7 +1,6 @@
 package control 
 {
-	import com.bourre.events.BasicEvent;
-	
+	import com.bourre.events.BasicEvent;	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

@@ -1,19 +1,18 @@
 package model 
 {
-	import control.photo.PhotosGetEvent;	
-	
-	import com.bourre.events.EventBroadcaster;	
-	
+	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
-	import flash.events.IOErrorEvent;	
 	
-	import sk.prasa.webapis.picasa.PicasaService;	
+	import com.bourre.events.EventBroadcaster;
+	import com.bourre.model.AbstractModel;
+	import com.bourre.plugin.Plugin;
 	
-	import com.bourre.plugin.Plugin;	
-	import com.bourre.model.AbstractModel;	
+	import control.photo.PhotoChangedEvent;
+	import control.photo.PhotosGetEvent;
+	import vo.Photos;
 	
-	import vo.Photos;	
-
+	import sk.prasa.webapis.picasa.PicasaService;
+			
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
@@ -48,26 +47,29 @@ package model
 
 		public function next() : void
 		{ 
-			//var tId : String = photos.getNext();
-			//var tTitle : String = photos.getCurrentTitle();
+			var tId : String = photos.getNext();
+			var tTitle : String = photos.getCurrentTitle();
+			var tUrl : String = photos.getCurrentUrl();
 			
-			//notifyChanged(new PhotoChangedEvent(tId, tTitle));
+			notifyChanged(new PhotoChangedEvent(tId, tTitle, tUrl));
 		}
 		
 		public function prev() : void
 		{
-			//var tId : String = photos.getPrevious();
-			//var tTitle : String = photos.getCurrentTitle();
+			var tId : String = photos.getPrevious();
+			var tTitle : String = photos.getCurrentTitle();
+			var tUrl : String = photos.getCurrentUrl();
 			
-			//notifyChanged(new PhotoChangedEvent(tId, tTitle));
+			notifyChanged(new PhotoChangedEvent(tId, tTitle, tUrl));
 		}
 		
 		public function click(aId : String) : void
-		{	
-			//var tId : String = photos.getClicked(aId);
-			//var tTitle : String = photos.getCurrentTitle();
+		{
+			var tId : String = photos.setCurrent(aId);
+			var tTitle : String = photos.getCurrentTitle();
+			var tUrl : String = photos.getCurrentUrl();
 			
-			//notifyChanged(new PhotoChangedEvent(tId, tTitle));
+			notifyChanged(new PhotoChangedEvent(tId, tTitle, tUrl));
 		}
 		
 		private function onServiceError(evt : IOErrorEvent) : void

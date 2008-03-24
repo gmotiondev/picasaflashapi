@@ -3,18 +3,26 @@ package sk.prasa.webapis.picasa
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
-
+	
+	// extends basic feed and entry!
 	public class Album 
 	{
-		public var id : String;
+		public var author : Author;		//base
+		public var category : Category;	//base
+		public var icon : String;		// ! base
+		public var id : String;			//base
+		public var links : Array;		//base
+		public var logo : String;		// ! base
+		public var rights : String;		//base
+		public var subtitle : String;	// ! base
+		public var title : String;		//base
+		public var updated : String;	//base
+		public var generator : Generator;// ! base
+		
 		public var published : String;
-		public var updated : String;
-		public var category : Category;
-		public var title : String;
+		public var content : Content;		// !
 		public var summary : String;
-		public var rights : String;
-		public var links : Array;
-		public var author : Author;
+		
 		public var gphoto : GPhoto;
 		public var media : Media;
 		public var geo : Geo;
@@ -42,7 +50,7 @@ package sk.prasa.webapis.picasa
 			geo = new Geo(item);
 			opensearch = new OpenSearch(item);
 			
-			trace(toString());
+//			trace(toString());
 		}
 
 		//TODO : test this please!

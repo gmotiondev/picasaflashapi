@@ -4,20 +4,22 @@ package sk.prasa.webapis.picasa
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
+	// extends basic entry
 	public class Comment
 	{
 		public var id : String;
 		public var published : String;
 		public var updated : String;
 		public var category : Category;
-		public var title : String;
 		public var content : String;
+		public var title : String;
 		public var summary : String;
 		public var links : Array;
-		public var author : Author;
 		public var gphoto : GPhoto;
+		public var author : Author;
 		
-		public var user : User;
+		//BUG?: GPHOTO IS IN THE AUTHOR FEED
+		public var user : User;	//COULD BE USER, ALBUM, PHOTO
 		
 		default xml namespace = "http://www.w3.org/2005/Atom";
 		
@@ -36,7 +38,7 @@ package sk.prasa.webapis.picasa
 			author = new Author(item.author.name, item.author.email, item.author.uri);
 			gphoto = new GPhoto(item, KindType.COMMENT);
 			
-			trace(toString());
+//			trace(toString());
 		}
 		
 		//TODO : test this please!
