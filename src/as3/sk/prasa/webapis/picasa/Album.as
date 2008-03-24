@@ -5,7 +5,7 @@ package sk.prasa.webapis.picasa
 	 */
 	
 	// extends basic feed and entry!
-	public class Album 
+	public class Album extends Base
 	{
 		public var author : Author;		//base
 		public var category : Category;	//base
@@ -28,13 +28,13 @@ package sk.prasa.webapis.picasa
 		public var geo : Geo;
 		public var opensearch : OpenSearch;
 		
-		public var user : User;
+//		public var user : User;
 		
 		default xml namespace = "http://www.w3.org/2005/Atom";
 		
 		public function Album(item : XML, parent : XML = null)
 		{	
-			if(parent != null) user = new User(parent);
+			super(item, parent);
 			
 			id = item.id;
 			published = item.published;
@@ -53,20 +53,7 @@ package sk.prasa.webapis.picasa
 //			trace(toString());
 		}
 
-		//TODO : test this please!
-		private function getLinks(item : XML) : Array
-		{
-			var tRes : Array = [];
-			
-			for each(var link : XML in item.link)
-			{
-				tRes.push(new Link(link.@href, link.@type, link.@rel));
-			}
-			
-			return tRes;
-		}
-		
-		public function toString() : String
+		override public function toString() : String
 		{
 			return "[Album "+
 				" id=" + id + 

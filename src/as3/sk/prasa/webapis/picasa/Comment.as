@@ -5,7 +5,7 @@ package sk.prasa.webapis.picasa
 	 */
 	
 	// extends basic entry
-	public class Comment
+	public class Comment extends Base
 	{
 		public var id : String;
 		public var published : String;
@@ -19,13 +19,13 @@ package sk.prasa.webapis.picasa
 		public var author : Author;
 		
 		//BUG?: GPHOTO IS IN THE AUTHOR FEED
-		public var user : User;	//COULD BE USER, ALBUM, PHOTO
+//		public var user : User;	//COULD BE USER, ALBUM, PHOTO
 		
 		default xml namespace = "http://www.w3.org/2005/Atom";
 		
 		public function Comment(item : XML, parent : XML = null)
 		{
-			if(parent != null) user = new User(parent);
+			super(item, parent);
 			
 			id = item.id;
 			published = item.published;
@@ -41,20 +41,7 @@ package sk.prasa.webapis.picasa
 //			trace(toString());
 		}
 		
-		//TODO : test this please!
-		private function getLinks(item : XML) : Array
-		{
-			var tRes : Array = [];
-			
-			for each(var link : XML in item.link)
-			{
-				tRes.push(new Link(link.@href, link.@type, link.@rel));
-			}
-			
-			return tRes;
-		}
-		
-		public function toString() : String
+		override public function toString() : String
 		{
 			return "[Comment" +
 				" id=" + id +

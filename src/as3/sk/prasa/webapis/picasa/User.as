@@ -7,7 +7,7 @@ package sk.prasa.webapis.picasa
 	 */
 	
 	// extends basic feed
-	public class User
+	public class User extends Base
 	{
 		public var author : Author;		//base
 		public var category : Category;	//base
@@ -28,6 +28,8 @@ package sk.prasa.webapis.picasa
 		
 		public function User(item : XML)
 		{
+			super(item, null);
+			
 			id = item.id;
 			updated = item.updated;
 			category = new Category(item.category.@term, item.category.@scheme);
@@ -44,20 +46,7 @@ package sk.prasa.webapis.picasa
 //			trace(toString());
 		}
 		
-		//TODO : test this please!
-		private function getLinks(item : XML) : Array
-		{
-			var tRes : Array = [];
-			
-			for each(var link : XML in item.link)
-			{
-				tRes.push(new Link(link.@href, link.@type, link.@rel));
-			}
-			
-			return tRes;
-		}
-		
-		public function toString() : String
+		override public function toString() : String
 		{
 			return "[User " +
 				" id=" + id +

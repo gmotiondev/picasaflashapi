@@ -5,7 +5,7 @@ package sk.prasa.webapis.picasa
 	 */
 	 
 	// extends basic feed and entry
-	public class Photo
+	public class Photo extends Base
 	{
 		public var id : String;
 		public var published : String;
@@ -21,7 +21,7 @@ package sk.prasa.webapis.picasa
 		public var exif : Exif;
 		public var geo : Geo;
 		
-		public var album : Album;	//COULD BE USER, ALBUM
+//		public var album : Album;	//COULD BE USER, ALBUM
 		
 		public var rights : String;			// !
 		private var __summary : String;
@@ -29,8 +29,8 @@ package sk.prasa.webapis.picasa
 		default xml namespace = "http://www.w3.org/2005/Atom";
 		
 		public function Photo(item : XML, parent : XML = null)
-		{			
-			if(parent != null) album = new Album(parent);
+		{
+			super(item, parent);
 
 			id = item.id;
 			published = item.published;
@@ -59,20 +59,7 @@ package sk.prasa.webapis.picasa
 			__summary = v;
 		}
 		
-		//TODO : test this please!
-		private function getLinks(item : XML) : Array
-		{
-			var tRes : Array = [];
-			
-			for each(var link : XML in item.link)
-			{
-				tRes.push(new Link(link.@href, link.@type, link.@rel));
-			}
-			
-			return tRes;
-		}
-		
-		public function toString() : String
+		override public function toString() : String
 		{
 			return "[Photo" +
 				" id=" + id +

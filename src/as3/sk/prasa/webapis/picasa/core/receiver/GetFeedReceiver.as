@@ -64,10 +64,10 @@ package sk.prasa.webapis.picasa.core.receiver
 					switch(tKind)
 					{
 						//case KindType.USER	: tRes.push(new User(tItem)); break;
-						case KindType.ALBUM	: tRes.push(new Album(tItem, tParent)); break;
-						case KindType.PHOTO	: tRes.push(new Photo(tItem, tParent)); break;
-						case KindType.COMMENT : tRes.push(new Comment(tItem, tParent)); break;
-						case KindType.TAG : tRes.push(new Tag(tItem, tParent)); break;
+						case KindType.ALBUM		: tRes.push(new Album(tItem, tParent)); break;
+						case KindType.PHOTO		: tRes.push(new Photo(tItem, tParent)); break;
+						case KindType.COMMENT 	: tRes.push(new Comment(tItem, tParent)); break;
+						case KindType.TAG 		: tRes.push(new Tag(tItem, tParent)); break;
 						default: break;
 					}
 				}

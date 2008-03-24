@@ -5,22 +5,27 @@ package sk.prasa.webapis.picasa
 	 */
 	public class Base 
 	{	
-		private var parent : Base;
+		public var parent : Base;
 		
-		public function Base(item : XML)
+		default xml namespace = "http://www.w3.org/2005/Atom";
+		
+		public function Base(aItem : XML, aParent : XML = null)
 		{
-			parent = getParentItem(item);
+			if(aParent != null) parent = getParentItem(aParent);
 		}
 		
 		public function getParentItem(item : XML) : Base
 		{
 			switch(getParentKindType(item))
 			{
+				case KindType.USER : 	return new User(item);
 				case KindType.ALBUM : 	return new Album(item);
 				case KindType.PHOTO : 	return new Photo(item);
 				case KindType.COMMENT : return new Comment(item);
 				case KindType.TAG : 	return new Tag(item);
 			}
+			
+			return null;
 		}
 		
 		public function getParentKindType(item : XML) : String
@@ -28,7 +33,7 @@ package sk.prasa.webapis.picasa
 			return KindType.getKindType((item.category.@term).split("#")[1]);
 		}
 
-		private function getLinks(item : XML) : Array
+		public function getLinks(item : XML) : Array
 		{
 			var tRes : Array = [];
 			
