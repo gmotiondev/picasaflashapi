@@ -2,8 +2,6 @@
  * @author Michal Gron (michal.gron@gmail.com)
  */
 import com.bourre.events.BasicEvent;
-import com.bourre.ioc.plugin.EventType;
-import com.bourre.ioc.plugin.IPlugin;
 
 import plugins.picasa.control.Controller;
 
