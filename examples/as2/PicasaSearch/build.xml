@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="PicasaSearch" default="compile" basedir=".">
+
+	<property file="../../../../../ames.properties" />
+	<import file="../../../../../as2ant_taskdefs.xml" />
+
+	<target name="compile" description="builds swf" depends="">
+		<swfmill src="precompile.xml" dest="assets/library.swf" cmd="simple"/>
+	</target>
+</project>

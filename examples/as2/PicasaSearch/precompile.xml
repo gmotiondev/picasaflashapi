@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movie width="768" height="576" framerate="25">
+	<background color="#333333"/>
+	<frame>
+		<library>
+			<font name="kroeger" import="assets/ttf/kr_08_53.ttf"/>
+			<clip id="l" import="assets/png/l.png"/>
+			<clip id="r" import="assets/png/r.png"/>
+			<clip id="c" import="assets/png/c.png"/>
+		</library>
+	</frame>
+</movie>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ContactSheet" default="compile" basedir=".">
+
+	<property file="../../../../../../ames.properties" />
+	<import file="../../../../../../as2ant_taskdefs.xml" />
+
+	<target name="compile" description="builds grid graphic library" depends="">
+		<swfmill src="precompile.xml" dest="assets/grid_library.swf" cmd="simple"/>
+	</target>
+</project>
