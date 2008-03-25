@@ -7,7 +7,7 @@
 
 	<property name="src.dir" location="."/>
 	<property name="bin.dir" location="."/>
-	<property name="picasa.dir" location="../src"/>
+	<property name="picasa.dir" location="../../src"/>
 	<property name="asunit.dir" location="c:\Program Files\AsUnit\framework\as25\"/>
 
 	<property name="width" value="800"/>
