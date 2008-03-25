@@ -3,6 +3,7 @@ package sk.prasa.webapis.picasa
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
+	
 	public class OpenSearch 
 	{
 		public var totalResults : Number;
@@ -22,7 +23,11 @@ package sk.prasa.webapis.picasa
 		
 		public function toString() : String
 		{
-			return "[OpenSearch totalResults=" + totalResults + ", startIndex=" + startIndex + ", itemsPerPage=" + itemsPerPage + "]";
+			return "[OpenSearch " +
+				" totalResults=" + totalResults + 
+				", startIndex=" + startIndex + 
+				", itemsPerPage=" + itemsPerPage + 
+				"]";
 		}
 	}
 }

@@ -17,7 +17,10 @@ package sk.prasa.webapis.picasa
 		
 		public function toString() : String
 		{
-			return "[Category term=" + term + ", scheme=" + scheme + "]";
+			return "[Category " +
+			" term=" + term + 
+			", scheme=" + scheme + 
+			"]";
 		}
 	}
 }

@@ -3,6 +3,7 @@ package sk.prasa.webapis.picasa
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
+	
 	public class Content 
 	{
 		public var type : String;
@@ -16,7 +17,10 @@ package sk.prasa.webapis.picasa
 		
 		public function toString() : String
 		{
-			return "[Content type=" + type + ", src=" + src + "]";
+			return "[Content " +
+				" type=" + type + 
+				", src=" + src + 
+				"]";
 		}
 	}
 }

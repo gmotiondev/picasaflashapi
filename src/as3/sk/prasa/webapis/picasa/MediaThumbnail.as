@@ -19,7 +19,11 @@ package sk.prasa.webapis.picasa
 		
 		public function toString() : String
 		{
-			return "[MediaThumbnail url=" + url + ", width=" + width + ", height=" + height + "]";
+			return "[MediaThumbnail " +
+				"url=" + url + 
+				", width=" + width + 
+				", height=" + height + 
+				"]";
 		}
 	}
 }

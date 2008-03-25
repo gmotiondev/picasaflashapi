@@ -3,8 +3,8 @@ package sk.prasa.webapis.picasa
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
-	public class Base 
-	{	
+	internal class Base 
+	{
 		public var parent : Base;
 		
 		default xml namespace = "http://www.w3.org/2005/Atom";
@@ -46,7 +46,7 @@ package sk.prasa.webapis.picasa
 		
 		public function toString() : String
 		{
-			return "[Base ... todo]";
+			return "[Base]";
 		}
 	}
 }

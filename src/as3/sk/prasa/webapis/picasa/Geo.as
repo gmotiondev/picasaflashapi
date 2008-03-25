@@ -3,6 +3,7 @@ package sk.prasa.webapis.picasa
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
+	
 	public class Geo 
 	{
 		public var latitude : String;
@@ -28,7 +29,10 @@ package sk.prasa.webapis.picasa
 		
 		public function toString() : String
 		{
-			return "[Geo latitude=" + latitude + " longitude=" + longitude + "]";
+			return "[Geo " +
+				" latitude=" + latitude + 
+				", longitude=" + longitude + 
+				"]";
 		}
 	}
 }

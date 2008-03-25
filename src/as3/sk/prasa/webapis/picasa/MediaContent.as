@@ -25,7 +25,14 @@ package sk.prasa.webapis.picasa
 		
 		public function toString() : String
 		{
-			return "[MediaContent url=" + url + ", type=" + type + ", medium=" + medium + ", height=" + height + ", width=" + width + ", fileSize=" + fileSize + "]";	
+			return "[MediaContent " +
+				"url=" + url + 
+				", type=" + type + 
+				", medium=" + medium + 
+				", height=" + height + 
+				", width=" + width + 
+				", fileSize=" + fileSize + 
+				"]";	
 		}
 	}
 }

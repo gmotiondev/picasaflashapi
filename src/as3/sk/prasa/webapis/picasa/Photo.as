@@ -2,78 +2,49 @@ package sk.prasa.webapis.picasa
 {	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
+	 * extends BasicFeed and implement custom properties from BasicEntry
 	 */
-	 
-	// extends basic feed and entry
-	public class Photo extends Base
+
+	public class Photo extends BasicFeed
 	{
-		public var id : String;
+		/* implement also BasicFeed properties */
+		public var content : Content;
 		public var published : String;
-		public var updated : String;
-		public var category : Category;
-		public var content : Content;		// !
-		public var title : String;
-		
-		public var links : Array;
-		public var gphoto : GPhoto;
-		public var author : Author;
-		public var media : Media;
+		public var summary : String;
+
+		/* and custom properties */
 		public var exif : Exif;
 		public var geo : Geo;
-		
-//		public var album : Album;	//COULD BE USER, ALBUM
-		
-		public var rights : String;			// !
-		private var __summary : String;
+		public var gphoto : GPhoto;
+		public var media : Media;
 		
 		default xml namespace = "http://www.w3.org/2005/Atom";
-		
-		public function Photo(item : XML, parent : XML = null)
-		{
-			super(item, parent);
 
-			id = item.id;
-			published = item.published;
-			updated = item.updated;
-			category = new Category(item.category.@term, item.category.@scheme);
-			title = item.title;
-			__summary = item.summary;
-			links = getLinks(item);
-			content = new Content(item.content.@type, item.content.@src);
-			gphoto = new GPhoto(item, KindType.PHOTO);
-			media = new Media(item);
-			geo = new Geo(item);
-			exif = new Exif(item);
+		public function Photo(aItem : XML, aParent : XML = null)
+		{
+			super(aItem, aParent);
+
+			content = new Content(aItem.content.@type, aItem.content.@src);
+			published = aItem.published;
+			summary = aItem.summary;
 			
-//			trace(toString());
+			exif = new Exif(aItem);
+			geo = new Geo(aItem);
+			gphoto = new GPhoto(aItem, KindType.PHOTO);
+			media = new Media(aItem);
 		}
-		 
-		public function get summary() : String
-		{
-			//return (typeof __summary) == "string" ? __summary : "";
-			return __summary;
-		}
-		 
-		public function set summary(v : String) : void
-		{
-			__summary = v;
-		}
-		
+
 		override public function toString() : String
 		{
-			return "[Photo" +
-				" id=" + id +
-				", published=" + published +
-				", updated=" + updated +
-				", category=" + category.toString() +
-				", title=" + title +
-				", summary= " + summary +
-				", links=" + links.join("/") +
+			return "[Photo" + super.toString() +
 				", content=" + content.toString() +
-				", gphoto=" + gphoto.toString() +
-				", media=" + media.toString() +
-				", geo=" + geo.toString() +
+				", published=" + published + 
+				", summary=" + summary +
 				", exif=" + exif.toString() +
+				", geo=" + geo.toString() +
+				", gphoto=" + gphoto.toString() + 
+				", media=" + media.toString() + 
 				"]";
 		}
 	}

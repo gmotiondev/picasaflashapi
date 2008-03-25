@@ -6,7 +6,7 @@ package sk.prasa.webapis.generic
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class DynamicXMLService extends URLLoader 
+	internal class DynamicXMLService extends URLLoader 
 	{
 		public function DynamicXMLService()
 		{

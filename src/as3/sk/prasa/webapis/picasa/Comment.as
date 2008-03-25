@@ -4,56 +4,24 @@ package sk.prasa.webapis.picasa
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	// extends basic entry
-	public class Comment extends Base
+	public class Comment extends BasicEntry
 	{
-		public var id : String;
-		public var published : String;
-		public var updated : String;
-		public var category : Category;
-		public var content : String;
-		public var title : String;
-		public var summary : String;
-		public var links : Array;
 		public var gphoto : GPhoto;
-		public var author : Author;
-		
 		//BUG?: GPHOTO IS IN THE AUTHOR FEED
-//		public var user : User;	//COULD BE USER, ALBUM, PHOTO
 		
 		default xml namespace = "http://www.w3.org/2005/Atom";
 		
-		public function Comment(item : XML, parent : XML = null)
+		public function Comment(aItem : XML, aParent : XML = null)
 		{
-			super(item, parent);
+			super(aItem, aParent);
 			
-			id = item.id;
-			published = item.published;
-			updated = item.updated;
-			category = new Category(item.category.@term, item.category.@scheme);
-			title = item.title;
-			content = item.content;
-			summary = item.summary;
-			links = getLinks(item);
-			author = new Author(item.author.name, item.author.email, item.author.uri);
-			gphoto = new GPhoto(item, KindType.COMMENT);
-			
-//			trace(toString());
+			gphoto = new GPhoto(aItem, KindType.COMMENT);
 		}
 		
 		override public function toString() : String
 		{
-			return "[Comment" +
-				" id=" + id +
-				" ,published=" + published +
-				" ,updated=" + updated +
-				" ,category=" + category.toString() + 
-				" ,title=" + title +
-				" ,content=" + content +
-				" ,summary=" + summary +
-				" ,links=" + links.join("/") + 
-				" ,author=" + author.toString() +
-				" ,gphoto=" + gphoto.toString() +
+			return "[Comment" + super.toString() +
+				", gphoto=" + gphoto.toString() +
 				"]";
 		} 
 	}

@@ -2,69 +2,45 @@ package sk.prasa.webapis.picasa
 {
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
+	 * extends BasicFeed and implement custom properties from BasicEntry
 	 */
 	
-	// extends basic feed and entry!
-	public class Album extends Base
+	public class Album extends BasicFeed
 	{
-		public var author : Author;		//base
-		public var category : Category;	//base
-		public var icon : String;		// ! base
-		public var id : String;			//base
-		public var links : Array;		//base
-		public var logo : String;		// ! base
-		public var rights : String;		//base
-		public var subtitle : String;	// ! base
-		public var title : String;		//base
-		public var updated : String;	//base
-		public var generator : Generator;// ! base
-		
+		/* implement also BasicFeed properties */
+		public var content : Content;
 		public var published : String;
-		public var content : Content;		// !
 		public var summary : String;
 		
+		/* and custom properties */
 		public var gphoto : GPhoto;
 		public var media : Media;
 		public var geo : Geo;
 		public var opensearch : OpenSearch;
 		
-//		public var user : User;
-		
 		default xml namespace = "http://www.w3.org/2005/Atom";
 		
-		public function Album(item : XML, parent : XML = null)
+		public function Album(aItem : XML, aParent : XML = null)
 		{	
-			super(item, parent);
+			super(aItem, aParent);
 			
-			id = item.id;
-			published = item.published;
-			updated = item.updated;
-			category = new Category(item.category.@term, item.category.@scheme);
-			title = item.title;
-			summary = item.summary;
-			rights = item.rights;
-			links = getLinks(item);
-			author = new Author(item.author.name, item.author.email, item.author.uri);
-			gphoto = new GPhoto(item, KindType.ALBUM);
-			media = new Media(item);
-			geo = new Geo(item);
-			opensearch = new OpenSearch(item);
+			content = new Content(aItem.content.@type, aItem.content.@src);
+			published = aItem.published;
+			summary = aItem.summary;
 			
-//			trace(toString());
+			gphoto = new GPhoto(aItem, KindType.ALBUM);
+			media = new Media(aItem);
+			geo = new Geo(aItem);
+			opensearch = new OpenSearch(aItem);
 		}
 
 		override public function toString() : String
 		{
-			return "[Album "+
-				" id=" + id + 
+			return "[Album " + super.toString() +
+				", content=" + content.toString() +
 				", published=" + published + 
-				", updated=" + updated + 
-				", category=" + category.toString() +
-				", title=" + title +
 				", summary=" + summary +
-				", rights=" + rights +
-				", links=" + links.join("/") +
-				", author=" + author.toString() +
 				", gphoto=" + gphoto.toString() +
 				", media=" + media.toString() +
 				", geo=" + geo.toString() +

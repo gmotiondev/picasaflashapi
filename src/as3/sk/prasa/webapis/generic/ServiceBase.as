@@ -7,7 +7,7 @@ package sk.prasa.webapis.generic
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class ServiceBase extends EventDispatcher 
+	internal class ServiceBase extends EventDispatcher 
 	{
 		public function ServiceBase(target : IEventDispatcher = null)
 		{

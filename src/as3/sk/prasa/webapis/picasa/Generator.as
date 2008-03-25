@@ -3,6 +3,7 @@ package sk.prasa.webapis.picasa
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
+	
 	public class Generator 
 	{
 		public var name : String;
@@ -18,7 +19,11 @@ package sk.prasa.webapis.picasa
 		
 		public function toString() : String
 		{
-			return "[Generator name=" + name + ", version=" + version + ", uri=" + uri + "]";
+			return "[Generator " +
+				" name=" + name + 
+				", version=" + version + 
+				", uri=" + uri + 
+				"]";
 		}
 	}
 }

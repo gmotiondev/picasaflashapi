@@ -19,7 +19,11 @@ package sk.prasa.webapis.picasa
 		
 		public function toString() : String
 		{
-			return "[Author name=" + name + ", email=" + email + ", uri=" + uri + "]";
+			return "[Author " +
+				" name=" + name + 
+				", email=" + email + 
+				", uri=" + uri + 
+				"]";
 		}
 	}
 }

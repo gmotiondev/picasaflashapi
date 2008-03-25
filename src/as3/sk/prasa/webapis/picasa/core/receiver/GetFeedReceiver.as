@@ -1,7 +1,5 @@
 package sk.prasa.webapis.picasa.core.receiver 
-{
-	import sk.prasa.webapis.picasa.User;	
-	
+{	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	
@@ -45,19 +43,19 @@ package sk.prasa.webapis.picasa.core.receiver
 			}
 		}
 		
-		private function parse(o : XML) : Array
+		private function parse(aItems : XML) : Array
 		{
 			use namespace atom;
 			
 			try
 			{
 				var tRes : Array = new Array();
-				var tParent : XML = new XML(o);
+				var tParent : XML = new XML(aItems);
 					delete tParent.entry;
 				
 				//var tRg : RegExp = /#([\w\-]+)/;
 				
-				for each(var tItem : XML in o.entry)
+				for each(var tItem : XML in aItems.entry)
 				{
 					var tKind : String = (tItem.category.@term).split("#")[1];
 					

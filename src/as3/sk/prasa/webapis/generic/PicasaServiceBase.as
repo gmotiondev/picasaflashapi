@@ -1,8 +1,8 @@
 package sk.prasa.webapis.generic 
 {
-	import flash.events.HTTPStatusEvent;	
-	import flash.events.Event;	
-	import flash.net.URLLoader;	
+	import flash.events.HTTPStatusEvent;
+	import flash.events.Event;
+	import flash.net.URLLoader;
 	
 	import sk.prasa.webapis.generic.ServiceBase;
 	
@@ -41,15 +41,18 @@ package sk.prasa.webapis.generic
 	
 	/**
 	 * 
+	 * @eventType flash.events.Event.OPEN
 	 */
 	[Event(name="open", type="flash.events.Event")]
+	
 	/**
 	 * 
+	 * @eventType flash.events.HTTPStatusEvent.HTTP_STATUS
 	 */
 	[Event(name="httpStatus", type="flash.events.HTTPStatusEvent")]
 	
 	public class PicasaServiceBase extends ServiceBase 
-	{	
+	{
 		public function PicasaServiceBase(target : IEventDispatcher = null)
 		{
 			super(target);
@@ -79,7 +82,6 @@ package sk.prasa.webapis.generic
 		
 		private function onProgress(evt : ProgressEvent) : void
 		{
-			trace("dispatching onProgress");
 			dispatchEvent(evt);
 		}
 		

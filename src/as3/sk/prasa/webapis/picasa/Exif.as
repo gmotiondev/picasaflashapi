@@ -37,19 +37,18 @@ package sk.prasa.webapis.picasa
 		
 		public function toString() : String
 		{
-			var tRes : Array = [];
-				tRes.push(" distance=", distance);
-				tRes.push(", exposure=", exposure);
-				tRes.push(", flash=", flash);
-				tRes.push(", focallength=", focallength);
-				tRes.push(", fstop=", fstop);
-				tRes.push(", imageUniqueID=", imageUniqueID);
-				tRes.push(", iso=", iso);
-				tRes.push(", make=", make);
-				tRes.push(", model=", model);
-				tRes.push(", time=", time);
-				
-			return "[Exif " + tRes.join("") + "]";
+			return "[Exif " +
+				" distance=" + distance +
+				", exposure=" + exposure +
+				", flash=" + flash +
+				", focallength=" + focallength +
+				", fstop=" + fstop +
+				", imageUniqueID=" + imageUniqueID +
+				", iso=" + iso +
+				", make=" + make +
+				", model=" + model +
+				", time=" + time +
+				"]";
 		}
 	}
 }

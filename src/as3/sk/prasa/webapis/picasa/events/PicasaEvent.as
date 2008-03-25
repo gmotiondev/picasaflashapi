@@ -1,6 +1,6 @@
 package sk.prasa.webapis.picasa.events 
 {
-	import sk.prasa.webapis.picasa.PicasaError;	
+	import sk.prasa.webapis.picasa.PicasaError;
 	import sk.prasa.webapis.generic.events.ServiceEvent;
 	
 	/**

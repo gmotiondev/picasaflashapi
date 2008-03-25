@@ -30,8 +30,7 @@ package sk.prasa.webapis.picasa
 				
 			} catch(e : Error)
 			{
-				trace("Media failed " + e.message);
-				// if parsed from photo as parent, album doesn't have media:group!
+				// e.g. when parsed from photo as parent, album doesn't have media:group
 			}
 		}
 		
@@ -69,10 +68,17 @@ package sk.prasa.webapis.picasa
 		{
 			try
 			{
-				return "[Media content=" + content.toString() + ", credit=" + credit + ", description=" + description + ", keywords=" + keywords.toString() + ", thumbnail=" + thumbnail.toString() + ", title=" + title + "]";
+				return "[Media " +
+					" content=" + content.toString() + 
+					", credit=" + credit + 
+					", description=" + description + 
+					", keywords=" + keywords.toString() + 
+					", thumbnail=" + thumbnail.toString() + 
+					", title=" + title + 
+					"]";
 			} catch(e : Error)
 			{
-				// if parsed from photo as parent, album doesn't have media:group!
+				// e.g. when parsed from photo as parent, album doesn't have media:group
 				return "";
 			}
 			
