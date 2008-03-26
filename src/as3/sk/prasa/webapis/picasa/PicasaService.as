@@ -36,6 +36,7 @@ package sk.prasa.webapis.picasa
 		public function PicasaService(pvt : PicasaServicePrivateClass)
 		{
 			Security.loadPolicyFile(Auth.POLICY_POINT);
+			//Security.loadPolicyFile("http://picasaweb.google.com/crossdomain.xml");
 
 			__auth = new Auth();
 			__photos = new Photos();

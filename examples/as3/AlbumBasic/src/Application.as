@@ -1,5 +1,6 @@
 package  
 {
+	import flash.system.Security;	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
@@ -33,6 +34,8 @@ package
 	
 		public function Application()
 		{
+			//Security.loadPolicyFile("http://picasaweb.google.com/crossdomain.xml");
+			
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 	          

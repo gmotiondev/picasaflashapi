@@ -1,5 +1,6 @@
 package command 
 {
+	import flash.system.LoaderContext;	
 	import flash.events.Event;
 	import flash.net.URLRequest;
 	
@@ -46,7 +47,7 @@ package command
 					tPhotosHolder.addChild(tPhoto);
 					
 				var tGL : GraphicLoader = new GraphicLoader(tThumb);
-					tGL.addListener(tThumbsHolder);				tQueue.add(tGL, item.gphoto.id, new URLRequest(item.media.thumbnail[0].url));
+					tGL.addListener(tThumbsHolder);				tQueue.add(tGL, item.gphoto.id, new URLRequest(item.media.thumbnail[0].url), new LoaderContext(true));
 			}
 			
 			tQueue.run();
