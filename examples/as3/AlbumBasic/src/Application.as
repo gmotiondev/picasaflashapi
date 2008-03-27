@@ -34,11 +34,9 @@ package
 	
 		public function Application()
 		{
-			//Security.loadPolicyFile("http://picasaweb.google.com/crossdomain.xml");
-			
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
-	          
+	        
 			initialize();
 		}
 		

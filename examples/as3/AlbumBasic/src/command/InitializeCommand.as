@@ -47,7 +47,7 @@ package command
 					tPhotosHolder.addChild(tPhoto);
 					
 				var tGL : GraphicLoader = new GraphicLoader(tThumb);
-					tGL.addListener(tThumbsHolder);				tQueue.add(tGL, item.gphoto.id, new URLRequest(item.media.thumbnail[0].url), new LoaderContext(true));
+					tGL.addListener(tThumbsHolder);				tQueue.add(tGL, item.gphoto.id, new URLRequest("http://prasa.sk/image.php?image="+item.media.thumbnail[0].url), new LoaderContext(true));
 			}
 			
 			tQueue.run();

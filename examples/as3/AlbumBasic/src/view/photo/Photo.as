@@ -29,7 +29,7 @@ package view.photo
 		{
 			var tGL : GraphicLoader = new GraphicLoader(this);
 				tGL.addListener(this);
-				tGL.load(new URLRequest(aUrl));
+				tGL.load(new URLRequest("http://prasa.sk/image.php?image="+aUrl));
 		}
 
 		public function onLoadStart( e : LoaderEvent ) : void
