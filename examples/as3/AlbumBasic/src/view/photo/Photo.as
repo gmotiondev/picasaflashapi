@@ -1,5 +1,7 @@
 package view.photo 
 {
+	import gs.TweenLite;	
+	
 	import flash.display.Sprite;
 	import flash.net.URLRequest;
 	
@@ -10,6 +12,7 @@ package view.photo
 	
 	import control.ProgressEvent;
 	import control.photo.PhotoChangedEvent;		
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
@@ -31,7 +34,17 @@ package view.photo
 				tGL.addListener(this);
 				tGL.load(new URLRequest("http://prasa.sk/image.php?image="+aUrl));
 		}
-
+		
+		private function show() : void
+		{
+			visible = true;
+		}
+		
+		private function hide() : void
+		{
+			visible = false;
+		}
+		
 		public function onLoadStart( e : LoaderEvent ) : void
 		{
 		}
@@ -59,12 +72,16 @@ package view.photo
 			if(evt.id == id)
 			{
 				if(!loaded) load(evt.url);
-				visible = true;
+				
+				show();
+				alpha = 0;
+				TweenLite.to(this, 0.5, {alpha:1});
+				
 			} else
 			{
 				if(visible)
 				{
-					visible = false;
+					TweenLite.to(this, 0.5, {alpha:0, onComplete : hide});
 				}
 			}
 		}

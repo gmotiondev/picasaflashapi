@@ -1,6 +1,6 @@
 package  
 {
-	import flash.system.Security;	
+	import flash.system.Security;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;

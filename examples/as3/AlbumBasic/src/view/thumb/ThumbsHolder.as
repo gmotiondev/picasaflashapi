@@ -1,5 +1,7 @@
 package view.thumb 
 {
+	import gs.TweenLite;	
+	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
@@ -14,6 +16,7 @@ package view.thumb
 	
 	import control.ProgressEvent;
 	import control.photo.PhotoChangedEvent;		
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
@@ -48,9 +51,17 @@ package view.thumb
 		public function onLoadStart( e : LoaderEvent ) : void
 		{
 		}
-		
+
 		public function onLoadInit( e : LoaderEvent ) : void
 		{
+			var tItem : Sprite = e.getTarget().getView() as Sprite;
+				tItem.alpha = 0;
+				tItem.scaleX = 0.5;
+				tItem.scaleY = 0.5;
+				tItem.x = tItem.width/2;
+				tItem.y = tItem.height/2;				 
+				
+			TweenLite.to(tItem, 0.5, {alpha:1, scaleX:1, scaleY:1, x:0, y:0});
 		}
 		
 		public function onLoadProgress( e : LoaderEvent ) : void

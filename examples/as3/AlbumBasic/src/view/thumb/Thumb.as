@@ -22,7 +22,7 @@ package view.thumb
 		private var title : String;
 		private var r : Sprite;
 		private var t : TextField;
-		private var c : Object = {normal : 0xFFFFFF, selected : 0xD40073};	//colors
+		private var c : Object = {normal : 0xFFFFFF, selected : 0xD40073};
 		
 		public function Thumb(aId : String, aTitle : String)
 		{
