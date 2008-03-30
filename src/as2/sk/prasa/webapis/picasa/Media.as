@@ -14,7 +14,7 @@ class sk.prasa.webapis.picasa.Media
 	public var thumbnail : Array = [];	// media:thumbnail	//Array of MediaThumbnail
 	public var title : String;			// media:title
 	
-	public function Media(o:Object)
+	public function Media(o : Object)
 	{
 		content = getMediaContent(o["media:content"]);
 		credit = o["media:credit"];
@@ -63,6 +63,13 @@ class sk.prasa.webapis.picasa.Media
 	
 	public function toString() : String
 	{
-		return "[Media content=" + content.toString() + ", credit=" + credit + ", description=" + description + ", keywords=" + keywords.toString() + ", thumbnail=" + thumbnail.toString() + ", title=" + title + "]";
+		return "[Media " +
+			" content=" + content.toString() + 
+			", credit=" + credit + 
+			", description=" + description + 
+			", keywords=" + keywords.toString() + 
+			", thumbnail=" + thumbnail.toString() + 
+			", title=" + title + 
+			"]";
 	}
 }

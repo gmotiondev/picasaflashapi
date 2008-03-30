@@ -6,7 +6,7 @@
 
 class sk.prasa.webapis.picasa.GPhoto
 {
-	public var kind : KindType;
+	public var kind : String;
 	 
 	// multiple kinds
 	public var albumid : String;			// gphoto:albumid
@@ -47,7 +47,7 @@ class sk.prasa.webapis.picasa.GPhoto
 	// tag kind
 	public var weight : Number; 			// gphoto:weight
 	
-	public function GPhoto(o : Object, k : KindType)
+	public function GPhoto(o : Object, k : String)
 	{
 		kind = k;
 		

@@ -1,6 +1,7 @@
 ﻿import sk.prasa.webapis.picasa.*;
 import sk.prasa.webapis.picasa.core.command.*;
 import sk.prasa.webapis.picasa.core.receiver.*;
+import sk.prasa.webapis.picasa.core.receiver.comments.*;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -27,7 +28,7 @@ class sk.prasa.webapis.picasa.core.Comments
 			p.q = null;
 
 		var tReceiver : IReceiver = new CommentsUserReceiver();
-		var tCommand : ICommand = new LoadFeedCommand(tReceiver, s, p);
+		var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
 		var tInvoker : Invoker = new Invoker();
 		
 		tInvoker.setCommand(tCommand);
@@ -51,7 +52,7 @@ class sk.prasa.webapis.picasa.core.Comments
 
 		//__core.execute(__service, Delegate.create(this, album_complete), s, p);
 		var tReceiver : IReceiver = new CommentsAlbumReceiver();
-		var tCommand : ICommand = new LoadFeedCommand(tReceiver, s, p);
+		var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
 		var tInvoker : Invoker = new Invoker();
 		
 		tInvoker.setCommand(tCommand);
@@ -75,7 +76,7 @@ class sk.prasa.webapis.picasa.core.Comments
 			p.q = null;
 
 		var tReceiver : IReceiver = new CommentsPhotoReceiver();
-		var tCommand : ICommand = new LoadFeedCommand(tReceiver, s, p);
+		var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
 		var tInvoker : Invoker = new Invoker();
 		
 		tInvoker.setCommand(tCommand);

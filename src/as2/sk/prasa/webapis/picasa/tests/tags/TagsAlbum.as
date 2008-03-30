@@ -13,7 +13,7 @@ class sk.prasa.webapis.picasa.tests.tags.TagsAlbum extends TestCase
 	private var className:String = "TagsAlbum";
 	private var service:PicasaService;
 	private var xmlData:Comments;
-	private var event:PicasaResultEvent;
+	private var event:PicasaEvent;
 	
 	public function TagsAlbum(testMethod:String)
 	{
@@ -24,11 +24,11 @@ class sk.prasa.webapis.picasa.tests.tags.TagsAlbum extends TestCase
 	{
 		service = new PicasaService();
 		
-		service.addEventListener(PicasaResultEvent.TAGS_GET_ALBUM, this);
+		service.addEventListener(PicasaEvent.TAGS_GET_ALBUM, this);
 		service.tags.album("picasaflashapi","5134889498689547361");
 	}
 
-	private function tagsGetAlbum(evt:PicasaResultEvent):Void
+	private function tagsGetAlbum(evt:PicasaEvent):Void
 	{
 		event = evt;
 		

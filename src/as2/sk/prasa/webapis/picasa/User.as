@@ -1,26 +1,27 @@
-﻿import sk.prasa.webapis.picasa.Base;
-import sk.prasa.webapis.picasa.GPhoto;
-import sk.prasa.webapis.picasa.KindType;
+﻿import sk.prasa.webapis.picasa.*;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
  
-class sk.prasa.webapis.picasa.User extends Base
+class sk.prasa.webapis.picasa.User extends BasicFeed
 {
-	// TODO:
-	//public var opensearch : OpenSearch;
+	public var opensearch : OpenSearch;
 	public var gphoto : GPhoto;
 	
-	public function User(o : Object)
+	public function User(item : Object)
 	{
-		super(o);
+		super(item, null);
 		
-		gphoto = new GPhoto(o, KindType.USER);
+		opensearch = new OpenSearch(item);
+		gphoto = new GPhoto(item, KindType.USER);
 	}
-		
+	
 	public function toString() : String
 	{
-		return "[User " + super.toString() + ", gphoto=" + gphoto.toString() + "]";
+		return "[User " + super.toString() +
+			", opensearch=" + opensearch.toString() +
+			", gphoto=" + gphoto.toString() +
+			"]";
 	}
 }

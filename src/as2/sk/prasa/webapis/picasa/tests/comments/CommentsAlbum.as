@@ -13,7 +13,7 @@ class sk.prasa.webapis.picasa.tests.comments.CommentsAlbum extends TestCase
 	private var className:String = "CommentsAlbum";
 	private var service:PicasaService;
 	private var xmlData:Comments;
-	private var event:PicasaResultEvent;
+	private var event:PicasaEvent;
 	
 	public function CommentsAlbum(testMethod:String)
 	{
@@ -24,11 +24,11 @@ class sk.prasa.webapis.picasa.tests.comments.CommentsAlbum extends TestCase
 	{
 		service = new PicasaService();
 		
-		service.addEventListener(PicasaResultEvent.COMMENTS_GET_ALBUM, this);
+		service.addEventListener(PicasaEvent.COMMENTS_GET_ALBUM, this);
 		service.comments.album("picasaflashapi","5134889498689547361");
 	}
 
-	private function commentsGetAlbum(evt:PicasaResultEvent):Void
+	private function commentsGetAlbum(evt:PicasaEvent):Void
 	{
 		event = evt;
 		

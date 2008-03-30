@@ -1,7 +1,4 @@
-﻿import sk.prasa.webapis.picasa.Author;
-import sk.prasa.webapis.picasa.Category;
-import sk.prasa.webapis.picasa.Generator;
-import sk.prasa.webapis.picasa.Link;
+﻿import sk.prasa.webapis.picasa.*;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -9,7 +6,51 @@ import sk.prasa.webapis.picasa.Link;
 
 class sk.prasa.webapis.picasa.Base
 {
-	public var title : String;
+	public var parent : Base;
+
+	
+	public function Base(aItem : Object, aParent : Object)
+	{
+		if(aParent != null && aParent != undefined) parent = getParentItem(aParent);
+	}
+	
+	public function getParentItem(item : Object) : Base
+	{
+		switch(getParentKindType(item))
+		{
+			case KindType.USER : 	return new User(item);
+			case KindType.ALBUM : 	return new Album(item);
+			case KindType.PHOTO : 	return new Photo(item);
+			case KindType.COMMENT : return new Comment(item);
+			case KindType.TAG : 	return new Tag(item);
+		}
+		
+		return null;
+	}
+		
+	public function getParentKindType(item : Object) : String
+	{
+		return KindType.getKindType((item.category.attributes.term).split("#")[1]);
+	}
+
+	private function getLinks(links : Object) : Array
+	{
+		var tRes : Array = [];
+		
+		for(var a : Number = 0; a < links.length; a++)
+		{
+			tRes.push(new Link(links[a].attributes.href, links[a].attributes.type, links[a].attributes.rel));
+		}
+		
+		return tRes;
+	}
+	
+	public function toString() : String
+	{
+		return "[Base]";
+	}
+	
+	/*public var title : String;
 	public var id : String;
 	public var links : Array;
 	public var subtitle : String;
@@ -49,5 +90,5 @@ class sk.prasa.webapis.picasa.Base
 		}
 		
 		return tLinks;
-	}
+	}*/
 }

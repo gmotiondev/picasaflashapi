@@ -16,6 +16,9 @@ class sk.prasa.webapis.picasa.Category
 	
 	public function toString() : String
 	{
-		return "[Category term=" + term + ", scheme=" + scheme + "]";
+		return "[Category " +
+		" term=" + term + 
+		", scheme=" + scheme + 
+		"]";
 	}
 }

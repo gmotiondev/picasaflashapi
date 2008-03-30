@@ -1,12 +1,10 @@
-﻿import sk.prasa.webapis.generic.IServiceBase;
-
-import com.bourre.events.EventBroadcaster;
+﻿import com.bourre.events.EventBroadcaster;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 
-class sk.prasa.webapis.generic.ServiceBase extends EventBroadcaster implements IServiceBase
+class sk.prasa.webapis.generic.ServiceBase extends EventBroadcaster
 {
 	public function ServiceBase(owner : Object)
 	{

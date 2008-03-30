@@ -1,6 +1,7 @@
 ﻿import sk.prasa.webapis.picasa.*;
 import sk.prasa.webapis.picasa.core.command.*;
 import sk.prasa.webapis.picasa.core.receiver.*;
+import sk.prasa.webapis.picasa.core.receiver.photos.*;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -28,7 +29,7 @@ class sk.prasa.webapis.picasa.core.Photos
 			p.q = null;
 			
 		var tReceiver : IReceiver = new PhotosListReceiver();
-		var tCommand : ICommand = new LoadFeedCommand(tReceiver, s, p);
+		var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
 		var tInvoker : Invoker = new Invoker();
 		
 		tInvoker.setCommand(tCommand);
@@ -53,7 +54,7 @@ class sk.prasa.webapis.picasa.core.Photos
 			p.q = null;
 		
 		var tReceiver : IReceiver = new PhotosListByTagReceiver();
-		var tCommand : ICommand = new LoadFeedCommand(tReceiver, s, p);
+		var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
 		var tInvoker : Invoker = new Invoker();
 		
 		tInvoker.setCommand(tCommand);

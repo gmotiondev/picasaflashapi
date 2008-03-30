@@ -17,6 +17,10 @@ class sk.prasa.webapis.picasa.OpenSearch
 	
 	public function toString() : String
 	{
-		return "[OpenSearch totalResults=" + totalResults + ", startIndex=" + startIndex + ", itemsPerPage=" + itemsPerPage + "]";
+		return "[OpenSearch " +
+			" totalResults=" + totalResults + 
+			", startIndex=" + startIndex + 
+			", itemsPerPage=" + itemsPerPage + 
+			"]";
 	}
 }

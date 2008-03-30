@@ -7,7 +7,7 @@ class sk.prasa.webapis.picasa.Content
 	public var type : String;
 	public var src : String;
 	 
-	public function Content(t:String, s:String)
+	public function Content(t : String, s : String)
 	{
 		type = t;
 		src = s;
@@ -15,6 +15,9 @@ class sk.prasa.webapis.picasa.Content
 	
 	public function toString() : String
 	{
-		return "[Content type=" + type + ", src=" + src + "]";
+		return "[Content " +
+			" type=" + type + 
+			", src=" + src + 
+			"]";
 	}
 }

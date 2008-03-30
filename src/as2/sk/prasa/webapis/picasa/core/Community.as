@@ -1,6 +1,7 @@
 import sk.prasa.webapis.picasa.*;
 import sk.prasa.webapis.picasa.core.command.*;
 import sk.prasa.webapis.picasa.core.receiver.*;
+import sk.prasa.webapis.picasa.core.receiver.community.*;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -26,7 +27,7 @@ class sk.prasa.webapis.picasa.core.Community
 			p.q = query;
 
 		var tReceiver : IReceiver = new CommunitySearchReceiver();
-		var tCommand : ICommand = new LoadFeedCommand(tReceiver, s, p);
+		var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
 		var tInvoker : Invoker = new Invoker();
 		
 		tInvoker.setCommand(tCommand);

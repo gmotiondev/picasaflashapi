@@ -13,7 +13,7 @@ class sk.prasa.webapis.picasa.tests.albums.AlbumsList extends TestCase
 	private var className:String = "AlbumsList";
 	private var service:PicasaService;
 	private var xmlData:Albums;
-	private var event:PicasaResultEvent;
+	private var event:PicasaEvent;
 	
 	public function AlbumsList(testMethod:String)
 	{
@@ -24,11 +24,11 @@ class sk.prasa.webapis.picasa.tests.albums.AlbumsList extends TestCase
 	{
 		service = new PicasaService();
 		
-		service.addEventListener(PicasaResultEvent.ALBUMS_GET_LIST, this);
+		service.addEventListener(PicasaEvent.ALBUMS_GET_LIST, this);
 		service.albums.list("picasaflashapi");
 	}
 
-	private function albumsGetList(evt:PicasaResultEvent):Void
+	private function albumsGetList(evt:PicasaEvent):Void
 	{
 		event = evt;
 		

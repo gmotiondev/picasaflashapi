@@ -17,6 +17,10 @@ class sk.prasa.webapis.picasa.Link
 	 	
 	public function toString() : String
 	{
-		return "[Link href=" + href + ", type=" + type + ", rel=" + rel + "]";
+		return "[Link " +
+			" href=" + href + 
+			", type=" + type + 
+			", rel=" + rel + 
+			"]";
 	}
 }

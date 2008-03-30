@@ -13,7 +13,7 @@ class sk.prasa.webapis.picasa.tests.comments.CommentsUser extends TestCase
 	private var className:String = "CommentsUser";
 	private var service:PicasaService;
 	private var xmlData:Comments;
-	private var event:PicasaResultEvent;
+	private var event:PicasaEvent;
 	
 	public function CommentsUser(testMethod:String)
 	{
@@ -24,11 +24,11 @@ class sk.prasa.webapis.picasa.tests.comments.CommentsUser extends TestCase
 	{
 		service = new PicasaService();
 		
-		service.addEventListener(PicasaResultEvent.COMMENTS_GET_USER, this);
+		service.addEventListener(PicasaEvent.COMMENTS_GET_USER, this);
 		service.comments.user("picasaflashapi");
 	}
 
-	private function commentsGetUser(evt:PicasaResultEvent):Void
+	private function commentsGetUser(evt:PicasaEvent):Void
 	{
 		event = evt;
 		

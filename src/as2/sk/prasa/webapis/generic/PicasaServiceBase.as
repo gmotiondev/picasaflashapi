@@ -1,5 +1,4 @@
-﻿import sk.prasa.webapis.generic.IXMLService;
-import sk.prasa.webapis.generic.ServiceBase;
+﻿import sk.prasa.webapis.generic.ServiceBase;
 import sk.prasa.webapis.generic.DynamicXMLService;
 
 import com.bourre.events.BasicEvent;
@@ -26,11 +25,11 @@ class sk.prasa.webapis.generic.PicasaServiceBase extends ServiceBase
 		super( owner );
 	}
 
-	public function getXMLService() : IXMLService
+	public function getXMLService() : DynamicXMLService
 	{
 		XMLToObjectDeserializer.ATTRIBUTE_TARGETED_PROPERTY_NAME = "attributes";
 		
-		var s : IXMLService = new DynamicXMLService();
+		var s : DynamicXMLService = new DynamicXMLService();
 			s.addEventListener( DynamicXMLService.onErrorEVENT, 		Delegate.create( this, onError ));
 			s.addEventListener( DynamicXMLService.onLoadProgressEVENT,Delegate.create( this, onProgress ));
 			s.addEventListener( DynamicXMLService.onLoadInitEVENT, 	Delegate.create( this, onInit ));

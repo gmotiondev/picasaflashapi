@@ -1,5 +1,4 @@
 ﻿import sk.prasa.webapis.picasa.UrlParams;
-import sk.prasa.webapis.generic.IPicasaService;
 import sk.prasa.webapis.generic.PicasaServiceBase;
 import sk.prasa.webapis.picasa.core.*;
 
@@ -7,7 +6,7 @@ import sk.prasa.webapis.picasa.core.*;
  * @author Michal Gron (michal.gron@gmail.com)
  */
 
-class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase implements IPicasaService
+class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase
 {	
 	private static var __instance : PicasaService;
 	

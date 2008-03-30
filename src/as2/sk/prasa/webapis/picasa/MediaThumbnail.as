@@ -17,6 +17,10 @@ class sk.prasa.webapis.picasa.MediaThumbnail
 	
 	public function toString() : String
 	{
-		return "[MediaThumbnail url=" + url + ", width=" + width + ", height=" + height + "]";
+		return "[MediaThumbnail " +
+			"url=" + url + 
+			", width=" + width + 
+			", height=" + height + 
+			"]";
 	}
 }

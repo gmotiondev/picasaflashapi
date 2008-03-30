@@ -13,7 +13,7 @@ class sk.prasa.webapis.picasa.tests.community.CommunitySearch extends TestCase
 	private var className:String = "CommunitySearch";
 	private var service:PicasaService;
 	private var xmlData:Comments;
-	private var event:PicasaResultEvent;
+	private var event:PicasaEvent;
 	
 	public function CommunitySearch(testMethod:String)
 	{
@@ -26,11 +26,11 @@ class sk.prasa.webapis.picasa.tests.community.CommunitySearch extends TestCase
 		var tUrlParams:UrlParams = new UrlParams();
 			tUrlParams.max_results = 25;
 			
-		service.addEventListener(PicasaResultEvent.COMMUNITY_GET_SEARCH, this);
+		service.addEventListener(PicasaEvent.COMMUNITY_GET_SEARCH, this);
 		service.community.search("lomo", tUrlParams);
 	}
 
-	private function communityGetSearch(evt:PicasaResultEvent):Void
+	private function communityGetSearch(evt:PicasaEvent):Void
 	{
 		event = evt;
 		

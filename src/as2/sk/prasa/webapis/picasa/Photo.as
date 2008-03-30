@@ -1,17 +1,60 @@
-﻿import sk.prasa.webapis.picasa.Album;
-import sk.prasa.webapis.picasa.Base;
-import sk.prasa.webapis.picasa.Content;
-import sk.prasa.webapis.picasa.Exif;
-import sk.prasa.webapis.picasa.GPhoto;
-import sk.prasa.webapis.picasa.KindType;
-import sk.prasa.webapis.picasa.Media;
+﻿import sk.prasa.webapis.picasa.*;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
 
-class sk.prasa.webapis.picasa.Photo extends Base
+class sk.prasa.webapis.picasa.Photo extends BasicFeed
 {
+	/* implement also BasicFeed properties */
+	public var content : Content;
+	public var published : String;
+	//public var summary : String;
+	private var __summary : String;
+
+	/* and custom properties */
+	public var exif : Exif;
+	public var geo : Geo;
+	public var gphoto : GPhoto;
+	public var media : Media;
+	
+	public function Photo(aItem : Object, aParent : Object)
+	{
+		super(aItem, aParent);
+
+		content = new Content(aItem.content.attributes.type, aItem.content.attributes.src);
+		published = aItem.published;
+		summary = aItem.summary;
+		
+		exif = new Exif(aItem["exif:tags"]);
+		geo = new Geo(aItem);
+		gphoto = new GPhoto(aItem, KindType.PHOTO);
+		media = new Media(aItem["media:group"]);
+	}
+
+	public function get summary() : String
+	{
+		return (typeof __summary) == "string" ? __summary : "";
+	}
+	 
+	public function set summary(v : String) : Void
+	{
+		__summary = v;
+	}
+	
+	public function toString() : String
+	{
+		return "[Photo" + super.toString() +
+			", content=" + content.toString() +
+			", published=" + published + 
+			", summary=" + summary +
+			", exif=" + exif.toString() +
+			", geo=" + geo.toString() +
+			", gphoto=" + gphoto.toString() + 
+			", media=" + media.toString() + 
+			"]";
+	}
+	/*
 	public var content : Content;
 	public var published : String;
 	public var gphoto : GPhoto;
@@ -55,5 +98,5 @@ class sk.prasa.webapis.picasa.Photo extends Base
 			tRes.push(", media=", media.toString());
 			tRes.push(", exit=", exif.toString());
 		return "[Photo " + tRes.join("") + "]";
-	}
+	}*/
 }

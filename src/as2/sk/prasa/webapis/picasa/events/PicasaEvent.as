@@ -6,7 +6,7 @@ import sk.prasa.webapis.generic.events.ServiceEvent;
  * @author Michal Gron (michal.gron@gmail.com)
  */
 
-class sk.prasa.webapis.picasa.events.PicasaResultEvent extends ServiceEvent
+class sk.prasa.webapis.picasa.events.PicasaEvent extends ServiceEvent
 {
 	//public static var AUTH_GET_TOKEN : String = "authGetToken";
 	
@@ -30,7 +30,7 @@ class sk.prasa.webapis.picasa.events.PicasaResultEvent extends ServiceEvent
 	public var success : Boolean;
 	public var error : PicasaError;
 
-	public function PicasaResultEvent(type : EventType)
+	public function PicasaEvent(type : EventType)
 	{
 		super(type);
 	}

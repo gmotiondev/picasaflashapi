@@ -13,7 +13,7 @@ class sk.prasa.webapis.picasa.tests.tags.TagsUser extends TestCase
 	private var className:String = "TagsUser";
 	private var service:PicasaService;
 	private var xmlData:Comments;
-	private var event:PicasaResultEvent;
+	private var event:PicasaEvent;
 	
 	public function TagsUser(testMethod:String)
 	{
@@ -24,11 +24,11 @@ class sk.prasa.webapis.picasa.tests.tags.TagsUser extends TestCase
 	{
 		service = new PicasaService();
 		
-		service.addEventListener(PicasaResultEvent.TAGS_GET_USER, this);
+		service.addEventListener(PicasaEvent.TAGS_GET_USER, this);
 		service.tags.user("picasaflashapi");
 	}
 
-	private function tagsGetUser(evt:PicasaResultEvent):Void
+	private function tagsGetUser(evt:PicasaEvent):Void
 	{
 		event = evt;
 		

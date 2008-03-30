@@ -13,7 +13,7 @@ class sk.prasa.webapis.picasa.tests.photos.PhotosListByTag extends TestCase
 	private var className:String = "PhotosListByTag";
 	private var service:PicasaService;
 	private var xmlData:Albums;
-	private var event:PicasaResultEvent;
+	private var event:PicasaEvent;
 	
 	public function PhotosListByTag(testMethod:String)
 	{
@@ -24,11 +24,11 @@ class sk.prasa.webapis.picasa.tests.photos.PhotosListByTag extends TestCase
 	{
 		service = new PicasaService();
 		
-		service.addEventListener(PicasaResultEvent.PHOTOS_GET_LIST_BY_TAG, this);
+		service.addEventListener(PicasaEvent.PHOTOS_GET_LIST_BY_TAG, this);
 		service.photos.list_by_tag("picasaflashapi","5134889498689547361","even");
 	}
 
-	private function photosGetListByTag(evt:PicasaResultEvent):Void
+	private function photosGetListByTag(evt:PicasaEvent):Void
 	{
 		event = evt;
 		

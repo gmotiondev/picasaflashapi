@@ -17,6 +17,9 @@ class sk.prasa.webapis.picasa.Geo
 	
 	public function toString() : String
 	{
-		return "[Geo latitude=" + latitude + " longitude=" + longitude + "]";
+		return "[Geo " +
+			" latitude=" + latitude + 
+			", longitude=" + longitude + 
+			"]";
 	}
 }

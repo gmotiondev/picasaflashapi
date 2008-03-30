@@ -19,6 +19,10 @@ class sk.prasa.webapis.picasa.Generator
 	
 	public function toString() : String
 	{
-		return "[Generator name=" + name + ", version=" + version + ", uri=" + uri + "]";
+		return "[Generator " +
+			" name=" + name + 
+			", version=" + version + 
+			", uri=" + uri + 
+			"]";
 	}
 }
