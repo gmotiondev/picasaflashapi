@@ -48,12 +48,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.commands.Command;
 import com.bourre.commands.MacroCommand;
 import com.bourre.events.IEvent;
-import com.bourre.log.PixlibStringifier;
-
+import com.bourre.log.PixlibStringifier; 
 class com.bourre.commands.Batch
 	implements MacroCommand
 {

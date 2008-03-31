@@ -1,15 +1,12 @@
-﻿import com.bourre.core.PropertyAccessor;
 import com.bourre.core.MethodAccessor;
-
-
-import be.netdust.visual.data.DataBinding;
-import be.netdust.visual.data.DataProvider;
+import com.bourre.core.PropertyAccessor;
 
 import be.netdust.visual.assembler.IAssembler;
-import be.netdust.visual.assembler.expert.IDExpert;
 import be.netdust.visual.assembler.expert.ExpertList;
 import be.netdust.visual.assembler.expert.ExpertLocator;
-
+import be.netdust.visual.assembler.expert.IDExpert;
+import be.netdust.visual.data.DataBinding;
+import be.netdust.visual.data.DataProvider;
 class be.netdust.visual.assembler.expert.DataExpert
 extends be.netdust.visual.assembler.expert.Expert
 {

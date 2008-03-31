@@ -20,7 +20,6 @@
  */
 import com.bourre.commands.Delegate;
 import com.bourre.core.IAccessor;
-
 class be.netdust.visual.data.DataBinding 
 {
 	public var source:IAccessor;

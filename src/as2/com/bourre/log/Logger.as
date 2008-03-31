@@ -41,14 +41,12 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.events.EventBroadcaster;
 import com.bourre.log.LogChannel;
 import com.bourre.log.LogEvent;
 import com.bourre.log.LogLevel;
 import com.bourre.log.LogListener;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.log.Logger
 {
 	//-------------------------------------------------------------------------

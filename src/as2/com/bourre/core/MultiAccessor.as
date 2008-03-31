@@ -18,11 +18,9 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.core.AccessorFactory;
 import com.bourre.core.IAccessor;
-import com.bourre.log.PixlibStringifier;
-
+import com.bourre.log.PixlibStringifier; 
 class com.bourre.core.MultiAccessor 
 	implements IAccessor
 {

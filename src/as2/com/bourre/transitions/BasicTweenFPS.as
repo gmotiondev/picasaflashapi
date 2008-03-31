@@ -31,12 +31,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.log.PixlibStringifier;
 import com.bourre.transitions.AbstractTween;
 import com.bourre.transitions.FPSBeacon;
-import com.bourre.transitions.IFrameListener;
-
+import com.bourre.transitions.IFrameListener; 
 class com.bourre.transitions.BasicTweenFPS extends AbstractTween
 	implements IFrameListener
 {

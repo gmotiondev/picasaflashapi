@@ -1,4 +1,4 @@
-﻿/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
+/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,11 +43,9 @@
 * |---------------------------| _
 * 
 * 
-*/
-
-import be.netdust.visual.managers.LayoutManager;
+ */
 import be.netdust.visual.UICore;
-
+import be.netdust.visual.managers.LayoutManager;
 class be.netdust.visual.UIContainer extends UICore 
 {
 	public var childs:Array = null;

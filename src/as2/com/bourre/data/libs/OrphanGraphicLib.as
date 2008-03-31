@@ -18,13 +18,11 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.core.HashCodeFactory;
 import com.bourre.data.libs.GraphicLib;
 import com.bourre.data.libs.GraphicLibLocator;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.OrphanGraphicLib 
 	extends GraphicLib
 {

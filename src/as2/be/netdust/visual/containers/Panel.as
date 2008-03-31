@@ -1,4 +1,4 @@
-﻿/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
+/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -18,14 +18,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import be.netdust.visual.managers.FocusManager;
-import be.netdust.visual.managers.IFocus;
-import be.netdust.visual.events.BubbleEvent;
-import be.netdust.visual.layout.styles.Style;
-import be.netdust.visual.UIContainer;
-
 import com.bourre.events.IEvent;
 
+import be.netdust.visual.UIContainer;
+import be.netdust.visual.events.BubbleEvent;
+import be.netdust.visual.layout.styles.Style;
+import be.netdust.visual.managers.FocusManager;
+import be.netdust.visual.managers.IFocus;
 class be.netdust.visual.containers.Panel extends UIContainer implements be.netdust.visual.managers.ITabGroup
 {
 	public var styleClass:String = "Panel";

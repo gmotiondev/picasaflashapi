@@ -6,6 +6,7 @@ import sk.prasa.webapis.picasa.Photo;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+
 class vo.Photos extends IndexedArray
 {
 	private var __current:Number;
@@ -58,7 +59,7 @@ class vo.Photos extends IndexedArray
 		{
 			var tPhoto : Photo = tIt.next();
 			
-			if(tPhoto.album.gphoto.id == aAlbumId) tRes.push(tPhoto);
+			if(tPhoto.parent["gphoto"].id == aAlbumId) tRes.push(tPhoto);
 		}
 		
 		return tRes;

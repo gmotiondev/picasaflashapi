@@ -1,5 +1,4 @@
 import sk.prasa.webapis.picasa.*;
-
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

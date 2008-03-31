@@ -18,12 +18,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.IXMLToObjectDeserializer;
 import com.bourre.data.libs.XMLToObject;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.AbstractXMLToObjectDeserializer 
 	implements IXMLToObjectDeserializer
 {

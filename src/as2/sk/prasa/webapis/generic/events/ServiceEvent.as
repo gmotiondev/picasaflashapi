@@ -1,6 +1,5 @@
-﻿import com.bourre.events.IEvent;
 import com.bourre.events.EventType;
-
+import com.bourre.events.IEvent;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

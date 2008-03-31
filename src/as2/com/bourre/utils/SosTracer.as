@@ -37,14 +37,12 @@
  * @author Pablo Costantini
  * @version 1.0
  */
-
 import com.bourre.commands.Delegate;
 import com.bourre.data.collections.Map;
 import com.bourre.log.LogEvent;
 import com.bourre.log.LogLevel;
 import com.bourre.log.LogListener;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.utils.SosTracer
 	implements LogListener
 {

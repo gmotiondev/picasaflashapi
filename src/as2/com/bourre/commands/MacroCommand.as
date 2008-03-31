@@ -20,9 +20,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
-import com.bourre.commands.Command;
-
+import com.bourre.commands.Command; 
 interface com.bourre.commands.MacroCommand extends Command
 {
 	/**

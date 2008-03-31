@@ -1,8 +1,4 @@
-
-
 import com.bourre.data.collections.Map;
-
-
 class be.netdust.visual.assembler.parser.ViewNodeNameList
 {
 	private static var _oI : ViewNodeNameList;

@@ -18,11 +18,9 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.collections.RecordSet;
 import com.bourre.data.iterator.Iterator;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.iterator.RecordSetIterator 
 	implements Iterator
 {

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright the original author or authors.
  * 
  * Licensed under the MOZILLA PUBLIC LICENSE, Version 1.1 (the "License");
@@ -22,15 +22,13 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.commands.Command;
 import com.bourre.data.collections.Map;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.IEvent;
 import com.bourre.events.IEventDispatcher;
 import com.bourre.log.PixlibDebug;
-import com.bourre.log.PixlibStringifier;
-
+import com.bourre.log.PixlibStringifier; 
 class com.bourre.events.FrontController
 {
 	//-------------------------------------------------------------------------

@@ -1,5 +1,4 @@
 import com.bourre.data.libs.XMLToObjectEvent;
-
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

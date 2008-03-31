@@ -18,10 +18,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import be.netdust.visual.containers.TitleBox;
-import be.netdust.visual.object.RadioButton;
 import com.bourre.events.IEvent;
 
+import be.netdust.visual.containers.TitleBox;
+import be.netdust.visual.object.RadioButton;
 class be.netdust.visual.containers.RadioGroup
 extends TitleBox
 {

@@ -24,10 +24,8 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.mvc.IModel;
 import com.bourre.mvc.IView;
-
 interface com.bourre.mvc.IController 
 {
 	/**

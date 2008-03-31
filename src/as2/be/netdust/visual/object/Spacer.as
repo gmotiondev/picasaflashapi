@@ -19,7 +19,6 @@
  * THE SOFTWARE.
  */
 import be.netdust.visual.UIObject;
-
 class be.netdust.visual.object.Spacer
 extends UIObject
 {

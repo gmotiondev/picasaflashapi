@@ -1,6 +1,6 @@
-﻿import com.bourre.log.PixlibStringifier;
-import  be.netdust.visual.layout.styles.bordertheme.Theme
+import com.bourre.log.PixlibStringifier;
 
+import be.netdust.visual.layout.styles.bordertheme.Theme;
 class be.netdust.visual.layout.styles.Style
 {
 	public var skin:String;	

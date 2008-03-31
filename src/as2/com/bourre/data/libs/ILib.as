@@ -18,10 +18,8 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.commands.Command;
 import com.bourre.data.libs.ILibListener;
-
 interface com.bourre.data.libs.ILib 
 	extends Command
 {

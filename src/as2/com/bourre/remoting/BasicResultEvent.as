@@ -18,12 +18,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.events.BasicEvent;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibStringifier;
-import com.bourre.remoting.ServiceMethod;
-
+import com.bourre.remoting.ServiceMethod; 
 class com.bourre.remoting.BasicResultEvent 
 	extends BasicEvent
 {

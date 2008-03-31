@@ -2,7 +2,6 @@ import com.bourre.log.PixlibStringifier;
 import com.bourre.medias.video.VideoDisplay;
 import com.bourre.medias.video.VideoDisplayEvent;
 import com.bourre.visual.MovieClipHelper;
-
 class com.bourre.visual.VideoLoggerUI 
 	extends MovieClipHelper 
 {

@@ -19,9 +19,9 @@
  * THE SOFTWARE.
  */
 import com.bourre.events.IEvent;
-import be.netdust.visual.managers.IFocus;
-import be.netdust.visual.managers.FocusManager;
 
+import be.netdust.visual.managers.FocusManager;
+import be.netdust.visual.managers.IFocus;
 interface be.netdust.visual.managers.ITabGroup
 {
 	public function getFocusManager() : FocusManager;

@@ -2,7 +2,6 @@ import com.bourre.log.PixlibStringifier;
 import com.bourre.structures.Rectangle;
 import com.bourre.utils.Geom;
 import com.bourre.visual.MovieClipHelper;
-
 class com.bourre.visual.ScreenProtectionUI 
 	extends MovieClipHelper
 {

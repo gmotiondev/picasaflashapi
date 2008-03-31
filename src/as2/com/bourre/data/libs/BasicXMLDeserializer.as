@@ -18,10 +18,8 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.AbstractXMLToObjectDeserializer;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.BasicXMLDeserializer 
 	extends AbstractXMLToObjectDeserializer
 {

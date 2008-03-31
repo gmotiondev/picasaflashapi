@@ -1,16 +1,8 @@
 import com.bourre.data.libs.XMLToObject;
-
-import sk.prasa.webapis.picasa.*;
-
 import com.bourre.data.libs.XMLToObjectEvent;
-
-import sk.prasa.webapis.generic.PicasaServiceBase;
-
-import com.bourre.events.IEvent;
 import com.bourre.events.EventType;
 
-import sk.prasa.webapis.picasa.PicasaService;
-import sk.prasa.webapis.picasa.PicasaError;
+import sk.prasa.webapis.picasa.*;
 import sk.prasa.webapis.picasa.events.PicasaEvent;
 
 /**

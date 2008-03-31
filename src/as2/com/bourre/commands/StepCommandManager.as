@@ -1,15 +1,13 @@
-﻿import com.bourre.commands.CommandManagerMS;
+import com.bourre.commands.CommandManagerMS;
 import com.bourre.commands.Delegate;
 import com.bourre.commands.ISyncCommand;
 import com.bourre.commands.ISyncCommandListener;
 import com.bourre.commands.MacroCommand;
-import com.bourre.core.HashCodeFactory;
 import com.bourre.events.BasicEvent;
 import com.bourre.events.IEvent;
-import com.bourre.log.Logger;
 import com.bourre.log.LogLevel;
+import com.bourre.log.Logger;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.commands.StepCommandManager
 	implements MacroCommand, ISyncCommandListener
 {

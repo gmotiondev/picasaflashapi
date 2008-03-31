@@ -18,15 +18,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
-import com.bourre.data.request.DataRequestEvent;
-import com.bourre.data.request.IDataRequest;
-import com.bourre.data.request.IDataRequestListener;
-import com.bourre.events.EventBroadcaster;
-import com.bourre.events.IEvent;
-import com.bourre.log.PixlibDebug;
-import com.bourre.log.PixlibStringifier;
-
+import com.bourre.data.request.DataRequestEvent;import com.bourre.data.request.IDataRequest;import com.bourre.data.request.IDataRequestListener;import com.bourre.events.EventBroadcaster;import com.bourre.events.IEvent;import com.bourre.log.PixlibDebug;import com.bourre.log.PixlibStringifier;
 class com.bourre.data.request.AbstractDataRequest 
 	implements IDataRequest
 {

@@ -18,13 +18,11 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.data.collections.Map;
 import com.bourre.remoting.AbstractServiceProxy;
 import com.bourre.remoting.RemotingConnection;
 import com.bourre.remoting.RemotingDebug;
-import com.bourre.remoting.ServiceProxy;
-
+import com.bourre.remoting.ServiceProxy; 
 class com.bourre.remoting.ServiceProxyLocator 
 {
 	public var gatewayURL : String;

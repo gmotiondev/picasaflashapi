@@ -1,4 +1,4 @@
-﻿/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
+/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -18,11 +18,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import be.netdust.visual.object.ScrollBar;
-import be.netdust.visual.object.ListItem;
-import be.netdust.visual.UICore;
 import com.bourre.events.IEvent;
 
+import be.netdust.visual.UICore;
+import be.netdust.visual.object.ListItem;
 class be.netdust.visual.containers.ListBox extends be.netdust.visual.UIViewStack
 {
 	public var styleClass:String = "ListBox";

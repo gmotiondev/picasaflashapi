@@ -1,12 +1,9 @@
-﻿import com.bourre.structures.Point;
 import com.bourre.log.PixlibStringifier;
+import com.bourre.structures.Point;
 
-
-import sk.prasa.visual.tools.MathUtils;
 import sk.prasa.visual.layout.LayoutManager;
 import sk.prasa.visual.layout.OGrid;
-
-
+import sk.prasa.visual.tools.MathUtils;
 class sk.prasa.visual.layout.GridLayout extends LayoutManager
 {
 	private var __hGap:Number = 0;

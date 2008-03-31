@@ -18,12 +18,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.core.HashCodeFactory;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.log.Stringifier;
 import com.bourre.utils.ClassUtils;
-
 class com.bourre.log.BasicStringifier 
 implements Stringifier 
 {

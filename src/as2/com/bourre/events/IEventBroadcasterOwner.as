@@ -18,10 +18,8 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.IEventDispatcher;
-
 interface com.bourre.events.IEventBroadcasterOwner 
 	extends IEventDispatcher
 {

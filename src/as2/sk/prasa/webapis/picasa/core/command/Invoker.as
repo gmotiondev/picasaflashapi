@@ -1,5 +1,4 @@
 import sk.prasa.webapis.picasa.core.command.ICommand;
-
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

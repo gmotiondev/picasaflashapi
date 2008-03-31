@@ -2,11 +2,11 @@
 import com.bourre.core.Model;
 import com.bourre.events.EventBroadcaster;
 
+import sk.prasa.mvc.command.IResponder;
 import sk.prasa.webapis.picasa.Photo;
 import sk.prasa.webapis.picasa.PicasaError;
 
 import model.*;
-import command.*;
 import control.InitializeEvent;
 import control.photo.PhotosGetEvent;
 import business.*;

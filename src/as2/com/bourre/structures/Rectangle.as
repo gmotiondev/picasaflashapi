@@ -35,10 +35,8 @@
  * @author Cédric Néhémie
  * @version 1.0
  */
- 
 import com.bourre.log.PixlibStringifier;
-import com.bourre.structures.Point;
-
+import com.bourre.structures.Point; 
 class com.bourre.structures.Rectangle
 {
 	//-------------------------------------------------------------------------

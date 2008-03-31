@@ -3,11 +3,11 @@ import com.bourre.commands.Delegate;
 import com.bourre.events.NumberEvent;
 import com.bourre.events.EventBroadcaster;
 
+import sk.prasa.mvc.command.IResponder;
 import sk.prasa.webapis.picasa.PicasaService;
 import sk.prasa.webapis.picasa.events.PicasaEvent;
 
 import model.*;
-import command.IResponder;
 import control.*;
 
 /**

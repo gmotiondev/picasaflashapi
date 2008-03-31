@@ -18,14 +18,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
-import com.bourre.commands.Delegate;
-import com.bourre.data.libs.AbstractLib;
-import com.bourre.data.libs.FileLibEvent;
-import com.bourre.data.libs.IFileParser;
-import com.bourre.events.EventType;
-import com.bourre.log.PixlibStringifier;
-
+import com.bourre.commands.Delegate;import com.bourre.data.libs.AbstractLib;import com.bourre.data.libs.FileLibEvent;import com.bourre.data.libs.IFileParser;import com.bourre.events.EventType;import com.bourre.log.PixlibStringifier;
 class com.bourre.data.libs.FileLib 
 	extends AbstractLib
 {

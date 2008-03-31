@@ -18,9 +18,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.ILibListener;
-
 interface com.bourre.data.libs.IGraphicLibListener extends ILibListener
 {
 	//

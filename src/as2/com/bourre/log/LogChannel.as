@@ -35,9 +35,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
-import com.bourre.events.EventType;
-
+import com.bourre.events.EventType; 
 class com.bourre.log.LogChannel 
 	extends EventType
 {

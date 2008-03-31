@@ -18,11 +18,9 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.core.HashCodeFactory;
 import com.bourre.data.collections.IIndexedCollection;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.collections.IndexedList
 	implements IIndexedCollection
 {

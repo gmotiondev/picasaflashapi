@@ -1,4 +1,4 @@
-﻿/**
+/**
 * Tokenizer Class
 * @author Stefan Vandermeulen -- stefan@netdust.be
 * @version 1.0

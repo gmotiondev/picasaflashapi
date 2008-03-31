@@ -8,7 +8,7 @@ import command.IResponder;
 import model.*;
 
 import sk.prasa.webapis.picasa.PicasaService;
-import sk.prasa.webapis.picasa.events.PicasaResultEvent;
+import sk.prasa.webapis.picasa.events.PicasaEvent;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)
@@ -27,11 +27,11 @@ class business.AlbumsDelegate
 	public function list(aUserid:String):Void
 	{
 		__service.addEventListener(PicasaService.PROGRESS, Delegate.create(this, list_progress)); 
-		__service.addEventListener(PicasaResultEvent.ALBUMS_GET_LIST, Delegate.create(this, list_complete));
+		__service.addEventListener(PicasaEvent.ALBUMS_GET_LIST, Delegate.create(this, list_complete));
 		__service.albums.list(aUserid);
 	}
 
-	public function list_complete(e:PicasaResultEvent):Void
+	public function list_complete(e:PicasaEvent):Void
 	{
 		try
 		{
@@ -45,7 +45,7 @@ class business.AlbumsDelegate
 			trace("list_complete failed: "+error.message);
 		} finally
 		{
-			__service.removeEventListener(PicasaResultEvent.ALBUMS_GET_LIST, list_complete);
+			__service.removeEventListener(PicasaEvent.ALBUMS_GET_LIST, list_complete);
 		}
 	}
 	

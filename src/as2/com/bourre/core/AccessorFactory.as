@@ -32,13 +32,11 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.core.IAccessor;
 import com.bourre.core.MethodAccessor;
 import com.bourre.core.MultiAccessor;
 import com.bourre.core.PropertyAccessor;
-import com.bourre.log.PixlibStringifier;
-
+import com.bourre.log.PixlibStringifier; 
 class com.bourre.core.AccessorFactory 
 {
 	//-------------------------------------------------------------------------

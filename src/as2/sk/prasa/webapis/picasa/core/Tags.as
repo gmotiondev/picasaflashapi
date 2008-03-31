@@ -1,4 +1,4 @@
-﻿import sk.prasa.webapis.picasa.*;
+import sk.prasa.webapis.picasa.*;
 import sk.prasa.webapis.picasa.core.command.*;
 import sk.prasa.webapis.picasa.core.receiver.*;
 import sk.prasa.webapis.picasa.core.receiver.tags.*;

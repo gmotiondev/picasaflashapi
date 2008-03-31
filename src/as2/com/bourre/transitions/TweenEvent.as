@@ -28,7 +28,6 @@ import com.bourre.events.BasicEvent;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.transitions.ITween;
 import com.bourre.transitions.TweenEventType;
-
 class com.bourre.transitions.TweenEvent extends BasicEvent
 {
 	//-------------------------------------------------------------------------

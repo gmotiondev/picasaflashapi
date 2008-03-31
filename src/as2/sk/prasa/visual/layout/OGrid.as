@@ -1,9 +1,7 @@
-﻿
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.structures.AbstractGrid;
 import com.bourre.structures.Point;
-
 class sk.prasa.visual.layout.OGrid extends AbstractGrid
 {
 	

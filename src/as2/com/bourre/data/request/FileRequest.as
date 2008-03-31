@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.FileLib;
 import com.bourre.data.libs.FileLibEvent;
 import com.bourre.data.libs.IFileParser;
@@ -27,7 +26,6 @@ import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.XMLToObjectEvent;
 import com.bourre.data.request.AbstractDataRequest;
 import com.bourre.events.IEvent;
-
 class com.bourre.data.request.FileRequest 
 	extends AbstractDataRequest
 	implements ILibListener

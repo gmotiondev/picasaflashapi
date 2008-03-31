@@ -1,9 +1,8 @@
-﻿ 
 import com.bourre.events.BasicEvent;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibStringifier;
-import be.netdust.visual.events.EventDispatcher;
 
+import be.netdust.visual.events.EventDispatcher; 
 class be.netdust.visual.events.BubbleEvent 
 extends BasicEvent 
 {

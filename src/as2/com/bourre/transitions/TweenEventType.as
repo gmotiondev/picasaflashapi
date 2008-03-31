@@ -34,7 +34,6 @@
  * @version 1.0
  */
 import com.bourre.events.EventType;
-
 class com.bourre.transitions.TweenEventType extends EventType
 {
 	//-------------------------------------------------------------------------

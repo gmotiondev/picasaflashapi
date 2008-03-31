@@ -1,4 +1,4 @@
-﻿/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
+/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,10 +19,9 @@
  * THE SOFTWARE.
  */
 import com.bourre.log.PixlibStringifier;
-import be.netdust.visual.assembler.expert.*;
 
 import be.netdust.visual.assembler.IAssembler;
-
+import be.netdust.visual.assembler.expert.*;
 class be.netdust.visual.assembler.ViewAssembler
 implements IAssembler
 {

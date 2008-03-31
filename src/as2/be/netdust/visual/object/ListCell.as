@@ -18,10 +18,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import be.netdust.visual.managers.IFocus;
 import be.netdust.visual.containers.Node;
 import be.netdust.visual.object.Label;
-
 class be.netdust.visual.object.ListCell
 extends Label
 {

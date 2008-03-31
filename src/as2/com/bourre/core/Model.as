@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.collections.Map;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.EventType;
@@ -26,7 +25,6 @@ import com.bourre.events.IEvent;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.mvc.IModel;
-
 class com.bourre.core.Model
 	implements IModel
 {

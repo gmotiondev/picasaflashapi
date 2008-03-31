@@ -18,10 +18,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import be.netdust.visual.layout.skins.UISprite
-import be.netdust.visual.object.Button
 import com.bourre.events.EventType;
 
+import be.netdust.visual.layout.skins.UISprite;
+import be.netdust.visual.object.Button;
 class be.netdust.visual.object.helpers.ButtonHelper
 {
 	public static var ONCLICK:EventType = new EventType( "onClick" );

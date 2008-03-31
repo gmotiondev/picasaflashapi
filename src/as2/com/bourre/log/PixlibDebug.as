@@ -30,13 +30,11 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.log.LogChannel;
-import com.bourre.log.Logger;
 import com.bourre.log.LogLevel;
+import com.bourre.log.Logger;
 import com.bourre.log.PixlibStringifier;
-import com.bourre.utils.ClassUtils;
-
+import com.bourre.utils.ClassUtils; 
 class com.bourre.log.PixlibDebug
 {
 	public static var isOn : Boolean = true;

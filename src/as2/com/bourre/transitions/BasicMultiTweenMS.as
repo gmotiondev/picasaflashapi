@@ -18,14 +18,12 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.transitions.AbstractMultiTween;
 import com.bourre.transitions.IBasicTween;
 import com.bourre.transitions.IFrameListener;
 import com.bourre.transitions.MSBeacon;
-
 class com.bourre.transitions.BasicMultiTweenMS 
 	extends AbstractMultiTween
 	implements IBasicTween, IFrameListener

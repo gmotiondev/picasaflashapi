@@ -18,10 +18,8 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.events.DynBasicEvent;
 import com.bourre.log.PixlibStringifier;
-
 dynamic class com.bourre.events.ChannelDynBasicEvent 
 	extends DynBasicEvent 
 {

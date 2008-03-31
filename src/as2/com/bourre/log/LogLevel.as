@@ -29,10 +29,8 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.log.Logger;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.log.LogLevel extends Number
 {
 	//-------------------------------------------------------------------------

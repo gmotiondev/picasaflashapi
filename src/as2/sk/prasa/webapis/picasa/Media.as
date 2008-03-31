@@ -1,6 +1,5 @@
-﻿import sk.prasa.webapis.picasa.MediaContent;
+import sk.prasa.webapis.picasa.MediaContent;
 import sk.prasa.webapis.picasa.MediaThumbnail;
-
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

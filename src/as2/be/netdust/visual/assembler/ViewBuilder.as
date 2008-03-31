@@ -1,4 +1,4 @@
-﻿/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
+/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,23 +20,17 @@
  */
 import com.bourre.data.libs.ILibListener;
 import com.bourre.data.libs.LibEvent;
-
+import com.bourre.data.libs.XMLToObject;
+import com.bourre.data.libs.XMLToObjectEvent;
 import com.bourre.events.EventBroadcaster;
-import com.bourre.events.StringEvent;
 import com.bourre.events.EventType;
 import com.bourre.events.IEvent;
 
-import com.bourre.data.libs.XMLToObject;
-import com.bourre.data.libs.XMLToObjectEvent;
-
-
 import be.netdust.visual.assembler.View;
-import be.netdust.visual.assembler.ViewParser;
 import be.netdust.visual.assembler.ViewAssembler;
 import be.netdust.visual.assembler.ViewBuilderEvent;
-
+import be.netdust.visual.assembler.ViewParser;
 import be.netdust.visual.assembler.expert.IDExpert;
-
 class be.netdust.visual.assembler.ViewBuilder
 implements ILibListener
 {

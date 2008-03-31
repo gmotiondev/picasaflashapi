@@ -45,13 +45,11 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.commands.Command;
 import com.bourre.commands.Delegate;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.transitions.FPSBeacon;
 import com.bourre.transitions.IFrameListener;
-
 class com.bourre.commands.CommandFPS
 	implements IFrameListener
 {

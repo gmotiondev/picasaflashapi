@@ -1,7 +1,7 @@
-﻿import com.bourre.events.EventType;
-import sk.prasa.webapis.picasa.PicasaError;
-import sk.prasa.webapis.generic.events.ServiceEvent;
+import com.bourre.events.EventType;
 
+import sk.prasa.webapis.generic.events.ServiceEvent;
+import sk.prasa.webapis.picasa.PicasaError;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

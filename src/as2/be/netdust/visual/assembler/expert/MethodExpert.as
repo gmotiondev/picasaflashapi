@@ -1,10 +1,6 @@
-﻿
 import be.netdust.visual.assembler.IAssembler;
-import be.netdust.visual.assembler.expert.IDExpert;
 import be.netdust.visual.assembler.expert.ExpertList;
 import be.netdust.visual.assembler.expert.ExpertLocator;
-import be.netdust.visual.assembler.expert.PropertyExpert;
-
 class be.netdust.visual.assembler.expert.MethodExpert
 extends be.netdust.visual.assembler.expert.Expert
 {

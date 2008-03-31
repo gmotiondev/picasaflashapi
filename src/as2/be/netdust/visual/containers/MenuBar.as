@@ -19,10 +19,10 @@
  * THE SOFTWARE.
  */
 import com.bourre.events.IEvent;
-import be.netdust.visual.containers.HBox;
-import be.netdust.visual.object.MenuItem;
-import be.netdust.visual.object.Menu;
 
+import be.netdust.visual.containers.HBox;
+import be.netdust.visual.object.Menu;
+import be.netdust.visual.object.MenuItem;
 class be.netdust.visual.containers.MenuBar 
 extends HBox 
 {

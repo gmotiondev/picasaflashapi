@@ -20,9 +20,8 @@
  */
 
   /* use this class for component's on stage or in the library */
-import be.netdust.visual.layout.skins.ISkin;
 import be.netdust.visual.layout.skins.AbstractSkin;
-
+import be.netdust.visual.layout.skins.ISkin;
 class be.netdust.visual.layout.skins.UISprite
 extends AbstractSkin
 {

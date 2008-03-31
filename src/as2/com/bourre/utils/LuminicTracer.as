@@ -38,11 +38,9 @@
  * @author Pablo Costantini
  * @version 1.0
  */
- 
 import com.bourre.log.LogEvent;
 import com.bourre.log.LogListener;
-import com.bourre.log.PixlibStringifier;
-
+import com.bourre.log.PixlibStringifier; 
 class com.bourre.utils.LuminicTracer
 	implements LogListener
 {

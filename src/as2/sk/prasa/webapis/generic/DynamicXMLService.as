@@ -1,5 +1,4 @@
-﻿import com.bourre.data.libs.XMLToObject;
-
+import com.bourre.data.libs.XMLToObject;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

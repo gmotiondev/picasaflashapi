@@ -1,9 +1,8 @@
 import com.bourre.data.libs.XMLToObjectEvent;
 
-import sk.prasa.webapis.picasa.events.PicasaEvent;
 import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-
+import sk.prasa.webapis.picasa.events.PicasaEvent;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

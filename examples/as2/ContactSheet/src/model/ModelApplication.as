@@ -42,7 +42,7 @@ class model.ModelApplication extends Model
 	{
 		var tId : String = photos.getNext();
 		var tTitle : String = photos.getCurrentTitle();
-
+		trace("title: " + tTitle);
 		notifyChanged(new PhotoChangedEvent(tId, tTitle));
 	}
 

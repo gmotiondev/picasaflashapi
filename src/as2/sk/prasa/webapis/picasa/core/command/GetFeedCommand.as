@@ -1,14 +1,11 @@
-import com.bourre.data.libs.XMLToObject;
-
-import sk.prasa.webapis.generic.*;
-
-import sk.prasa.webapis.picasa.*;
-import sk.prasa.webapis.picasa.core.Auth;
-import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-import sk.prasa.webapis.picasa.core.command.ICommand;
-
 import com.bourre.commands.Delegate;
 import com.bourre.data.libs.XMLToObjectEvent;
+
+import sk.prasa.webapis.generic.*;
+import sk.prasa.webapis.picasa.*;
+import sk.prasa.webapis.picasa.core.Auth;
+import sk.prasa.webapis.picasa.core.command.ICommand;
+import sk.prasa.webapis.picasa.core.receiver.IReceiver;
 
 /**
  * @author Michal Gron (michal.gron@gmail.com)

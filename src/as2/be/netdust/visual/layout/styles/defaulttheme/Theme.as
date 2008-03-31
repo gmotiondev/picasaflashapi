@@ -1,8 +1,6 @@
-﻿
 import be.netdust.visual.UICore;
-import be.netdust.visual.layout.styles.Style;
 import be.netdust.visual.layout.skins.UISprite;
-
+import be.netdust.visual.layout.styles.Style;
 // mg
 class be.netdust.visual.layout.styles.defaulttheme.Theme extends Style
 {

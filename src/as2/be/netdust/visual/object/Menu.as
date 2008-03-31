@@ -1,9 +1,8 @@
-import be.netdust.visual.containers.MenuBar;
-import be.netdust.visual.containers.MenuPopup;
-import  be.netdust.visual.object.MenuItem;
-import be.netdust.visual.object.Button;
 import com.bourre.events.IEvent;
 
+import be.netdust.visual.containers.MenuPopup;
+import be.netdust.visual.object.Button;
+import be.netdust.visual.object.MenuItem;
 class be.netdust.visual.object.Menu
 extends Button
 {

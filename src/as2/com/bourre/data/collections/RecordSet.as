@@ -18,14 +18,12 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.iterator.ArrayIterator;
 import com.bourre.data.iterator.Iterable;
 import com.bourre.data.iterator.Iterator;
 import com.bourre.data.iterator.RecordSetIterator;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.collections.RecordSet 
 	implements Iterable
 {	private var _aColumNames : Array;

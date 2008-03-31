@@ -20,13 +20,11 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.events.BasicEvent;
 import com.bourre.events.EventType;
 import com.bourre.log.LogChannel;
 import com.bourre.log.LogLevel;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.log.LogEvent 
 	extends BasicEvent
 {

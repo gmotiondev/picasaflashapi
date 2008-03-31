@@ -1,18 +1,10 @@
-import com.bourre.core.PropertyAccessor;
-
-
-import be.netdust.visual.assembler.parser.ViewAttributeList;
-
 import be.netdust.visual.assembler.IAssembler;
-import be.netdust.visual.assembler.expert.IDExpert;
 import be.netdust.visual.assembler.expert.DataExpert;
 import be.netdust.visual.assembler.expert.ExpertList;
-import be.netdust.visual.assembler.expert.StyleExpert;
-import be.netdust.visual.assembler.expert.MethodExpert;
 import be.netdust.visual.assembler.expert.ExpertLocator;
-
-
-
+import be.netdust.visual.assembler.expert.IDExpert;
+import be.netdust.visual.assembler.expert.MethodExpert;
+import be.netdust.visual.assembler.parser.ViewAttributeList;
 class be.netdust.visual.assembler.expert.PropertyExpert
 extends be.netdust.visual.assembler.expert.Expert
 {

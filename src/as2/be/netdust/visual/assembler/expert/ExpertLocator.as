@@ -1,11 +1,9 @@
-
 import com.bourre.core.ILocator;
 import com.bourre.data.collections.Map;
 import com.bourre.log.PixlibStringifier;
 
 import be.netdust.visual.assembler.IAssembler;
 import be.netdust.visual.assembler.expert.Expert;
-
 class be.netdust.visual.assembler.expert.ExpertLocator 
 	implements ILocator
 {

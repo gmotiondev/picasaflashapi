@@ -18,12 +18,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.iterator.ArrayIterator;
 import com.bourre.data.iterator.Iterable;
 import com.bourre.data.iterator.Iterator;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.collections.Queue
 	implements Iterable
 {

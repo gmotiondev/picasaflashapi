@@ -1,4 +1,4 @@
-﻿/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
+/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,10 @@
  */
 
  /* use this class for dynamic component drawing */
- 
-import be.netdust.visual.tools.Rectangle;
-import be.netdust.visual.layout.styles.Style;
-import be.netdust.visual.layout.skins.ISkin;
 import be.netdust.visual.layout.skins.AbstractSkin;
-
+import be.netdust.visual.layout.skins.ISkin;
+import be.netdust.visual.layout.styles.Style;
+import be.netdust.visual.tools.Rectangle; 
 /* todo: better border handling */
 
 class be.netdust.visual.layout.skins.UIBorder 

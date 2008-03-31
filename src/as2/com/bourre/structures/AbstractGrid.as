@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright the original author or authors.
  * 
  * Licensed under the MOZILLA PUBLIC LICENSE, Version 1.1 (the "License");
@@ -26,7 +26,8 @@
  * 
  * @author Francis Bourre
  * @version 1.0
- */ 
+ */
+
 import com.bourre.core.HashCodeFactory;
 import com.bourre.data.iterator.Iterable;
 import com.bourre.data.iterator.Iterator;
@@ -34,8 +35,7 @@ import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.structures.GridIterator;
 import com.bourre.structures.Point;
-import com.bourre.utils.ClassUtils;
-
+import com.bourre.utils.ClassUtils; 
 class com.bourre.structures.AbstractGrid 
 	implements Iterable
 {

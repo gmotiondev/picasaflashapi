@@ -24,9 +24,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.events.IEvent;
-
 interface com.bourre.mvc.IModel 
 {
 	/**

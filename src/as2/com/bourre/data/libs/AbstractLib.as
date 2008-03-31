@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.commands.CommandManagerFPS;
 import com.bourre.commands.CommandManagerMS;
 import com.bourre.commands.Delegate;
@@ -30,7 +29,6 @@ import com.bourre.events.EventType;
 import com.bourre.events.IEvent;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.AbstractLib
 	implements ILib
 {

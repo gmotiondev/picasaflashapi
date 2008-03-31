@@ -19,7 +19,6 @@
  * THE SOFTWARE.
  */
 import be.netdust.visual.layout.skins.ISkin;
-
 class be.netdust.visual.layout.skins.AbstractSkin 
 implements ISkin
 {

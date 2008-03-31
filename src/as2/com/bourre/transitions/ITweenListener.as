@@ -28,7 +28,6 @@
  * @see com.bourre.transitions.TweenEvent
  */
 import com.bourre.transitions.TweenEvent;
-
 interface com.bourre.transitions.ITweenListener
 {
 	/**

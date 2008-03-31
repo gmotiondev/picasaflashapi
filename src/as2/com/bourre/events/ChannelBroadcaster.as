@@ -18,14 +18,12 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.collections.Map;
 import com.bourre.events.ChannelDynBasicEvent;
 import com.bourre.events.DefaultChannel;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.events.ChannelBroadcaster 
 {
 	private var _oDefaultChannel :String;

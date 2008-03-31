@@ -18,13 +18,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import be.netdust.visual.containers.HBox;
 import com.bourre.events.IEvent;
 
+import be.netdust.visual.containers.HBox;
 import be.netdust.visual.containers.TabPanels;
 import be.netdust.visual.object.Tab;
-
-
 class be.netdust.visual.containers.TabBox 
 extends be.netdust.visual.containers.VBox 
 {

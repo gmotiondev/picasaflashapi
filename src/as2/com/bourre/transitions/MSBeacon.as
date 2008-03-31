@@ -23,12 +23,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.transitions.IFrameBeacon;
 import com.bourre.transitions.IFrameListener;
-
 class com.bourre.transitions.MSBeacon
 	implements IFrameBeacon
 {

@@ -1,7 +1,6 @@
-﻿import sk.prasa.webapis.picasa.UrlParams;
 import sk.prasa.webapis.generic.PicasaServiceBase;
+import sk.prasa.webapis.picasa.UrlParams;
 import sk.prasa.webapis.picasa.core.*;
-
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

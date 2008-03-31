@@ -40,9 +40,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.log.PixlibDebug;
-
 class com.bourre.core.HashCodeFactory
 {
 	//-------------------------------------------------------------------------

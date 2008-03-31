@@ -18,16 +18,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import be.netdust.visual.managers.FocusManager;
-import be.netdust.visual.managers.IFocus;
-
-import be.netdust.visual.events.BubbleEvent;
-import be.netdust.visual.UIContainer;
-import be.netdust.visual.UICore;
-
-import com.bourre.commands.Delegate;
 import com.bourre.events.IEvent;
 
+import be.netdust.visual.UIContainer;
+import be.netdust.visual.UICore;
+import be.netdust.visual.events.BubbleEvent;
+import be.netdust.visual.managers.FocusManager;
+import be.netdust.visual.managers.IFocus;
 class be.netdust.visual.containers.DeckBox 
 extends UIContainer 
 implements be.netdust.visual.managers.ITabGroup

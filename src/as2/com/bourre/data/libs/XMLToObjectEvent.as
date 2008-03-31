@@ -18,12 +18,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.XMLToObject;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.XMLToObjectEvent extends LibEvent
 {
 	public function XMLToObjectEvent(e:EventType, oLib:XMLToObject)

@@ -44,7 +44,6 @@
 import com.bourre.events.EventType;
 import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.events.BasicEvent
 	implements IEvent
 {

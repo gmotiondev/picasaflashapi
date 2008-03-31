@@ -1,10 +1,8 @@
-﻿
+import com.bourre.commands.CommandMS;
+import com.bourre.commands.Delegate;
+
 import be.netdust.visual.layout.skins.UIBorder;
 import be.netdust.visual.layout.styles.Style;
-
-import com.bourre.commands.Delegate;
-import com.bourre.commands.CommandMS;
-
 class be.netdust.visual.tools.ToolTip 
 {
 

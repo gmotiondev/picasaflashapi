@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.collections.Map;
 import com.bourre.data.libs.GraphicLib;
 import com.bourre.data.libs.GraphicLibLocator;
@@ -27,7 +26,6 @@ import com.bourre.events.EventType;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.structures.Point;
-
 class com.bourre.visual.MovieClipHelper 
 {
 	public var view : MovieClip;

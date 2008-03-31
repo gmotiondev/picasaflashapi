@@ -1,12 +1,10 @@
-﻿import com.bourre.commands.ISyncCommand;
+import com.bourre.commands.ISyncCommand;
 import com.bourre.commands.ISyncCommandListener;
-import com.bourre.core.HashCodeFactory;
-import com.bourre.events.IEvent;
 import com.bourre.events.BasicEvent;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.EventType;
+import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.commands.AbstractSyncCommand
 	implements ISyncCommand
 {

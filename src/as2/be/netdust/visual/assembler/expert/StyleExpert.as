@@ -1,11 +1,7 @@
-
-
-import be.netdust.visual.tools.css.CSSParser;
-
 import be.netdust.visual.assembler.IAssembler;
 import be.netdust.visual.assembler.expert.ExpertList;
 import be.netdust.visual.assembler.expert.ExpertLocator;
-
+import be.netdust.visual.tools.css.CSSParser;
 class be.netdust.visual.assembler.expert.StyleExpert
 extends be.netdust.visual.assembler.expert.Expert
 {

@@ -23,9 +23,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.log.LogEvent;
-
 interface com.bourre.log.LogListener
 {
 	/**

@@ -1,14 +1,13 @@
-﻿import sk.prasa.webapis.generic.ServiceBase;
-import sk.prasa.webapis.generic.DynamicXMLService;
-
-import com.bourre.events.BasicEvent;
-import com.bourre.events.NumberEvent;
-import com.bourre.events.IEvent;
-import com.bourre.events.EventType;
+import com.bourre.commands.Delegate;
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.libs.XMLToObjectDeserializer;
-import com.bourre.commands.Delegate;
+import com.bourre.events.BasicEvent;
+import com.bourre.events.EventType;
+import com.bourre.events.IEvent;
+import com.bourre.events.NumberEvent;
 
+import sk.prasa.webapis.generic.DynamicXMLService;
+import sk.prasa.webapis.generic.ServiceBase;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

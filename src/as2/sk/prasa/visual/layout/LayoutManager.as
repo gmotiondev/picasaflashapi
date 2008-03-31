@@ -1,9 +1,8 @@
-﻿import com.bourre.data.collections.IndexedArray;
-import com.bourre.log.PixlibStringifier;
+import com.bourre.data.collections.IndexedArray;
+import com.bourre.events.BasicEvent;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.EventType;
-import com.bourre.events.BasicEvent;
-
+import com.bourre.log.PixlibStringifier;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  * 

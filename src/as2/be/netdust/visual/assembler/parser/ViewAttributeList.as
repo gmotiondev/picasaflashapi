@@ -1,4 +1,4 @@
-﻿
+
 
 class be.netdust.visual.assembler.parser.ViewAttributeList
 {

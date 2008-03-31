@@ -39,10 +39,8 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.commands.Command;
-import com.bourre.log.PixlibStringifier;
-
+import com.bourre.log.PixlibStringifier; 
 class com.bourre.commands.CommandMS
 {
 	private var _oT:Object;

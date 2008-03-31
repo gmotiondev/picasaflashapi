@@ -18,9 +18,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.iterator.Iterator;
-
 interface com.bourre.data.iterator.Iterable
 {
 	public function getIterator() : Iterator;

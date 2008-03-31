@@ -1,4 +1,4 @@
-﻿/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
+/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,7 +19,6 @@
  * THE SOFTWARE.
  */
 import be.netdust.visual.object.Label;
-
 class be.netdust.visual.object.TextBox extends Label
 {
 	public var styleClass:String = "TextBox";

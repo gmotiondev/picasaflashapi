@@ -1,9 +1,8 @@
-import com.bourre.log.PixlibStringifier;
 import com.bourre.events.EventBroadcaster;
+import com.bourre.log.PixlibStringifier;
 
 import be.netdust.visual.assembler.IAssembler;
-import  be.netdust.visual.assembler.expert.ExpertLocator;
-
+import be.netdust.visual.assembler.expert.ExpertLocator;
 class be.netdust.visual.assembler.expert.Expert
 {
 

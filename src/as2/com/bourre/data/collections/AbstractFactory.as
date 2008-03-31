@@ -18,11 +18,9 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.collections.Map;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.collections.AbstractFactory
 {
 	private var _a:Map;

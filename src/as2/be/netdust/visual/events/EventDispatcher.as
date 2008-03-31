@@ -1,15 +1,10 @@
-﻿
-
-import com.bourre.events.ChannelBroadcaster;
+import com.bourre.commands.Command;
 import com.bourre.events.BasicEvent;
+import com.bourre.events.ChannelBroadcaster;
 import com.bourre.events.EventType;
 import com.bourre.events.IEvent;
 
-import com.bourre.commands.Command;
-
-import be.netdust.visual.events.*
-
-
+import be.netdust.visual.events.*;
 class be.netdust.visual.events.EventDispatcher
 {
 

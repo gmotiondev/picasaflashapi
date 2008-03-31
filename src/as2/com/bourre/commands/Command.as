@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright the original author or authors.
  * 
  * Licensed under the MOZILLA PUBLIC LICENSE, Version 1.1 (the "License");
@@ -48,9 +48,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.events.IEvent;
-
 interface com.bourre.commands.Command
 {
 	/**

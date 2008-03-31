@@ -1,6 +1,5 @@
 import com.bourre.commands.Command;
 import com.bourre.commands.ISyncCommandListener;
-
 interface com.bourre.commands.ISyncCommand
 	extends Command
 {

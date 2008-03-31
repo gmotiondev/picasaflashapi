@@ -22,13 +22,11 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.events.BubbleEvent;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.IEvent;
 import com.bourre.events.ListenerArray;
-import com.bourre.log.PixlibStringifier;
-
+import com.bourre.log.PixlibStringifier; 
 class com.bourre.events.BubbleEventBroadcaster
 	extends EventBroadcaster
 {

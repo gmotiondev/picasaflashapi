@@ -18,10 +18,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import be.netdust.visual.data.DataProvider;
 import be.netdust.visual.containers.VBox;
+import be.netdust.visual.data.DataProvider;
 import be.netdust.visual.object.MenuItem;
-
 class be.netdust.visual.containers.MenuPopup 
 extends VBox 
 {

@@ -1,11 +1,9 @@
-﻿import asunit.framework.TestSuite;
 import sk.prasa.webapis.picasa.tests.PicasaServiceTest;
 import sk.prasa.webapis.picasa.tests.albums.*;
-import sk.prasa.webapis.picasa.tests.photos.*;
 import sk.prasa.webapis.picasa.tests.comments.*;
-import sk.prasa.webapis.picasa.tests.tags.*;
 import sk.prasa.webapis.picasa.tests.community.*;
-
+import sk.prasa.webapis.picasa.tests.photos.*;
+import sk.prasa.webapis.picasa.tests.tags.*;
 class sk.prasa.webapis.picasa.tests.AllTests extends TestSuite
 {
 	private var className:String = "AllTests";

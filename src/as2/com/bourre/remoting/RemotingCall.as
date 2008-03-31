@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.AbstractLib;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibDebug;
@@ -31,7 +30,6 @@ import com.bourre.remoting.RemotingCallEvent;
 import com.bourre.remoting.RemotingConnection;
 import com.bourre.remoting.ServiceMethod;
 import com.bourre.remoting.ServiceResponder;
-
 class com.bourre.remoting.RemotingCall 
 	extends AbstractLib 
 	implements IServiceProxyListener

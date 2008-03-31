@@ -1,10 +1,8 @@
-﻿
 import com.bourre.data.collections.Map;
 
 import be.netdust.visual.assembler.IAssembler;
 import be.netdust.visual.assembler.expert.ExpertList;
 import be.netdust.visual.assembler.expert.ExpertLocator;
-
 class be.netdust.visual.assembler.expert.IDExpert
 extends be.netdust.visual.assembler.expert.Expert
 {

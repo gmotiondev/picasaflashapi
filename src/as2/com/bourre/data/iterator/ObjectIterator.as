@@ -18,10 +18,8 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.iterator.Iterator;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.iterator.ObjectIterator 
 	implements Iterator
 {

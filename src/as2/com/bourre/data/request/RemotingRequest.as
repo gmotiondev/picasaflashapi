@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.LibEvent;
 import com.bourre.data.request.AbstractDataRequest;
 import com.bourre.events.IEvent;
@@ -27,7 +26,6 @@ import com.bourre.remoting.BasicFaultEvent;
 import com.bourre.remoting.BasicResultEvent;
 import com.bourre.remoting.IServiceProxyListener;
 import com.bourre.remoting.RemotingCall;
-
 class com.bourre.data.request.RemotingRequest 
 	extends AbstractDataRequest 
 	implements IServiceProxyListener

@@ -24,7 +24,6 @@
  * @version 1.0
  */
 import com.bourre.transitions.IFrameListener;
-
 interface com.bourre.transitions.IFrameBeacon 
 {
 	/**

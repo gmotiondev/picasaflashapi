@@ -1,4 +1,4 @@
-﻿/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
+/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,11 +21,10 @@
 import com.bourre.log.PixlibStringifier;
 
 import be.netdust.visual.assembler.expert.ComponentExpert;
-import be.netdust.visual.layout.styles.bordertheme.Theme;
-import be.netdust.visual.layout.styles.Style;
 import be.netdust.visual.layout.skins.*;
+import be.netdust.visual.layout.styles.Style;
+import be.netdust.visual.layout.styles.bordertheme.Theme;
 import be.netdust.visual.managers.IKey;
-
 class be.netdust.visual.UICore extends be.netdust.visual.events.EventDispatcher implements IKey
 {
 	/*

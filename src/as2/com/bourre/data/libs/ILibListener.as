@@ -18,9 +18,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.LibEvent;
-
 interface com.bourre.data.libs.ILibListener
 {
 	public function onLoadInit(e:LibEvent) : Void;

@@ -32,11 +32,9 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.events.BasicEvent;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibStringifier;
-
 dynamic class com.bourre.events.DynBasicEvent extends BasicEvent
 {
 	//-------------------------------------------------------------------------

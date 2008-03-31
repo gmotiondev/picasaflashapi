@@ -23,12 +23,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.structures.AbstractGrid;
-import com.bourre.structures.Point;
-
+import com.bourre.structures.Point; 
 class com.bourre.structures.NGrid extends AbstractGrid
 {
 	

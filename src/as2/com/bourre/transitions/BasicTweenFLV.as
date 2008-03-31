@@ -13,13 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
 import com.bourre.log.PixlibStringifier;
 import com.bourre.medias.video.VideoDisplay;
 import com.bourre.transitions.AbstractTween;
 import com.bourre.transitions.FLVBeacon;
-import com.bourre.transitions.IFrameListener;
-
+import com.bourre.transitions.IFrameListener; 
 class com.bourre.transitions.BasicTweenFLV 
 	extends AbstractTween
 	implements IFrameListener

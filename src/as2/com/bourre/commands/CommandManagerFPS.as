@@ -41,11 +41,9 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.commands.CommandFPS;
 import com.bourre.log.PixlibStringifier;
-import com.bourre.transitions.FPSBeacon;
-
+import com.bourre.transitions.FPSBeacon; 
 class com.bourre.commands.CommandManagerFPS extends CommandFPS
 {
 	public static function getInstance() : CommandManagerFPS

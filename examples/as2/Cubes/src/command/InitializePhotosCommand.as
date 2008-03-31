@@ -41,7 +41,7 @@ class command.InitializePhotosCommand implements Command, IResponder
 		{
 			var tPhoto : Photo = data[a];
 			model.photos.push(tPhoto);
-			tAlbumid = tPhoto.album.gphoto.id;
+			tAlbumid = tPhoto.parent["gphoto"].id;
 		}
 		
 		EventBroadcaster.getInstance().broadcastEvent(new SetPhotosThumbEvent(tAlbumid));

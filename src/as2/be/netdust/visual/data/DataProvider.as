@@ -18,11 +18,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import com.bourre.events.EventBroadcaster;
 import com.bourre.events.BasicEvent;
+import com.bourre.events.EventBroadcaster;
 import com.bourre.events.EventType;
-import com.bourre.events.IEvent;
-
 class be.netdust.visual.data.DataProvider
 {
 	private var _data:Array;

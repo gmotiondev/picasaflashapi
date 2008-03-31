@@ -18,11 +18,9 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.commands.Command;
 import com.bourre.data.request.IDataRequestListener;
 import com.bourre.events.IEvent;
-
 interface com.bourre.data.request.IDataRequest 
 	extends Command
 {

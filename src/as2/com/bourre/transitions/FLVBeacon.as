@@ -7,7 +7,6 @@ import com.bourre.medias.video.VideoDisplay;
 import com.bourre.medias.video.VideoDisplayEvent;
 import com.bourre.transitions.IFrameBeacon;
 import com.bourre.transitions.IFrameListener;
-
 class com.bourre.transitions.FLVBeacon 
 	implements IFrameBeacon
 {

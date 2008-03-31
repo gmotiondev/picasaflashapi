@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright the original author or authors.
  * 
  * Licensed under the MOZILLA PUBLIC LICENSE, Version 1.1 (the "License");
@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.core.HashCodeFactory;
 import com.bourre.data.collections.Queue;
 import com.bourre.data.libs.AbstractLib;
@@ -29,7 +28,6 @@ import com.bourre.events.EventType;
 import com.bourre.events.IEvent;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.LibStack 
 	extends AbstractLib
 	implements ILibListener

@@ -23,11 +23,9 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.transitions.IBasicTween;
 import com.bourre.transitions.ITweenListener;
 import com.bourre.transitions.TweenEventType;
-
 interface com.bourre.transitions.ITween extends IBasicTween
 {
 	/**

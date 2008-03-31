@@ -18,15 +18,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import be.netdust.visual.object.TextBox;
-import com.bourre.log.PixlibStringifier;
 import com.bourre.data.collections.Map;
-import com.bourre.commands.CommandMS;
-import com.bourre.commands.Delegate;
+import com.bourre.log.PixlibStringifier;
 
-import be.netdust.visual.managers.FocusManager;
 import be.netdust.visual.managers.IKey;
-
 class be.netdust.visual.managers.KeyManager
 {
 	private static var _oI:KeyManager = null;

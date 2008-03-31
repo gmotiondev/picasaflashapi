@@ -1,4 +1,4 @@
-﻿/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
+/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +20,8 @@
  */
 import com.bourre.events.BasicEvent;
 import com.bourre.events.EventType;
-import  be.netdust.visual.assembler.ViewBuilder;
 
-
+import be.netdust.visual.assembler.ViewBuilder;
 class be.netdust.visual.assembler.ViewBuilderEvent 
 	extends BasicEvent
 {

@@ -24,10 +24,8 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.log.PixlibStringifier;
 import com.bourre.medias.sound.SoundFactory;
-
 class com.bourre.medias.sound.SoundFactoryManager 
 	extends SoundFactory
 {

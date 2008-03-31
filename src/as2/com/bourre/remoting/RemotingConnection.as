@@ -18,11 +18,9 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.data.collections.Map;
 import com.bourre.log.PixlibStringifier;
-import com.bourre.remoting.RemotingDebug;
-
+import com.bourre.remoting.RemotingDebug; 
 class com.bourre.remoting.RemotingConnection 
 	extends NetConnection
 {

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Deprecated, will be deleted
  */
  class sk.prasa.visual.tools.MathUtils

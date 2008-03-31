@@ -18,11 +18,9 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.request.AbstractDataRequest;
 import com.bourre.events.IEvent;
 import com.bourre.utils.SharedObjectUtils;
-
 class com.bourre.data.request.SharedObjectLoadRequest 
 	extends AbstractDataRequest
 {

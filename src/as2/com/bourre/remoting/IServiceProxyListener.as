@@ -18,10 +18,8 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.remoting.BasicFaultEvent;
-import com.bourre.remoting.BasicResultEvent;
-
+import com.bourre.remoting.BasicResultEvent; 
 interface com.bourre.remoting.IServiceProxyListener 
 {
 	public function onResult( e : BasicResultEvent ):Void;

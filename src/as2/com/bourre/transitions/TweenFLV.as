@@ -7,7 +7,6 @@ import com.bourre.transitions.ITween;
 import com.bourre.transitions.ITweenListener;
 import com.bourre.transitions.TweenEvent;
 import com.bourre.transitions.TweenEventType;
-
 class com.bourre.transitions.TweenFLV 
 	extends BasicTweenFLV
 	implements ITween

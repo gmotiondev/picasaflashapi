@@ -1,7 +1,6 @@
-﻿import be.netdust.visual.UICore;
-import be.netdust.visual.layout.styles.Style;
+import be.netdust.visual.UICore;
 import be.netdust.visual.layout.skins.UIBorder;
-
+import be.netdust.visual.layout.styles.Style;
 class be.netdust.visual.layout.styles.bordertheme.Theme
 {
 	private static var _oI:Theme;	

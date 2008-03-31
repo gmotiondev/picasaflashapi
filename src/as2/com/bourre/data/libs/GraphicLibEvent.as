@@ -18,12 +18,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.GraphicLib;
 import com.bourre.data.libs.LibEvent;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.GraphicLibEvent extends LibEvent
 {	
 	public function GraphicLibEvent(e:EventType, oLib:GraphicLib)

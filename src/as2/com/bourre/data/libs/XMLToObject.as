@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 3.0
  */
-
 import com.bourre.commands.Delegate;
 import com.bourre.data.libs.AbstractLib;
 import com.bourre.data.libs.IXMLToObjectDeserializer;
@@ -27,7 +26,6 @@ import com.bourre.data.libs.XMLToObjectEvent;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.XMLToObject extends AbstractLib
 {
 	private var _oTarget;

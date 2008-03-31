@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright the original author or authors.
  * 
  * Licensed under the MOZILLA PUBLIC LICENSE, Version 1.1 (the "License");
@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.core.HashCodeFactory;
 import com.bourre.data.libs.AbstractLib;
 import com.bourre.data.libs.GraphicLibEvent;
@@ -26,7 +25,6 @@ import com.bourre.data.libs.GraphicLibLocator;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.GraphicLib extends AbstractLib
 {
 	private var _mcContainer:MovieClip;

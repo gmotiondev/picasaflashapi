@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.commands.Delegate;
 import com.bourre.data.collections.RecordSet;
 import com.bourre.events.EventType;
@@ -27,8 +26,7 @@ import com.bourre.remoting.BasicFaultEvent;
 import com.bourre.remoting.BasicResult;
 import com.bourre.remoting.BasicResultEvent;
 import com.bourre.remoting.RemotingDebug;
-import com.bourre.remoting.ServiceMethod;
-
+import com.bourre.remoting.ServiceMethod; 
 class com.bourre.remoting.ServiceResponder 
 {
 	public static var onResultEVENT : EventType = new EventType( "onResult" );

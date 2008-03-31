@@ -31,9 +31,7 @@
  * @author Francis Bourre
  * @version 1.0 
  */
- 
-import com.bourre.events.IEvent;
-
+import com.bourre.events.IEvent; 
 interface com.bourre.events.IEventDispatcher
 {
 	/**

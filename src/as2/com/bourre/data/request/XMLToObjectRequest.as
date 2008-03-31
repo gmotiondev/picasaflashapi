@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.BasicXMLDeserializer;
 import com.bourre.data.libs.ILibListener;
 import com.bourre.data.libs.IXMLToObjectDeserializer;
@@ -27,7 +26,6 @@ import com.bourre.data.libs.XMLToObject;
 import com.bourre.data.libs.XMLToObjectEvent;
 import com.bourre.data.request.AbstractDataRequest;
 import com.bourre.events.IEvent;
-
 class com.bourre.data.request.XMLToObjectRequest 
 	extends AbstractDataRequest 
 	implements ILibListener

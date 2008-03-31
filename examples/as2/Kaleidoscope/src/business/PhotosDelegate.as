@@ -1,17 +1,18 @@
-/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
 import com.bourre.core.Model;
 import com.bourre.commands.Delegate;
 import com.bourre.events.NumberEvent;
 import com.bourre.events.EventBroadcaster;
 
 import sk.prasa.webapis.picasa.PicasaService;
-import sk.prasa.webapis.picasa.events.PicasaResultEvent;
+import sk.prasa.webapis.picasa.events.PicasaEvent;
 
 import model.*;
 import command.IResponder;
 import control.*;
+
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
 
 class business.PhotosDelegate
 {
@@ -27,11 +28,11 @@ class business.PhotosDelegate
 	public function list(aUserid:String, aTag:String):Void
 	{
 		__service.addEventListener(PicasaService.PROGRESS, Delegate.create(this, list_progress)); 
-		__service.addEventListener(PicasaResultEvent.ALBUMS_GET_LIST_BY_TAG, Delegate.create(this, list_complete));
+		__service.addEventListener(PicasaEvent.ALBUMS_GET_LIST_BY_TAG, Delegate.create(this, list_complete));
 		__service.albums.list_by_tag(aUserid, aTag);
 	}
 
-	public function list_complete(e:PicasaResultEvent):Void
+	public function list_complete(e : PicasaEvent) : Void
 	{
 		try
 		{
@@ -45,7 +46,7 @@ class business.PhotosDelegate
 			trace("list_complete failed: "+error.message)
 		} finally
 		{
-			__service.removeEventListener(PicasaResultEvent.ALBUMS_GET_LIST_BY_TAG, list_complete);
+			__service.removeEventListener(PicasaEvent.ALBUMS_GET_LIST_BY_TAG, list_complete);
 		}
 	}
 	

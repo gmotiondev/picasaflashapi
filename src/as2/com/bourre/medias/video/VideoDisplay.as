@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.commands.CommandManagerMS;
 import com.bourre.commands.Delegate;
 import com.bourre.data.libs.AbstractLib;
@@ -27,7 +26,6 @@ import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.medias.video.CuePointEvent;
 import com.bourre.medias.video.VideoDisplayEvent;
-
 class com.bourre.medias.video.VideoDisplay 
 	extends AbstractLib
 {

@@ -18,9 +18,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.log.PixlibStringifier;
-
 dynamic class com.bourre.data.libs.Config
 {
 	private static var _oI : Config;

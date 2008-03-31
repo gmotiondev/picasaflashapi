@@ -32,7 +32,6 @@ import com.bourre.log.PixlibStringifier;
 import com.bourre.transitions.AbstractTween;
 import com.bourre.transitions.IFrameListener;
 import com.bourre.transitions.MSBeacon;
-
 class com.bourre.transitions.BasicTweenMS extends AbstractTween
 	implements IFrameListener
 {

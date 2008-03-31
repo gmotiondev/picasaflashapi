@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.commands.Delegate;
 import com.bourre.core.HashCodeFactory;
 import com.bourre.data.collections.Map;
@@ -26,7 +25,6 @@ import com.bourre.data.libs.AbstractXMLToObjectDeserializer;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.structures.Point;
-
 class com.bourre.data.libs.XMLToObjectDeserializer 
 	extends AbstractXMLToObjectDeserializer
 {

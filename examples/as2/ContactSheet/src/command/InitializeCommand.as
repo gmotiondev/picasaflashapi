@@ -27,7 +27,7 @@ class command.InitializeCommand implements Command
 
 		var tPhotosView : PhotosView = PhotosView(MovieClipHelper.getMovieClipHelper(ViewList.PHOTOS_VIEW));
 		var tThumbsView : ThumbsView = ThumbsView(MovieClipHelper.getMovieClipHelper(ViewList.THUMBS_VIEW));
-			tThumbsView.setTitle(model.photos[0].album.title+" ("+model.photos[0].album.gphoto.numphotos+")");
+			tThumbsView.setTitle(model.photos[0].parent.title+" ("+model.photos[0].parent.gphoto.numphotos+")");
 			
 		var tStack : LibStack = new LibStack();
 		

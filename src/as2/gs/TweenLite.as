@@ -1,4 +1,4 @@
-﻿/*
+/*
 VERSION: 5.9
 DATE: 2/19/2008
 ACTIONSCRIPT VERSION: 2.0 (AS3 version is also available)

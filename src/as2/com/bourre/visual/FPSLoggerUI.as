@@ -2,7 +2,6 @@ import com.bourre.log.PixlibStringifier;
 import com.bourre.transitions.FPSBeacon;
 import com.bourre.transitions.IFrameListener;
 import com.bourre.visual.MovieClipHelper;
-
 class com.bourre.visual.FPSLoggerUI 
 	extends MovieClipHelper 
 	implements IFrameListener

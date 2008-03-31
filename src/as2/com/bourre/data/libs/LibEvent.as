@@ -18,12 +18,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.ILib;
 import com.bourre.events.BasicEvent;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.LibEvent extends BasicEvent
 {
 	private var _oLib:ILib;

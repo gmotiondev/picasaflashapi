@@ -6,7 +6,7 @@ import com.bourre.data.collections.IndexedArray;
 
 class sk.prasa.mvc.vo.PhotosVO extends IndexedArray
 {
-	private var __current:Number;
+	private var __current : Number;
 	private static var __instance : PhotosVO;
 	 
 	private function PhotosVO()
@@ -20,31 +20,33 @@ class sk.prasa.mvc.vo.PhotosVO extends IndexedArray
 		return __instance;
 	}
 	 
-	public function getNext():String
+	public function getNext() : String
 	{
 		if(++__current >= this.length || __current == null) __current = 0;
+		
 		return this[__current].gphoto.id;
 	}
 	 
-	public function getPrevious():String
+	public function getPrevious() : String
 	{
 		if(--__current < 0) __current = this.length - 1;
+		
 		return this[__current].gphoto.id;
 	}
 	 
-	public function getCurrentTitle():String
+	public function getCurrentTitle() : String
 	{
 		return this[__current].summary;
 	}
 	 
-	public function getClicked(aId:String):String
+	public function getClicked(aId : String) : String
 	{
 		__current = getIndexById(aId);
 		
 		return aId;
 	}
 	 
-	private function getIndexById(aId:String):Number
+	private function getIndexById(aId : String) : Number
 	{
 		for(var a:Number = 0; a < this.length; a++)
 		{

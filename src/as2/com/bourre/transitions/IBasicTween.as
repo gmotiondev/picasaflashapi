@@ -23,9 +23,7 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.commands.Command;
-
 interface com.bourre.transitions.IBasicTween extends Command
 {
 	/**

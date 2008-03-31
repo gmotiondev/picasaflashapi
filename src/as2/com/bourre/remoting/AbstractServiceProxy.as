@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.events.EventBroadcaster;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.remoting.BasicFaultEvent;
@@ -27,8 +26,7 @@ import com.bourre.remoting.IServiceProxyListener;
 import com.bourre.remoting.RemotingConnection;
 import com.bourre.remoting.ServiceMethod;
 import com.bourre.remoting.ServiceResponder;
-import com.bourre.utils.ClassUtils;
-
+import com.bourre.utils.ClassUtils; 
 class com.bourre.remoting.AbstractServiceProxy 
 {
 	private var _oEB : EventBroadcaster;

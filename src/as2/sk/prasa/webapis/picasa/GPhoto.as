@@ -1,5 +1,4 @@
-﻿import sk.prasa.webapis.picasa.KindType;
-
+import sk.prasa.webapis.picasa.KindType;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

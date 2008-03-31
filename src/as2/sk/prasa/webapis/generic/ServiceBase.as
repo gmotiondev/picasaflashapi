@@ -1,5 +1,4 @@
-﻿import com.bourre.events.EventBroadcaster;
-
+import com.bourre.events.EventBroadcaster;
 /**
  * @author Michal Gron (michal.gron@gmail.com)
  */

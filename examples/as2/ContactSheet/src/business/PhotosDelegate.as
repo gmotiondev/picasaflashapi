@@ -4,8 +4,8 @@ import com.bourre.events.NumberEvent;
 import com.bourre.events.EventBroadcaster;
 
 import sk.prasa.webapis.picasa.PicasaService;
-import sk.prasa.webapis.picasa.events.PicasaResultEvent;
 import sk.prasa.webapis.picasa.UrlParams;
+import sk.prasa.webapis.picasa.events.PicasaEvent;
 import sk.prasa.mvc.command.IResponder;
 
 import model.*;
@@ -33,11 +33,11 @@ class business.PhotosDelegate
 			p.imgmax = 512;
 		
 		__s.addEventListener(PicasaService.PROGRESS, list_progress); 
-		__s.addEventListener(PicasaResultEvent.PHOTOS_GET_LIST, Delegate.create(this, list_complete));
+		__s.addEventListener(PicasaEvent.PHOTOS_GET_LIST, Delegate.create(this, list_complete));
 		__s.photos.list(aUserid, aAlbumid, p);
 	}
 
-	public function list_complete(evt : PicasaResultEvent) : Void
+	public function list_complete(evt : PicasaEvent) : Void
 	{
 		try
 		{
@@ -51,7 +51,7 @@ class business.PhotosDelegate
 			trace("list_complete failed: " + error.message);
 		} finally
 		{
-			__s.removeEventListener(PicasaResultEvent.PHOTOS_GET_LIST, list_complete);
+			__s.removeEventListener(PicasaEvent.PHOTOS_GET_LIST, list_complete);
 		}
 	}
 	

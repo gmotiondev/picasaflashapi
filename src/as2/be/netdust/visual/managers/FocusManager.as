@@ -1,4 +1,4 @@
-﻿/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
+/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -18,15 +18,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-
 import com.bourre.data.collections.IndexedList;
 import com.bourre.data.collections.Map;
 import com.bourre.log.PixlibStringifier;
 
-import be.netdust.visual.managers.ITabGroup;
 import be.netdust.visual.managers.IFocus;
-
+import be.netdust.visual.managers.ITabGroup;
 class be.netdust.visual.managers.FocusManager
 {
 	private static var _oFocusM:Map = new Map();

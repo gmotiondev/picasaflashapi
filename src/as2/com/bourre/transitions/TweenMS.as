@@ -37,7 +37,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.events.EventBroadcaster;
 import com.bourre.events.IEvent;
 import com.bourre.log.PixlibStringifier;
@@ -46,7 +45,6 @@ import com.bourre.transitions.ITween;
 import com.bourre.transitions.ITweenListener;
 import com.bourre.transitions.TweenEvent;
 import com.bourre.transitions.TweenEventType;
-
 class com.bourre.transitions.TweenMS extends BasicTweenMS 
 	implements ITween
 {

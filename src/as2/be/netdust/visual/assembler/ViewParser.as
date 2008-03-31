@@ -18,24 +18,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import com.bourre.events.EventBroadcaster;
-import com.bourre.events.StringEvent;
-import com.bourre.events.BasicEvent;
-import com.bourre.events.EventType;
-
 import com.bourre.commands.Delegate;
-
 import com.bourre.data.collections.Map;
 import com.bourre.data.iterator.ArrayIterator;
-
+import com.bourre.events.EventBroadcaster;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
 
-import be.netdust.visual.assembler.View;
 import be.netdust.visual.assembler.ViewAssembler;
-import be.netdust.visual.assembler.parser.ViewNodeNameList;
 import be.netdust.visual.assembler.parser.ViewAttributeList;
-
+import be.netdust.visual.assembler.parser.ViewNodeNameList;
 class be.netdust.visual.assembler.ViewParser 
 extends com.bourre.data.libs.AbstractXMLToObjectDeserializer
 {

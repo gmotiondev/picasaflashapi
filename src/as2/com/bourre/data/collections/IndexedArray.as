@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright the original author or authors.
  * 
  * Licensed under the MOZILLA PUBLIC LICENSE, Version 1.1 (the "License");
@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.core.HashCodeFactory;
 import com.bourre.data.collections.IIndexedCollection;
 import com.bourre.data.iterator.ArrayIterator;
@@ -26,7 +25,6 @@ import com.bourre.data.iterator.Iterable;
 import com.bourre.data.iterator.Iterator;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.utils.ClassUtils;
-
 class com.bourre.data.collections.IndexedArray extends Array
 	implements IIndexedCollection, Iterable
 {

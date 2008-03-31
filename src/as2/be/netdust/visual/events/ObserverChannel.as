@@ -1,5 +1,4 @@
 import com.bourre.events.AbstractEventChannel;
-
 class be.netdust.visual.events.ObserverChannel 
 	extends AbstractEventChannel
 {

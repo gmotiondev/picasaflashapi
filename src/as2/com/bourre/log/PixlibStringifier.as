@@ -18,10 +18,8 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.log.BasicStringifier;
 import com.bourre.log.Stringifier;
-
 class com.bourre.log.PixlibStringifier 
 {
 	private static var _STRINGIFIER : Stringifier = new BasicStringifier();

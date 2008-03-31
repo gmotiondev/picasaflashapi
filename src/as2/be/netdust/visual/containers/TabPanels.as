@@ -18,9 +18,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import be.netdust.visual.containers.DeckBox
-import be.netdust.visual.UICore;
-
+import be.netdust.visual.containers.DeckBox;
 class be.netdust.visual.containers.TabPanels 
 extends DeckBox
 {

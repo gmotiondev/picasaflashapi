@@ -2,7 +2,6 @@ import com.bourre.data.libs.ConfigLoader;
 import com.bourre.data.libs.LibEvent;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.ConfigLoaderEvent 
 	extends LibEvent 
 {

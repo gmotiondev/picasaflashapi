@@ -31,13 +31,11 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.log.PixlibStringifier;
 import com.bourre.mvc.AbstractModel;
 import com.bourre.mvc.IController;
 import com.bourre.mvc.IModel;
 import com.bourre.mvc.IView;
-
 class com.bourre.mvc.AbstractView implements IView
 {
 	//-------------------------------------------------------------------------

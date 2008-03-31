@@ -18,11 +18,9 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.core.HashCodeFactory;
 import com.bourre.data.iterator.ObjectIterator;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.collections.Map
 {
 	private var _oK:Object;

@@ -18,12 +18,10 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.data.libs.LibEvent;
 import com.bourre.events.EventType;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.remoting.RemotingCall;
-
 class com.bourre.remoting.RemotingCallEvent 
 	 extends LibEvent
 {

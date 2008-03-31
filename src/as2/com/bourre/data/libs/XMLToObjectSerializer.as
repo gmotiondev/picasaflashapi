@@ -62,7 +62,6 @@
  * @author Romain Ecarnot
  * @version 1.0
  */
- 
 import com.bourre.commands.Delegate;
 import com.bourre.core.HashCodeFactory;
 import com.bourre.data.collections.Map;
@@ -70,8 +69,7 @@ import com.bourre.data.libs.IXMLToObjectSerializer;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
 import com.bourre.structures.Point;
-import com.bourre.utils.ClassUtils;
-
+import com.bourre.utils.ClassUtils; 
 class com.bourre.data.libs.XMLToObjectSerializer 
 	implements IXMLToObjectSerializer
 {

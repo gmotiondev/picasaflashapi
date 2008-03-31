@@ -24,7 +24,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
- 
 import com.bourre.core.AccessorFactory;
 import com.bourre.core.IAccessor;
 import com.bourre.events.IEvent;
@@ -33,8 +32,7 @@ import com.bourre.log.PixlibStringifier;
 import com.bourre.transitions.AbstractTween;
 import com.bourre.transitions.IBasicTween;
 import com.bourre.transitions.IFrameBeacon;
-import com.bourre.transitions.IFrameListener;
-
+import com.bourre.transitions.IFrameListener; 
 class com.bourre.transitions.AbstractMultiTween 
 	implements IBasicTween, IFrameListener
 {

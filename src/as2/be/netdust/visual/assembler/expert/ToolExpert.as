@@ -1,11 +1,9 @@
-import be.netdust.visual.tools.*;
-import be.netdust.visual.managers.KeyManager;
-
 import be.netdust.visual.assembler.IAssembler;
-import be.netdust.visual.assembler.expert.IDExpert;
 import be.netdust.visual.assembler.expert.ExpertList;
 import be.netdust.visual.assembler.expert.ExpertLocator;
-
+import be.netdust.visual.assembler.expert.IDExpert;
+import be.netdust.visual.managers.KeyManager;
+import be.netdust.visual.tools.*;
 class be.netdust.visual.assembler.expert.ToolExpert
 extends be.netdust.visual.assembler.expert.Expert
 {

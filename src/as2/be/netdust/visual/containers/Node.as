@@ -1,4 +1,4 @@
-﻿/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
+/** * Copyright (c) 2007 Stefan Vandermeulen - netdust.be 
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -18,13 +18,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import be.netdust.visual.containers.HBox;
-import be.netdust.visual.object.ListCell;
-import be.netdust.visual.object.Label;
-
 import com.bourre.events.BasicEvent;
 import com.bourre.events.EventType;
 
+import be.netdust.visual.containers.HBox;
+import be.netdust.visual.object.ListCell;
 class be.netdust.visual.containers.Node
 extends HBox
 {
