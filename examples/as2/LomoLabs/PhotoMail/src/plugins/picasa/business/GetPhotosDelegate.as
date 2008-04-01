@@ -7,7 +7,7 @@ import com.bourre.events.NumberEvent;
 import com.bourre.events.EventBroadcaster;
 
 import sk.prasa.webapis.picasa.PicasaService;
-import sk.prasa.webapis.picasa.events.PicasaResultEvent;
+import sk.prasa.webapis.picasa.events.PicasaEvent;
 
 import plugins.picasa.model.*;
 import plugins.picasa.control.*;
@@ -27,11 +27,11 @@ class plugins.picasa.business.GetPhotosDelegate
 	public function list(aUserid:String, aAlbumid:String):Void
 	{
 		__service.addEventListener(PicasaService.PROGRESS, Delegate.create(this, list_progress)); 
-		__service.addEventListener(PicasaResultEvent.PHOTOS_GET_LIST, Delegate.create(this, list_complete));
+		__service.addEventListener(PicasaEvent.PHOTOS_GET_LIST, Delegate.create(this, list_complete));
 		__service.photos.list(aUserid, aAlbumid);
 	}
 
-	private function list_complete(e:PicasaResultEvent):Void
+	private function list_complete(e:PicasaEvent):Void
 	{
 		try
 		{
@@ -45,7 +45,7 @@ class plugins.picasa.business.GetPhotosDelegate
 			trace("list_complete failed: "+error.message)
 		} finally
 		{
-			__service.removeEventListener(PicasaResultEvent.PHOTOS_GET_LIST, list_complete);
+			__service.removeEventListener(PicasaEvent.PHOTOS_GET_LIST, list_complete);
 		}
 	}
 	

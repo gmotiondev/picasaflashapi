@@ -52,6 +52,7 @@ class view.AlbumsView extends MovieClipHelper
 		switch(e.property)
 		{
 			case "albums":
+				trace("change: "+e.data.length)
 				for(var a:Number = 0; a < e.data.length; a++)
 				{
 					var tItem:Album = e.data[a];
@@ -62,7 +63,7 @@ class view.AlbumsView extends MovieClipHelper
 				break;
 				
 			case "photos":
-				var tChangeForAlbum:String = e.data[0].album.gphoto.id;
+				var tChangeForAlbum:String = e.data[0].parent.gphoto.id;
 	
 				for(var a:Number = 0; a < e.data.length; a++)
 				{

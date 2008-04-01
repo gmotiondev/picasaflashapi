@@ -44,9 +44,9 @@ class command.GetPhotosCommand implements Command, IResponder
 			model.photos.push(tPhoto);
 		}
 		
-		var tTotalResults:Number = model.photos[0].album.openSearch.totalResults;
-		var tItemsPerPage:Number = model.photos[0].album.openSearch.itemsPerPage;
-		
+		var tTotalResults:Number = model.photos[0].parent.opensearch.totalResults;
+		var tItemsPerPage:Number = model.photos[0].parent.opensearch.itemsPerPage;
+		trace("total: " + tTotalResults + ", per page: " + tItemsPerPage);
 		EventBroadcaster.getInstance().dispatchEvent(new SetPhotosEvent(tTotalResults, tItemsPerPage));
 	}
 	

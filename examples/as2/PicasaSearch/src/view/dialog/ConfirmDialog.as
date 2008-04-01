@@ -5,8 +5,6 @@ import be.netdust.visual.assembler.ViewBuilder
 import be.netdust.visual.containers.*;
 import be.netdust.visual.object.*;
 
-import com.bourre.events.EventType;
-import com.bourre.events.EventBroadcaster;
 import com.bourre.visual.MovieClipHelper;
 
 import control.*;

@@ -6,7 +6,7 @@ import com.bourre.events.NumberEvent;
 import com.bourre.events.EventBroadcaster;
 
 import sk.prasa.webapis.picasa.PicasaService;
-import sk.prasa.webapis.picasa.events.PicasaResultEvent;
+import sk.prasa.webapis.picasa.events.PicasaEvent;
 
 import model.*;
 import command.IResponder;
@@ -26,11 +26,11 @@ class business.PhotosDelegate
 	public function search(aQuery:String):Void
 	{		
 		__service.addEventListener(PicasaService.PROGRESS, this); 
-		__service.addEventListener(PicasaResultEvent.COMMUNITY_GET_SEARCH, this);
+		__service.addEventListener(PicasaEvent.COMMUNITY_GET_SEARCH, this);
 		__service.community.search(aQuery);
 	}
 
-	private function communityGetSearch(e:PicasaResultEvent):Void
+	private function communityGetSearch(e:PicasaEvent):Void
 	{
 		try
 		{
@@ -44,7 +44,7 @@ class business.PhotosDelegate
 			trace("community search failed: "+error.message)
 		} 
 		
-		__service.removeEventListener(PicasaResultEvent.COMMUNITY_GET_SEARCH, this);
+		__service.removeEventListener(PicasaEvent.COMMUNITY_GET_SEARCH, this);
 	}
 	
 	private function progress(event:NumberEvent):Void

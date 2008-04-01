@@ -7,7 +7,7 @@ import com.bourre.events.NumberEvent;
 import com.bourre.events.EventBroadcaster;
 
 import sk.prasa.webapis.picasa.PicasaService;
-import sk.prasa.webapis.picasa.events.PicasaResultEvent;
+import sk.prasa.webapis.picasa.events.PicasaEvent;
 
 import model.*;
 import command.IResponder;
@@ -30,11 +30,11 @@ class business.PhotosDelegate
 		// maybe an event service listner, command etc..
 		// EventBroadcaster.getInstance().broadcastEvent(new ProgressSetEvent(e.getPerCent()));
 		__service.addEventListener(PicasaService.PROGRESS, list_progress); 
-		__service.addEventListener(PicasaResultEvent.PHOTOS_GET_LIST, Delegate.create(this, list_complete));
+		__service.addEventListener(PicasaEvent.PHOTOS_GET_LIST, Delegate.create(this, list_complete));
 		__service.photos.list(aUserid, aAlbumid);
 	}
 
-	public function list_complete(e:PicasaResultEvent):Void
+	public function list_complete(e:PicasaEvent):Void
 	{
 		try
 		{
@@ -48,7 +48,7 @@ class business.PhotosDelegate
 			trace("list_complete failed: "+error.message)
 		} finally
 		{
-			__service.removeEventListener(PicasaResultEvent.PHOTOS_GET_LIST, list_complete);
+			__service.removeEventListener(PicasaEvent.PHOTOS_GET_LIST, list_complete);
 		}
 	}
 	

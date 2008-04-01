@@ -49,13 +49,16 @@ class sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver
 			var tParent : Object = new Object();
 			
 			// copy aItems without entries to new object
-			for(var tKey : String in aItems) if(tKey != "entry") tParent[tKey] = aItems[tKey]
+			for(var tKey : String in aItems) if(tKey != "entry") tParent[tKey] = aItems[tKey];
 			
-			for(var a : Number = 0; a < aItems.entry.length; a++)
-			{
-				var tItem : Object = aItems.entry[a];
+			// pixlib fix
+			var tLen : Number = (aItems.entry.length != undefined) ? aItems.entry.length : 1;
+
+			for(var a : Number = 0; a < tLen; a++)
+			{				
+				var tItem : Object = (tLen == 1) ? aItems.entry : aItems.entry[a];
 				var tKind : String = (tItem.category.attributes.term).split("#")[1];
-				
+
 				switch(tKind)
 				{
 					//case KindType.USER	: tRes.push(new User(tItem)); break;

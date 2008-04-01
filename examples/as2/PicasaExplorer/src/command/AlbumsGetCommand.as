@@ -33,6 +33,7 @@ class command.AlbumsGetCommand implements Command, IResponder
 	public function result(data:Array):Void
 	{
 		var tAlbums:Albums = new Albums();
+		trace("result: "+data.length)
 		for(var a:Number = 0; a < data.length; a++)
 		{
 			var tAlbum:Album = data[a];

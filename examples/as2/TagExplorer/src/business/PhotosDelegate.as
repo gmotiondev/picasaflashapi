@@ -6,7 +6,7 @@ import com.bourre.events.NumberEvent;
 import com.bourre.events.EventBroadcaster;
 
 import sk.prasa.webapis.picasa.PicasaService;
-import sk.prasa.webapis.picasa.events.PicasaResultEvent;
+import sk.prasa.webapis.picasa.events.PicasaEvent;
 
 import model.*;
 import command.IResponder;
@@ -26,11 +26,11 @@ class business.PhotosDelegate
 	public function list(aUserid:String, aTag:String):Void
 	{		
 		__service.addEventListener(PicasaService.PROGRESS, this); 
-		__service.addEventListener(PicasaResultEvent.ALBUMS_GET_LIST_BY_TAG, this);
+		__service.addEventListener(PicasaEvent.ALBUMS_GET_LIST_BY_TAG, this);
 		__service.albums.list_by_tag(aUserid, aTag);
 	}
 
-	private function albumsGetListByTag(e:PicasaResultEvent):Void
+	private function albumsGetListByTag(e:PicasaEvent):Void
 	{
 		try
 		{
@@ -44,7 +44,7 @@ class business.PhotosDelegate
 			trace("community search failed: "+error.message)
 		} 
 		
-		__service.removeEventListener(PicasaResultEvent.ALBUMS_GET_LIST_BY_TAG, this);
+		__service.removeEventListener(PicasaEvent.ALBUMS_GET_LIST_BY_TAG, this);
 	}
 	
 	private function progress(event:NumberEvent):Void

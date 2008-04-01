@@ -1,6 +1,8 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import com.bourre.log.Logger;
+import com.bourre.utils.LuminicTracer;
 import com.bourre.visual.MovieClipHelper;
 
 import model.*;
@@ -18,6 +20,8 @@ class Application extends MovieClipHelper
 	
 	private function initialize(mc:MovieClip):Void
 	{
+		Logger.getInstance().addLogListener(LuminicTracer.getInstance());
+			
 		/* model */
 		var model:ModelApplication = new ModelApplication();
 		
