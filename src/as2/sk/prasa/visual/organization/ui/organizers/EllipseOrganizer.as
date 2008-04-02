@@ -27,7 +27,7 @@ class sk.prasa.visual.organization.ui.organizers.EllipseOrganizer extends Layout
 		__height = h;
 		__x = xOffset;
 		__y = yOffset;
-		__rotation = r;
+		__rotation = r != null ? r : __rotation;
 	}
 	
 	/**
@@ -150,9 +150,9 @@ class sk.prasa.visual.organization.ui.organizers.EllipseOrganizer extends Layout
 			tweenFunction(cell);
 		} else
 		{
-			cell.link.x = cell.x;
-			cell.link.y = cell.y;
-			cell.link.rotation = cell.rotation;
+			cell.link._x = cell.x;
+			cell.link._y = cell.y;
+			cell.link._rotation = cell.rotation;
 		}
 	}
 	
@@ -177,9 +177,9 @@ class sk.prasa.visual.organization.ui.organizers.EllipseOrganizer extends Layout
 			} else
 			{
 				c = __cells[a];
-				c.link.x = c.x;
-				c.link.y = c.y;
-				c.link.rotation = c.rotation;
+				c.link._x = c.x;
+				c.link._y = c.y;
+				c.link._rotation = c.rotation;
 			}
 		}
 	}
@@ -204,8 +204,8 @@ class sk.prasa.visual.organization.ui.organizers.EllipseOrganizer extends Layout
 	 */
 	public function getCellAngle(cell : Cell) : Number
 	{
-		var xR : Number = cell.link.x - (__x + __width/2);
-		var yR : Number = cell.link.y - (__y + __height/2);
+		var xR : Number = cell.link._x - (__x + __width/2);
+		var yR : Number = cell.link._y - (__y + __height/2);
 		
 		var rads : Number = Math.atan2(yR * (__width/__height), xR);
 		var a : Number = rads * (180/Math.PI) + 90;
@@ -221,7 +221,7 @@ class sk.prasa.visual.organization.ui.organizers.EllipseOrganizer extends Layout
 	 */
 	public function setCellAngle(cell : Cell, angle : Number) : Void
 	{
-		var angle :Number = getCellAngle(cell);
+		//var angle : Number = getCellAngle(cell);
 		__rotation = __rotation - angle;
 	}
 	
@@ -255,8 +255,8 @@ class sk.prasa.visual.organization.ui.organizers.EllipseOrganizer extends Layout
 	 */
 	private function rotateCellToTop(cell : Cell) : Number
 	{
-		var xR : Number = cell.link.x - (__x + __width/2);
-		var yR : Number = cell.link.y - (__y + __height/2);
+		var xR : Number = cell.link._x - (__x + __width/2);
+		var yR : Number = cell.link._y - (__y + __height/2);
 		
 		var rads : Number = Math.atan2(yR * (__width/__height), xR);
 		

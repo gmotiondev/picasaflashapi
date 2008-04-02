@@ -180,8 +180,8 @@ class sk.prasa.visual.organization.ui.organizers.LayoutOrganizer
 			 tweenFunction(__cells[index]);
 		} else
 		{
-			__cells[index].link.x = __cells[index].x;
-			__cells[index].link.y = __cells[index].y;
+			__cells[index].link._x = __cells[index].x;
+			__cells[index].link._y = __cells[index].y;
 		}
 	}
 	
@@ -202,8 +202,8 @@ class sk.prasa.visual.organization.ui.organizers.LayoutOrganizer
 			tweenFunction(cell);
 		} else
 		{
-			cell.link.x = cell.x;
-			cell.link.y = cell.y;
+			cell.link._x = cell.x;
+			cell.link._y = cell.y;
 		}
 	}
 	
@@ -228,8 +228,8 @@ class sk.prasa.visual.organization.ui.organizers.LayoutOrganizer
 				__tweenFunction(c);
 			} else
 			{
-				c.link.x = c.x;
-				c.link.y = c.y;
+				c.link._x = c.x;
+				c.link._y = c.y;
 			}
 		}
 	}

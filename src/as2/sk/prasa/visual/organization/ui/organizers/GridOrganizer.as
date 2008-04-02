@@ -245,8 +245,8 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 			
 		if(moveToCoordinates || moveToCoordinates == null)
 		{
-			object.x = cell.x;
-			object.y = cell.y;
+			object._x = cell.x;
+			object._y = cell.y;
 		}
 		if(addToStage || addToStage == null)
 		{
@@ -284,8 +284,8 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 		
 		if(moveToCoordinates || moveToCoordinates == null)
 		{
-			object.x = cell.x;
-			object.y = cell.y;
+			object._x = cell.x;
+			object._y = cell.y;
 		}
 		
 		if(addToStage || addToStage == null)

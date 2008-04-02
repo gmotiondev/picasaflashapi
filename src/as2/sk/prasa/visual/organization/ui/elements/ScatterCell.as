@@ -21,6 +21,6 @@ class sk.prasa.visual.organization.ui.elements.ScatterCell extends Cell
 	
 	public function set rotation(value : Number) : Void
 	{
-		__rotation=value;
+		__rotation = value;
 	}	
 }

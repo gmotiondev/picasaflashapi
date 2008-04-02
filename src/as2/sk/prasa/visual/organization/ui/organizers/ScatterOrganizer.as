@@ -81,7 +81,7 @@ class sk.prasa.visual.organization.ui.organizers.ScatterOrganizer extends Layout
 	 */
 	public function setWidth(value : Number) : Void
 	{
-		__tempWidth = _width;
+		__tempWidth = __width;
 		__width = value;
 		
 		adjustWidth();
@@ -148,9 +148,9 @@ class sk.prasa.visual.organization.ui.organizers.ScatterOrganizer extends Layout
 		
 		if(moveToCoordinates || moveToCoordinates == null) 
 		{
-			cell.link.x = cell.x; 
-			cell.link.y = cell.y;
-			cell.link.rotation = cell.rotation;
+			cell.link._x = cell.x; 
+			cell.link._y = cell.y;
+			cell.link._rotation = cell.rotation;
 		}
 		if(addToStage || addToStage == null)
 		{
@@ -175,9 +175,9 @@ class sk.prasa.visual.organization.ui.organizers.ScatterOrganizer extends Layout
 			tweenFunction(cell);
 		} else
 		{
-			cell.link.x = cell.x;
-			cell.link.y = cell.y;
-			cell.link.rotation = cell.rotation;
+			cell.link._x = cell.x;
+			cell.link._y = cell.y;
+			cell.link._rotation = cell.rotation;
 		}
 	}
 	
@@ -199,9 +199,9 @@ class sk.prasa.visual.organization.ui.organizers.ScatterOrganizer extends Layout
 				__tweenFunction(__cells[a]);
 			} else
 			{
-				__cells[a].link.x = __cells[a].x;
-				__cells[a].link.y = __cells[a].y;
-				__cells[a].link.rotation = __cells[a].rotation;
+				__cells[a].link._x = __cells[a].x;
+				__cells[a].link._y = __cells[a].y;
+				__cells[a].link._rotation = __cells[a].rotation;
 			}
 		}
 	}
