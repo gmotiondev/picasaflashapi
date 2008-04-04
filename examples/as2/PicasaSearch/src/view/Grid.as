@@ -1,6 +1,6 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
+﻿import sk.prasa.visual.organization.ui.organizers.ILayoutOrganizer;
+import sk.prasa.visual.organization.ui.organizers.GridOrganizer;
+
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.data.libs.LibEvent;
@@ -8,11 +8,14 @@ import com.bourre.data.libs.ILibListener;
 
 import control.*;
 import view.Thumb;
-import sk.prasa.visual.layout.GridLayout;
+
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
 
 class view.Grid extends MovieClipHelper implements ILibListener
 {	
-	private var __grid:GridLayout;
+	private var grid : ILayoutOrganizer;
 	private var __children:Array = [];
 	
 	public function Grid(aId:String, aC:MovieClip)
@@ -20,8 +23,7 @@ class view.Grid extends MovieClipHelper implements ILibListener
 		super(aId,aC);
 		
 		show();
-		
-		__grid = new GridLayout(12, 16);
+		grid = new GridOrganizer(view, 768, 576, 12, 9);
 	}
 	
 	public function addChild(aID:String):Thumb
@@ -29,7 +31,7 @@ class view.Grid extends MovieClipHelper implements ILibListener
 		var tHolder:MovieClip = view.createEmptyMovieClip("p_"+aID, view.getNextHighestDepth());
 		var tThumb:Thumb = new Thumb(aID, tHolder);
 		
-		__grid.addChild(tHolder);
+		grid.addToLayout(tHolder, true, true);
 		__children.push(tHolder);
 		
 		return tThumb;
@@ -42,13 +44,12 @@ class view.Grid extends MovieClipHelper implements ILibListener
 			__children[a].removeMovieClip();
 		}
 		
-		__grid.reset();
+		grid.removeLinks();
 		__children = [];
 	}
 	
 	public function onLoadInit(e:LibEvent):Void
-	{	
-		__grid.draw();
+	{
 	}
 	
 	public function onLoadProgress(e:LibEvent):Void
@@ -57,8 +58,7 @@ class view.Grid extends MovieClipHelper implements ILibListener
 	}
 	
 	public function onLoadComplete(e:LibEvent):Void
-	{	
-		__grid.draw();
+	{
 	}
 	
 	public function onTimeOut(e:LibEvent):Void

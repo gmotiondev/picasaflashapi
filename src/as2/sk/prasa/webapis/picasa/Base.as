@@ -18,10 +18,11 @@ class sk.prasa.webapis.picasa.Base
 		switch(getParentKindType(item))
 		{
 			case KindType.USER : 	return new User(item);
-			case KindType.ALBUM : 	return new Album(item);
 			case KindType.PHOTO : 	return new Photo(item);
 			case KindType.COMMENT : return new Comment(item);
 			case KindType.TAG : 	return new Tag(item);
+			case KindType.ALBUM : 
+			default: return new Album(item);
 		}
 		
 		return null;

@@ -1,9 +1,15 @@
 import sk.prasa.visual.organization.ui.elements.ScatterCell;
 import sk.prasa.visual.organization.ui.organizers.LayoutOrganizer;
 import sk.prasa.visual.organization.ui.organizers.ILayoutOrganizer;
+
 /**
  * @author Michal Gron (michal.gron@gmail.com)
+ * 
+ * Based on:
+ * Actionscript 3 Layout Organizers by P.J. Onori
+ * http://www.somerandomdude.net/blog/flash/actionscript-3-layout-organizers-source-code
  */
+
 class sk.prasa.visual.organization.ui.organizers.ScatterOrganizer extends LayoutOrganizer implements ILayoutOrganizer 
 {	
 	private var __tempX : Number = 0;
@@ -37,7 +43,7 @@ class sk.prasa.visual.organization.ui.organizers.ScatterOrganizer extends Layout
 		__y = yOffset != null ? yOffset : 0;
 		__tempX = xOffset != null ? xOffset : 0;
 		__tempY = yOffset != null ? yOffset : 0;
-		__jitter = jitter;
+		__jitter = jitter != null ? jitter : __jitter;
 		__jitterRotation = jitterRotation;
 		__cells = new Array();
 	}

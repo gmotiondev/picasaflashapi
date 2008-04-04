@@ -22,8 +22,6 @@ class sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver
 	{
 		try
 		{
-			for(var tKey in response) trace(tKey + "/" + response[tKey]);
-
 			if(response.id != null && response.id != undefined && response.id != "")
 			{
 				var tEvt : PicasaEvent = new PicasaEvent(eventType);
@@ -51,11 +49,11 @@ class sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver
 			// copy aItems without entries to new object
 			for(var tKey : String in aItems) if(tKey != "entry") tParent[tKey] = aItems[tKey];
 			
-			// pixlib fix
 			var tLen : Number = (aItems.entry.length != undefined) ? aItems.entry.length : 1;
 
 			for(var a : Number = 0; a < tLen; a++)
-			{				
+			{
+				// pixlib fix with one item
 				var tItem : Object = (tLen == 1) ? aItems.entry : aItems.entry[a];
 				var tKind : String = (tItem.category.attributes.term).split("#")[1];
 
@@ -63,10 +61,10 @@ class sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver
 				{
 					//case KindType.USER	: tRes.push(new User(tItem)); break;
 					case KindType.ALBUM		: tRes.push(new Album(tItem, tParent)); break;
-					case KindType.PHOTO		: tRes.push(new Photo(tItem, tParent)); break;
 					case KindType.COMMENT 	: tRes.push(new Comment(tItem, tParent)); break;
 					case KindType.TAG 		: tRes.push(new Tag(tItem, tParent)); break;
-					default: break;
+					case KindType.PHOTO		: 
+					default: tRes.push(new Photo(tItem, tParent)); break;
 				}
 			}
 
@@ -79,27 +77,6 @@ class sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver
 		return null;
 	}
 	
-	
-	/*
-	private function getResponse(resp : Object, func : Function) : Object
-	{
-		var tResult : Object = {};
-			tResult["data"] = {};
-			tResult["error"] = {};
-		
-		if (resp["error"] == null)
-		{
-			tResult["success"] = true;
-			tResult["data"] = (func == null) ? resp : func(resp);		
-		} else
-		{
-			tResult["success"] = false;
-			tResult["error"] = new PicasaError(resp["error"]["message"]);
-		}
-		
-		return tResult;	
-	}
-	*/
 	public function fault(evt : XMLToObjectEvent) : Void
 	{
 		var tObj : Object = evt.getObject();

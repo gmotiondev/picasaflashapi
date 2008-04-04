@@ -18,7 +18,7 @@ import view.thumb.Thumb;
 
 class view.thumb.ThumbsHolder extends MovieClipHelper implements ILibListener
 {
-	private var __organizer : ILayoutOrganizer;
+	private var grid : ILayoutOrganizer;
 
 	public function ThumbsHolder(aId : String, aC : MovieClip)
 	{
@@ -26,14 +26,14 @@ class view.thumb.ThumbsHolder extends MovieClipHelper implements ILibListener
 
 		move(325, 26);
 		
-		__organizer = new GridOrganizer(view, 408, 408, 6, 6);	}
+		grid = new GridOrganizer(view, 408, 408, 6, 6);	}
 	
 	public function addChild(aID : String, aTitle : String) : Thumb
 	{
 		var tHolder : MovieClip = view.createEmptyMovieClip("thumb_holder_" + aID, view.getNextHighestDepth());
 		var tThumb : Thumb = new Thumb(aID, tHolder, aTitle);
 		
-		__organizer.addToLayout(tHolder, true, true);
+		grid.addToLayout(tHolder, true, true);
 		
 		addListener(tThumb);
 		

@@ -29,10 +29,10 @@ class command.GetPhotosCommand implements Command, IResponder
 	
 	public function result(data:Array):Void
 	{
-		var tTotalResults:Number = (data.length != 0) ? data[0].album.openSearch.totalResults : 0;
-		var tStartIndex:Number = (data.length != 0) ? data[0].album.openSearch.startIndex: 0;
-		var tItemsPerPage:Number = (data.length != 0) ? data[0].album.openSearch.itemsPerPage: 0;
-		
+		var tTotalResults:Number = (data.length != 0) ? data[0].parent.opensearch.totalResults : 0;
+		var tStartIndex:Number = (data.length != 0) ? data[0].parent.opensearch.startIndex: 0;
+		var tItemsPerPage:Number = (data.length != 0) ? data[0].parent.opensearch.itemsPerPage: 0;
+
 		model.photos.init();
 
 		for(var a:Number = 0; a < data.length; a++)
@@ -40,7 +40,7 @@ class command.GetPhotosCommand implements Command, IResponder
 			var tPhoto:Photo = data[a];
 			model.photos.push(tPhoto);
 		}
-		
+
 		EventBroadcaster.getInstance().broadcastEvent(new InitializeEvent(tTotalResults, tStartIndex, tItemsPerPage));
 	}
 	

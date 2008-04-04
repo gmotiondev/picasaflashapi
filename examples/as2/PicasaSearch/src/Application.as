@@ -1,6 +1,8 @@
 ﻿/**
  * @author Michal Gron (michal.gron@gmail.com)
  */
+import com.bourre.utils.LuminicTracer;
+import com.bourre.log.Logger;
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
 
@@ -20,7 +22,7 @@ class Application extends MovieClipHelper
 	private function initialize(mc:MovieClip):Void
 	{
 		Stage.addListener(this);
-		
+		Logger.getInstance().addLogListener(LuminicTracer.getInstance());
 		Controller.getInstance().initialize();
 	
 		var view_l:LoadingBar = new LoadingBar(ViewList.LOADING_BAR, mc.createEmptyMovieClip(ViewList.LOADING_BAR, 10010));

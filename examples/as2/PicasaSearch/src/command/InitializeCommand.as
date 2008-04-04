@@ -28,7 +28,6 @@ class command.InitializeCommand implements Command
 		__libstack.clear();
 		__libstack.release();
 		__libstack.removeListener(tGrid);
-		
 		__libstack = new LibStack();
 		__libstack.addListener(tGrid);
 		
@@ -36,8 +35,10 @@ class command.InitializeCommand implements Command
 		{
 			var tItem:Photo = model.photos[a];			
 			var tThumb:Thumb = tGrid.addChild(tItem.gphoto.id);
-			
-			__libstack.enqueue(new GraphicLib(tThumb.view, 5), tItem.gphoto.id, tItem.media.thumbnail[0].url);
+			var tGL : GraphicLib = new GraphicLib(tThumb.view, 5);
+				tGL.setTimeOut(15);
+
+			__libstack.enqueue(tGL, tItem.gphoto.id, tItem.media.thumbnail[0].url);
 		}
 
 		__libstack.execute();

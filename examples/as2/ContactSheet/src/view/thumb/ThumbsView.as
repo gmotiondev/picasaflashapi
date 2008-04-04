@@ -1,4 +1,7 @@
-﻿import gs.TweenLite;
+﻿import sk.prasa.visual.organization.ui.organizers.GridOrganizer;
+import sk.prasa.visual.organization.ui.organizers.ILayoutOrganizer;
+
+import gs.TweenLite;
 
 import com.bourre.visual.MovieClipHelper;
 import com.bourre.events.EventBroadcaster;
@@ -13,13 +16,14 @@ import view.thumb.Thumb;
 
 class view.thumb.ThumbsView extends MovieClipHelper implements ILibListener
 {	
-	private var grid : sk.prasa.visual.layout.GridLayout;
-	
+	private var grid : ILayoutOrganizer;
+
 	public function ThumbsView(aId : String, aC : MovieClip)
 	{
 		super(aId,aC);
 		
-		grid = new sk.prasa.visual.layout.GridLayout(6, 6);
+		grid = new GridOrganizer(view, 318, 318, 6, 6);
+		grid.setAutoAdjustLayout(true);
 		
 		show();
 		centerize();
@@ -29,7 +33,7 @@ class view.thumb.ThumbsView extends MovieClipHelper implements ILibListener
 	{
 		var tHolder : MovieClip = view.createEmptyMovieClip("thumb_holder_" + aId, view.getNextHighestDepth());
 		var tThumb : Thumb = new Thumb(aId, tHolder);
-		grid.addChild(tThumb.view);
+		grid.addToLayout(tHolder, true, true);
 		
 		return tThumb;
 	}
@@ -61,7 +65,6 @@ class view.thumb.ThumbsView extends MovieClipHelper implements ILibListener
 		
 	public function onLoadInit(evt : LibEvent) : Void
 	{	
-		grid.draw();
 		centerize();
 	}
 	
@@ -71,8 +74,7 @@ class view.thumb.ThumbsView extends MovieClipHelper implements ILibListener
 	}
 	
 	public function onLoadComplete(evt : LibEvent) : Void
-	{	
-		grid.draw();
+	{
 	}
 	
 	public function onTimeOut(evt : LibEvent) : Void

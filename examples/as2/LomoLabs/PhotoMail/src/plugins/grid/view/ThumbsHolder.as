@@ -1,6 +1,9 @@
 ﻿/**
  * @author michal.gron@gmai.com
  */
+import sk.prasa.visual.organization.ui.organizers.ScatterOrganizer;
+import sk.prasa.visual.organization.ui.organizers.GridOrganizer;
+import sk.prasa.visual.organization.ui.organizers.ILayoutOrganizer;
 
 import com.bourre.ioc.visual.AbstractMovieClipHelper;
 import com.bourre.ioc.plugin.IPlugin;
@@ -16,14 +19,14 @@ import plugins.grid.view.Thumb;
 
 class plugins.grid.view.ThumbsHolder extends AbstractMovieClipHelper implements ILibListener
 {	
-	public var grid:sk.prasa.visual.layout.GridLayout;
-		
+	private var grid : ILayoutOrganizer;
+
 	public function ThumbsHolder(owner:IPlugin, name:String, mc:MovieClip)
 	{
 		super(owner, name, mc);
 
-		grid = new sk.prasa.visual.layout.GridLayout(4, 6);
-		grid.addListener(this);
+		grid = new ScatterOrganizer(view, 640, 480);
+		grid.setAutoAdjustLayout(true);
 		
 		centerize();
 	}
@@ -39,7 +42,7 @@ class plugins.grid.view.ThumbsHolder extends AbstractMovieClipHelper implements 
 		tGL.addListener(this);
 		tGL.load(aUrl);
 
-		grid.addChild(tHolder);
+		grid.addToLayout(tHolder, true, true);
 	}
 	
 	private function centerize():Void
@@ -47,15 +50,8 @@ class plugins.grid.view.ThumbsHolder extends AbstractMovieClipHelper implements 
 		move(Math.round(Stage.width/2 - view._width/2), Math.round(Stage.height/2 - view._height/2));
 	}
 	
-	// Listening to Layout Manager
-	public function complete():Void
-	{
-		centerize();
-	}
-	
 	public function onLoadInit(e:LibEvent):Void
-	{		
-		grid.draw();
+	{
 	}
 	
 	public function onLoadProgress(evt:LibEvent):Void

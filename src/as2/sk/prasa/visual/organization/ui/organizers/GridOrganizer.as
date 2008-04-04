@@ -3,15 +3,21 @@ import sk.prasa.visual.organization.ui.elements.Cell;
 import sk.prasa.visual.organization.ui.elements.GridCell;
 import sk.prasa.visual.organization.ui.organizers.LayoutOrganizer;
 import sk.prasa.visual.organization.ui.organizers.ILayoutOrganizer;
+
 /**
  * @author Michal Gron (michal.gron@gmail.com)
+ * 
+ * Based on:
+ * Actionscript 3 Layout Organizers by P.J. Onori
+ * http://www.somerandomdude.net/blog/flash/actionscript-3-layout-organizers-source-code
  */
+
 class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrganizer implements ILayoutOrganizer 
 {
 	private var __rows : Number;
 	private var __columns : Number;
 	private var __hPadding : Number = 0;
-	private var __yPadding:Number = 0; //TODO: rewrite ti __vPadding
+	private var __yPadding : Number = 0; //TODO: rewrite ti __vPadding
 	
 	/**
 	 * Constructor for GridOrganizer 
@@ -34,8 +40,8 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 		__height = h;
 		__rows = r;
 		__columns = c;
-		if(hPadding) __hPadding = hPadding;
-		if(vPadding) __yPadding = vPadding;
+		if(hPadding != null) __hPadding = hPadding;
+		if(vPadding != null) __yPadding = vPadding;
 		
 		__x = xOffset != null ? xOffset : 0;
 		__y = yOffset != null ? yOffset : 0;
