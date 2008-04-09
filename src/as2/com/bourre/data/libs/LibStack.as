@@ -18,7 +18,6 @@
  * @author Francis Bourre
  * @version 1.0
  */
-
 import com.bourre.core.HashCodeFactory;
 import com.bourre.data.collections.Queue;
 import com.bourre.data.libs.AbstractLib;
@@ -29,13 +28,12 @@ import com.bourre.events.EventType;
 import com.bourre.events.IEvent;
 import com.bourre.log.PixlibDebug;
 import com.bourre.log.PixlibStringifier;
-
 class com.bourre.data.libs.LibStack 
 	extends AbstractLib
 	implements ILibListener
 {
 	private var _a : Queue;
-	private var _oCurrentLib : ILib;	private var _isCurrentLoaded : Boolean;
+	private var _oCurrentLib : ILib;
 	
 	public static var onLoadInitEVENT:EventType = AbstractLib.onLoadInitEVENT;
 	public static var onLoadProgressEVENT:EventType = AbstractLib.onLoadProgressEVENT;
@@ -48,7 +46,6 @@ class com.bourre.data.libs.LibStack
 		super();
 		_sPrefixURL = null;
 		_a = new Queue();
-		_isCurrentLoaded = false;
 	}
 	
 	public function initEventSource() : Void
@@ -88,12 +85,12 @@ class com.bourre.data.libs.LibStack
 	
 	public function load() : Void
 	{
-		if (!isEmpty() && !_isCurrentLoaded) _loadNextEntry();
+		// todo : test b4 running if current loading is processing.
+		if (!isEmpty()) _loadNextEntry();
 	}
 	
 	private function _loadNextEntry() : Void
 	{
-		_isCurrentLoaded = true;
 		if (_oCurrentLib != undefined) _oCurrentLib.removeListener( this );
 		_oCurrentLib = ILib( _a.dequeue() );
 		if ( _sPrefixURL != null ) _oCurrentLib.prefixURL( _sPrefixURL );
@@ -108,7 +105,6 @@ class com.bourre.data.libs.LibStack
 	
 	private function _onLoadComplete() : Void
 	{
-		_isCurrentLoaded = false;
 		_oCurrentLib.removeListener( this );
 		fireEventType( LibStack.onLoadCompleteEVENT );
 	}
@@ -140,11 +136,6 @@ class com.bourre.data.libs.LibStack
 		{
 			_loadNextEntry();
 		}
-	}
-	
-	public function isCurrentLoaded() : Boolean
-	{
-		return _isCurrentLoaded;
 	}
 	
 	// Checks if the queue is empty.

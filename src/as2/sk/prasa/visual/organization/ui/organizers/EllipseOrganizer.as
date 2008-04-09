@@ -122,7 +122,7 @@ class sk.prasa.visual.organization.ui.organizers.EllipseOrganizer extends Layout
 	 * @param  moveToCoordinates  automatically move DisplayObject to corresponding cell's coordinates
 	 * @param  addToStage  adds a child DisplayObject instance to target's DisplayObjectContainer instance
 	 */
-	public function addToLayout(object : MovieClip,  moveToCoordinates : Boolean, addToStage : Boolean) : Void
+	public function addToLayout(object : MovieClip,  moveToCoordinates : Boolean) : Void
 	{
 		var cell : EllipseCell = new EllipseCell(0, 0, 0, object);
 		__cells.push(cell);
@@ -132,11 +132,6 @@ class sk.prasa.visual.organization.ui.organizers.EllipseOrganizer extends Layout
 		if(moveToCoordinates || moveToCoordinates == null)
 		{
 			apply(__tweenFunction);
-		}
-		
-		if(addToStage || addToStage == null)
-		{
-			__target.addChild(object);
 		}
 	}
 	

@@ -164,7 +164,7 @@ class sk.prasa.visual.organization.ui.organizers.WaveOrganizer extends LayoutOrg
 	 * @param  moveToCoordinates  automatically move DisplayObject to corresponding cell's coordinates
 	 * @param  addToStage  adds a child DisplayObject instance to target's DisplayObjectContainer instance
 	 */
-	public function addToLayout(object : MovieClip,  moveToCoordinates : Boolean, addToStage : Boolean) : Void
+	public function addToLayout(object : MovieClip,  moveToCoordinates : Boolean) : Void
 	{
 		var cell : WaveCell = new WaveCell(0, 0, object);
 		
@@ -182,11 +182,6 @@ class sk.prasa.visual.organization.ui.organizers.WaveOrganizer extends LayoutOrg
 		if(moveToCoordinates || moveToCoordinates == null)
 		{
 			apply();
-		}
-		
-		if(addToStage || moveToCoordinates == null)
-		{
-			__target.addChild(object);
 		}
 	}
 	

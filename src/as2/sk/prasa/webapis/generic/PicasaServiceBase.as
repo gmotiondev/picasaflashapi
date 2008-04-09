@@ -23,7 +23,7 @@ class sk.prasa.webapis.generic.PicasaServiceBase extends ServiceBase
 	{
 		super( owner );
 	}
-
+	
 	public function getXMLService() : DynamicXMLService
 	{
 		XMLToObjectDeserializer.ATTRIBUTE_TARGETED_PROPERTY_NAME = "attributes";

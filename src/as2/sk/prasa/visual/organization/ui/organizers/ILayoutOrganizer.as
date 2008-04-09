@@ -25,7 +25,7 @@ interface sk.prasa.visual.organization.ui.organizers.ILayoutOrganizer
 	function getCellByLink(link : MovieClip) : Cell;
 	function getCellIndex(cell : Cell) : Number;
 	function getCellAt(index : Number) : Cell;
-	function addToLayout(object : MovieClip, moveToCoordinates : Boolean, addToStage : Boolean) : Void;
+	function addToLayout(object : MovieClip, moveToCoordinates : Boolean) : Void;
 	function applyItem(item : MovieClip, tweenFunction : Function) : Void;
 	function apply(tweenFunction : Function) : Void;
 	function addLinkAt(object : MovieClip, index : Number) : Void;

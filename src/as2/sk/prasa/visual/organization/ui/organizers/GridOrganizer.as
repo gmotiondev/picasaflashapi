@@ -17,7 +17,7 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 	private var __rows : Number;
 	private var __columns : Number;
 	private var __hPadding : Number = 0;
-	private var __yPadding : Number = 0; //TODO: rewrite ti __vPadding
+	private var __vPadding : Number = 0;
 	
 	/**
 	 * Constructor for GridOrganizer 
@@ -41,7 +41,7 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 		__rows = r;
 		__columns = c;
 		if(hPadding != null) __hPadding = hPadding;
-		if(vPadding != null) __yPadding = vPadding;
+		if(vPadding != null) __vPadding = vPadding;
 		
 		__x = xOffset != null ? xOffset : 0;
 		__y = yOffset != null ? yOffset : 0;
@@ -89,7 +89,7 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 	 */
 	public function setPaddingY(value : Number) : Void
 	{
-		__yPadding = value;
+		__vPadding = value;
 		adjustLayout();
 		
 		if(__autoAdjust) apply(__tweenFunction);
@@ -112,7 +112,7 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 	 */
 	public function getPaddingY() : Number
 	{
-		return __yPadding;
+		return __vPadding;
 	}
 	
 	/**
@@ -224,7 +224,7 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 		
 		return c;
 	}
-	
+
 	/**
 	 * Removes cell link of DisplayObject at specified grid coordinates
 	 *
@@ -244,7 +244,7 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 	 * @param  moveToCoordinates  automatically move DisplayObject to corresponding cell's coordinates
 	 * @param addToStage  adds a child DisplayObject instance to target's DisplayObjectContainer instance
 	 */
-	public function addItemAt(object : MovieClip, column : Number, row : Number, moveToCoordinates:Boolean, addToStage:Boolean) : Void
+	public function addItemAt(object : MovieClip, column : Number, row : Number, moveToCoordinates:Boolean) : Void
 	{
 		var cell : GridCell = getCellFromCoordinates(column, row);
 			cell.link = object;
@@ -253,10 +253,6 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 		{
 			object._x = cell.x;
 			object._y = cell.y;
-		}
-		if(addToStage || addToStage == null)
-		{
-			__target.addChild(object);
 		}
 	}
 	
@@ -277,9 +273,8 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 	 *
 	 * @param  object  DisplayObject to add to organizer
 	 * @param  moveToCoordinates  automatically move DisplayObject to corresponding cell's coordinates
-	 * @param  addToStage  adds a child DisplayObject instance to target's DisplayObjectContainer instance
 	 */
-	public function addToLayout(object : MovieClip, moveToCoordinates : Boolean, addToStage:Boolean) : Void
+	public function addToLayout(object : MovieClip, moveToCoordinates : Boolean) : Void
 	{
 		var cell : GridCell;
 			cell = GridCell(getNextAvailableCell());
@@ -293,11 +288,6 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 			object._x = cell.x;
 			object._y = cell.y;
 		}
-		
-		if(addToStage || addToStage == null)
-		{
-			__target.addChild(object);
-		}
 	}
 	
 	/**
@@ -308,7 +298,7 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 	public function removeCell(cell : Cell) : Void
 	{
 		super.removeCell(cell);
-		this.adjustLayout();
+		adjustLayout();
 		
 		if(__autoAdjust) apply(__tweenFunction);
 	}
@@ -318,7 +308,6 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 	
 	private function adjustLayout() : Void
 	{
-		//var len:Number=this._cells.length;
 		var total : Number = __columns * __rows;
 		var d : Area = calculateCellSize();
 		var c : Number;
@@ -333,13 +322,13 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 			r = Math.floor(a/(total/__rows));
 							
 			cell.x = ((d.width * c) + (c * __hPadding) + __x);
-			cell.y = ((d.height * r) + (r * __yPadding) + __y);
+			cell.y = ((d.height * r) + (r * __vPadding) + __y);
 		}
 	}
 	
 	private function calculateCellSize() : Area
 	{
-		return new Area((__width - ((__columns - 1) * __hPadding)) / __columns, (__height - ((__rows - 1) * __yPadding)) / __rows);
+		return new Area((__width - ((__columns - 1) * __hPadding)) / __columns, (__height - ((__rows - 1) * __vPadding)) / __rows);
 	}
 	
 	private function initGrid() : Void
@@ -356,7 +345,7 @@ class sk.prasa.visual.organization.ui.organizers.GridOrganizer extends LayoutOrg
 			c = a % __columns;
 			r = Math.floor(a/(total/__rows));
 			
-			var cell : GridCell = new GridCell(c, r, ((d.width * c) + (c * __hPadding) + __x),((d.height * r)+(r * __yPadding) + __y),d.width, d.height);
+			var cell : GridCell = new GridCell(c, r, ((d.width * c) + (c * __hPadding) + __x),((d.height * r)+(r * __vPadding) + __y),d.width, d.height);
 			__cells.push(cell);
 		}
 	}

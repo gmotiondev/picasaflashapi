@@ -50,7 +50,7 @@ class sk.prasa.visual.organization.ui.organizers.LayoutOrganizer
 	/*
 	 * @return  Current setting of auto-adjust (defaults to false)   
 	 */
-	public function get autoAdjustLayout() : Boolean
+	public function getAutoAdjustLayout() : Boolean
 	{
 		return __autoAdjust;
 	}

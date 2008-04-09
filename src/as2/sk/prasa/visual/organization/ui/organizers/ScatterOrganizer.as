@@ -139,7 +139,7 @@ class sk.prasa.visual.organization.ui.organizers.ScatterOrganizer extends Layout
 	 * @param  moveToCoordinates  automatically move DisplayObject to corresponding cell's coordinates
 	 * @param  addToStage  adds a child DisplayObject instance to target's DisplayObjectContainer instance
 	 */	
-	public function addToLayout(object : MovieClip, moveToCoordinates : Boolean, addToStage : Boolean) : Void
+	public function addToLayout(object : MovieClip, moveToCoordinates : Boolean) : Void
 	{
 		var p : Number = (Math.round(Math.random())) ? -1 : 1;
 		
@@ -157,10 +157,6 @@ class sk.prasa.visual.organization.ui.organizers.ScatterOrganizer extends Layout
 			cell.link._x = cell.x; 
 			cell.link._y = cell.y;
 			cell.link._rotation = cell.rotation;
-		}
-		if(addToStage || addToStage == null)
-		{
-			__target.addChild(cell.link);
 		}
 	}
 	
