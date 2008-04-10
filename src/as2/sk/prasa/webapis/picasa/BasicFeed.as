@@ -10,7 +10,7 @@ class sk.prasa.webapis.picasa.BasicFeed extends Base
 	public var generator : Generator;
 	public var icon : String;
 	public var id : String;
-	public var links : Array;
+	public var links : Links;
 	//public var logo : String;
 	public var rights : String;
 	public var subtitle : String;
@@ -26,7 +26,7 @@ class sk.prasa.webapis.picasa.BasicFeed extends Base
 		generator = new Generator(aItem.generator, aItem.generator.attributes.version, aItem.generator.attributes.uri);
 		icon = aItem.icon;
 		id = aItem.id;
-		links = getLinks(aItem);
+		links = getLinks(aItem.link);
 		//logo = aItem.logo;	//TODO
 		rights = aItem.rights;
 		subtitle = aItem.subtitle;

@@ -30,9 +30,8 @@ class view.thumb.Thumb extends MovieClipHelper
 
 	private function onRollOver() : Void
 	{
-		trace("view._x = "+view._x+", view._y = "+view._y);
 		// zoom in and show infos
-		//view.swapDepths(view._parent.getNextHighestDepth());
+		view.swapDepths(view._parent.getNextHighestDepth());
 		
 		var f : TextFormat = new TextFormat("kroeger", 8, 0xffffff);
 			
@@ -40,7 +39,8 @@ class view.thumb.Thumb extends MovieClipHelper
 		t = view["tooltip"];
 		t.embedFonts = true;
 		t.autoSize = "left"; t.background = true; t.backgroundColor = 0xe2007a;
-		t.text = title;
+		t.html = true; t.multiline = true;
+		t.htmlText = "" + title + "<br/>By: " + author;
 		t.setTextFormat(f);
 		
 		if(t._width > (Stage.width - _root._xmouse)) t._x -= t._width;
@@ -55,5 +55,6 @@ class view.thumb.Thumb extends MovieClipHelper
 	private function onRelease() : Void
 	{
 		// open browser window with link on the photo
+		getURL(url,"_blank");
 	}
 }

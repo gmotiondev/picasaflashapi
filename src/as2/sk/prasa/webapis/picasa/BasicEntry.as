@@ -9,7 +9,7 @@ class sk.prasa.webapis.picasa.BasicEntry extends Base
 	public var category : Category;
 	public var content : Content;
 	public var id : String;
-	public var links : Array;
+	public var links : Links;
 	public var published : String;
 	public var rights : String;
 	public var summary : String;
@@ -24,7 +24,7 @@ class sk.prasa.webapis.picasa.BasicEntry extends Base
 		category = new Category(aItem.category.attributes.term, aItem.category.attributes.scheme);
 		content = new Content(aItem.content.attributes.type, aItem.content.attributes.src);
 		id = aItem.id;
-		links = getLinks(aItem);
+		links = getLinks(aItem.link);
 		published = aItem.published;
 		rights = aItem.rights;
 		summary = aItem.summary;

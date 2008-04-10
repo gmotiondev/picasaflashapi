@@ -1,4 +1,6 @@
-﻿import sk.prasa.webapis.picasa.Author;
+﻿import sk.prasa.webapis.picasa.Link;
+import sk.prasa.webapis.picasa.Content;
+import sk.prasa.webapis.picasa.Author;
 import sk.prasa.webapis.picasa.BasicFeed;
 
 import com.bourre.commands.Command;
@@ -45,7 +47,7 @@ class command.thumb.LoadThumbsCommand implements Command
 		for(var a : Number = 0; a < model.photos.length; a++)
 		{
 			var tItem : Photo = model.photos[a];
-			var tThumb : Thumb = tGrid.addChild(tItem.gphoto.id, tItem.author.name, tItem.title, tItem.id);
+			var tThumb : Thumb = tGrid.addChild(tItem.gphoto.id, tItem.author.name, tItem.summary, tItem.links.getByRel("alternate").href);
 			var tGL : GraphicLib = new GraphicLib(tThumb.view, 5);
 				gl.push(tGL);
 			

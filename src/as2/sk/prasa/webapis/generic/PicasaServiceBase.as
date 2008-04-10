@@ -37,7 +37,7 @@ class sk.prasa.webapis.generic.PicasaServiceBase extends ServiceBase
 		var d = s.getDeserializer();
 			d.addType("plain",					d, d.getString);
 			d.addType("text",					d, d.getString);
-			d.addType("text/html",				d, d.getString);
+			d.addType("text/html",				d, d.getObjectWithAttributes);
 			d.addType("image/jpeg",				d, d.getObjectWithAttributes);
 			d.addType("application/atom+xml",	d, d.getObjectWithAttributes);
 			d.addType(undefined,				d, d.getObjectWithAttributes);
