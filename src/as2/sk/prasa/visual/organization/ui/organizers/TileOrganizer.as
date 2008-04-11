@@ -15,13 +15,14 @@ class sk.prasa.visual.organization.ui.organizers.TileOrganizer extends LayoutOrg
 	private var __hPadding : Number = 0;
 	private var __vPadding : Number = 0;
 
-	public function TileOrganizer(target : MovieClip, w : Number, h : Number, hPadding : Number, vPadding : Number, xOffset : Number, yOffset : Number)
+	public function TileOrganizer(target : MovieClip, w : Number, h : Number, dir: String, hPadding : Number, vPadding : Number, xOffset : Number, yOffset : Number)
 	{
 		super(target);
 		
 		__width = w;
-		__height = h;
-				
+		__height = h;		
+		__direction = dir != null ? dir : __direction;
+		
 		if(hPadding != null) __hPadding = hPadding;
 		if(vPadding != null) __vPadding = vPadding;
 		
@@ -91,8 +92,9 @@ class sk.prasa.visual.organization.ui.organizers.TileOrganizer extends LayoutOrg
 		{
 			switch(__direction)
 			{
+				// give a half picture tolerance
 				case "horizontal" :
-					if( d.width > (__width - (tLastCell.x + tLastCell.width)) ) {
+					if( d.width / 2 > (__width - (tLastCell.x + tLastCell.width)) ) {
 						xPos = 0; 
 						yPos = tLastCell.y + tLastCell.height;
 					} else {
@@ -101,7 +103,7 @@ class sk.prasa.visual.organization.ui.organizers.TileOrganizer extends LayoutOrg
 					}
 					break;
 				case "vertical" :
-					if( d.height > (__height - (tLastCell.y + tLastCell.height)) ) {
+					if( d.height / 2 > (__height - (tLastCell.y + tLastCell.height)) ) {
 						xPos = tLastCell.x + tLastCell.width; 
 						yPos = 0;
 					} else {

@@ -55,7 +55,6 @@ class view.thumb.ThumbsHolder extends MovieClipHelper implements ILibListener
 	{
 		var tMC : MovieClip = evt.getTarget().getContent();
 		grid.addToLayout(tMC._parent._parent, true);
-		trace("2ThumbsHolder.onLoadInit(" + tMC + ", "+tMC._x+","+tMC._y+")");
 	}
 
 	public function onLoadProgress(evt : LibEvent) : Void

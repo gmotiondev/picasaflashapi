@@ -85,7 +85,6 @@ implements ILibListener
 	*/
 	public function register( _scope )
 	{
-		trace("be.netdust.visual.assembler.ViewBuilder.register("+_scope+","+_oViewReference["applicationViewID"]+")");
 		//ScriptExpert.getInstance( _oViewInstance ).registerMethods( _scope );
 		//KeyExpert
 		//ToolTipExpert.getInstance( _oViewInstance );
@@ -179,8 +178,6 @@ implements ILibListener
 	
 	private function onXMLParsingDone( e : IEvent ) : Void
 	{
-		trace("be.netdust.visual.assembler.ViewBuilder.onXMLParsingDone("+e+")");
-		
 		_oViewReference = View( XMLToObjectEvent(e).getObject());
 		_oViewLoader.removeListener( this );
 		
@@ -208,7 +205,4 @@ implements ILibListener
 	private var _oViewParser:ViewParser;
 	private var _oViewLoader:XMLToObject;
 	private var _oAssembler:ViewAssembler;	
-	
-	
-	
 }

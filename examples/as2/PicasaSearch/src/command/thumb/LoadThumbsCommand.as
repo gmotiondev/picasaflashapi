@@ -1,9 +1,4 @@
-﻿import sk.prasa.webapis.picasa.Link;
-import sk.prasa.webapis.picasa.Content;
-import sk.prasa.webapis.picasa.Author;
-import sk.prasa.webapis.picasa.BasicFeed;
-
-import com.bourre.commands.Command;
+﻿import com.bourre.commands.Command;
 import com.bourre.core.Model;
 import com.bourre.data.libs.GraphicLib;
 import com.bourre.data.libs.LibStack;
@@ -25,7 +20,7 @@ class command.thumb.LoadThumbsCommand implements Command
 {
 	private var model : ModelApplication; 
 	private var stack : LibStack;
-	private var gl : Array;
+	private var gl : Array = [];
 	
 	public function execute(evt : LoadThumbsEvent) : Void
 	{
@@ -40,8 +35,6 @@ class command.thumb.LoadThumbsCommand implements Command
 		}
 		
 		stack.clear();
-		
-		if(!gl) { gl = []; }
 		clearGraphicLibs();
 		
 		for(var a : Number = 0; a < model.photos.length; a++)
@@ -61,10 +54,10 @@ class command.thumb.LoadThumbsCommand implements Command
 	{
 		for(var a : Number = 0; a < gl.length; a++)
 		{
-			var tGL : GraphicLib = GraphicLib(gl.shift());
+			var tGL : GraphicLib = GraphicLib(gl[a]);
 				tGL.release();
 		}
 		
-		//gl = [];
+		gl = [];
 	}
 }

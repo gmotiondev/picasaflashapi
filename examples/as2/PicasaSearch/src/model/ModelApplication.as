@@ -1,4 +1,6 @@
-﻿import com.bourre.commands.Delegate;
+﻿import control.ErrorEvent;
+
+import com.bourre.commands.Delegate;
 import com.bourre.core.Model;
 import com.bourre.events.IEvent;
 
@@ -45,11 +47,11 @@ class model.ModelApplication extends Model
 
 	private function onServiceError(evt : IEvent) : Void
 	{
-		trace("error: " + evt.getType());
+		notifyChanged(new ErrorEvent(evt.getType() + ": Unable to load feed."));
 	}
 
 	private function onServiceTimeout(evt : IEvent) : Void
 	{
-		trace("timeout: " + evt.getType());
+		notifyChanged(new ErrorEvent(evt.getType() + ": Feed loading time out."));
 	}
 }

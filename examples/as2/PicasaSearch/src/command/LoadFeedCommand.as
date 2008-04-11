@@ -22,12 +22,18 @@ class command.LoadFeedCommand implements Command, IResponder
 	public function execute(evt : LoadFeedEvent) : Void
 	{
 		model = ModelApplication(Model.getModel(ModelList.MODEL_APPLICATION));
+		model.service.max_results = calculateMaxResults(model.service.thumbsize);
 		
 		var tQuery : String = evt.query;
 		var d : LoadFeedDelegate = new LoadFeedDelegate(this);
 			d.search(tQuery);
 	}
 
+	private function calculateMaxResults(aThumbsize : Number) : Number
+	{
+		return Math.floor(( Stage.width + (aThumbsize / 2)) / aThumbsize) * Math.floor((Stage.height + (aThumbsize / 2)) / aThumbsize);
+	}	
+	
 	public function result(data : Array) : Void
 	{
 		var tTotalResults : Number = (data.length != 0) ? data[0].parent.opensearch.totalResults : 0;

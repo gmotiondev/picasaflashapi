@@ -53,11 +53,14 @@ class view.Navigation extends MovieClipHelper
 
 	private function centerize() : Void
 	{
-		view.l._x = 20;
-		view.l._y = Stage.height - view.l._height - 20;
+		var tL : MovieClip = view.l;
+		var tR : MovieClip = view.r;
 		
-		view.r._x = Stage.width - view.r._width - 20;
-		view.r._y = Stage.height - view.r._height - 20;
+		tL._x = 20;
+		tL._y = Stage.height - tL._height - 20;
+		
+		tR._x = Stage.width - tR._width - 20;
+		tR._y = Stage.height - tR._height - 20;
 	}
 
 	public function load_thumbs_event(evt : LoadThumbsEvent) : Void

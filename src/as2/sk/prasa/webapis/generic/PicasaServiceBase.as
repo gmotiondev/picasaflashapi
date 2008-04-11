@@ -30,9 +30,9 @@ class sk.prasa.webapis.generic.PicasaServiceBase extends ServiceBase
 		
 		var s : DynamicXMLService = new DynamicXMLService();
 			s.addEventListener( DynamicXMLService.onErrorEVENT, 		Delegate.create( this, onError ));
-			s.addEventListener( DynamicXMLService.onLoadProgressEVENT,Delegate.create( this, onProgress ));
-			s.addEventListener( DynamicXMLService.onLoadInitEVENT, 	Delegate.create( this, onInit ));
-			s.addEventListener( DynamicXMLService.onTimeOutEVENT, 	Delegate.create( this, onTimeout ));
+			s.addEventListener( DynamicXMLService.onLoadProgressEVENT,	Delegate.create( this, onProgress ));
+			s.addEventListener( DynamicXMLService.onLoadInitEVENT, 		Delegate.create( this, onInit ));
+			s.addEventListener( DynamicXMLService.onTimeOutEVENT, 		Delegate.create( this, onTimeout ));
 	
 		var d = s.getDeserializer();
 			d.addType("plain",					d, d.getString);
