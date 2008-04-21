@@ -1,7 +1,7 @@
 ﻿/**
  * @author michal.gron@gmai.com
  */
-import sk.prasa.visual.organization.ui.organizers.ScatterOrganizer;
+
 import sk.prasa.visual.organization.ui.organizers.GridOrganizer;
 import sk.prasa.visual.organization.ui.organizers.ILayoutOrganizer;
 
@@ -25,7 +25,7 @@ class plugins.grid.view.ThumbsHolder extends AbstractMovieClipHelper implements 
 	{
 		super(owner, name, mc);
 
-		grid = new ScatterOrganizer(view, 640, 480);
+		grid = new GridOrganizer(view, 430, 280, 6, 4);
 		grid.setAutoAdjustLayout(true);
 		
 		centerize();
@@ -52,6 +52,7 @@ class plugins.grid.view.ThumbsHolder extends AbstractMovieClipHelper implements 
 	
 	public function onLoadInit(e:LibEvent):Void
 	{
+		centerize();
 	}
 	
 	public function onLoadProgress(evt:LibEvent):Void
@@ -61,6 +62,7 @@ class plugins.grid.view.ThumbsHolder extends AbstractMovieClipHelper implements 
 	
 	public function onLoadComplete(e:LibEvent):Void
 	{	
+		centerize();
 	}
 	
 	public function onTimeOut(e:LibEvent):Void
