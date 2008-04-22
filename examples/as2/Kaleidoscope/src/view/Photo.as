@@ -1,11 +1,11 @@
-﻿import flash.display.BitmapData;
+﻿import com.bourre.events.IEvent;
+
+import flash.display.BitmapData;
 import flash.geom.Matrix;
 
 import com.bourre.data.libs.GraphicLib;
-import com.bourre.data.libs.GraphicLibLocator;
 import com.bourre.data.libs.ILibListener;
 import com.bourre.data.libs.LibEvent;
-import com.bourre.data.libs.LibStack;
 import com.bourre.events.EventBroadcaster;
 import com.bourre.visual.MovieClipHelper;
 
@@ -22,15 +22,14 @@ class view.Photo extends MovieClipHelper implements ILibListener
 	private var loaded : Boolean = false;
 	private var oef : MovieClip;
 	private var proxy : String = "http://www.prasa.sk/image.php?image=";
+	private var gl : GraphicLib;
 
-	public function Photo(aId : String, aContainer : MovieClip, aUrl : String)
+	public function Photo(aName : String, aMC : MovieClip, aUrl : String)
 	{
-		super(aId, aContainer);
+		super(aName, aMC);
 		
-		id = aId;
+		id = aName;
 		url = aUrl;
-		
-		load();
 	}
 
 	private function enable() : Void
@@ -40,9 +39,9 @@ class view.Photo extends MovieClipHelper implements ILibListener
 		var diag : Number = Math.sqrt(2 * Stage.width * Stage.width) * 0.62;
 		var map : BitmapData = new BitmapData(Stage.width, Stage.height, true, 0x00000000);
 		var mapHolder : MovieClip = view.createEmptyMovieClip("mapHolder", 10);
-			mapHolder.attachBitmap(map, 0);
+			mapHolder.attachBitmap(map, 10);
 		
-		var tMC : MovieClip = GraphicLibLocator.getInstance().getGraphicLib(id).getContent();
+		var tMC : MovieClip = gl.getContent();
 		var tImage : BitmapData = new BitmapData(tMC._width, tMC._height, false, 0xFFFFFF);
 			tImage.draw(tMC);
 		
@@ -84,7 +83,7 @@ class view.Photo extends MovieClipHelper implements ILibListener
 
 				map.draw(tSlice, m, null, "normal", null, true);
 			}
-		}
+		};
 		
 		show();
 	}
@@ -101,15 +100,17 @@ class view.Photo extends MovieClipHelper implements ILibListener
 	{
 		if(loaded) return;
 		
-		var tLibStack : LibStack = new LibStack();
-			tLibStack.enqueue(new GraphicLib(view, 5), id, (proxy + url));
-			tLibStack.addListener(this);
-			tLibStack.execute();
+		gl = new GraphicLib(view, 2);
+		gl.setName(id);
+		gl.addListener(this);
+		gl.load(proxy + url);
 	}
 
 	public function onLoadInit(evt : LibEvent) : Void
 	{
 		loaded = true;
+		
+		enable();
 	}
 
 	public function onLoadProgress(evt : LibEvent) : Void
@@ -117,23 +118,22 @@ class view.Photo extends MovieClipHelper implements ILibListener
 		EventBroadcaster.getInstance().broadcastEvent(new ProgressEvent(evt.getPerCent()));
 	}
 
-	public function onLoadComplete(evt : LibEvent) : Void
-	{
-		enable();
-	}
-
 	public function onTimeOut(evt : LibEvent) : Void
 	{
 		trace("ERROR: Photo loading time out: " + evt.getName());
 	}
 
-	public function photo_changed_event(evt : PhotoChangedEvent) : Void
+	public function photo_changed_event(evt : IEvent) : Void
 	{
-		trace("Photo.photo_changed_event(" + evt.id + ")");
+		var tId : String = PhotoChangedEvent(evt).id;
 		
-		if(evt.id == id)
+		if(tId == id)
 		{
-			if(loaded) enable();
+			if(loaded) {
+				enable();
+			} else {
+				load();
+			}
 		} else
 		{
 			if(isVisible()) disable();

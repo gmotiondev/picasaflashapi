@@ -22,14 +22,16 @@ class view.Kaleidoscope extends MovieClipHelper
 	
 	private function addChild(aId : String, aUrl : String) : Void
 	{
-		var tPhoto : MovieClipHelper = new Photo(aId, view.createEmptyMovieClip("p_" + aId, view.getNextHighestDepth()), aUrl);
+		var tPhoto : Photo = new Photo(aId, view.createEmptyMovieClip("p_" + aId, 10 + __c.getSize()), aUrl);
+		
 			__c.put(aId, aId);
-
+		
 		this._getBroadcaster().addListener(tPhoto);
 	}
 	
 	public function notifyChanged(evt : IEvent) : Void
 	{
+		trace("dispatching " + evt.getType());
 		this._getBroadcaster().broadcastEvent(evt);
 	}
 

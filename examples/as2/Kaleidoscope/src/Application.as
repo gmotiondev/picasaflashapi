@@ -21,7 +21,8 @@ class Application extends MovieClipHelper
 	}
 
 	private function initialize(mc : MovieClip) : Void
-	{	
+	{
+		System.security.loadPolicyFile("http://www.prasa.sk/crossdomain.xml");
 		Stage.addListener(this);
 		
 		Logger.getInstance().addLogListener(LuminicTracer.getInstance());
@@ -32,9 +33,9 @@ class Application extends MovieClipHelper
 		var view_n : Navigation = new Navigation(ViewList.NAVIGATION, mc.createEmptyMovieClip(ViewList.NAVIGATION, 30));
 				
 		var model : ModelApplication = new ModelApplication();
-		model.addListener(view_l);
-		model.addListener(view_k);
-		model.addListener(view_n);
+			model.addListener(view_l);
+			model.addListener(view_k);
+			model.addListener(view_n);
 			
 		model.initialize();
 	}
