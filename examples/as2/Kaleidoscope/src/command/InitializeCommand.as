@@ -1,9 +1,10 @@
+import sk.prasa.mvc.command.IResponder;
+
 import com.bourre.commands.Command;
 import com.bourre.core.Model;
 import com.bourre.events.EventBroadcaster;
 
 import business.*;
-import command.*;
 import control.*;
 import model.*;
 

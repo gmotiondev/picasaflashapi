@@ -10,7 +10,7 @@ package sk.prasa.webapis.picasa
 		public var category : Category;
 		public var content : Content;
 		public var id : String;
-		public var links : Array;
+		public var links : Links;
 		public var published : String;
 		public var rights : String;
 		public var summary : String;

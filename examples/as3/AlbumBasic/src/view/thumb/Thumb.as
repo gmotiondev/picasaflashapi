@@ -1,5 +1,8 @@
 package view.thumb 
 {
+	import com.bourre.events.StringEvent;	
+	import com.bourre.view.ViewListener;	
+	
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
@@ -16,7 +19,7 @@ package view.thumb
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class Thumb extends Sprite
+	public class Thumb extends Sprite implements ViewListener
 	{
 		private var id : String;
 		private var title : String;
@@ -34,6 +37,9 @@ package view.thumb
 			addEventListener(MouseEvent.MOUSE_OVER, onThumbRollOver);
 			addEventListener(MouseEvent.MOUSE_OUT, onThumbRollOut);
 		}
+		
+		public function onInitView(e : StringEvent) : void {}
+		public function onReleaseView(e : StringEvent) : void {}
 		
 		private function addBackground(aColor : Number) : void
 		{

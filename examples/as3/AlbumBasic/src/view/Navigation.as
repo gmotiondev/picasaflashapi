@@ -1,5 +1,8 @@
 package view 
 {
+	import com.bourre.events.StringEvent;	
+	import com.bourre.model.ModelListener;	
+	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
@@ -15,8 +18,9 @@ package view
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class Navigation extends AbstractView 
+	public class Navigation extends AbstractView implements ModelListener
 	{
+
 		[Embed(source="../../assets/library.swf", symbol="l")]
 		private var LeftArrow : Class;
 		
@@ -35,8 +39,11 @@ package view
 			var l : Sprite = new LeftArrow();
 			var r : Sprite = new RightArrow();
 			
-			(view as DisplayObjectContainer).addChild(l);
-			(view as DisplayObjectContainer).addChild(r);
+			l.useHandCursor = true;
+			r.useHandCursor = true;
+			
+			DisplayObjectContainer(view).addChild(l);
+			DisplayObjectContainer(view).addChild(r);
 			
 			l.x = 5; l.y = 5;
 			r.x = 25; r.y = 5;
@@ -44,6 +51,9 @@ package view
 			l.addEventListener(MouseEvent.CLICK, onPrevPhoto);
 			r.addEventListener(MouseEvent.CLICK, onNextPhoto);			
 		}
+		
+		public function onInitModel(e : StringEvent) : void {}
+		public function onReleaseModel(e : StringEvent) : void {}
 		
 		private function onPrevPhoto(evt : MouseEvent) : void
 		{	

@@ -1,7 +1,7 @@
 package sk.prasa.webapis.picasa.core 
 {
 	import sk.prasa.webapis.picasa.*;
-	import sk.prasa.webapis.picasa.core.command.*;
+	import sk.prasa.webapis.picasa.core.command.*;	
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;	
 	import sk.prasa.webapis.picasa.core.receiver.tags.*;
 	

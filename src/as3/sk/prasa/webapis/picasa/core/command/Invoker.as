@@ -1,4 +1,4 @@
-package sk.prasa.webapis.picasa.core 
+package sk.prasa.webapis.picasa.core.command 
 {
 	import sk.prasa.webapis.picasa.core.command.ICommand;	
 	
@@ -6,7 +6,7 @@ package sk.prasa.webapis.picasa.core
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	internal class Invoker 
+	public class Invoker 
 	{
 		private var command : ICommand;
 

@@ -1,5 +1,8 @@
 package view 
 {
+	import com.bourre.events.StringEvent;	
+	import com.bourre.model.ModelListener;	
+	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
@@ -13,7 +16,7 @@ package view
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class LoadingBar extends AbstractView 
+	public class LoadingBar extends AbstractView implements ModelListener
 	{
 		private var l : Sprite;
 
@@ -33,6 +36,9 @@ package view
 			
 			(view as DisplayObjectContainer).addChild(l);
 		}
+		
+		public function onInitModel(e : StringEvent) : void {}
+		public function onReleaseModel(e : StringEvent) : void {}
 		
 		public function onProgress(evt : ProgressEvent) : void
 		{

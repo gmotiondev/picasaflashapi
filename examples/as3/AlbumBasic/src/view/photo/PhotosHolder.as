@@ -1,5 +1,8 @@
 package view.photo 
 {
+	import com.bourre.events.StringEvent;	
+	import com.bourre.model.ModelListener;	
+	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
@@ -17,7 +20,7 @@ package view.photo
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class PhotosHolder extends AbstractView 
+	public class PhotosHolder extends AbstractView implements ModelListener
 	{	
 		private var t : TextField;
 		private var r : Sprite;
@@ -60,9 +63,12 @@ package view.photo
 			(view as DisplayObjectContainer).addChild(t);
 		}
 		
-		public function addChild(child : Sprite) : void
+		public function onInitModel(e : StringEvent) : void {}
+		public function onReleaseModel(e : StringEvent) : void {}
+		
+		public function addChild(child : Photo) : void
 		{
-			(view as DisplayObjectContainer).addChild(child);
+			DisplayObjectContainer(view).addChild(child);
 			addListener(child);
 		}
 

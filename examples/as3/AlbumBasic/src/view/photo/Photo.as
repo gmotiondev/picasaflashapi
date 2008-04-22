@@ -1,5 +1,8 @@
 package view.photo 
 {
+	import com.bourre.events.StringEvent;	
+	import com.bourre.view.ViewListener;	
+	
 	import gs.TweenLite;	
 	
 	import flash.display.Sprite;
@@ -17,7 +20,7 @@ package view.photo
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class Photo extends Sprite implements LoaderListener
+	public class Photo extends Sprite implements LoaderListener, ViewListener
 	{
 		private var id : String;
 		private var loaded : Boolean = false;
@@ -44,6 +47,9 @@ package view.photo
 		{
 			visible = false;
 		}
+		
+		public function onInitView(e : StringEvent) : void {}
+		public function onReleaseView(e : StringEvent) : void {}
 		
 		public function onLoadStart( e : LoaderEvent ) : void
 		{

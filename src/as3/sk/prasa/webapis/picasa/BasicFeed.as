@@ -11,7 +11,7 @@ package sk.prasa.webapis.picasa
 		public var generator : Generator;
 		public var icon : String;
 		public var id : String;
-		public var links : Array;
+		public var links : Links;
 		//public var logo : String;
 		public var rights : String;
 		public var subtitle : String;
