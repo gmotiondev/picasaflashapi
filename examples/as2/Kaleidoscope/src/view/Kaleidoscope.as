@@ -1,37 +1,46 @@
-﻿/**
- * @author Michal Gron (michal.gron@gmail.com)
- */
-import com.bourre.visual.MovieClipHelper;
-import com.bourre.events.EventBroadcaster;
+﻿import com.bourre.data.collections.Map;
 import com.bourre.events.IEvent;
-import com.bourre.data.collections.Map;
+import com.bourre.visual.MovieClipHelper;
+
 import control.*;
 import view.Photo;
 
+/**
+ * @author Michal Gron (michal.gron@gmail.com)
+ */
+
 class view.Kaleidoscope extends MovieClipHelper
 {	
-	private var __children:Map;
-	private var __oEB:EventBroadcaster;
-	
-	public function Kaleidoscope(aId:String, aContainer:MovieClip)
+	private var __c : Map;
+
+	public function Kaleidoscope(aId : String, aContainer : MovieClip)
 	{
 		super(aId, aContainer);
 		
-		__children = new Map();
+		__c = new Map();
 	}
 	
-	public function notifyChanged(evt:IEvent):Void
+	private function addChild(aId : String, aUrl : String) : Void
 	{
-		_oEB.broadcastEvent(evt);
+		var tPhoto : MovieClipHelper = new Photo(aId, view.createEmptyMovieClip("p_" + aId, view.getNextHighestDepth()), aUrl);
+			__c.put(aId, aId);
+
+		this._getBroadcaster().addListener(tPhoto);
 	}
 	
-	public function photo_changed_event(evt:PhotoChangedEvent):Void
+	public function notifyChanged(evt : IEvent) : Void
 	{
-		if(!__children.containsKey(evt.id))
+		this._getBroadcaster().broadcastEvent(evt);
+	}
+
+	public function photo_changed_event(evt : PhotoChangedEvent) : Void
+	{
+		var tID : String = "" + evt.id;
+		var tURL : String = "" + evt.url;
+		
+		if(!__c.containsKey(tID))
 		{
-			var tPhoto:Photo = new Photo(evt.id, view.createEmptyMovieClip("p_"+evt.id, view.getNextHighestDepth()), evt.url);
-			__children.put(evt.id, tPhoto);
-			addListener(tPhoto);
+			addChild(tID, tURL);
 		}
 		
 		notifyChanged(evt);
