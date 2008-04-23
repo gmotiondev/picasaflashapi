@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project name="picasaflashapi" basedir="." default="lib">
+
+	<!-- Define variables/paths used in this build script -->
+	<property file="./build.properties" />
+
+	<!-- Flex Ant Tasks used to perform compc and mxml compiling more info at http://labs.adobe.com/wiki/index.php/Flex_Ant_Tasks -->
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
+	<!--
+		Compile all of the classes under the "src" tree into a .swc file
+	-->
+	<target name="lib">
+		<tstamp>
+			<format property="TODAY" pattern="dd.MM.yyyy" locale="en,UK"/>
+		</tstamp>
+		<compc output="${bin.dir}/${library.name}.swc">
+			<source-path path-element="${src.dir}" />
+			<include-sources dir="${src.dir}" includes="sk/*" />
+			<metadata description="Picasa Flash API (as3)" title="Picasa Flash API (as3)" date="${TODAY}">
+				<creator name="Michal Gron (michal.gron@gmail.com)" />
+				<publisher name="Michal Gron (michal.gron@gmail.com)" />
+			</metadata>
+		</compc>
+		<echo>SWC created</echo>
+	</target>
+
+	<!--
+		Generate ASDoc output for the library
+	-->
+	<target name="docs">
+		<!-- Clean out the contents of the doc directory, without delete "docs" -->
+		<!--
+		<delete includeemptydirs="true">
+			<fileset dir="${docs.dir}" includes="**/*" />
+		</delete>
+		-->
+
+		<exec executable="${asdoc.exe}" spawn="no">
+			<!-- Place the documentation in the "docs" directory -->
+			<arg line="-o ${docs.dir}" />
+
+			<!-- Include in the corelib.swc in the class path -->
+			<arg line="-l ${corelib.swc}" />
+
+			<!-- Specify the main source path as "src" -->
+			<arg line="-sp ${src.dir}" />
+
+			<!-- Document all of the classes in the "src" tree -->
+			<arg line="-ds ${src.dir} " />
+
+			<!-- Include the library name in the window title -->
+			<arg line="-window-title 'Adobe ActionScript 3.0 Library - ${library.name}' "/>
+		</exec>
+	</target>
+
+</project>
