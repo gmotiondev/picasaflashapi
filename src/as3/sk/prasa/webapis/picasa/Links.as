@@ -4,7 +4,7 @@ package sk.prasa.webapis.picasa
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class Links extends Array 
+	dynamic public class Links extends Array 
 	{
 		public function Links()
 		{
@@ -32,5 +32,19 @@ package sk.prasa.webapis.picasa
 			return null;
 		}
 		
+		public function toString() : String
+		{
+			var tRes : String = "[Links ";
+			
+			for(var a : Number = 0; a < this.length; a++)
+			{
+				var tLink : Link = Link(this[a]);
+				tRes += tLink.toString() + "";
+			}
+			
+			tRes += "]";
+			
+			return tRes;
+		}
 	}
 }
