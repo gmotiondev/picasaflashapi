@@ -30,7 +30,7 @@ class model.ModelApplication extends Model
 		photos = new Photos();
 		tags = new Tags();
 		userid = "thisispinkfu";
-		service = PicasaService.getInstance();
+		service = new PicasaService();
 		service.max_results = 25;
 		service.start_index = 1;
 		service.thumbsize = 48;

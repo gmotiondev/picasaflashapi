@@ -48,26 +48,16 @@ class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase
 	 * Constructs the new PicasaService service.
 	 * Available methods are auth, photos, albums, tags, comments and community.
 	 */
-	private function PicasaService()
+	public function PicasaService()
 	{	
 		System.security.loadPolicyFile(Auth.POLICY_POINT);
 		
-		__auth = new Auth();
-		__photos = new Photos();
-		__albums = new Albums();
-		__tags = new Tags();
-		__comments = new Comments();
-		__community = new Community();
-	}
-	
-	/**
-	 * Gets instance of PicasaService
-	 */
-	public static function getInstance() : PicasaService
-	{
-		if(!__instance) __instance = new PicasaService();
-		
-		return __instance;
+		__auth = new Auth(this);
+		__photos = new Photos(this);
+		__albums = new Albums(this);
+		__tags = new Tags(this);
+		__comments = new Comments(this);
+		__community = new Community(this);
 	}
 
 	/**

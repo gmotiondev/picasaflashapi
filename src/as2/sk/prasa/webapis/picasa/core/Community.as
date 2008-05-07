@@ -11,6 +11,13 @@ import sk.prasa.webapis.picasa.core.receiver.community.*;
 	
 class sk.prasa.webapis.picasa.core.Community
 {
+	private var service : PicasaService;
+
+	public function Community(srv : PicasaService)
+	{
+		service = srv;
+	}
+	
 	/**
 	 * List photos in community by given query 
 	 * Loads e.g. http://picasaweb.google.com/data/feed/api/all?kind=photo&q=searchTerm
@@ -21,13 +28,13 @@ class sk.prasa.webapis.picasa.core.Community
 	public function search(query : String, params : UrlParams) : Void
 	{
 		var s : String = "all";
-		var p : UrlParams = PicasaService.getInstance().mergeUrlParams(params);
+		var p : UrlParams = service.mergeUrlParams(params);
 			p.kind = "photo";	// override!
 			p.tag = null;
 			p.q = query;
 
-		var tReceiver : IReceiver = new CommunitySearchReceiver();
-		var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+		var tReceiver : IReceiver = new CommunitySearchReceiver(service);
+		var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
 		var tInvoker : Invoker = new Invoker();
 		
 		tInvoker.setCommand(tCommand);

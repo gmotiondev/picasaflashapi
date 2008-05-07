@@ -12,6 +12,13 @@ import sk.prasa.webapis.picasa.core.receiver.photos.*;
 
 class sk.prasa.webapis.picasa.core.Photos
 {
+	private var service : PicasaService;
+
+	public function Photos(srv : PicasaService)
+	{
+		service = srv;
+	}
+	
 	/**
 	 * List of users photos in specified album 
 	 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=photo
@@ -23,13 +30,13 @@ class sk.prasa.webapis.picasa.core.Photos
 	public function list(userid : String, albumid : String, params : UrlParams) : Void
 	{
 		var s : String = "user/" + userid + "/albumid/" + albumid;
-		var p : UrlParams = PicasaService.getInstance().mergeUrlParams(params);
+		var p : UrlParams = service.mergeUrlParams(params);
 			p.kind = "photo";	// overwrite!
 			p.tag = null;
 			p.q = null;
 			
-		var tReceiver : IReceiver = new PhotosListReceiver();
-		var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+		var tReceiver : IReceiver = new PhotosListReceiver(service);
+		var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
 		var tInvoker : Invoker = new Invoker();
 		
 		tInvoker.setCommand(tCommand);
@@ -48,13 +55,13 @@ class sk.prasa.webapis.picasa.core.Photos
 	public function list_by_tag(userid : String, albumid : String, tag : String, params : UrlParams) : Void
 	{
 		var s : String = "user/" + userid + "/albumid/" + albumid;
-		var p : UrlParams = PicasaService.getInstance().mergeUrlParams(params);
+		var p : UrlParams = service.mergeUrlParams(params);
 			p.kind = "photo";	// overwrite!
 			p.tag = tag;
 			p.q = null;
 		
-		var tReceiver : IReceiver = new PhotosListByTagReceiver();
-		var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+		var tReceiver : IReceiver = new PhotosListByTagReceiver(service);
+		var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
 		var tInvoker : Invoker = new Invoker();
 		
 		tInvoker.setCommand(tCommand);

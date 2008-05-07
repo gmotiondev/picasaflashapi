@@ -30,7 +30,7 @@ class model.ModelApplication extends Model
 		photos = new Photos();
 		albums = new Albums();
 
-		service = PicasaService.getInstance();
+		service = new PicasaService();
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 
 		EventBroadcaster.getInstance().dispatchEvent(new AlbumsGetEvent("picasaflashapi"));

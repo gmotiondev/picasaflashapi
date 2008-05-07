@@ -31,7 +31,7 @@ class model.ModelApplication extends Model
 	{
 		photos = Photos.getInstance();
 
-		service = PicasaService.getInstance();
+		service = new PicasaService();
 		service.max_results = 36;
 		service.addEventListener(PicasaService.ERROR, Delegate.create(this, onServiceError));
 

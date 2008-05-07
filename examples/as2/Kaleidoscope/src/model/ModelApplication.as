@@ -27,7 +27,7 @@ class model.ModelApplication extends Model
 	{
 		photos = Photos.getInstance();
 
-		service = PicasaService.getInstance();
+		service = new PicasaService();
 		service.max_results = 15;
 		service.imgmax = 512;
 		service.addEventListener(PicasaService.PROGRESS, Delegate.create(this, onServiceProgress));

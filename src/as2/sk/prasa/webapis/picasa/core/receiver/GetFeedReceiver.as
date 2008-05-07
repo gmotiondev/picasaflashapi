@@ -13,9 +13,9 @@ class sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver
 {
 	private var service : PicasaService;
 
-	public function GetFeedReceiver()
+	public function GetFeedReceiver(srv : PicasaService)
 	{
-		service = PicasaService.getInstance();
+		service = srv;
 	}
 
 	private function process(response : Object, eventType : EventType) : Void 

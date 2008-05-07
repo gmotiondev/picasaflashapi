@@ -18,9 +18,9 @@ class sk.prasa.webapis.picasa.core.command.GetFeedCommand implements ICommand
 	private var suffix : String;
 	private var params : String;
 	
-	public function GetFeedCommand(r : IReceiver, s : String, p : String)
+	public function GetFeedCommand(r : IReceiver, srv : PicasaService, s : String, p : String)
 	{
-		service = PicasaService.getInstance();
+		service = srv;
 		receiver = r;
 		suffix = (s != "" && s != "") ? s : "";
 		params = p;
