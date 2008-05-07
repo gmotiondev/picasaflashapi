@@ -23,9 +23,9 @@ package sk.prasa.webapis.picasa.core.receiver
 		private var service : PicasaService;
 		private namespace atom = "http://www.w3.org/2005/Atom";
 		
-		public function GetFeedReceiver()
+		public function GetFeedReceiver(srv : PicasaService)
 		{
-			service = PicasaService.getInstance();
+			service = srv;
 		}
 		
 		public function process(response : XML, eventType : String) : void 

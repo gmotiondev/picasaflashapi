@@ -1,10 +1,5 @@
 package view.thumb 
 {
-	import com.bourre.events.StringEvent;	
-	import com.bourre.model.ModelListener;	
-	
-	import gs.TweenLite;	
-	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
@@ -18,13 +13,15 @@ package view.thumb
 	import com.somerandomdude.tres.ui.organizers.ILayoutOrganizer;
 	
 	import control.ProgressEvent;
-	import control.photo.PhotoChangedEvent;		
+	import control.photo.PhotoChangedEvent;
+	
+	import gs.TweenLite;		
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class ThumbsHolder extends AbstractView implements LoaderListener, ModelListener
+	public class ThumbsHolder extends AbstractView implements LoaderListener
 	{
 		private var __organizer : ILayoutOrganizer;
 
@@ -50,9 +47,6 @@ package view.thumb
 				
 			__organizer.addToLayout(child, true, true);
 		}
-		
-		public function onInitModel(e : StringEvent) : void {}
-		public function onReleaseModel(e : StringEvent) : void {}
 		
 		public function onLoadStart( e : LoaderEvent ) : void
 		{

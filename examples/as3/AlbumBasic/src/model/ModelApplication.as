@@ -1,5 +1,5 @@
 package model 
-{
+{	
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
 	
@@ -33,8 +33,7 @@ package model
 		public function initialize() : void
 		{
 			photos = new Photos();
-			service = PicasaService.getInstance();
-			
+			service = new PicasaService();
 			service.imgmax = 320;
 			service.thumbsize = 64;
 			service.max_results = 24;
@@ -79,7 +78,7 @@ package model
 		
 		private function onServiceProgress(evt : ProgressEvent) : void
 		{
-			trace("onServiceProgress: " + evt);
+			//trace("onServiceProgress: " + evt);
 		}
 	}
 }

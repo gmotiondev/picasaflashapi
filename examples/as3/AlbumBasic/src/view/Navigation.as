@@ -1,8 +1,5 @@
 package view 
 {
-	import com.bourre.events.StringEvent;	
-	import com.bourre.model.ModelListener;	
-	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
@@ -14,11 +11,12 @@ package view
 	
 	import control.photo.PhotoGetNextEvent;
 	import control.photo.PhotoGetPrevEvent;		
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class Navigation extends AbstractView implements ModelListener
+	public class Navigation extends AbstractView
 	{
 
 		[Embed(source="../../assets/library.swf", symbol="l")]
@@ -51,9 +49,6 @@ package view
 			l.addEventListener(MouseEvent.CLICK, onPrevPhoto);
 			r.addEventListener(MouseEvent.CLICK, onNextPhoto);			
 		}
-		
-		public function onInitModel(e : StringEvent) : void {}
-		public function onReleaseModel(e : StringEvent) : void {}
 		
 		private function onPrevPhoto(evt : MouseEvent) : void
 		{	

@@ -16,6 +16,13 @@ package sk.prasa.webapis.picasa.core
 	
 	public class Comments 
 	{
+		private var service : PicasaService;
+		
+		public function Comments(srv : PicasaService)
+		{
+			service = srv;
+		}
+		
 		/* Get list of all comments for specified user
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=comment
 		 * 
@@ -24,13 +31,13 @@ package sk.prasa.webapis.picasa.core
 		public function user(userid : String) : void
 		{
 			var s : String = "user/" + userid;
-			var p : UrlParams = PicasaService.getInstance().mergeUrlParams();
+			var p : UrlParams = service.mergeUrlParams();
 				p.kind = "comment";	// override!
 				p.tag = null;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new CommentsUserReceiver();
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+			var tReceiver : IReceiver = new CommentsUserReceiver(service);
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
 			var tInvoker : Invoker = new Invoker();
 			
 			tInvoker.setCommand(tCommand);
@@ -47,14 +54,14 @@ package sk.prasa.webapis.picasa.core
 		public function album(userid : String, albumid : String) : void
 		{
 			var s : String = "user/" + userid + "/albumid/" + albumid;
-			var p : UrlParams = PicasaService.getInstance().mergeUrlParams();
+			var p : UrlParams = service.mergeUrlParams();
 				p.kind = "comment";	// override!
 				p.tag = null;
 				p.q = null;
 	
 			//__core.execute(__service, Delegate.create(this, album_complete), s, p);
-			var tReceiver : IReceiver = new CommentsAlbumReceiver();
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+			var tReceiver : IReceiver = new CommentsAlbumReceiver(service);
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
 			var tInvoker : Invoker = new Invoker();
 			
 			tInvoker.setCommand(tCommand);
@@ -72,13 +79,13 @@ package sk.prasa.webapis.picasa.core
 		public function photo(userid : String, albumid : String, photoid : String) : void
 		{
 			var s : String = "user/" + userid + "/albumid/" + albumid + "/photoid/" + photoid;
-			var p : UrlParams = PicasaService.getInstance().mergeUrlParams();
+			var p : UrlParams = service.mergeUrlParams();
 				p.kind = "comment";	// override!
 				p.tag = null;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new CommentsPhotoReceiver();
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+			var tReceiver : IReceiver = new CommentsPhotoReceiver(service);
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
 			var tInvoker : Invoker = new Invoker();
 			
 			tInvoker.setCommand(tCommand);

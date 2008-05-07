@@ -5,7 +5,6 @@ package sk.prasa.webapis.picasa.core.command
 	import flash.events.Event;	
 	import flash.net.URLLoader;			
 
-	import sk.prasa.webapis.picasa.core.Auth;	
 	import sk.prasa.webapis.picasa.PicasaService;	
 	import sk.prasa.webapis.picasa.picasaservice_internal;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;		
@@ -22,9 +21,9 @@ package sk.prasa.webapis.picasa.core.command
 		private var suffix : String;
 		private var params : String;
 		
-		public function GetFeedCommand(r : IReceiver, s : String, p : String)
+		public function GetFeedCommand(r : IReceiver, srv : PicasaService, s : String, p : String)
 		{
-			service = PicasaService.getInstance();
+			service = srv;
 			receiver = r;
 			suffix = (s != "" && s != "") ? s : "";
 			params = p;
@@ -34,9 +33,9 @@ package sk.prasa.webapis.picasa.core.command
 		{
 			var q : String = "" + suffix + "" + params;
 			
-			trace("loading: " + Auth.FEEDS_POINT + q);
+			trace("loading: " + PicasaService.FEEDS_POINT + q);
 			
-			var tReq : URLRequest = new URLRequest(Auth.FEEDS_POINT + q);
+			var tReq : URLRequest = new URLRequest(PicasaService.FEEDS_POINT + q);
 			var tSrv : URLLoader = service.picasaservice_internal::service;
 				tSrv.addEventListener(Event.COMPLETE, receiver.result);
 				tSrv.addEventListener(IOErrorEvent.IO_ERROR, receiver.fault);

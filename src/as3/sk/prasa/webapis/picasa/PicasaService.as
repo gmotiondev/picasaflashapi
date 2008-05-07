@@ -13,7 +13,10 @@ package sk.prasa.webapis.picasa
 	
 	public class PicasaService extends PicasaServiceBase 
 	{
-		private static var __instance : PicasaService;
+		// private static var __instance : PicasaService;
+		
+		public static var POLICY_POINT : String = "http://photos.googleapis.com/data/crossdomain.xml";  
+		public static var FEEDS_POINT: String = "http://photos.googleapis.com/data/feed/api/";
 		
 		// unused
 		public var api_key : String;
@@ -33,28 +36,29 @@ package sk.prasa.webapis.picasa
 		private var __comments : Comments;
 		private var __community : Community;
 
-		public function PicasaService(pvt : PicasaServicePrivateClass)
+		//public function PicasaService(pvt : PicasaServicePrivateClass)
+		public function PicasaService()
 		{
-			Security.loadPolicyFile(Auth.POLICY_POINT);
+			Security.loadPolicyFile(PicasaService.POLICY_POINT);
 			//Security.loadPolicyFile("http://picasaweb.google.com/crossdomain.xml");
 
-			__auth = new Auth();
-			__photos = new Photos();
-			__albums = new Albums();
-			__tags = new Tags();
-			__comments = new Comments();
-			__community = new Community();
+			__auth = new Auth(this);
+			__photos = new Photos(this);
+			__albums = new Albums(this);
+			__tags = new Tags(this);
+			__comments = new Comments(this);
+			__community = new Community(this);
 		}
 		
-		public static function getInstance() : PicasaService
-		{
-			if(PicasaService.__instance == null)
-			{
-				PicasaService.__instance = new PicasaService(new PicasaServicePrivateClass());
-			}
-			
-			return PicasaService.__instance;
-		}
+//		public static function getInstance() : PicasaService
+//		{
+//			if(PicasaService.__instance == null)
+//			{
+//				PicasaService.__instance = new PicasaService(new PicasaServicePrivateClass());
+//			}
+//			
+//			return PicasaService.__instance;
+//		}
 		
 		/**
 		 * Bridge to Authentification methods
@@ -134,7 +138,7 @@ package sk.prasa.webapis.picasa
 	}
 }
 
-class PicasaServicePrivateClass
-{
-	public function PicasaServicePrivateClass(){}
-}
+//class PicasaServicePrivateClass
+//{
+//	public function PicasaServicePrivateClass(){}
+//}

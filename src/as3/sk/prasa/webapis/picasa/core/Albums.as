@@ -15,6 +15,13 @@ package sk.prasa.webapis.picasa.core
 	
 	public class Albums 
 	{
+		private var service : PicasaService;
+		
+		public function Albums(srv : PicasaService)
+		{
+			service = srv;
+		}
+		
 		/**
 		 * List all albums from user
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=album
@@ -25,13 +32,13 @@ package sk.prasa.webapis.picasa.core
 		public function list(userid : String, params : UrlParams = null) : void
 		{
 			var s : String = "user/" + userid;
-			var p : UrlParams = PicasaService.getInstance().mergeUrlParams(params);
+			var p : UrlParams = service.mergeUrlParams(params);
 				p.kind = "album";	// override!
 				p.tag = null;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new AlbumsListReceiver();
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+			var tReceiver : IReceiver = new AlbumsListReceiver(service);
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
 			var tInvoker : Invoker = new Invoker();
 			
 			tInvoker.setCommand(tCommand);
@@ -49,13 +56,13 @@ package sk.prasa.webapis.picasa.core
 		public function list_by_tag(userid : String, tag : String, params : UrlParams = null) : void
 		{
 			var s : String = "user/" + userid;
-			var p : UrlParams = PicasaService.getInstance().mergeUrlParams(params);
+			var p : UrlParams = service.mergeUrlParams(params);
 				p.kind = "photo";	// override!
 				p.tag = tag;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new AlbumsListByTagReceiver();
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+			var tReceiver : IReceiver = new AlbumsListByTagReceiver(service);
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
 			var tInvoker : Invoker = new Invoker();
 			
 			tInvoker.setCommand(tCommand);
@@ -73,13 +80,13 @@ package sk.prasa.webapis.picasa.core
 		public function search(userid : String, query : String, params : UrlParams = null) : void
 		{
 			var s : String = "user/" + userid;
-			var p : UrlParams = PicasaService.getInstance().mergeUrlParams(params);
+			var p : UrlParams = service.mergeUrlParams(params);
 				p.kind = "photo";	// override!
 				p.tag = null;
 				p.q = query;
 	
-			var tReceiver : IReceiver = new AlbumsSearchReceiver();
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+			var tReceiver : IReceiver = new AlbumsSearchReceiver(service);
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
 			var tInvoker : Invoker = new Invoker();
 			
 			tInvoker.setCommand(tCommand);
