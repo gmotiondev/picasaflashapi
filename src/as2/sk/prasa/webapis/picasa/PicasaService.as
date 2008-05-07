@@ -7,8 +7,6 @@ import sk.prasa.webapis.picasa.core.*;
 
 class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase
 {	
-	private static var __instance : PicasaService;
-	
 	// properties
 	/**
 	 * Visibility parameter: all, private, public 
@@ -44,7 +42,6 @@ class sk.prasa.webapis.picasa.PicasaService extends PicasaServiceBase
 	private var __community : Community;
 	
 	/**
-	 * Singleton pattern
 	 * Constructs the new PicasaService service.
 	 * Available methods are auth, photos, albums, tags, comments and community.
 	 */
