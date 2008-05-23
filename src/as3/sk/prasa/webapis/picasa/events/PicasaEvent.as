@@ -26,7 +26,8 @@ package sk.prasa.webapis.picasa.events
 		public static const COMMENTS_GET_ALBUM : String = "commentsGetAlbum";
 		public static const COMMENTS_GET_PHOTO : String = "commentsGetPhoto";
 		
-		public static const COMMUNITY_GET_SEARCH : String = "communityGetSearch";
+		public static const COMMUNITY_GET_SEARCH : String = "communityGetSearch";		
+		public static const CONTACTS_GET_LIST : String = "contactsGetSearch";
 		
 		private var __s : Boolean;
 		private var __e : PicasaError;
