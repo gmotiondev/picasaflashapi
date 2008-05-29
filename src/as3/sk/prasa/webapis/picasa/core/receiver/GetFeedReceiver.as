@@ -1,48 +1,48 @@
 package sk.prasa.webapis.picasa.core.receiver 
-{	
+{
+	import flash.events.ErrorEvent;
 	import flash.events.Event;
-	import flash.events.IOErrorEvent;
+	import flash.events.HTTPStatusEvent;
+	import flash.events.ProgressEvent;
+	import flash.net.URLLoader;
 	
-	import sk.prasa.webapis.picasa.Tag;
-	import sk.prasa.webapis.picasa.Comment;
-	import sk.prasa.webapis.picasa.Photo;
 	import sk.prasa.webapis.picasa.Album;
+	import sk.prasa.webapis.picasa.Comment;
 	import sk.prasa.webapis.picasa.KindType;
-
-	import sk.prasa.webapis.picasa.PicasaError;
-	import sk.prasa.webapis.picasa.events.PicasaEvent;
-	import sk.prasa.webapis.picasa.PicasaService;
-	import sk.prasa.webapis.generic.events.ServiceEvent;
+	import sk.prasa.webapis.picasa.Photo;
+	import sk.prasa.webapis.picasa.PicasaResponder;
+	import sk.prasa.webapis.picasa.Tag;
+	import sk.prasa.webapis.picasa.events.*;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
-	
+
 	public class GetFeedReceiver implements IReceiver
 	{
-		private var service : PicasaService;
+		private var __responder : PicasaResponder;
+		
 		private namespace atom = "http://www.w3.org/2005/Atom";
-		
-		public function GetFeedReceiver(srv : PicasaService)
+
+		public function GetFeedReceiver()
 		{
-			service = srv;
+			__responder = new PicasaResponder();
 		}
-		
-		public function process(response : XML, eventType : String) : void 
+
+		public function process(response : XML) : void 
 		{
 			try
 			{
-				var tEvt : PicasaEvent = new PicasaEvent(eventType);
-					tEvt.success = true;
+				var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.COMPLETE);
 					tEvt.data = parse(response);
 					
-					service.dispatchEvent(tEvt);
+				responder.dispatchEvent(tEvt);
 			} catch(e : Error)
 			{
 				throw new Error(e);
 			}
 		}
-		
+
 		private function parse(aItems : XML) : Array
 		{
 			use namespace atom;
@@ -51,10 +51,10 @@ package sk.prasa.webapis.picasa.core.receiver
 			{
 				var tRes : Array = new Array();
 				var tParent : XML = new XML(aItems);
-					delete tParent.entry;
+				delete tParent.entry;
 				
 				//var tRg : RegExp = /#([\w\-]+)/;
-				
+
 				for each(var tItem : XML in aItems.entry)
 				{
 					var tKind : String = (tItem.category.@term).split("#")[1];
@@ -62,11 +62,20 @@ package sk.prasa.webapis.picasa.core.receiver
 					switch(tKind)
 					{
 						//case KindType.USER	: tRes.push(new User(tItem)); break;
-						case KindType.ALBUM		: tRes.push(new Album(tItem, tParent)); break;
-						case KindType.PHOTO		: tRes.push(new Photo(tItem, tParent)); break;
-						case KindType.COMMENT 	: tRes.push(new Comment(tItem, tParent)); break;
-						case KindType.TAG 		: tRes.push(new Tag(tItem, tParent)); break;
-						default: break;
+						case KindType.ALBUM		: 
+							tRes.push(new Album(tItem, tParent)); 
+							break;
+						case KindType.PHOTO		: 
+							tRes.push(new Photo(tItem, tParent)); 
+							break;
+						case KindType.COMMENT 	: 
+							tRes.push(new Comment(tItem, tParent)); 
+							break;
+						case KindType.TAG 		: 
+							tRes.push(new Tag(tItem, tParent)); 
+							break;
+						default: 
+							break;
 					}
 				}
 
@@ -78,19 +87,41 @@ package sk.prasa.webapis.picasa.core.receiver
 
 			return null;
 		}
-		
-		public function result(evt : Event) : void
+
+		public function get responder() : PicasaResponder
 		{
-			throw new Error(PicasaError.ABSTRACT_METHOD_ERROR);
+			return __responder;
 		}
 
-		public function fault(evt : IOErrorEvent) : void
+		public function result(evt : Event) : void
 		{
-			var tEvt : PicasaEvent = new PicasaEvent(IOErrorEvent.IO_ERROR);
-				tEvt.success = false;
-				tEvt.error = new PicasaError(evt.text);
+			var loader : URLLoader = URLLoader(evt.target); 
+			process(new XML(loader.data));
+		}
+
+		public function fault(evt : ErrorEvent) : void
+		{
+			responder.dispatchEvent(new PicasaErrorEvent(PicasaErrorEvent.ERROR, evt.bubbles, evt.cancelable, evt.text));
+		}
+
+		public function progress(evt : ProgressEvent) : void
+		{
+			responder.dispatchEvent(new PicasaProgressEvent(PicasaProgressEvent.PROGRESS, evt.bubbles, evt.cancelable, evt.bytesLoaded, evt.bytesTotal));
+		}
+
+		public function open(evt : Event) : void
+		{
+			responder.dispatchEvent(new PicasaEvent(PicasaEvent.OPEN));
+		}
+
+		public function status(evt : HTTPStatusEvent) : void
+		{
+			if(evt.status >= 300)
+			{
+				responder.dispatchEvent(new PicasaErrorEvent(PicasaErrorEvent.ERROR, evt.bubbles, evt.cancelable, "HTTPStatus error: " + evt.status));
+			}
 			
-			service.dispatchEvent(tEvt);
+			responder.dispatchEvent(new PicasaStatusEvent(PicasaStatusEvent.STATUS, evt.bubbles, evt.cancelable, evt.status));
 		}
 	}
 }

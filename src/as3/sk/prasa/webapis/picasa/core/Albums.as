@@ -2,26 +2,15 @@ package sk.prasa.webapis.picasa.core
 {
 	import sk.prasa.webapis.picasa.*;
 	import sk.prasa.webapis.picasa.core.command.*;
-	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.core.receiver.albums.*;
+	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
+	import sk.prasa.webapis.picasa.core.receiver.IReceiver;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
-	
-	[Event(name="albumsGetList", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
-	[Event(name="albumsGetListByTag", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
-	[Event(name="albumsGetSearch", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
-	
-	public class Albums 
-	{
-		private var service : PicasaService;
-		
-		public function Albums(srv : PicasaService)
-		{
-			service = srv;
-		}
-		
+
+	public class Albums extends MethodHelper
+	{		
 		/**
 		 * List all albums from user
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=album
@@ -29,22 +18,25 @@ package sk.prasa.webapis.picasa.core
 		 * @param userid String Picasaweb user id
 		 * @param params UrlParams Parameters to alter the feed url
 		 */ 
-		public function list(userid : String, params : UrlParams = null) : void
+		public function list(userid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
 			var s : String = "user/" + userid;
-			var p : UrlParams = service.mergeUrlParams(params);
-				p.kind = "album";	// override!
+			var p : UrlParams = params.merge(urlparams);
+				p.kind = "album";	
+				// override!
 				p.tag = null;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new AlbumsListReceiver(service);
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
+			var tReceiver : IReceiver = new GetFeedReceiver();
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
 			var tInvoker : Invoker = new Invoker();
 			
-			tInvoker.setCommand(tCommand);
-			tInvoker.executeCommand();
+				tInvoker.setCommand(tCommand);
+				tInvoker.executeCommand();
+			
+			return tReceiver.responder;
 		}
-		
+
 		/**
 		 * List photos from all albums by tag
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=photo&tag=sometag
@@ -53,22 +45,25 @@ package sk.prasa.webapis.picasa.core
 		 * @param tag String Tag
 		 * @param params UrlParams Parameters to alter the feed url
 		 */
-		public function list_by_tag(userid : String, tag : String, params : UrlParams = null) : void
+		public function list_by_tag(userid : String, tag : String, urlparams : UrlParams = null) : PicasaResponder
 		{
 			var s : String = "user/" + userid;
-			var p : UrlParams = service.mergeUrlParams(params);
-				p.kind = "photo";	// override!
+			var p : UrlParams = params.merge(urlparams);
+				p.kind = "photo";	
+				// override!
 				p.tag = tag;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new AlbumsListByTagReceiver(service);
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
+			var tReceiver : IReceiver = new GetFeedReceiver();
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
 			var tInvoker : Invoker = new Invoker();
 			
-			tInvoker.setCommand(tCommand);
-			tInvoker.executeCommand();
+				tInvoker.setCommand(tCommand);
+				tInvoker.executeCommand();
+			
+			return tReceiver.responder;
 		}
-		
+
 		/**
 		 * Search in albums by query
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=photo&q=somequery
@@ -77,20 +72,23 @@ package sk.prasa.webapis.picasa.core
 		 * @param query String Search query
 		 * @param params UrlParams Parameters to alter the feed url
 		 */
-		public function search(userid : String, query : String, params : UrlParams = null) : void
+		public function search(userid : String, query : String, urlparams : UrlParams = null) : PicasaResponder
 		{
 			var s : String = "user/" + userid;
-			var p : UrlParams = service.mergeUrlParams(params);
-				p.kind = "photo";	// override!
+			var p : UrlParams = params.merge(urlparams);
+				p.kind = "photo";	
+				// override!
 				p.tag = null;
 				p.q = query;
 	
-			var tReceiver : IReceiver = new AlbumsSearchReceiver(service);
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
+			var tReceiver : IReceiver = new GetFeedReceiver();
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
 			var tInvoker : Invoker = new Invoker();
 			
-			tInvoker.setCommand(tCommand);
-			tInvoker.executeCommand();
+				tInvoker.setCommand(tCommand);
+				tInvoker.executeCommand();
+			
+			return tReceiver.responder;
 		}
 	}
 }

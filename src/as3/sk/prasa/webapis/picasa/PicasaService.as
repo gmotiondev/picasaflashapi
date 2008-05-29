@@ -1,32 +1,18 @@
 package sk.prasa.webapis.picasa 
 {
-	import flash.net.URLLoader;	
 	import flash.system.Security;
-		
-	import sk.prasa.webapis.generic.PicasaServiceBase;
-	import sk.prasa.webapis.picasa.picasaservice_internal;
+	
 	import sk.prasa.webapis.picasa.core.*;
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * TODO: check params if it's working correctly!
 	 */
 	
-	public class PicasaService extends PicasaServiceBase 
+	final public class PicasaService
 	{
-		// private static var __instance : PicasaService;
-		
-		public static var POLICY_POINT : String = "http://photos.googleapis.com/data/crossdomain.xml";  
-		public static var FEEDS_POINT: String = "http://photos.googleapis.com/data/feed/api/";
-		
-		// unused
-		public var api_key : String;
-		
-		// properties
-		public var access : String;
-		public var thumbsize : Number;
-		public var imgmax : Number;
-		public var max_results : Number;
-		public var start_index : Number;
+		public static var POLICY_FILE_URL : String = "http://photos.googleapis.com/data/crossdomain.xml";  
+		public static var FEED_BASE_URL: String = "http://photos.googleapis.com/data/feed/api/";
 		
 		// methods
 		private var __auth : Auth;
@@ -36,29 +22,83 @@ package sk.prasa.webapis.picasa
 		private var __comments : Comments;
 		private var __community : Community;
 
-		//public function PicasaService(pvt : PicasaServicePrivateClass)
+		private var __params : UrlParams;
+		
 		public function PicasaService()
 		{
-			Security.loadPolicyFile(PicasaService.POLICY_POINT);
-			//Security.loadPolicyFile("http://picasaweb.google.com/crossdomain.xml");
+			Security.loadPolicyFile(PicasaService.POLICY_FILE_URL);
 
-			__auth = new Auth(this);
-			__photos = new Photos(this);
-			__albums = new Albums(this);
-			__tags = new Tags(this);
-			__comments = new Comments(this);
-			__community = new Community(this);
+			__params = new UrlParams();
+			
+			__auth = new Auth();
+			__photos = new Photos();
+			__albums = new Albums();
+			__tags = new Tags();
+			__comments = new Comments();
+			__community = new Community();
 		}
 		
-//		public static function getInstance() : PicasaService
-//		{
-//			if(PicasaService.__instance == null)
-//			{
-//				PicasaService.__instance = new PicasaService(new PicasaServicePrivateClass());
-//			}
-//			
-//			return PicasaService.__instance;
-//		}
+		
+		public function get access() : String
+		{
+			return __params.access;
+		}
+		public function set access(value : String) : void
+		{
+			// todo
+			__params.access = value;
+			
+			sendParams();
+		}
+		
+		public function get thumbsize() : String
+		{
+			return __params.thumbsize;
+		}
+		public function set thumbsize(value : String) : void
+		{
+			// todo
+			__params.thumbsize = value;
+			
+			sendParams();
+		}
+		
+		public function get imgmax() : String
+		{
+			return __params.imgmax;
+		}
+		public function set imgmax(value : String) : void
+		{
+			// todo
+			__params.imgmax = value;
+			
+			sendParams();
+		}
+		
+		public function get max_results() : Number
+		{
+			return __params.max_results;
+		}
+		public function set max_results(value : Number) : void
+		{
+			// todo
+			
+			__params.max_results = value;
+			
+			sendParams();
+		}
+		
+		public function get start_index() : Number
+		{
+			return __params.start_index;
+		}
+		public function set start_index(value : Number) : void
+		{
+			// todo
+			__params.start_index = value;
+			
+			sendParams();
+		}
 		
 		/**
 		 * Bridge to Authentification methods
@@ -108,37 +148,14 @@ package sk.prasa.webapis.picasa
 			return __community;
 		}
 		
-		/**
-		 * Merges request and service defined parameters
-		 * @param request UrlParams VO with url parameters
-		 */
-		public function mergeUrlParams(request : UrlParams = null) : UrlParams
+		private function sendParams() : void
 		{
-			// request params have priority before service params
-			var tRes : UrlParams = new UrlParams(
-				 access
-				,thumbsize
-				,imgmax
-				,max_results
-				,start_index);
-				
-			if(request != null && request.access != null) tRes.access = request.access;
-			if(request != null && !isNaN(request.thumbsize)) tRes.thumbsize = request.thumbsize;
-			if(request != null && !isNaN(request.imgmax)) tRes.imgmax = request.imgmax;
-			if(request != null && !isNaN(request.max_results)) tRes.max_results = request.max_results;
-			if(request != null && !isNaN(request.start_index)) tRes.start_index = request.start_index;
-			
-			return tRes;
-		}
-		
-		picasaservice_internal function get service() : URLLoader
-		{
-			return getService();
+			__auth.params = __params.clone();
+			__photos.params = __params.clone();
+			__albums.params = __params.clone();
+			__tags.params = __params.clone();
+			__comments.params = __params.clone();
+			__community.params = __params.clone();
 		}
 	}
 }
-
-//class PicasaServicePrivateClass
-//{
-//	public function PicasaServicePrivateClass(){}
-//}

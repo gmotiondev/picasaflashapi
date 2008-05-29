@@ -1,25 +1,19 @@
 package sk.prasa.webapis.picasa.core 
 {
-	import sk.prasa.webapis.picasa.core.command.GetFeedCommand;	
-	import sk.prasa.webapis.picasa.core.receiver.contacts.ContactsListReceiver;	
-	import sk.prasa.webapis.picasa.core.command.Invoker;	
-	import sk.prasa.webapis.picasa.core.command.ICommand;	
+	import sk.prasa.webapis.picasa.PicasaResponder;
+	import sk.prasa.webapis.picasa.UrlParams;
+	import sk.prasa.webapis.picasa.core.command.GetFeedCommand;
+	import sk.prasa.webapis.picasa.core.command.ICommand;
+	import sk.prasa.webapis.picasa.core.command.Invoker;
+	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;	
-	import sk.prasa.webapis.picasa.UrlParams;	
-	import sk.prasa.webapis.picasa.PicasaService;	
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
-	
-	public class Contacts 
-	{
-		private var service : PicasaService;
 
-		public function Contacts(srv : PicasaService)
-		{
-			service = srv;
-		}
-		
+	public class Contacts extends MethodHelper
+	{
 		/**
 		 * List contacts from user
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=album
@@ -27,20 +21,23 @@ package sk.prasa.webapis.picasa.core
 		 * @param userid String Picasaweb user id
 		 * @param params UrlParams Parameters to alter the feed url
 		 */ 
-		public function list(userid : String, params : UrlParams = null) : void
+		public function list(userid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
 			var s : String = "user/" + userid;
-			var p : UrlParams = service.mergeUrlParams(params);
-				p.kind = "contacts";	// override!
+			var p : UrlParams = params.merge(urlparams);
+				p.kind = "contacts";	
+				// override!
 				p.tag = null;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new ContactsListReceiver(service);
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, service, s, p.toString());
+			var tReceiver : IReceiver = new GetFeedReceiver();
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
 			var tInvoker : Invoker = new Invoker();
 			
-			tInvoker.setCommand(tCommand);
-			tInvoker.executeCommand();
+				tInvoker.setCommand(tCommand);
+				tInvoker.executeCommand();
+			
+			return tReceiver.responder;
 		}
 	}
 }

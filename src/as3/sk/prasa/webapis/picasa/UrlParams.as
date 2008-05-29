@@ -7,8 +7,8 @@ package sk.prasa.webapis.picasa
 	public class UrlParams 
 	{
 		public var access : String;
-		public var thumbsize : Number;
-		public var imgmax : Number;
+		public var thumbsize : String;
+		public var imgmax : String;
 		public var max_results : Number;
 		public var start_index : Number;
 		
@@ -17,15 +17,17 @@ package sk.prasa.webapis.picasa
 		public var tag : String;
 		public var q : String;
 		public var l : String;
+		public var bbox : String;
 		
-		public function UrlParams(	aAccess : String,
-									aThumbSize : Number,
-									aImgmax : Number,
-									aMaxResults : Number,
-									aStartIndex : Number,
-									aKind : String = "photo",
+		public function UrlParams(	aKind : String = "photo",	
+									aAccess : String = null,
+									aThumbSize : String = null,
+									aImgmax : String = null,
 									aTag : String = null,
 									aQuery : String = null,
+									aMaxResults : Number = 100,
+									aStartIndex : Number = 1,
+									aBbox : String = null,
 									aLocation : String = null)
 		{
 			access = aAccess;
@@ -38,22 +40,42 @@ package sk.prasa.webapis.picasa
 			tag = aTag;
 			q = aQuery;
 			l = aLocation;
+			
+			bbox = aBbox;
+		}
+		
+		public function merge(p : UrlParams = null) : UrlParams
+		{
+			// request params have priority before service params
+			if(p != null && p.access != null) access = p.access;
+			if(p != null && p.thumbsize != null) thumbsize = p.thumbsize;
+			if(p != null && p.imgmax != null) imgmax = p.imgmax;
+			if(p != null && !isNaN(p.max_results)) max_results = p.max_results;
+			if(p != null && !isNaN(p.start_index)) start_index = p.start_index;
+			
+			return clone();
+		}
+		
+		public function clone() : UrlParams
+		{
+			return new UrlParams(kind, access, thumbsize, imgmax, tag, q, max_results, start_index, bbox, l);
 		}
 		
 		public function toString() : String
 		{
 			var tRes : String = "";
 			
-			tRes += (kind != null) ? "?kind=" + kind : "photo";
-			tRes += (tag != null) ? "&tag=" + tag : "";
-			tRes += (q != null) ? "&q=" + q : "";
-			tRes += (l != null) ? "&l=" + l : "";
+			tRes += (kind != null) 			? "?kind=" + kind : "photo";
+			tRes += (tag != null) 			? "&tag=" + tag : "";
+			tRes += (q != null) 			? "&q=" + q : "";
+			tRes += (l != null) 			? "&l=" + l : "";
 			
-			tRes += (access != null) ? "&access=" + access : "";
-			tRes += (!isNaN(thumbsize )) ? "&thumbsize=" + thumbsize : "";
-			tRes += (!isNaN(imgmax)) ? "&imgmax=" + imgmax : "";
-			tRes += (!isNaN(max_results)) ? "&max-results=" + max_results : "";
-			tRes += (!isNaN(start_index)) ? "&start-index=" + start_index : "";
+			tRes += (access != null) 		? "&access=" + access : "";
+			tRes += (thumbsize != null) 	? "&thumbsize=" + thumbsize : "";
+			tRes += (imgmax != null) 		? "&imgmax=" + imgmax : "";
+			tRes += (!isNaN(max_results)) 	? "&max-results=" + max_results : "";
+			tRes += (!isNaN(start_index)) 	? "&start-index=" + start_index : "";
+			tRes += (bbox != null)		 	? "&bbox=" + bbox : "";
 			
 			return tRes;
 		} 
