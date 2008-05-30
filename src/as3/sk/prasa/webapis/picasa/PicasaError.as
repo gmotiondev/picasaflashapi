@@ -6,7 +6,8 @@ package sk.prasa.webapis.picasa
 
 	public class PicasaError extends Error
 	{
-		public static const ABSTRACT_METHOD_ERROR : String = "Abstract method, subclass should implement this method";
+		public static const ABSTRACT_METHOD_ERROR : String = "Abstract method, subclass should implement this method.";
+		public static const NOT_IMPLEMENTED_ERROR : String = "Not yet implemented.";
 		
 		public function PicasaError(message : String)
 		{

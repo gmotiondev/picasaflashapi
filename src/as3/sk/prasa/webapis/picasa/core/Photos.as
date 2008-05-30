@@ -78,7 +78,7 @@ package sk.prasa.webapis.picasa.core
 		 */
 		public function single(userid : String, albumid : String, photoid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			throw new PicasaError("Not yet implemented.");
+			throw new PicasaError(PicasaError.NOT_IMPLEMENTED_ERROR);
 		}
 	}
 }
