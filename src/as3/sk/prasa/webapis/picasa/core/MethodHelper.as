@@ -1,6 +1,6 @@
 package sk.prasa.webapis.picasa.core
 {
-	import sk.prasa.webapis.picasa.UrlParams;	
+	import sk.prasa.webapis.picasa.objects.UrlParams;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)

@@ -1,4 +1,4 @@
-package sk.prasa.webapis.picasa 
+package sk.prasa.webapis.picasa.objects 
 {
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)

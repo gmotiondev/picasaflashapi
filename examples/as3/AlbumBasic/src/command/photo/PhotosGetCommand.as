@@ -17,7 +17,7 @@ package command.photo
 	import model.ModelApplication;
 	import model.ModelList;
 	
-	import sk.prasa.webapis.picasa.Photo;
+	import sk.prasa.webapis.picasa.objects.Photo;
 	import sk.prasa.webapis.picasa.PicasaError;		
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)

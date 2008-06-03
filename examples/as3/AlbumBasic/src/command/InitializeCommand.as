@@ -14,9 +14,9 @@ package command
 	import model.ModelApplication;
 	import model.ModelList;
 	
-	import sk.prasa.webapis.picasa.GPhoto;
-	import sk.prasa.webapis.picasa.Media;
-	import sk.prasa.webapis.picasa.Photo;
+	import sk.prasa.webapis.picasa.objects.GPhoto;
+	import sk.prasa.webapis.picasa.objects.Media;
+	import sk.prasa.webapis.picasa.objects.Photo;
 	
 	import view.ViewList;
 	import view.photo.PhotosHolder;

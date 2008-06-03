@@ -1,5 +1,6 @@
 package sk.prasa.webapis.picasa.core 
 {
+	import sk.prasa.webapis.picasa.objects.UrlParams;
 	import sk.prasa.webapis.picasa.*;
 	import sk.prasa.webapis.picasa.core.command.*;
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
@@ -21,15 +22,15 @@ package sk.prasa.webapis.picasa.core
 		 */
 		public function list(userid : String, albumid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var s : String = "user/" + userid + "/albumid/" + albumid;
 			var p : UrlParams = params.merge(urlparams);
-				p.kind = "photo";	
+				p.suffix = "user/" + userid + "/albumid/" + albumid;
 				// overwrite!
+				p.kind = "photo";	
 				p.tag = null;
 				p.q = null;
 					
 			var tReceiver : IReceiver = new GetFeedReceiver();
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
 				tInvoker.setCommand(tCommand);
@@ -49,15 +50,15 @@ package sk.prasa.webapis.picasa.core
 		 */
 		public function list_by_tag(userid : String, albumid : String, tag : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var s : String = "user/" + userid + "/albumid/" + albumid;
 			var p : UrlParams = params.merge(urlparams);
-				p.kind = "photo";	
+				p.suffix = "user/" + userid + "/albumid/" + albumid;
 				// overwrite!
+				p.kind = "photo";	
 				p.tag = tag;
 				p.q = null;
 			
 			var tReceiver : IReceiver = new GetFeedReceiver();
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
 				tInvoker.setCommand(tCommand);

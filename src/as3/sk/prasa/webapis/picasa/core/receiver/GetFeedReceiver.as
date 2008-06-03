@@ -6,12 +6,12 @@ package sk.prasa.webapis.picasa.core.receiver
 	import flash.events.ProgressEvent;
 	import flash.net.URLLoader;
 	
-	import sk.prasa.webapis.picasa.Album;
-	import sk.prasa.webapis.picasa.Comment;
-	import sk.prasa.webapis.picasa.KindType;
-	import sk.prasa.webapis.picasa.Photo;
+	import sk.prasa.webapis.picasa.objects.Album;
+	import sk.prasa.webapis.picasa.objects.Comment;
+	import sk.prasa.webapis.picasa.objects.KindType;
+	import sk.prasa.webapis.picasa.objects.Photo;
 	import sk.prasa.webapis.picasa.PicasaResponder;
-	import sk.prasa.webapis.picasa.Tag;
+	import sk.prasa.webapis.picasa.objects.Tag;
 	import sk.prasa.webapis.picasa.events.*;	
 	
 	/**

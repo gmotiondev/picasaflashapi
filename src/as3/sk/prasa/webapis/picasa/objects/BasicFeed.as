@@ -1,10 +1,10 @@
-package sk.prasa.webapis.picasa 
+package sk.prasa.webapis.picasa.objects 
 {
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	internal class BasicFeed extends Base
+	internal class BasicFeed extends BasicObject
 	{
 		public var author : Author;
 		public var category : Category;

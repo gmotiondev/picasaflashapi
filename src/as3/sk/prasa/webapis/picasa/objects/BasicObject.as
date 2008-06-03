@@ -1,21 +1,21 @@
-package sk.prasa.webapis.picasa 
+package sk.prasa.webapis.picasa.objects 
 {
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	internal class Base 
+	internal class BasicObject 
 	{
-		public var parent : Base;
+		public var parent : BasicObject;
 		
 		default xml namespace = "http://www.w3.org/2005/Atom";
 		
-		public function Base(aItem : XML, aParent : XML = null)
+		public function BasicObject(aItem : XML, aParent : XML = null)
 		{
 			if(aParent != null) parent = getParentItem(aParent);
 		}
 		
-		public function getParentItem(item : XML) : Base
+		public function getParentItem(item : XML) : BasicObject
 		{
 			switch(getParentKindType(item))
 			{

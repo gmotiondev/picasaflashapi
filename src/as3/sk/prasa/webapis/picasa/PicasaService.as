@@ -1,5 +1,6 @@
 package sk.prasa.webapis.picasa 
 {
+	import sk.prasa.webapis.picasa.objects.UrlParams;
 	import flash.system.Security;
 	
 	import sk.prasa.webapis.picasa.core.*;

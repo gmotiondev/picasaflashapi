@@ -1,5 +1,6 @@
-package sk.prasa.webapis.picasa 
+package sk.prasa.webapis.picasa.objects 
 {
+	import sk.prasa.webapis.picasa.objects.BasicFeed;
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 

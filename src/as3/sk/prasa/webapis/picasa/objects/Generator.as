@@ -1,27 +1,27 @@
-package sk.prasa.webapis.picasa 
+package sk.prasa.webapis.picasa.objects 
 {
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	public class Author 
+	public class Generator 
 	{
 		public var name : String;
-		public var email : String;
+		public var version : String;
 		public var uri : String;
 		
-		public function Author(n : String, e : String, u : String)
+		public function Generator(n : String, v : String, u : String)
 		{
 			name = n;
-			email = e;
+			version = v;
 			uri = u;
 		}
 		
 		public function toString() : String
 		{
-			return "[Author " +
+			return "[Generator " +
 				" name=" + name + 
-				", email=" + email + 
+				", version=" + version + 
 				", uri=" + uri + 
 				"]";
 		}

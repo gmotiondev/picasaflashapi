@@ -7,10 +7,10 @@ package sk.prasa.webapis.picasa.core.command
 	import flash.events.SecurityErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-
-	import sk.prasa.webapis.picasa.PicasaService;
-	import sk.prasa.webapis.picasa.core.receiver.IReceiver;	
 	
+	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
+	import sk.prasa.webapis.picasa.objects.UrlParams;		
+
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
@@ -18,23 +18,20 @@ package sk.prasa.webapis.picasa.core.command
 	public class GetFeedCommand implements ICommand
 	{
 		private var receiver : IReceiver;
-		private var suffix : String;
-		private var params : String;
+		private var params : UrlParams;
 
-		public function GetFeedCommand(r : IReceiver, s : String, p : String)
+		public function GetFeedCommand(r : IReceiver, p : UrlParams)
 		{
 			receiver = r;
-			suffix = (s != "" && s != "") ? s : "";
 			params = p;
 		}
 
 		public function execute() : void
 		{
-			var q : String = "" + suffix + "" + params;
-			
-			trace("loading: " + PicasaService.FEED_BASE_URL + q);
-			
-			var tReq : URLRequest = new URLRequest(PicasaService.FEED_BASE_URL + q);
+			var tRequest : URLRequest = params.getURLRequest();
+
+			trace("(" + tRequest.method + ") " + tRequest.url);
+		
 			var tLoader : URLLoader = new URLLoader();
 				tLoader.addEventListener(Event.OPEN, receiver.open);
 				tLoader.addEventListener(Event.COMPLETE, receiver.result);
@@ -46,7 +43,7 @@ package sk.prasa.webapis.picasa.core.command
 			
 			try
 			{
-				tLoader.load(tReq);
+				tLoader.load(tRequest);
 			} catch(e : Error)
 			{
 				throw new Error(e);

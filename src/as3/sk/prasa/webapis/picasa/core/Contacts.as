@@ -1,7 +1,7 @@
 package sk.prasa.webapis.picasa.core 
 {
 	import sk.prasa.webapis.picasa.PicasaResponder;
-	import sk.prasa.webapis.picasa.UrlParams;
+	import sk.prasa.webapis.picasa.objects.UrlParams;
 	import sk.prasa.webapis.picasa.core.command.GetFeedCommand;
 	import sk.prasa.webapis.picasa.core.command.ICommand;
 	import sk.prasa.webapis.picasa.core.command.Invoker;
@@ -16,22 +16,22 @@ package sk.prasa.webapis.picasa.core
 	{
 		/**
 		 * List contacts from user
-		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=album
+		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=contacts
 		 * 
 		 * @param userid String Picasaweb user id
 		 * @param params UrlParams Parameters to alter the feed url
 		 */ 
 		public function list(userid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var s : String = "user/" + userid;
 			var p : UrlParams = params.merge(urlparams);
-				p.kind = "contacts";	
+				p.suffix = "user/" + userid;
 				// override!
+				p.kind = "contacts";
 				p.tag = null;
 				p.q = null;
 	
 			var tReceiver : IReceiver = new GetFeedReceiver();
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, s, p.toString());
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
 				tInvoker.setCommand(tCommand);
