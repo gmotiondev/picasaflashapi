@@ -1,14 +1,7 @@
 <?xml version="1.0"?>
 <project name="picasaflashapi" basedir="." default="lib">
-
-	<!-- Define variables/paths used in this build script -->
 	<property file="./build.properties" />
-
-	<!-- Flex Ant Tasks used to perform compc and mxml compiling more info at http://labs.adobe.com/wiki/index.php/Flex_Ant_Tasks -->
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
-	<!--
-		Compile all of the classes under the "src" tree into a .swc file
-	-->
 	<target name="lib">
 		<tstamp>
 			<format property="TODAY" pattern="dd.MM.yyyy" locale="en,UK"/>
@@ -52,5 +45,4 @@
 			<arg line="-window-title 'Adobe ActionScript 3.0 Library - ${library.name}' "/>
 		</exec>
 	</target>
-
 </project>
