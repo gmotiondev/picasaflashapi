@@ -1,12 +1,12 @@
 package sk.prasa.webapis.picasa.core 
 {
 	import sk.prasa.webapis.picasa.PicasaResponder;
-	import sk.prasa.webapis.picasa.objects.UrlParams;
 	import sk.prasa.webapis.picasa.core.command.GetFeedCommand;
 	import sk.prasa.webapis.picasa.core.command.ICommand;
 	import sk.prasa.webapis.picasa.core.command.Invoker;
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
-	import sk.prasa.webapis.picasa.core.receiver.IReceiver;	
+	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
+	import sk.prasa.webapis.picasa.objects.UrlParams;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -25,6 +25,7 @@ package sk.prasa.webapis.picasa.core
 		{
 			var p : UrlParams = params.merge(urlparams);
 				p.suffix = "user/" + userid;
+				
 				// override!
 				p.kind = "contacts";
 				p.tag = null;
@@ -41,24 +42,3 @@ package sk.prasa.webapis.picasa.core
 		}
 	}
 }
-
-/*
-<entry>
-  <id>http://picasaweb.google.com/data/entry/api/user/thisispinkfu/contacts/davidtravnicek</id>
-  <published>2008-05-23T11:01:24.667Z</published>
-  <updated>2008-05-23T11:01:24.667Z</updated>
-  <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/photos/2007#user'/>
-  <title type='text'>davidtravnicek</title>
-  <summary type='text'></summary>
-  <link rel='alternate' type='text/html' href='http://picasaweb.google.com/davidtravnicek'/>
-  <link rel='self' type='application/atom+xml' href='http://picasaweb.google.com/data/entry/api/user/thisispinkfu/contacts/davidtravnicek'/>
-  <link rel='edit' type='application/atom+xml' href='http://picasaweb.google.com/data/entry/api/user/thisispinkfu/contacts/davidtravnicek'/>
-  <author>
-  	<name>Fuji_ita</name>
-  	<uri>http://picasaweb.google.com/davidtravnicek</uri>
-  </author>
-  <gphoto:user>davidtravnicek</gphoto:user>
-  <gphoto:nickname>Fuji_ita</gphoto:nickname>
-  <gphoto:thumbnail>http://lh6.ggpht.com/davidtravnicek/AAAAls5kcJE/AAAAAAAAAAA/ua29FHNrScM/s64-c/davidtravnicek.jpg</gphoto:thumbnail>
-</entry>*/ 
-

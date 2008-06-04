@@ -1,6 +1,7 @@
 package sk.prasa.webapis.picasa.objects 
 {
 	import sk.prasa.webapis.picasa.objects.Link;
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

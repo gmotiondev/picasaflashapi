@@ -1,19 +1,18 @@
 package sk.prasa.webapis.picasa.objects 
 {
-	import flash.net.URLRequestMethod;	
-	
-	import sk.prasa.webapis.picasa.PicasaService;	
-	
-	import flash.utils.Dictionary;	
-	
-	import flash.net.URLVariables;	
 	import flash.net.URLRequest;
-		
+	import flash.net.URLRequestMethod;
+	import flash.net.URLVariables;
+	import flash.utils.Dictionary;
+	
+	import sk.prasa.webapis.picasa.PicasaService;
+	import sk.prasa.webapis.picasa.core.observer.IObserver;		
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 
-	public class UrlParams
+	public class UrlParams implements IObserver
 	{
 		private var __dict : Dictionary;
 		private var __suffix : String;
@@ -25,8 +24,8 @@ package sk.prasa.webapis.picasa.objects
 									aImgmax : String = null,
 									aTag : String = null,
 									aQ : String = null,
-									aMax_results : Number = 100,
-									aStart_index : Number = 1,
+									aMax_results : int = 100,
+									aStart_index : int = 1,
 									aBbox : String = null,
 									aL : String = null)
 		{
@@ -48,6 +47,11 @@ package sk.prasa.webapis.picasa.objects
 			setParameter("bbox", aBbox);
 		}
 		
+		public function update(o : *) : void
+		{
+			merge(o as UrlParams);
+		}
+
 		public function get method() : String
 		{
 			return __method;

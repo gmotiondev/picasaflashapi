@@ -1,15 +1,16 @@
 package sk.prasa.webapis.picasa.core 
 {
-	import sk.prasa.webapis.picasa.objects.UrlParams;
 	import sk.prasa.webapis.picasa.*;
 	import sk.prasa.webapis.picasa.core.command.*;
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
-	import sk.prasa.webapis.picasa.core.receiver.IReceiver;	
+	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
+	import sk.prasa.webapis.picasa.objects.UrlParams;
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * Albums methods
 	 */
-
+	
 	public class Albums extends MethodHelper
 	{		
 		/**
@@ -28,7 +29,7 @@ package sk.prasa.webapis.picasa.core
 				p.kind = "album";	
 				p.tag = null;
 				p.q = null;
-	
+		
 			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
@@ -51,6 +52,7 @@ package sk.prasa.webapis.picasa.core
 		{
 			var p : UrlParams = params.merge(urlparams);
 				p.suffix = "user/" + userid;
+			
 				// override!
 				p.kind = "photo";
 				p.tag = tag;
@@ -78,6 +80,7 @@ package sk.prasa.webapis.picasa.core
 		{
 			var p : UrlParams = params.merge(urlparams);
 				p.suffix = "user/" + userid;
+				
 				// override!
 				p.kind = "photo";	
 				p.tag = null;

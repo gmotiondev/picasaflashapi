@@ -9,6 +9,7 @@ package view
 	
 	import control.ProgressEvent;
 	import control.ResizeEvent;	
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

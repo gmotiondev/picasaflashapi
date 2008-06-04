@@ -17,8 +17,8 @@ package command.photo
 	import model.ModelApplication;
 	import model.ModelList;
 	
-	import sk.prasa.webapis.picasa.objects.Photo;
-	import sk.prasa.webapis.picasa.PicasaError;		
+	import sk.prasa.webapis.picasa.objects.Photo;	
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
@@ -35,7 +35,7 @@ package command.photo
 				tDelegate.list((evt as PhotosGetEvent).userid, (evt as PhotosGetEvent).albumid);
 		}
 		
-		public function result(data : Object) : void
+		public function result(data : Array) : void
 		{
 			for each(var item : Photo in data)
 			{
@@ -45,7 +45,7 @@ package command.photo
 			EventBroadcaster.getInstance().broadcastEvent(new InitializeEvent());
 		}
 
-		public function fault(e : PicasaError) : void
+		public function fault(e : Error) : void
 		{
 			trace("Error: " + e.message);
 		}

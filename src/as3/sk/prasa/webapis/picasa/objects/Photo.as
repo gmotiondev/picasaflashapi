@@ -1,5 +1,6 @@
 package sk.prasa.webapis.picasa.objects 
-{	import sk.prasa.webapis.picasa.objects.Content;
+{	
+	import sk.prasa.webapis.picasa.objects.Content;
 	import sk.prasa.webapis.picasa.objects.BasicFeed;
 	
 	/**

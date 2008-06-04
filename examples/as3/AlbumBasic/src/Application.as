@@ -1,6 +1,5 @@
 package  
 {
-	import flash.system.Security;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
@@ -20,7 +19,7 @@ package
 	
 	import view.*;
 	import view.photo.*;
-	import view.thumb.*;		
+	import view.thumb.*;	
 
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)

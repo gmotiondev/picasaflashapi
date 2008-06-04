@@ -8,16 +8,16 @@ package sk.prasa.webapis.picasa.core.command
 	
 	public class Invoker 
 	{
-		private var command : ICommand;
+		private var __command : ICommand;
 
 		public function setCommand(command : ICommand) : void
 		{
-			this.command = command;
+			__command = command;
 		}
 		
 		public function executeCommand() : void 
 		{
-			command.execute();
+			__command.execute();
 		}	
 	}
 }

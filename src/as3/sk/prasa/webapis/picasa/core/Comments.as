@@ -1,14 +1,14 @@
 package sk.prasa.webapis.picasa.core 
 {
-	import sk.prasa.webapis.picasa.objects.UrlParams;
 	import sk.prasa.webapis.picasa.*;
 	import sk.prasa.webapis.picasa.core.command.*;
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
-	import sk.prasa.webapis.picasa.core.receiver.IReceiver;	
+	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
+	import sk.prasa.webapis.picasa.objects.UrlParams;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
-	 * TODO: add url params? do we need them?
+	 * Comments methods
 	 */
 
 	public class Comments extends MethodHelper
@@ -23,6 +23,7 @@ package sk.prasa.webapis.picasa.core
 		{
 			var p : UrlParams = params.merge(null);
 				p.suffix = "user/" + userid;
+				
 				// override!
 				p.kind = "comment";	
 				p.tag = null;
@@ -49,6 +50,7 @@ package sk.prasa.webapis.picasa.core
 		{
 			var p : UrlParams = params.merge(null);
 				p.suffix = "user/" + userid + "/albumid/" + albumid;
+				
 				// override!
 				p.kind = "comment";	
 				p.tag = null;
@@ -76,6 +78,7 @@ package sk.prasa.webapis.picasa.core
 		{
 			var p : UrlParams = params.merge(null);
 				p.suffix = "user/" + userid + "/albumid/" + albumid + "/photoid/" + photoid;
+				
 				// override!
 				p.kind = "comment";	
 				p.tag = null;

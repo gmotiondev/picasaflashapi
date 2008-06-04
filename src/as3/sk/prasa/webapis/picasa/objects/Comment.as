@@ -1,5 +1,6 @@
 package sk.prasa.webapis.picasa.objects 
-{	import sk.prasa.webapis.picasa.objects.BasicEntry;
+{	
+	import sk.prasa.webapis.picasa.objects.BasicEntry;
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -8,15 +9,23 @@ package sk.prasa.webapis.picasa.objects
 	public class Comment extends BasicEntry
 	{
 		public var gphoto : GPhoto;
+		public var user : GPhoto;
 		//BUG?: GPHOTO IS IN THE AUTHOR FEED
 		
 		default xml namespace = "http://www.w3.org/2005/Atom";
+		private namespace gphotohack = "http://schemas.google.com/photos/2007";
 		
 		public function Comment(aItem : XML, aParent : XML = null)
 		{
 			super(aItem, aParent);
 			
 			gphoto = new GPhoto(aItem, KindType.COMMENT);
+			
+			// gphoto hack
+			user = new GPhoto(new XML(), KindType.USER);
+			user.user = aItem.author.gphotohack::user;
+			user.nickname = aItem.author.gphotohack::nickname;
+			user.thumbnail = aItem.author.gphotohack::thumbnail;
 		}
 		
 		override public function toString() : String

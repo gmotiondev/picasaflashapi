@@ -15,6 +15,7 @@ package view.thumb
 	
 	import control.photo.PhotoChangedEvent;
 	import control.thumb.ThumbClickEvent;	
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

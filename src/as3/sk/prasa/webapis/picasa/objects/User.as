@@ -1,10 +1,10 @@
 package sk.prasa.webapis.picasa.objects 
-{	import sk.prasa.webapis.picasa.objects.GPhoto;
+{	
+	import sk.prasa.webapis.picasa.objects.GPhoto;
 	import sk.prasa.webapis.picasa.objects.BasicFeed;
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
 	 * feed kind "user" doesn't have a parent
 	 */
 	

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#222222, #000000]" applicationComplete="init();">
+<mx:Script>
+	<![CDATA[
+		import sk.prasa.webapis.picasa.objects.Tag;
+		import mx.controls.Alert;
+		import mx.controls.dataGridClasses.DataGridColumn;
+		import mx.formatters.DateFormatter;
+		import sk.prasa.webapis.picasa.events.PicasaDataEvent;
+		import sk.prasa.webapis.picasa.PicasaResponder;
+		import sk.prasa.webapis.picasa.PicasaService;
+		
+		public var service : PicasaService;
+		[Bindable]
+		public var userid : String; 
+	
+		private function init() : void
+		{
+			service = new PicasaService();
+			service.imgmax = "320";
+			service.thumbsize = "64c"; 
+			
+			userid = useridInput.text;
+		}
+		
+		private function getAlbums(userid : String) : void
+		{
+			var tResponder : PicasaResponder = service.albums.list(userid);
+				tResponder.addEventListener(PicasaDataEvent.DATA, onGetAlbumsComplete);
+		}
+		
+		private function getTags(userid : String) : void
+		{
+			var tResponder : PicasaResponder = service.tags.user(userid);
+				tResponder.addEventListener(PicasaDataEvent.DATA, onGetTagsComplete);
+		}
+		
+		private function getComments(userid : String) : void
+		{
+			var tResponder : PicasaResponder = service.comments.user(userid);
+				tResponder.addEventListener(PicasaDataEvent.DATA, onGetCommentsComplete);
+		}
+		
+		private function onGetAlbumsComplete(evt : PicasaDataEvent) : void
+		{
+			albumsList.dataProvider = evt.data;
+		}
+		
+		private function onGetTagsComplete(evt : PicasaDataEvent) : void
+		{
+			tagsList.dataProvider = evt.data;
+		}
+		
+		private function onGetCommentsComplete(evt : PicasaDataEvent) : void
+		{
+			commentsList.dataProvider = evt.data;
+		}
+		
+		private function formatDate(item : Object, column : DataGridColumn) : String
+		{
+			var tDF : DateFormatter = new DateFormatter();
+				tDF.formatString = "DD.MM.YYYY";
+				
+			return tDF.format(item[column.dataField]);
+		}
+	]]>
+</mx:Script>
+	<mx:HBox left="10" top="10">
+		<mx:Label text="Userid:" color="#FFFFFF"/>
+		<mx:TextInput width="200" id="useridInput" text="thisispinkfu" change="{userid=useridInput.text}"/>	
+	</mx:HBox>
+	<mx:TabNavigator left="10" right="10" top="50" bottom="10">
+		<mx:VBox label="Albums" width="100%" height="100%" horizontalAlign="center">
+			<mx:DataGrid width="100%" height="100%" id="albumsList" rowHeight="72">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Thumb">
+						<mx:itemRenderer>
+							<mx:Component>
+								<mx:Image source="{data.media.thumbnail[0].url}"/>
+							</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+					<mx:DataGridColumn headerText="Album name" dataField="title"/>
+					<mx:DataGridColumn headerText="Photos count">
+						<mx:itemRenderer>
+							<mx:Component>
+								<mx:Label text="{data.gphoto.numphotos}"/>
+							</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+					<mx:DataGridColumn headerText="Published" dataField="published" labelFunction="formatDate"/>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:Button label="Populate" click="{getAlbums(userid)}"/>
+		</mx:VBox>
+		<mx:VBox label="Tags" width="100%" height="100%" horizontalAlign="center">
+			<mx:DataGrid width="100%" height="100%" id="tagsList">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Tag" dataField="title"/>
+					<mx:DataGridColumn headerText="Weight">
+						<mx:itemRenderer>
+							<mx:Component>
+								<mx:Label text="{data.gphoto.weight}"/>
+							</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:Button label="Populate" click="{getTags(userid)}"/>
+		</mx:VBox>
+		<mx:VBox label="Comments" width="100%" height="100%" horizontalAlign="center">
+			<mx:DataGrid width="100%" height="100%" id="commentsList" variableRowHeight="true">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Author" rendererIsEditor="true">
+						<mx:itemRenderer>
+							<mx:Component>
+								<mx:HBox>
+									<mx:Image source="{data.user.thumbnail}"/>
+									<mx:Label text="{data.user.nickname}"/>
+								</mx:HBox>
+							</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+					<mx:DataGridColumn headerText="Comment">
+						<mx:itemRenderer>
+							<mx:Component>
+								<mx:Label text="{data.content.src}"/>
+							</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:Button label="Populate" click="{getComments(userid)}"/>
+		</mx:VBox>
+	</mx:TabNavigator>
+</mx:Application>

@@ -7,11 +7,11 @@ package sk.prasa.webapis.picasa
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	
-	[Event(name="open", type="sk.prasa.webapis.picasa.events.PicasaEvent")]
-	[Event(name="complete", type="sk.prasa.webapis.picasa.events.PicasaResultEvent")]
-	[Event(name="progress", type="sk.prasa.webapis.picasa.events.PicasaProgressEvent")]
-	[Event(name="error", type="sk.prasa.webapis.picasa.events.PicasaErrorEvent")]
-	[Event(name="status", type="sk.prasa.webapis.picasa.events.PicasaStatusEvent")]
+	[Event(name="open", type="flash.events.Event")]
+	[Event(name="data", type="sk.prasa.webapis.picasa.events.PicasaDataEvent")]
+	[Event(name="progress", type="flash.events.ProgressEvent")]
+	[Event(name="error", type="flash.events.ErrorEvent")]
+	[Event(name="status", type="flash.events.HTTPStatusEvent")]
 	
 	public class PicasaResponder extends EventDispatcher
 	{

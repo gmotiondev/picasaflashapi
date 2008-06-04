@@ -22,6 +22,7 @@ package command
 	import view.photo.PhotosHolder;
 	import view.thumb.Thumb;
 	import view.thumb.ThumbsHolder;	
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

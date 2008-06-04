@@ -8,6 +8,7 @@ package command.photo
 	
 	import model.ModelApplication;
 	import model.ModelList;		
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

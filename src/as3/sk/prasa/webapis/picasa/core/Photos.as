@@ -1,10 +1,10 @@
 package sk.prasa.webapis.picasa.core 
 {
-	import sk.prasa.webapis.picasa.objects.UrlParams;
 	import sk.prasa.webapis.picasa.*;
 	import sk.prasa.webapis.picasa.core.command.*;
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
-	import sk.prasa.webapis.picasa.core.receiver.IReceiver;	
+	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
+	import sk.prasa.webapis.picasa.objects.UrlParams;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -24,6 +24,7 @@ package sk.prasa.webapis.picasa.core
 		{
 			var p : UrlParams = params.merge(urlparams);
 				p.suffix = "user/" + userid + "/albumid/" + albumid;
+				
 				// overwrite!
 				p.kind = "photo";	
 				p.tag = null;
@@ -52,6 +53,7 @@ package sk.prasa.webapis.picasa.core
 		{
 			var p : UrlParams = params.merge(urlparams);
 				p.suffix = "user/" + userid + "/albumid/" + albumid;
+				
 				// overwrite!
 				p.kind = "photo";	
 				p.tag = tag;
@@ -79,7 +81,7 @@ package sk.prasa.webapis.picasa.core
 		 */
 		public function single(userid : String, albumid : String, photoid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			throw new PicasaError(PicasaError.NOT_IMPLEMENTED_ERROR);
+			throw new Error("Not yet implemented.");
 		}
 	}
 }

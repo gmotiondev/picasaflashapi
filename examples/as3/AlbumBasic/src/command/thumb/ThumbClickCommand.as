@@ -9,6 +9,7 @@ package command.thumb
 	import control.thumb.ThumbClickEvent;
 	
 	import model.*;	
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

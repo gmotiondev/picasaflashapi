@@ -17,13 +17,15 @@ package sk.prasa.webapis.picasa.objects
 		public var title : String;
 		public var updated : String;
 		
+		default xml namespace = "http://www.w3.org/2005/Atom";
+		
 		public function BasicEntry(aItem : XML, aParent : XML = null)
 		{
 			super(aItem, aParent);
 			
 			author = new Author(aItem.author.name, aItem.author.email, aItem.author.uri);
 			category = new Category(aItem.category.@term, aItem.category.@scheme);
-			content = new Content(aItem.content.@type, aItem.content.@src);
+			content = new Content(aItem.content.@type, aItem.content);
 			id = aItem.id;
 			links = getLinks(aItem);
 			published = aItem.published;

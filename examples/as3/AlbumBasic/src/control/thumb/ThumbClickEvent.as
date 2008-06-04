@@ -3,6 +3,7 @@ package control.thumb
 	import com.bourre.events.BasicEvent;
 	
 	import control.Controller;		
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

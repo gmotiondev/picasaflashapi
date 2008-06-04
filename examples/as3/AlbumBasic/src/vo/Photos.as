@@ -1,6 +1,7 @@
 package vo 
 {
 	import sk.prasa.webapis.picasa.objects.Photo;			
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */

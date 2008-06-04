@@ -6,13 +6,13 @@ package sk.prasa.webapis.picasa.core.receiver
 	import flash.events.ProgressEvent;
 	import flash.net.URLLoader;
 	
+	import sk.prasa.webapis.picasa.PicasaResponder;
+	import sk.prasa.webapis.picasa.events.PicasaDataEvent;
 	import sk.prasa.webapis.picasa.objects.Album;
 	import sk.prasa.webapis.picasa.objects.Comment;
 	import sk.prasa.webapis.picasa.objects.KindType;
 	import sk.prasa.webapis.picasa.objects.Photo;
-	import sk.prasa.webapis.picasa.PicasaResponder;
-	import sk.prasa.webapis.picasa.objects.Tag;
-	import sk.prasa.webapis.picasa.events.*;	
+	import sk.prasa.webapis.picasa.objects.Tag;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -33,7 +33,7 @@ package sk.prasa.webapis.picasa.core.receiver
 		{
 			try
 			{
-				var tEvt : PicasaResultEvent = new PicasaResultEvent(PicasaResultEvent.COMPLETE);
+				var tEvt : PicasaDataEvent = new PicasaDataEvent(PicasaDataEvent.DATA);
 					tEvt.data = parse(response);
 					
 				responder.dispatchEvent(tEvt);
@@ -58,28 +58,20 @@ package sk.prasa.webapis.picasa.core.receiver
 				for each(var tItem : XML in aItems.entry)
 				{
 					var tKind : String = (tItem.category.@term).split("#")[1];
-					
+
 					switch(tKind)
 					{
 						//case KindType.USER	: tRes.push(new User(tItem)); break;
-						case KindType.ALBUM		: 
-							tRes.push(new Album(tItem, tParent)); 
-							break;
-						case KindType.PHOTO		: 
-							tRes.push(new Photo(tItem, tParent)); 
-							break;
-						case KindType.COMMENT 	: 
-							tRes.push(new Comment(tItem, tParent)); 
-							break;
-						case KindType.TAG 		: 
-							tRes.push(new Tag(tItem, tParent)); 
-							break;
-						default: 
-							break;
+						case KindType.ALBUM		: tRes.push(new Album(tItem, tParent)); break;
+						case KindType.PHOTO		: tRes.push(new Photo(tItem, tParent)); break;
+						case KindType.COMMENT 	: tRes.push(new Comment(tItem, tParent)); break;
+						case KindType.TAG 		: tRes.push(new Tag(tItem, tParent)); break;
+						default: break;
 					}
 				}
 
 				return tRes;
+				
 			} catch(e : Error)
 			{
 				throw new Error(e);
@@ -101,27 +93,27 @@ package sk.prasa.webapis.picasa.core.receiver
 
 		public function fault(evt : ErrorEvent) : void
 		{
-			responder.dispatchEvent(new PicasaErrorEvent(PicasaErrorEvent.ERROR, evt.bubbles, evt.cancelable, evt.text));
+			responder.dispatchEvent(evt);
 		}
 
 		public function progress(evt : ProgressEvent) : void
 		{
-			responder.dispatchEvent(new PicasaProgressEvent(PicasaProgressEvent.PROGRESS, evt.bubbles, evt.cancelable, evt.bytesLoaded, evt.bytesTotal));
+			responder.dispatchEvent(evt);
 		}
 
 		public function open(evt : Event) : void
 		{
-			responder.dispatchEvent(new PicasaEvent(PicasaEvent.OPEN));
+			responder.dispatchEvent(evt);
 		}
 
 		public function status(evt : HTTPStatusEvent) : void
 		{
 			if(evt.status >= 300)
 			{
-				responder.dispatchEvent(new PicasaErrorEvent(PicasaErrorEvent.ERROR, evt.bubbles, evt.cancelable, "HTTPStatus error: " + evt.status));
+				responder.dispatchEvent(new ErrorEvent(ErrorEvent.ERROR, evt.bubbles, evt.cancelable, "HTTPStatus error: " + evt.status));
 			}
 			
-			responder.dispatchEvent(new PicasaStatusEvent(PicasaStatusEvent.STATUS, evt.bubbles, evt.cancelable, evt.status));
+			responder.dispatchEvent(evt);
 		}
 	}
 }

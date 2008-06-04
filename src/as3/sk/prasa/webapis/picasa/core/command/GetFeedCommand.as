@@ -9,8 +9,8 @@ package sk.prasa.webapis.picasa.core.command
 	import flash.net.URLRequest;
 	
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.objects.UrlParams;		
-
+	import sk.prasa.webapis.picasa.objects.UrlParams;	
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
