@@ -108,11 +108,6 @@ package sk.prasa.webapis.picasa.core.receiver
 
 		public function status(evt : HTTPStatusEvent) : void
 		{
-			if(evt.status >= 300)
-			{
-				responder.dispatchEvent(new ErrorEvent(ErrorEvent.ERROR, evt.bubbles, evt.cancelable, "HTTPStatus error: " + evt.status));
-			}
-			
 			responder.dispatchEvent(evt);
 		}
 	}

@@ -27,18 +27,24 @@
 		{
 			var tResponder : PicasaResponder = service.albums.list(userid);
 				tResponder.addEventListener(PicasaDataEvent.DATA, onGetAlbumsComplete);
+				tResponder.addEventListener(ErrorEvent.ERROR, onError);
+				tResponder.addEventListener(HTTPStatusEvent.HTTP_STATUS, onHTTPStatus);
 		}
 		
 		private function getTags(userid : String) : void
 		{
 			var tResponder : PicasaResponder = service.tags.user(userid);
 				tResponder.addEventListener(PicasaDataEvent.DATA, onGetTagsComplete);
+				tResponder.addEventListener(ErrorEvent.ERROR, onError);
+				tResponder.addEventListener(HTTPStatusEvent.HTTP_STATUS, onHTTPStatus);
 		}
 		
 		private function getComments(userid : String) : void
 		{
 			var tResponder : PicasaResponder = service.comments.user(userid);
 				tResponder.addEventListener(PicasaDataEvent.DATA, onGetCommentsComplete);
+				tResponder.addEventListener(ErrorEvent.ERROR, onError);
+				tResponder.addEventListener(HTTPStatusEvent.HTTP_STATUS, onHTTPStatus);
 		}
 		
 		private function onGetAlbumsComplete(evt : PicasaDataEvent) : void
@@ -62,6 +68,24 @@
 				tDF.formatString = "DD.MM.YYYY";
 				
 			return tDF.format(item[column.dataField]);
+		}
+		
+		private function onError(evt : ErrorEvent) : void
+		{
+			Alert.show("Error: " + evt.text);
+		}
+		
+		private function onHTTPStatus(evt : HTTPStatusEvent) : void
+		{
+			if(evt.status <= 200) return;
+			
+			if(evt.status == 404)
+			{
+				Alert.show("User not found!");
+			} else
+			{
+				onError(new ErrorEvent(ErrorEvent.ERROR, evt.bubbles, evt.cancelable, "HTTP error: " + evt.status));
+			}
 		}
 	]]>
 </mx:Script>
