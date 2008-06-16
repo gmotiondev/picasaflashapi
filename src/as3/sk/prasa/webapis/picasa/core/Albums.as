@@ -2,19 +2,19 @@ package sk.prasa.webapis.picasa.core
 {
 	import sk.prasa.webapis.picasa.*;
 	import sk.prasa.webapis.picasa.core.command.*;
-	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
+	import sk.prasa.webapis.picasa.core.receiver.GetUserFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.objects.UrlParams;
+	import sk.prasa.webapis.picasa.objects.UrlParams;		
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 * Albums methods
 	 */
-	
 	public class Albums extends MethodHelper
 	{		
 		/**
-		 * List all albums from user
+		 * List all albums from user, this is a user-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=album
 		 * 
 		 * @param userid String Picasaweb user id
@@ -30,7 +30,7 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = null;
 		
-			var tReceiver : IReceiver = new GetFeedReceiver();
+			var tReceiver : IReceiver = new GetUserFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
@@ -41,7 +41,7 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List photos from all albums by tag
+		 * List photos from all albums by tag, , this is a user-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=photo&tag=sometag
 		 * 
 		 * @param userid String Picasaweb user id
@@ -58,7 +58,8 @@ package sk.prasa.webapis.picasa.core
 				p.tag = tag;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new GetFeedReceiver();
+			//var tReceiver : IReceiver = new GetFeedReceiver();
+			var tReceiver : IReceiver = new GetUserFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
@@ -69,7 +70,7 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * Search in albums by query
+		 * Search in albums by query, this is a user-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=photo&q=somequery
 		 * 
 		 * @param userid String Picasaweb user id
@@ -86,7 +87,8 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = query;
 	
-			var tReceiver : IReceiver = new GetFeedReceiver();
+			//var tReceiver : IReceiver = new GetFeedReceiver();
+			var tReceiver : IReceiver = new GetUserFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			

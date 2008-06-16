@@ -2,27 +2,27 @@ package sk.prasa.webapis.picasa.objects
 {
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-	
 	public class Generator 
 	{
-		public var name : String;
-		public var version : String;
 		public var uri : String;
+		public var version : String;
+		public var value : String;
 		
-		public function Generator(n : String, v : String, u : String)
+		public function Generator(aUri : String = null, aVersion : String = null, aValue : String = null)
 		{
-			name = n;
-			version = v;
-			uri = u;
+			uri = aUri;
+			version = aVersion;
+			value = aValue;
 		}
 		
 		public function toString() : String
 		{
 			return "[Generator " +
-				" name=" + name + 
+				" uri=" + uri + 
 				", version=" + version + 
-				", uri=" + uri + 
+				", value=" + value + 
 				"]";
 		}
 	}

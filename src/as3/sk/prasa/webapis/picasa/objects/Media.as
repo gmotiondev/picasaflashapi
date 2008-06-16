@@ -1,67 +1,103 @@
 package sk.prasa.webapis.picasa.objects 
 {
+	import sk.prasa.webapis.picasa.objects.FeedElement;	
+	import sk.prasa.webapis.picasa.objects.Namespaces;	
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-	
-	public class Media 
-	{
-		public var content : MediaContent;	// media:content
-		public var credit : String; 		// media:credit
-		public var description : String; 	// media:description
-		public var keywords : Array = []; 	// media:keywords
-		public var thumbnail : Array = [];	// media:thumbnail	//Array of MediaThumbnail
-		public var title : String;			// media:title
+	public class Media extends FeedElement
+	{		
+		private var media_ns : Namespace = Namespaces.MEDIA_NS;
 		
-		private namespace media = "http://search.yahoo.com/mrss/";
-		
-		public function Media(item : XML)
+		public function Media(xmllist : XMLList)
 		{
-			//use namespace media; //(doesn't work like this!)
-
+			super(xmllist);
+		}
+		
+		public function get content() : MediaContent
+		{
+			var tMediaContent : MediaContent = new MediaContent();
+				tMediaContent.url = Utils.parseString(this.data.media_ns::group.media_ns::content.@url);
+				tMediaContent.type = Utils.parseString(this.data.media_ns::group.media_ns::content.@type);
+				tMediaContent.medium = Utils.parseString(this.data.media_ns::group.media_ns::content.@medium);
+				tMediaContent.width = Utils.parseNumber(this.data.media_ns::group.media_ns::content.@width);
+				tMediaContent.height = Utils.parseNumber(this.data.media_ns::group.media_ns::content.@height);
+				tMediaContent.fileSize = Utils.parseNumber(this.data.media_ns::group.media_ns::content.@fileSize);
+			
+			return tMediaContent;
+		}
+		
+		public function set content(aContent : MediaContent) : void
+		{
+			// TODO: ...
+		}
+		
+		public function get credit() : String
+		{
+			return Utils.parseString(this.data.media_ns::group.media_ns::credit);
+		}
+		
+		public function set credit(aCredit : String) : void
+		{
+			// TODO: ...
+		}
+		
+		public function get description() : String
+		{
+			return Utils.parseString(this.data.media_ns::group.media_ns::description);
+		}
+		
+		public function set description(aDescription : String) : void
+		{
+			// TODO: ...
+		}
+		
+		public function get keywords() : Array
+		{
+			return Utils.parseString(this.data.media_ns::group.media_ns::keywords).split(" ").join("").split(",");
+		}
+		
+		public function set keywords(aKeywords : Array) : void
+		{
+			// TODO: ...
+		}
+		
+		public function get thumbnails() : Array
+		{
+			var tRes : Array = [];
+			
 			try
 			{
-				content = getMediaContent(item.media::group);
-				credit = item.media::group.media::credit;
-				description = item.media::group.media::description;
-				keywords = getKeywords(item.media::group.media::keywords);
-				thumbnail = getThumbnails(item.media::group);
-				title = item.media::group.media::title;
-				
-			} catch(e : Error)
-			{
-				// e.g. when parsed from photo as parent, album doesn't have media:group
-			}
-		}
-		
-		private function getMediaContent(item : XMLList) : MediaContent
-		{
-			return new MediaContent(item.media::content.@url, item.media::content.@type, item.media::content.@medium, parseFloat(item.media::content.@height), parseFloat(item.media::content.@width), parseFloat(item.media::content.@fileSize));
-		}
-		
-		private function getKeywords(k : String) : Array
-		{
-			return k.split(" ").join("").split(",");
-		}
-		
-		private function getThumbnails(item : XMLList) : Array
-		{
-			try
-			{
-				var tRes : Array = [];
-				
-				for each(var thumb : XML in item.media::thumbnail)
+				for each(var thumb : XML in this.data.media_ns::thumbnail)
 				{
-					tRes.push(new MediaThumbnail(thumb.@url, parseFloat(thumb.@width), parseFloat(thumb.@height))); 
+					tRes.push(new MediaThumbnail(
+						Utils.parseString(thumb.@url), 
+						Utils.parseNumber(thumb.@width), 
+						Utils.parseNumber(thumb.@height))); 
 				}
-				
-				return tRes;
 			} catch(e : Error)
 			{
 				throw new Error(e);
 			}
 			
-			return null;
+			return tRes;
+		}
+		
+		public function set thumbnails(aThumbnails : Array) : void
+		{
+			// TODO: ..
+		}
+		
+		public function get title() : String
+		{
+			return Utils.parseString(this.data.media_ns::group.media_ns::title);
+		}
+			
+		public function set title(aTitle : String) : void
+		{
+			// TODO: ...
 		}
 		
 		public function toString() : String
@@ -73,7 +109,7 @@ package sk.prasa.webapis.picasa.objects
 					", credit=" + credit + 
 					", description=" + description + 
 					", keywords=" + keywords.toString() + 
-					", thumbnail=" + thumbnail.toString() + 
+					", thumbnails=" + thumbnails.toString() + 
 					", title=" + title + 
 					"]";
 			} catch(e : Error)
@@ -84,16 +120,5 @@ package sk.prasa.webapis.picasa.objects
 			
 			return null;
 		}
-	}
+	}	
 }
-
-/*
-	<media:group>
-		<media:title type="plain">Diana plus</media:title>
-		<media:description type="plain"/>
-		<media:keywords/>
-		<media:content url="http://lh3.google.com/thisispinkfu/R6DRgaBGIdE/AAAAAAAABR0/WzCg01fEF8k/DianaPlus.jpg" type="image/jpeg" medium="image"/>
-		<media:thumbnail url="http://lh3.google.com/thisispinkfu/R6DRgaBGIdE/AAAAAAAABR0/WzCg01fEF8k/s160-c/DianaPlus.jpg" height="160" width="160"/>
-		<media:credit>Pink-fu</media:credit>
-	</media:group>
-*/

@@ -17,12 +17,13 @@ package command.photo
 	import model.ModelApplication;
 	import model.ModelList;
 	
-	import sk.prasa.webapis.picasa.objects.Photo;	
+	import sk.prasa.webapis.picasa.objects.feed.PhotoEntry;
+	import sk.prasa.webapis.picasa.objects.feed.IAtom;		
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-	
 	public class PhotosGetCommand extends AbstractCommand implements Command, IDelegateReceiver
 	{
 		private var __model : ModelApplication;
@@ -35,9 +36,10 @@ package command.photo
 				tDelegate.list((evt as PhotosGetEvent).userid, (evt as PhotosGetEvent).albumid);
 		}
 		
-		public function result(data : Array) : void
-		{
-			for each(var item : Photo in data)
+		//public function result(data : Array) : void
+		public function result(data : IAtom) : void
+		{	
+			for each(var item : PhotoEntry in data.entries)
 			{
 				__model.photos.push(item);
 			}

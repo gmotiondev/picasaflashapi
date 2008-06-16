@@ -1,34 +1,25 @@
 package sk.prasa.webapis.picasa.objects 
-{	
-	import sk.prasa.webapis.picasa.objects.GPhoto;
-	import sk.prasa.webapis.picasa.objects.BasicFeed;
-	
+{
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
-	 * feed kind "user" doesn't have a parent
+	 * 
 	 */
-	
-	public class User extends BasicFeed
+	public class User 
 	{
-		public var opensearch : OpenSearch;
-		public var gphoto : GPhoto;
+		public var name : String;
+		public var uri : String;
+		public var email : String;
 		
-		default xml namespace = "http://www.w3.org/2005/Atom";
-		
-		public function User(item : XML)
+		public function User(aName : String = null, aUri : String = null, aEmail : String = null)
 		{
-			super(item, null);
-			
-			opensearch = new OpenSearch(item);
-			gphoto = new GPhoto(item, KindType.USER);
+			name = aName;
+			uri = aUri;
+			email = aEmail;
 		}
 		
-		override public function toString() : String
+		public function toString() : String
 		{
-			return "[User " + super.toString() +
-				", opensearch=" + opensearch.toString() +
-				", gphoto=" + gphoto.toString() +
-				"]";
+			return "[User name=" + name + ", uri=" + uri + ", email=" + email + "]";
 		}
 	}
 }

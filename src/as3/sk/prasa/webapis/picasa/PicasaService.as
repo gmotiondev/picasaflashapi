@@ -13,7 +13,7 @@ package sk.prasa.webapis.picasa
 	final public class PicasaService
 	{
 		public static var POLICY_FILE_URL : String = "http://photos.googleapis.com/data/crossdomain.xml";  
-		public static var FEED_BASE_URL : String = "http://photos.googleapis.com/data/feed/api/";
+		public static var FEED_API_URL : String = "http://photos.googleapis.com/data/feed/api/";
 		
 		private var __auth : Auth;
 		private var __albums : Albums;

@@ -1,8 +1,8 @@
 package command 
 {
-	import flash.system.LoaderContext;	
 	import flash.events.Event;
 	import flash.net.URLRequest;
+	import flash.system.LoaderContext;
 	
 	import com.bourre.commands.AbstractCommand;
 	import com.bourre.commands.Command;
@@ -16,17 +16,17 @@ package command
 	
 	import sk.prasa.webapis.picasa.objects.GPhoto;
 	import sk.prasa.webapis.picasa.objects.Media;
-	import sk.prasa.webapis.picasa.objects.Photo;
+	import sk.prasa.webapis.picasa.objects.feed.PhotoEntry;
 	
 	import view.ViewList;
 	import view.photo.PhotosHolder;
 	import view.thumb.Thumb;
-	import view.thumb.ThumbsHolder;	
+	import view.thumb.ThumbsHolder;		
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-	
 	public class InitializeCommand extends AbstractCommand implements Command 
 	{
 		private var __model : ModelApplication;
@@ -40,7 +40,7 @@ package command
 			
 			var tQueue : QueueLoader = new QueueLoader();
 			
-			for each(var item : Photo in __model.photos)
+			for each(var item : PhotoEntry in __model.photos)
 			{
 				var tThumb : view.thumb.Thumb = new view.thumb.Thumb(item.gphoto.id, item.summary);
 					tThumbsHolder.addChild(tThumb);
@@ -49,7 +49,7 @@ package command
 					
 				var tGL : GraphicLoader = new GraphicLoader(tThumb);
 					tGL.addListener(tThumbsHolder);				
-				tQueue.add(tGL, item.gphoto.id, new URLRequest("http://prasa.sk/image.php?image="+item.media.thumbnail[0].url), new LoaderContext(true));
+				tQueue.add(tGL, item.gphoto.id, new URLRequest("http://prasa.sk/image.php?image="+item.media.thumbnails[0].url), new LoaderContext(true));
 			}
 			
 			tQueue.run();

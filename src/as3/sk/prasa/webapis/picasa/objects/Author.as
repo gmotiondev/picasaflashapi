@@ -1,29 +1,21 @@
 package sk.prasa.webapis.picasa.objects 
 {
+	import sk.prasa.webapis.picasa.objects.User;	
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-	
-	public class Author 
+	public class Author extends User 
 	{
-		public var name : String;
-		public var email : String;
-		public var uri : String;
-		
-		public function Author(n : String, e : String, u : String)
+		public function Author(aName : String = null, aUri : String = null, aEmail : String = null)
 		{
-			name = n;
-			email = e;
-			uri = u;
+			super(aName, aUri, aEmail);
 		}
 		
-		public function toString() : String
+		override public function toString() : String
 		{
-			return "[Author " +
-				" name=" + name + 
-				", email=" + email + 
-				", uri=" + uri + 
-				"]";
-		}
+			return "[Author " + super.toString() + "]";
+		} 
 	}
 }

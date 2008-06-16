@@ -2,25 +2,22 @@ package sk.prasa.webapis.picasa.objects
 {
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-	
-	public class Content 
+	public class Content extends Text 
 	{
-		public var type : String;
 		public var src : String;
-		 
-		public function Content(t : String, s : String)
+		
+		public function Content(aType : String = null, aValue : String = null, aSrc : String = null)
 		{
-			type = t;
-			src = s;
+			super(aType, aValue);
+			
+			src = aSrc;
 		}
 		
-		public function toString() : String
+		override public function toString() : String
 		{
-			return "[Content " +
-				" type=" + type + 
-				", src=" + src + 
-				"]";
+			return "[Content src=" + src + ", " + super.toString() + "]";
 		}
 	}
 }

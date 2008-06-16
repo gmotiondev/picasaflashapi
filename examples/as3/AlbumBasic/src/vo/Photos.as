@@ -1,6 +1,6 @@
 package vo 
 {
-	import sk.prasa.webapis.picasa.objects.Photo;			
+	import sk.prasa.webapis.picasa.objects.feed.PhotoEntry;				
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -14,19 +14,19 @@ package vo
 		{
 			if(++__current >= this.length || isNaN(__current)) __current = 0;
 			
-			return (this[__current] as Photo).gphoto.id;
+			return (this[__current] as PhotoEntry).gphoto.id;
 		}
 		 
 		public function getPrevious() : String
 		{
 			if(--__current < 0 || isNaN(__current)) __current = this.length - 1;
 			
-			return (this[__current] as Photo).gphoto.id;
+			return (this[__current] as PhotoEntry).gphoto.id;
 		}
 		
 		public function getCurrentTitle() : String
 		{
-			return (this[__current] as Photo).summary;
+			return (this[__current] as PhotoEntry).summary;
 		}
 		
 		public function getCurrentId() : String
@@ -36,12 +36,12 @@ package vo
 		
 		public function getCurrentUrl() : String
 		{
-			return (this[__current] as Photo).media.content.url;
+			return (this[__current] as PhotoEntry).media.content.url;
 		}
 
 		public function getCurrent() : String
 		{
-			return (this[__current] as Photo).gphoto.id;
+			return (this[__current] as PhotoEntry).gphoto.id;
 		}
 
 		public function setCurrent(aId : String) : String
@@ -55,7 +55,7 @@ package vo
 		{
 			for(var a : Number = 0; a < this.length; a++)
 			{
-				if((this[a] as Photo).gphoto.id == aId) return a;
+				if((this[a] as PhotoEntry).gphoto.id == aId) return a;
 			}
 			
 			return 0;

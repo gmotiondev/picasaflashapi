@@ -1,33 +1,25 @@
-package sk.prasa.webapis.picasa.objects 
+package sk.prasa.webapis.picasa.objects
 {
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-	
-	public class OpenSearch 
+	public class OpenSearch
 	{
-		public var totalResults : Number;
-		public var startIndex : Number;
-		public var itemsPerPage : Number;
-		
-		private namespace openSearch = "http://a9.com/-/spec/opensearchrss/1.0/";
-		
-		public function OpenSearch(item : XML)
-		{
-			use namespace openSearch;
-			
-			totalResults = parseFloat(item.totalResults);
-			startIndex = parseFloat(item.startIndex);
-			itemsPerPage = parseFloat(item.itemsPerPage);
+		public var totalResults : int;
+		public var startIndex : int;
+		public var itemsPerPage : int;
+
+		public function OpenSearch(aTotalResults : int = 0, aStartIndex : int = 0, aItemsPerPage : int = 0)
+		{	
+			totalResults = aTotalResults;
+			startIndex = aStartIndex;
+			itemsPerPage = aItemsPerPage;
 		}
-		
+
 		public function toString() : String
 		{
-			return "[OpenSearch " +
-				" totalResults=" + totalResults + 
-				", startIndex=" + startIndex + 
-				", itemsPerPage=" + itemsPerPage + 
-				"]";
-		}
+			return "[OpenSearch " + " totalResults=" + totalResults + ", startIndex=" + startIndex + ", itemsPerPage=" + itemsPerPage + "]";
+		} 
 	}
 }

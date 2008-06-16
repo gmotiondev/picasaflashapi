@@ -6,12 +6,12 @@ package sk.prasa.webapis.picasa.objects
 	import flash.utils.Dictionary;
 	
 	import sk.prasa.webapis.picasa.PicasaService;
-	import sk.prasa.webapis.picasa.core.observer.IObserver;		
+	import sk.prasa.webapis.picasa.core.observer.IObserver;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-
 	public class UrlParams implements IObserver
 	{
 		private var __dict : Dictionary;
@@ -197,7 +197,7 @@ package sk.prasa.webapis.picasa.objects
 		public function getURLRequest() : URLRequest
 		{
 			var tURLRequest : URLRequest = new URLRequest();
-				tURLRequest.url = PicasaService.FEED_BASE_URL + suffix;
+				tURLRequest.url = PicasaService.FEED_API_URL + suffix;
 				tURLRequest.data = getURLVariables();
 				
 			return tURLRequest;

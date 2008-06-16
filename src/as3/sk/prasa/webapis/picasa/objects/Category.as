@@ -2,25 +2,28 @@ package sk.prasa.webapis.picasa.objects
 {
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-	
 	public class Category 
 	{
 		public var term : String;
 		public var scheme : String;
-		 
-		public function Category(t : String, s : String)
+		public var label : String;
+		
+		public function Category(aTerm : String = null, aScheme : String = null, aLabel : String = null)
 		{
-			term = t;
-			scheme = s;
+			term = aTerm;
+			scheme = aScheme;
+			label = aLabel;
 		}
 		
 		public function toString() : String
 		{
 			return "[Category " +
-			" term=" + term + 
-			", scheme=" + scheme + 
-			"]";
+				" term=" + term + 
+				", scheme=" + scheme +
+				", label=" + label + 
+				"]";
 		}
 	}
 }

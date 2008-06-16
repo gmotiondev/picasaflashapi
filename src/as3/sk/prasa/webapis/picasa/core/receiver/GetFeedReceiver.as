@@ -8,16 +8,14 @@ package sk.prasa.webapis.picasa.core.receiver
 	
 	import sk.prasa.webapis.picasa.PicasaResponder;
 	import sk.prasa.webapis.picasa.events.PicasaDataEvent;
-	import sk.prasa.webapis.picasa.objects.Album;
-	import sk.prasa.webapis.picasa.objects.Comment;
-	import sk.prasa.webapis.picasa.objects.KindType;
-	import sk.prasa.webapis.picasa.objects.Photo;
-	import sk.prasa.webapis.picasa.objects.Tag;	
+	import sk.prasa.webapis.picasa.objects.feed.Atom;
+	import sk.prasa.webapis.picasa.objects.feed.IAtom;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
+	 * ZOVSEOBECNIT, TAK ABY SA DALO EXTENDOVAT
 	 */
-
 	public class GetFeedReceiver implements IReceiver
 	{
 		private var __responder : PicasaResponder;
@@ -34,7 +32,8 @@ package sk.prasa.webapis.picasa.core.receiver
 			try
 			{
 				var tEvt : PicasaDataEvent = new PicasaDataEvent(PicasaDataEvent.DATA);
-					tEvt.data = parse(response);
+					//tEvt.data = parse(response);
+					tEvt.data = parsefeed(response);
 					
 				responder.dispatchEvent(tEvt);
 			} catch(e : Error)
@@ -43,12 +42,20 @@ package sk.prasa.webapis.picasa.core.receiver
 			}
 		}
 
-		private function parse(aItems : XML) : Array
+		protected function parsefeed(aFeed : XML) : IAtom
+		{
+			var tFeed : IAtom = new Atom(aFeed);
+			return tFeed;
+		}
+
+		/*private function parse(aItems : XML) : Array
 		{
 			use namespace atom;
 			
 			try
 			{
+				//
+				
 				var tRes : Array = new Array();
 				var tParent : XML = new XML(aItems);
 				delete tParent.entry;
@@ -78,7 +85,7 @@ package sk.prasa.webapis.picasa.core.receiver
 			}
 
 			return null;
-		}
+		}*/
 
 		public function get responder() : PicasaResponder
 		{

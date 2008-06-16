@@ -2,19 +2,21 @@ package sk.prasa.webapis.picasa.core
 {
 	import sk.prasa.webapis.picasa.*;
 	import sk.prasa.webapis.picasa.core.command.*;
-	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
+	import sk.prasa.webapis.picasa.core.receiver.GetAlbumFeedReceiver;
+	import sk.prasa.webapis.picasa.core.receiver.GetPhotoFeedReceiver;
+	import sk.prasa.webapis.picasa.core.receiver.GetUserFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.objects.UrlParams;	
+	import sk.prasa.webapis.picasa.objects.UrlParams;		
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 * Comments methods
 	 */
-
 	public class Comments extends MethodHelper
 	{
 		/**
-		 * Get list of all comments for specified user
+		 * Get list of all comments for specified user, this is user-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=comment
 		 * 
 		 * @param userid String Picasaweb user id
@@ -29,7 +31,8 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new GetFeedReceiver();
+			//var tReceiver : IReceiver = new GetFeedReceiver();
+			var tReceiver : IReceiver = new GetUserFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
@@ -40,7 +43,7 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List album comments for specified user
+		 * List album comments for specified user, this is album-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=comment
 		 * 
 		 * @param userid String Picasaweb user id
@@ -56,7 +59,8 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new GetFeedReceiver();
+			//var tReceiver : IReceiver = new GetFeedReceiver();
+			var tReceiver : IReceiver = new GetAlbumFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
@@ -67,7 +71,7 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List photo comments for specified user and album 
+		 * List photo comments for specified user and album, this is photo-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID/photoid/photoID?kind=comment
 		 * 
 		 * @param userid String Picasaweb user id
@@ -84,7 +88,8 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = null;
 		
-			var tReceiver : IReceiver = new GetFeedReceiver();
+			//var tReceiver : IReceiver = new GetFeedReceiver();
+			var tReceiver : IReceiver = new GetPhotoFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			

@@ -1,5 +1,7 @@
 package business 
 {
+	import flash.events.IOErrorEvent;	
+	import flash.errors.IOError;	
 	import flash.events.ErrorEvent;
 	
 	import com.bourre.model.ModelLocator;
@@ -33,6 +35,7 @@ package business
 			var tResp : PicasaResponder = service.photos.list(aUserid, aAlbumid);
 				tResp.addEventListener(PicasaDataEvent.DATA, list_complete);
 				tResp.addEventListener(ErrorEvent.ERROR, list_failed);
+				tResp.addEventListener(IOErrorEvent.IO_ERROR, list_failed);
 		}
 
 		private function list_failed(evt : ErrorEvent) : void
@@ -43,7 +46,7 @@ package business
 		private function list_complete(evt : PicasaDataEvent) : void
 		{			
 			try
-			{
+			{	
 				receiver.result(evt.data);
 			} catch(e : Error)
 			{

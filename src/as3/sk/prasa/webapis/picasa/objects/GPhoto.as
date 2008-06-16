@@ -1,21 +1,26 @@
 package sk.prasa.webapis.picasa.objects 
 {
+	import sk.prasa.webapis.picasa.objects.FeedElement;	
+	import sk.prasa.webapis.picasa.objects.Namespaces;	
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
+	 * TODO: ... check types, Number, int, uint, use optimized types!
+	 * 
 	 */
-	
-	public class GPhoto 
+	public class GPhoto extends FeedElement
 	{
 		public var kind : String;
 	 
 		// multiple kinds
 		public var albumid : String;			// gphoto:albumid
-		public var commentCount : Number;		// gphoto:commentCount
+		public var commentCount : int;			// gphoto:commentCount
 		public var commentingEnabled : Boolean;	// gphoto:commentingEnabled
 		public var id : String;					// gphoto:id
 		
 		// user kind
-		public var maxPhotosPerAlbum : Number;	// gphoto:maxPhotosPerAlbum
+		public var maxPhotosPerAlbum : int;		// gphoto:maxPhotosPerAlbum
 		public var nickname : String;			// gphoto:nickname
 		public var quotacurrent : Number;		// gphoto:quotacurrent
 		public var quotalimit : Number;			// gphoto:quotalimit
@@ -27,8 +32,8 @@ package sk.prasa.webapis.picasa.objects
 		public var bytesUsed : Number; 			// gphoto:bytesUsed
 		public var location : String; 			// gphoto:location
 		public var name : String; 				// gphoto:name
-		public var numphotos : Number; 			// gphoto:numphotos
-		public var numphotosremaining : Number;	//gphoto:numphotosremaining
+		public var numphotos : int; 			// gphoto:numphotos
+		public var numphotosremaining : int;	//gphoto:numphotosremaining
 	
 		// photo kind
 		public var checksum : String;			// gphoto:checksum
@@ -47,123 +52,105 @@ package sk.prasa.webapis.picasa.objects
 		// tag kind
 		public var weight : Number; 			// gphoto:weight
 		
-		default xml namespace = "http://schemas.google.com/photos/2007";
-		
-		public function GPhoto(item : XML, k : String)
-		{
+		private var gphoto_ns : Namespace = Namespaces.GPHOTO_NS;
+
+		public function GPhoto(xmllist : XMLList, k : String)
+		{	
+			super(xmllist);
+			
 			kind = k;
 			
 			// multiple kind
-			albumid 			= item.albumid;
-			commentCount 		= item.commentCount; 
-			commentingEnabled 	= item.commentingEnabled != "false"; 
-			id 					= item.id;
+			albumid 			= Utils.parseString(this.data.gphoto_ns::albumid);
+			commentCount 		= Utils.parseNumber(this.data.gphoto_ns::commentCount); 
+			commentingEnabled 	= Utils.parseString(this.data.gphoto_ns::commentingEnabled) != "false"; 
+			id 					= Utils.parseString(this.data.gphoto_ns::id);
 			
 			switch(kind)
 			{
-				case KindType.ALBUM: 	setAlbumProperties(item); 	break;
-				case KindType.PHOTO: 	setPhotoProperties(item); 	break;
-				case KindType.USER: 	setUserProperties(item); 	break;
-				case KindType.TAG: 		setTagProperties(item); 	break;
-				case KindType.COMMENT: 	setCommentProperties(item);	break;
+				case Kind.ALBUM: 	
+					access 		= Utils.parseString(this.data.gphoto_ns::access); 
+					bytesUsed 	= Utils.parseNumber(this.data.gphoto_ns::bytesUsed); 
+					location 	= Utils.parseString(this.data.gphoto_ns::location); 
+					name 		= Utils.parseString(this.data.gphoto_ns::name);
+					numphotos 	= Utils.parseNumber(this.data.gphoto_ns::numphotos); 
+					numphotosremaining = Utils.parseNumber(this.data.gphoto_ns::numphotosremaining);
+					break;
+				case Kind.PHOTO: 	
+					checksum 	= Utils.parseString(this.data.gphoto_ns::checksum);
+					client 		= Utils.parseString(this.data.gphoto_ns::client); 
+					height 		= Utils.parseNumber(this.data.gphoto_ns::height); 
+					position 	= Utils.parseNumber(this.data.gphoto_ns::position); 
+					rotation 	= Utils.parseNumber(this.data.gphoto_ns::rotation); 
+					size 		= Utils.parseNumber(this.data.gphoto_ns::size); 
+					timestamp 	= Utils.parseNumber(this.data.gphoto_ns::timestamp); 
+					version 	= Utils.parseString(this.data.gphoto_ns::version); 
+					width 		= Utils.parseNumber(this.data.gphoto_ns::width);
+					break;
+				case Kind.USER:
+					maxPhotosPerAlbum = Utils.parseNumber(this.data.gphoto_ns::maxPhotosPerAlbum); 
+					nickname 	= Utils.parseString(this.data.gphoto_ns::nickname); 
+					quotacurrent= Utils.parseNumber(this.data.gphoto_ns::quotacurrent); 
+					quotalimit 	= Utils.parseNumber(this.data.gphoto_ns::quotalimit); 
+					thumbnail 	= Utils.parseString(this.data.gphoto_ns::thumbnail); 
+					user 		= Utils.parseString(this.data.gphoto_ns::user);
+					break;
+				case Kind.TAG:
+					weight = Utils.parseNumber(this.data.gphoto_ns::weight);
+					break;
+				case Kind.COMMENT: 
+					photoid = Utils.parseString(this.data.gphoto_ns::photoid);
+					break;
 				default: break; 
 			}
 		}
 		
-		// album kind
-		private function setAlbumProperties(item : XML) : void
-		{
-			access 		= item.access; 
-			bytesUsed 	= parseFloat(item.bytesUsed); 
-			location 	= item.location; 
-			name 		= item.name; 
-			numphotos 	= parseFloat(item.numphotos); 
-			numphotosremaining = parseFloat(item.numphotosremaining);
-		}
-		
-		// photo kind
-		private function setPhotoProperties(item : XML) : void
-		{
-			checksum 	= item.checksum;
-			client 		= item.client; 
-			height 		= parseFloat(item.height); 
-			position 	= parseFloat(item.position); 
-			rotation 	= parseFloat(item.rotation); 
-			size 		= parseFloat(item.size); 
-			timestamp 	= parseFloat(item.timestamp); 
-			version 	= item.version; 
-			width 		= parseFloat(item.width); 
-		}
-		
-		// user kind
-		private function setUserProperties(item : XML) : void
-		{
-			maxPhotosPerAlbum = parseFloat(item.maxPhotosPerAlbum); 
-			nickname 	= item.nickname; 
-			quotacurrent= parseFloat(item.quotacurrent); 
-			quotalimit 	= parseFloat(item.quotalimit); 
-			thumbnail 	= item.thumbnail; 
-			user 		= item.user; 
-		}
-		
-		// tag kind
-		private function setTagProperties(item : XML) : void
-		{
-			weight = parseFloat(item.weight);
-		}
-		
-		// comment kind
-		private function setCommentProperties(item : XML) : void
-		{
-			photoid = item.photoid;
-		}
-		
 		public function toString() : String
 		{
-			var tRes : Array = [];
-				tRes.push(" albumid=", albumid);
-				tRes.push(", commentCount=", commentCount);
-				tRes.push(", commentingEnabled=", commentingEnabled);
-				tRes.push(", id=", id);
+			var tRes : String = "" +
+				" albumid=" + albumid +
+				", commentCount=" + commentCount +
+				", commentingEnabled=" + commentingEnabled +
+				", id=" + id;
 		
 			switch(kind)
 			{
-				case KindType.ALBUM: 
-					tRes.push(", access=", access);
-					tRes.push(", bytesUsed=", bytesUsed);
-					tRes.push(", location=", location);
-					tRes.push(", name=", name);
-					tRes.push(", numphotos=", numphotos);
-					tRes.push(", numphotosremaining=", numphotosremaining);
+				case Kind.ALBUM: 
+					tRes += ", access=" + access +
+							", bytesUsed=" + bytesUsed +
+							", location=" + location +
+							", name=" + name +
+							", numphotos=" + numphotos +
+							", numphotosremaining=" + numphotosremaining;
 					break;
-				case KindType.PHOTO:
-					tRes.push(", checksum=", checksum);
-					tRes.push(", client=", client);
-					tRes.push(", height=", height);
-					tRes.push(", position=", position);
-					tRes.push(", rotation=", rotation);
-					tRes.push(", size=", size);
-					tRes.push(", timestamp=", timestamp);
-					tRes.push(", version=", version);
-					tRes.push(", width=", width);
+				case Kind.PHOTO:
+					tRes += ", checksum=" + checksum +
+							", client=" + client +
+							", height=" + height +
+							", position=" + position +
+							", rotation=" + rotation +
+							", size=" + size +
+							", timestamp=" + timestamp +
+							", version=" + version +
+							", width=" + width;
 					break; 
-				case KindType.USER:
-					tRes.push(", maxPhotosPerAlbum=", maxPhotosPerAlbum);
-					tRes.push(", nickname=", nickname);
-					tRes.push(", quotacurrent=", quotacurrent);
-					tRes.push(", quotalimit=", quotalimit);
-					tRes.push(", thumbnail=", thumbnail);
-					tRes.push(", user=", user);
+				case Kind.USER:
+					tRes +=	", maxPhotosPerAlbum=" + maxPhotosPerAlbum + 
+							", nickname=" + nickname +
+							", quotacurrent=" + quotacurrent +
+							", quotalimit=" + quotalimit +
+							", thumbnail=" + thumbnail +
+							", user=" + user;
 					break;
-				case KindType.TAG:
-					tRes.push(", weight=", weight);
+				case Kind.TAG:
+					tRes += ", weight=" + weight;
 					break; 
-				case KindType.COMMENT:
-					tRes.push(", photoid=", photoid);
+				case Kind.COMMENT:
+					tRes += ", photoid=" + photoid;
 					break; 
 			}
 			
-			return "[GPhoto " + tRes.join("") + "]";
-		}
+			return "[GPhoto " + tRes + "]";
+		}			
 	}
 }

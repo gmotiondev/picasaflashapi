@@ -2,18 +2,20 @@ package sk.prasa.webapis.picasa.core
 {
 	import sk.prasa.webapis.picasa.*;
 	import sk.prasa.webapis.picasa.core.command.*;
-	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
+	import sk.prasa.webapis.picasa.core.receiver.GetAlbumFeedReceiver;
+	import sk.prasa.webapis.picasa.core.receiver.GetPhotoFeedReceiver;
+	import sk.prasa.webapis.picasa.core.receiver.GetUserFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.objects.UrlParams;	
-	
+	import sk.prasa.webapis.picasa.objects.UrlParams;
+		
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-
 	public class Tags extends MethodHelper
 	{
 		/**
-		 * List all tags for specified user
+		 * List all tags for specified user, this is a user-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=tag 
 		 * 
 		 * @param userid String Picasaweb user id
@@ -29,7 +31,8 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new GetFeedReceiver();
+			//var tReceiver : IReceiver = new GetFeedReceiver();
+			var tReceiver : IReceiver = new GetUserFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
@@ -40,7 +43,7 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List tags for specified album  
+		 * List tags for specified album , this is album-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=tag 
 		 * 
 		 * @param userid String Picasaweb user id
@@ -56,7 +59,8 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new GetFeedReceiver();
+			//var tReceiver : IReceiver = new GetFeedReceiver();
+			var tReceiver : IReceiver = new GetAlbumFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
@@ -67,7 +71,7 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List tags for specified photo
+		 * List tags for specified photo, this is photo-based feed
 		 *  - with this, the gphoto.weight isn't set!, logical :)  
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID/photoid/photiID?kind=tag 
 		 * 
@@ -85,7 +89,8 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = null;
 	
-			var tReceiver : IReceiver = new GetFeedReceiver();
+			//var tReceiver : IReceiver = new GetFeedReceiver();
+			var tReceiver : IReceiver = new GetPhotoFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			

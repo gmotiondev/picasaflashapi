@@ -2,7 +2,6 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#222222, #000000]" applicationComplete="init();">
 <mx:Script>
 	<![CDATA[
-		import sk.prasa.webapis.picasa.objects.Tag;
 		import mx.controls.Alert;
 		import mx.controls.dataGridClasses.DataGridColumn;
 		import mx.formatters.DateFormatter;
@@ -49,17 +48,17 @@
 		
 		private function onGetAlbumsComplete(evt : PicasaDataEvent) : void
 		{
-			albumsList.dataProvider = evt.data;
+			albumsList.dataProvider = evt.data.entries;
 		}
 		
 		private function onGetTagsComplete(evt : PicasaDataEvent) : void
 		{
-			tagsList.dataProvider = evt.data;
+			tagsList.dataProvider = evt.data.entries;
 		}
 		
 		private function onGetCommentsComplete(evt : PicasaDataEvent) : void
 		{
-			commentsList.dataProvider = evt.data;
+			commentsList.dataProvider = evt.data.entries;
 		}
 		
 		private function formatDate(item : Object, column : DataGridColumn) : String
@@ -100,7 +99,7 @@
 					<mx:DataGridColumn headerText="Thumb">
 						<mx:itemRenderer>
 							<mx:Component>
-								<mx:Image source="{data.media.thumbnail[0].url}"/>
+								<mx:Image source="{data.media.thumbnails[0].url}"/>
 							</mx:Component>
 						</mx:itemRenderer>
 					</mx:DataGridColumn>

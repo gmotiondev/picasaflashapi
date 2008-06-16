@@ -1,9 +1,9 @@
 package sk.prasa.webapis.picasa.objects 
-{
+{		
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-	
 	public class Exif 
 	{
 		public var distance : Number; 		// exif:distance
@@ -16,24 +16,6 @@ package sk.prasa.webapis.picasa.objects
 		public var make : String;			// exif:make
 		public var model : String;			// exif:model
 		public var time : Number;			// exif:time
-	
-		private namespace exif = "http://schemas.google.com/photos/exif/2007";
-		
-		public function Exif(item : XML)
-		{
-			use namespace exif;
-			
-			distance 		= parseFloat(item.tags.distance);
-			exposure 		= parseFloat(item.tags.exposure);
-			flash 			= item.tags.flash != "false";
-			focallength 	= parseFloat(item.tags.focallength);
-			fstop 			= parseFloat(item.tags.fstop);
-			imageUniqueID 	= item.tags.imageUniqueID;
-			iso 			= parseFloat(item.tags.iso);
-			make 			= item.tags.make;
-			model 			= item.tags.model;
-			time 			= parseFloat(item.tags.time);
-		}
 		
 		public function toString() : String
 		{
@@ -52,9 +34,3 @@ package sk.prasa.webapis.picasa.objects
 		}
 	}
 }
-
-/*
-<exif:tags>
-	<exif:imageUniqueID>9f621bc616845e7b03b235acad04d122</exif:imageUniqueID>
-</exif:tags>
-*/

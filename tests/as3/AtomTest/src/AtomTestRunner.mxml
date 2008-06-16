@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	creationComplete="init();" xmlns:flexui="flexunit.flexui.*">
+	<mx:Script>
+		<![CDATA[
+			import sk.prasa.webapis.picasa.tests.atom.AtomTest;
+			import flexunit.framework.Test;
+			import flexunit.framework.TestSuite;
+			
+			private function init() : void
+			{
+				testRunner.test = createSuite();
+				testRunner.startTest();
+			}
+			
+			private function createSuite() : TestSuite
+			{
+				var tTestSuite : TestSuite = new TestSuite();
+					tTestSuite.addTest(Test(new AtomTest("metaTest")));
+					tTestSuite.addTest(Test(new AtomTest("entriesTest")));
+				
+				return tTestSuite;
+			}
+		]]>
+	</mx:Script>
+	<mx:Canvas width="100%" height="100%">
+		<flexui:TestRunnerBase id="testRunner" width="100%" height="100%"/>
+	</mx:Canvas>
+</mx:Application>
