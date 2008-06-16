@@ -56,7 +56,7 @@ package sk.prasa.webapis.picasa.objects
 		
 		public function get keywords() : Array
 		{
-			return Utils.parseString(this.data.media_ns::group.media_ns::keywords).split(" ").join("").split(",");
+			return this.data.media_ns::group.media_ns::keywords.split(" ").join("").split(",");
 		}
 		
 		public function set keywords(aKeywords : Array) : void
@@ -70,7 +70,7 @@ package sk.prasa.webapis.picasa.objects
 			
 			try
 			{
-				for each(var thumb : XML in this.data.media_ns::thumbnail)
+				for each(var thumb : XML in this.data.media_ns::group.media_ns::thumbnail)
 				{
 					tRes.push(new MediaThumbnail(
 						Utils.parseString(thumb.@url), 
@@ -108,14 +108,14 @@ package sk.prasa.webapis.picasa.objects
 					" content=" + content.toString() + 
 					", credit=" + credit + 
 					", description=" + description + 
-					", keywords=" + keywords.toString() + 
-					", thumbnails=" + thumbnails.toString() + 
+					", keywords=" + keywords.join(",") + 
+					", thumbnails=" + thumbnails.join(", ") + 
 					", title=" + title + 
 					"]";
 			} catch(e : Error)
 			{
 				// e.g. when parsed from photo as parent, album doesn't have media:group
-				return "";
+				return "Error Media.toString();: " + e.message;
 			}
 			
 			return null;

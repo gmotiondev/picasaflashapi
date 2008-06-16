@@ -1,11 +1,9 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.Utils;	
-	import sk.prasa.webapis.picasa.objects.Namespaces;
 	import sk.prasa.webapis.picasa.objects.GPhoto;
 	import sk.prasa.webapis.picasa.objects.Kind;
-	import sk.prasa.webapis.picasa.objects.feed.Entry;
-	import sk.prasa.webapis.picasa.objects.feed.IEntry;	
+	import sk.prasa.webapis.picasa.objects.Namespaces;
+	import sk.prasa.webapis.picasa.objects.Utils;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -17,6 +15,7 @@ package sk.prasa.webapis.picasa.objects.feed
 		//BUG?: GPHOTO IS IN THE AUTHOR FEED
 		
 		private var gphotohack_ns : Namespace = Namespaces.GPHOTO_NS;
+		private var atom_ns : Namespace = Namespaces.ATOM_NS;
 		
 		public function CommentEntry(xmllist : XMLList)
 		{
@@ -24,9 +23,9 @@ package sk.prasa.webapis.picasa.objects.feed
 			
 			// GPHOTO HACK
 			user = new GPhoto(new XMLList(), Kind.USER);
-			user.user = Utils.parseString(this.data.author.gphotohack_ns::user);
-			user.nickname = Utils.parseString(this.data.author.gphotohack_ns::nickname);
-			user.thumbnail = Utils.parseString(this.data.author.gphotohack_ns::thumbnail);
+			user.user = Utils.parseString(this.data.atom_ns::author.gphotohack_ns::user);
+			user.nickname = Utils.parseString(this.data.atom_ns::author.gphotohack_ns::nickname);
+			user.thumbnail = Utils.parseString(this.data.atom_ns::author.gphotohack_ns::thumbnail);
 		}
 		
 		//dopisat metody typicke pre CommentEntry
