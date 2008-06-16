@@ -33,7 +33,7 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package sk.prasa.webapis.picasa.tests.atom
+package atom
 {
 	import sk.prasa.webapis.picasa.tests.atom.TextNodeTest;	
 	

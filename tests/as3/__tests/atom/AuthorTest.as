@@ -33,13 +33,13 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package sk.prasa.webapis.picasa.tests.atom
+package atom
 {
-	import sk.prasa.webapis.picasa.tests.atom.TitleTest;	
-	
-	public class SubTitleTest extends TitleTest 
+	import sk.prasa.webapis.picasa.tests.atom.UserNodeTest;
+		
+	public class AuthorTest extends UserNodeTest 
 	{
-		public function SubTitleTest(methodName : String = null)
+		public function AuthorTest(methodName : String = null)
 		{
 			super(methodName);
 		}	

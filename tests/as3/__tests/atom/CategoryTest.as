@@ -33,15 +33,48 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package sk.prasa.webapis.picasa.tests.atom
+package atom
 {
-	import sk.prasa.webapis.picasa.tests.atom.UserNodeTest;	
-	
-	public class ContributorTest extends UserNodeTest 
+	import flexunit.framework.TestCase;
+
+	import sk.prasa.webapis.picasa.objects.Category;
+		
+	public class CategoryTest extends TestCase 
 	{
-		public function ContributorTest(methodName : String = null)
+		private const TERM : String = "as3";
+		private const SCHEME : String = "http://www.macromedia.com/as3";
+		private const LABEL : String = "ActionScript3";
+
+		public function CategoryTest(methodName : String = null)
 		{
 			super(methodName);
 		}	
+
+		public function testTerm() : void
+		{
+			var c : Category = new Category();
+				c.term = TERM;
+			
+			assertNotNull("c.term is null", c.term);
+			assertTrue("c.term == TERM", c.term == TERM);
+		}
+
+		public function testScheme() : void
+		{
+			var c : Category = new Category();	
+				c.scheme = SCHEME;
+			
+			assertNotNull("c.scheme is null", c.scheme);
+			assertTrue("c.scheme == SCHEME", c.scheme == SCHEME);
+		}
+
+		public function testLabel() : void
+		{
+			var c : Category = new Category();
+				c.label = LABEL;
+			
+			assertNotNull("c.label is null", c.label);
+			assertTrue("c.label == LABEL", c.label == LABEL);
+		}
 	}
 }

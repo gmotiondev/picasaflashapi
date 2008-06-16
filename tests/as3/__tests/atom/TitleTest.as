@@ -33,48 +33,13 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package sk.prasa.webapis.picasa.tests.atom
+package atom
 {
-	import flexunit.framework.TestCase;
-
-	import sk.prasa.webapis.picasa.objects.Generator;	
-	
-	public class GeneratorTest extends TestCase 
+	public class TitleTest extends TextNodeTest 
 	{
-		private const URI : String = "http://www.macromedia.com/some_value";
-		private const VALUE : String = "Custom Generating Agent";
-		private const VERSION : String = "0.8.5"; 
-
-		public function GeneratorTest(methodName : String = null)
+		public function TitleTest(methodName : String = null)
 		{
 			super(methodName);
 		}	
-
-		public function testURI() : void
-		{
-			var c : Generator = new Generator();
-				c.value = URI;
-			
-			assertNotNull("c.value is null", c.value);
-			assertTrue("c.value == URI", c.value == URI);
-		}
-
-		public function testValue() : void
-		{
-			var c : Generator = new Generator();	
-				c.value = VALUE;
-			
-			assertNotNull("c.value is null", c.value);
-			assertTrue("c.value == VALUE", c.value == VALUE);
-		}
-
-		public function testVersion() : void
-		{
-			var c : Generator = new Generator();
-				c.version = VERSION;
-			
-			assertNotNull("c.version is null", c.version);
-			assertTrue("c.version == VERSION", c.version == VERSION);
-		}		
 	}
 }

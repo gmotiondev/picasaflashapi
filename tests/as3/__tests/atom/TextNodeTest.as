@@ -33,28 +33,60 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package sk.prasa.webapis.picasa.tests.atom
+package atom
 {
-	import flexunit.framework.TestCase;
-
-	import sk.prasa.webapis.picasa.objects.Content;	
-
-	public class ContentTest extends TestCase 
+	import sk.prasa.webapis.picasa.objects.Text;	
+	
+	import flexunit.framework.TestCase;	
+	
+	public class TextNodeTest extends TestCase 
 	{
-		private const SRC : String = "as3";
+		private const TYPE : String = "html";
+		private const VALUE : String = "html";
+		public static const TYPE_TEXT : String = "text";
+		public static const TYPE_HTML : String = "html";
+		public static const TYPE_XHTML : String = "xhtml";
 
-		public function ContentTest(methodName : String = null)
+		public function TextNodeTest(methodName : String = null)
 		{
 			super(methodName);
 		}	
 
-		public function testSrc() : void
+		public function testTYPE_TEXT() : void
 		{
-			var c : Content = new Content();		
-				c.src = SRC;
+			assertNotNull("TextTag.TYPE_TEXT is null", Text.TYPE_TEXT);
+			assertTrue("TextTag.TYPE_TEXT == TYPE_TEXT", Text.TYPE_TEXT == TYPE_TEXT);
+		}
+
+		public function testTYPE_HTML() : void
+		{
+			assertNotNull("TextTag.TYPE_HTML is null", Text.TYPE_HTML);
+			assertTrue("TextTag.TYPE_HTML == TYPE_HTML", Text.TYPE_HTML == TYPE_HTML);
+		}		
+
+		public function testTYPE_XHTML() : void
+		{
+			assertNotNull("TextTag.TYPE_XHTML is null", Text.TYPE_XHTML);
+			assertTrue("TextTag.TYPE_XHTML == TYPE_XHTML", Text.TYPE_XHTML == TYPE_XHTML);
+		}			
+
+		public function testType() : void
+		{
+			var c : Text = new Text();
+				c.type = TYPE;
 			
-			assertNotNull("c.src is null", c.src);
-			assertTrue("c.src == SRC", c.src == SRC);
+			assertNotNull("c.type is null", c.type);
+			assertTrue("c.type == TYPE", c.type == TYPE);
+		}
+
+		public function testValue() : void
+		{
+			var c : Text = new Text();
+			
+			c.value = VALUE;
+			
+			assertNotNull("c.value is null", c.value);
+			assertTrue("c.value == VALUE", c.value == VALUE);
 		}
 	}
 }

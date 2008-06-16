@@ -1,12 +1,12 @@
-package sk.prasa.webapis.picasa.tests.atom 
+package atom 
 {
 	import flexunit.framework.TestCase;
 	
 	import sk.prasa.webapis.picasa.objects.Link;
 	import sk.prasa.webapis.picasa.objects.feed.Atom;
-	import sk.prasa.webapis.picasa.objects.feed.Entry;
 	import sk.prasa.webapis.picasa.objects.feed.IAtom;
 	import sk.prasa.webapis.picasa.objects.feed.Meta;	
+	import sk.prasa.webapis.picasa.objects.feed.Entry;
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -40,13 +40,13 @@ package sk.prasa.webapis.picasa.tests.atom
 			assertEquals("categories.length", categories.length, 1);
 			assertEquals("categories.term", categories[0].term, "http://schemas.google.com/photos/2007#user");
 			assertEquals("categories.scheme", categories[0].scheme, "http://schemas.google.com/g/2005#kind");
-			assertEquals("categories.label", categories[0].label, "");
+			assertNull("categories.label", categories[0].label);
 			
 			
 			assertEquals("title.type", meta.title.type, "text");
 			assertEquals("title.value", meta.title.value, "thisispinkfu");
 			assertEquals("subtitle.type", meta.subtitle.type, "text");
-			assertEquals("subtitle.value", meta.subtitle.value, "");
+			assertNull("subtitle.value", meta.subtitle.value);
 			assertEquals("icon", meta.icon, "http://lh6.ggpht.com/thisispinkfu/AAAAY-cVBS8/AAAAAAAAAAA/CRZkCWt3d5Y/s64-c/thisispinkfu.jpg");
 			
 			// Link
@@ -60,7 +60,7 @@ package sk.prasa.webapis.picasa.tests.atom
 			assertNotNull(authors);
 			assertEquals("authors.length", authors.length, 1);
 			assertEquals("authors.name", authors[0].name, "Pink-fu");
-			assertEquals("authors.email", authors[0].email, "");
+			assertNull("authors.email", authors[0].email);
 			assertEquals("authors.uri", authors[0].uri, "http://picasaweb.google.com/thisispinkfu");
 			
 			// Generator 
@@ -81,8 +81,8 @@ package sk.prasa.webapis.picasa.tests.atom
 			assertEquals("id", entry.id, "http://picasaweb.google.com/data/entry/api/user/thisispinkfu/albumid/5135047888133059345");
 			assertEquals("published", entry.published.toUTCString(), "Sat Aug 11 14:38:51 2007 UTC");
 			assertEquals("updated", entry.updated.toUTCString(), "Tue Nov 20 22:40:23 2007 UTC");
-			assertEquals("entry.title", entry.title, "Kolotoče");
-			assertEquals("entry.summary", entry.summary, "");
+			assertEquals("entry.title", entry.title.value, "Kolotoče");
+			assertNull("entry.summary", entry.summary);
 
 			// Categories 
 			var categories : Array = entry.categories;
@@ -90,7 +90,7 @@ package sk.prasa.webapis.picasa.tests.atom
 			assertEquals("categories.length", categories.length, 1);
 			assertEquals("categories.term", categories[0].term, "http://schemas.google.com/photos/2007#album");
 			assertEquals("categories.scheme", categories[0].scheme, "http://schemas.google.com/g/2005#kind");
-			assertEquals("categories.label", categories[0].label, "");
+			assertNull("categories.label", categories[0].label);
 		
 			// Links
 			var links : Array = entry.links;

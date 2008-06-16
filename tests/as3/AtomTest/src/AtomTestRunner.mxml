@@ -3,7 +3,7 @@
 	creationComplete="init();" xmlns:flexui="flexunit.flexui.*">
 	<mx:Script>
 		<![CDATA[
-			import sk.prasa.webapis.picasa.tests.atom.AtomTest;
+			import atom.AtomTest;
 			import flexunit.framework.Test;
 			import flexunit.framework.TestSuite;
 			

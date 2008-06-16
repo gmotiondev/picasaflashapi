@@ -33,15 +33,48 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package sk.prasa.webapis.picasa.tests.atom
+package atom
 {
-	import sk.prasa.webapis.picasa.tests.atom.UserNodeTest;
-		
-	public class AuthorTest extends UserNodeTest 
-	{
-		public function AuthorTest(methodName : String = null)
+	import sk.prasa.webapis.picasa.objects.User;	
+	
+	import flexunit.framework.TestCase;	
+
+	public class UserNodeTest extends TestCase 
+	{	
+		public static const NAME : String = "text";
+		public static const URI : String = "html";
+		public static const EMAIL : String = "xhtml";
+
+		public function UserNodeTest(methodName : String = null)
 		{
 			super(methodName);
-		}	
+		}			
+
+		public function testName() : void
+		{
+			var c : User = new User();		
+				c.name = NAME;
+			
+			assertNotNull("c.name is null", c.name);
+			assertTrue("c.name == NAME", c.name == NAME);
+		}
+
+		public function testUri() : void
+		{
+			var c : User = new User();
+				c.uri = URI;
+			
+			assertNotNull("c.uri is null", c.uri);
+			assertTrue("c.uri == URI", c.uri == URI);
+		}
+
+		public function testEmail() : void
+		{
+			var c : User = new User();
+				c.email = EMAIL;
+			
+			assertNotNull("c.email is null", c.email);
+			assertTrue("c.email == EMAIL", c.email == EMAIL);
+		}		
 	}
 }

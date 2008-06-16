@@ -33,48 +33,48 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package sk.prasa.webapis.picasa.tests.atom
+package atom
 {
-	import sk.prasa.webapis.picasa.objects.User;	
+	import flexunit.framework.TestCase;
+
+	import sk.prasa.webapis.picasa.objects.Generator;	
 	
-	import flexunit.framework.TestCase;	
+	public class GeneratorTest extends TestCase 
+	{
+		private const URI : String = "http://www.macromedia.com/some_value";
+		private const VALUE : String = "Custom Generating Agent";
+		private const VERSION : String = "0.8.5"; 
 
-	public class UserNodeTest extends TestCase 
-	{	
-		public static const NAME : String = "text";
-		public static const URI : String = "html";
-		public static const EMAIL : String = "xhtml";
-
-		public function UserNodeTest(methodName : String = null)
+		public function GeneratorTest(methodName : String = null)
 		{
 			super(methodName);
-		}			
+		}	
 
-		public function testName() : void
+		public function testURI() : void
 		{
-			var c : User = new User();		
-				c.name = NAME;
+			var c : Generator = new Generator();
+				c.value = URI;
 			
-			assertNotNull("c.name is null", c.name);
-			assertTrue("c.name == NAME", c.name == NAME);
+			assertNotNull("c.value is null", c.value);
+			assertTrue("c.value == URI", c.value == URI);
 		}
 
-		public function testUri() : void
+		public function testValue() : void
 		{
-			var c : User = new User();
-				c.uri = URI;
+			var c : Generator = new Generator();	
+				c.value = VALUE;
 			
-			assertNotNull("c.uri is null", c.uri);
-			assertTrue("c.uri == URI", c.uri == URI);
+			assertNotNull("c.value is null", c.value);
+			assertTrue("c.value == VALUE", c.value == VALUE);
 		}
 
-		public function testEmail() : void
+		public function testVersion() : void
 		{
-			var c : User = new User();
-				c.email = EMAIL;
+			var c : Generator = new Generator();
+				c.version = VERSION;
 			
-			assertNotNull("c.email is null", c.email);
-			assertTrue("c.email == EMAIL", c.email == EMAIL);
+			assertNotNull("c.version is null", c.version);
+			assertTrue("c.version == VERSION", c.version == VERSION);
 		}		
 	}
 }
