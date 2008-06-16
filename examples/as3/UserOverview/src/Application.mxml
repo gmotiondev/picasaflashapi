@@ -2,6 +2,7 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#222222, #000000]" applicationComplete="init();">
 <mx:Script>
 	<![CDATA[
+		import sk.prasa.webapis.picasa.objects.UrlParams;
 		import sk.prasa.webapis.picasa.objects.feed.AlbumEntry;
 		import mx.controls.Alert;
 		import mx.controls.dataGridClasses.DataGridColumn;
@@ -47,6 +48,14 @@
 				tResponder.addEventListener(HTTPStatusEvent.HTTP_STATUS, onHTTPStatus);
 		}
 		
+		private function getContacts(userid : String) : void
+		{
+			var tResponder : PicasaResponder = service.contacts.list(userid);
+				tResponder.addEventListener(PicasaDataEvent.DATA, onGetContactsComplete);
+				tResponder.addEventListener(ErrorEvent.ERROR, onError);
+				tResponder.addEventListener(HTTPStatusEvent.HTTP_STATUS, onHTTPStatus);
+		}
+		
 		private function onGetAlbumsComplete(evt : PicasaDataEvent) : void
 		{
 			trace("image: " + AlbumEntry(evt.data.entries[0]).media);
@@ -61,6 +70,11 @@
 		private function onGetCommentsComplete(evt : PicasaDataEvent) : void
 		{
 			commentsList.dataProvider = evt.data.entries;
+		}
+		
+		private function onGetContactsComplete(evt : PicasaDataEvent) : void
+		{
+			contactsList.dataProvider = evt.data.entries;
 		}
 		
 		private function formatDate(item : Object, column : DataGridColumn) : String
@@ -168,6 +182,23 @@
 				</mx:columns>
 			</mx:DataGrid>
 			<mx:Button label="Populate" click="{getComments(userid)}"/>
+		</mx:VBox>
+		<mx:VBox label="Contacts" width="100%" height="100%" horizontalAlign="center">
+			<mx:DataGrid width="100%" height="100%" id="contactsList" variableRowHeight="true">
+				<mx:columns>
+					<mx:DataGridColumn headerText="User" rendererIsEditor="true">
+						<mx:itemRenderer>
+							<mx:Component>
+								<mx:HBox>
+									<mx:Image source="{data.gphoto.thumbnail}"/>
+									<mx:Label text="{data.gphoto.nickname}"/>
+								</mx:HBox>
+							</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:Button label="Populate" click="{getContacts(userid)}"/>
 		</mx:VBox>
 	</mx:TabNavigator>
 </mx:Application>

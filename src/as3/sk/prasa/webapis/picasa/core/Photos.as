@@ -3,6 +3,7 @@ package sk.prasa.webapis.picasa.core
 	import sk.prasa.webapis.picasa.*;
 	import sk.prasa.webapis.picasa.core.command.*;
 	import sk.prasa.webapis.picasa.core.receiver.GetAlbumFeedReceiver;
+	import sk.prasa.webapis.picasa.core.receiver.GetUserFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
 	import sk.prasa.webapis.picasa.objects.UrlParams;		
 	
@@ -69,6 +70,37 @@ package sk.prasa.webapis.picasa.core
 				tInvoker.executeCommand();
 			
 			return tReceiver.responder;
+		}
+
+		/**
+		 * List of recent users photos in specified album, this is user-based feed 
+		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=photo
+		 * 
+		 * @param userid String Picasaweb user id
+		 * @param params String Params to alter the feed url
+		 */
+		public function recent(userid : String, urlparams : UrlParams = null) : PicasaResponder
+		{
+			throw new Error("Not yet implemented.");
+			/*
+			var p : UrlParams = params.merge(urlparams);
+				p.suffix = "user/" + userid;
+				
+				// overwrite!
+				p.kind = "photo";
+				p.tag = null;
+				p.q = null;
+			
+			//var tReceiver : IReceiver = new GetFeedReceiver();
+			var tReceiver : IReceiver = new GetUserFeedReceiver();
+			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
+			var tInvoker : Invoker = new Invoker();
+			
+				tInvoker.setCommand(tCommand);
+				tInvoker.executeCommand();
+			
+			return tReceiver.responder;
+			*/
 		}
 
 		/**

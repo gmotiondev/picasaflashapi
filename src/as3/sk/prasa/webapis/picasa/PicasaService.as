@@ -21,6 +21,7 @@ package sk.prasa.webapis.picasa
 		private var __tags : Tags;
 		private var __comments : Comments;
 		private var __community : Community;
+		private var __contacts : Contacts;
 		
 		private var __params : UrlParams;
 		private var __paramsObservable : UrlParamsObservable;
@@ -38,6 +39,7 @@ package sk.prasa.webapis.picasa
 			__tags = new Tags();
 			__comments = new Comments();
 			__community = new Community();
+			__contacts = new Contacts();
 			
 			__paramsObservable.subscribe(__auth.params);
 			__paramsObservable.subscribe(__photos.params);
@@ -45,6 +47,7 @@ package sk.prasa.webapis.picasa
 			__paramsObservable.subscribe(__tags.params);
 			__paramsObservable.subscribe(__comments.params);
 			__paramsObservable.subscribe(__community.params);
+			__paramsObservable.subscribe(__contacts.params);
 		}
 		
 		/**
@@ -209,6 +212,15 @@ package sk.prasa.webapis.picasa
 		public function get community() : Community
 		{
 			return __community;
+		}
+		
+		/**
+		 * Bridge to Contacts methods:
+		 * search
+		 */	
+		public function get contacts() : Contacts
+		{
+			return __contacts;
 		}
 		
 		/**
