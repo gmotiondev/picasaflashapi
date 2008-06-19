@@ -30,8 +30,7 @@ package sk.prasa.webapis.picasa.core
 				p.kind = "tag";	
 				p.tag = null;
 				p.q = null;
-	
-			//var tReceiver : IReceiver = new GetFeedReceiver();
+			
 			var tReceiver : IReceiver = new GetUserFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();

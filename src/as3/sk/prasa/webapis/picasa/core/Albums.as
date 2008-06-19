@@ -57,8 +57,7 @@ package sk.prasa.webapis.picasa.core
 				p.kind = "photo";
 				p.tag = tag;
 				p.q = null;
-	
-			//var tReceiver : IReceiver = new GetFeedReceiver();
+			
 			var tReceiver : IReceiver = new GetUserFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
@@ -86,8 +85,7 @@ package sk.prasa.webapis.picasa.core
 				p.kind = "photo";	
 				p.tag = null;
 				p.q = query;
-	
-			//var tReceiver : IReceiver = new GetFeedReceiver();
+			
 			var tReceiver : IReceiver = new GetUserFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
