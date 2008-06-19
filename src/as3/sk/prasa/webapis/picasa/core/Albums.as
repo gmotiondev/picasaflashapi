@@ -17,7 +17,7 @@ package sk.prasa.webapis.picasa.core
 		 * List all albums from user, this is a user-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=album
 		 * 
-		 * @param userid String Picasaweb user id
+		 * @param userid String Picasa/Google user id
 		 * @param params UrlParams Parameters to alter the feed url
 		 */ 
 		public function list(userid : String, urlparams : UrlParams = null) : PicasaResponder

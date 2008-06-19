@@ -8,12 +8,13 @@ package sk.prasa.webapis.picasa
 
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
 	 */
-	
 	final public class PicasaService
 	{
 		public static var POLICY_FILE_URL : String = "http://photos.googleapis.com/data/crossdomain.xml";  
 		public static var FEED_API_URL : String = "http://photos.googleapis.com/data/feed/api/";
+		public static var FEED_BASE_URL : String = "http://photos.googleapis.com/data/feed/base/";
 		
 		private var __auth : Auth;
 		private var __albums : Albums;
@@ -26,6 +27,26 @@ package sk.prasa.webapis.picasa
 		private var __params : UrlParams;
 		private var __paramsObservable : UrlParamsObservable;
 
+		/**
+		 * PicasaService Constructor
+		 * 
+		 * Constructing a PicasaService object and loading albums for given user:
+		 * <listing>
+		 * import sk.prasa.webapis.picasa.PicasaService;
+		 * import sk.prasa.webapis.picasa.PicasaResponder;
+		 * import sk.prasa.webapis.picasa.events.PicasaDataEvent;
+		 * 
+		 * var service : PicasaService = new PicasaService();
+		 * 		service.imgmax = "320";
+		 * 		service.thumbsize = "64c";
+		 * 		service.max_results = 10;
+		 * 		
+		 * var responder : PicasaResponder = service.albums.list('username'); 
+		 * 		responder.addEventListener(PicasaDataEvent.DATA, onComplete);
+		 * 		responder.addEventListener(ErrorEvent.ERROR, onError);
+		 * 		responder.addEventListener(HTTPStatusEvent.HTTP_STATUS, onStatus);
+		 * </listing>
+		 */
 		public function PicasaService()
 		{
 			Security.loadPolicyFile(PicasaService.POLICY_FILE_URL);
@@ -51,8 +72,22 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Returns the access type
-		 * @return String
+		 * Visibility values let you request data at various levels of sharing. For example, a visibility value of <code>public</code> requests publicly visible data. 
+		 * For a list of values, see Visibility values, below. If you don't specify a visibility value, then the visibility depends on your authentication. 
+		 * For authenticated requests, the default is <code>all</code>. For unauthenticated requests, the default is <code>public</code>.
+		 * 
+		 * The URI of a representation of a Picasa Web Albums feed takes the following form:
+		 * <code>http://picasaweb.google.com/data/feed/projection/path?kind=kind&access=visibility</code>
+		 * 
+		 * The following table describes the supported visibility values:
+		 * <table>
+		 * <th><td>Visibility</td>	<td>Description</td>						<td>Security Notes</td></th>
+		 * <tr><td>all</td>			<td>Shows both public and private data.</td><td>Requires authentication. Default for authenticated users.</td></tr>
+		 * <tr><td>private</td>		<td>Shows only private data.</td>			<td>Requires authentication.</td></tr>
+		 * <tr><td>public</td>		<td>Shows only public data.</td>			<td>Does not require authentication. Default for unauthenticated users.</td></tr>
+		 * </table>
+		 * 
+		 * @see http://code.google.com/apis/picasaweb/reference.html#Visibility
 		 */
 		public function get access() : String
 		{
@@ -60,8 +95,7 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Sets the access type
-		 * @param value String "public", "private", "all"
+		 * @private
 		 */
 		public function set access(value : String) : void
 		{
@@ -71,8 +105,34 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Returns thumb size
-		 * @return String
+		 * Thumbnail size parameter
+		 * 
+		 * Valid with <code>album</code> or <code>photo</code> kinds; specifies what image size to use for thumbnails. 
+		 * <b>Multiple values</b> may be specified using a comma-delimited list. If multiple values are specified, 
+		 * multiple <code>media:thumbnail</code> elements will be returned in the feed. 
+		 * Refer to the list of valid values below.
+		 * 
+		 * 
+		 * The following values are valid for the <code>thumbsize</code> and <code>imgmax</code> query parameters and are embeddable on a webpage. 
+		 * These images are available as both cropped(<code>c</code>) and uncropped(<code>u</code>) sizes by appending <code>c</code> or <code>u</code> to the size. 
+		 * As an example, to retrieve a 72 pixel image that is cropped, you would specify <code>72c</code>, while to retrieve the uncropped image, you would specify <code>72u</code> for the <code>thumbsize</code> or <code>imgmax</code> query parameter values.
+		 * 
+		 * <code>32, 48, 64, 72, 144, 160</code>
+		 * 
+		 * The following values are valid for the <code>thumbsize</code> and <code>imgmax</code> query parameters and are embeddable on a webpage. 
+		 * These images are available as only uncropped(<code>u</code>) sizes by appending <code>u</code> to the size or just passing the size value without appending anything.
+		 * 
+		 * <code>200, 288, 320, 400, 512, 576, 640, 720, 800</code>
+		 *
+		 * The following values are valid for the <code>thumbsize</code> and <code>imgmax</code> query parameters and are <b>not</b> embeddable on a webpage. 
+		 * These image sizes are only available in uncropped format and are accessed using only the size (no <code>u</code> is appended to the size).
+		 * 
+		 * 912, 1024, 1152, 1280, 1440, 1600
+		 *  
+		 * There is an additional size <code>d</code> which results in the <code><media:content></code> elements referencing the original uploaded photo, including all original <code>Exif</code> data. It is valid only for use with the <code>imgmax</code> query parameter.
+		 * 
+		 * These query parameters are used when retrieving the feeds in order to get images of the appropriate sizes. They cannot be used when retrieving the actual images.
+		 *  
 		 */
 		public function get thumbsize() : String
 		{
@@ -80,11 +140,7 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Sets thumb size
-		 * Cropped (c) and Uncropped (u) values: 32, 48, 64, 72, 144, 160 (images are embeddable)
-		 * Uncropped (u) values only: 200, 288, 320, 400, 512, 576, 640, 720, 800 (images are embeddable)
-		 * Uncropped (u) values only: 912, 1024, 1152, 1280, 1440, 1600 (images are not embeddable)
-		 * @param value String Thumb size value, e.g. 72c  
+		 * @private
 		 */
 		public function set thumbsize(value : String) : void
 		{
@@ -94,8 +150,12 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Returns image max size
-		 * @return String
+		 * Image size parameter
+		 * 
+		 * Valid with <code>album</code> or <code>photo</code> kinds; specifies what image size to use for the <code>media:content</code>. 
+		 * Only a <b>single value</b> may be specified. Refer to the list of valid values below.
+		 * 
+		 * @see #thumbsize
 		 */
 		public function get imgmax() : String
 		{
@@ -103,11 +163,7 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Sets image max size
-		 * Cropped (c) and Uncropped (u) values: 32, 48, 64, 72, 144, 160 (images are embeddable)
-		 * Uncropped (u) values only: 200, 288, 320, 400, 512, 576, 640, 720, 800 (images are embeddable)
-		 * Uncropped (u) values only: 912, 1024, 1152, 1280, 1440, 1600 (images are not embeddable)
-		 * @param value String Image max size value, e.g. 72c  
+		 * @private
 		 */
 		public function set imgmax(value : String) : void
 		{
@@ -117,9 +173,12 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Returns maximum number of results to be retrieved
-		 * See the Google Data query parameter reference (http://code.google.com/apis/gdata/reference.html#Queries).
-		 * @return int
+		 * Maximum number of results to be retrieved
+		 * 
+		 * For any service that has a default max-results value (to limit default feed size), you can specify a very large number if you want to receive the entire feed.
+		 * See the Google Data query parameter reference below.
+		 * 
+		 * @see http://code.google.com/apis/gdata/reference.html#Queries
 		 */
 		public function get max_results() : int
 		{
@@ -127,9 +186,7 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Sets maximum number of results to be retrieved
-		 * See the Google Data query parameter reference (http://code.google.com/apis/gdata/reference.html#Queries).
-		 * @param value int Maximum results to be retrieved
+		 * @private
 		 */
 		public function set max_results(value : int) : void
 		{
@@ -139,9 +196,15 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Returns 1-based index of the first result to be retrieved
-		 * Used to page through the result set. See the Google Data query parameter reference (http://code.google.com/apis/gdata/reference.html#Queries).
-		 * @return int
+		 * 1-based index of the first result to be retrieved
+		 * Used to page through the result set. See the Google Data query parameter reference below.
+		 * 
+		 * Note that this isn't a general cursoring mechanism. If you first send a query with 
+		 * <code>?start-index=1&max-results=10</code> and then send another query with 
+		 * <code>?start-index=11&max-results=10</code>, the service cannot guarantee that the results are equivalent to 
+		 * <code>?start-index=1&max-results=20</code>, because insertions and deletions could have taken place in between the two queries.
+		 *  
+		 * @see http://code.google.com/apis/gdata/reference.html#Queries
 		 */
 		public function get start_index() : int
 		{
@@ -149,9 +212,7 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Sets 1-based index of the first result to be retrieved
-		 * Used to page through the result set. See the Google Data query parameter reference (http://code.google.com/apis/gdata/reference.html#Queries).
-		 * @param value int Start index of the first results to be retrieved
+		 * @private
 		 */
 		public function set start_index(value : int) : void
 		{
@@ -162,7 +223,10 @@ package sk.prasa.webapis.picasa
 
 		/**
 		 * Bridge to Authentication methods
-		 * TODO: Not implemented yet!
+		 * 
+		 * Authentication to picasaweb can be done in two ways. 
+		 * ClientLogin - this method is used by installed Desktop Apps.
+		 * AuthSub - this is the default method for web applications. However, this is not yet supported because of crossdomain.xml issue and Google Auth API.
 		 */
 		public function get auth() : Auth
 		{
@@ -170,8 +234,8 @@ package sk.prasa.webapis.picasa
 		}
 
 		/**
-		 * Bridge to Photos methods:
-		 * list, list_by_tag, single
+		 * Bridge to Photos methods
+		 * 
 		 */	
 		public function get photos() : Photos
 		{
@@ -179,8 +243,8 @@ package sk.prasa.webapis.picasa
 		}
 
 		/**
-		 * Bridge to Album methods: 
-		 * list, list_by_tag, search
+		 * Bridge to Album methods 
+		 * 
 		 */	
 		public function get albums() : Albums
 		{
@@ -188,8 +252,8 @@ package sk.prasa.webapis.picasa
 		}
 
 		/**
-		 * Bridge to Tags methods:
-		 * user, album, photo
+		 * Bridge to Tags methods
+		 * 
 		 */	
 		public function get tags() : Tags
 		{
@@ -197,8 +261,8 @@ package sk.prasa.webapis.picasa
 		}
 
 		/**
-		 * Bridge to Comments methods:
-		 * user, album, photo
+		 * Bridge to Comments methods
+		 * 
 		 */	
 		public function get comments() : Comments
 		{
@@ -206,8 +270,8 @@ package sk.prasa.webapis.picasa
 		}
 
 		/**
-		 * Bridge to Community methods:
-		 * search
+		 * Bridge to Community methods
+		 * 
 		 */	
 		public function get community() : Community
 		{
@@ -215,8 +279,8 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Bridge to Contacts methods:
-		 * search
+		 * Bridge to Contacts methods
+		 * 
 		 */	
 		public function get contacts() : Contacts
 		{
@@ -226,6 +290,8 @@ package sk.prasa.webapis.picasa
 		/**
 		 * Dispatches each param change to the method objects
 		 * Used to globaly change the UrlParams
+		 * 
+		 * @private
 		 */
 		private function sendParams() : void
 		{
