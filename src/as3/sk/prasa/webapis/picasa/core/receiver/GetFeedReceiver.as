@@ -14,13 +14,11 @@ package sk.prasa.webapis.picasa.core.receiver
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
-	 * ZOVSEOBECNIT, TAK ABY SA DALO EXTENDOVAT
+	 * @private
 	 */
 	public class GetFeedReceiver implements IReceiver
 	{
 		private var __responder : PicasaResponder;
-		
-		private namespace atom = "http://www.w3.org/2005/Atom";
 
 		public function GetFeedReceiver()
 		{
@@ -32,8 +30,7 @@ package sk.prasa.webapis.picasa.core.receiver
 			try
 			{
 				var tEvt : PicasaDataEvent = new PicasaDataEvent(PicasaDataEvent.DATA);
-					//tEvt.data = parse(response);
-					tEvt.data = parsefeed(response);
+					tEvt.data = parse(response);
 					
 				responder.dispatchEvent(tEvt);
 			} catch(e : Error)
@@ -42,50 +39,11 @@ package sk.prasa.webapis.picasa.core.receiver
 			}
 		}
 
-		protected function parsefeed(aFeed : XML) : IAtom
+		protected function parse(aFeed : XML) : IAtom
 		{
 			var tFeed : IAtom = new Atom(aFeed);
 			return tFeed;
 		}
-
-		/*private function parse(aItems : XML) : Array
-		{
-			use namespace atom;
-			
-			try
-			{
-				//
-				
-				var tRes : Array = new Array();
-				var tParent : XML = new XML(aItems);
-				delete tParent.entry;
-				
-				//var tRg : RegExp = /#([\w\-]+)/;
-
-				for each(var tItem : XML in aItems.entry)
-				{
-					var tKind : String = (tItem.category.@term).split("#")[1];
-
-					switch(tKind)
-					{
-						//case KindType.USER	: tRes.push(new User(tItem)); break;
-						case KindType.ALBUM		: tRes.push(new Album(tItem, tParent)); break;
-						case KindType.PHOTO		: tRes.push(new Photo(tItem, tParent)); break;
-						case KindType.COMMENT 	: tRes.push(new Comment(tItem, tParent)); break;
-						case KindType.TAG 		: tRes.push(new Tag(tItem, tParent)); break;
-						default: break;
-					}
-				}
-
-				return tRes;
-				
-			} catch(e : Error)
-			{
-				throw new Error(e);
-			}
-
-			return null;
-		}*/
 
 		public function get responder() : PicasaResponder
 		{

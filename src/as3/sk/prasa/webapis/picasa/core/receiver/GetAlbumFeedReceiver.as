@@ -8,6 +8,7 @@ package sk.prasa.webapis.picasa.core.receiver
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
+	 * @private
 	 */
 	public class GetAlbumFeedReceiver extends GetFeedReceiver implements IReceiver 
 	{
@@ -16,7 +17,7 @@ package sk.prasa.webapis.picasa.core.receiver
 			super();
 		}
 		
-		override protected function parsefeed(aFeed : XML) : IAtom
+		override protected function parse(aFeed : XML) : IAtom
 		{
 			var tAlbumFeed : IAtom = new AlbumFeed(aFeed);
 			return tAlbumFeed;

@@ -7,8 +7,7 @@ package sk.prasa.webapis.picasa.core.receiver
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
-	 * EXTENDNUT OD GETFEEDRECEIVER A PREPISAT PARSE FUNKCIU
-	 * KDE BUDE AKO RETURN TYPE USERFEED A VRATI NEW USERFEED
+	 * @private
 	 */
 	public class GetUserFeedReceiver extends GetFeedReceiver implements IReceiver 
 	{
@@ -17,7 +16,7 @@ package sk.prasa.webapis.picasa.core.receiver
 			super();
 		}
 		
-		override protected function parsefeed(aFeed : XML) : IAtom
+		override protected function parse(aFeed : XML) : IAtom
 		{
 			var tUserFeed : IAtom = new UserFeed(aFeed);
 			return tUserFeed;

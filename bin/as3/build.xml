@@ -2,7 +2,7 @@
 <project name="picasaflashapi" basedir="." default="lib">
 	<property file="./build.properties" />
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
-	<target name="lib">
+	<target name="lib" depends="docs">
 		<tstamp>
 			<format property="TODAY" pattern="dd.MM.yyyy" locale="en,UK"/>
 		</tstamp>
@@ -17,17 +17,11 @@
 		<echo>SWC created</echo>
 	</target>
 
-	<!--
-		Generate ASDoc output for the library
-	-->
 	<target name="docs">
 		<!-- Clean out the contents of the doc directory, without delete "docs" -->
-		<!--
 		<delete includeemptydirs="true">
 			<fileset dir="${docs.dir}" includes="**/*" />
 		</delete>
-		-->
-
 		<exec executable="${asdoc.exe}" spawn="no">
 			<!-- Place the documentation in the "docs" directory -->
 			<arg line="-o ${docs.dir}" />
@@ -42,7 +36,8 @@
 			<arg line="-ds ${src.dir} " />
 
 			<!-- Include the library name in the window title -->
-			<arg line="-window-title 'Adobe ActionScript 3.0 Library - ${library.name}' "/>
+			<arg line="-window-title 'Picasa Flash API Documentation - ${library.name}' "/>
+			<arg line="-main-title 'Picasa Flash API Documentation'"/>
 		</exec>
 	</target>
 </project>

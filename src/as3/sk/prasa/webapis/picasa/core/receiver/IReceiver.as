@@ -9,8 +9,9 @@ package sk.prasa.webapis.picasa.core.receiver
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
+	 * 
+	 * @private
 	 */
-
 	public interface IReceiver
 	{
 		function open(evt : Event) : void;
