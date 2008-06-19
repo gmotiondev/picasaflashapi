@@ -27,7 +27,7 @@
 			<arg line="-o ${docs.dir}" />
 
 			<!-- Include in the corelib.swc in the class path -->
-			<arg line="-l ${corelib.swc}" />
+			<!--<arg line="-l ${corelib.swc}" />-->
 
 			<!-- Specify the main source path as "src" -->
 			<arg line="-sp ${src.dir}" />

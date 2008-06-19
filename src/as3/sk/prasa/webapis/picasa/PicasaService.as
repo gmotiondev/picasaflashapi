@@ -81,7 +81,7 @@ package sk.prasa.webapis.picasa
 		 * 
 		 * The following table describes the supported visibility values:
 		 * <table>
-		 * <th><td>Visibility</td>	<td>Description</td>						<td>Security Notes</td></th>
+		 * <tr><th>Visibility</th>	<th>Description</th>						<th>Security Notes</th></tr>
 		 * <tr><td>all</td>			<td>Shows both public and private data.</td><td>Requires authentication. Default for authenticated users.</td></tr>
 		 * <tr><td>private</td>		<td>Shows only private data.</td>			<td>Requires authentication.</td></tr>
 		 * <tr><td>public</td>		<td>Shows only public data.</td>			<td>Does not require authentication. Default for unauthenticated users.</td></tr>
