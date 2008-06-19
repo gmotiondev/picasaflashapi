@@ -5,6 +5,7 @@ package sk.prasa.webapis.picasa.objects
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
+	 * @private
 	 */
 	public class Utils
 	{
@@ -104,7 +105,8 @@ package sk.prasa.webapis.picasa.objects
 			} catch (e : Error)
 			{
 				var eStr : String = "Unable to parse the string [" + str + "] into a date. ";
-				eStr += "The internal error was: " + e.toString();
+					eStr += "The internal error was: " + e.toString();
+					
 				throw new Error(eStr);
 			}
 			

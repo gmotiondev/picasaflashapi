@@ -194,6 +194,9 @@ package sk.prasa.webapis.picasa.objects
 			return clone();
 		}
 		
+		/**
+		 * @private
+		 */
 		public function getURLRequest() : URLRequest
 		{
 			var tURLRequest : URLRequest = new URLRequest();
@@ -203,6 +206,9 @@ package sk.prasa.webapis.picasa.objects
 			return tURLRequest;
 		}
 		
+		/**
+		 * @private
+		 */
 		internal function getURLVariables() : URLVariables
 		{
 			var tURLVariables : URLVariables = new URLVariables();
@@ -231,6 +237,9 @@ package sk.prasa.webapis.picasa.objects
 			delete __dict[key];
 		}
 		
+		/**
+		 * @private
+		 */
 		internal function containsKey(key : String) : Boolean
         {
             return __dict[key] != null;
@@ -259,7 +268,9 @@ package sk.prasa.webapis.picasa.objects
 		}
 	}
 }
-
+/**
+ * @private
+ */
 function urlEncode(str:String):String
 {
 	const RFC3986_ENCODE : RegExp = /[^a-zA-Z0-9_.~-]/g;

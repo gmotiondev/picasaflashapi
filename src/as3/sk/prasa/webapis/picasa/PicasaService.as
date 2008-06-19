@@ -72,14 +72,14 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Visibility values let you request data at various levels of sharing. For example, a visibility value of <code>public</code> requests publicly visible data. 
+		 * <p>Visibility values let you request data at various levels of sharing. For example, a visibility value of <code>public</code> requests publicly visible data. 
 		 * For a list of values, see Visibility values, below. If you don't specify a visibility value, then the visibility depends on your authentication. 
-		 * For authenticated requests, the default is <code>all</code>. For unauthenticated requests, the default is <code>public</code>.
+		 * For authenticated requests, the default is <code>all</code>. For unauthenticated requests, the default is <code>public</code>.</p>
 		 * 
-		 * The URI of a representation of a Picasa Web Albums feed takes the following form:
-		 * <code>http://picasaweb.google.com/data/feed/projection/path?kind=kind&access=visibility</code>
+		 * <p>The URI of a representation of a Picasa Web Albums feed takes the following form:
+		 * <code>http://picasaweb.google.com/data/feed/projection/path?kind=kind&access=visibility</code></p>
 		 * 
-		 * The following table describes the supported visibility values:
+		 * <p>The following table describes the supported visibility values:</p>
 		 * <table>
 		 * <tr><th>Visibility</th>	<th>Description</th>						<th>Security Notes</th></tr>
 		 * <tr><td>all</td>			<td>Shows both public and private data.</td><td>Requires authentication. Default for authenticated users.</td></tr>
@@ -107,31 +107,31 @@ package sk.prasa.webapis.picasa
 		/**
 		 * Thumbnail size parameter
 		 * 
-		 * Valid with <code>album</code> or <code>photo</code> kinds; specifies what image size to use for thumbnails. 
+		 * <p>Valid with <code>album</code> or <code>photo</code> kinds; specifies what image size to use for thumbnails. 
 		 * <b>Multiple values</b> may be specified using a comma-delimited list. If multiple values are specified, 
 		 * multiple <code>media:thumbnail</code> elements will be returned in the feed. 
-		 * Refer to the list of valid values below.
+		 * Refer to the list of valid values below.</p>
 		 * 
 		 * 
-		 * The following values are valid for the <code>thumbsize</code> and <code>imgmax</code> query parameters and are embeddable on a webpage. 
+		 * <p>The following values are valid for the <code>thumbsize</code> and <code>imgmax</code> query parameters and are embeddable on a webpage. 
 		 * These images are available as both cropped(<code>c</code>) and uncropped(<code>u</code>) sizes by appending <code>c</code> or <code>u</code> to the size. 
-		 * As an example, to retrieve a 72 pixel image that is cropped, you would specify <code>72c</code>, while to retrieve the uncropped image, you would specify <code>72u</code> for the <code>thumbsize</code> or <code>imgmax</code> query parameter values.
+		 * As an example, to retrieve a 72 pixel image that is cropped, you would specify <code>72c</code>, while to retrieve the uncropped image, you would specify <code>72u</code> for the <code>thumbsize</code> or <code>imgmax</code> query parameter values.</p>
 		 * 
-		 * <code>32, 48, 64, 72, 144, 160</code>
+		 * <p><code>32, 48, 64, 72, 144, 160</code></p>
 		 * 
-		 * The following values are valid for the <code>thumbsize</code> and <code>imgmax</code> query parameters and are embeddable on a webpage. 
-		 * These images are available as only uncropped(<code>u</code>) sizes by appending <code>u</code> to the size or just passing the size value without appending anything.
+		 * <p>The following values are valid for the <code>thumbsize</code> and <code>imgmax</code> query parameters and are embeddable on a webpage. 
+		 * These images are available as only uncropped(<code>u</code>) sizes by appending <code>u</code> to the size or just passing the size value without appending anything.</p>
 		 * 
-		 * <code>200, 288, 320, 400, 512, 576, 640, 720, 800</code>
+		 * <p><code>200, 288, 320, 400, 512, 576, 640, 720, 800</code></p>
 		 *
-		 * The following values are valid for the <code>thumbsize</code> and <code>imgmax</code> query parameters and are <b>not</b> embeddable on a webpage. 
-		 * These image sizes are only available in uncropped format and are accessed using only the size (no <code>u</code> is appended to the size).
+		 * <p>The following values are valid for the <code>thumbsize</code> and <code>imgmax</code> query parameters and are <b>not</b> embeddable on a webpage. 
+		 * These image sizes are only available in uncropped format and are accessed using only the size (no <code>u</code> is appended to the size).</p>
 		 * 
-		 * 912, 1024, 1152, 1280, 1440, 1600
+		 * <p>912, 1024, 1152, 1280, 1440, 1600</p>
 		 *  
-		 * There is an additional size <code>d</code> which results in the <code><media:content></code> elements referencing the original uploaded photo, including all original <code>Exif</code> data. It is valid only for use with the <code>imgmax</code> query parameter.
+		 * <p>There is an additional size <code>d</code> which results in the <code><media:content></code> elements referencing the original uploaded photo, including all original <code>Exif</code> data. It is valid only for use with the <code>imgmax</code> query parameter.</p>
 		 * 
-		 * These query parameters are used when retrieving the feeds in order to get images of the appropriate sizes. They cannot be used when retrieving the actual images.
+		 * <p>These query parameters are used when retrieving the feeds in order to get images of the appropriate sizes. They cannot be used when retrieving the actual images.</p>
 		 *  
 		 */
 		public function get thumbsize() : String
@@ -150,10 +150,10 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Image size parameter
+		 * <p>Image size parameter</p>
 		 * 
-		 * Valid with <code>album</code> or <code>photo</code> kinds; specifies what image size to use for the <code>media:content</code>. 
-		 * Only a <b>single value</b> may be specified. Refer to the list of valid values below.
+		 * <p>Valid with <code>album</code> or <code>photo</code> kinds; specifies what image size to use for the <code>media:content</code>. 
+		 * Only a <b>single value</b> may be specified. Refer to the list of valid values below.</p>
 		 * 
 		 * @see #thumbsize
 		 */
@@ -173,10 +173,10 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Maximum number of results to be retrieved
+		 * <p>Maximum number of results to be retrieved</p>
 		 * 
-		 * For any service that has a default max-results value (to limit default feed size), you can specify a very large number if you want to receive the entire feed.
-		 * See the Google Data query parameter reference below.
+		 * <p>For any service that has a default max-results value (to limit default feed size), you can specify a very large number if you want to receive the entire feed.
+		 * See the Google Data query parameter reference below.</p>
 		 * 
 		 * @see http://code.google.com/apis/gdata/reference.html#Queries
 		 */
@@ -196,13 +196,13 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * 1-based index of the first result to be retrieved
-		 * Used to page through the result set. See the Google Data query parameter reference below.
+		 * <p>1-based index of the first result to be retrieved</p>
+		 * <p>Used to page through the result set. See the Google Data query parameter reference below.</p>
 		 * 
-		 * Note that this isn't a general cursoring mechanism. If you first send a query with 
-		 * <code>?start-index=1&max-results=10</code> and then send another query with 
-		 * <code>?start-index=11&max-results=10</code>, the service cannot guarantee that the results are equivalent to 
-		 * <code>?start-index=1&max-results=20</code>, because insertions and deletions could have taken place in between the two queries.
+		 * <p>Note that this isn't a general cursoring mechanism. If you first send a query with<br/> 
+		 * <code>?start-index=1&max-results=10</code> and then send another query with </br>
+		 * <code>?start-index=11&max-results=10</code>, the service cannot guarantee that the results are equivalent to<br/> 
+		 * <code>?start-index=1&max-results=20</code>, because insertions and deletions could have taken place in between the two queries.</p>
 		 *  
 		 * @see http://code.google.com/apis/gdata/reference.html#Queries
 		 */
@@ -222,11 +222,12 @@ package sk.prasa.webapis.picasa
 		}
 
 		/**
-		 * Bridge to Authentication methods
+		 * <p>Bridge to Authentication methods</p>
 		 * 
-		 * Authentication to picasaweb can be done in two ways. 
-		 * ClientLogin - this method is used by installed Desktop Apps.
-		 * AuthSub - this is the default method for web applications. However, this is not yet supported because of crossdomain.xml issue and Google Auth API.
+		 * <p>Authentication to picasaweb can be done in two ways. <br/>
+		 * ClientLogin - this method is used by installed Desktop Apps.<br/>
+		 * AuthSub - this is the default method for web applications. However, this is not yet supported because of crossdomain.xml issue and Google Auth API.</p>
+		 * 
 		 */
 		public function get auth() : Auth
 		{
@@ -288,8 +289,8 @@ package sk.prasa.webapis.picasa
 		}
 		
 		/**
-		 * Dispatches each param change to the method objects
-		 * Used to globaly change the UrlParams
+		 * <p>Dispatches each param change to the method objects<br/>
+		 * Used to globaly change the UrlParams</p>
 		 * 
 		 * @private
 		 */
