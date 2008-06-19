@@ -3,6 +3,17 @@
 	creationComplete="init();" xmlns:flexui="flexunit.flexui.*">
 	<mx:Script>
 		<![CDATA[
+			import atom.UserTest;
+			import atom.TitleTest;
+			import atom.TextTest;
+			import atom.SubtitleTest;
+			import atom.RightsTest;
+			import atom.LinkTest;
+			import atom.GeneratorTest;
+			import atom.ContributorTest;
+			import atom.ContentTest;
+			import atom.CategoryTest;
+			import atom.AuthorTest;
 			import atom.AtomTest;
 			import flexunit.framework.Test;
 			import flexunit.framework.TestSuite;
@@ -16,8 +27,85 @@
 			private function createSuite() : TestSuite
 			{
 				var tTestSuite : TestSuite = new TestSuite();
-					tTestSuite.addTest(Test(new AtomTest("metaTest")));
-					tTestSuite.addTest(Test(new AtomTest("entriesTest")));
+				
+				// Atom
+				tTestSuite.addTest(Test(new AtomTest("metaTest")));
+				tTestSuite.addTest(Test(new AtomTest("entriesTest")));
+					
+				// Author
+				tTestSuite.addTest(Test(new AuthorTest("testName")));
+				tTestSuite.addTest(Test(new AuthorTest("testUri")));
+				tTestSuite.addTest(Test(new AuthorTest("testEmail")));
+				
+				// Category
+				tTestSuite.addTest(Test(new CategoryTest("testTerm")));
+				tTestSuite.addTest(Test(new CategoryTest("testScheme")));
+				tTestSuite.addTest(Test(new CategoryTest("testLabel")));
+				
+				// Content
+				tTestSuite.addTest(Test(new ContentTest("testSrc")));
+				tTestSuite.addTest(Test(new ContentTest("testType")));
+				tTestSuite.addTest(Test(new ContentTest("testValue")));
+				
+				// Contributor
+				tTestSuite.addTest(Test(new ContributorTest("testName")));
+				tTestSuite.addTest(Test(new ContributorTest("testUri")));
+				tTestSuite.addTest(Test(new ContributorTest("testEmail")));
+				
+				// Generator
+				tTestSuite.addTest(Test(new GeneratorTest("testURI")));
+				tTestSuite.addTest(Test(new GeneratorTest("testValue")));
+				tTestSuite.addTest(Test(new GeneratorTest("testVersion")));
+				
+				// Link
+				tTestSuite.addTest(Test(new LinkTest("testLength")));
+				tTestSuite.addTest(Test(new LinkTest("testTitle")));
+				tTestSuite.addTest(Test(new LinkTest("testLink")));
+				tTestSuite.addTest(Test(new LinkTest("testHrefLang")));
+				tTestSuite.addTest(Test(new LinkTest("testRel")));
+				tTestSuite.addTest(Test(new LinkTest("testType")));
+				tTestSuite.addTest(Test(new LinkTest("testREL_VIA")));
+				tTestSuite.addTest(Test(new LinkTest("testREL_ENCLOSURE")));
+				tTestSuite.addTest(Test(new LinkTest("testREL_SELF")));
+				tTestSuite.addTest(Test(new LinkTest("testREL_ALTERNATE")));
+				tTestSuite.addTest(Test(new LinkTest("testREL_RELATED")));
+				
+				// Rights
+				tTestSuite.addTest(Test(new RightsTest("testTYPE_PLAIN")));
+				tTestSuite.addTest(Test(new RightsTest("testTYPE_TEXT")));
+				tTestSuite.addTest(Test(new RightsTest("testTYPE_HTML")));
+				tTestSuite.addTest(Test(new RightsTest("testTYPE_XHTML")));
+				tTestSuite.addTest(Test(new RightsTest("testType")));
+				tTestSuite.addTest(Test(new RightsTest("testValue")));
+				
+				// Subtitle
+				tTestSuite.addTest(Test(new SubtitleTest("testTYPE_PLAIN")));
+				tTestSuite.addTest(Test(new SubtitleTest("testTYPE_TEXT")));
+				tTestSuite.addTest(Test(new SubtitleTest("testTYPE_HTML")));
+				tTestSuite.addTest(Test(new SubtitleTest("testTYPE_XHTML")));
+				tTestSuite.addTest(Test(new SubtitleTest("testType")));
+				tTestSuite.addTest(Test(new SubtitleTest("testValue")));
+				
+				// Text
+				tTestSuite.addTest(Test(new TextTest("testTYPE_PLAIN")));
+				tTestSuite.addTest(Test(new TextTest("testTYPE_TEXT")));
+				tTestSuite.addTest(Test(new TextTest("testTYPE_HTML")));
+				tTestSuite.addTest(Test(new TextTest("testTYPE_XHTML")));
+				tTestSuite.addTest(Test(new TextTest("testType")));
+				tTestSuite.addTest(Test(new TextTest("testValue")));
+				
+				// Title
+				tTestSuite.addTest(Test(new TitleTest("testTYPE_PLAIN")));
+				tTestSuite.addTest(Test(new TitleTest("testTYPE_TEXT")));
+				tTestSuite.addTest(Test(new TitleTest("testTYPE_HTML")));
+				tTestSuite.addTest(Test(new TitleTest("testTYPE_XHTML")));
+				tTestSuite.addTest(Test(new TitleTest("testType")));
+				tTestSuite.addTest(Test(new TitleTest("testValue")));
+				
+				// User
+				tTestSuite.addTest(Test(new UserTest("testName")));
+				tTestSuite.addTest(Test(new UserTest("testUri")));
+				tTestSuite.addTest(Test(new UserTest("testEmail")));
 				
 				return tTestSuite;
 			}

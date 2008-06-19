@@ -1,6 +1,8 @@
 package sk.prasa.webapis.picasa.objects 
 {
 	/**
+	 * Content Value object
+	 * 
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
 	 */

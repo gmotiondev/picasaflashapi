@@ -67,7 +67,6 @@ package atom
 			assertEquals("generator.uri", meta.generator.uri, "http://picasaweb.google.com/");
 			assertEquals("generator.version", meta.generator.version, "1.00");
 			assertEquals("generator.value", meta.generator.value, "Picasaweb");
-
 		}
 
 		public function entriesTest() : void

@@ -1,15 +1,12 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.Utils;	
-	
-	import flash.geom.Point;
-	
-	import sk.prasa.webapis.picasa.objects.Namespaces;
 	import sk.prasa.webapis.picasa.objects.GPhoto;
 	import sk.prasa.webapis.picasa.objects.Geo;
 	import sk.prasa.webapis.picasa.objects.Kind;
 	import sk.prasa.webapis.picasa.objects.Media;
-	import sk.prasa.webapis.picasa.objects.OpenSearch;	
+	import sk.prasa.webapis.picasa.objects.Namespaces;
+	import sk.prasa.webapis.picasa.objects.OpenSearch;
+	import sk.prasa.webapis.picasa.objects.Utils;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)

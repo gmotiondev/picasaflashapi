@@ -1,48 +1,15 @@
-/*
-Adobe Systems Incorporated(r) Source Code License Agreement
-Copyright(c) 2005 Adobe Systems Incorporated. All rights reserved.
-	
-Please read this Source Code License Agreement carefully before using
-the source code.
-	
-Adobe Systems Incorporated grants to you a perpetual, worldwide, non-exclusive, 
-no-charge, royalty-free, irrevocable copyright license, to reproduce,
-prepare derivative works of, publicly display, publicly perform, and
-distribute this source code and such derivative works in source or 
-object code form without any attribution requirements.  
-	
-The name "Adobe Systems Incorporated" must not be used to endorse or promote products
-derived from the source code without prior written permission.
-	
-You agree to indemnify, hold harmless and defend Adobe Systems Incorporated from and
-against any loss, damage, claims or lawsuits, including attorney's 
-fees that arise or result from your use or distribution of the source 
-code.
-	
-THIS SOURCE CODE IS PROVIDED "AS IS" AND "WITH ALL FAULTS", WITHOUT 
-ANY TECHNICAL SUPPORT OR ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING,
-BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  ALSO, THERE IS NO WARRANTY OF 
-NON-INFRINGEMENT, TITLE OR QUIET ENJOYMENT.  IN NO EVENT SHALL MACROMEDIA
-OR ITS SUPPLIERS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
-OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
-WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR 
-OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE CODE, EVEN IF
-ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
 package atom
 {
 	import flexunit.framework.TestCase;
-
+	
 	import sk.prasa.webapis.picasa.objects.Content;	
 
 	public class ContentTest extends TestCase 
 	{
-		private const SRC : String = "as3";
-
+		private const SRC : String = "http://lh4.ggpht.com/thisispinkfu/RUSAQVVSABI/AAAAAAAAAAc/sWHyELe7z0M/Untitled-2.jpg";
+		private const TYPE : String = "image/jpeg";
+		private const VALUE : String = "this is sample content, but the type should be text!";
+		
 		public function ContentTest(methodName : String = null)
 		{
 			super(methodName);
@@ -50,11 +17,28 @@ package atom
 
 		public function testSrc() : void
 		{
-			var c : Content = new Content();		
-				c.src = SRC;
+			var tContent : Content = new Content();		
+				tContent.src = SRC;
 			
-			assertNotNull("c.src is null", c.src);
-			assertTrue("c.src == SRC", c.src == SRC);
+			assertNotNull("tContent.src is null", tContent.src);
+			assertTrue("tContent.src == SRC", tContent.src == SRC);
+		}
+		
+		public function testType() : void
+		{
+			var tContent : Content = new Content(TYPE);
+				
+			assertNotNull("tContent.type is null", tContent.type);
+			assertTrue("tContent.type == TYPE", tContent.type == TYPE);
+		}
+		
+		public function testValue() : void
+		{
+			var tContent : Content = new Content();
+				tContent.value = VALUE;
+				
+			assertNotNull("tContent.value is null", tContent.value);
+			assertTrue("tContent.value == VALUE", tContent.value == VALUE);
 		}
 	}
 }

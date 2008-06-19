@@ -24,12 +24,12 @@
 		<link>
 			<name>[source path] __tests</name>
 			<type>2</type>
-			<location>C:/dev/private/picasaflashapi/trunk/tests/as3/__tests</location>
+			<location>C:/dev/Clients/picasaflashapi/trunk/tests/as3/__tests</location>
 		</link>
 		<link>
 			<name>[source path] as3</name>
 			<type>2</type>
-			<location>C:/dev/private/picasaflashapi/trunk/src/as3</location>
+			<location>C:/dev/Clients/picasaflashapi/trunk/src/as3</location>
 		</link>
 	</linkedResources>
 </projectDescription>

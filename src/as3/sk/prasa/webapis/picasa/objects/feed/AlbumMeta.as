@@ -6,6 +6,7 @@ package sk.prasa.webapis.picasa.objects.feed
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
+	 * TODO: implement AlbumMeta typical methods
 	 */
 	public class AlbumMeta extends Meta implements IMeta 
 	{
@@ -13,7 +14,5 @@ package sk.prasa.webapis.picasa.objects.feed
 		{
 			super(xmllist);
 		}
-		
-		//dopisat metody typicke pre AlbumEntry
 	}
 }

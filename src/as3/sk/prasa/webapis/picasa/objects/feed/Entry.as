@@ -1,6 +1,5 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.Text;	
 	import sk.prasa.webapis.picasa.objects.Author;
 	import sk.prasa.webapis.picasa.objects.Category;
 	import sk.prasa.webapis.picasa.objects.Content;
@@ -9,9 +8,9 @@ package sk.prasa.webapis.picasa.objects.feed
 	import sk.prasa.webapis.picasa.objects.Link;
 	import sk.prasa.webapis.picasa.objects.Links;
 	import sk.prasa.webapis.picasa.objects.Namespaces;
+	import sk.prasa.webapis.picasa.objects.Text;
 	import sk.prasa.webapis.picasa.objects.Title;
-	import sk.prasa.webapis.picasa.objects.Utils;
-	import sk.prasa.webapis.picasa.objects.feed.IEntry;	
+	import sk.prasa.webapis.picasa.objects.Utils;	
 
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
