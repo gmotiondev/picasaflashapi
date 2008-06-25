@@ -23,6 +23,7 @@ package sk.prasa.examples.albumskeleton.model
 		
 		public static var THUMBSIZE : String = "64c";
 		public static var IMGMAX : String = "320";
+		public static var MAX_RESULTS : int = 20;
 
 		public function ServiceProxy(data : Object = null)
 		{
@@ -31,6 +32,7 @@ package sk.prasa.examples.albumskeleton.model
 			service = new PicasaService();
 			service.thumbsize = THUMBSIZE;
 			service.imgmax = IMGMAX;
+			service.max_results = MAX_RESULTS;
 		}
 
 		public function getPhotosList(aUserID : String, aAlbumID : String) : void

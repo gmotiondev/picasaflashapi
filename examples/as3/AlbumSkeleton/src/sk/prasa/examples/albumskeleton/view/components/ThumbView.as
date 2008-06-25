@@ -11,8 +11,6 @@ package sk.prasa.examples.albumskeleton.view.components
 	 */
 	public class ThumbView extends ImageLoaderView 
 	{
-		public static const THUMB_CLICK_EVENT : String = "thumb_click_event";
-		
 		public function ThumbView(aID : String, aURL : String)
 		{
 			super(aID, aURL);
@@ -20,13 +18,14 @@ package sk.prasa.examples.albumskeleton.view.components
 		
 		override protected function complete(evt : Event) : void
 		{
-			trace("ThumbView.complete");
+			evt.stopImmediatePropagation();
+			dispatchEvent(evt);
 		}
 		
 		override protected function progress(evt : ProgressEvent) : void
 		{
-			trace("ThumbView.progress: " + Math.round((evt.bytesLoaded/evt.bytesTotal)*100));
-			// send overall progress notification
+			evt.stopImmediatePropagation();
+			dispatchEvent(evt);
 		}
 		
 		override protected function error(evt : ErrorEvent) : void
@@ -36,7 +35,6 @@ package sk.prasa.examples.albumskeleton.view.components
 		
 		override protected function click(evt : MouseEvent) : void
 		{
-			dispatchEvent(new Event(THUMB_CLICK_EVENT));
 		}
 	}
 }

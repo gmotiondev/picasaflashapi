@@ -3,11 +3,16 @@ package sk.prasa.examples.albumskeleton.view
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.events.ProgressEvent;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	import org.puremvc.as3.patterns.observer.Notifier;
+	
+	import com.yahoo.astra.layout.LayoutContainer;
+	import com.yahoo.astra.layout.modes.FlowLayout;
 	
 	import sk.prasa.examples.albumskeleton.ApplicationFacade;
 	import sk.prasa.examples.albumskeleton.model.ContentProxy;
@@ -16,7 +21,7 @@ package sk.prasa.examples.albumskeleton.view
 	import sk.prasa.examples.albumskeleton.view.components.AlbumView;
 	import sk.prasa.examples.albumskeleton.view.components.ImageLoaderView;
 	import sk.prasa.examples.albumskeleton.view.components.PhotoView;
-	import sk.prasa.examples.albumskeleton.view.components.ThumbView;		
+	import sk.prasa.examples.albumskeleton.view.components.ThumbView;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -26,14 +31,22 @@ package sk.prasa.examples.albumskeleton.view
 	{
 		public static const NAME : String = "AlbumMediator";
 		
-		private var thumbs : DisplayObjectContainer;
+		private var thumbs : LayoutContainer;
 		private var photos : DisplayObjectContainer;
 
 		public function AlbumMediator(viewComponent : Object = null)
 		{
 			super(NAME, viewComponent);
 			
-			thumbs = this.holder.addChild(new Sprite()) as Sprite;
+			var tThumbsLayoutMode : FlowLayout = new FlowLayout();
+				tThumbsLayoutMode.horizontalGap = 2;
+				tThumbsLayoutMode.verticalGap = 2;
+			
+			thumbs = new LayoutContainer(tThumbsLayoutMode);
+			thumbs.width = 360;
+			
+			this.holder.addChild(thumbs);
+			 
 			photos = this.holder.addChild(new Sprite()) as Sprite;
 			
 			this.holder.addEventListener(AlbumView.GET_ALBUM_CONTENT_EVENT, sendRequest);
@@ -57,48 +70,12 @@ package sk.prasa.examples.albumskeleton.view
 					{
 						var tPhoto : PhotoVO = tPhotos[a] as PhotoVO;
 						var tThumb : ThumbView = new ThumbView(tPhoto.id, tPhoto.thumb);
-						
-						this.addThumb(tThumb);
+							tThumb.addEventListener(ProgressEvent.PROGRESS, onProgress);
+							tThumb.addEventListener(Event.COMPLETE, onThumbComplete);
 					}
 					
 					break;
 			}
-		}
-
-		private function addThumb(aThumb : ThumbView) : void
-		{
-			// handle layout?
-			var tThumb : ThumbView = aThumb;
-				tThumb.addEventListener(ThumbView.THUMB_CLICK_EVENT, onThumbClick);
-			
-			this.thumbs.addChild(tThumb);
-		}
-		
-		private function removeThumb(aThumb : ThumbView) : void
-		{
-			// handle layout?
-			var tThumb : ThumbView = aThumb;
-				tThumb.removeEventListener(ThumbView.THUMB_CLICK_EVENT, onThumbClick);
-			
-			this.thumbs.removeChild(tThumb);
-		}
-
-		private function addPhoto(aPhoto : PhotoView) : void
-		{
-			// handle layout?
-			var tPhoto : PhotoView = aPhoto;
-				tPhoto.addEventListener(PhotoView.PHOTO_CLICK_EVENT, onPhotoClick);
-			
-			this.photos.addChild(tPhoto);
-		}
-
-		private function removePhoto(aPhoto : PhotoView) : void
-		{
-			// handle layout?
-			var tPhoto : PhotoView = aPhoto;
-				tPhoto.removeEventListener(PhotoView.PHOTO_CLICK_EVENT, onPhotoClick);
-			
-			this.photos.removeChild(tPhoto);
 		}
 		
 		private function sendRequest(evt : Event) : void
@@ -109,6 +86,47 @@ package sk.prasa.examples.albumskeleton.view
 			
 			this.sendNotification(ApplicationFacade.LOAD_EVENT, tRequestVO);
 		}
+
+		private function addThumb(aThumb : ThumbView) : void
+		{
+			var tThumb : ThumbView = aThumb;
+				tThumb.addEventListener(MouseEvent.CLICK, onThumbClick);
+				tThumb.removeEventListener(ProgressEvent.PROGRESS, onProgress);
+				tThumb.removeEventListener(Event.COMPLETE, onThumbComplete);
+				
+			this.thumbs.addChild(tThumb);
+		}
+
+		private function removeThumb(aThumb : ThumbView) : void
+		{
+			var tThumb : ThumbView = aThumb;
+				tThumb.removeEventListener(MouseEvent.CLICK, onThumbClick);
+				
+			this.thumbs.removeChild(tThumb);
+		}
+
+		private function addPhoto(aPhoto : PhotoView) : void
+		{
+			var tPhoto : PhotoView = aPhoto;
+				tPhoto.addEventListener(MouseEvent.CLICK, onPhotoClick);
+				tPhoto.removeEventListener(ProgressEvent.PROGRESS, onProgress);
+				tPhoto.removeEventListener(Event.COMPLETE, onPhotoComplete);
+				
+			this.photos.addChild(tPhoto);
+		}
+
+		private function removePhoto(aPhoto : PhotoView) : void
+		{
+			var tPhoto : PhotoView = aPhoto;
+				tPhoto.removeEventListener(MouseEvent.CLICK, onPhotoClick);
+				
+			this.photos.removeChild(tPhoto);
+		}
+		
+		private function onThumbComplete(evt : Event) : void
+		{
+			this.addThumb(evt.target as ThumbView);
+		}
 		
 		private function onThumbClick(evt : Event) : void
 		{
@@ -116,14 +134,26 @@ package sk.prasa.examples.albumskeleton.view
 			var tContentProxy : ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
 			var tPhotoVO : PhotoVO = tContentProxy.getEntry(tID);
 			
-			this.addPhoto(new PhotoView(tPhotoVO.id, tPhotoVO.url));
+			var tPhoto : PhotoView = new PhotoView(tPhotoVO.id, tPhotoVO.url);
+				tPhoto.addEventListener(ProgressEvent.PROGRESS, onProgress);
+				tPhoto.addEventListener(Event.COMPLETE, onPhotoComplete);
 		}
-
+		
+		private function onPhotoComplete(evt : Event) : void
+		{
+			this.addPhoto(evt.target as PhotoView);
+		}
+		
 		private function onPhotoClick(evt : Event) : void
 		{
 			this.removePhoto(PhotoView(evt.target));
 		}
 		
+		private function onProgress(evt : ProgressEvent) : void
+		{
+			this.sendNotification(ApplicationFacade.PROGRESS_EVENT, Math.round((evt.bytesLoaded/evt.bytesTotal)*100));
+		}
+
 		private function get holder() : AlbumView
 		{
 			return viewComponent as AlbumView;

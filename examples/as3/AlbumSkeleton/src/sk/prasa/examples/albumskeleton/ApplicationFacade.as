@@ -21,6 +21,7 @@ package sk.prasa.examples.albumskeleton
 		
 		public static const FULLSCREEN_EVENT : String = "fullscreen_event";
 		public static const RESIZE_EVENT : String = "resize_event";
+		public static const PROGRESS_EVENT : String = "progress_event";
 		
 		public static function getInstance() : ApplicationFacade
 		{

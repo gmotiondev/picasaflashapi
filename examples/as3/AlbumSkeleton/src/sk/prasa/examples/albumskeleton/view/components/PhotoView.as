@@ -5,16 +5,14 @@ package sk.prasa.examples.albumskeleton.view.components
 	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
 	
-	import sk.prasa.examples.albumskeleton.view.components.ImageLoaderView;		
-	
+	import sk.prasa.examples.albumskeleton.view.components.ImageLoaderView;	
+
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
 	 */
 	public class PhotoView extends ImageLoaderView 
 	{
-		public static const PHOTO_CLICK_EVENT : String = "photo_click_event";
-		
 		public function PhotoView(aID : String, aURL : String)
 		{
 			super(aID, aURL);
@@ -22,13 +20,14 @@ package sk.prasa.examples.albumskeleton.view.components
 		
 		override protected function complete(evt : Event) : void
 		{
-			trace("PhotoView.complete");
+			evt.stopImmediatePropagation();
+			dispatchEvent(evt);
 		}
 		
 		override protected function progress(evt : ProgressEvent) : void
 		{
-			trace("PhotoView.progress: " + Math.round((evt.bytesLoaded/evt.bytesTotal)*100));
-			// send overall progress notification
+			evt.stopImmediatePropagation();
+			dispatchEvent(evt);
 		}
 		
 		override protected function error(evt : ErrorEvent) : void
@@ -38,7 +37,6 @@ package sk.prasa.examples.albumskeleton.view.components
 		
 		override protected function click(evt : MouseEvent) : void
 		{
-			dispatchEvent(new Event(PHOTO_CLICK_EVENT));
 		}
 	}
 }

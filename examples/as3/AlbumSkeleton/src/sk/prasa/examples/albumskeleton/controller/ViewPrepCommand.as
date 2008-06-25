@@ -1,13 +1,13 @@
 package sk.prasa.examples.albumskeleton.controller 
 {
 	import flash.display.DisplayObject;
-
+	
 	import org.puremvc.as3.interfaces.ICommand;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
-
-	import sk.prasa.examples.albumskeleton.view.ApplicationMediator;	
-
+	
+	import sk.prasa.examples.albumskeleton.view.ApplicationMediator;		
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
