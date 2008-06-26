@@ -9,12 +9,14 @@ package sk.prasa.examples.albumskeleton.model.vo
 		public var id : String;
 		public var url : String;
 		public var thumb : String;
+		public var title : String; 
 		
-		public function PhotoVO(aID : String = null, aURL : String = null, aThumb : String = null)
+		public function PhotoVO(aID : String = null, aURL : String = null, aThumb : String = null, aTitle : String = null)
 		{
 			id = aID;
 			url = aURL;
 			thumb = aThumb;
+			title = aTitle;
 		}
 	}
 }

@@ -48,7 +48,17 @@ package sk.prasa.examples.albumskeleton.model
 				tResponder.addEventListener(PicasaDataEvent.DATA, result);
 				tResponder.addEventListener(ErrorEvent.ERROR, fault);
 		}
-
+			
+		public function getNextPage() : void
+		{
+			// TODO: ...
+		}
+		
+		public function getPrevPage() : void
+		{
+			// TODO: ...
+		}
+		
 		private function result(evt : PicasaDataEvent) : void
 		{
 			facade.registerProxy(new ContentProxy(evt.data));

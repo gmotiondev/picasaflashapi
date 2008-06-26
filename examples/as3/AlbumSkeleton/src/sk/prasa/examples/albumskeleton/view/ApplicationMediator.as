@@ -19,7 +19,10 @@ package sk.prasa.examples.albumskeleton.view
 			super(NAME, viewComponent);
 			
 			facade.registerMediator(new AlbumMediator(app.album));
+			facade.registerMediator(new ThumbsMediator(app.thumbs));
 			facade.registerMediator(new PreloaderMediator(app.preloader));
+			facade.registerMediator(new TitleMediator(app.title));
+			facade.registerMediator(new NavigationMediator(app.navigation));
 		}
 
 		override public function listNotificationInterests() : Array 

@@ -7,8 +7,8 @@ package sk.prasa.examples.albumskeleton.model
 	import sk.prasa.examples.albumskeleton.model.vo.PhotoVO;
 	import sk.prasa.webapis.picasa.objects.feed.AlbumFeed;
 	import sk.prasa.webapis.picasa.objects.feed.AlbumMeta;
-	import sk.prasa.webapis.picasa.objects.feed.PhotoEntry;		
-	
+	import sk.prasa.webapis.picasa.objects.feed.PhotoEntry;
+	import sk.prasa.webapis.picasa.objects.GPhoto;		
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
@@ -17,9 +17,13 @@ package sk.prasa.examples.albumskeleton.model
 	{
 		public static const NAME : String = "ContentProxy";
 		
+		private var __current : Number;
+		
 		public function ContentProxy(data : Object = null)
 		{
 			super(NAME, data);
+			
+			__current = 0;
 		}
 		
 		public function getMeta() : AlbumVO
@@ -36,12 +40,7 @@ package sk.prasa.examples.albumskeleton.model
 			
 			for each(var photo : PhotoEntry in feed.entries)
 			{
-				var tPhotoVO : PhotoVO = new PhotoVO();
-					tPhotoVO.id = photo.gphoto.id;
-					tPhotoVO.url = photo.media.content.url;
-					tPhotoVO.thumb = photo.media.thumbnails[0].url;
-				
-				tEntries.push(tPhotoVO);
+				tEntries.push(createVO(photo));
 			}
 			
 			return tEntries;
@@ -53,16 +52,63 @@ package sk.prasa.examples.albumskeleton.model
 			{
 				if(aID == photo.gphoto.id)
 				{
-					var tPhotoVO : PhotoVO = new PhotoVO();
-						tPhotoVO.id = photo.gphoto.id;
-						tPhotoVO.url = photo.media.content.url;
-						tPhotoVO.thumb = photo.media.thumbnails[0].url;
-						
-					return tPhotoVO;
+					setCurrent(aID);
+					return createVO(photo);
 				}
 			}
 			
 			return null;
+		}
+		
+		public function getNextPhoto() : String
+		{
+			if(++__current >= feed.entries.length || isNaN(__current)) __current = 0;
+			
+			return getCurrent();
+		}
+		
+		public function getPrevPhoto() : String
+		{
+			if(--__current < 0 || isNaN(__current)) __current = feed.entries.length - 1;
+			
+			return getCurrent();
+		}
+		
+		/**
+		 * get current id
+		 */
+		private function getCurrent() : String
+		{
+			return PhotoEntry(feed.entries[__current]).gphoto.id;			
+		}
+		
+		/**
+		 * set id as current
+		 */
+		private function setCurrent(aID : String) : void
+		{
+			var tPos : int = 0;
+		
+			for each(var photo : PhotoEntry in feed.entries)
+			{
+				if(aID == photo.gphoto.id)
+				{
+					__current = tPos;
+				}
+				
+				tPos++;
+			}
+		}
+		
+		private function createVO(aEntry : PhotoEntry) : PhotoVO
+		{
+			var tPhotoVO : PhotoVO = new PhotoVO();
+				tPhotoVO.id = aEntry.gphoto.id;
+				tPhotoVO.url = aEntry.media.content.url;
+				tPhotoVO.thumb = aEntry.media.thumbnails[0].url;
+				tPhotoVO.title = aEntry.summary;
+						
+				return tPhotoVO;
 		}
 		
 		private function get feed() : AlbumFeed
