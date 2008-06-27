@@ -21,6 +21,8 @@ package sk.prasa.webapis.picasa.objects.feed
 		public function AlbumEntry(xmllist : XMLList)
 		{
 			super(xmllist);
+			
+			KIND = Kind.ALBUM;
 		}
 		
 		//dopisat metody typicke pre AlbumEntry

@@ -1,5 +1,6 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
+	import sk.prasa.webapis.picasa.objects.Kind;	
 	import sk.prasa.webapis.picasa.objects.feed.Meta;
 	import sk.prasa.webapis.picasa.objects.feed.IMeta;
 	
@@ -13,6 +14,8 @@ package sk.prasa.webapis.picasa.objects.feed
 		public function AlbumMeta(xmllist : XMLList)
 		{
 			super(xmllist);
+			
+			KIND = Kind.ALBUM;
 		}
 	}
 }

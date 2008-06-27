@@ -14,6 +14,8 @@ package sk.prasa.webapis.picasa.objects.feed
 		public function TagEntry(xmllist : XMLList)
 		{
 			super(xmllist);
+			
+			KIND = Kind.TAG;
 		}
 		
 		//dopisat metody typicke pre TagEntry

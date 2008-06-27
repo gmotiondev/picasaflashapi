@@ -48,10 +48,11 @@ package sk.prasa.examples.albumskeleton.view
 			{
 				case ApplicationFacade.DATA_EVENT:
 				 	// TODO: ... remove all thumbs first!
+				 	this.removeThumbs();
 				 	var tContentProxy : ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
 					var tPhotos : Array = tContentProxy.getEntries();
-					
-					for(var a : int = 0;a < tPhotos.length; a++)
+					trace("we have " + tPhotos.length + " entries");
+					for(var a : int = 0; a < tPhotos.length; a++)
 					{
 						var tEntry : PhotoVO = tPhotos[a] as PhotoVO;
 						var tThumb : ThumbView = new ThumbView(tEntry.id, tEntry.thumb);
@@ -84,6 +85,14 @@ package sk.prasa.examples.albumskeleton.view
 				tThumb.removeEventListener(MouseEvent.CLICK, onThumbClick);
 				
 			this.thumbs.removeChild(tThumb);
+		}
+		
+		protected function removeThumbs() : void
+		{
+			for(var a : int = 0; a < this.thumbs.numChildren; a++)
+			{
+				this.removeThumb(this.thumbs.getChildAt(a) as ThumbView);
+			}
 		}
 		
 		/**

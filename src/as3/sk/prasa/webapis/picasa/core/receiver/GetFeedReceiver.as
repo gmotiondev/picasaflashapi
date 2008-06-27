@@ -8,12 +8,13 @@ package sk.prasa.webapis.picasa.core.receiver
 	
 	import sk.prasa.webapis.picasa.PicasaResponder;
 	import sk.prasa.webapis.picasa.events.PicasaDataEvent;
-	import sk.prasa.webapis.picasa.objects.feed.Atom;
+	import sk.prasa.webapis.picasa.objects.feed.AtomFeed;
 	import sk.prasa.webapis.picasa.objects.feed.IAtom;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
+	 * TODO: ... ERROR handling is here poor! what if passed wrong argument or wrong argument value?
+	 * TODO: ... the parse is overriden by subclasses, but the user doesn't what type of feed is he receiving!
 	 * @private
 	 */
 	public class GetFeedReceiver implements IReceiver
@@ -41,7 +42,7 @@ package sk.prasa.webapis.picasa.core.receiver
 
 		protected function parse(aFeed : XML) : IAtom
 		{
-			var tFeed : IAtom = new Atom(aFeed);
+			var tFeed : IAtom = new AtomFeed(aFeed);
 			return tFeed;
 		}
 

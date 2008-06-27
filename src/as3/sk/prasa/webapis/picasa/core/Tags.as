@@ -2,12 +2,10 @@ package sk.prasa.webapis.picasa.core
 {
 	import sk.prasa.webapis.picasa.*;
 	import sk.prasa.webapis.picasa.core.command.*;
-	import sk.prasa.webapis.picasa.core.receiver.GetAlbumFeedReceiver;
-	import sk.prasa.webapis.picasa.core.receiver.GetPhotoFeedReceiver;
-	import sk.prasa.webapis.picasa.core.receiver.GetUserFeedReceiver;
+	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.objects.UrlParams;
-		
+	import sk.prasa.webapis.picasa.objects.UrlParams;		
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
@@ -31,7 +29,7 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = null;
 			
-			var tReceiver : IReceiver = new GetUserFeedReceiver();
+			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
@@ -59,7 +57,7 @@ package sk.prasa.webapis.picasa.core
 				p.q = null;
 	
 			//var tReceiver : IReceiver = new GetFeedReceiver();
-			var tReceiver : IReceiver = new GetAlbumFeedReceiver();
+			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
@@ -89,7 +87,7 @@ package sk.prasa.webapis.picasa.core
 				p.q = null;
 	
 			//var tReceiver : IReceiver = new GetFeedReceiver();
-			var tReceiver : IReceiver = new GetPhotoFeedReceiver();
+			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			

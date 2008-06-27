@@ -18,15 +18,18 @@ package sk.prasa.webapis.picasa.objects
 			return null;
 		}
 		
-		public function getByType(type : String) : Link
-		{
-			for each(var link : Link in this)
-			{
-				if(link.type == type) return link;
-			}
-			
-			return null;
-		}
+		/**
+		 * TODO: ... define enum for type!
+		 */
+//		public function getByType(type : String) : Link
+//		{
+//			for each(var link : Link in this)
+//			{
+//				if(link.type == type) return link;
+//			}
+//			
+//			return null;
+//		}
 		
 		public function toString() : String
 		{

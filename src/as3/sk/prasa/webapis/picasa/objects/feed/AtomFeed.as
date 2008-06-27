@@ -9,11 +9,14 @@ package sk.prasa.webapis.picasa.objects.feed
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
+	 * TODO: we should avoid more types of Feed, Meta and Entry. this is confusing.
+	 * TODO: after receiving the entries in Array, the user doesn't now what kind of entries there are!
 	 */
-	public class Atom extends Parser implements IAtom 
+	public class AtomFeed extends Parser implements IAtom 
 	{
 		private var __meta : IMeta;
+		
+		[ArrayElementType("sk.prasa.webapis.picasa.objects.feed.Entry")]
 		private var __entries : Array;
 		
 		private var atom_ns : Namespace = Namespaces.ATOM_NS;
@@ -21,7 +24,7 @@ package sk.prasa.webapis.picasa.objects.feed
 		/**
 		 * 
 		 */
-		public function Atom(xml : XML)
+		public function AtomFeed(xml : XML)
 		{
 			super(xml);
 		}
@@ -79,7 +82,6 @@ package sk.prasa.webapis.picasa.objects.feed
 						// any default here?
 					}
 				}
-				
 			}
 			
 			return __entries;

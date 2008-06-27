@@ -53,7 +53,6 @@ package sk.prasa.examples.albumskeleton.view
 			}
 		}
 		
-		
 		private function addPhoto(aPhoto : PhotoView) : void
 		{
 			var tPhoto : PhotoView = aPhoto;

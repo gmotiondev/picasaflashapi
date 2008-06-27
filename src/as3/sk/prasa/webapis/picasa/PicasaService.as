@@ -23,6 +23,7 @@ package sk.prasa.webapis.picasa
 		private var __comments : Comments;
 		private var __community : Community;
 		private var __contacts : Contacts;
+		private var __custom : Custom;
 		
 		private var __params : UrlParams;
 		private var __paramsObservable : UrlParamsObservable;
@@ -61,6 +62,7 @@ package sk.prasa.webapis.picasa
 			__comments = new Comments();
 			__community = new Community();
 			__contacts = new Contacts();
+			__custom = new Custom();
 			
 			__paramsObservable.subscribe(__auth.params);
 			__paramsObservable.subscribe(__photos.params);
@@ -68,7 +70,7 @@ package sk.prasa.webapis.picasa
 			__paramsObservable.subscribe(__tags.params);
 			__paramsObservable.subscribe(__comments.params);
 			__paramsObservable.subscribe(__community.params);
-			__paramsObservable.subscribe(__contacts.params);
+			__paramsObservable.subscribe(__contacts.params);			__paramsObservable.subscribe(__custom.params);
 		}
 		
 		/**
@@ -287,6 +289,15 @@ package sk.prasa.webapis.picasa
 		{
 			return __contacts;
 		}
+		
+		/**
+		 * Bridge to Custom methods
+		 * TODO: ...
+		 */	
+//		public function get custom() : Custom
+//		{
+//			return __custom;
+//		}
 		
 		/**
 		 * <p>Dispatches each param change to the method objects<br/>

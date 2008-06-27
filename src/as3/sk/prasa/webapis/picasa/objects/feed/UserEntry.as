@@ -19,6 +19,8 @@ package sk.prasa.webapis.picasa.objects.feed
 		public function UserEntry(xmllist : XMLList)
 		{
 			super(xmllist);
+			
+			KIND = Kind.USER;
 		}
 		
 		//dopisat metody typicke pre UserEntry

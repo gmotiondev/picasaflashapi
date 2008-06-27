@@ -1,5 +1,7 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
+	import sk.prasa.webapis.picasa.objects.Kind;	
+	import sk.prasa.webapis.picasa.objects.Links;	
 	import sk.prasa.webapis.picasa.objects.Subtitle;	
 	import sk.prasa.webapis.picasa.objects.Author;
 	import sk.prasa.webapis.picasa.objects.Category;
@@ -19,13 +21,15 @@ package sk.prasa.webapis.picasa.objects.feed
 	 */
 	public class Meta extends FeedElement implements IMeta 
 	{
+		public var KIND : String;
+		
 		private var atom_ns : Namespace = Namespaces.ATOM_NS;
 
 		public function Meta(xmllist : XMLList)
 		{
 			super(xmllist);
 		}
-		
+
 		/**
 		 * 
 		 */
@@ -51,7 +55,7 @@ package sk.prasa.webapis.picasa.objects.feed
 		 */
 		public function get links() : Array
 		{
-			var tLinks : Array = new Array();
+			var tLinks : Array = new Links();
 			
 			for each(var node : XML in this.data.atom_ns::link)
 			{

@@ -1,14 +1,19 @@
 package sk.prasa.examples.albumskeleton.model 
 {
+	import sk.prasa.webapis.picasa.objects.feed.IEntry;	
+	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import sk.prasa.examples.albumskeleton.model.vo.AlbumVO;
 	import sk.prasa.examples.albumskeleton.model.vo.PhotoVO;
-	import sk.prasa.webapis.picasa.objects.feed.AlbumFeed;
+	import sk.prasa.webapis.picasa.objects.GPhoto;
+	import sk.prasa.webapis.picasa.objects.Link;
+	import sk.prasa.webapis.picasa.objects.Links;
 	import sk.prasa.webapis.picasa.objects.feed.AlbumMeta;
-	import sk.prasa.webapis.picasa.objects.feed.PhotoEntry;
-	import sk.prasa.webapis.picasa.objects.GPhoto;		
+	import sk.prasa.webapis.picasa.objects.feed.AtomFeed;
+	import sk.prasa.webapis.picasa.objects.feed.PhotoEntry;		
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
@@ -22,6 +27,8 @@ package sk.prasa.examples.albumskeleton.model
 		public function ContentProxy(data : Object = null)
 		{
 			super(NAME, data);
+			
+			trace("creating contentproxy with " + AtomFeed(data).entries.length + " entries");
 			
 			__current = 0;
 		}
@@ -74,6 +81,16 @@ package sk.prasa.examples.albumskeleton.model
 			return getCurrent();
 		}
 		
+		public function getPrevPageURL() : String
+		{
+			return Links(meta.links).getByRel(Link.REL_PREV).href;
+		}
+		
+		public function getNextPageURL() : String
+		{
+			return Links(meta.links).getByRel(Link.REL_NEXT).href;
+		}
+		
 		/**
 		 * get current id
 		 */
@@ -111,9 +128,9 @@ package sk.prasa.examples.albumskeleton.model
 				return tPhotoVO;
 		}
 		
-		private function get feed() : AlbumFeed
+		private function get feed() : AtomFeed
 		{
-			return data as AlbumFeed;
+			return data as AtomFeed;
 		}
 		
 		private function get meta() : AlbumMeta

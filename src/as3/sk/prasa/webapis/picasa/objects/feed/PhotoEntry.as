@@ -26,8 +26,10 @@ package sk.prasa.webapis.picasa.objects.feed
 		public function PhotoEntry(xmllist : XMLList)
 		{
 			super(xmllist);
+			
+			KIND = Kind.PHOTO;
 		}
-		
+
 		//dopisat metody typicke pre PhotoEntry
 		
 		public function get gphoto() : GPhoto

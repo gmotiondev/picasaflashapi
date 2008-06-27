@@ -2,7 +2,7 @@ package sk.prasa.webapis.picasa.core
 {
 	import sk.prasa.webapis.picasa.*;
 	import sk.prasa.webapis.picasa.core.command.*;
-	import sk.prasa.webapis.picasa.core.receiver.GetUserFeedReceiver;
+	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
 	import sk.prasa.webapis.picasa.objects.UrlParams;		
 	
@@ -12,7 +12,7 @@ package sk.prasa.webapis.picasa.core
 	 * Albums methods
 	 */
 	public class Albums extends MethodHelper
-	{		
+	{
 		/**
 		 * List all albums from user, this is a user-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=album
@@ -30,7 +30,7 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = null;
 		
-			var tReceiver : IReceiver = new GetUserFeedReceiver();
+			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
@@ -58,7 +58,7 @@ package sk.prasa.webapis.picasa.core
 				p.tag = tag;
 				p.q = null;
 			
-			var tReceiver : IReceiver = new GetUserFeedReceiver();
+			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
@@ -86,7 +86,7 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = query;
 			
-			var tReceiver : IReceiver = new GetUserFeedReceiver();
+			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			

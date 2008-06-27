@@ -1,6 +1,8 @@
 package sk.prasa.webapis.picasa.core 
 {
 	import sk.prasa.webapis.picasa.PicasaResponder;
+	import sk.prasa.webapis.picasa.PicasaService;
+	import sk.prasa.webapis.picasa.core.MethodHelper;
 	import sk.prasa.webapis.picasa.core.command.GetFeedCommand;
 	import sk.prasa.webapis.picasa.core.command.ICommand;
 	import sk.prasa.webapis.picasa.core.command.Invoker;
@@ -12,25 +14,31 @@ package sk.prasa.webapis.picasa.core
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
 	 */
-	public class Contacts extends MethodHelper
+	public class Custom extends MethodHelper 
 	{
 		/**
-		 * List contacts from user, this is (contacts)user-based feed
-		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/contacts?kind=user
+		 * Sends a custom url request, e.g. for prev/next linking 
 		 * 
-		 * @param userid String Picasaweb user id
-		 * @param params UrlParams Parameters to alter the feed url
+		 * @param url String feed url
 		 */ 
-		public function list(userid : String, urlparams : UrlParams = null) : PicasaResponder
+		public function query(url : String) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(urlparams);
-				p.suffix = "user/" + userid + "/contacts";
-				
-				// override!
-				p.kind = "user";
-				p.tag = null;
-				p.q = null;
-	
+			if(url.indexOf(PicasaService.FEED_API_URL) == -1 && url.indexOf(PicasaService.FEED_BASE_URL) == -1)
+			{
+				throw new Error("This is not Picasaweb service query.");
+			}
+			
+			var tURL : String = "";
+			
+			tURL = (url.indexOf(PicasaService.FEED_API_URL) > -1) ? 
+					url.slice(PicasaService.FEED_API_URL.length) :
+					url.slice(PicasaService.FEED_BASE_URL.length);
+					
+				trace(">>>: " + tURL);
+			
+			var p : UrlParams = params.merge(null);
+				p.suffix = tURL;
+		
 			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();

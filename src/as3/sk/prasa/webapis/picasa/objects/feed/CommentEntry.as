@@ -21,6 +21,8 @@ package sk.prasa.webapis.picasa.objects.feed
 		{
 			super(xmllist);
 			
+			KIND = Kind.COMMENT;
+			
 			// GPHOTO HACK
 			user = new GPhoto(new XMLList(), Kind.USER);
 			user.user = Utils.parseString(this.data.atom_ns::author.gphotohack_ns::user);

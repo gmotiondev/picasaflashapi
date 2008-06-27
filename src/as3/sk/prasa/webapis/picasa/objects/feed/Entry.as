@@ -18,6 +18,8 @@ package sk.prasa.webapis.picasa.objects.feed
 	 */
 	public class Entry extends FeedElement implements IEntry 
 	{
+		public var KIND : String;
+		
 		private var atom_ns : Namespace = Namespaces.ATOM_NS;
 		private var xhtml_ns : Namespace = Namespaces.XHTML_NS;
 		

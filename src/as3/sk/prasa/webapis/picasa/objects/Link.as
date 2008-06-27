@@ -11,7 +11,12 @@ package sk.prasa.webapis.picasa.objects
 		public static const REL_SELF : String = "self";
 		public static const REL_ENCLOSURE : String = "enclosure";
 		public static const REL_VIA : String = "via";
-
+		
+		public static const REL_PREV : String = "prev";
+		public static const REL_NEXT : String = "next";
+		public static const REL_FEED : String = "http://schemas.google.com/g/2005#feed";
+		public static const REL_SLIDESHOW : String = "http://schemas.google.com/photos/2007#slideshow"; 
+		
 		public var rel : String;
 		public var type : String;
 		public var hreflang : String;
