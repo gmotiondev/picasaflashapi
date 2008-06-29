@@ -1,10 +1,13 @@
 package sk.prasa.examples.albumskeleton.view 
 {
-	import sk.prasa.examples.albumskeleton.ApplicationFacade;	
-	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.patterns.mediator.Mediator;	
+	import org.puremvc.as3.patterns.mediator.Mediator;
+	import org.puremvc.as3.patterns.observer.Notifier;
+	
+	import sk.prasa.examples.albumskeleton.ApplicationFacade;
+	import sk.prasa.examples.albumskeleton.model.ApplicationProxy;
+	import sk.prasa.examples.albumskeleton.model.vo.RequestVO;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -21,8 +24,15 @@ package sk.prasa.examples.albumskeleton.view
 			facade.registerMediator(new AlbumMediator(app.album));
 			facade.registerMediator(new ThumbsMediator(app.thumbs));
 			facade.registerMediator(new PreloaderMediator(app.preloader));
-			facade.registerMediator(new TitleMediator(app.title));
 			facade.registerMediator(new NavigationMediator(app.navigation));
+		}
+		
+		override public function onRegister() : void
+		{
+			var tAppProxy : ApplicationProxy = facade.retrieveProxy(ApplicationProxy.NAME) as ApplicationProxy;
+			var tRequest : RequestVO = tAppProxy.getRequest(); 
+			
+			this.sendNotification(ApplicationFacade.LOAD_EVENT, tRequest);
 		}
 
 		override public function listNotificationInterests() : Array 

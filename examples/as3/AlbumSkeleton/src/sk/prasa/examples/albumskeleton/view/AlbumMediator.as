@@ -13,6 +13,7 @@ package sk.prasa.examples.albumskeleton.view
 	import sk.prasa.examples.albumskeleton.model.ContentProxy;
 	import sk.prasa.examples.albumskeleton.model.vo.PhotoVO;
 	import sk.prasa.examples.albumskeleton.view.components.AlbumView;
+	import sk.prasa.examples.albumskeleton.view.components.ImageLoader;
 	import sk.prasa.examples.albumskeleton.view.components.PhotoView;	
 	
 	/**
@@ -30,13 +31,15 @@ package sk.prasa.examples.albumskeleton.view
 
 		override public function listNotificationInterests() : Array
 		{
-			return [ApplicationFacade.CHANGE_PHOTO_EVENT];
+			return [ApplicationFacade.CHANGE_THUMBS_EVENT,
+					ApplicationFacade.CHANGE_PHOTO_EVENT];
 		}
 
 		override public function handleNotification(notification : INotification) : void
 		{
 			switch (notification.getName())
 			{
+				case ApplicationFacade.CHANGE_THUMBS_EVENT: // Loads first photo. Doesn't have an ID, but we will retrieve it from content proxy.
 				case ApplicationFacade.CHANGE_PHOTO_EVENT:
 				
 					var tContentProxy : ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
@@ -46,8 +49,7 @@ package sk.prasa.examples.albumskeleton.view
 					var tPhoto : PhotoView = new PhotoView(tPhotoVO.id, tPhotoVO.url);
 						tPhoto.addEventListener(ProgressEvent.PROGRESS, onProgress);
 						tPhoto.addEventListener(Event.COMPLETE, onPhotoComplete);
-						
-					this.sendNotification(ApplicationFacade.TITLE_CHANGE_EVENT, tPhotoVO.title);
+						tPhoto.load();
 					
 				break;
 			}
@@ -55,6 +57,8 @@ package sk.prasa.examples.albumskeleton.view
 		
 		private function addPhoto(aPhoto : PhotoView) : void
 		{
+			this.removePhotos();
+			
 			var tPhoto : PhotoView = aPhoto;
 				tPhoto.addEventListener(MouseEvent.CLICK, onPhotoClick);
 				tPhoto.removeEventListener(ProgressEvent.PROGRESS, onProgress);
@@ -71,6 +75,14 @@ package sk.prasa.examples.albumskeleton.view
 			this.album.removeChild(tPhoto);
 		}
 		
+		private function removePhotos() : void
+		{
+			for(var a : int = this.album.numChildren - 1; a >= 0; a--)
+			{
+				this.removePhoto(this.album.getChildAt(a) as PhotoView);
+			}
+		}
+		
 		private function onPhotoComplete(evt : Event) : void
 		{
 			this.addPhoto(evt.target as PhotoView);
@@ -78,7 +90,6 @@ package sk.prasa.examples.albumskeleton.view
 		
 		private function onPhotoClick(evt : Event) : void
 		{
-			this.removePhoto(PhotoView(evt.target));
 		}
 		
 		private function onProgress(evt : ProgressEvent) : void

@@ -1,8 +1,9 @@
 package sk.prasa.webapis.picasa.core.command 
 {
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * Command Interface. Part of the Command Pattern.
 	 * 
+	 * @author Michal Gron (michal.gron@gmail.com) 
 	 * @private
 	 */
 	public interface ICommand 

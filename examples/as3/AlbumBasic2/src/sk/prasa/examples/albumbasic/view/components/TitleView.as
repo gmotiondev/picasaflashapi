@@ -1,8 +1,9 @@
-package sk.prasa.examples.albumskeleton.view.components 
+package sk.prasa.examples.albumbasic.view.components 
 {
 	import flash.display.Sprite;
-
-	import com.bit101.components.Label;	
+	
+	import com.bit101.components.Label;
+	import com.bit101.components.Style;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -11,10 +12,14 @@ package sk.prasa.examples.albumskeleton.view.components
 	public class TitleView extends Sprite 
 	{
 		private var __title : Label;
-
+		
+		public static var COLOR : uint = 0xFFFFFF;
+		
 		public function TitleView()
 		{
-			__title = new Label(this, 150, 0, "");
+			Style.LABEL_TEXT = COLOR;
+			
+			__title = new Label(this, 0, 0, "");
 		}
 
 		public function set text(aText : String) : void

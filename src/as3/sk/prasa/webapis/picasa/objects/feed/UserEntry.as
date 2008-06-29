@@ -1,12 +1,12 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.Utils;	
-	import sk.prasa.webapis.picasa.objects.Namespaces;
 	import sk.prasa.webapis.picasa.objects.GPhoto;
 	import sk.prasa.webapis.picasa.objects.Kind;
+	import sk.prasa.webapis.picasa.objects.Namespaces;
 	import sk.prasa.webapis.picasa.objects.OpenSearch;
+	import sk.prasa.webapis.picasa.objects.Utils;
 	import sk.prasa.webapis.picasa.objects.feed.Entry;
-	import sk.prasa.webapis.picasa.objects.feed.IEntry;	
+	import sk.prasa.webapis.picasa.objects.feed.IEntry;		
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -19,8 +19,6 @@ package sk.prasa.webapis.picasa.objects.feed
 		public function UserEntry(xmllist : XMLList)
 		{
 			super(xmllist);
-			
-			KIND = Kind.USER;
 		}
 		
 		//dopisat metody typicke pre UserEntry

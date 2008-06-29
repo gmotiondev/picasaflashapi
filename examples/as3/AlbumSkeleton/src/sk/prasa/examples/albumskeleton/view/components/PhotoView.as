@@ -5,13 +5,14 @@ package sk.prasa.examples.albumskeleton.view.components
 	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
 	
-	import sk.prasa.examples.albumskeleton.view.components.ImageLoaderView;	
-
+	import sk.prasa.examples.albumskeleton.view.components.ImageLoader;	
+	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * PhotoView. Extending Imageloader, so it can be easily added to QueueLoader.
 	 * 
+	 * @author Michal Gron (michal.gron@gmail.com) 
 	 */
-	public class PhotoView extends ImageLoaderView 
+	public class PhotoView extends ImageLoader 
 	{
 		public function PhotoView(aID : String, aURL : String)
 		{

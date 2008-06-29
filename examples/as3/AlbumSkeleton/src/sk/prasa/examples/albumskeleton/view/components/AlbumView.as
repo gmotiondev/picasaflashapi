@@ -1,16 +1,13 @@
 package sk.prasa.examples.albumskeleton.view.components 
 {
-	import flash.display.Sprite;	
+	import flash.display.Sprite;		
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * AlbumView, holds all the photos as PhotoView.
 	 * 
-	 * This could be easily an other LayoutManager ..  
+	 * @author Michal Gron (michal.gron@gmail.com)
 	 */
 	public class AlbumView extends Sprite 
 	{
-		public function AlbumView()
-		{
-		}
 	}
 }

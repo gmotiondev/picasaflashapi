@@ -14,15 +14,17 @@ package sk.prasa.webapis.picasa.core
 	public class Albums extends MethodHelper
 	{
 		/**
-		 * List all albums from user, this is a user-based feed
+		 * List all albums from given user. The feed is user-based.
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=album
 		 * 
+		 * The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<AlbumEntry></code>
+		 * 
 		 * @param userid String Picasa/Google user id
-		 * @param params UrlParams Parameters to alter the feed url
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */ 
 		public function list(userid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(urlparams);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid;
 
 				// override!
@@ -41,16 +43,18 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List photos from all albums by tag, , this is a user-based feed
+		 * List photos from all albums by tag. This is a user-based feed.
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=photo&tag=sometag
+		 * 
+		 * The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<PhotoEntry></code>
 		 * 
 		 * @param userid String Picasaweb user id
 		 * @param tag String Tag
-		 * @param params UrlParams Parameters to alter the feed url
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
 		public function list_by_tag(userid : String, tag : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(urlparams);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid;
 			
 				// override!
@@ -69,16 +73,18 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * Search in albums by query, this is a user-based feed
+		 * Search in albums by query. This is a user-based feed.
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=photo&q=somequery
+		 * 
+		 * The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<PhotoEntry></code>
 		 * 
 		 * @param userid String Picasaweb user id
 		 * @param query String Search query
-		 * @param params UrlParams Parameters to alter the feed url
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
 		public function search(userid : String, query : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(urlparams);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid;
 				
 				// override!

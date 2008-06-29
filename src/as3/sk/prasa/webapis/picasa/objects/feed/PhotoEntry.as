@@ -1,7 +1,5 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.Utils;	
-	
 	import flash.geom.Point;
 	
 	import sk.prasa.webapis.picasa.objects.Exif;
@@ -10,8 +8,9 @@ package sk.prasa.webapis.picasa.objects.feed
 	import sk.prasa.webapis.picasa.objects.Kind;
 	import sk.prasa.webapis.picasa.objects.Media;
 	import sk.prasa.webapis.picasa.objects.Namespaces;
+	import sk.prasa.webapis.picasa.objects.Utils;
 	import sk.prasa.webapis.picasa.objects.feed.Entry;
-	import sk.prasa.webapis.picasa.objects.feed.IEntry;	
+	import sk.prasa.webapis.picasa.objects.feed.IEntry;		
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -26,8 +25,6 @@ package sk.prasa.webapis.picasa.objects.feed
 		public function PhotoEntry(xmllist : XMLList)
 		{
 			super(xmllist);
-			
-			KIND = Kind.PHOTO;
 		}
 
 		//dopisat metody typicke pre PhotoEntry

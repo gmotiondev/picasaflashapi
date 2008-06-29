@@ -13,15 +13,18 @@ package sk.prasa.webapis.picasa.core
 	public class Community extends MethodHelper
 	{
 		/**
-		 * List photos in community by given query, this is query-based feed
+		 * List photos in community by given query. This is query-based feed.
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/all?kind=photo&q=searchTerm
 		 * 
+		 * The "result data" contains <code>meta</code> as <code>Meta</code> (default one because the feed doesn't have the category tag in the atom head) 
+		 * and <code>entries</code> as <code>Array.<PhotoEntry></code>
+		 * 
 		 * @param query String Query
-		 * @param params String Params to alter the feed url
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
 		public function search(query : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(urlparams);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "all";
 				
 				// override!

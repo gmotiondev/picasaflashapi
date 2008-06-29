@@ -16,10 +16,13 @@ package sk.prasa.examples.albumskeleton.controller
 	{
 		override public function execute(notification : INotification) : void
 		{
-			var tContentProxy : ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
-			var tNextID : String = tContentProxy.getNextPhoto();
+			if(facade.hasProxy(ContentProxy.NAME))
+			{
+				var tContentProxy : ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
+				var tNextID : String = tContentProxy.getNextPhoto();
 			
-			this.sendNotification(ApplicationFacade.CHANGE_PHOTO_EVENT, tNextID);
+				this.sendNotification(ApplicationFacade.CHANGE_PHOTO_EVENT, tNextID);
+			}
 		}
 	}
 }

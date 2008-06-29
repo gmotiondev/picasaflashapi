@@ -14,14 +14,17 @@ package sk.prasa.webapis.picasa.core
 	public class Comments extends MethodHelper
 	{
 		/**
-		 * Get list of all comments for specified user, this is user-based feed
+		 * Get list of all comments for specified user. This is user-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=comment
 		 * 
+		 * The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<CommentEntry></code>
+		 * 
 		 * @param userid String Picasaweb user id
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
-		public function user(userid : String) : PicasaResponder
+		public function user(userid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(null);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid;
 				
 				// override!
@@ -40,15 +43,18 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List album comments for specified user, this is album-based feed
+		 * List album comments for specified user. This is album-based feed.
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=comment
+		 * 
+		 * The "result data" contains <code>meta</code> as <code>AlbumMeta</code> and <code>entries</code> as <code>Array.<CommentEntry></code>
 		 * 
 		 * @param userid String Picasaweb user id
 		 * @param albumid String Picasaweb album id
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
-		public function album(userid : String, albumid : String) : PicasaResponder
+		public function album(userid : String, albumid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(null);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid + "/albumid/" + albumid;
 				
 				// override!
@@ -67,16 +73,19 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List photo comments for specified user and album, this is photo-based feed
+		 * List comments for given photo. This is photo-based feed
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID/photoid/photoID?kind=comment
+		 * 
+		 * The "result data" contains <code>meta</code> as <code>PhotoMeta</code> and <code>entries</code> as <code>Array.<CommentEntry></code>
 		 * 
 		 * @param userid String Picasaweb user id
 		 * @param albumid String Picasaweb album id
 		 * @param photoid String Picasaweb photo id
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
-		public function photo(userid : String, albumid : String, photoid : String) : PicasaResponder
+		public function photo(userid : String, albumid : String, photoid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(null);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid + "/albumid/" + albumid + "/photoid/" + photoid;
 				
 				// override!

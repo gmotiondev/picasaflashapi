@@ -1,11 +1,11 @@
-package sk.prasa.examples.albumskeleton.view 
+package sk.prasa.examples.albumbasic.view 
 {
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
-	import sk.prasa.examples.albumskeleton.ApplicationFacade;
-	import sk.prasa.examples.albumskeleton.view.components.TitleView;		
+	import sk.prasa.examples.albumbasic.ApplicationFacade;
+	import sk.prasa.examples.albumbasic.view.components.TitleView;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)

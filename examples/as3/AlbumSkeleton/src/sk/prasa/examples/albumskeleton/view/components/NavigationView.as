@@ -2,17 +2,16 @@ package sk.prasa.examples.albumskeleton.view.components
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
-	
-	import com.bit101.components.PushButton;	
+	import flash.events.KeyboardEvent;		
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * Navigation view. 
+	 * Holds the prev/next photo links and prev/next page links 
 	 * 
+	 * @author Michal Gron (michal.gron@gmail.com) 
 	 */
 	public class NavigationView extends Sprite 
-	{
-		public static const SEND_REQUEST_EVENT : String = "send_request_event";
-		
+	{	
 		public static const PREV_PAGE_EVENT : String = "prev_page_event";
 		public static const NEXT_PAGE_EVENT : String = "next_page_event";
 		
@@ -20,46 +19,21 @@ package sk.prasa.examples.albumskeleton.view.components
 		public static const NEXT_PHOTO_EVENT : String = "next_photo_event";
 		
 		public function NavigationView()
-		{
-			var tSend : PushButton = new PushButton(this, 0, 0, "get album content", onSendRequest);
-				tSend.width = 100;
-				
-			var tPrevPage : PushButton = new PushButton(this, 100, 0, "<<", onPrevPage);
-				tPrevPage.width = 20;
-				
-			var tPrevPhoto : PushButton = new PushButton(this, 120, 0, "<", onPrevPhoto);
-				tPrevPhoto.width = 20;
-				
-			var tNextPhoto : PushButton = new PushButton(this, 140, 0, ">", onNextPhoto);
-				tNextPhoto.width = 20;
-				
-			var tNextPage : PushButton = new PushButton(this, 160, 0, ">>", onNextPage);
-				tNextPage.width = 20;
+		{			
+			this.addEventListener(Event.ADDED_TO_STAGE, initializeKeyboard);
 		}
 		
-		private function onSendRequest(evt : Event) : void
+		private function initializeKeyboard(evt : Event) : void
 		{
-			dispatchEvent(new Event(SEND_REQUEST_EVENT));
+			this.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 		}
-		
-		private function onPrevPage(evt : Event) : void
+
+		private function onKeyUp(evt : KeyboardEvent) : void
 		{
-			dispatchEvent(new Event(PREV_PAGE_EVENT));
-		}
-		
-		private function onNextPage(evt : Event) : void
-		{
-			dispatchEvent(new Event(NEXT_PAGE_EVENT));
-		}
-		
-		private function onPrevPhoto(evt : Event) : void
-		{
-			dispatchEvent(new Event(PREV_PHOTO_EVENT));
-		}
-		
-		private function onNextPhoto(evt : Event) : void
-		{
-			dispatchEvent(new Event(NEXT_PHOTO_EVENT));
+			switch(evt.keyCode)
+			{
+				case 37: dispatchEvent(new Event(PREV_PHOTO_EVENT)); break;	// arrow left				case 39: dispatchEvent(new Event(NEXT_PHOTO_EVENT)); break;	// arrow right				case 38: dispatchEvent(new Event(PREV_PAGE_EVENT)); break;	// arrow up				case 40: dispatchEvent(new Event(NEXT_PAGE_EVENT)); break;	// arrow down
+			}
 		}
 	}
 }

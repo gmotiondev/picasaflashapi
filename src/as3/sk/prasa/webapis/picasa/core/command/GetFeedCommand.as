@@ -12,21 +12,34 @@ package sk.prasa.webapis.picasa.core.command
 	import sk.prasa.webapis.picasa.objects.UrlParams;	
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * Loads the feed, adds event handlers to the receiver. 
+	 * Part of the Command Pattern
 	 * 
+	 * @author Michal Gron (michal.gron@gmail.com) 
 	 * @private
 	 */
 	public class GetFeedCommand implements ICommand
 	{
 		private var receiver : IReceiver;
 		private var params : UrlParams;
-
+		
+		/**
+		 * Command constructor.
+		 * 
+		 * @param r IReceiver A IReceiver instance.
+		 * @param p UrlParams Parameters to alter the feed url.
+		 */
 		public function GetFeedCommand(r : IReceiver, p : UrlParams)
 		{
 			receiver = r;
 			params = p;
 		}
 
+		/**
+		 * Executes the command.
+		 * 
+		 * @throws Error, generic.
+		 */
 		public function execute() : void
 		{
 			var tRequest : URLRequest = params.getURLRequest();
@@ -36,7 +49,6 @@ package sk.prasa.webapis.picasa.core.command
 			var tLoader : URLLoader = new URLLoader();
 				tLoader.addEventListener(Event.OPEN, receiver.open);
 				tLoader.addEventListener(Event.COMPLETE, receiver.result);
-					
 				tLoader.addEventListener(IOErrorEvent.IO_ERROR, receiver.fault);
 				tLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, receiver.fault);
 				tLoader.addEventListener(ProgressEvent.PROGRESS, receiver.progress);

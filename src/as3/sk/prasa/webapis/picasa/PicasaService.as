@@ -290,10 +290,10 @@ package sk.prasa.webapis.picasa
 			return __contacts;
 		}
 		
-		/**
-		 * Bridge to Custom methods
-		 * TODO: ...
-		 */	
+//		/**
+//		 * Bridge to Custom methods
+//		 * TODO: ...
+//		 */	
 //		public function get custom() : Custom
 //		{
 //			return __custom;

@@ -3,8 +3,9 @@ package sk.prasa.webapis.picasa.core.observer
 	import sk.prasa.webapis.picasa.core.observer.IObservable;
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * Observable. Part of the Observer Pattern.
 	 * 
+	 * @author Michal Gron (michal.gron@gmail.com) 
 	 * @private
 	 */
 	public class Observable implements IObservable 
@@ -17,11 +18,21 @@ package sk.prasa.webapis.picasa.core.observer
 			__observers = new Array();
 		}
 
+		/**
+		 * Subscribes the IObserver instance to the IObservable object
+		 * 
+		 * @param o IObserver An IObserver instance.
+		 */
 		public function subscribe(o : IObserver) : void
 		{
 			__observers.push(o);
 		}
 
+		/**
+		 * Subscribes the IObserver instance to the IObservable object
+		 * 
+		 * @param o IObserver An IObserver instance.
+		 */
 		public function unsubscribe(o : IObserver) : void
 		{
 			for(var a : int = 0; a < __observers.length; a++)
@@ -34,6 +45,9 @@ package sk.prasa.webapis.picasa.core.observer
 			}
 		}
 
+		/**
+		 * Notify all observers.
+		 */
 		public function notify() : void
 		{
 			for(var key : String in __observers)
@@ -42,6 +56,9 @@ package sk.prasa.webapis.picasa.core.observer
 			}
 		}
 		
+		/**
+		 * Set object to be dispatched.
+		 */
 		public function setObject(o : *) : void
 		{
 			__o = o;

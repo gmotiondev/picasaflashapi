@@ -1,5 +1,7 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
+	import flash.geom.Point;
+	
 	import sk.prasa.webapis.picasa.objects.GPhoto;
 	import sk.prasa.webapis.picasa.objects.Geo;
 	import sk.prasa.webapis.picasa.objects.Kind;
@@ -21,8 +23,6 @@ package sk.prasa.webapis.picasa.objects.feed
 		public function AlbumEntry(xmllist : XMLList)
 		{
 			super(xmllist);
-			
-			KIND = Kind.ALBUM;
 		}
 		
 		//dopisat metody typicke pre AlbumEntry

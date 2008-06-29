@@ -10,9 +10,11 @@ package sk.prasa.examples.albumskeleton.view
 	
 	import sk.prasa.examples.albumskeleton.ApplicationFacade;
 	import sk.prasa.examples.albumskeleton.model.ContentProxy;
+	import sk.prasa.examples.albumskeleton.model.helpers.QueueLoader;
 	import sk.prasa.examples.albumskeleton.model.vo.PhotoVO;
+	import sk.prasa.examples.albumskeleton.view.components.ImageLoader;
 	import sk.prasa.examples.albumskeleton.view.components.ThumbView;
-	import sk.prasa.examples.albumskeleton.view.components.ThumbsView;		
+	import sk.prasa.examples.albumskeleton.view.components.ThumbsView;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -33,7 +35,8 @@ package sk.prasa.examples.albumskeleton.view
 		 */
 		override public function listNotificationInterests() : Array
 		{
-			return [ApplicationFacade.DATA_EVENT];
+			return [ApplicationFacade.CHANGE_THUMBS_EVENT,
+					ApplicationFacade.CHANGE_PHOTO_EVENT];
 		}
 		
 		/**
@@ -46,20 +49,30 @@ package sk.prasa.examples.albumskeleton.view
 		{
 			switch (notification.getName())
 			{
-				case ApplicationFacade.DATA_EVENT:
-				 	// TODO: ... remove all thumbs first!
+				case ApplicationFacade.CHANGE_THUMBS_EVENT:
+				
 				 	this.removeThumbs();
-				 	var tContentProxy : ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
+				 	
+				 	var tQueueLoader : QueueLoader = new QueueLoader();
+						
+					var tContentProxy : ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
 					var tPhotos : Array = tContentProxy.getEntries();
-					trace("we have " + tPhotos.length + " entries");
+
 					for(var a : int = 0; a < tPhotos.length; a++)
 					{
 						var tEntry : PhotoVO = tPhotos[a] as PhotoVO;
 						var tThumb : ThumbView = new ThumbView(tEntry.id, tEntry.thumb);
 							tThumb.addEventListener(ProgressEvent.PROGRESS, onProgress);
 							tThumb.addEventListener(Event.COMPLETE, onThumbComplete);
+							
+						tQueueLoader.add(tThumb);
 					}
 					
+					tQueueLoader.run();
+					
+					break;
+					
+				case ApplicationFacade.CHANGE_PHOTO_EVENT:
 					break;
 			}
 		}
@@ -71,6 +84,7 @@ package sk.prasa.examples.albumskeleton.view
 		{
 			var tThumb : ThumbView = aThumb;
 				tThumb.addEventListener(MouseEvent.CLICK, onThumbClick);
+				
 				tThumb.removeEventListener(ProgressEvent.PROGRESS, onProgress);
 				tThumb.removeEventListener(Event.COMPLETE, onThumbComplete);
 				
@@ -88,13 +102,13 @@ package sk.prasa.examples.albumskeleton.view
 		}
 		
 		protected function removeThumbs() : void
-		{
-			for(var a : int = 0; a < this.thumbs.numChildren; a++)
+		{	
+			for(var a : int = this.thumbs.numChildren - 1; a >= 0; a--)
 			{
 				this.removeThumb(this.thumbs.getChildAt(a) as ThumbView);
 			}
 		}
-		
+				
 		/**
 		 * thumb is clicked. just send notification which thumb was clicked.
 		 */
@@ -110,7 +124,7 @@ package sk.prasa.examples.albumskeleton.view
 		{
 			this.addThumb(evt.target as ThumbView);
 		}
-		
+				
 		/**
 		 * thumb is loading. just send notification for the progress bar.
 		 */

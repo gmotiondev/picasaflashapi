@@ -1,8 +1,10 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * This package also with the <code>sk.prasa.webapis.picasa.objects</code> packaged was inspired by the Adobe syndication lib.
+	 * Thank you guys!
 	 * 
+	 * @author Michal Gron (michal.gron@gmail.com) 
 	 */
 	public class Parser 
 	{

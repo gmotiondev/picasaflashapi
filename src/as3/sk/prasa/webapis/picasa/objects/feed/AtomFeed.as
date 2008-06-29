@@ -1,11 +1,11 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.Utils;	
 	import sk.prasa.webapis.picasa.objects.Kind;
 	import sk.prasa.webapis.picasa.objects.Namespaces;
+	import sk.prasa.webapis.picasa.objects.Utils;
 	import sk.prasa.webapis.picasa.objects.feed.AlbumEntry;
 	import sk.prasa.webapis.picasa.objects.feed.AlbumMeta;
-	import sk.prasa.webapis.picasa.objects.feed.Parser;	
+	import sk.prasa.webapis.picasa.objects.feed.Parser;		
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -15,14 +15,14 @@ package sk.prasa.webapis.picasa.objects.feed
 	public class AtomFeed extends Parser implements IAtom 
 	{
 		private var __meta : IMeta;
-		
-		[ArrayElementType("sk.prasa.webapis.picasa.objects.feed.Entry")]
-		private var __entries : Array;
+		private var __entries : Array;		//[ArrayElementType("sk.prasa.webapis.picasa.objects.feed.Entry")]
 		
 		private var atom_ns : Namespace = Namespaces.ATOM_NS;
 		
 		/**
+		 * AtomFeed constructor.
 		 * 
+		 * @param xml XML Pass XML data to the constructor, to have it available in the this.data property 
 		 */
 		public function AtomFeed(xml : XML)
 		{
@@ -39,9 +39,11 @@ package sk.prasa.webapis.picasa.objects.feed
 				switch(Utils.parseString(this.data.atom_ns::category.@term))
 				{
 					case Kind.USER: 	__meta = new UserMeta(XMLList(this.data)); break;
-					case Kind.ALBUM:	__meta = new AlbumMeta(XMLList(this.data)); break;
+					case Kind.ALBUM: 	__meta = new AlbumMeta(XMLList(this.data)); break;
 					case Kind.PHOTO:	__meta = new PhotoMeta(XMLList(this.data)); break;
-					// any default here?
+					// default, e.g. Community Meta doesn't have any meta category!	
+					default: 			__meta = new Meta(XMLList(this.data)); break;
+					
 				}
 			}
 			
@@ -76,10 +78,10 @@ package sk.prasa.webapis.picasa.objects.feed
 					{
 						case Kind.USER: 	__entries.push(new UserEntry(XMLList(node))); break;
 						case Kind.ALBUM:	__entries.push(new AlbumEntry(XMLList(node))); break;
-						case Kind.PHOTO:	__entries.push(new PhotoEntry(XMLList(node))); break;
+						case Kind.PHOTO: 	__entries.push(new PhotoEntry(XMLList(node))); break;
 						case Kind.TAG: 		__entries.push(new TagEntry(XMLList(node))); break;
 						case Kind.COMMENT: 	__entries.push(new CommentEntry(XMLList(node))); break;
-						// any default here?
+						default: 			__entries.push(new Entry(XMLList(node))); break;			
 					}
 				}
 			}

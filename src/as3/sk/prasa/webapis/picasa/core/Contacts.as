@@ -6,7 +6,7 @@ package sk.prasa.webapis.picasa.core
 	import sk.prasa.webapis.picasa.core.command.Invoker;
 	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
 	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.objects.UrlParams;		
+	import sk.prasa.webapis.picasa.objects.UrlParams;	
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -15,15 +15,17 @@ package sk.prasa.webapis.picasa.core
 	public class Contacts extends MethodHelper
 	{
 		/**
-		 * List contacts from user, this is (contacts)user-based feed
+		 * List contacts from user. This is (contacts)user-based feed.
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/contacts?kind=user
 		 * 
+		 * The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<UserEntry></code>
+		 * 
 		 * @param userid String Picasaweb user id
-		 * @param params UrlParams Parameters to alter the feed url
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */ 
 		public function list(userid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(urlparams);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid + "/contacts";
 				
 				// override!

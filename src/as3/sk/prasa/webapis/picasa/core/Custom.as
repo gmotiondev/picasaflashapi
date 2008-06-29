@@ -12,7 +12,7 @@ package sk.prasa.webapis.picasa.core
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
+	 * TODO: ...
 	 */
 	public class Custom extends MethodHelper 
 	{
@@ -36,7 +36,7 @@ package sk.prasa.webapis.picasa.core
 					
 				trace(">>>: " + tURL);
 			
-			var p : UrlParams = params.merge(null);
+			var p : UrlParams = this.params.merge(null);
 				p.suffix = tURL;
 		
 			var tReceiver : IReceiver = new GetFeedReceiver();

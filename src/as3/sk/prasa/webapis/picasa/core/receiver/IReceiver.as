@@ -8,8 +8,9 @@ package sk.prasa.webapis.picasa.core.receiver
 	import sk.prasa.webapis.picasa.PicasaResponder;	
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * Generic Receiver interface.
 	 * 
+	 * @author Michal Gron (michal.gron@gmail.com) 
 	 * @private
 	 */
 	public interface IReceiver

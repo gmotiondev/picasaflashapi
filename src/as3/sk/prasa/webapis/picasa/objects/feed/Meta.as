@@ -1,19 +1,18 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.Kind;	
-	import sk.prasa.webapis.picasa.objects.Links;	
-	import sk.prasa.webapis.picasa.objects.Subtitle;	
 	import sk.prasa.webapis.picasa.objects.Author;
 	import sk.prasa.webapis.picasa.objects.Category;
 	import sk.prasa.webapis.picasa.objects.Contributor;
 	import sk.prasa.webapis.picasa.objects.FeedElement;
 	import sk.prasa.webapis.picasa.objects.Generator;
 	import sk.prasa.webapis.picasa.objects.Link;
+	import sk.prasa.webapis.picasa.objects.Links;
 	import sk.prasa.webapis.picasa.objects.Namespaces;
 	import sk.prasa.webapis.picasa.objects.Rights;
+	import sk.prasa.webapis.picasa.objects.Subtitle;
 	import sk.prasa.webapis.picasa.objects.Title;
 	import sk.prasa.webapis.picasa.objects.Utils;
-	import sk.prasa.webapis.picasa.objects.feed.IMeta;	
+	import sk.prasa.webapis.picasa.objects.feed.IMeta;		
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -21,8 +20,6 @@ package sk.prasa.webapis.picasa.objects.feed
 	 */
 	public class Meta extends FeedElement implements IMeta 
 	{
-		public var KIND : String;
-		
 		private var atom_ns : Namespace = Namespaces.ATOM_NS;
 
 		public function Meta(xmllist : XMLList)

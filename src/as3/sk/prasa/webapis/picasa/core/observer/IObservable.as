@@ -1,8 +1,9 @@
 package sk.prasa.webapis.picasa.core.observer 
 {
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * Observable interface. Part of the Observer Pattern.
 	 * 
+	 * @author Michal Gron (michal.gron@gmail.com) 
 	 * @private
 	 */
 	public interface IObservable 

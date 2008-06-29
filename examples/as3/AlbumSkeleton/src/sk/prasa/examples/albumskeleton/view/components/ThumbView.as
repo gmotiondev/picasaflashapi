@@ -3,13 +3,17 @@ package sk.prasa.examples.albumskeleton.view.components
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.events.ProgressEvent;	
+	import flash.events.ProgressEvent;
+	
+	import sk.prasa.examples.albumskeleton.view.components.ImageLoader;	
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * Container for the single thumb. Extends ImageLoader, so it's sprite 
+	 * with loading possibilities and can be passed to the QueueLoader.
 	 * 
+	 * @author Michal Gron (michal.gron@gmail.com) 
 	 */
-	public class ThumbView extends ImageLoaderView 
+	public class ThumbView extends ImageLoader 
 	{
 		public function ThumbView(aID : String, aURL : String)
 		{

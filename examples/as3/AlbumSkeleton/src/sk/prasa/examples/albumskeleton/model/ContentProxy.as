@@ -1,7 +1,5 @@
 package sk.prasa.examples.albumskeleton.model 
 {
-	import sk.prasa.webapis.picasa.objects.feed.IEntry;	
-	
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
@@ -28,11 +26,9 @@ package sk.prasa.examples.albumskeleton.model
 		{
 			super(NAME, data);
 			
-			trace("creating contentproxy with " + AtomFeed(data).entries.length + " entries");
-			
 			__current = 0;
 		}
-		
+				
 		public function getMeta() : AlbumVO
 		{
 			var tMeta : AlbumVO = new AlbumVO();
@@ -53,13 +49,15 @@ package sk.prasa.examples.albumskeleton.model
 			return tEntries;
 		}
 		
-		public function getEntry(aID : String) : PhotoVO
+		public function getEntry(aID : String = null) : PhotoVO
 		{
+			var tID : String = aID != null ? aID : getCurrent();
+			 
 			for each(var photo : PhotoEntry in feed.entries)
 			{
-				if(aID == photo.gphoto.id)
+				if(tID == photo.gphoto.id)
 				{
-					setCurrent(aID);
+					setCurrent(tID);
 					return createVO(photo);
 				}
 			}

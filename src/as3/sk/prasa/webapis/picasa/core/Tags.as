@@ -13,15 +13,17 @@ package sk.prasa.webapis.picasa.core
 	public class Tags extends MethodHelper
 	{
 		/**
-		 * List all tags for specified user, this is a user-based feed
-		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=tag 
+		 * List all tags for specified user. This is a user-based feed.
+		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=tag
+		 * 
+		 * The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<TagEntry></code> 
 		 * 
 		 * @param userid String Picasaweb user id
-		 * TODO: add url params? do we need them?
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
-		public function user(userid : String) : PicasaResponder
+		public function user(userid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(null);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid;
 				
 				// override!
@@ -40,15 +42,19 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List tags for specified album , this is album-based feed
+		 * TODO: ... seems not working correctly!
+		 * List tags for specified album. This is album-based feed.
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=tag 
+		 * 
+		 * The "result data" contains <code>meta</code> as <code>AlbumMeta</code> and <code>entries</code> as <code>Array.<TagEntry></code>
 		 * 
 		 * @param userid String Picasaweb user id
 		 * @param albumid String Picasaweb album id
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
-		public function album(userid : String, albumid : String) : PicasaResponder
+		public function album(userid : String, albumid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(null);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid + "/albumid/" + albumid;
 				
 				// override!
@@ -56,7 +62,6 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = null;
 	
-			//var tReceiver : IReceiver = new GetFeedReceiver();
 			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
@@ -68,17 +73,20 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List tags for specified photo, this is photo-based feed
+		 * List tags for specified photo. This is photo-based feed.
 		 *  - with this, the gphoto.weight isn't set!, logical :)  
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID/photoid/photiID?kind=tag 
+		 * 
+		 * The "result data" contains <code>meta</code> as <code>PhotoMeta</code> and <code>entries</code> as <code>Array.<TagEntry></code>
 		 * 
 		 * @param userid String Picasaweb user id
 		 * @param albumid String Picasaweb album id
 		 * @param photoid String Picasaweb photo id
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
-		public function photo(userid : String, albumid : String, photoid : String) : PicasaResponder
+		public function photo(userid : String, albumid : String, photoid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(null);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid + "/albumid/" + albumid + "/photoid/" + photoid;
 				
 				// override!
@@ -86,7 +94,6 @@ package sk.prasa.webapis.picasa.core
 				p.tag = null;
 				p.q = null;
 	
-			//var tReceiver : IReceiver = new GetFeedReceiver();
 			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();

@@ -4,7 +4,7 @@ package sk.prasa.webapis.picasa.objects.feed
 	import sk.prasa.webapis.picasa.objects.Kind;
 	import sk.prasa.webapis.picasa.objects.feed.Entry;
 	import sk.prasa.webapis.picasa.objects.feed.IEntry;	
-
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
@@ -14,8 +14,6 @@ package sk.prasa.webapis.picasa.objects.feed
 		public function TagEntry(xmllist : XMLList)
 		{
 			super(xmllist);
-			
-			KIND = Kind.TAG;
 		}
 		
 		//dopisat metody typicke pre TagEntry

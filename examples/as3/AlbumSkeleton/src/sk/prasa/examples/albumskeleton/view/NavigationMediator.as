@@ -1,7 +1,5 @@
 package sk.prasa.examples.albumskeleton.view 
 {
-	import sk.prasa.examples.albumskeleton.model.vo.RequestVO;	
-	
 	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -23,8 +21,6 @@ package sk.prasa.examples.albumskeleton.view
 		{
 			super(NAME, viewComponent);
 			
-			navigation.addEventListener(NavigationView.SEND_REQUEST_EVENT, onSendRequest);
-			
 			navigation.addEventListener(NavigationView.PREV_PAGE_EVENT, onPrevPage);
 			navigation.addEventListener(NavigationView.NEXT_PAGE_EVENT, onNextPage);
 			
@@ -39,15 +35,6 @@ package sk.prasa.examples.albumskeleton.view
 		
 		override public function handleNotification(notification : INotification) : void
 		{
-		}
-		
-		private function onSendRequest(evt : Event) : void
-		{
-			var tRequestVO : RequestVO = new RequestVO();
-				tRequestVO.userid = "thisispinkfu";
-				tRequestVO.albumid = "5094406297232552993";
-			
-			this.sendNotification(ApplicationFacade.LOAD_EVENT, tRequestVO);
 		}
 		
 		private function onPrevPage(evt : Event) : void

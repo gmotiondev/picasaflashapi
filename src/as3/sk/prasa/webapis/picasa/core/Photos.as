@@ -13,16 +13,18 @@ package sk.prasa.webapis.picasa.core
 	public class Photos extends MethodHelper
 	{
 		/**
-		 * List of users photos in specified album, this is album-based feed
+		 * List of users photos in specified album. This is album-based feed.
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=photo
+		 *  
+		 * The "result data" contains <code>meta</code> as <code>AlbumMeta</code> and <code>entries</code> as <code>Array.<PhotoEntry></code>
 		 * 
 		 * @param userid String Picasaweb user id
 		 * @param albumid String Picasaweb album id
-		 * @param params String Params to alter the feed url
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
 		public function list(userid : String, albumid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(urlparams);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid + "/albumid/" + albumid;
 				
 				// overwrite!
@@ -41,17 +43,19 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List of tagged users photos in specified album, this is album-based feed 
+		 * List of tagged users photos in specified album. This is album-based feed. 
 		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?tag=sometag
+		 * 
+		 * The "result data" contains <code>meta</code> as <code>AlbumMeta</code> and <code>entries</code> as <code>Array.<PhotoEntry></code>
 		 * 
 		 * @param userid String Picasaweb user id
 		 * @param albumid String Picasaweb album id
 		 * @param tag String Tag
-		 * @param params String Params to alter the feed url
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
 		public function list_by_tag(userid : String, albumid : String, tag : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			var p : UrlParams = params.merge(urlparams);
+			var p : UrlParams = this.params.merge(urlparams);
 				p.suffix = "user/" + userid + "/albumid/" + albumid;
 				
 				// overwrite!
@@ -59,7 +63,6 @@ package sk.prasa.webapis.picasa.core
 				p.tag = tag;
 				p.q = null;
 			
-			//var tReceiver : IReceiver = new GetFeedReceiver();
 			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
@@ -71,26 +74,27 @@ package sk.prasa.webapis.picasa.core
 		}
 
 		/**
-		 * List of recent users photos in specified album, this is user-based feed 
-		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=photo
+		 * Retrieves single photo entry  
+		 * Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID/photoid/photoID
+		 *
+		 *	The "result data" contains <code>meta</code> as <code>PhotoMeta</code> and <code>entries</code> are empty!
 		 * 
 		 * @param userid String Picasaweb user id
-		 * @param params String Params to alter the feed url
+		 * @param albumid String Picasaweb album id
+		 * @param photoid String Picasaweb photo id
+		 * @param urlparams UrlParams Parameters to alter the feed url
 		 */
-		public function recent(userid : String, urlparams : UrlParams = null) : PicasaResponder
+		public function single(userid : String, albumid : String, photoid : String, urlparams : UrlParams = null) : PicasaResponder
 		{
-			throw new Error("Not yet implemented.");
-			/*
-			var p : UrlParams = params.merge(urlparams);
-				p.suffix = "user/" + userid;
+			var p : UrlParams = this.params.merge(urlparams);
+				p.suffix = "user/" + userid + "/albumid/" + albumid + "/photoid/" + photoid;
 				
 				// overwrite!
-				p.kind = "photo";
+				p.kind = null;
 				p.tag = null;
 				p.q = null;
 			
-			//var tReceiver : IReceiver = new GetFeedReceiver();
-			var tReceiver : IReceiver = new GetUserFeedReceiver();
+			var tReceiver : IReceiver = new GetFeedReceiver();
 			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
 			var tInvoker : Invoker = new Invoker();
 			
@@ -98,22 +102,6 @@ package sk.prasa.webapis.picasa.core
 				tInvoker.executeCommand();
 			
 			return tReceiver.responder;
-			*/
-		}
-
-		/**
-		 * Retrieves single photo entry
-		 * NOT YET IMPLEMENTED  
-		 * Loads e.g. 
-		 * 
-		 * @param userid String Picasaweb user id
-		 * @param albumid String Picasaweb album id
-		 * @param photoid String Picasaweb photo id
-		 * @param params String Params to alter the feed url
-		 */
-		public function single(userid : String, albumid : String, photoid : String, urlparams : UrlParams = null) : PicasaResponder
-		{
-			throw new Error("Not yet implemented.");
 		}
 	}
 }
