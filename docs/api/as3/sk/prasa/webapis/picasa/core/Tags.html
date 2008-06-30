@@ -56,32 +56,28 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#album()">album</a>(userid:String, albumid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
+<a class="signatureLink" href="#album()">album</a>(userid:String, albumid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
 </div>
 <div class="summaryTableDescription">
-   List tags for specified album , this is album-based feed
-   Loads e.g.</div>
+   TODO: ...</div>
 </td><td class="summaryTableOwnerCol">Tags</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#photo()">photo</a>(userid:String, albumid:String, photoid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
+<a class="signatureLink" href="#photo()">photo</a>(userid:String, albumid:String, photoid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
 </div>
 <div class="summaryTableDescription">
-   List tags for specified photo, this is photo-based feed
-    - with this, the gphoto.weight isn't set!, logical :)  
-   Loads e.g.</div>
+   List tags for specified photo.</div>
 </td><td class="summaryTableOwnerCol">Tags</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#user()">user</a>(userid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
+<a class="signatureLink" href="#user()">user</a>(userid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
 </div>
 <div class="summaryTableDescription">
-   List all tags for specified user, this is a user-based feed
-   Loads e.g.</div>
+   List all tags for specified user.</div>
 </td><td class="summaryTableOwnerCol">Tags</td>
 </tr>
 </table>
@@ -100,9 +96,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function album(userid:String, albumid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
-   List tags for specified album , this is album-based feed
+<code>public function album(userid:String, albumid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
+   TODO: ... seems not working correctly!
+   List tags for specified album. This is album-based feed.
    Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=tag 
+   
+   The "result data" contains <code>meta</code> as <code>AlbumMeta</code> and <code>entries</code> as <code>Array.<TagEntry></code>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -115,6 +114,13 @@ showHideInherited();
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">albumid</span>:String</code> &mdash; String Picasaweb album id
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">urlparams</span>:<a href="../objects/UrlParams.html">UrlParams</a></code> (default = <code>null</code>)<code></code> &mdash; UrlParams Parameters to alter the feed url
    </td>
 </tr>
 </table>
@@ -133,10 +139,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function photo(userid:String, albumid:String, photoid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
-   List tags for specified photo, this is photo-based feed
+<code>public function photo(userid:String, albumid:String, photoid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
+   List tags for specified photo. This is photo-based feed.
     - with this, the gphoto.weight isn't set!, logical :)  
    Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID/photoid/photiID?kind=tag 
+   
+   The "result data" contains <code>meta</code> as <code>PhotoMeta</code> and <code>entries</code> as <code>Array.<TagEntry></code>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -158,6 +166,13 @@ showHideInherited();
 <td width="20px"></td><td><code><span class="label">photoid</span>:String</code> &mdash; String Picasaweb photo id
    </td>
 </tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">urlparams</span>:<a href="../objects/UrlParams.html">UrlParams</a></code> (default = <code>null</code>)<code></code> &mdash; UrlParams Parameters to alter the feed url
+   </td>
+</tr>
 </table>
 <p></p>
 <span class="label">Returns</span>
@@ -174,15 +189,23 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function user(userid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
-   List all tags for specified user, this is a user-based feed
-   Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=tag 
+<code>public function user(userid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
+   List all tags for specified user. This is a user-based feed.
+   Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=tag
+   
+   The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<TagEntry></code> 
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">userid</span>:String</code> &mdash; String Picasaweb user id
-   TODO: add url params? do we need them?
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">urlparams</span>:<a href="../objects/UrlParams.html">UrlParams</a></code> (default = <code>null</code>)<code></code> &mdash; UrlParams Parameters to alter the feed url
    </td>
 </tr>
 </table>

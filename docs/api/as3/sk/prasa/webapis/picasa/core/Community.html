@@ -59,8 +59,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#search()">search</a>(query:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
 </div>
 <div class="summaryTableDescription">
-   List photos in community by given query, this is query-based feed
-   Loads e.g.</div>
+   List photos in community by given query.</div>
 </td><td class="summaryTableOwnerCol">Community</td>
 </tr>
 </table>
@@ -80,8 +79,11 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function search(query:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
-   List photos in community by given query, this is query-based feed
+   List photos in community by given query. This is query-based feed.
    Loads e.g. http://picasaweb.google.com/data/feed/api/all?kind=photo&q=searchTerm
+   
+   The "result data" contains <code>meta</code> as <code>Meta</code> (default one because the feed doesn't have the category tag in the atom head) 
+   and <code>entries</code> as <code>Array.<PhotoEntry></code>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -93,7 +95,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">urlparams</span>:<a href="../objects/UrlParams.html">UrlParams</a></code> (default = <code>null</code>)<code></code> &mdash; String Params to alter the feed url
+<td width="20px"></td><td><code><span class="label">urlparams</span>:<a href="../objects/UrlParams.html">UrlParams</a></code> (default = <code>null</code>)<code></code> &mdash; UrlParams Parameters to alter the feed url
    </td>
 </tr>
 </table>

@@ -59,8 +59,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#list()">list</a>(userid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
 </div>
 <div class="summaryTableDescription">
-   List all albums from user, this is a user-based feed
-   Loads e.g.</div>
+   List all albums from given user.</div>
 </td><td class="summaryTableOwnerCol">Albums</td>
 </tr>
 <tr class="">
@@ -69,8 +68,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#list_by_tag()">list_by_tag</a>(userid:String, tag:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
 </div>
 <div class="summaryTableDescription">
-   List photos from all albums by tag, , this is a user-based feed
-   Loads e.g.</div>
+   List photos from all albums by tag.</div>
 </td><td class="summaryTableOwnerCol">Albums</td>
 </tr>
 <tr class="">
@@ -79,8 +77,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#search()">search</a>(userid:String, query:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
 </div>
 <div class="summaryTableDescription">
-   Search in albums by query, this is a user-based feed
-   Loads e.g.</div>
+   Search in albums by query.</div>
 </td><td class="summaryTableOwnerCol">Albums</td>
 </tr>
 </table>
@@ -100,8 +97,10 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function list(userid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
-   List all albums from user, this is a user-based feed
+   List all albums from given user. The feed is user-based.
    Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=album
+   
+   The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<AlbumEntry></code>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -133,8 +132,10 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function list_by_tag(userid:String, tag:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
-   List photos from all albums by tag, , this is a user-based feed
+   List photos from all albums by tag. This is a user-based feed.
    Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=photo&tag=sometag
+   
+   The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<PhotoEntry></code>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -173,8 +174,10 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function search(userid:String, query:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
-   Search in albums by query, this is a user-based feed
+   Search in albums by query. This is a user-based feed.
    Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=photo&q=somequery
+   
+   The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<PhotoEntry></code>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">

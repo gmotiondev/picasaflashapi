@@ -59,8 +59,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#list()">list</a>(userid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
 </div>
 <div class="summaryTableDescription">
-   List contacts from user, this is (contacts)user-based feed
-   Loads e.g.</div>
+   List contacts from user.</div>
 </td><td class="summaryTableOwnerCol">Contacts</td>
 </tr>
 </table>
@@ -80,8 +79,10 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function list(userid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
-   List contacts from user, this is (contacts)user-based feed
+   List contacts from user. This is (contacts)user-based feed.
    Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/contacts?kind=user
+   
+   The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<UserEntry></code>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">

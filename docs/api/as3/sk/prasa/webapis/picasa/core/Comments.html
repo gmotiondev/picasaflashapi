@@ -56,31 +56,28 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#album()">album</a>(userid:String, albumid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
+<a class="signatureLink" href="#album()">album</a>(userid:String, albumid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
 </div>
 <div class="summaryTableDescription">
-   List album comments for specified user, this is album-based feed
-   Loads e.g.</div>
+   List album comments for specified user.</div>
 </td><td class="summaryTableOwnerCol">Comments</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#photo()">photo</a>(userid:String, albumid:String, photoid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
+<a class="signatureLink" href="#photo()">photo</a>(userid:String, albumid:String, photoid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
 </div>
 <div class="summaryTableDescription">
-   List photo comments for specified user and album, this is photo-based feed
-   Loads e.g.</div>
+   List comments for given photo.</div>
 </td><td class="summaryTableOwnerCol">Comments</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#user()">user</a>(userid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
+<a class="signatureLink" href="#user()">user</a>(userid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a>
 </div>
 <div class="summaryTableDescription">
-   Get list of all comments for specified user, this is user-based feed
-   Loads e.g.</div>
+   Get list of all comments for specified user.</div>
 </td><td class="summaryTableOwnerCol">Comments</td>
 </tr>
 </table>
@@ -99,9 +96,11 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function album(userid:String, albumid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
-   List album comments for specified user, this is album-based feed
+<code>public function album(userid:String, albumid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
+   List album comments for specified user. This is album-based feed.
    Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID?kind=comment
+   
+   The "result data" contains <code>meta</code> as <code>AlbumMeta</code> and <code>entries</code> as <code>Array.<CommentEntry></code>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -114,6 +113,13 @@ showHideInherited();
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">albumid</span>:String</code> &mdash; String Picasaweb album id
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">urlparams</span>:<a href="../objects/UrlParams.html">UrlParams</a></code> (default = <code>null</code>)<code></code> &mdash; UrlParams Parameters to alter the feed url
    </td>
 </tr>
 </table>
@@ -132,9 +138,11 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function photo(userid:String, albumid:String, photoid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
-   List photo comments for specified user and album, this is photo-based feed
+<code>public function photo(userid:String, albumid:String, photoid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
+   List comments for given photo. This is photo-based feed
    Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID/photoid/photoID?kind=comment
+   
+   The "result data" contains <code>meta</code> as <code>PhotoMeta</code> and <code>entries</code> as <code>Array.<CommentEntry></code>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -156,6 +164,13 @@ showHideInherited();
 <td width="20px"></td><td><code><span class="label">photoid</span>:String</code> &mdash; String Picasaweb photo id
    </td>
 </tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">urlparams</span>:<a href="../objects/UrlParams.html">UrlParams</a></code> (default = <code>null</code>)<code></code> &mdash; UrlParams Parameters to alter the feed url
+   </td>
+</tr>
 </table>
 <p></p>
 <span class="label">Returns</span>
@@ -172,14 +187,23 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function user(userid:String):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
-   Get list of all comments for specified user, this is user-based feed
+<code>public function user(userid:String, urlparams:<a href="../objects/UrlParams.html">UrlParams</a> = null):<a href="../../picasa/PicasaResponder.html">PicasaResponder</a></code><p>
+   Get list of all comments for specified user. This is user-based feed
    Loads e.g. http://picasaweb.google.com/data/feed/api/user/userID?kind=comment
+   
+   The "result data" contains <code>meta</code> as <code>UserMeta</code> and <code>entries</code> as <code>Array.<CommentEntry></code>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">userid</span>:String</code> &mdash; String Picasaweb user id
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">urlparams</span>:<a href="../objects/UrlParams.html">UrlParams</a></code> (default = <code>null</code>)<code></code> &mdash; UrlParams Parameters to alter the feed url
    </td>
 </tr>
 </table>
