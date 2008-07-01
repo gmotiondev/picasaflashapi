@@ -12,7 +12,7 @@ package
 	import sk.prasa.examples.albumbasic.view.components.TitleView;
 	import sk.prasa.examples.albumbasic.view.components.ToolTipView;	
 
-	[SWF(width="320", height="260", backgroundColor="0xffffff", frameRate="31")]
+	[SWF(width="320", height="340", backgroundColor="0x000000", frameRate="31")]
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)

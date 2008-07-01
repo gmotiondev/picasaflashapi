@@ -24,7 +24,7 @@ package sk.prasa.examples.albumbasic.view.components
 
 		public function set text(aText : String) : void
 		{
-			__title.text = aText;
+			__title.text = aText != null ? aText : "";
 		}
 
 		public function get text() : String

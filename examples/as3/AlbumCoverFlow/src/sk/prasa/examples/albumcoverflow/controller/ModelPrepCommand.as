@@ -1,12 +1,12 @@
-package sk.prasa.examples.albumbasic.controller 
+package sk.prasa.examples.albumcoverflow.controller 
 {
 	import org.puremvc.as3.interfaces.ICommand;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	import sk.prasa.examples.albumbasic.model.ApplicationProxy;
-	import sk.prasa.examples.albumbasic.model.ServiceProxy;
-	import sk.prasa.examples.albumbasic.model.vo.RequestVO;	
+	import sk.prasa.examples.albumcoverflow.model.ApplicationProxy;
+	import sk.prasa.examples.albumcoverflow.model.ServiceProxy;
+	import sk.prasa.examples.albumcoverflow.model.vo.RequestVO;		
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -18,7 +18,7 @@ package sk.prasa.examples.albumbasic.controller
 		{
 			var tRequestVO : RequestVO = new RequestVO();
 				tRequestVO.userid = "thisispinkfu";
-				//tRequestVO.albumid = "5094406297232552993";	// sample album				tRequestVO.albumid = "5161355527636525521";	//diana
+				tRequestVO.albumid = "5094406297232552993";
 			
 			facade.registerProxy(new ApplicationProxy(tRequestVO));
 			facade.registerProxy(new ServiceProxy(ServiceProxy.NAME));
