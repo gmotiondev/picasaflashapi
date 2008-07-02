@@ -3,10 +3,10 @@ package atom
 	import flexunit.framework.TestCase;
 	
 	import sk.prasa.webapis.picasa.objects.Link;
-	import sk.prasa.webapis.picasa.objects.feed.Atom;
-	import sk.prasa.webapis.picasa.objects.feed.IAtom;
-	import sk.prasa.webapis.picasa.objects.feed.Meta;	
+	import sk.prasa.webapis.picasa.objects.feed.AtomFeed;
 	import sk.prasa.webapis.picasa.objects.feed.Entry;
+	import sk.prasa.webapis.picasa.objects.feed.IAtom;
+	import sk.prasa.webapis.picasa.objects.feed.Meta;
 	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -23,7 +23,7 @@ package atom
 
 		override public function setUp() : void
 		{
-			__atom = new Atom(ATOM_DOCUMENT);
+			__atom = new AtomFeed(ATOM_DOCUMENT);
 		}
 
 		public function metaTest() : void
