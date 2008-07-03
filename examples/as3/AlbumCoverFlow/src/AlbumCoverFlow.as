@@ -10,6 +10,8 @@ package
 	import sk.prasa.examples.albumcoverflow.view.components.PreloaderView;
 	import sk.prasa.examples.albumcoverflow.view.components.ThumbsView;		
 	
+	[SWF(width="800", height="600", backgroundColor="0x000000", frameRate="31")]
+	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
@@ -42,7 +44,7 @@ package
 		{
 //			album = new AlbumView();
 			thumbs = new ThumbsView();
-//			thumbs.x = 322;
+			thumbs.x = 320; thumbs.y = 420; 
 			
 			preloader = new PreloaderView();
 			navigation = new NavigationView();
