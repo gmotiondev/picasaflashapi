@@ -18,7 +18,7 @@ package sk.prasa.examples.albumcoverflow.controller
 		{
 			var tRequestVO : RequestVO = new RequestVO();
 				tRequestVO.userid = "thisispinkfu";
-				tRequestVO.albumid = "5094406297232552993";
+//				tRequestVO.albumid = "5094406297232552993";	// sample album				tRequestVO.albumid = "5046158866819398449"; // zlomove momenty
 			
 			facade.registerProxy(new ApplicationProxy(tRequestVO));
 			facade.registerProxy(new ServiceProxy(ServiceProxy.NAME));

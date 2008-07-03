@@ -50,7 +50,7 @@ package sk.prasa.examples.albumcoverflow.view.components
 			
 			this.addChild(tScene);
 			
-			stage.addEventListener(MouseEvent.MOUSE_WHEEL, onEventMouseWheel);
+			stage.addEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheel);
 		}
 		
 		override public function addChild(aChild : DisplayObject) : DisplayObject
@@ -59,8 +59,8 @@ package sk.prasa.examples.albumcoverflow.view.components
 			if(aChild is ThumbView)
 			{
 				var tPlane : Sprite3D = new Sprite3D();	
-					tPlane.addEventListener(MouseEvent.ROLL_OVER, onEventRollOver);
-					tPlane.addEventListener(MouseEvent.ROLL_OUT, onEventRollOut);
+					tPlane.addEventListener(MouseEvent.ROLL_OVER, onItemRollOver);
+					tPlane.addEventListener(MouseEvent.ROLL_OUT, onItemtRollOut);
 					tPlane.addEventListener(MouseEvent.CLICK, onClick);
 					tPlane.buttonMode = true;
 					
@@ -85,20 +85,20 @@ package sk.prasa.examples.albumcoverflow.view.components
 			return super.addChild(aChild);
 		}
 
-		private function onEventRollOver(evt : MouseEvent) : void
+		private function onItemRollOver(evt : MouseEvent) : void
 		{
 		}
 
-		private function onEventRollOut(evt : MouseEvent) : void
+		private function onItemtRollOut(evt : MouseEvent) : void
 		{
 		}
 		
 		private function onClick(evt : MouseEvent) : void
 		{
-			shiftToItem(__dict[evt.currentTarget] - 1);
+			moveTo(__dict[evt.currentTarget] - 1);
 		}
 		
-		private function onEventMouseWheel(evt : MouseEvent) : void
+		private function onMouseWheel(evt : MouseEvent) : void
 		{
 			if (evt.delta < 0)
 			{
@@ -113,7 +113,7 @@ package sk.prasa.examples.albumcoverflow.view.components
 		{
 			if (__current > 0)
 			{
-				shiftToItem(__current - 1);
+				moveTo(__current - 1);
 			}
 		}
 
@@ -121,7 +121,7 @@ package sk.prasa.examples.albumcoverflow.view.components
 		{
 			if (__current < __array.length -1)
 			{
-				shiftToItem(__current + 1);
+				moveTo(__current + 1, true);
 			}
 		}
 
@@ -130,20 +130,22 @@ package sk.prasa.examples.albumcoverflow.view.components
 			return Math.abs(aCenterID - aCurrentID);
 		}
 		
-		public function shiftToItem(newCenterPlaneIndex : Number) : void
+		public function moveTo(aPos : int, aTweenWait : Boolean = false) : void
 		{
-			var tRest : int = 0;
-			 
-			if (__current == newCenterPlaneIndex) return;
+			if (__current == aPos)
+			{
+				return;
+			}
+			
+			var tRest : int = __array.length - 1;
 
 			for (var i : int = 0; i < __array.length; i++)
 			{
 				var tPlane : Sprite3D = __array[i] as Sprite3D;
-					tPlane.parent.setChildIndex(tPlane, i);
-				var tDis : int = getIndexDuration(newCenterPlaneIndex, i);
-				var tTargetZ : Number = tDis * 50;
+				var tDis : int = getIndexDuration(aPos, i);
+				var tTargetZ : int = tDis * 50;
 				
-				if (i == newCenterPlaneIndex)
+				if (i == aPos)
 				{
 					TweenLite.to(tPlane, TIME,
 					{
@@ -151,40 +153,37 @@ package sk.prasa.examples.albumcoverflow.view.components
 						z			: SELECTED_Z + tTargetZ,
 						rotationY	: 0
 					});
-				} else if (i < newCenterPlaneIndex)
+				} else if (i < aPos)
 				{
+					tPlane.parent.setChildIndex(tPlane, i);
+					
 					TweenLite.to(tPlane, TIME,
 					{
-						x			: (newCenterPlaneIndex - i + 1) * -SEPARATION - OFFSET,
+						x			: (aPos - i + 1) * -SEPARATION - OFFSET,
 						z			: 0 + tTargetZ,
 						rotationY	: -ANGLE  
 					});
 				} else
 				{
-					var tSwap : int = __array.length - 1 - tRest;
-					if(i < tSwap)
+					if(!aTweenWait)
 					{
-					//	trace("swapping: " + i + " vs. " + tSwap);
-						tPlane.parent.swapChildrenAt(i, tSwap);
+						tPlane.parent.setChildIndex(tPlane, tRest);
 					}
-					
-//					trace("(" + tL+ "/" + __array.length + "), depth current: " + tPlane.parent.getChildIndex(tPlane) + ", should be: " + (tL + i + tRest) + ", rest is: " + tRest);
-					 
-					
-					//tPlane.parent.setChildIndex(tPlane, i + (tRest));
-					tRest++;
 					
 					TweenLite.to(tPlane, TIME,
 					{
-						x			: ((i-newCenterPlaneIndex + 1) * SEPARATION) + OFFSET,
+						x			: ((i-aPos + 1) * SEPARATION) + OFFSET,
 						z			: 0 + tTargetZ,
-						rotationY	: ANGLE
-//						alpha		: 1 - tDis/10
+						rotationY	: ANGLE,
+						onComplete 	: aTweenWait ? tPlane.parent.setChildIndex : null,
+						onCompleteParams : [tPlane, tRest]
 					});
+					
+					tRest--;
 				}
 			}
 
-			__current = newCenterPlaneIndex;
+			__current = aPos;
 		}
 	}
 }

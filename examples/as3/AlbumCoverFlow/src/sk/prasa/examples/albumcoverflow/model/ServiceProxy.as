@@ -22,7 +22,7 @@ package sk.prasa.examples.albumcoverflow.model
 		
 		public static var THUMBSIZE : String = "160c";
 		public static var IMGMAX : String = "320";
-		public static var MAX_RESULTS : int = 20;
+		public static var MAX_RESULTS : int = 10;
 		public static var START_INDEX : int = 1;
 		
 		public static const NAME : String = "ServiceProxy";
