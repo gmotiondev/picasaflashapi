@@ -68,6 +68,10 @@ package sk.prasa.examples.albumcoverflow.view.components
 				__scene.addChild(tPlane);
 				__children.push(tPlane);
 				
+				// reposition and reindex
+				moveTo(__current);
+				reindex(__current - 1);
+				
 			} catch(e : Error)
 			{
 				trace("CoverFlow Error: " + e);
@@ -103,14 +107,7 @@ package sk.prasa.examples.albumcoverflow.view.components
 		}
 
 		public function moveTo(aPos : int, aTweenWait : Boolean = false) : void
-		{
-			if (__current == aPos)
-			{
-				return;
-			}
-			
-			var tRest : int = __children.length - 1;
-
+		{	
 			for (var a : int = 0; a < __children.length; a++)
 			{
 				var tPlane : Sprite3D = __children[a] as Sprite3D;
@@ -125,39 +122,59 @@ package sk.prasa.examples.albumcoverflow.view.components
 						z			: SELECTED_Z + tTargetZ,
 						rotationY	: 0
 					});
+					
 				} else if (a < aPos)
 				{
-					tPlane.parent.setChildIndex(tPlane, a);
-					
 					TweenLite.to(tPlane, TIME,
 					{
 						x			: (aPos - a + 1) * -SEPARATION - OFFSET,
 						z			: 0 + tTargetZ,
 						rotationY	: -ANGLE  
 					});
-				} else
-				{
-					if(!aTweenWait)
-					{
-						tPlane.parent.setChildIndex(tPlane, tRest);
-					}
 					
+				} else
+				{					
 					TweenLite.to(tPlane, TIME,
 					{
 						x			: ((a - aPos + 1) * SEPARATION) + OFFSET,
 						z			: 0 + tTargetZ,
-						rotationY	: ANGLE,
-						onComplete 	: aTweenWait ? tPlane.parent.setChildIndex : null,
-						onCompleteParams : [tPlane, tRest]
+						rotationY	: ANGLE
 					});
-					
-					tRest--;
 				}
+				
+				reindex(aPos, aTweenWait);
 			}
 
 			__current = aPos;
 		}
-
+		
+		private function reindex(aPos : int, aTweenWait : Boolean = false) : void
+		{
+			var tRest : int = __children.length - 1;
+			
+			for (var a : int = 0; a < __children.length; a++)
+			{
+				var tPlane : Sprite3D = __children[a] as Sprite3D;
+	
+				if (a == aPos)
+				{
+					
+				} else if (a < aPos)
+				{
+					tPlane.parent.setChildIndex(tPlane, a);
+					
+				} else
+				{
+					if(!aTweenWait)
+					{				
+						tPlane.parent.setChildIndex(tPlane, tRest);
+					}
+										
+					tRest--;
+				}
+			}
+		}
+		
 		private function onItemRollOver(evt : MouseEvent) : void
 		{
 			evt.stopImmediatePropagation();
@@ -172,11 +189,11 @@ package sk.prasa.examples.albumcoverflow.view.components
 		
 		private function onClick(evt : MouseEvent) : void
 		{
-			for(var a : int = 0; a < __scene.numChildren; a++)
+			for(var a : int = 0; a < __children.length; a++)
 			{
-				if(__scene.getChildAt(a) as Sprite3D == evt.currentTarget)
+				if(__children[a] as Sprite3D == evt.currentTarget)
 				{
-					moveTo(a);
+					moveTo(a, __current < a);
 					break;
 				}
 			}
@@ -186,10 +203,16 @@ package sk.prasa.examples.albumcoverflow.view.components
 		{
 			if (evt.delta < 0)
 			{
-				if (__current < __scene.numChildren - 1) { moveTo(__current + 1, true); }
+				if (__current < __children.length - 1)
+				{ 
+					moveTo(__current + 1, true);
+				}
 			} else
 			{	
-				if (__current > 0) { moveTo(__current - 1); }
+				if (__current > 0) 
+				{ 
+					moveTo(__current - 1); 
+				}
 			}
 		}
 
