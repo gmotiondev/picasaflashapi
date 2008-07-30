@@ -1,5 +1,6 @@
 package sk.prasa.examples.albumcoverflow.view 
 {
+	import flash.display.DisplayObject;	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
@@ -28,7 +29,7 @@ package sk.prasa.examples.albumcoverflow.view
 		{
 			super(NAME, viewComponent);
 		}
-		
+				
 		/**
 		 * We are interested only when new thumbs arived, only if the DATA_EVENT occurs 
 		 * 
@@ -80,25 +81,28 @@ package sk.prasa.examples.albumcoverflow.view
 		/**
 		 * add thumb to the ThumbsView layout manager
 		 */
-		protected function addThumb(aThumb : ThumbView) : void
+		protected function addThumb(aThumb : DisplayObject) : void
 		{
-			var tThumb : ThumbView = aThumb;
-				tThumb.addEventListener(MouseEvent.CLICK, onThumbClick);
+			var tThumb : DisplayObject = aThumb;
+//				tThumb.addEventListener(MouseEvent.CLICK, onThumbClick);
 				
 				tThumb.removeEventListener(ProgressEvent.PROGRESS, onProgress);
 				tThumb.removeEventListener(Event.COMPLETE, onThumbComplete);
 				
-			this.thumbs.addChild(tThumb);
+			var tPlane : DisplayObject = this.thumbs.addChild(tThumb);	//Sprite3D
+				tPlane.addEventListener(MouseEvent.CLICK, onThumbClick);
 		}
+		
 		/**
 		 * remove the thumb from the layout manager
 		 */
-		protected function removeThumb(aThumb : ThumbView) : void
+		protected function removeThumb(aThumb : DisplayObject) : void
 		{
-			var tThumb : ThumbView = aThumb;
-				tThumb.removeEventListener(MouseEvent.CLICK, onThumbClick);
+			var tThumb : DisplayObject = aThumb;
+//				tThumb.removeEventListener(MouseEvent.CLICK, onThumbClick);
 				
-			this.thumbs.removeChild(tThumb);
+			var tPlane : DisplayObject = this.thumbs.removeChildByName(tThumb.name);
+				tPlane.removeEventListener(MouseEvent.CLICK, onThumbClick);
 		}
 		
 		protected function removeThumbs() : void
@@ -117,7 +121,7 @@ package sk.prasa.examples.albumcoverflow.view
 		 */
 		private function onThumbClick(evt : Event) : void
 		{
-			this.sendNotification(ApplicationFacade.CHANGE_PHOTO_EVENT, ThumbView(evt.target).id);
+			this.sendNotification(ApplicationFacade.CHANGE_PHOTO_EVENT, DisplayObject(evt.target).name);
 		}
 		
 		/**

@@ -26,6 +26,7 @@ package sk.prasa.examples.albumcoverflow.view.components
 		public function ImageLoader(aID : String, aURL : String)
 		{			
 			id = aID;
+			name = aID;
 			url = aURL;
 			
 			__loader = new Loader();
@@ -71,6 +72,7 @@ package sk.prasa.examples.albumcoverflow.view.components
 		
 		protected function click(evt : MouseEvent) : void
 		{
+			trace("ImageLoader clicked");
 		}
 	}
 }

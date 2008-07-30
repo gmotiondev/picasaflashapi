@@ -39,6 +39,7 @@ package sk.prasa.examples.albumcoverflow.view.components
 		
 		override protected function click(evt : MouseEvent) : void
 		{
+			trace("ThumbView clicked");
 		}
 	}
 }

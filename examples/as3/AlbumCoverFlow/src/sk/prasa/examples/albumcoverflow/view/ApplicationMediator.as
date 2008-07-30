@@ -21,7 +21,7 @@ package sk.prasa.examples.albumcoverflow.view
 		{
 			super(NAME, viewComponent);
 			
-//			facade.registerMediator(new AlbumMediator(app.album));
+			facade.registerMediator(new AlbumMediator(app.album));
 			facade.registerMediator(new ThumbsMediator(app.thumbs));
 			facade.registerMediator(new PreloaderMediator(app.preloader));
 			facade.registerMediator(new NavigationMediator(app.navigation));

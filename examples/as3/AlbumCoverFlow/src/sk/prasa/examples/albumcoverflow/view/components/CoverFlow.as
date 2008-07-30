@@ -19,8 +19,8 @@ package sk.prasa.examples.albumcoverflow.view.components
 	public class CoverFlow extends Sprite 
 	{
 		public var ANGLE : Number = 65;			// plane angle
-		public var SEPARATION : Number = 100;	// separation between bitmaps
-		public var OFFSET : Number = 160;		// offset between selected and non-selected
+		public var SEPARATION : Number = 70;	// separation between bitmaps
+		public var OFFSET : Number = 0;		// offset between selected and non-selected
 		public var SELECTED_Z : Number = -280;	// z angle of the selected bitmap
 		public var TIME : Number = 0.5;			// tween time
 		
@@ -56,6 +56,8 @@ package sk.prasa.examples.albumcoverflow.view.components
 					tPlane.addEventListener(MouseEvent.ROLL_OUT, onItemtRollOut);
 					tPlane.addEventListener(MouseEvent.CLICK, onClick);
 					tPlane.buttonMode = true;
+					// because the original DisplayObject is never shown and we need the id of the focused DisplayObject
+					tPlane.name = aChild.name;
 					
 				var tBitmapData : BitmapData = new BitmapData(aChild.width, aChild.height, false, 0x000000);
 					tBitmapData.draw(aChild);
@@ -72,6 +74,8 @@ package sk.prasa.examples.albumcoverflow.view.components
 				moveTo(__current);
 				reindex(__current - 1);
 				
+				return tPlane;
+				
 			} catch(e : Error)
 			{
 				trace("CoverFlow Error: " + e);
@@ -81,14 +85,40 @@ package sk.prasa.examples.albumcoverflow.view.components
 			return aChild;
 		}
 		
-		override public function removeChild(aChild : DisplayObject) : DisplayObject
+		public function removeChildByName(aName : String) : DisplayObject
 		{
 			try
 			{
-				var tIndex : int = __scene.getChildIndex(aChild);
-				var tChild : DisplayObject = __scene.removeChild(aChild);
+				return this.removeChild(__scene.getChildByName(aName));
 				
-				__children.slice(tIndex, 1);
+			} catch(e : Error)
+			{
+				trace("CoverFlow, unable to remove child by name: " + e);
+			}
+			
+			return null;
+		}
+		
+		override public function removeChild(aChild : DisplayObject) : DisplayObject
+		{
+			var tChild : DisplayObject = aChild;
+			
+			try
+			{
+				tChild.removeEventListener(MouseEvent.ROLL_OVER, onItemRollOver);
+				tChild.removeEventListener(MouseEvent.ROLL_OUT, onItemtRollOut);
+				tChild.removeEventListener(MouseEvent.CLICK, onClick);
+
+				tChild = __scene.removeChild(tChild);
+				
+				for(var a : int = 0; a < __children.length; a++)
+				{
+					if(__children[a] as Sprite3D == tChild)
+					{
+						__children.splice(a, 1);
+						break;
+					}
+				}
 				
 			} catch(e : Error)
 			{
@@ -177,18 +207,14 @@ package sk.prasa.examples.albumcoverflow.view.components
 		
 		private function onItemRollOver(evt : MouseEvent) : void
 		{
-			evt.stopImmediatePropagation();
-			dispatchEvent(evt);
 		}
 
 		private function onItemtRollOut(evt : MouseEvent) : void
 		{
-			evt.stopImmediatePropagation();
-			dispatchEvent(evt);
 		}
 		
 		private function onClick(evt : MouseEvent) : void
-		{
+		{				
 			for(var a : int = 0; a < __children.length; a++)
 			{
 				if(__children[a] as Sprite3D == evt.currentTarget)

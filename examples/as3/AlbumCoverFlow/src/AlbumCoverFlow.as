@@ -1,5 +1,10 @@
 package  
 {
+	import com.yahoo.astra.layout.events.LayoutEvent;	
+	import com.yahoo.astra.layout.LayoutContainer;	
+	import com.yahoo.astra.layout.modes.BoxLayout;	
+	
+	import flash.events.Event;	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -18,13 +23,13 @@ package
 	 */
 	public class AlbumCoverFlow extends Sprite 
 	{
-//		public var album : AlbumView;
+		public var album : AlbumView;
 		public var thumbs : ThumbsView;
 		public var preloader : PreloaderView;
 		public var navigation : NavigationView; 
-		
+				
 		private var facade : ApplicationFacade;
-
+		
 		public function AlbumCoverFlow()
 		{
 			initializeStage();
@@ -36,23 +41,28 @@ package
 		
 		private function initializeStage() : void
 		{
-			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.align = StageAlign.TOP_LEFT;
+			this.stage.scaleMode = StageScaleMode.NO_SCALE;
+			this.stage.align = StageAlign.TOP_LEFT;
+			this.stage.addEventListener(Event.RESIZE, resizeHandler);
 		}
 		
 		private function initializeViews() : void
-		{
-//			album = new AlbumView();
+		{	
+			album = new AlbumView();
 			thumbs = new ThumbsView();
-			thumbs.x = 320; thumbs.y = 420; 
+			thumbs.x = 160; thumbs.y = 400; 
 			
 			preloader = new PreloaderView();
 			navigation = new NavigationView();
 			
-//			this.addChild(album);
+			this.addChild(album);
 			this.addChild(thumbs);
 			this.addChild(preloader);
 			this.addChild(navigation);
+		}
+		
+		private function resizeHandler(evt : Event) : void
+		{
 		}
 	}
 }
