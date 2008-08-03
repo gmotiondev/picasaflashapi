@@ -1,20 +1,16 @@
 package  
 {
-	import com.yahoo.astra.layout.events.LayoutEvent;	
-	import com.yahoo.astra.layout.LayoutContainer;	
-	import com.yahoo.astra.layout.modes.BoxLayout;	
-	
-	import flash.events.Event;	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.events.Event;
 	
 	import sk.prasa.examples.albumcoverflow.ApplicationFacade;
 	import sk.prasa.examples.albumcoverflow.view.components.AlbumView;
 	import sk.prasa.examples.albumcoverflow.view.components.NavigationView;
 	import sk.prasa.examples.albumcoverflow.view.components.PreloaderView;
 	import sk.prasa.examples.albumcoverflow.view.components.ThumbsView;		
-	
+
 	[SWF(width="800", height="600", backgroundColor="0x000000", frameRate="31")]
 	
 	/**
