@@ -1,6 +1,6 @@
 package sk.prasa.examples.albumcoverflow.view 
 {
-	import flash.display.DisplayObject;	
+	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
@@ -13,10 +13,9 @@ package sk.prasa.examples.albumcoverflow.view
 	import sk.prasa.examples.albumcoverflow.model.ContentProxy;
 	import sk.prasa.examples.albumcoverflow.model.helpers.QueueLoader;
 	import sk.prasa.examples.albumcoverflow.model.vo.PhotoVO;
-	import sk.prasa.examples.albumcoverflow.view.components.ImageLoader;
 	import sk.prasa.examples.albumcoverflow.view.components.ThumbView;
-	import sk.prasa.examples.albumcoverflow.view.components.ThumbsView;	
-	
+	import sk.prasa.examples.albumcoverflow.view.components.ThumbsView;		
+
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 

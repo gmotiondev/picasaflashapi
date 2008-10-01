@@ -1,13 +1,11 @@
-package sk.prasa.examples.albumcoverflow.view.components 
+package sk.prasa.examples.albumcoverflow.view.components
 {
-	import flash.filters.GlowFilter;	
-	import flash.filters.DropShadowFilter;	
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
-	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.filters.GlowFilter;
 	import flash.geom.Matrix;
 	
 	import five3D.display.Bitmap3D;
@@ -16,8 +14,8 @@ package sk.prasa.examples.albumcoverflow.view.components
 	import five3D.display.Sprite3D;
 	import five3D.utils.Drawing;
 	
-	import gs.TweenLite;		
-	
+	import gs.TweenLite;
+
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
