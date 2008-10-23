@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"	applicationComplete="init()" 
+	backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#EEEEEE, #FFFFFF]">
+	<mx:Script>
+		<![CDATA[
+			import flash.net.navigateToURL;
+			
+			[Bindable]
+			private var token : String;
+			
+			private function init() : void
+			{
+				try
+				{
+					//var tHref : String = ExternalInterface.call("window.location.href.toString");
+					var tSearch : String = ExternalInterface.call("window.location.search.substring", 1);
+					var tParams : URLVariables = new URLVariables(tSearch);
+					
+					token = tParams["token"];
+				} catch(e : Error)
+				{	
+					trace("Some error occured. ExternalInterface doesn't work in Standalone player.");
+					token = null;
+				}
+				
+				debug.htmlText += "Token: " + token + "\n";			
+			}
+			
+			private function openAuthSub() : void
+			{
+				var tURLVariables : URLVariables = new URLVariables();
+					tURLVariables["scope"] = "http://picasaweb.google.com/data";
+					tURLVariables["session"] = "1";
+					tURLVariables["secure"] = "0";
+					tURLVariables["hd"] = "default";
+					tURLVariables["next"] = "http://authsub.prasa.sk/index.html";
+				
+				var tURLRequest : URLRequest = new URLRequest("https://www.google.com/accounts/AuthSubRequest");
+					tURLRequest.data =  tURLVariables;
+					
+				navigateToURL(tURLRequest,"_top");
+			}
+			
+			private function getAuthSubSessionToken() : void
+			{
+				var tURLVariables : URLVariables = new URLVariables();
+			
+				var tRequest : URLRequest = new URLRequest();
+					tRequest.url = "https://www.google.com/accounts/AuthSubSessionToken";
+					tRequest.method = URLRequestMethod.GET;
+					tRequest.data = tURLVariables;
+					
+					tRequest.requestHeaders.push(new URLRequestHeader("Content-type","application/x-www-form-urlencoded"));
+					tRequest.requestHeaders.push(new URLRequestHeader("Authorization","AuthSub token=\""+token+"\""));
+					
+				var tLoader : URLLoader = new URLLoader();
+					tLoader.addEventListener(Event.COMPLETE, loader_result);
+					tLoader.addEventListener(IOErrorEvent.IO_ERROR, loader_fault);
+					tLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_fault);
+					tLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, loader_status);
+					
+				try
+				{
+					tLoader.load(tRequest);
+				} catch(e : Error)
+				{
+					throw new Error(e);
+				}		
+			}
+			
+			/*private function sendURLLoaderRequest() : void
+			{
+				var tURLVariables : URLVariables = new URLVariables();
+					tURLVariables["accountType"] = "HOSTED_OR_GOOGLE";
+					tURLVariables["Email"] = encodeURI(googleid.text);
+					tURLVariables["Passwd"] = encodeURI(password.text); 
+					tURLVariables["service"] = "lh2";
+					tURLVariables["source"] = "Google_ClientLogin";
+					
+				var tRequest : URLRequest = new URLRequest();
+					tRequest.url = "https://www.google.com/accounts/ClientLogin";
+					tRequest.method = URLRequestMethod.POST;
+					tRequest.data = tURLVariables;
+					
+					tRequest.requestHeaders.push(new URLRequestHeader("Content-type","application/x-www-form-urlencoded"));
+					
+				var tLoader : URLLoader = new URLLoader();
+					tLoader.addEventListener(Event.COMPLETE, loader_result);
+					tLoader.addEventListener(IOErrorEvent.IO_ERROR, loader_fault);
+					tLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, loader_fault);
+					tLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, loader_status);
+					
+				try
+				{
+					tLoader.load(tRequest);
+				} catch(e : Error)
+				{
+					throw new Error(e);
+				}
+			}*/
+			
+			public function loader_result(evt : Event) : void
+			{
+				var loader : URLLoader = URLLoader(evt.target); 
+				debug.htmlText += "<font color=\"#00ff00\">Success</font>: " + loader.data + "\n";
+			}
+	
+			public function loader_fault(evt : ErrorEvent) : void
+			{
+				debug.htmlText += "<font color=\"#ff0000\">Fault</font>: " + evt.text + "\n";
+			}
+		
+			public function loader_status(evt : HTTPStatusEvent) : void
+			{
+				trace("loader_status: " + evt.status);
+			}
+		]]>
+	</mx:Script>
+	<mx:VBox left="10" right="10" top="10" bottom="10">
+		<mx:HBox>
+			<mx:Button label="Get single-use token" click="openAuthSub()" visible="{token == null}"/>
+			<mx:Button label="Get long-lived session" click="getAuthSubSessionToken()" visible="{token != null}"/>
+		</mx:HBox>
+		<mx:TextArea width="100%" height="100%" backgroundColor="#444444" color="#FFFFFF" id="debug"/>
+	</mx:VBox>
+</mx:Application>
