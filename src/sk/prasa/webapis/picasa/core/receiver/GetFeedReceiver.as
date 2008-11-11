@@ -66,6 +66,7 @@ package sk.prasa.webapis.picasa.core.receiver
 				responder.dispatchEvent(tEvt);
 			} catch(e : Error)
 			{
+				trace("gooooing to throw!");
 				throw new Error(e);
 			}
 		}
@@ -98,34 +99,34 @@ package sk.prasa.webapis.picasa.core.receiver
 		/**
 		 * When the fault event from the URLLoader is received. 
 		 */
-		public function fault(evt : ErrorEvent) : void
-		{
-			responder.dispatchEvent(evt);
-		}
+//		public function fault(evt : ErrorEvent) : void
+//		{
+//			responder.dispatchEvent(evt);
+//		}
 
 		/**
 		 * When the URLLoader dispatches ProgressEvent, redispatch it.
 		 */
-		public function progress(evt : ProgressEvent) : void
-		{
-			responder.dispatchEvent(evt);
-		}
+//		public function progress(evt : ProgressEvent) : void
+//		{
+//			responder.dispatchEvent(evt);
+//		}
 
 		/** 
 		 * The URLLoader has dispatched on Event.OPEN event.
 		 */
-		public function open(evt : Event) : void
-		{
-			responder.dispatchEvent(evt);
-		}
+//		public function open(evt : Event) : void
+//		{
+//			responder.dispatchEvent(evt);
+//		}
 
 		/**
 		 * We have received an HTTPStatusEvent.STATUS from URLLoader.
 		 * Usefull for determining errors.
 		 */
-		public function status(evt : HTTPStatusEvent) : void
-		{
-			responder.dispatchEvent(evt);
-		}
+//		public function status(evt : HTTPStatusEvent) : void
+//		{
+//			responder.dispatchEvent(evt);
+//		}
 	}
 }

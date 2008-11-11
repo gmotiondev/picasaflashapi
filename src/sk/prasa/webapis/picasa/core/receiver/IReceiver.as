@@ -39,11 +39,11 @@ package sk.prasa.webapis.picasa.core.receiver
 	 */
 	public interface IReceiver
 	{
-		function open(evt : Event) : void;
+//		function open(evt : Event) : void;
 		function result(evt : Event) : void;
-		function fault(evt : ErrorEvent) : void;
-		function progress(evt : ProgressEvent) : void;
-		function status(evt : HTTPStatusEvent) : void;
+//		function fault(evt : ErrorEvent) : void;
+//		function progress(evt : ProgressEvent) : void;
+//		function status(evt : HTTPStatusEvent) : void;
 		function get responder() : PicasaResponder;
 	}
 }
