@@ -34,7 +34,10 @@ package sk.prasa.tumblr.view
 					var tCP : ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
 					var tTitle : String = note.getBody() as String;
 					
-					this.title.text = "(" + tCP.currentEntry + "/" + tCP.totalEntries + ") " + (tTitle != null ? tTitle : "");
+					this.title.text = 	tCP != null ? 
+										"(" + tCP.currentEntry + "/" + tCP.totalEntries + ") " + (tTitle != null ? tTitle : "") :
+										tTitle;
+									
 					break;
 					
 				case ApplicationFacade.RESIZE_EVENT:
