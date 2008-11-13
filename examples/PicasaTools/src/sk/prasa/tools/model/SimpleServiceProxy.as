@@ -60,6 +60,17 @@ package sk.prasa.tools.model
 			var tResponder : PicasaResponder = service.photos.list_by_tag(aUserID, aAlbumID, aTag);
 				tResponder.addEventListener(PicasaDataEvent.DATA, result);
 				tResponder.addEventListener(IOErrorEvent.IO_ERROR, fault);
+				tResponder.addEventListener(ProgressEvent.PROGRESS, progress);
+		}
+		
+		public function getListByTag(aUserID : String, aTag : String) : void
+		{
+			lastCommand = new LastCommand(getListByTag, aUserID, aTag);
+			
+			var tResponder : PicasaResponder = service.albums.list_by_tag(aUserID, aTag);
+				tResponder.addEventListener(PicasaDataEvent.DATA, result);
+				tResponder.addEventListener(IOErrorEvent.IO_ERROR, fault);
+				tResponder.addEventListener(ProgressEvent.PROGRESS, progress);
 		}
 			
 		public function getNextPage() : void

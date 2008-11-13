@@ -7,8 +7,8 @@ package sk.prasa.tools.model.vo
 	 */
 	public class RequestVO 
 	{
-		public var userid : String = "thisispinkfu";
-		public var albumid : String = "5161355527636525521";
+		public var userid : String;// = "thisispinkfu";
+		public var albumid : String;// = "5161355527636525521";
 		public var tag : String;
 		public var thumbsize : String = "64c";
 		public var imgmax : String = "576";
