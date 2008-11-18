@@ -1,12 +1,13 @@
 package sk.prasa.tumblr.view 
 {
-	import flash.events.FullScreenEvent;	
-	import flash.events.Event;			import sk.prasa.tumblr.ApplicationFacade;
+	import flash.events.Event;
+	import flash.events.FullScreenEvent;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
-	import org.puremvc.as3.patterns.observer.Notifier;	
+	
+	import sk.prasa.tumblr.ApplicationFacade;	
 
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com) 
@@ -54,9 +55,9 @@ package sk.prasa.tumblr.view
 			this.sendNotification(ApplicationFacade.FULLSCREEN_EVENT, evt.fullScreen);
 		}
 		
-		protected function get app() : TumblrApp
+		protected function get app() : MainApplication
 		{
-			return viewComponent as TumblrApp;
+			return viewComponent as MainApplication;
 		}
 	}
 }

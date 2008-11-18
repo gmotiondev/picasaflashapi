@@ -14,7 +14,7 @@ package sk.prasa.tumblr.controller
 	{
 		override public function execute(note : INotification) : void
 		{
-			facade.registerMediator(new ApplicationMediator(note.getBody() as TumblrApp));
+			facade.registerMediator(new ApplicationMediator(note.getBody() as MainApplication));
 		}
 	}
 }

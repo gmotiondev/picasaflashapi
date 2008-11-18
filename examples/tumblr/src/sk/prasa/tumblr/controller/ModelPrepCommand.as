@@ -15,7 +15,7 @@ package sk.prasa.tumblr.controller
 	{
 		override public function execute(note : INotification) : void
 		{
-			var app : TumblrApp = note.getBody() as TumblrApp;
+			var app : MainApplication = note.getBody() as MainApplication;
 
 			facade.registerProxy(new ApplicationProxy());
 			facade.registerProxy(new ServiceProxy(app.request));
