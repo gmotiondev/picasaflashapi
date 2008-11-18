@@ -1,11 +1,11 @@
 package sk.prasa.tumblr.controller 
 {
-	import sk.prasa.tumblr.ApplicationFacade;
-	import sk.prasa.tumblr.model.ContentProxy;
-	
 	import org.puremvc.as3.interfaces.ICommand;
 	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.patterns.command.SimpleCommand;	
+	import org.puremvc.as3.patterns.command.SimpleCommand;
+	
+	import sk.prasa.tumblr.ApplicationFacade;
+	import sk.prasa.tumblr.model.ContentProxy;	
 
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
@@ -20,9 +20,19 @@ package sk.prasa.tumblr.controller
 				facade.removeProxy(ContentProxy.NAME);
 			}
 			
-			facade.registerProxy(new ContentProxy(notification.getBody()));
+			var tContentProxy : ContentProxy = new ContentProxy(notification.getBody());
 			
-			this.sendNotification(ApplicationFacade.CHANGE_THUMBS_EVENT);
+			if(tContentProxy.getEntries().length > 0)
+			{
+			
+				facade.registerProxy(new ContentProxy(notification.getBody()));
+			
+				this.sendNotification(ApplicationFacade.CHANGE_THUMBS_EVENT);
+			} else
+			{
+				this.sendNotification(ApplicationFacade.TITLE_CHANGE_EVENT, "Sorry, no results!");
+				this.sendNotification(ApplicationFacade.PROGRESS_EVENT, 100);
+			}
 		}
 	}
 }
