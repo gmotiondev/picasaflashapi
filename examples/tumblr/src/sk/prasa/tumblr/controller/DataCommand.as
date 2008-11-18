@@ -21,13 +21,13 @@ package sk.prasa.tumblr.controller
 			}
 			
 			var tContentProxy : ContentProxy = new ContentProxy(notification.getBody());
-			
+			trace(tContentProxy.getEntries().length);
 			if(tContentProxy.getEntries().length > 0)
 			{
-			
 				facade.registerProxy(new ContentProxy(notification.getBody()));
 			
 				this.sendNotification(ApplicationFacade.CHANGE_THUMBS_EVENT);
+				
 			} else
 			{
 				this.sendNotification(ApplicationFacade.TITLE_CHANGE_EVENT, "Sorry, no results!");

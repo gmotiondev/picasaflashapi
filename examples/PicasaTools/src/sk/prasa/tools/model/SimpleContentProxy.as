@@ -121,7 +121,7 @@ package sk.prasa.tools.model
 		 */
 		private function getCurrent() : String
 		{
-			return PhotoEntry(feed.entries[__current]).gphoto.id;			
+			return PhotoEntry(feed.entries[__current]).gphoto.id;
 		}
 		
 		/**
