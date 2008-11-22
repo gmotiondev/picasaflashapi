@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:components="components.*"
+	layout="absolute"
+	creationComplete="creationComplete_Handler()">
+	<mx:Style source="assets/css/gray.css"/>
+	<mx:Script>
+		<![CDATA[
+			import mx.utils.URLUtil;
+			import mx.collections.ArrayCollection;
+			import sk.prasa.webapis.picasa.events.PicasaDataEvent;
+			import sk.prasa.webapis.picasa.PicasaResponder;
+			import sk.prasa.webapis.picasa.PicasaService;
+			
+			[Bindable] public var photos : ArrayCollection;
+			
+			private function creationComplete_Handler() : void
+			{
+				var tPicasaService : PicasaService = new PicasaService();
+				var tPicasaResponder : PicasaResponder = tPicasaService.photos.list("thisispinkfu", "5161355527636525521");
+					tPicasaResponder.addEventListener(PicasaDataEvent.DATA, data_Handler);
+			}
+			
+			private function data_Handler(evt : PicasaDataEvent) : void
+			{	
+				photos = new ArrayCollection();
+				
+				for(var a : int = 0; a < evt.data.entries.length; a++)
+				{
+					photos.addItem({thumb : evt.data.entries[a].media.thumbnails[0].url, 
+									image : evt.data.entries[a].media.content.url, 
+									author: evt.data.entries[a].media.credit,
+									summary : evt.data.entries[a].summary});
+				}
+			}
+			
+			private function thumbClick_Handler(evt : Event) : void
+			{
+				if(this.list.selectedItem != null)
+				{
+					this.holder.source = this.list.selectedItem.image;
+				}
+				
+				mx.utils.URLUtil
+			}
+			
+		]]>
+	</mx:Script> 
+	<mx:Image id="holder" 
+		left="330" top="10" bottom="10" right="10"/>
+	<components:ThumbList id="list" 
+		dataProvider="{photos}"
+		click="thumbClick_Handler(event)" top="10" left="10" width="310" bottom="10"/>
+</mx:Application>

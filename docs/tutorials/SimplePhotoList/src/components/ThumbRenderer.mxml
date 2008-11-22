@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Image 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	source="{data.thumb}" 
+	toolTip="{data.author}{(data.summary != null ? ' - ' + data.summary : '')}"
+	width="72" height="72">
+</mx:Image>
