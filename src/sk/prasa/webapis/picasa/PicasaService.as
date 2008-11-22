@@ -33,11 +33,38 @@ package sk.prasa.webapis.picasa
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
+	 * Picasa Flash API (PFA) is read-only ActionScript interface for the
+	 * Google's Picasaweb service. PFA allows you to list user albums, photos,
+	 * tags, comments or search for photos via the community search.  
+	 * 
+	 * PicasaService class constructs a basic bridge to the PFA methods.
+	 * PicasaService sens any Events, it's used only as a bridge. 
+	 * 
+	 * @see sk.prasa.webapis.picasa.PicasaResponder
+	 * @see http://code.google.com/apis/picasaweb/
 	 */
 	final public class PicasaService
 	{
-		public static var POLICY_FILE_URL : String = "http://photos.googleapis.com/data/crossdomain.xml";  
+		/**
+		 * Picasaweb service doesn't have its crossdomain.xml file at the root 
+		 * of the host, so we have to load manualy.
+		 */
+		public static var POLICY_FILE_URL : String = "http://photos.googleapis.com/data/crossdomain.xml";
+		
+		/**
+		 * Picasaweb API access point. Reflects the "api" projection value.
+		 * Updatability is r/w when the user of the content is authenticated. 
+		 * 
+		 * @see http://code.google.com/apis/picasaweb/reference.html#Projection
+		 */  
 		public static var FEED_API_URL : String = "http://photos.googleapis.com/data/feed/api/";
+		
+		/**
+		 * Picasaweb BASE access point. Reflects the "base" projection value.
+		 * Used by feed readers. This is read only.
+		 * 
+		 * @see http://code.google.com/apis/picasaweb/reference.html#Projection
+		 */
 		public static var FEED_BASE_URL : String = "http://photos.googleapis.com/data/feed/base/";
 		
 		private var __auth : Auth;
@@ -67,9 +94,9 @@ package sk.prasa.webapis.picasa
 		 * 		service.max_results = 10;
 		 * 		
 		 * var responder : PicasaResponder = service.albums.list('username'); 
-		 * 		responder.addEventListener(PicasaDataEvent.DATA, onComplete);
-		 * 		responder.addEventListener(ErrorEvent.ERROR, onError);
-		 * 		responder.addEventListener(HTTPStatusEvent.HTTP_STATUS, onStatus);
+		 * 		responder.addEventListener(PicasaDataEvent.DATA, onCompleteHandler);
+		 * 		responder.addEventListener(IOErrorEvent.IO_ERROR, onErrorHandler);
+		 * 		
 		 * </listing>
 		 */
 		public function PicasaService()
@@ -97,6 +124,7 @@ package sk.prasa.webapis.picasa
 			__paramsObservable.subscribe(__contacts.params);			__paramsObservable.subscribe(__custom.params);
 		}
 		
+		[Inspectable(enumeration="all,public,private", defaultValue="all"]
 		/**
 		 * <p>Visibility values let you request data at various levels of sharing. For example, a visibility value of <code>public</code> requests publicly visible data. 
 		 * For a list of values, see Visibility values, below. If you don't specify a visibility value, then the visibility depends on your authentication. 
@@ -130,8 +158,9 @@ package sk.prasa.webapis.picasa
 			sendParams();
 		}
 		
+		[Inspectable(enumeration="32u,48u,64u,72u,144u,160u,32c,48c,64c,72c,144,160c,200u,288u,320u,400u,512u,576u,640u,720u,800u"]
 		/**
-		 * Thumbnail size parameter
+		 * <p>Thumbnail size parameter</p>
 		 * 
 		 * <p>Valid with <code>album</code> or <code>photo</code> kinds; specifies what image size to use for thumbnails. 
 		 * <b>Multiple values</b> may be specified using a comma-delimited list. If multiple values are specified, 
@@ -159,6 +188,7 @@ package sk.prasa.webapis.picasa
 		 * 
 		 * <p>These query parameters are used when retrieving the feeds in order to get images of the appropriate sizes. They cannot be used when retrieving the actual images.</p>
 		 *  
+		 * @see http://code.google.com/apis/picasaweb/reference.html#Parameters
 		 */
 		public function get thumbsize() : String
 		{
@@ -175,6 +205,7 @@ package sk.prasa.webapis.picasa
 			sendParams();
 		}
 		
+		[Inspectable(enumeration="32u,48u,64u,72u,144u,160u,32c,48c,64c,72c,144,160c,200u,288u,320u,400u,512u,576u,640u,720u,800u"]
 		/**
 		 * <p>Image size parameter</p>
 		 * 
@@ -182,6 +213,7 @@ package sk.prasa.webapis.picasa
 		 * Only a <b>single value</b> may be specified. Refer to the list of valid values below.</p>
 		 * 
 		 * @see #thumbsize
+		 * @see http://code.google.com/apis/picasaweb/reference.html#Parameters
 		 */
 		public function get imgmax() : String
 		{
@@ -254,6 +286,7 @@ package sk.prasa.webapis.picasa
 		 * ClientLogin - this method is used by installed Desktop Apps.<br/>
 		 * AuthSub - this is the default method for web applications. However, this is not yet supported because of crossdomain.xml issue and Google Auth API.</p>
 		 * 
+		 * @see sk.prasa.webapis.picasa.core.Auth
 		 */
 		public function get auth() : Auth
 		{
@@ -263,6 +296,7 @@ package sk.prasa.webapis.picasa
 		/**
 		 * Bridge to Photos methods
 		 * 
+		 * @see sk.prasa.webapis.picasa.core.Photos
 		 */	
 		public function get photos() : Photos
 		{
@@ -272,6 +306,7 @@ package sk.prasa.webapis.picasa
 		/**
 		 * Bridge to Album methods 
 		 * 
+		 * @see sk.prasa.webapis.picasa.core.Albums
 		 */	
 		public function get albums() : Albums
 		{
@@ -281,6 +316,7 @@ package sk.prasa.webapis.picasa
 		/**
 		 * Bridge to Tags methods
 		 * 
+		 * @see sk.prasa.webapis.picasa.core.Tags
 		 */	
 		public function get tags() : Tags
 		{
@@ -290,6 +326,7 @@ package sk.prasa.webapis.picasa
 		/**
 		 * Bridge to Comments methods
 		 * 
+		 * @see sk.prasa.webapis.picasa.core.Comments
 		 */	
 		public function get comments() : Comments
 		{
@@ -299,6 +336,7 @@ package sk.prasa.webapis.picasa
 		/**
 		 * Bridge to Community methods
 		 * 
+		 * @see sk.prasa.webapis.picasa.core.Community
 		 */	
 		public function get community() : Community
 		{
@@ -308,20 +346,12 @@ package sk.prasa.webapis.picasa
 		/**
 		 * Bridge to Contacts methods
 		 * 
+		 * @see sk.prasa.webapis.picasa.core.Contacts
 		 */	
 		public function get contacts() : Contacts
 		{
 			return __contacts;
 		}
-		
-//		/**
-//		 * Bridge to Custom methods
-//		 * TODO: ...
-//		 */	
-//		public function get custom() : Custom
-//		{
-//			return __custom;
-//		}
 		
 		/**
 		 * <p>Dispatches each param change to the method objects<br/>
