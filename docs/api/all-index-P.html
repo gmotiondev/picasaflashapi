@@ -177,9 +177,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("PÂ
      service.max_results = 10;
      
    var responder : PicasaResponder = service.albums.list('username'); 
-     responder.addEventListener(PicasaDataEvent.DATA, onComplete);
-     responder.addEventListener(ErrorEvent.ERROR, onError);
-     responder.addEventListener(HTTPStatusEvent.HTTP_STATUS, onStatus);
+     responder.addEventListener(PicasaDataEvent.DATA, onCompleteHandler);
+     responder.addEventListener(IOErrorEvent.IO_ERROR, onErrorHandler);
+     
    </pre></div>
    </td>
 </tr>
@@ -187,7 +187,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("PÂ
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('sk/prasa/webapis/picasa/class-list.html');" href="sk/prasa/webapis/picasa/PicasaService.html#POLICY_FILE_URL">POLICY_FILE_URL</a> &mdash; Static property in class sk.prasa.webapis.picasa.<a onclick="javascript:loadClassListFrame('sk/prasa/webapis/picasa/class-list.html');" href="sk/prasa/webapis/picasa/PicasaService.html">PicasaService</a></td>
 </tr>
 <tr>
-<td width="20"></td><td></td>
+<td width="20"></td><td>
+   Picasaweb service doesn't have its crossdomain.xml file at the root 
+   of the host, so we have to load manualy.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('sk/prasa/webapis/picasa/objects/class-list.html');" href="sk/prasa/webapis/picasa/objects/GPhoto.html#position">position</a> &mdash; Property in class sk.prasa.webapis.picasa.objects.<a onclick="javascript:loadClassListFrame('sk/prasa/webapis/picasa/objects/class-list.html');" href="sk/prasa/webapis/picasa/objects/GPhoto.html">GPhoto</a></td>

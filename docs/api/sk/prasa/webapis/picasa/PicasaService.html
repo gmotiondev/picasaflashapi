@@ -40,6 +40,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
   <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../picasa/PicasaResponder.html" target="">sk.prasa.webapis.picasa.PicasaResponder</a>
+<br>
+<a href="http://code.google.com/apis/picasaweb/" target="mm_external">http://code.google.com/apis/picasaweb/</a>
+</div>
 <br>
 <hr>
 </div>
@@ -96,11 +104,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">PicasaService</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#FEED_API_URL">FEED_API_URL</a> : String = "http://photos.googleapis.com/data/feed/api/"<div class="summaryTableDescription">[static]</div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#FEED_API_URL">FEED_API_URL</a> : String = "http://photos.googleapis.com/data/feed/api/"<div class="summaryTableDescription">[static]
+   Picasaweb API access point.</div>
 </td><td class="summaryTableOwnerCol">PicasaService</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#FEED_BASE_URL">FEED_BASE_URL</a> : String = "http://photos.googleapis.com/data/feed/base/"<div class="summaryTableDescription">[static]</div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#FEED_BASE_URL">FEED_BASE_URL</a> : String = "http://photos.googleapis.com/data/feed/base/"<div class="summaryTableDescription">[static]
+   Picasaweb BASE access point.</div>
 </td><td class="summaryTableOwnerCol">PicasaService</td>
 </tr>
 <tr class="">
@@ -126,7 +136,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">PicasaService</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#POLICY_FILE_URL">POLICY_FILE_URL</a> : String = "http://photos.googleapis.com/data/crossdomain.xml"<div class="summaryTableDescription">[static]</div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#POLICY_FILE_URL">POLICY_FILE_URL</a> : String = "http://photos.googleapis.com/data/crossdomain.xml"<div class="summaryTableDescription">[static]
+   Picasaweb service doesn't have its crossdomain.xml file at the root 
+   of the host, so we have to load manualy.</div>
 </td><td class="summaryTableOwnerCol">PicasaService</td>
 </tr>
 <tr class="">
@@ -145,7 +157,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#thumbsize">thumbsize</a> : String<div class="summaryTableDescription">
-   Thumbnail size parameter
+   <p>Thumbnail size parameter</p>
    
    <p>Valid with <code>album</code> or <code>photo</code> kinds; specifies what image size to use for thumbnails.</div>
 </td><td class="summaryTableOwnerCol">PicasaService</td>
@@ -178,9 +190,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
      service.max_results = 10;
      
    var responder : PicasaResponder = service.albums.list('username'); 
-     responder.addEventListener(PicasaDataEvent.DATA, onComplete);
-     responder.addEventListener(ErrorEvent.ERROR, onError);
-     responder.addEventListener(HTTPStatusEvent.HTTP_STATUS, onStatus);
+     responder.addEventListener(PicasaDataEvent.DATA, onCompleteHandler);
+     responder.addEventListener(IOErrorEvent.IO_ERROR, onErrorHandler);
+     
    </pre></div>
    </div>
 </td><td class="summaryTableOwnerCol">PicasaService</td>
@@ -244,6 +256,12 @@ showHideInherited();
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get albums():<a href="core/Albums.html">Albums</a></code>
 <br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="core/Albums.html" target="">sk.prasa.webapis.picasa.core.Albums</a>
+</div>
 </div>
 <a name="auth"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -263,6 +281,12 @@ showHideInherited();
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get auth():<a href="core/Auth.html">Auth</a></code>
 <br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="core/Auth.html" target="">sk.prasa.webapis.picasa.core.Auth</a>
+</div>
 </div>
 <a name="comments"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -278,6 +302,12 @@ showHideInherited();
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get comments():<a href="core/Comments.html">Comments</a></code>
 <br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="core/Comments.html" target="">sk.prasa.webapis.picasa.core.Comments</a>
+</div>
 </div>
 <a name="community"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -293,6 +323,12 @@ showHideInherited();
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get community():<a href="core/Community.html">Community</a></code>
 <br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="core/Community.html" target="">sk.prasa.webapis.picasa.core.Community</a>
+</div>
 </div>
 <a name="contacts"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -308,6 +344,12 @@ showHideInherited();
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get contacts():<a href="core/Contacts.html">Contacts</a></code>
 <br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="core/Contacts.html" target="">sk.prasa.webapis.picasa.core.Contacts</a>
+</div>
 </div>
 <a name="FEED_API_URL"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -316,7 +358,16 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static var FEED_API_URL:String = "http://photos.googleapis.com/data/feed/api/"</code>
+<code>public static var FEED_API_URL:String = "http://photos.googleapis.com/data/feed/api/"</code><p>
+   Picasaweb API access point. Reflects the "api" projection value.
+   Updatability is r/w when the user of the content is authenticated. 
+   
+   </p><p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="http://code.google.com/apis/picasaweb/reference.html#Projection" target="mm_external">http://code.google.com/apis/picasaweb/reference.html#Projection</a>
+</div>
 </div>
 <a name="FEED_BASE_URL"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -325,7 +376,16 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static var FEED_BASE_URL:String = "http://photos.googleapis.com/data/feed/base/"</code>
+<code>public static var FEED_BASE_URL:String = "http://photos.googleapis.com/data/feed/base/"</code><p>
+   Picasaweb BASE access point. Reflects the "base" projection value.
+   Used by feed readers. This is read only.
+   
+   </p><p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="http://code.google.com/apis/picasaweb/reference.html#Projection" target="mm_external">http://code.google.com/apis/picasaweb/reference.html#Projection</a>
+</div>
 </div>
 <a name="imgmax"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -351,6 +411,8 @@ showHideInherited();
 </p>
 <div class="seeAlso">
 <a href="../picasa/PicasaService.html#thumbsize" target="">thumbsize</a>
+<br>
+<a href="http://code.google.com/apis/picasaweb/reference.html#Parameters" target="mm_external">http://code.google.com/apis/picasaweb/reference.html#Parameters</a>
 </div>
 </div>
 <a name="max_results"></a>
@@ -393,6 +455,12 @@ showHideInherited();
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get photos():<a href="core/Photos.html">Photos</a></code>
 <br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="core/Photos.html" target="">sk.prasa.webapis.picasa.core.Photos</a>
+</div>
 </div>
 <a name="POLICY_FILE_URL"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -401,8 +469,10 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static var POLICY_FILE_URL:String = "http://photos.googleapis.com/data/crossdomain.xml"</code>
-</div>
+<code>public static var POLICY_FILE_URL:String = "http://photos.googleapis.com/data/crossdomain.xml"</code><p>
+   Picasaweb service doesn't have its crossdomain.xml file at the root 
+   of the host, so we have to load manualy.
+   </p></div>
 <a name="start_index"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -446,6 +516,12 @@ showHideInherited();
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get tags():<a href="core/Tags.html">Tags</a></code>
 <br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="core/Tags.html" target="">sk.prasa.webapis.picasa.core.Tags</a>
+</div>
 </div>
 <a name="thumbsize"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -455,9 +531,9 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>thumbsize:String</code>&nbsp;&nbsp;[read-write]<p>
-   Thumbnail size parameter
+   </p><p>Thumbnail size parameter</p>
    
-   </p><p>Valid with <code>album</code> or <code>photo</code> kinds; specifies what image size to use for thumbnails. 
+   <p>Valid with <code>album</code> or <code>photo</code> kinds; specifies what image size to use for thumbnails. 
    <b>Multiple values</b> may be specified using a comma-delimited list. If multiple values are specified, 
    multiple <code>media:thumbnail</code> elements will be returned in the feed. 
    Refer to the list of valid values below.</p>
@@ -488,6 +564,12 @@ showHideInherited();
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set thumbsize(value:String):void</code>
 <br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="http://code.google.com/apis/picasaweb/reference.html#Parameters" target="mm_external">http://code.google.com/apis/picasaweb/reference.html#Parameters</a>
+</div>
 </div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
@@ -513,9 +595,9 @@ showHideInherited();
      service.max_results = 10;
      
    var responder : PicasaResponder = service.albums.list('username'); 
-     responder.addEventListener(PicasaDataEvent.DATA, onComplete);
-     responder.addEventListener(ErrorEvent.ERROR, onError);
-     responder.addEventListener(HTTPStatusEvent.HTTP_STATUS, onStatus);
+     responder.addEventListener(PicasaDataEvent.DATA, onCompleteHandler);
+     responder.addEventListener(IOErrorEvent.IO_ERROR, onErrorHandler);
+     
    </pre></div>
    </p></div>
 <br>
