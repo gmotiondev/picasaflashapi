@@ -79,7 +79,7 @@ package albums
 
 			// Meta:Icon
 			assertNotNull("meta.icon is null", tMeta.icon);
-			assertEquals("meta.ico", tMeta.icon, "http://lh6.ggpht.com/thisispinkfu/AAAAY-cVBS8/AAAAAAAAAAA/CRZkCWt3d5Y/s64-c/thisispinkfu.jpg");
+			//assertEquals("meta.ico", tMeta.icon, "http://lh6.ggpht.com/thisispinkfu/AAAAY-cVBS8/AAAAAAAAAAA/CRZkCWt3d5Y/s64-c/thisispinkfu.jpg");
 			
 			// Meta:Links
 			var tLinks : Links = tMeta.links as Links;
