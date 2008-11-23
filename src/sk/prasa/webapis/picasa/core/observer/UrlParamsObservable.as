@@ -27,6 +27,7 @@ package sk.prasa.webapis.picasa.core.observer
 	import sk.prasa.webapis.picasa.core.observer.Observable;
 	import sk.prasa.webapis.picasa.core.observer.IObservable;
 	
+	[ExcludeClass]
 	/**
 	 * Makes UrlParams as observable.
 	 * 

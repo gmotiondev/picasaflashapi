@@ -70,22 +70,16 @@ package sk.prasa.webapis.picasa.core.command
 
 			trace("(" + tRequest.method + ") " + tRequest.url);
 		
-			//var tLoader : URLLoader = new URLLoader();
 			var tLoader : URLLoader = receiver.responder;
-			//	tLoader.addEventListener(Event.OPEN, receiver.open);
 				tLoader.addEventListener(Event.COMPLETE, receiver.result);
-			//	tLoader.addEventListener(IOErrorEvent.IO_ERROR, receiver.fault);
-			//	tLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, receiver.fault);
-			//	tLoader.addEventListener(ProgressEvent.PROGRESS, receiver.progress);
-			//	tLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, receiver.status);
 			
 			try
 			{
 				tLoader.load(tRequest);
+				
 			} catch(e : Error)
 			{
-				trace("going to throw :) ");
-				throw new Error(e);
+				throw new Error("Loading feed failed. Reasong: " + e.message);
 			}
 		}		
 	}

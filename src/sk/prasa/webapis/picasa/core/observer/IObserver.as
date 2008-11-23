@@ -24,6 +24,7 @@
 
 package sk.prasa.webapis.picasa.core.observer 
 {
+	[ExcludeClass]
 	/**
 	 * Observer interface. Part of the Observer Pattern.
 	 * 

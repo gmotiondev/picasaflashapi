@@ -23,9 +23,11 @@
  */
 
 package sk.prasa.webapis.picasa.core.observer 
-{		
+{	
 	import sk.prasa.webapis.picasa.core.observer.IObservable;
 	
+	
+	[ExcludeClass]
 	/**
 	 * Observable. Part of the Observer Pattern.
 	 * 

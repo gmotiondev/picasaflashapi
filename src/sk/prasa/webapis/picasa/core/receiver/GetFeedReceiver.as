@@ -24,10 +24,7 @@
 
 package sk.prasa.webapis.picasa.core.receiver 
 {
-	import flash.events.ErrorEvent;
 	import flash.events.Event;
-	import flash.events.HTTPStatusEvent;
-	import flash.events.ProgressEvent;
 	import flash.net.URLLoader;
 	
 	import sk.prasa.webapis.picasa.PicasaResponder;
@@ -37,7 +34,6 @@ package sk.prasa.webapis.picasa.core.receiver
 	
 	/**
 	 * Receives and XML instance from GetFeedCommand.
-	 * TODO: ... ERROR handling is here poor! what if passed wrong argument or wrong argument value?
 	 * 
 	 * @author Michal Gron (michal.gron@gmail.com) 
 	 * @private
@@ -64,24 +60,18 @@ package sk.prasa.webapis.picasa.core.receiver
 					tEvt.data = parse(response);
 					
 				responder.dispatchEvent(tEvt);
+				
 			} catch(e : Error)
 			{
-				trace("gooooing to throw!");
-				throw new Error(e);
+				throw new Error("Processing feed failed. Reason: " + e.message);
 			}
 		}
-
+		
 		/**
-		 * Parse received XML document. 
+		 * Returns a PicasaResponder binded with called command.
 		 * 
-		 * TODO: ... RSS projection?.. make this factory method?
+		 * @return PicasaResponder reference
 		 */
-		protected function parse(aFeed : XML) : IAtom
-		{
-			var tFeed : IAtom = new AtomFeed(aFeed);
-			return tFeed;
-		}
-
 		public function get responder() : PicasaResponder
 		{
 			return __responder;
@@ -92,41 +82,17 @@ package sk.prasa.webapis.picasa.core.receiver
 		 */
 		public function result(evt : Event) : void
 		{
-			var loader : URLLoader = URLLoader(evt.target); 
-			process(new XML(loader.data));
+			process(new XML(URLLoader(evt.target).data));
 		}
-
+		
 		/**
-		 * When the fault event from the URLLoader is received. 
+		 * Parse received XML document. 
+		 * 
+		 * //TODO: ... RSS projection?.. make this factory method?
 		 */
-//		public function fault(evt : ErrorEvent) : void
-//		{
-//			responder.dispatchEvent(evt);
-//		}
-
-		/**
-		 * When the URLLoader dispatches ProgressEvent, redispatch it.
-		 */
-//		public function progress(evt : ProgressEvent) : void
-//		{
-//			responder.dispatchEvent(evt);
-//		}
-
-		/** 
-		 * The URLLoader has dispatched on Event.OPEN event.
-		 */
-//		public function open(evt : Event) : void
-//		{
-//			responder.dispatchEvent(evt);
-//		}
-
-		/**
-		 * We have received an HTTPStatusEvent.STATUS from URLLoader.
-		 * Usefull for determining errors.
-		 */
-//		public function status(evt : HTTPStatusEvent) : void
-//		{
-//			responder.dispatchEvent(evt);
-//		}
+		protected function parse(feed : XML) : IAtom
+		{
+			return new AtomFeed(feed);
+		}
 	}
 }
