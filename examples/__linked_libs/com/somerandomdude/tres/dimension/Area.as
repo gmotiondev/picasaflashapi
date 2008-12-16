@@ -1,1 +1,0 @@
-﻿package com.somerandomdude.tres.dimension{	public class Area	{		public var width:Number;		public var height:Number;		private var _area:Number;				public function Area(width:Number, height:Number):void		{			this.width=width;			this.height=height;		}				public function get area():Number		{			if(!_area) _area = width*height;			return _area;		}			}}
