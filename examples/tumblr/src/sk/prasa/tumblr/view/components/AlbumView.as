@@ -35,7 +35,7 @@ package sk.prasa.tumblr.view.components
 		private function centerize() : void
 		{
 			this.x = (this.stage.stageWidth - this.width) / 2;
-			this.y = (this.stage.stageHeight - this.height) / 2 - NavigationView.NAVIGATION_HEIGHT;
+			this.y = (this.stage.stageHeight - this.height) / 2;
 		}
 		
 		private function resize_Handler(evt : Event) : void
