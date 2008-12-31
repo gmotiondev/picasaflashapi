@@ -1,16 +1,7 @@
 package
 {
-	import flash.display.Bitmap;
-	import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageScaleMode;
-	import flash.events.Event;
-	
-	import sk.prasa.tools.model.vo.RequestVO;
-	import sk.prasa.tumblr.ApplicationFacade;
-	import sk.prasa.tumblr.view.components.*;		
-
-	/**
+	import sk.prasa.tools.model.vo.RequestVO;	import sk.prasa.tumblr.ApplicationFacade;	import sk.prasa.tumblr.view.components.*;		import flash.display.Sprite;	import flash.display.StageAlign;	import flash.display.StageScaleMode;	import flash.events.Event;	
+	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
 	 * "5094406297232552993";	// sample album
@@ -40,9 +31,10 @@ package
 			this.stage.scaleMode = StageScaleMode.NO_SCALE;
 			this.stage.align = StageAlign.TOP_LEFT;
 			
+			request = new RequestVO(this.root.loaderInfo.parameters);
+			
 			initializeViews();
 			
-			request = new RequestVO(this.root.loaderInfo.parameters);
 			facade = ApplicationFacade.getInstance();
 			facade.startup(this);
 			
@@ -60,16 +52,18 @@ package
 //			thumbs.y = 0;
 				
 			preloader = new PreloaderView();
-			title = new TitleView();			
-			navigation = new NavigationView();
-			tooltip = new ToolTipView();
+			title = new TitleView(	NaN, NavigationView.NAVIGATION_HEIGHT, 
+									request.font_color, request.background_color);			
+			navigation = new NavigationView(
+									request.font_color, request.background_color);
+			//tooltip = new ToolTipView();
 			
 			this.addChild(album);
 //			this.addChild(thumbs);
 			this.addChild(preloader);
 			this.addChild(title);
 			this.addChild(navigation);
-			this.addChild(tooltip);
+			//this.addChild(tooltip);
 		}
 	}
 }

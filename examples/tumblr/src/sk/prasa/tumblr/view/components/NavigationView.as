@@ -24,14 +24,15 @@ package sk.prasa.tumblr.view.components
 		private var __prevButton : PushButton;
 		private var __nextButton : PushButton;
 		
-		public function NavigationView()
+		public function NavigationView(font : uint = 0xFFFFFF, background : uint = 0xE2007A)
 		{
 			super();
 			
-			Style.BACKGROUND = 0x9B0054;
-			Style.BUTTON_FACE = 0xE2007A;
-			Style.LABEL_TEXT = 0xFFFFFF;
-			Style.DROPSHADOW = 0xE2007A;
+			Style.BACKGROUND = background + 256;
+			Style.BUTTON_FACE = background;
+			Style.LABEL_TEXT = font;
+			Style.DROPSHADOW = background;
+			Style.PROGRESS_BAR = font;
 				
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStage_Handler, false, 0, true);
 		}

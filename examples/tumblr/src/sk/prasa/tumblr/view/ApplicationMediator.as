@@ -7,7 +7,8 @@ package sk.prasa.tumblr.view
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
-	import sk.prasa.tumblr.ApplicationFacade;	
+	import sk.prasa.tumblr.ApplicationFacade;
+	import sk.prasa.tools.model.vo.RequestVO;	
 
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com) 
@@ -58,6 +59,16 @@ package sk.prasa.tumblr.view
 		protected function get app() : MainApplication
 		{
 			return viewComponent as MainApplication;
+		}
+		
+		protected function get font_color() : uint
+		{
+			return app.request.font_color;
+		}
+		
+		protected function get background_color() : uint
+		{
+			return app.request.background_color;
 		}
 	}
 }

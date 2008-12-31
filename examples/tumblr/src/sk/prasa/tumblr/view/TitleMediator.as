@@ -3,7 +3,7 @@ package sk.prasa.tumblr.view
 	import sk.prasa.tumblr.model.ContentProxy;	
 	import sk.prasa.tumblr.ApplicationFacade;
 	import sk.prasa.tumblr.view.components.TitleView;
-	
+
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;	
