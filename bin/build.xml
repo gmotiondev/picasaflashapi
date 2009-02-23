@@ -6,9 +6,22 @@
 		<tstamp>
 			<format property="TODAY" pattern="dd.MM.yyyy" locale="en,UK"/>
 		</tstamp>
-		<compc output="${bin.dir}/${library.name}.swc">
+		<pathconvert property="flex.classes" pathsep=" ">
+			<fileset dir="${src.dir}">
+				<include name="**/*.as"/>
+				<include name="**/*.mxml"/>
+			</fileset>
+			<compositemapper>
+				<packagemapper from="${src.dir}\*.as" to="*"/>
+				<packagemapper from="${src.dir}\*.mxml" to="*"/>
+				<packagemapper from="${src.dir}/*.as" to="*"/>
+				<packagemapper from="${src.dir}/*.mxml" to="*"/>
+			</compositemapper>
+		</pathconvert>
+		<compc output="${bin.dir}/${library.name}.swc" include-classes="${flex.classes}" compute-digest="false">
 			<source-path path-element="${src.dir}" />
-			<include-sources dir="${src.dir}" includes="sk/*" />
+			<namespace uri="http://www.prasa.sk/picasaflashapi" manifest="${src.dir}/manifest.xml" />
+			<in uri="http://www.prasa.sk/picasaflashapi" />
 			<metadata description="Picasa Flash API (as3)" title="Picasa Flash API (as3)" date="${TODAY}">
 				<creator name="Michal Gron (michal.gron@gmail.com)" />
 				<publisher name="Michal Gron (michal.gron@gmail.com)" />
