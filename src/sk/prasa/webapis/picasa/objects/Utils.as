@@ -23,9 +23,7 @@
  */
 
 package sk.prasa.webapis.picasa.objects 
-{
-	import mx.utils.StringUtil;	
-	
+{	
 	/**
 	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
@@ -33,12 +31,11 @@ package sk.prasa.webapis.picasa.objects
 	 */
 	public class Utils
 	{
-		
 		public static function parseString(xmllist : XMLList) : String
 		{
 			var tString : String = String(xmllist);
 			
-			if (StringUtil.trim(tString).length == 0)
+			if (trim(tString).length == 0)
 			{
 				return null;
 			}
@@ -135,6 +132,63 @@ package sk.prasa.webapis.picasa.objects
 			}
 			
 			return finalDate;
+		}
+		
+		/**
+		 *  Removes all whitespace characters from the beginning and end
+		 *  of the specified string.
+		 *
+		 *  @param str The String whose whitespace should be trimmed. 
+		 *
+		 *  @return Updated String where whitespace was removed from the 
+		 *  beginning and end.
+		 * 
+		 *  @private BORROWED FROM FLEX SDK (3.2.03958) TO LOOSE DEPENDENCIES ON SDK 
+		 */
+		private static function trim(str:String):String
+		{
+			if (str == null) return '';
+			
+			var startIndex:int = 0;
+			while (isWhitespace(str.charAt(startIndex)))
+				++startIndex;
+			
+			var endIndex:int = str.length - 1;
+			
+			while (isWhitespace(str.charAt(endIndex)))
+				--endIndex;
+			
+			if (endIndex >= startIndex)
+				return str.slice(startIndex, endIndex + 1);
+			else
+				return "";
+		}
+		
+		/**
+		 *  Returns <code>true</code> if the specified string is
+		 *  a single space, tab, carriage return, newline, or formfeed character.
+		 *
+		 *  @param str The String that is is being queried. 
+		 *
+		 *  @return <code>true</code> if the specified string is
+		 *  a single space, tab, carriage return, newline, or formfeed character.
+		 * 
+		 *  @private BORROWED FROM FLEX SDK (3.2.03958) TO LOOSE DEPENDENCIES ON SDK 
+		 */
+		private static function isWhitespace(character:String):Boolean
+		{
+			switch (character)
+			{
+				case " ":
+				case "\t":
+				case "\r":
+				case "\n":
+				case "\f":
+					return true;
+				
+				default:
+					return false;
+			}
 		}
 	}
 }
