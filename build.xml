@@ -63,4 +63,81 @@
 			<arg line="-main-title 'Picasa Flash API Documentation'"/>
 		</exec>
 	</target>
+
+	<target name="violations-check" depends="init">
+
+		<!-- remove the test results -->
+		<delete dir="${pmd.reports.loc}" quiet="true" />
+		<delete dir="${cpd.reports.loc}" quiet="true" />
+		<delete dir="${metrics.reports.loc}" quiet="true" />
+
+		<!-- create the folders for test results -->
+		<mkdir dir="${pmd.reports.loc}" />
+		<mkdir dir="${cpd.reports.loc}" />
+		<mkdir dir="${metrics.reports.loc}" />
+
+		<flexPmd
+			sourceDirectory="${src.dir}" 
+			outputDirectory="${pmd.reports.loc}"/>
+
+		<flexCpd
+			minimumTokenCount="50"
+			outputFile="${cpd.reports.loc}/cpd.xml">
+			<fileset dir="${src.dir}">
+				<include name="**/*.as"/>
+				<include name="**/*.mxml"/>
+			</fileset>
+		</flexCpd>
+
+		<flexMetrics
+			sourcedirectory="${src.dir}/"
+			outputfile="${metrics.reports.loc}/javancss.xml"/>
+
+	</target>
+
+	<taskdef name="flexPmd"
+		classname="com.adobe.ac.pmd.ant.FlexPmdAntTask"
+		classpath="${pmd.home}/flex-pmd-ant-task-${pmd.version}.jar">
+		<classpath>
+			<pathelement location="${pmd.home}/flex-pmd-ruleset-api-${pmd.version}.jar"/>
+			<pathelement location="${pmd.home}/flex-pmd-ruleset-${pmd.version}.jar"/>
+			<pathelement location="${pmd.home}/flex-pmd-core-${pmd.version}.jar"/>
+			<pathelement location="${pmd.home}/as3-plugin-utils-${pmd.version}.jar"/>
+			<pathelement location="${pmd.home}/as3-parser-${pmd.version}.jar"/>
+			<pathelement location="${pmd.home}/pmd-4.2.5.jar"/>
+			<pathelement location="${pmd.home}/commons-lang-2.4.jar"/>
+			<pathelement location="${pmd.home}/flex-pmd-files-${pmd.version}.jar"/>
+ 			<pathelement location="${pmd.home}/as3-parser-api-${pmd.version}.jar"/>
+			<pathelement location="${pmd.home}/plexus-utils-1.0.2.jar"/>
+		</classpath>
+	</taskdef>
+
+	<taskdef
+		name="flexCpd"
+		classname="com.adobe.ac.cpd.ant.FlexCpdAntTask"
+		classpath="${cpd.home}/flex-pmd-cpd-ant-task-${cpd.version}.jar">
+		<classpath>
+			<pathelement location="${cpd.home}/flex-pmd-files-${cpd.version}.jar" />
+			<pathelement location="${cpd.home}/flex-pmd-cpd-${cpd.version}.jar" />
+			<pathelement location="${cpd.home}/as3-plugin-utils-${cpd.version}.jar" />
+			<pathelement location="${cpd.home}/as3-parser-${cpd.version}.jar" />
+			<pathelement location="${cpd.home}/as3-parser-api-${cpd.version}.jar" />
+			<pathelement location="${cpd.home}/pmd-4.2.5.jar" />
+		</classpath>
+	</taskdef>
+
+	<taskdef name="flexMetrics" classname="com.adobe.ac.pmd.metrics.ant.FlexMetricsAntTask"
+		classpath="${metrics.home}/flex-pmd-metrics-ant-task-${metrics.version}.jar">
+		<classpath>
+			<pathelement location="${metrics.home}/flex-pmd-files-${metrics.version}.jar" />
+			<pathelement location="${metrics.home}/flex-pmd-metrics-${metrics.version}.jar" />
+			<pathelement location="${metrics.home}/as3-plugin-utils-${metrics.version}.jar" />
+			<pathelement location="${metrics.home}/as3-parser-${metrics.version}.jar" />
+			<pathelement location="${metrics.home}/as3-parser-api-${metrics.version}.jar" />
+			<pathelement location="${metrics.home}/commons-lang-2.4.jar" />
+			<pathelement location="${metrics.home}/flex-pmd-ruleset-api-${metrics.version}.jar" />
+			<pathelement location="${metrics.home}/pmd-4.2.5.jar" />
+			<pathelement location="${metrics.home}/dom4j-1.6.1.jar"/>
+	</classpath>
+	</taskdef>
 </project>
