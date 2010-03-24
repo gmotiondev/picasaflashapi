@@ -24,24 +24,40 @@
 
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.Content;
-	import sk.prasa.webapis.picasa.objects.Title;	
+import sk.prasa.webapis.picasa.objects.Author;
+import sk.prasa.webapis.picasa.objects.Category;
+import sk.prasa.webapis.picasa.objects.Content;
+import sk.prasa.webapis.picasa.objects.Links;
+/**
+ * 
+ */
+public interface IEntry
+{
+	function get id() : String;
+	function set id(value : String) : void;
 	
-	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
-	 */
-	public interface IEntry
-	{
-		function get title() : Title;
-		function get links() : Array;
-		function get published() : Date;
-		function get authors() : Array;
-		//function get contributors() : Array;
-		function get content() : Content;
-		function get categories() : Array;
-		//function get id() : String
-		//function get updated() : Date
-		//function get summary() : String
-	}
+	function get title() : String;
+	function set title(value : String) : void;
+	
+	function get links() : Links;
+	function set links(value : Links) : void;
+	
+	function get summary() : String;
+	function set summary(value : String) : void;
+	
+	function get content() : Content;
+	function set content(value : Content) : void;
+	
+	function get author() : Author;
+	function set author(value : Author) : void;
+	
+	function get category() : Category;
+	function set category(value : Category) : void;
+	
+	function get published() : Date;
+	function set published(value : Date) : void;
+	
+	function get updated() : Date;
+	function set updated(value : Date) : void;
+}
 }

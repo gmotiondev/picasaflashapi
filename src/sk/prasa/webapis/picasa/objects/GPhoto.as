@@ -24,157 +24,176 @@
 
 package sk.prasa.webapis.picasa.objects 
 {
-	import sk.prasa.webapis.picasa.objects.FeedElement;	
-	import sk.prasa.webapis.picasa.objects.Namespaces;	
+import sk.prasa.webapis.picasa.objects.FeedElement;
+import sk.prasa.webapis.picasa.objects.Namespaces;
+/**
+ * 
+ */
+public class GPhoto extends FeedElement
+{
+	public var kind : String;
+ 
+	// multiple kinds
+	public var albumid : String;			// gphoto:albumid
+	public var id : String;					// gphoto:id
+	
+	// user kind
+	public var maxPhotosPerAlbum : uint;	// gphoto:maxPhotosPerAlbum = only if authenticated user is owner
+	public var nickname : String;			// gphoto:nickname
+	public var quotacurrent : Number;		// gphoto:quotacurrent = only if authenticated user is owner
+	public var quotalimit : Number;			// gphoto:quotalimit = only if authenticated user is owner
+	public var thumbnail : String;			// gphoto:thumbnail
+	public var user : String;				// gphoto:user
+	
+	// album kind
+	public var access : String; 			// gphoto:access = public or private
+	public var bytesUsed : uint; 			// gphoto:bytesUsed = only if authenticated user is owner 
+	public var location : String; 			// gphoto:location
+	public var numphotos : uint; 			// gphoto:numphotos
+	public var numphotosremaining : uint;	// gphoto:numphotosremaining	= only if authenticated user is owner
+
+	// photo kind
+	public var checksum : String;			// gphoto:checksum
+	public var commentCount : uint;			// gphoto:commentCount
+	public var height : Number;				// gphoto:height
+	public var rotation : uint;				// gphoto:rotation
+	public var size : Number;				// gphoto:size
+	public var timestamp : Number;			// gphoto:timestamp = identical with exif:time
+	public var videostatus : String;		// gphoto:videostatus = pending, ready, final, failed
+	public var width : Number;				// gphoto:width
+
+	// appear in photo entries search result feeds
+	public var albumtitle : String;			// gphoto:albumtitle
+	public var albumdesc : String;			// gphoto:albumdesc
+	public var snippet : String;			// gphoto:snippet
+	public var snippettype : String;		// gphoto:snippettype = PHOTO_DESCRIPTION, PHOTO_TAGS, ALBUM_TITLE, ALBUM_DESCRIPTION, or ALBUM_LOCATION
+	public var truncated : Boolean;			// gphoto:truncated
+	 
+	// comment kind
+	public var photoid : String; 			// gphoto:photoid
+	
+	// tag kind
+	public var weight : uint; 				// gphoto:weight = default is 1
+	
+	private var gphoto_ns : Namespace = Namespaces.GPHOTO_NS;
+
+	public function GPhoto(data : XML, k : String)
+	{	
+		super(data);
+		
+		kind = k;
+		
+		// multiple kind
+		albumid 			= Utils.parseString(this.data.gphoto_ns::albumid); 
+		id 					= Utils.parseString(this.data.gphoto_ns::id);
+		
+		switch(kind)
+		{
+			case Kind.USER:
+				maxPhotosPerAlbum = Utils.parseUint(this.data.gphoto_ns::maxPhotosPerAlbum); 
+				nickname 	= Utils.parseString(this.data.gphoto_ns::nickname); 
+				quotacurrent= Utils.parseNumber(this.data.gphoto_ns::quotacurrent); 
+				quotalimit 	= Utils.parseNumber(this.data.gphoto_ns::quotalimit); 
+				thumbnail 	= Utils.parseString(this.data.gphoto_ns::thumbnail); 
+				user 		= Utils.parseString(this.data.gphoto_ns::user);
+				break;
+				
+			case Kind.ALBUM: 	
+				access 		= Utils.parseString(this.data.gphoto_ns::access); 
+				bytesUsed 	= Utils.parseUint(this.data.gphoto_ns::bytesUsed); 
+				location 	= Utils.parseString(this.data.gphoto_ns::location); 
+				numphotos 	= Utils.parseUint(this.data.gphoto_ns::numphotos); 
+				numphotosremaining = Utils.parseUint(this.data.gphoto_ns::numphotosremaining);
+				break;
+				
+			case Kind.PHOTO: 
+				checksum 	= Utils.parseString(this.data.gphoto_ns::checksum);
+				commentCount= Utils.parseUint(this.data.gphoto_ns::commentCount);
+				height 		= Utils.parseNumber(this.data.gphoto_ns::height); 
+				rotation 	= Utils.parseUint(this.data.gphoto_ns::rotation); 
+				size 		= Utils.parseNumber(this.data.gphoto_ns::size); 
+				timestamp 	= Utils.parseNumber(this.data.gphoto_ns::timestamp); 
+				videostatus = Utils.parseString(this.data.gphoto_ns::videostatus);
+				width 		= Utils.parseNumber(this.data.gphoto_ns::width);
+				
+				// photo entries search result feed
+				albumtitle 	= Utils.parseString(this.data.gphoto_ns::albumtitle);
+				albumdesc	= Utils.parseString(this.data.gphoto_ns::albumdesc);
+				snippet  	= Utils.parseString(this.data.gphoto_ns::snippet);
+				snippettype = Utils.parseString(this.data.gphoto_ns::snippettype);
+				truncated 	= Utils.parseBoolean(this.data.gphoto_ns::truncated);
+				break;
+				
+			case Kind.TAG:
+				weight = Utils.parseUint(this.data.gphoto_ns::weight);
+				break;
+				
+			case Kind.COMMENT: 
+				photoid = Utils.parseString(this.data.gphoto_ns::photoid);
+				break;
+				
+			default: 
+				break; 
+		}
+	}
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
-	 * TODO: ... check types, Number, int, uint, use optimized types!
-	 * 
+	 * @inheritDoc
 	 */
-	public class GPhoto extends FeedElement
+	public function toString() : String
 	{
-		public var kind : String;
-	 
-		// multiple kinds
-		public var albumid : String;			// gphoto:albumid
-		public var commentCount : int;			// gphoto:commentCount
-		public var commentingEnabled : Boolean;	// gphoto:commentingEnabled
-		public var id : String;					// gphoto:id
-		
-		// user kind
-		public var maxPhotosPerAlbum : int;		// gphoto:maxPhotosPerAlbum
-		public var nickname : String;			// gphoto:nickname
-		public var quotacurrent : Number;		// gphoto:quotacurrent
-		public var quotalimit : Number;			// gphoto:quotalimit
-		public var thumbnail : String;			// gphoto:thumbnail
-		public var user  :String;				// gphoto:user
-		
-		// album kind
-		public var access : String; 			// gphoto:access
-		public var bytesUsed : Number; 			// gphoto:bytesUsed
-		public var location : String; 			// gphoto:location
-		public var name : String; 				// gphoto:name
-		public var numphotos : int; 			// gphoto:numphotos
-		public var numphotosremaining : int;	//gphoto:numphotosremaining
+		var tRes : String = "" +
+			" albumid=" + albumid +
+			", id=" + id;
 	
-		// photo kind
-		public var checksum : String;			// gphoto:checksum
-		public var client : String;				// gphoto:client
-		public var height : Number;				// gphoto:height
-		public var position : Number;			// gphoto:position
-		public var rotation : Number;			// gphoto:rotation
-		public var size : Number;				// gphoto:size
-		public var timestamp : Number;			// gphoto:timestamp
-		public var version : String;			// gphoto:version
-		public var width : Number;				// gphoto:width
-	
-		// comment kind
-		public var photoid : String; 			// gphoto:photoid
-		
-		// tag kind
-		public var weight : Number; 			// gphoto:weight
-		
-		private var gphoto_ns : Namespace = Namespaces.GPHOTO_NS;
-
-		public function GPhoto(xmllist : XMLList, k : String)
-		{	
-			super(xmllist);
+		switch(kind)
+		{
+				
+			case Kind.USER:
+				tRes +=	", maxPhotosPerAlbum=" + maxPhotosPerAlbum + 
+						", nickname=" + nickname +
+						", quotacurrent=" + quotacurrent +
+						", quotalimit=" + quotalimit +
+						", thumbnail=" + thumbnail +
+						", user=" + user;
+				break;
 			
-			kind = k;
-			
-			// multiple kind
-			albumid 			= Utils.parseString(this.data.gphoto_ns::albumid);
-			commentCount 		= Utils.parseNumber(this.data.gphoto_ns::commentCount); 
-			commentingEnabled 	= Utils.parseString(this.data.gphoto_ns::commentingEnabled) != "false"; 
-			id 					= Utils.parseString(this.data.gphoto_ns::id);
-			
-			switch(kind)
-			{
-				case Kind.ALBUM: 	
-					access 		= Utils.parseString(this.data.gphoto_ns::access); 
-					bytesUsed 	= Utils.parseNumber(this.data.gphoto_ns::bytesUsed); 
-					location 	= Utils.parseString(this.data.gphoto_ns::location); 
-					name 		= Utils.parseString(this.data.gphoto_ns::name);
-					numphotos 	= Utils.parseNumber(this.data.gphoto_ns::numphotos); 
-					numphotosremaining = Utils.parseNumber(this.data.gphoto_ns::numphotosremaining);
-					break;
-				case Kind.PHOTO: 	
-					checksum 	= Utils.parseString(this.data.gphoto_ns::checksum);
-					client 		= Utils.parseString(this.data.gphoto_ns::client); 
-					height 		= Utils.parseNumber(this.data.gphoto_ns::height); 
-					position 	= Utils.parseNumber(this.data.gphoto_ns::position); 
-					rotation 	= Utils.parseNumber(this.data.gphoto_ns::rotation); 
-					size 		= Utils.parseNumber(this.data.gphoto_ns::size); 
-					timestamp 	= Utils.parseNumber(this.data.gphoto_ns::timestamp); 
-					version 	= Utils.parseString(this.data.gphoto_ns::version); 
-					width 		= Utils.parseNumber(this.data.gphoto_ns::width);
-					break;
-				case Kind.USER:
-					maxPhotosPerAlbum = Utils.parseNumber(this.data.gphoto_ns::maxPhotosPerAlbum); 
-					nickname 	= Utils.parseString(this.data.gphoto_ns::nickname); 
-					quotacurrent= Utils.parseNumber(this.data.gphoto_ns::quotacurrent); 
-					quotalimit 	= Utils.parseNumber(this.data.gphoto_ns::quotalimit); 
-					thumbnail 	= Utils.parseString(this.data.gphoto_ns::thumbnail); 
-					user 		= Utils.parseString(this.data.gphoto_ns::user);
-					break;
-				case Kind.TAG:
-					weight = Utils.parseNumber(this.data.gphoto_ns::weight);
-					break;
-				case Kind.COMMENT: 
-					photoid = Utils.parseString(this.data.gphoto_ns::photoid);
-					break;
-				default: break; 
-			}
+			case Kind.ALBUM: 
+				tRes += ", access=" + access +
+						", bytesUsed=" + bytesUsed +
+						", location=" + location +
+						", numphotos=" + numphotos +
+						", numphotosremaining=" + numphotosremaining;
+				break;
+				
+			case Kind.PHOTO:
+				tRes += ", checksum=" + checksum +
+						", commentCount=" + commentCount +
+						", height=" + height +
+						", rotation=" + rotation +
+						", size=" + size +
+						", timestamp=" + timestamp +
+						", videostatus=" + videostatus +
+						", width=" + width;
+						
+				// photo entries search result feed
+				tRes += ", albumtitle=" + albumtitle +
+						", albumdesc=" + albumdesc +
+						", snippet=" + snippet +
+						", snippettype=" + snippettype +
+						", truncated=" + truncated;
+				break;
+				
+			case Kind.TAG:
+				tRes += ", weight=" + weight;
+				break;
+				 
+			case Kind.COMMENT:
+				tRes += ", photoid=" + photoid;
+				break; 
 		}
 		
-		public function toString() : String
-		{
-			var tRes : String = "" +
-				" albumid=" + albumid +
-				", commentCount=" + commentCount +
-				", commentingEnabled=" + commentingEnabled +
-				", id=" + id;
-		
-			switch(kind)
-			{
-				case Kind.ALBUM: 
-					tRes += ", access=" + access +
-							", bytesUsed=" + bytesUsed +
-							", location=" + location +
-							", name=" + name +
-							", numphotos=" + numphotos +
-							", numphotosremaining=" + numphotosremaining;
-					break;
-				case Kind.PHOTO:
-					tRes += ", checksum=" + checksum +
-							", client=" + client +
-							", height=" + height +
-							", position=" + position +
-							", rotation=" + rotation +
-							", size=" + size +
-							", timestamp=" + timestamp +
-							", version=" + version +
-							", width=" + width;
-					break; 
-				case Kind.USER:
-					tRes +=	", maxPhotosPerAlbum=" + maxPhotosPerAlbum + 
-							", nickname=" + nickname +
-							", quotacurrent=" + quotacurrent +
-							", quotalimit=" + quotalimit +
-							", thumbnail=" + thumbnail +
-							", user=" + user;
-					break;
-				case Kind.TAG:
-					tRes += ", weight=" + weight;
-					break; 
-				case Kind.COMMENT:
-					tRes += ", photoid=" + photoid;
-					break; 
-			}
-			
-			return "[GPhoto " + tRes + "]";
-		}			
-	}
+		return "[GPhoto " + tRes + "]";
+	}			
+}
 }

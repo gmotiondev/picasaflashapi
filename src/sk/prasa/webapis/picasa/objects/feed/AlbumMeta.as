@@ -24,19 +24,80 @@
 
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.feed.IMeta;
-	import sk.prasa.webapis.picasa.objects.feed.Meta;		
-	
-	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
-	 * TODO: implement AlbumMeta typical methods
-	 */
-	public class AlbumMeta extends Meta implements IMeta 
+import sk.prasa.webapis.picasa.objects.GPhoto;
+import sk.prasa.webapis.picasa.objects.Geo;
+import sk.prasa.webapis.picasa.objects.Kind;
+import sk.prasa.webapis.picasa.objects.Namespaces;
+import sk.prasa.webapis.picasa.objects.OpenSearch;
+import sk.prasa.webapis.picasa.objects.Utils;
+import sk.prasa.webapis.picasa.objects.feed.IMeta;
+import sk.prasa.webapis.picasa.objects.feed.Meta;
+
+import flash.geom.Point;
+/**
+ * 
+ * // TODO: implement AlbumMeta typical methods: opensearch, gphoto, georss
+ */
+public class AlbumMeta extends Meta implements IMeta 
+{
+	private var georss_ns : Namespace = Namespaces.GEORSS_NS;
+	private var gml_ns : Namespace = Namespaces.GML_NS;
+	private var opensearch_ns : Namespace = Namespaces.OPENSEARCH_NS;
+
+	public function AlbumMeta(data : XML)
 	{
-		public function AlbumMeta(xmllist : XMLList)
-		{
-			super(xmllist);
-		}
+		super(data);
 	}
+	
+	public function get gphoto() : GPhoto
+	{
+		return new GPhoto(this.data, Kind.ALBUM);
+	}
+	
+	public function set gphoto(aGPhoto : GPhoto) : void
+	{
+		// TODO: ...
+	}
+	
+	public function get geo() : Geo
+	{
+		// rewrite this.. if georss_ns is null ... 
+		
+		var tGeo : Geo = new Geo();
+		
+		try
+		{
+			var tGeoArray : Array = this.data.georss_ns::where.gml_ns::Point.gml_ns::pos.split(" ");
+				tGeo.latitude = tGeoArray[0];
+				tGeo.longitude = tGeoArray[1];
+		}
+		catch(e : Error)
+		{
+			//if album/photo doesn't contains any geo info
+		}
+		
+		return tGeo;
+	}
+	
+	public function set get(aGeo : Geo) : void
+	{
+		// TODO: ...
+	}
+	
+	public function get opensearch() : OpenSearch
+	{
+		var tOpenSearch : OpenSearch = new OpenSearch();
+			tOpenSearch.totalResults = Utils.parseUint(this.data.opensearch_ns::totalResults); 
+			tOpenSearch.startIndex = Utils.parseUint(this.data.opensearch_ns::startIndex);
+			tOpenSearch.itemsPerPage = Utils.parseUint(this.data.opensearch_ns::itemsPerPage);
+		
+		trace(tOpenSearch.toString())
+		return tOpenSearch;
+	}
+	
+	public function set opensearch(value : OpenSearch) : void
+	{
+		// TODO: ...
+	}
+}
 }

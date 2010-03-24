@@ -24,46 +24,44 @@
 
 package sk.prasa.webapis.picasa.core 
 {
-	import sk.prasa.webapis.picasa.*;
-	import sk.prasa.webapis.picasa.core.command.*;
-	import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
-	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.objects.UrlParams;		
-	
+import sk.prasa.webapis.picasa.*;
+import sk.prasa.webapis.picasa.core.command.*;
+import sk.prasa.webapis.picasa.core.receiver.GetFeedReceiver;
+import sk.prasa.webapis.picasa.core.receiver.IReceiver;
+import sk.prasa.webapis.picasa.objects.UrlParams;
+/**
+ * 
+ */
+public class Community extends MethodHelper
+{
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * List photos in community by given query. This is query-based feed.
+	 * Loads e.g. http://picasaweb.google.com/data/feed/api/all?kind=photo&q=searchTerm
 	 * 
+	 * The "result data" contains <code>meta</code> as <code>Meta</code> (default one because the feed doesn't have the category tag in the atom head) 
+	 * and <code>entries</code> as <code>Array.<PhotoEntry></code>
+	 * 
+	 * @param query String Query
+	 * @param urlparams UrlParams Parameters to alter the feed url
 	 */
-	public class Community extends MethodHelper
+	public function search(query : String, urlparams : UrlParams = null) : PicasaResponder
 	{
-		/**
-		 * List photos in community by given query. This is query-based feed.
-		 * Loads e.g. http://picasaweb.google.com/data/feed/api/all?kind=photo&q=searchTerm
-		 * 
-		 * The "result data" contains <code>meta</code> as <code>Meta</code> (default one because the feed doesn't have the category tag in the atom head) 
-		 * and <code>entries</code> as <code>Array.<PhotoEntry></code>
-		 * 
-		 * @param query String Query
-		 * @param urlparams UrlParams Parameters to alter the feed url
-		 */
-		public function search(query : String, urlparams : UrlParams = null) : PicasaResponder
-		{
-			var p : UrlParams = this.params.merge(urlparams);
-				p.suffix = "all";
-				
-				// override!
-				p.kind = "photo";
-				p.tag = null;
-				p.q = query;
-	
-			var tReceiver : IReceiver = new GetFeedReceiver();
-			var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
-			var tInvoker : Invoker = new Invoker();
+		var p : UrlParams = this.params.merge(urlparams);
+			p.suffix = "all";
 			
-				tInvoker.setCommand(tCommand);
-				tInvoker.executeCommand();
-			
-			return tReceiver.responder;
-		} 
-	}
+			// override!
+			p.kind = "photo";
+			p.tag = null;
+			p.q = query;
+
+		var tReceiver : IReceiver = new GetFeedReceiver();
+		var tCommand : ICommand = new GetFeedCommand(tReceiver, p);
+		var tInvoker : Invoker = new Invoker();
+		
+			tInvoker.setCommand(tCommand);
+			tInvoker.executeCommand();
+		
+		return tReceiver.responder;
+	} 
+}
 }

@@ -24,14 +24,14 @@
 
 package sk.prasa.webapis.picasa.core.receiver 
 {
-	import flash.events.Event;
 
-	import sk.prasa.webapis.picasa.PicasaResponder;	
+	import flash.events.Event;
 	
+	import sk.prasa.webapis.picasa.PicasaResponder;	
+		
 	/**
 	 * Generic Receiver interface.
-	 * 
-	 * @author Michal Gron (michal.gron@gmail.com) 
+	 *  
 	 * @private
 	 */
 	public interface IReceiver

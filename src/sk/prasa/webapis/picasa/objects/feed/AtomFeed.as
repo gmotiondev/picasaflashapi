@@ -24,101 +24,111 @@
 
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.Kind;
-	import sk.prasa.webapis.picasa.objects.Namespaces;
-	import sk.prasa.webapis.picasa.objects.Utils;
-	import sk.prasa.webapis.picasa.objects.feed.AlbumEntry;
-	import sk.prasa.webapis.picasa.objects.feed.AlbumMeta;
-	import sk.prasa.webapis.picasa.objects.feed.Parser;		
+import sk.prasa.webapis.picasa.objects.Namespaces;
+import sk.prasa.webapis.picasa.objects.feed.Parser;
+/**
+ * 
+ */
+public class AtomFeed extends Parser implements IAtom 
+{
+	private var __meta : Meta;
+	private var __entries : Array;		//[ArrayElementType("sk.prasa.webapis.picasa.objects.feed.Entry")]
+	private var __metaFactory : MetaFactory;
+	private var __entryFactory : EntryFactory;
+	
+	private var atom_ns : Namespace = Namespaces.ATOM_NS;
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * TODO: we should avoid more types of Feed, Meta and Entry. this is confusing.
-	 * TODO: after receiving the entries in Array, the user doesn't now what kind of entries there are!
+	 * AtomFeed constructor.
+	 * 
+	 * @param xml XML Pass XML data to the constructor, to have it available in the this.data property 
 	 */
-	public class AtomFeed extends Parser implements IAtom 
+	public function AtomFeed(xml : XML)
 	{
-		private var __meta : IMeta;
-		private var __entries : Array;		//[ArrayElementType("sk.prasa.webapis.picasa.objects.feed.Entry")]
+	 	super(xml);
+	 	
+	 	// TODO: this is now here, but can be better injected!
+		__metaFactory = new MetaFactory();
+		__entryFactory = new EntryFactory();
 		
-		private var atom_ns : Namespace = Namespaces.ATOM_NS;
-		
-		/**
-		 * AtomFeed constructor.
-		 * 
-		 * @param xml XML Pass XML data to the constructor, to have it available in the this.data property 
-		 */
-		public function AtomFeed(xml : XML)
-		{
-			super(xml);
-		}
-		
-		/**
-		 * 
-		 */
-		public function get meta() : IMeta
-		{
-			if (__meta == null)
-			{
-				switch(Utils.parseString(this.data.atom_ns::category.@term))
-				{
-					case Kind.USER: 	__meta = new UserMeta(XMLList(this.data)); break;
-					case Kind.ALBUM: 	__meta = new AlbumMeta(XMLList(this.data)); break;
-					case Kind.PHOTO:	__meta = new PhotoMeta(XMLList(this.data)); break;
-					// default, e.g. Community Meta doesn't have any meta category!	
-					default: 			__meta = new Meta(XMLList(this.data)); break;
-					
-				}
-			}
-			
-			return __meta;
-		}
-		
-		/**
-		 * 
-		 */
-		public function set meta(aMeta : IMeta) : void
-		{
-			// TODO: ...
-		}
-		
-		/**
-		 * 
-		 */
-		public function get entries() : Array
-		{
-			if (this.data.atom_ns::entry == null)
-			{
-				return null;
-			}
+		setupMeta();
+		setupEntries();
+	}
 
-			if (__entries == null)
-			{
-				__entries = new Array();
-				
-				for each (var node : XML in this.data.atom_ns::entry)
-				{
-					switch(Utils.parseString(node.atom_ns::category.@term))
-					{
-						case Kind.USER: 	__entries.push(new UserEntry(XMLList(node))); break;
-						case Kind.ALBUM:	__entries.push(new AlbumEntry(XMLList(node))); break;
-						case Kind.PHOTO: 	__entries.push(new PhotoEntry(XMLList(node))); break;
-						case Kind.TAG: 		__entries.push(new TagEntry(XMLList(node))); break;
-						case Kind.COMMENT: 	__entries.push(new CommentEntry(XMLList(node))); break;
-						default: 			__entries.push(new Entry(XMLList(node))); break;			
-					}
-				}
-			}
+	/**
+	 * // TODO: move to MetaFactory!
+	 */
+	public function get meta() : Meta
+	{	
+		return __meta;
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set meta(value : Meta) : void
+	{
+		// TODO: ...
+	}
+		
+	/**
+	 * // todo: a Entries class with find() method?
+	 * //		filter() method?	 
+	 */
+	public function get entries() : Array
+	{	
+		return __entries;
+	}
+	
+	public function get entry() : Entry
+	{	 
+		return __entries[0];
+	}
+
+	/**
+	 * 
+	 */
+	public function set entries(aEntries : Array) : void
+	{
+		// TODO: ...
+	}
+	
+	/**
+	 * @private 
+	 */
+	protected function setupMeta() : void
+	{
+		var type : KindType = KindType.fromString(data.atom_ns::category.@term);
+		
+		__meta = __metaFactory.createMeta(type, data);
+	}
+	
+	/**
+	 * @private
+	 */
+	protected function setupEntries() : void
+	{
+		var entry : Entry;
+		var type : KindType;
+		
+		__entries = [];
+		
+		for each (var node : XML in this.data.atom_ns::entry)
+		{
+			type = KindType.fromString(node.atom_ns::category.@term);
+			entry = __entryFactory.createEntry(type, node);
 			
-			return __entries;
+			__entries.push(entry);
 		}
 		
-		/**
-		 * 
-		 */
-		public function set entries(aEntries : Array) : void
+		// if the root tag is <entry> (and not <feed>);
+		if(this.data.localName() == "entry")
 		{
-			// TODO: ...
+			type = KindType.fromString(data.atom_ns::category.@term);
+			entry = __entryFactory.createEntry(type, data);
+			
+			__entries.push(entry);
 		}
 	}
+}
 }

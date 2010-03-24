@@ -24,63 +24,58 @@
 
 package sk.prasa.webapis.picasa.core.command 
 {
-	import flash.events.Event;
-	import flash.events.HTTPStatusEvent;
-	import flash.events.IOErrorEvent;
-	import flash.events.ProgressEvent;
-	import flash.events.SecurityErrorEvent;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
-	
-	import sk.prasa.webapis.picasa.core.receiver.IReceiver;
-	import sk.prasa.webapis.picasa.objects.UrlParams;	
+import sk.prasa.webapis.picasa.core.receiver.IReceiver;
+import sk.prasa.webapis.picasa.objects.UrlParams;
+
+import flash.events.Event;
+import flash.net.URLLoader;
+import flash.net.URLRequest;
+/**
+ * Loads the feed, adds event handlers to the receiver. 
+ * Part of the Command Pattern
+ * 
+ * @private
+ */
+public class GetFeedCommand implements ICommand
+{
+	private var receiver : IReceiver;
+	private var params : UrlParams;
 	
 	/**
-	 * Loads the feed, adds event handlers to the receiver. 
-	 * Part of the Command Pattern
+	 * Command constructor.
 	 * 
-	 * @author Michal Gron (michal.gron@gmail.com) 
-	 * @private
+	 * @param r IReceiver A IReceiver instance.
+	 * @param p UrlParams Parameters to alter the feed url.
 	 */
-	public class GetFeedCommand implements ICommand
+	public function GetFeedCommand(r : IReceiver, p : UrlParams)
 	{
-		private var receiver : IReceiver;
-		private var params : UrlParams;
-		
-		/**
-		 * Command constructor.
-		 * 
-		 * @param r IReceiver A IReceiver instance.
-		 * @param p UrlParams Parameters to alter the feed url.
-		 */
-		public function GetFeedCommand(r : IReceiver, p : UrlParams)
-		{
-			receiver = r;
-			params = p;
-		}
-
-		/**
-		 * Executes the command.
-		 * 
-		 * @throws Error, generic.
-		 */
-		public function execute() : void
-		{
-			var tRequest : URLRequest = params.getURLRequest();
-
-			trace("(" + tRequest.method + ") " + tRequest.url);
-		
-			var tLoader : URLLoader = receiver.responder;
-				tLoader.addEventListener(Event.COMPLETE, receiver.result);
-			
-			try
-			{
-				tLoader.load(tRequest);
-				
-			} catch(e : Error)
-			{
-				throw new Error("Loading feed failed. Reasong: " + e.message);
-			}
-		}		
+		receiver = r;
+		params = p;
 	}
+
+	/**
+	 * Executes the command.
+	 * 
+	 * @throws Error, generic.
+	 */
+	public function execute() : void
+	{
+		var tRequest : URLRequest = params.url_request;
+
+		trace("(" + tRequest.method + ") " + tRequest.url);
+		
+		// Other events are handled by the PicasaResponder directly.
+		var tLoader : URLLoader = receiver.responder;
+			tLoader.addEventListener(Event.COMPLETE, receiver.result);
+		
+		try
+		{
+			tLoader.load(tRequest);
+		}
+		catch(e : Error)
+		{
+			throw new Error("Loading feed failed. Reasong: " + e.message);
+		}
+	}		
+}
 }

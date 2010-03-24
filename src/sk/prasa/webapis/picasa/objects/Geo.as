@@ -24,27 +24,35 @@
 
 package sk.prasa.webapis.picasa.objects 
 {	
-	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
-	 */
-	public class Geo 
-	{
-		public var latitude : String;
-		public var longitude : String;
+/**
+ * todo: add Envelope object? lowerCorner, upperCorner?
+ * <georss:where>
+		<gml:Envelope>
+			<gml:lowerCorner>45.9313375 14.201781</gml:lowerCorner>
+			<gml:upperCorner>46.1715144 14.8101489</gml:upperCorner>
+		</gml:Envelope>
+		<gml:Point>
+			<gml:pos>46.051426 14.505965</gml:pos>
+		</gml:Point>
+	</georss:where>
+ */
+public class Geo 
+{
+	public var latitude : String;
+	public var longitude : String;
 
-		public function Geo(lat : String = null, lon : String = null)
-		{
-			latitude = lat;
-			longitude = lon;
-		}
-		
-		public function toString() : String
-		{
-			return "[Geo " +
+	public function Geo(lat : String = null, lon : String = null)
+	{
+		latitude = lat;
+		longitude = lon;
+	}
+	
+	public function toString() : String
+	{
+		return  "[Geo " +
 				" latitude=" + latitude + 
 				", longitude=" + longitude + 
 				"]";
-		}
 	}
+}
 }

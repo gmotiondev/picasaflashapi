@@ -24,50 +24,55 @@
 
 package sk.prasa.webapis.picasa.objects 
 {
-	import sk.prasa.webapis.picasa.objects.Link;
-	
+import sk.prasa.webapis.picasa.objects.Link;
+/**
+ * 
+ */
+dynamic public class Links extends Array
+{	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
 	 */
-	dynamic public class Links extends Array 
-	{		
-		public function getByRel(rel : String) : Link
+	public function find_by_rel(rel : String) : Link
+	{
+		for each(var link : Link in this)
 		{
-			for each(var link : Link in this)
-			{
-				if(link.rel == rel) return link;
-			}
-			
-			return null;
+			if(link.rel == rel) return link;
 		}
 		
-		/**
-		 * TODO: ... define enum for type!
-		 */
-//		public function getByType(type : String) : Link
-//		{
-//			for each(var link : Link in this)
-//			{
-//				if(link.type == type) return link;
-//			}
-//			
-//			return null;
-//		}
-		
-		public function toString() : String
-		{
-			var tRes : String = "[Links ";
-			
-			for(var a : Number = 0; a < this.length; a++)
-			{
-				var tLink : Link = Link(this[a]);
-				tRes += tLink.toString() + "";
-			}
-			
-			tRes += "]";
-			
-			return tRes;
-		}
+		return null;
 	}
+	
+	/**
+	 * 
+	 */
+	public function find_by_type(type : String) : Link
+	{
+		for each(var link : Link in this)
+		{
+			if(link.type == type) return link;
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function toString() : String
+	{
+		var tRes : String = "[Links ";
+		var tLink : Link;
+		
+		for(var a : Number = 0; a < this.length; a++)
+		{
+			tLink = this[a] as Link;
+			tRes += tLink.toString() + "";
+		}
+		
+		tRes += "]";
+			
+		return tRes;
+	}
+}
 }

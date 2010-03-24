@@ -24,27 +24,32 @@
 
 package sk.prasa.webapis.picasa.objects 
 {
-	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
-	 */
-	public class FeedElement 
+/**
+ * 
+ */
+public class FeedElement 
+{
+	private var __data : XML;
+
+	public function FeedElement(data : XML)
 	{
-		private var __data : XMLList;
-
-		public function FeedElement(xmllist : XMLList)
-		{
-			data = xmllist;
-		}
-
-		protected function get data() : XMLList
-		{
-			return __data;
-		}
-
-		protected function set data(xmllist : XMLList) : void
-		{
-			__data = xmllist;
-		}
+		__data = data;
 	}
+	
+	/**
+	 * @private
+	 */
+	protected function get data() : XML
+	{
+		return __data;
+	}
+
+	/**
+	 * @private
+	 */
+	protected function set data(value : XML) : void
+	{
+		__data = value;
+	}
+}
 }

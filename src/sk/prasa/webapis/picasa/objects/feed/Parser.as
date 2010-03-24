@@ -25,8 +25,8 @@
 package sk.prasa.webapis.picasa.objects.feed 
 {
 	/**
-	 * This package also with the <code>sk.prasa.webapis.picasa.objects</code> packaged was inspired by the Adobe syndication lib.
-	 * Thank you guys!
+	 * This package also with the <code>sk.prasa.webapis.picasa.objects</code> 
+	 * packaged was inspired by the Adobe syndication lib.
 	 * 
 	 * @author Michal Gron (michal.gron@gmail.com) 
 	 */

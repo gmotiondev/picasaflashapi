@@ -24,21 +24,20 @@
 
 package sk.prasa.webapis.picasa.core.observer 
 {
-	import sk.prasa.webapis.picasa.core.observer.Observable;
-	import sk.prasa.webapis.picasa.core.observer.IObservable;
-	
-	[ExcludeClass]
-	/**
-	 * Makes UrlParams as observable.
-	 * 
-	 * @author Michal Gron (michal.gron@gmail.com) 
-	 * @private
-	 */
-	public class UrlParamsObservable extends Observable implements IObservable 
+import sk.prasa.webapis.picasa.core.observer.IObservable;
+import sk.prasa.webapis.picasa.core.observer.Observable;
+
+[ExcludeClass]
+/**
+ * Makes UrlParams as observable.
+ * 
+ * @private
+ */
+public class UrlParamsObservable extends Observable implements IObservable 
+{
+	public function UrlParamsObservable()
 	{
-		public function UrlParamsObservable()
-		{
-			super();
-		}
+		super();
 	}
+}
 }

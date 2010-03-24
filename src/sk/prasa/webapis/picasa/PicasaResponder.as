@@ -21,32 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package sk.prasa.webapis.picasa
 {
-	import flash.net.URLRequest;	
-	import flash.net.URLLoader;
-	
-	[Event(name="data", type="sk.prasa.webapis.picasa.events.PicasaDataEvent")]
-	
+import flash.net.URLLoader;
+import flash.net.URLRequest;
+
+[Event(name="data", type="sk.prasa.webapis.picasa.events.PicasaDataEvent")]
+
+/**
+ * Picasa responder. Dispatches basic Picasa events.
+ */
+public class PicasaResponder extends URLLoader
+{
 	/**
-	 * Picasa responder. Dispatches basic Picasa events.
+	 * PicasaResponder Constructor.
 	 * 
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * Responder is created by main Picasa methods. Each Picasa method 
+	 * returns a PicasaResponder
+	 * to listen for basic Picasa events. 
+	 * 
+	 * @param target IEventDispatcher
 	 */
-	public class PicasaResponder extends URLLoader
+	public function PicasaResponder(request : URLRequest = null)
 	{
-		/**
-		 * PicasaResponder Constructor.
-		 * 
-		 * Responder is created by main Picasa methods. Each Picasa method returns a PicasaResponder
-		 * to listen for basic Picasa events. 
-		 * 
-		 * @param target IEventDispatcher
-		 */
-		public function PicasaResponder(request : URLRequest = null)
-		{
-			super(request);
-		}
+		super(request);
 	}
+}
 }

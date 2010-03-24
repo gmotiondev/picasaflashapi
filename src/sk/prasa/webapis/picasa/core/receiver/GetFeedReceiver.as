@@ -24,75 +24,74 @@
 
 package sk.prasa.webapis.picasa.core.receiver 
 {
-	import flash.events.Event;
-	import flash.net.URLLoader;
-	
-	import sk.prasa.webapis.picasa.PicasaResponder;
-	import sk.prasa.webapis.picasa.events.PicasaDataEvent;
-	import sk.prasa.webapis.picasa.objects.feed.AtomFeed;
-	import sk.prasa.webapis.picasa.objects.feed.IAtom;	
+import sk.prasa.webapis.picasa.PicasaResponder;
+import sk.prasa.webapis.picasa.events.PicasaDataEvent;
+import sk.prasa.webapis.picasa.objects.feed.AtomFeed;
+import sk.prasa.webapis.picasa.objects.feed.IAtom;
+
+import flash.events.Event;
+import flash.net.URLLoader;
+/**
+ * Receives and XML instance from GetFeedCommand.
+ * 
+ * @private
+ */
+public class GetFeedReceiver implements IReceiver
+{
+	private var __responder : PicasaResponder;
+
+	public function GetFeedReceiver()
+	{
+		__responder = new PicasaResponder();
+	}
 	
 	/**
-	 * Receives and XML instance from GetFeedCommand.
+	 * Called when XML loading is complete. 
 	 * 
-	 * @author Michal Gron (michal.gron@gmail.com) 
-	 * @private
+	 * @param response XML Loaded XML document.
 	 */
-	public class GetFeedReceiver implements IReceiver
+	public function process(response : XML) : void 
 	{
-		private var __responder : PicasaResponder;
-
-		public function GetFeedReceiver()
+		try
 		{
-			__responder = new PicasaResponder();
-		}
-		
-		/**
-		 * Called when XML loading is complete. 
-		 * 
-		 * @param response XML Loaded XML document.
-		 */
-		public function process(response : XML) : void 
-		{
-			try
-			{
-				var tEvt : PicasaDataEvent = new PicasaDataEvent(PicasaDataEvent.DATA);
-					tEvt.data = parse(response);
-					
-				responder.dispatchEvent(tEvt);
+			var tEvt : PicasaDataEvent = new PicasaDataEvent(PicasaDataEvent.DATA);
+				tEvt.data = parse(response);
 				
-			} catch(e : Error)
-			{
-				throw new Error("Processing feed failed. Reason: " + e.message);
-			}
+			responder.dispatchEvent(tEvt);
+			
 		}
-		
-		/**
-		 * Returns a PicasaResponder binded with called command.
-		 * 
-		 * @return PicasaResponder reference
-		 */
-		public function get responder() : PicasaResponder
+		catch(e : Error)
 		{
-			return __responder;
-		}
-		
-		/** 
-		 * When the result event from the URLLoader is received.
-		 */
-		public function result(evt : Event) : void
-		{
-			process(new XML(URLLoader(evt.target).data));
-		}
-		
-		/**
-		 * Parse received XML document. 
-		 * 
-		 * //TODO: ... RSS projection?.. make this factory method?
-		 */
-		protected function parse(feed : XML) : IAtom
-		{
-			return new AtomFeed(feed);
+			throw new Error("Processing feed failed. Reason: " + e.message);
 		}
 	}
+	
+	/**
+	 * Returns a PicasaResponder binded with called command.
+	 * 
+	 * @return PicasaResponder reference
+	 */
+	public function get responder() : PicasaResponder
+	{
+		return __responder;
+	}
+	
+	/** 
+	 * When the result event from the URLLoader is received.
+	 */
+	public function result(evt : Event) : void
+	{
+		process(new XML(URLLoader(evt.target).data));
+	}
+	
+	/**
+	 * Parse received XML document. 
+	 * 
+	 * //TODO: ... RSS projection?.. make this a factory method?
+	 */
+	protected function parse(feed : XML) : IAtom
+	{
+		return new AtomFeed(feed);
+	}
+}
 }

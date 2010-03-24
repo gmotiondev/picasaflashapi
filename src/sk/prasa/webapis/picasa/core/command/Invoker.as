@@ -24,32 +24,40 @@
 
 package sk.prasa.webapis.picasa.core.command 
 {
-	import sk.prasa.webapis.picasa.core.command.ICommand;	
+import sk.prasa.webapis.picasa.core.command.ICommand;
+/**
+ * Command Invoker. Part of the Command Pattern.
+ * 
+ * @private
+ */
+public class Invoker 
+{
+	private var __command : ICommand;
+	
+	public function Invoker(command : ICommand = null)
+	{
+		__command = command;
+	}
 	
 	/**
-	 * Command Invoker. Part of the Command Pattern.
-	 * 
-	 * @author Michal Gron (michal.gron@gmail.com) 
-	 * @private
+	 * Store command.
 	 */
-	public class Invoker 
+	public function setCommand(command : ICommand) : void
 	{
-		private var __command : ICommand;
-		
-		/**
-		 * Store command.
-		 */
-		public function setCommand(command : ICommand) : void
-		{
-			__command = command;
-		}
-		
-		/**
-		 * Execute stored command.
-		 */
-		public function executeCommand() : void 
-		{
-			__command.execute();
-		}	
+		__command = command;
 	}
+	
+	/**
+	 * Execute stored command.
+	 */
+	public function executeCommand() : void 
+	{
+		__command.execute();
+	}
+	
+	public function run() : void
+	{
+		__command.execute();
+	}
+}
 }

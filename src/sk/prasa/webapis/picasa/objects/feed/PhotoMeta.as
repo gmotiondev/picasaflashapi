@@ -24,20 +24,17 @@
 
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.feed.IMeta;
-	import sk.prasa.webapis.picasa.objects.feed.Meta;		
-	
-	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
-	 */
-	public class PhotoMeta extends Meta implements IMeta 
+import sk.prasa.webapis.picasa.objects.feed.IMeta;
+import sk.prasa.webapis.picasa.objects.feed.Meta;
+/**
+ * // TODO: this is not true, there is no PhotoMeta!
+ */
+public class PhotoMeta extends Meta implements IMeta 
+{
+	public function PhotoMeta(data : XML)
 	{
-		public function PhotoMeta(xmllist : XMLList)
-		{
-			super(xmllist);
-		}
-		
-		//dopisat metody typicke pre PhotoMeta
+		//super(data);
+		super(new XML());
 	}
+}
 }

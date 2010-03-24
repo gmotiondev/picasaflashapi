@@ -24,22 +24,25 @@
 
 package sk.prasa.webapis.picasa.objects 
 {
-	import sk.prasa.webapis.picasa.objects.User;	
+import sk.prasa.webapis.picasa.objects.User;
+/**
+ * 
+ */
+public class Author extends User 
+{
+	public function Author( name : String = null, 
+							uri : String = null, 
+							email : String = null)
+	{
+		super(name, uri, email);
+	}
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
+	 * @inheritDoc
 	 */
-	public class Author extends User 
+	override public function toString() : String
 	{
-		public function Author(aName : String = null, aUri : String = null, aEmail : String = null)
-		{
-			super(aName, aUri, aEmail);
-		}
-		
-		override public function toString() : String
-		{
-			return "[Author " + super.toString() + "]";
-		} 
-	}
+		return "[Author " + super.toString() + "]";
+	} 
+}
 }

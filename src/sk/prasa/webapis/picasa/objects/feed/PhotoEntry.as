@@ -46,9 +46,9 @@ package sk.prasa.webapis.picasa.objects.feed
 		private var georss_ns : Namespace = Namespaces.GEORSS_NS;
 		private var gml_ns : Namespace = Namespaces.GML_NS;
 		
-		public function PhotoEntry(xmllist : XMLList)
+		public function PhotoEntry(data : XML)
 		{
-			super(xmllist);
+			super(data);
 		}
 
 		//dopisat metody typicke pre PhotoEntry
@@ -80,7 +80,7 @@ package sk.prasa.webapis.picasa.objects.feed
 			var tExif : Exif = new Exif();
 				tExif.distance 		= Utils.parseNumber(this.data.exif_ns::tags.exif_ns::distance);
 				tExif.exposure 		= Utils.parseNumber(this.data.exif_ns::tags.exif_ns::exposure);
-				tExif.flash 		= this.data.exif_ns::tags.exif_ns::flash != "false";
+				tExif.flash 		= Utils.parseBoolean(this.data.exif_ns::tags.exif_ns::flash);
 				tExif.focallength 	= Utils.parseNumber(this.data.exif_ns::tags.exif_ns::focallength);
 				tExif.fstop 		= Utils.parseNumber(this.data.exif_ns::tags.exif_ns::fstop);
 				tExif.imageUniqueID = Utils.parseString(this.data.exif_ns::tags.exif_ns::imageUniqueID);

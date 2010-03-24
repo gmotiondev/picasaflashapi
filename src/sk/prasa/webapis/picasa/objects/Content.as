@@ -24,26 +24,28 @@
 
 package sk.prasa.webapis.picasa.objects 
 {
-	/**
-	 * Content Value object
-	 * 
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
-	 */
-	public class Content extends Text 
+/**
+ * 
+ */
+public class Content extends Text 
+{
+	public var src : String;
+	
+	public function Content(type : String = null, 
+							value : String = null, 
+							src : String = null)
 	{
-		public var src : String;
+		super(type, value);
 		
-		public function Content(aType : String = null, aValue : String = null, aSrc : String = null)
-		{
-			super(aType, aValue);
-			
-			src = aSrc;
-		}
-		
-		override public function toString() : String
-		{
-			return "[Content src=" + src + ", " + super.toString() + "]";
-		}
+		this.src = src;
 	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	override public function toString() : String
+	{
+		return "[Content src=" + src + ", " + super.toString() + "]";
+	}
+}
 }

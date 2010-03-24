@@ -24,278 +24,388 @@
 
 package sk.prasa.webapis.picasa.objects 
 {
-	import flash.net.URLRequest;
-	import flash.net.URLRequestMethod;
-	import flash.net.URLVariables;
-	import flash.utils.Dictionary;
-	
-	import sk.prasa.webapis.picasa.PicasaService;
-	import sk.prasa.webapis.picasa.core.observer.IObserver;	
+import sk.prasa.webapis.picasa.PicasaService;
+import sk.prasa.webapis.picasa.core.observer.IObserver;
+
+import flash.net.URLRequest;
+import flash.net.URLRequestMethod;
+import flash.net.URLVariables;
+import flash.utils.Dictionary;
+/**
+ * 
+ */
+public class UrlParams implements IObserver
+{
+	private var __dict : Dictionary;
+	private var __suffix : String;
+	private var __method : String;
+
+	public function UrlParams(	kind : String = "photo",	
+								access : String = null,
+								thumbsize : String = null,
+								imgmax : String = null,
+								tag : String = null,
+								q : String = null,
+								max_results : int = 1000,
+								start_index : int = 1,
+								bbox : String = null,
+								l : String = null)
+	{
+		__dict = new Dictionary();
+		__suffix = "";
+		__method = URLRequestMethod.GET;
+		
+		setParameter("v", "2"); 												// force version 2 api
+		setParameter("access", access);
+		setParameter("thumbsize", thumbsize);
+		setParameter("imgmax", imgmax);
+		setParameter("max-results", max_results);
+		setParameter("start-index", start_index);
+		
+		setParameter("kind", kind);
+		setParameter("tag", tag);
+		setParameter("q", q);
+		setParameter("l", l);
+		
+		setParameter("bbox", bbox);
+	}
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
+	 * @private
 	 */
-	public class UrlParams implements IObserver
+	public function update(o : *) : void
 	{
-		private var __dict : Dictionary;
-		private var __suffix : String;
-		private var __method : String;
-
-		public function UrlParams(	aKind : String = "photo",	
-									aAccess : String = null,
-									aThumbsize : String = null,
-									aImgmax : String = null,
-									aTag : String = null,
-									aQ : String = null,
-									aMax_results : int = 100,
-									aStart_index : int = 1,
-									aBbox : String = null,
-									aL : String = null)
-		{
-			__dict = new Dictionary();
-			__suffix = "";
-			__method = URLRequestMethod.GET;
+		merge(o as UrlParams);
+	}
+	
+	/**
+	 * @private
+	 */
+	public function get method() : String
+	{
+		return __method;
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set method(value : String) : void
+	{
+		__method = value;
+	}
+	
+	/**
+	 * @private
+	 */
+	public function get suffix() : String
+	{
+		return __suffix + (isRemote ? "" : ".xml");
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set suffix(value : String) : void
+	{
+		__suffix = value;
+	}
+	
+	/**
+	 * Visibility parameter
+	 */
+	public function get access() : String
+	{
+		return getParameter("access");
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set access(value : String) : void
+	{
+		setParameter("access", value);
+	}
+	
+	/**
+	 * Thumbnail size parameter
+	 */
+	public function get thumbsize() : String
+	{
+		return getParameter("thumbsize");
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set thumbsize(value : String) : void
+	{
+		setParameter("thumbsize", value);
+	}
+	
+	/**
+	 * Image size parameter
+	 */
+	public function get imgmax() : String
+	{
+		return getParameter("imgmax");
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set imgmax(value : String) : void
+	{
+		setParameter("imgmax", value);
+	}
+	
+	/**
+	 * Maximum number of results to be retrieved
+	 */
+	public function get max_results() : int
+	{
+		return getParameter("max-results");
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set max_results(value : int) : void
+	{
+		setParameter("max-results", value);
+	}
+	
+	/**
+	 * 1-based index of the first result to be retrieved
+	 */
+	public function get start_index() : int
+	{
+		return getParameter("start-index");
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set start_index(value : int) : void
+	{
+		setParameter("start-index", value);
+	}
+	
+	/**
+	 * Picasa Web Albums-specific query parameter for kind queries.	
+	 */
+	public function get kind() : String // default is photo!
+	{
+		return getParameter("kind");
+	}	
+	
+	/**
+	 * @private
+	 */
+	public function set kind(value : String) : void
+	{
+		setParameter("kind", value);
+	}
+	
+	/**
+	 * Tag filter parameter
+	 */
+	public function get tag() : String
+	{
+		return getParameter("tag");
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set tag(value : String) : void
+	{
+		setParameter("tag", value);
+	}
+	
+	/**
+	 * Full-text query string
+	 */
+	public function get q() : String
+	{
+		return getParameter("q");
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set q(value : String) : void
+	{
+		setParameter("q", value);
+	}
+	
+	/**
+	 * named search of geo data	
+	 */
+	public function get l() : String
+	{
+		return getParameter("l");
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set l(value : String) : void
+	{
+		setParameter("l", value);
+	}
+	
+	/**
+	 * bounding-box search of geo coordinates
+	 */
+	public function get bbox() : String
+	{
+		return getParameter("bbox");
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set bbox(value : String) : void
+	{
+		setParameter("bbox", value);
+	}
+	
+	/**
+	 * @private
+	 */
+	public function merge(p : UrlParams) : UrlParams
+	{
+		if(p != null)
+		{ 
+			kind = p.kind;
 			
-			setParameter("access", aAccess);
-			setParameter("thumbsize", aThumbsize);
-			setParameter("imgmax", aImgmax);
-			setParameter("max-results", aMax_results);
-			setParameter("start-index", aStart_index);
+			if(p.access != null) access = p.access;
+			if(p.thumbsize != null) thumbsize = p.thumbsize;
+			if(p.imgmax != null) imgmax = p.imgmax;
+			if(p.tag != null) tag = p.tag;
+			if(p.q != null) q = p.q;
 			
-			setParameter("kind", aKind);
-			setParameter("tag", aTag);
-			setParameter("q", aQ);
-			setParameter("l", aL);
+			max_results = p.max_results;
+			start_index = p.start_index;
 			
-			setParameter("bbox", aBbox);
+			if(p.bbox != null) bbox = p.bbox;
+			if(p.l != null) l = p.l; 
 		}
-		
-		public function update(o : *) : void
-		{
-			merge(o as UrlParams);
-		}
-
-		public function get method() : String
-		{
-			return __method;
-		}
-		
-		public function set method(value : String) : void
-		{
-			__method = value;
-		}
-		
-		public function get suffix() : String
-		{
-			return __suffix;
-		}
-		
-		public function set suffix(value : String) : void
-		{
-			__suffix = value;
-		}
-
-		public function get access() : String
-		{
-			return getParameter("access");
-		}
-		
-		public function set access(value : String) : void
-		{
-			setParameter("access", value);
-		}
-		
-		public function get thumbsize() : String
-		{
-			return getParameter("thumbsize");
-		}
-		
-		public function set thumbsize(value : String) : void
-		{
-			setParameter("thumbsize", value);
-		}
-		
-		public function get imgmax() : String
-		{
-			return getParameter("imgmax");
-		}
-		
-		public function set imgmax(value : String) : void
-		{
-			setParameter("imgmax", value);
-		}
-		
-		public function get max_results() : int
-		{
-			return getParameter("max-results");
-		}
-		
-		public function set max_results(value : int) : void
-		{
-			setParameter("max-results", value);
-		}
-		
-		public function get start_index() : int
-		{
-			return getParameter("start-index");
-		}
-		
-		public function set start_index(value : int) : void
-		{
-			setParameter("start-index", value);
-		}
-		
-		public function get kind() : String // default is photo!
-		{
-			return getParameter("kind");
-		}	
-		
-		public function set kind(value : String) : void
-		{
-			setParameter("kind", value);
-		}
-		
-		public function get tag() : String
-		{
-			return getParameter("tag");
-		}
-		
-		public function set tag(value : String) : void
-		{
-			setParameter("tag", value);
-		}
-		
-		public function get q() : String
-		{
-			return getParameter("q");
-		}
-		
-		public function set q(value : String) : void
-		{
-			setParameter("q", value);
-		}
-		
-		public function get l() : String
-		{
-			return getParameter("l");
-		}
-		
-		public function set l(value : String) : void
-		{
-			setParameter("l", value);
-		}
-		
-		public function get bbox() : String
-		{
-			return getParameter("bbox");
-		}
-		
-		public function set bbox(value : String) : void
-		{
-			setParameter("bbox", value);
-		}
-		
-		public function merge(p : UrlParams) : UrlParams
-		{
-			if(p != null)
-			{ 
-				kind = p.kind;
-				
-				if(p.access != null) access = p.access;
-				if(p.thumbsize != null) thumbsize = p.thumbsize;
-				if(p.imgmax != null) imgmax = p.imgmax;
-				if(p.tag != null) tag = p.tag;
-				if(p.q != null) q = p.q;
-				
-				max_results = p.max_results;
-				start_index = p.start_index;
-				
-				if(p.bbox != null) bbox = p.bbox;
-				if(p.l != null) l = p.l; 
-			}
-								
-			return clone();
-		}
-		
-		/**
-		 * @private
-		 */
-		public function getURLRequest() : URLRequest
-		{
-			var tURLRequest : URLRequest = new URLRequest();
-				tURLRequest.url = PicasaService.FEED_API_URL + suffix;
-				tURLRequest.data = getURLVariables();
-				
-			return tURLRequest;
-		}
-		
-		/**
-		 * @private
-		 */
-		internal function getURLVariables() : URLVariables
-		{
-			var tURLVariables : URLVariables = new URLVariables();
+							
+		return clone();
+	}
+	
+	/**
+	 * @private
+	 */
+	public function get url_request() : URLRequest
+	{
+		var request : URLRequest = new URLRequest();
+			request.url = PicasaService.FEED_API_URL + suffix;
+			request.data = isRemote ? url_variables : null;
 			
-			for(var key : String in __dict)
-            {
-            	if(getParameter(key) != null) tURLVariables[key] = getParameter(key);
-            }
-            
-			
-			return tURLVariables;
-		}
+		return request;
+	}
+	
+	/**
+	 * @private
+	 */
+	internal function get url_variables() : URLVariables
+	{
+		var variables : URLVariables = new URLVariables();
 		
-		public function setParameter(key : String, value : *) : void
-		{	
-			__dict[key] = value;
-		}
-		
-		public function getParameter(key : String) : *
-		{	
-			return __dict[key];
-		}
-		
-		public function removeParameter(key : String) : void
-		{	
-			delete __dict[key];
-		}
-		
-		/**
-		 * @private
-		 */
-		internal function containsKey(key : String) : Boolean
+		for(var key : String in __dict)
         {
-            return __dict[key] != null;
+        	if(getParameter(key) != null) variables[key] = getParameter(key);
         }
         
-        public function clone() : UrlParams
-		{
-			return new UrlParams(kind, access, thumbsize, imgmax, tag, q, max_results, start_index, bbox, l);
-		}
 		
-		public function toString() : String
+		return variables;
+	}
+	
+	/**
+	 * @private
+	 */
+	internal function get isRemote() : Boolean
+	{
+		return Utils.isHttpURL(PicasaService.FEED_API_URL);
+	}
+
+	/**
+	 * @private
+	 */
+	public function setParameter(key : String, value : *) : void
+	{	
+		__dict[key] = value;
+	}
+	
+	/**
+	 * @private
+	 */
+	public function getParameter(key : String) : *
+	{	
+		return __dict[key];
+	}
+	
+	/**
+	 * @private
+	 */
+	public function removeParameter(key : String) : void
+	{	
+		delete __dict[key];
+	}
+	
+	/**
+	 * @private
+	 */
+	internal function containsKey(key : String) : Boolean
+    {
+        return __dict[key] != null;
+    }
+    
+    /**
+     * @private
+     */
+    public function clone() : UrlParams
+	{
+		return new UrlParams(kind, 
+							 access, 
+							 thumbsize, 
+							 imgmax, 
+							 tag, 
+							 q, 
+							 max_results, 
+							 start_index, 
+							 bbox, 
+							 l);
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function toString() : String
+	{
+		var tFirst : Boolean = true;
+		var tRes : String = "";
+		
+		for (var key : String in __dict)
 		{
-			var tFirst : Boolean = true;
-			var tRes : String = "";
-			
-			for (var key : String in __dict)
+			if(containsKey(key))
 			{
-				if(containsKey(key))
-				{
-					tRes += (tFirst ? "?" : "&") + key + "=" + urlEncode(getParameter(key));
-					tFirst = false;
-				}
+				tRes += (tFirst ? "?" : "&") + key + "=" + urlEncode(getParameter(key));
+				tFirst = false;
 			}
-			
-			return tRes;
 		}
+			
+		return tRes;
 	}
 }
+}
+
 /**
  * @private
  */
-function urlEncode(str:String):String
+function urlEncode(value : String) : String
 {
 	const RFC3986_ENCODE : RegExp = /[^a-zA-Z0-9_.~-]/g;
 	var convert : Object = new Object;
@@ -303,7 +413,7 @@ function urlEncode(str:String):String
 	convert.encode = function() : String
 	{
 		return String("%" + String(arguments[0]).charCodeAt().toString(16)).toUpperCase();
-	}
+	};
 	
-	return str.replace(RFC3986_ENCODE, convert.encode);
+	return value.replace(RFC3986_ENCODE, convert.encode);
 }

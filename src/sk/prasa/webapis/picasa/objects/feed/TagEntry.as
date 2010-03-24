@@ -30,14 +30,13 @@ package sk.prasa.webapis.picasa.objects.feed
 	import sk.prasa.webapis.picasa.objects.feed.IEntry;	
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
 	 * 
 	 */
 	public class TagEntry extends Entry implements IEntry 
 	{
-		public function TagEntry(xmllist : XMLList)
+		public function TagEntry(data : XML)
 		{
-			super(xmllist);
+			super(data);
 		}
 		
 		//dopisat metody typicke pre TagEntry

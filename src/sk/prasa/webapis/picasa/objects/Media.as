@@ -24,111 +24,191 @@
 
 package sk.prasa.webapis.picasa.objects 
 {
-	import sk.prasa.webapis.picasa.objects.FeedElement;	
-	import sk.prasa.webapis.picasa.objects.Namespaces;	
+import sk.prasa.webapis.picasa.objects.FeedElement;
+import sk.prasa.webapis.picasa.objects.Namespaces;
+/**
+ * Picasa Web Albums uses the media (http://search.yahoo.com/mrss/) namespace 
+ * for elements defined in the Media RSS specification. 
+ * For information about the media namespace, see the Media RSS specification
+ * (http://search.yahoo.com/mrss).
+ */
+public class Media extends FeedElement
+{		
+	private var media_ns : Namespace = Namespaces.MEDIA_NS;
+	
+	public function Media(data : XML)
+	{
+		super(data);
+	}
 	
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
+	 * Contains the URL and other information about the full version 
+	 * of the entry's media content.
 	 * 
+	 * // TODO:
+	 * // There can be multiple <media:content> elements for a given <media:group>
 	 */
-	public class Media extends FeedElement
-	{		
-		private var media_ns : Namespace = Namespaces.MEDIA_NS;
+	public function get content() : MediaContent
+	{
+		var tM : MediaContent = new MediaContent();
+			tM.url = Utils.parseString(this.data.media_ns::group.media_ns::content.@url);
+			tM.type = Utils.parseString(this.data.media_ns::group.media_ns::content.@type);
+			tM.medium = Utils.parseString(this.data.media_ns::group.media_ns::content.@medium);
+			tM.width = Utils.parseNumber(this.data.media_ns::group.media_ns::content.@width);
+			tM.height = Utils.parseNumber(this.data.media_ns::group.media_ns::content.@height);
+			tM.fileSize = Utils.parseNumber(this.data.media_ns::group.media_ns::content.@fileSize);
 		
-		public function Media(xmllist : XMLList)
-		{
-			super(xmllist);
-		}
+		return tM;
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set content(value : MediaContent) : void
+	{
+		// TODO: ...
+	}
+	
+	/**
+	 * Contains the nickname of the user who created the content. 
+	 * This is a user-specified value that should be used when referring to the 
+	 * user by name.
+	 */
+	public function get credit() : String
+	{
+		return Utils.parseString(this.data.media_ns::group.media_ns::["credit"]);
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set credit(value : String) : void
+	{
+		// TODO: ...
+	}
+	
+	/**
+	 * Contains a description of the entry's media content. For api projections, 
+	 * the description is in plain text; for base projections, the description 
+	 * is in HTML. 
+	 * 
+	 * This field is limited to 1024 characters. 
+	 * The description can contain UTF-8 characters.
+	 */
+	public function get description() : String
+	{
+		return Utils.parseString(this.data.media_ns::group.media_ns::["description"]);
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set description(value : String) : void
+	{
+		// TODO: ...
+	}
+	
+	/**
+	 * Lists the tags associated with the entry. 
+	 * Contains a list of tags that have been added to the photo, 
+	 * or all tags that have been added to photos in the album.
+	 *  
+	 * Tags are limited to 128 characters and 100 tags per item. 
+	 * Tags use the UTF-8 character set, so they are not limited to ASCII.
+	 */
+	public function get keywords() : Array
+	{
+		var tKeywords : String = Utils.parseString(this.data.media_ns::group.media_ns::["keywords"]); 
 		
-		public function get content() : MediaContent
-		{
-			var tMediaContent : MediaContent = new MediaContent();
-				tMediaContent.url = Utils.parseString(this.data.media_ns::group.media_ns::content.@url);
-				tMediaContent.type = Utils.parseString(this.data.media_ns::group.media_ns::content.@type);
-				tMediaContent.medium = Utils.parseString(this.data.media_ns::group.media_ns::content.@medium);
-				tMediaContent.width = Utils.parseNumber(this.data.media_ns::group.media_ns::content.@width);
-				tMediaContent.height = Utils.parseNumber(this.data.media_ns::group.media_ns::content.@height);
-				tMediaContent.fileSize = Utils.parseNumber(this.data.media_ns::group.media_ns::content.@fileSize);
-			
-			return tMediaContent;
-		}
+		return tKeywords != null ? tKeywords.split(" ").join("").split(",") : [];
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set keywords(value : Array) : void
+	{
+		// TODO: ...
+	}
+	
+	/**
+	 * Contains the URL of a thumbnail of a photo or album cover. 
+	 * If the thumbsize parameter is set, this element points to thumbnails 
+	 * of the requested sizes; otherwise the thumbnails are the 
+	 * default thumbnail size.
+	 * 
+	 * There can be multiple <media:thumbnail> elements for a given <media:group>; 
+	 * for example, a given item may have multiple thumbnails at different sizes. 
+	 * Photos generally have two thumbnails at different sizes; 
+	 * albums generally have one cropped thumbnail.
+	 */
+	public function get thumbnails() : Array
+	{
+		var tRes : Array = [];
 		
-		public function set content(aContent : MediaContent) : void
+		// e.g. when parsed from photo as parent, album doesn't have media:group
+		try
 		{
-			// TODO: ...
-		}
-		
-		public function get credit() : String
-		{
-			return Utils.parseString(this.data.media_ns::group.media_ns::credit);
-		}
-		
-		public function set credit(aCredit : String) : void
-		{
-			// TODO: ...
-		}
-		
-		public function get description() : String
-		{
-			return Utils.parseString(this.data.media_ns::group.media_ns::description);
-		}
-		
-		public function set description(aDescription : String) : void
-		{
-			// TODO: ...
-		}
-		
-		public function get keywords() : Array
-		{
-			return this.data.media_ns::group.media_ns::keywords.split(" ").join("").split(",");
-		}
-		
-		public function set keywords(aKeywords : Array) : void
-		{
-			// TODO: ...
-		}
-		
-		public function get thumbnails() : Array
-		{
-			var tRes : Array = [];
-			
-			try
+			for each(var thumb : XML in this.data.media_ns::group.media_ns::thumbnail)
 			{
-				for each(var thumb : XML in this.data.media_ns::group.media_ns::thumbnail)
-				{
-					tRes.push(new MediaThumbnail(
-						Utils.parseString(thumb.@url), 
-						Utils.parseNumber(thumb.@width), 
-						Utils.parseNumber(thumb.@height))); 
-				}
-			} catch(e : Error)
-			{
-				throw new Error(e);
+				tRes.push(new MediaThumbnail(
+							Utils.parseString(thumb.@url), 
+							Utils.parseNumber(thumb.@width), 
+							Utils.parseNumber(thumb.@height))); 
 			}
-			
+		}
+		catch(e : Error)
+		{
+			//tRes = [];
+		}
+		finally
+		{
 			return tRes;
 		}
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set thumbnails(value : Array) : void
+	{
+		// TODO: ..
+	}
+	
+	/**
+	 * Returns first thumb from the thumbnails array
+	 */
+	public function get thumbnail() : MediaThumbnail
+	{
+		return thumbnails[0] as MediaThumbnail;
+	}
+	
+	/**
+	 * Contains the title of the entry's media content, in plain text.
+	 */
+	public function get title() : String
+	{
+		return Utils.parseString(this.data.media_ns::group.media_ns::["title"]);
+	}
+	
+	/**
+	 * @private
+	 */	
+	public function set title(value : String) : void
+	{
+		// TODO: ...
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function toString() : String
+	{
+		// TODO: Get rid of this try/catch please!
 		
-		public function set thumbnails(aThumbnails : Array) : void
+		try
 		{
-			// TODO: ..
-		}
-		
-		public function get title() : String
-		{
-			return Utils.parseString(this.data.media_ns::group.media_ns::title);
-		}
-			
-		public function set title(aTitle : String) : void
-		{
-			// TODO: ...
-		}
-		
-		public function toString() : String
-		{
-			try
-			{
-				return "[Media " +
+			return  "[Media " +
 					" content=" + content.toString() + 
 					", credit=" + credit + 
 					", description=" + description + 
@@ -136,13 +216,14 @@ package sk.prasa.webapis.picasa.objects
 					", thumbnails=" + thumbnails.join(", ") + 
 					", title=" + title + 
 					"]";
-			} catch(e : Error)
-			{
-				// e.g. when parsed from photo as parent, album doesn't have media:group
-				return "Error Media.toString();: " + e.message;
-			}
-			
-			return null;
 		}
-	}	
+		catch(e : Error)
+		{
+			// e.g. when parsed from photo as parent, album doesn't have media:group
+			return "Error Media.toString();: " + e.message;
+		}
+		
+		return null;
+	}
+}
 }

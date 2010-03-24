@@ -24,20 +24,50 @@
 
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.feed.IMeta;
-	import sk.prasa.webapis.picasa.objects.feed.Meta;		
+import sk.prasa.webapis.picasa.objects.GPhoto;
+import sk.prasa.webapis.picasa.objects.Kind;
+import sk.prasa.webapis.picasa.objects.Namespaces;
+import sk.prasa.webapis.picasa.objects.OpenSearch;
+import sk.prasa.webapis.picasa.objects.Utils;
+import sk.prasa.webapis.picasa.objects.feed.IMeta;
+import sk.prasa.webapis.picasa.objects.feed.Meta;
+/**
+ * 
+ */
+public class UserMeta extends Meta implements IMeta 
+{
+	private var opensearch_ns : Namespace = Namespaces.OPENSEARCH_NS;
 	
-	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
-	 */
-	public class UserMeta extends Meta implements IMeta 
+	public function UserMeta(data : XML)
 	{
-		public function UserMeta(xmllist : XMLList)
-		{
-			super(xmllist);
-		}
-		
-		//dopisat metody typicke pre UserMeta
+		super(data);
 	}
+	
+	public function get gphoto() : GPhoto
+	{
+		var tGPhoto : GPhoto = new GPhoto(this.data, Kind.USER);
+		return tGPhoto;
+	}
+	
+	public function set gphoto(value : GPhoto) : void
+	{
+		// TODO: ...
+	}
+	
+	// i think, entry does not have a opensearch nodes
+	public function get opensearch() : OpenSearch
+	{
+		var tOpenSearch : OpenSearch = new OpenSearch();
+			tOpenSearch.totalResults = Utils.parseNumber(this.data.opensearch_ns::totalResults); 
+			tOpenSearch.startIndex = Utils.parseNumber(this.data.opensearch_ns::startIndex);
+			tOpenSearch.itemsPerPage = Utils.parseNumber(this.data.opensearch_ns::itemsPerPage);
+			
+		return tOpenSearch;
+	}
+	
+	public function set opensearch(value : OpenSearch) : void
+	{
+		// TODO: ...
+	}
+}
 }

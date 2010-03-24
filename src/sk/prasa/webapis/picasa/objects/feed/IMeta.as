@@ -24,25 +24,46 @@
 
 package sk.prasa.webapis.picasa.objects.feed 
 {
-	import sk.prasa.webapis.picasa.objects.Title;
+import sk.prasa.webapis.picasa.objects.Author;
+import sk.prasa.webapis.picasa.objects.Category;
+import sk.prasa.webapis.picasa.objects.Generator;
+import sk.prasa.webapis.picasa.objects.Links;
+/**
+ * 
+ */
+public interface IMeta 
+{
+	function get id() : String;
+	function set id(value : String) : void;
 	
-	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
-	 */
-	public interface IMeta 
-	{
-		function get title() : Title;
-		function get links() : Array;
-		//function get subtitle() : SubTitle
-		//function get updated() : Date
-		//function get id() : String
-		//function get authors() : Array
-		//function get contributors() : Array
-		//function get categories() : Array
-		//function get rights() : Rights
-		//function get generator() : Generator
-		//function get icon() : String
-		//function get logo() : String
-	}
+	function get title() : String;
+	function set title(value : String) : void;
+	
+	function get links() : Links;
+	function set links(value : Links) : void;
+	
+	function get subtitle() : String;
+	function set subtitle(value : String) : void;
+	
+	function get rights() : String;
+	function set rights(value : String) : void;
+	
+	function get author() : Author;
+	function set author(value : Author) : void;
+	
+	function get updated() : Date;
+	function set updated(value : Date) : void;
+	
+	function get category() : Category;
+	function set category(value : Category) : void;
+	
+	function get generator() : Generator;
+	function set generator(value : Generator) : void;
+	
+	function get icon() : String;
+	function set icon(value : String) : void;
+	
+	function get logo() : String;
+	function set logo(value : String) : void;
+}
 }

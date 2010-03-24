@@ -24,26 +24,71 @@
 
 package sk.prasa.webapis.picasa.objects 
 {		
+/**
+ * Picasa Web Albums represent Exif data encoded in a photo.
+ */
+public class Exif 
+{
 	/**
-	 * @author Michal Gron (michal.gron@gmail.com)
-	 * 
+	 * The distance to the subject.
 	 */
-	public class Exif 
+	public var distance : Number; 		// exif:distance
+	
+	/**
+	 * The exposure time used.
+	 */
+	public var exposure : Number; 		// exif:exposure
+	
+	/**
+	 * Boolean value indicating whether the flash was used.
+	 */
+	public var flash : Boolean;			// exif:flash
+	
+	/**
+	 * The focal length used.
+	 */
+	public var focallength : Number; 	// exif:focallength
+	
+	/**
+	 * The fstop value used.
+	 */
+	public var fstop : Number;			// exif:fstop
+	
+	/**
+	 * The unique image ID for the photo.
+	 */
+	public var imageUniqueID : String;	// exif:imageUniqueID
+	
+	/**
+	 * The iso equivalent value used.
+	 */
+	public var iso : Number;			// exif:iso
+	
+	/**
+	 * The make of the camera used.
+	 */
+	public var make : String;			// exif:make
+	
+	/**
+	 * The model of the camera used.
+	 */
+	public var model : String;			// exif:model
+	
+	/**
+	 * he date/time the photo was taken, 
+	 * represented as the number of milliseconds since January 1st, 1970.
+	 * 
+	 * The value of this element should always be identical 
+	 * to the value of the <gphoto:timestamp>.
+	 */
+	public var time : Number;			// exif:time
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function toString() : String
 	{
-		public var distance : Number; 		// exif:distance
-		public var exposure : Number; 		// exif:exposure
-		public var flash : Boolean;			// exif:flash
-		public var focallength : Number; 	// exif:focallength
-		public var fstop : Number;			// exif:fstop
-		public var imageUniqueID : String;	// exif:imageUniqueID
-		public var iso : Number;			// exif:iso
-		public var make : String;			// exif:make
-		public var model : String;			// exif:model
-		public var time : Number;			// exif:time
-		
-		public function toString() : String
-		{
-			return "[Exif " +
+		return  "[Exif " +
 				" distance=" + distance +
 				", exposure=" + exposure +
 				", flash=" + flash +
@@ -55,6 +100,6 @@ package sk.prasa.webapis.picasa.objects
 				", model=" + model +
 				", time=" + time +
 				"]";
-		}
 	}
+}
 }
