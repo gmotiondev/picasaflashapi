@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project name="picasaflashapi" basedir="." default="lib">
-	<property file="./build.properties" />
+	<property file="build.properties" />
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
 	<target name="lib" depends="docs">
 		<tstamp>
@@ -30,7 +30,17 @@
 		<echo>SWC created</echo>
 	</target>
 
-	<target name="docs">
+	<target name="init" description="Set up the project">
+		<mkdir dir="${bin.dir}"/>
+		<mkdir dir="${docs.dir}"/>
+	</target>
+
+	<target name="clean" description="Clean the project">
+        <delete dir="${bin.dir}" quiet="true" />
+        <delete dir="${docs.dir}" quiet="true" />
+    </target>
+
+	<target name="docs" depends="init">
 		<!-- Clean out the contents of the doc directory, without delete "docs" -->
 		<delete includeemptydirs="true">
 			<fileset dir="${docs.dir}" includes="**/*" />
