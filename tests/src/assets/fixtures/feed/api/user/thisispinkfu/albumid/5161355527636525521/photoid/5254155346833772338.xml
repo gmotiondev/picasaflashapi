@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:exif="http://schemas.google.com/photos/exif/2007" xmlns:gphoto="http://schemas.google.com/photos/2007" xmlns:media="http://search.yahoo.com/mrss/" xmlns:gd="http://schemas.google.com/g/2005" xmlns:gml="http://www.opengis.net/gml" xmlns:georss="http://www.georss.org/georss" gd:etag="&quot;YDoqeyI.&quot;">
+	<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/albumid/5161355527636525521/photoid/5254155346833772338</id>
+	<published>2008-10-06T21:26:11.000Z</published>
+	<updated>2009-06-25T07:17:22.186Z</updated>
+	<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#photo"/>
+	<title>33880006.jpg</title>
+	<summary>Lomography.sk workshop 10/2007 / Jednota</summary>
+	<content type="image/jpeg" src="http://lh5.ggpht.com/_7xTZSmvyUmQ/SOqCc0K_DzI/AAAAAAAACJY/AUgV83nbi9E/33880006.jpg"/>
+	<link rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml" href="http://photos.googleapis.com/data/feed/api/user/thisispinkfu/albumid/5161355527636525521/photoid/5254155346833772338?v=2"/>
+	<link rel="alternate" type="text/html" href="http://picasaweb.google.com/thisispinkfu/Diana#5254155346833772338"/>
+	<link rel="http://schemas.google.com/photos/2007#canonical" type="text/html" href="http://picasaweb.google.com/lh/photo/juiQEO0ftwPXc5mewam4BA"/>
+	<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/albumid/5161355527636525521/photoid/5254155346833772338?v=2"/>
+	<link rel="http://schemas.google.com/photos/2007#report" type="text/html" href="http://picasaweb.google.com/lh/reportAbuse?uname=thisispinkfu&amp;aid=5161355527636525521&amp;iid=5254155346833772338"/>
+	<gphoto:id>5254155346833772338</gphoto:id>
+	<gphoto:albumid>5161355527636525521</gphoto:albumid>
+	<gphoto:access>public</gphoto:access>
+	<gphoto:width>800</gphoto:width>
+	<gphoto:height>800</gphoto:height>
+	<gphoto:size>248134</gphoto:size>
+	<gphoto:checksum>a761fdf</gphoto:checksum>
+	<gphoto:timestamp>1223148176000</gphoto:timestamp>
+	<gphoto:imageVersion>2198</gphoto:imageVersion>
+	<gphoto:commentCount>0</gphoto:commentCount>
+	<gphoto:viewCount>27</gphoto:viewCount>
+	<exif:tags>
+		<exif:make>NORITSU KOKI</exif:make>
+		<exif:model>QSS-32_33</exif:model>
+		<exif:imageUniqueID>cb397bd4b699bd18116010e91ae4258a</exif:imageUniqueID>
+	</exif:tags>
+	<media:group>
+		<media:content url="http://lh5.ggpht.com/_7xTZSmvyUmQ/SOqCc0K_DzI/AAAAAAAACJY/AUgV83nbi9E/33880006.jpg" height="800" width="800" type="image/jpeg" medium="image"/>
+		<media:credit>Pink-fu</media:credit>
+		<media:description type="plain">Lomography.sk workshop 10/2007 / Jednota</media:description>
+		<media:keywords>diana, blog_post_01</media:keywords>
+		<media:thumbnail url="http://lh5.ggpht.com/_7xTZSmvyUmQ/SOqCc0K_DzI/AAAAAAAACJY/AUgV83nbi9E/s72/33880006.jpg" height="72" width="72"/>
+		<media:thumbnail url="http://lh5.ggpht.com/_7xTZSmvyUmQ/SOqCc0K_DzI/AAAAAAAACJY/AUgV83nbi9E/s144/33880006.jpg" height="144" width="144"/>
+		<media:thumbnail url="http://lh5.ggpht.com/_7xTZSmvyUmQ/SOqCc0K_DzI/AAAAAAAACJY/AUgV83nbi9E/s288/33880006.jpg" height="288" width="288"/>
+		<media:title type="plain">33880006.jpg</media:title>
+	</media:group>
+	<georss:where>
+		<gml:Envelope>
+			<gml:lowerCorner>48.0191978 16.9373982</gml:lowerCorner>
+			<gml:upperCorner>48.2775541 17.2772216</gml:upperCorner>
+		</gml:Envelope>
+		<gml:Point>
+			<gml:pos>48.148376 17.1073099</gml:pos>
+		</gml:Point>
+	</georss:where>
+</entry>

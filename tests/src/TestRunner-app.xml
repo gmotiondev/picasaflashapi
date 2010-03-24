@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<application xmlns="http://ns.adobe.com/air/application/1.5">
+	<id>sk.prasa.webapis.picasa.tests</id>
+	<filename>TestRunner</filename>
+	<name>PicasaFlashApi AIR Test Runner</name>
+	<version>0.2</version>
+	<description>Test Runner for PicasaFlashApi tests. Used to automate test running.</description>
+	<initialWindow>
+		<content>bin/TestRunner.swf</content>		
+=	</initialWindow>
+</application>

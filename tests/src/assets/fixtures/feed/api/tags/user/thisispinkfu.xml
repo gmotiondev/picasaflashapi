@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:gphoto="http://schemas.google.com/photos/2007" xmlns:openSearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:gd="http://schemas.google.com/g/2005" gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+	<id>http://photos.googleapis.com/data/feed/user/thisispinkfu</id>
+	<updated>2009-08-27T08:29:28.683Z</updated>
+	<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#user"/>
+	<title>thisispinkfu</title>
+	<subtitle/>
+	<icon>http://lh6.ggpht.com/_7xTZSmvyUmQ/AAAAY-cVBS8/AAAAAAAAAAA/N103ygsWNXU/s64-c/thisispinkfu.jpg</icon>
+	<link rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml" href="http://photos.googleapis.com/data/feed/api/user/thisispinkfu?v=2"/>
+	<link rel="alternate" type="text/html" href="http://picasaweb.google.com/thisispinkfu"/>
+	<link rel="http://schemas.google.com/photos/2007#slideshow" type="application/x-shockwave-flash" href="http://picasaweb.google.com/s/c/bin/slideshow.swf?host=picasaweb.google.com&amp;RGB=0x000000&amp;feed=http%3A%2F%2Fphotos.googleapis.com%2Fdata%2Ffeed%2Fapi%2Fuser%2Fthisispinkfu%3Falt%3Drss"/>
+	<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/feed/api/user/thisispinkfu?start-index=1&amp;max-results=500&amp;kind=tag&amp;v=2"/>
+	<author>
+		<name>Pink-fu</name>
+		<uri>http://picasaweb.google.com/thisispinkfu</uri>
+	</author>
+	<generator version="1.00" uri="http://picasaweb.google.com/">Picasaweb</generator>
+	<openSearch:totalResults>32</openSearch:totalResults>
+	<openSearch:startIndex>1</openSearch:startIndex>
+	<openSearch:itemsPerPage>500</openSearch:itemsPerPage>
+	<gphoto:user>thisispinkfu</gphoto:user>
+	<gphoto:nickname>Pink-fu</gphoto:nickname>
+	<gphoto:thumbnail>http://lh6.ggpht.com/_7xTZSmvyUmQ/AAAAY-cVBS8/AAAAAAAAAAA/N103ygsWNXU/s64-c/thisispinkfu.jpg</gphoto:thumbnail>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/lomo</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>lomo</title>
+		<summary>lomo</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=lomo&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/lomo?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>106</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/brno</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>brno</title>
+		<summary>brno</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=brno&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/brno?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>12</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/lc-a</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>lc-a</title>
+		<summary>lc-a</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=lc-a&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/lc-a?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>11</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/tatry</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>tatry</title>
+		<summary>tatry</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=tatry&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/tatry?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>27</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/lca</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>lca</title>
+		<summary>lca</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=lca&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/lca?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>63</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/fisheye</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>fisheye</title>
+		<summary>fisheye</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=fisheye&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/fisheye?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>21</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/salzburg</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>salzburg</title>
+		<summary>salzburg</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=salzburg&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/salzburg?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>24</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/funsampler</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>funsampler</title>
+		<summary>funsampler</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=funsampler&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/funsampler?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>14</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/bratislava</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>bratislava</title>
+		<summary>bratislava</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=bratislava&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/bratislava?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>8</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/koloto%C4%8De</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>kolotoče</title>
+		<summary>kolotoče</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=koloto%C4%8De&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/koloto%C4%8De?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>4</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/london</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>london</title>
+		<summary>london</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=london&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/london?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>24</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/splitzer</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>splitzer</title>
+		<summary>splitzer</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=splitzer&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/splitzer?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>23</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/colorsplash</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>colorsplash</title>
+		<summary>colorsplash</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=colorsplash&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/colorsplash?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>13</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/scheisse</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>scheisse</title>
+		<summary>scheisse</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=scheisse&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/scheisse?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/Stockholm</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>Stockholm</title>
+		<summary>Stockholm</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=Stockholm&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/Stockholm?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>19</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/diana</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>diana</title>
+		<summary>diana</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=diana&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/diana?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>38</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/blog_post_01</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>blog_post_01</title>
+		<summary>blog_post_01</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=blog_post_01&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/blog_post_01?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>5</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/blog_post_02</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>blog_post_02</title>
+		<summary>blog_post_02</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=blog_post_02&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/blog_post_02?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>6</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/cosina</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>cosina</title>
+		<summary>cosina</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=cosina&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/cosina?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>4</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/blog_post_03</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>blog_post_03</title>
+		<summary>blog_post_03</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=blog_post_03&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/blog_post_03?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>4</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/blog_post_04</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>blog_post_04</title>
+		<summary>blog_post_04</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=blog_post_04&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/blog_post_04?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>13</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/blog_post_05</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>blog_post_05</title>
+		<summary>blog_post_05</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=blog_post_05&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/blog_post_05?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>8</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/blog_post_06</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>blog_post_06</title>
+		<summary>blog_post_06</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=blog_post_06&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/blog_post_06?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>16</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/Diana</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>Diana</title>
+		<summary>Diana</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=Diana&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/Diana?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>5</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/blog_post_07</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>blog_post_07</title>
+		<summary>blog_post_07</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=blog_post_07&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/blog_post_07?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>6</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/blog_post_08</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>blog_post_08</title>
+		<summary>blog_post_08</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=blog_post_08&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/blog_post_08?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>5</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/blog_post_09</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>blog_post_09</title>
+		<summary>blog_post_09</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=blog_post_09&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/blog_post_09?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>3</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/blog_post_10</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>blog_post_10</title>
+		<summary>blog_post_10</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=blog_post_10&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/blog_post_10?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>5</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/pinhole</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>pinhole</title>
+		<summary>pinhole</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=pinhole&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/pinhole?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>2</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/blog_post_11</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>blog_post_11</title>
+		<summary>blog_post_11</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=blog_post_11&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/blog_post_11?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>4</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/slideshowsample</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>slideshowsample</title>
+		<summary>slideshowsample</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=slideshowsample&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/slideshowsample?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>6</gphoto:weight>
+	</entry>
+	<entry gd:etag="W/&quot;C0ACSXgzeyp7ImA9WxNSE0s.&quot;">
+		<id>http://photos.googleapis.com/data/entry/user/thisispinkfu/tag/doubles</id>
+		<updated>2009-08-27T08:29:28.683Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#tag"/>
+		<title>doubles</title>
+		<summary>doubles</summary>
+		<link rel="alternate" type="text/html" href="http://picasaweb.google.com/lh/searchbrowse?q=doubles&amp;psc=G&amp;uname=thisispinkfu&amp;filter=0"/>
+		<link rel="self" type="application/atom+xml" href="http://photos.googleapis.com/data/entry/api/user/thisispinkfu/tag/doubles?v=2"/>
+		<author>
+			<name>Pink-fu</name>
+			<uri>http://picasaweb.google.com/thisispinkfu</uri>
+		</author>
+		<gphoto:weight>29</gphoto:weight>
+	</entry>
+</feed>
