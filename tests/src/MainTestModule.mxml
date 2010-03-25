@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	implements="net.digitalprimates.fluint.modules.ITestSuiteModule">
+	<mx:Script>
+	<![CDATA[
+	
+	import mainSuite.MainSuite;
+
+	public function getTestSuites() : Array
+	{	
+		var s : Array = [];
+			s.push(new MainSuite());
+
+		return s;
+	}
+
+	]]>
+	</mx:Script>
+</mx:Module>

@@ -95,6 +95,57 @@
 
 	</target>
 
+	<target  name="unit-tests">
+		<!-- remove the test results -->
+		<delete dir="${fluint.reports.loc}" quiet="true" />
+
+		<!-- create the folders for test results -->
+		<mkdir dir="${fluint.reports.loc}" />
+
+		<!-- copy dependencies/app to tests dir -->
+		<copy todir="${bin.dir}/assets">
+			<fileset dir="${test.src.dir}/assets" />
+		</copy>
+
+		<!-- Compile MainTestModule -->
+		<mxmlc file="${test.src.dir}/MainTestModule.mxml" 
+		output="${bin.dir}/MainTestModule.swf"
+		actionscript-file-encoding="UTF-8"
+		keep-generated-actionscript="false"
+		incremental="true">
+			<load-config filename="${air.config}"/>
+			<source-path path-element="${flexsdk.home}/frameworks"/>
+			<compiler.library-path dir="." append="true">
+				<include name="tests/libs"/>
+				<include name="bin"/>
+			</compiler.library-path>
+		</mxmlc>
+
+		<fluint
+			debug="true"
+			headless="true"
+			failonerror="false"
+			workingDir="${bin.dir}"
+			testRunner="${airtestrunner.exe}"
+			outputDir="${fluint.reports.loc}">
+
+				<fileset dir="${bin.dir}">
+					<include name="**/*.swf"/>
+				</fileset>
+		</fluint>
+	</target>
+
+	<path id="libraries">
+		<fileset dir="${fluint.home}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	<taskdef
+		name="fluint"
+		classname="net.digitalprimates.ant.tasks.fluint.Fluint"
+		classpathref="libraries"/>
+
 	<taskdef name="flexPmd"
 		classname="com.adobe.ac.pmd.ant.FlexPmdAntTask"
 		classpath="${pmd.home}/flex-pmd-ant-task-${pmd.version}.jar">
