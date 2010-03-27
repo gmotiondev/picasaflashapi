@@ -43,7 +43,7 @@ public class MainSuite extends TestSuite
 		addTestCase(new TestUserEntry());
 		
 		// commands
-		addTestCase(new TestFeatured());
+		//addTestCase(new TestFeatured());
 		
 		// main service
 		//addTestCase(new TestService());

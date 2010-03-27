@@ -20,7 +20,7 @@ public class TestPhotoMeta extends TestBase
 	
 	override protected function setUp() : void
 	{
-		fixtures_path = "src/assets/fixtures/feed/api/";	
+		fixtures_path = "assets/fixtures/feed/api/";
 		
 		var service : PicasaService = new PicasaService();
 		var responder : PicasaResponder = service.photos.single("thisispinkfu", "5161355527636525521", "5254155346833772338");

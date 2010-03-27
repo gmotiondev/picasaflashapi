@@ -17,7 +17,7 @@ public class TestUserEntry extends TestBase
 	
 	override protected function setUp() : void
 	{
-		fixtures_path = "src/assets/fixtures/feed/api/";	
+		fixtures_path = "assets/fixtures/feed/api/";	
 		
 		var service : PicasaService = new PicasaService();
 		var responder : PicasaResponder = service.contacts.list("thisispinkfu");

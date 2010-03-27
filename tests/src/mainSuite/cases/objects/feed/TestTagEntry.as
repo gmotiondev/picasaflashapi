@@ -20,7 +20,7 @@ public class TestTagEntry extends TestBase
 	
 	override protected function setUp() : void
 	{
-		fixtures_path = "src/assets/fixtures/feed/api/tags/";	
+		fixtures_path = "assets/fixtures/feed/api/tags/";
 		
 		var service : PicasaService = new PicasaService();
 		var responder : PicasaResponder = service.tags.user("thisispinkfu");

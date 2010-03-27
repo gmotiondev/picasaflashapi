@@ -17,7 +17,7 @@ public class TestCommentEntry extends TestBase
 	
 	override protected function setUp() : void
 	{
-		fixtures_path = "src/assets/fixtures/feed/api/comment/";	
+		fixtures_path = "assets/fixtures/feed/api/comment/";
 		
 		var service : PicasaService = new PicasaService();
 		var responder : PicasaResponder = service.comments.user("picasaflashapi");

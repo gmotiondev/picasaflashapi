@@ -28,7 +28,7 @@ public class TestBase extends TestCase
 		{
 			var tAppUrl : String = (new File(Application.application.url).parent).nativePath;
 			var tFolder : Array = tAppUrl.split("/");
-				tFolder.pop();
+				//tFolder.pop();
 				tFolder.unshift("file:/");
 	
 			__fixtures_path = "" + tFolder.concat(path).join(File.separator);

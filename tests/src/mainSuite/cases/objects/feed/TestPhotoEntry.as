@@ -18,7 +18,7 @@ public class TestPhotoEntry extends TestBase
 	
 	override protected function setUp() : void
 	{
-		fixtures_path = "src/assets/fixtures/feed/api/";	
+		fixtures_path = "assets/fixtures/feed/api/";
 		
 		var service : PicasaService = new PicasaService();
 		var responder : PicasaResponder = service.photos.list("thisispinkfu", "5161355527636525521");
