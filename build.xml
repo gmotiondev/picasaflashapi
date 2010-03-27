@@ -1,12 +1,41 @@
 <?xml version="1.0"?>
-<project name="picasaflashapi" basedir="." default="lib">
-	<property file="build.properties" />
-	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
-	<target name="lib" depends="docs">
+<project name="picasa-flash-api" basedir="." default="main">
+
+	<property environment="env"/>	
+	<property file="build.properties"/>
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+
+	<!--
+	   Main task wrapper
+	-->
+	<target  name="main" depends="build,docs,unit-tests,violations-check"/>
+
+	<!--
+		Set up the build folder structure
+	-->
+	<target name="init" depends="clean">
+		<mkdir dir="${bin.dir}"/>
+		<mkdir dir="${pmd.reports.dir}"/>
+		<mkdir dir="${cpd.reports.dir}"/>
+		<mkdir dir="${metrics.reports.dir}"/>
+		<mkdir dir="${fluint.reports.dir}"/>
+	</target>
+
+	<!--
+		Clean up the build structure
+	-->
+	<target name="clean">
+        <delete dir="${bin.dir}" quiet="true"/>
+    </target>
+
+	<!--
+		Build the library
+	-->
+	<target name="build" depends="init">
 		<tstamp>
 			<format property="TODAY" pattern="dd.MM.yyyy" locale="en,UK"/>
 		</tstamp>
-		<pathconvert property="flex.classes" pathsep=" ">
+		<pathconvert property="project.classes" pathsep=" ">
 			<fileset dir="${src.dir}">
 				<include name="**/*.as"/>
 				<include name="**/*.mxml"/>
@@ -18,71 +47,54 @@
 				<packagemapper from="${src.dir}/*.mxml" to="*"/>
 			</compositemapper>
 		</pathconvert>
-		<compc output="${bin.dir}/${library.name}.swc" include-classes="${flex.classes}" compute-digest="false">
-			<source-path path-element="${src.dir}" />
-			<namespace uri="http://www.prasa.sk/picasaflashapi" manifest="${src.dir}/manifest.xml" />
-			<in uri="http://www.prasa.sk/picasaflashapi" />
+
+		<compc
+			output="${bin.dir}/${ant.project.name}-r${env.SVN_REVISION}.swc"
+			include-classes="${project.classes}"
+			compute-digest="false">
+			<source-path path-element="${src.dir}"/>
+			<namespace uri="http://www.prasa.sk/picasaflashapi" manifest="${src.dir}/manifest.xml"/>
+			<in uri="http://www.prasa.sk/picasaflashapi"/>
 			<metadata description="Picasa Flash API (as3)" title="Picasa Flash API (as3)" date="${TODAY}">
 				<creator name="Michal Gron (michal.gron@gmail.com)" />
 				<publisher name="Michal Gron (michal.gron@gmail.com)" />
 			</metadata>
 		</compc>
-		<echo>SWC created</echo>
 	</target>
 
-	<target name="init" description="Set up the project">
-		<mkdir dir="${bin.dir}"/>
-		<mkdir dir="${docs.dir}"/>
-	</target>
-
-	<target name="clean" description="Clean the project">
-        <delete dir="${bin.dir}" quiet="true" />
-        <delete dir="${docs.dir}" quiet="true" />
-    </target>
-
+	<!--
+		Create actionscript docs (api reference)
+	-->
 	<target name="docs" depends="init">
-		<!-- Clean out the contents of the doc directory, without delete "docs" -->
-		<delete includeemptydirs="true">
-			<fileset dir="${docs.dir}" includes="**/*" />
-		</delete>
-		<exec executable="${asdoc.exe}" spawn="no">
-			<!-- Place the documentation in the "docs" directory -->
+		
+		<delete dir="${docs.dir}" quiet="true"/>
+		<mkdir dir="${docs.dir}"/>
+
+		<exec executable="${flexsdk.bin.dir}/asdoc" spawn="no">
+			<!-- output folder -->
 			<arg line="-o ${docs.dir}" />
-
-			<!-- Include in the corelib.swc in the class path -->
-			<!--<arg line="-l ${corelib.swc}" />-->
-
 			<!-- Specify the main source path as "src" -->
 			<arg line="-sp ${src.dir}" />
-
 			<!-- Document all of the classes in the "src" tree -->
 			<arg line="-ds ${src.dir} " />
-
 			<!-- Include the library name in the window title -->
-			<arg line="-window-title 'Picasa Flash API Documentation - ${library.name}' "/>
+			<arg line="-window-title 'Picasa Flash API Documentation - ${ant.project.name}' "/>
 			<arg line="-main-title 'Picasa Flash API Documentation'"/>
 		</exec>
 	</target>
 
-	<target name="violations-check" depends="init">
-
-		<!-- remove the test results -->
-		<delete dir="${pmd.reports.loc}" quiet="true" />
-		<delete dir="${cpd.reports.loc}" quiet="true" />
-		<delete dir="${metrics.reports.loc}" quiet="true" />
-
-		<!-- create the folders for test results -->
-		<mkdir dir="${pmd.reports.loc}" />
-		<mkdir dir="${cpd.reports.loc}" />
-		<mkdir dir="${metrics.reports.loc}" />
+	<!--
+		Perform the violations check (pmd, cpd, metrics)
+	-->
+	<target name="violations-check">
 
 		<flexPmd
-			sourceDirectory="${src.dir}" 
-			outputDirectory="${pmd.reports.loc}"/>
+			sourceDirectory="${src.dir}"
+			outputDirectory="${pmd.reports.dir}"/>
 
 		<flexCpd
 			minimumTokenCount="50"
-			outputFile="${cpd.reports.loc}/cpd.xml">
+			outputFile="${cpd.reports.dir}/cpd.xml">
 			<fileset dir="${src.dir}">
 				<include name="**/*.as"/>
 				<include name="**/*.mxml"/>
@@ -91,61 +103,52 @@
 
 		<flexMetrics
 			sourcedirectory="${src.dir}/"
-			outputfile="${metrics.reports.loc}/javancss.xml"/>
+			outputfile="${metrics.reports.dir}/javancss.xml"/>
 
 	</target>
 
-	<target  name="unit-tests">
-		<!-- remove the test results -->
-		<delete dir="${fluint.reports.loc}" quiet="true" />
-
-		<!-- create the folders for test results -->
-		<mkdir dir="${fluint.reports.loc}" />
+	<!--
+		Run unit tests on fresh swc library
+	-->
+	<target name="unit-tests">
 
 		<!-- copy dependencies/app to tests dir -->
-		<copy todir="${bin.dir}/assets">
+		<copy todir="${test.bin.dir}/assets">
 			<fileset dir="${test.src.dir}/assets" />
 		</copy>
 
+		<copy
+			file="${fluint.home}/AIRTestRunner.swf"
+			tofile="${test.bin.dir}/AIRTestRunner.swf"/>
+
+		<copy
+			file="${fluint.home}/AIRTestRunner-app.xml"
+			tofile="${test.bin.dir}/AIRTestRunner-app.xml"/>
+
 		<!-- Compile MainTestModule -->
-		<mxmlc file="${test.src.dir}/MainTestModule.mxml" 
-		output="${bin.dir}/MainTestModule.swf"
-		actionscript-file-encoding="UTF-8"
-		keep-generated-actionscript="false"
-		incremental="true">
+		<mxmlc
+			file="${test.src.dir}/MainTestModule.mxml"
+			output="${test.bin.dir}/MainTestModule.swf"
+			actionscript-file-encoding="UTF-8"
+			keep-generated-actionscript="false"
+			incremental="false">
 			<load-config filename="${air.config}"/>
-			<source-path path-element="${flexsdk.home}/frameworks"/>
+			<source-path path-element="${FLEX_HOME}/frameworks"/>
 			<compiler.library-path dir="." append="true">
 				<include name="tests/libs"/>
 				<include name="bin"/>
 			</compiler.library-path>
 		</mxmlc>
 
-		<fluint
-			debug="true"
-			headless="true"
-			failonerror="false"
-			workingDir="${bin.dir}"
-			testRunner="${airtestrunner.exe}"
-			outputDir="${fluint.reports.loc}">
+		<exec executable="${x-wrapper}" failonerror="true">
+			<arg line="${flexsdk.bin.dir}/adl ${test.bin.dir}/AIRTestRunner-app.xml -- -headless -reportDir='${fluint.reports.dir}' -fileSet='${test.bin.dir}/MainTestModule.swf' -failOnError"/>
+		</exec>
 
-				<fileset dir="${bin.dir}">
-					<include name="**/*.swf"/>
-				</fileset>
-		</fluint>
 	</target>
 
-	<path id="libraries">
-		<fileset dir="${fluint.home}">
-			<include name="**/*.jar"/>
-		</fileset>
-	</path>
-
-	<taskdef
-		name="fluint"
-		classname="net.digitalprimates.ant.tasks.fluint.Fluint"
-		classpathref="libraries"/>
-
+	<!--
+	   Task definitions follows
+	-->
 	<taskdef name="flexPmd"
 		classname="com.adobe.ac.pmd.ant.FlexPmdAntTask"
 		classpath="${pmd.home}/flex-pmd-ant-task-${pmd.version}.jar">
