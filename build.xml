@@ -35,8 +35,6 @@
 	
 	<target name="unit-tests" depends="init-tests">
 		
-		<property name="absolute.coverage.dir" location="${build.dir}/${coverage.reports.loc}"/>
-		
 		<copy todir="${build.dir}/${test.bin.dir}/assets" overwrite="true">
 			<fileset dir="${test.src.dir}/assets" />
 		</copy>
@@ -58,13 +56,43 @@
 			src="${test.src.dir}/MainTestModule.mxml"
 			dest="${build.dir}/${test.bin.dir}/MainTestModule.swf"
 			config="${air.config}"
+			options="-coverage=false"
+			lib.path.id="tests.lib.path"/>
+		
+		<exec executable="${x-wrapper}" failonerror="true">
+			<arg line="${flex.dir}/bin/adl ${build.dir}/${test.bin.dir}/AIRTestRunner-app.xml -- -headless -reportDir='${build.dir}/${fluint.reports.loc}' -fileSet='${build.dir}/${test.bin.dir}/MainTestModule.swf' -failOnError"/>
+		</exec>
+
+	</target>
+	
+	<target name="coverage-tests" depends="init-tests">
+		
+		<property name="absolute.coverage.dir" location="${build.dir}/${coverage.reports.loc}"/>
+		
+		<copy todir="${build.dir}/${test.bin.dir}/assets" overwrite="true">
+			<fileset dir="${test.src.dir}/assets" />
+		</copy>
+
+		<copy
+			file="${test.src.dir}/CoverageRunner-app.xml"
+			tofile="${build.dir}/${test.bin.dir}/CoverageRunner-app.xml"/>
+
+		<path id="tests.lib.path">
+	        <pathelement location="tests/libs" />
+	        <pathelement location="bin" />
+    	</path>
+		
+		<mxmlc
+			src="${test.src.dir}/CoverageRunner.mxml"
+			dest="${build.dir}/${test.bin.dir}/CoverageRunner.swf"
+			config="${air.config}"
 			options="-coverage=true -coverage-metadata='${absolute.coverage.dir}/picasa-flash-api.cvm'"
 			lib.path.id="tests.lib.path"/>
 		
 		<exec executable="${x-wrapper}" failonerror="true">
-			<arg line="${flex.dir}/bin/adl ${build.dir}/${test.bin.dir}/AIRTestRunner-app.xml -- -headless -reportDir='${build.dir}/${fluint.reports.loc}' -fileSet='${build.dir}/${test.bin.dir}/MainTestModule.swf' -failOnError -coverage-agent-type=headless -coverage-output='${absolute.coverage.dir}/picasa-flash-api.cvr' -coverage-metadata='${absolute.coverage.dir}/picasa-flash-api.cvm' -emma-report='${absolute.coverage.dir}/picasa-flash-api.xml'"/>
+			<arg line="${flex.dir}/bin/adl ${build.dir}/${test.bin.dir}/CoverageRunner-app.xml -- -coverage-agent-type=headless -coverage-output='${absolute.coverage.dir}/picasa-flash-api.cvr' -coverage-metadata='${absolute.coverage.dir}/picasa-flash-api.cvm' -emma-report='${absolute.coverage.dir}/picasa-flash-api.xml'"/>
 		</exec>
-
+		
 	</target>
 	
 	<target name="violations-check" depends="init-tests">
