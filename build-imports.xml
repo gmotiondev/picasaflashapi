@@ -1,0 +1,8 @@
+<project name="Antennae.imports">
+    
+    <dirname property="Antennae.imports.dir" file="${ant.file.Antennae.imports}"/>
+    <property file="${Antennae.imports.dir}/build-user.properties" />
+    
+    <import file="ant/build-common-imports.xml" />
+		
+</project>
