@@ -62,7 +62,7 @@
 			lib.path.id="tests.lib.path"/>
 		
 		<exec executable="${x-wrapper}" failonerror="true">
-			<arg line="${flex.dir}/bin/adl ${build.dir}/${test.bin.dir}/AIRTestRunner-app.xml - - -headless -reportDir='${build.dir}/${fluint.reports.loc}' -fileSet='${build.dir}/${test.bin.dir}/MainTestModule.swf' -failOnError -coverage-agent-type=headless -coverage-output='${absolute.coverage.dir}/picasa-flash-api.cvr' -coverage-metadata='${absolute.coverage.dir}/picasa-flash-api.cvm' -emma-report='${absolute.coverage.dir}/picasa-flash-api.xml'"/>
+			<arg line="${flex.dir}/bin/adl ${build.dir}/${test.bin.dir}/AIRTestRunner-app.xml -- -headless -reportDir='${build.dir}/${fluint.reports.loc}' -fileSet='${build.dir}/${test.bin.dir}/MainTestModule.swf' -failOnError -coverage-agent-type=headless -coverage-output='${absolute.coverage.dir}/picasa-flash-api.cvr' -coverage-metadata='${absolute.coverage.dir}/picasa-flash-api.cvm' -emma-report='${absolute.coverage.dir}/picasa-flash-api.xml'"/>
 		</exec>
 
 	</target>
