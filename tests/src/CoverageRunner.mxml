@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WindowedApplication
+	xmlns="http://www.adobe.com/2006/mxml" 
+	xmlns:fluint="http://www.digitalprimates.net/2008/fluint"
+	layout="absolute"
+	preinitialize="preinitialize_Handler()"
+	creationComplete="startTestProcess(event)"
+	width="1000" height="500">
+	<Script>
+	<![CDATA[
+		import com.allurent.coverage.runtime.CoverageManager;
+		import com.eyefodder.flexcover.CoverageAgentSwitch;
+		
+		import mainSuite.MainSuite;
+		
+		import net.digitalprimates.fluint.unitTests.frameworkSuite.FrameworkSuite;
+
+	protected function preinitialize_Handler() : void
+	{
+		CoverageManager.agent = new CoverageAgentSwitch();
+	}
+	
+	protected function startTestProcess(evt : Event) : void
+	{		
+		testRunner.startTests([new MainSuite()]);
+	}
+
+	protected function testsComplete_Handler(event : Event) : void
+	{
+		CoverageManager.exit();
+	}
+
+	]]>
+	</Script>
+
+	<fluint:TestResultDisplay width="100%" height="100%" />
+	<fluint:TestRunner id="testRunner" testsComplete="testsComplete_Handler(event)"/>
+</WindowedApplication>

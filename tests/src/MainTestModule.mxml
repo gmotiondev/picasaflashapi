@@ -8,11 +8,8 @@
 	import mainSuite.MainSuite;
 
 	public function getTestSuites() : Array
-	{	
-		var s : Array = [];
-			s.push(new MainSuite());
-
-		return s;
+	{
+		return [new MainSuite()];
 	}
 
 	]]>

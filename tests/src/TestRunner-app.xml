@@ -6,6 +6,6 @@
 	<version>0.2</version>
 	<description>Test Runner for PicasaFlashApi tests. Used to automate test running.</description>
 	<initialWindow>
-		<content>bin/TestRunner.swf</content>		
+		<content>TestRunner.swf</content>		
 =	</initialWindow>
 </application>

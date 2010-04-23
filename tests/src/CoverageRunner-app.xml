@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://ns.adobe.com/air/application/1.5">
+	<id>CoverageRunner</id>
+	<filename>CoverageRunner</filename>
+	<name>CoverageRunner</name>
+	<version>1.0</version>
+	<initialWindow>
+		<content>CoverageRunner.swf</content>
+	</initialWindow>
+</application>

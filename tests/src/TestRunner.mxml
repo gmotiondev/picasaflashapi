@@ -12,10 +12,7 @@
 	
 	protected function startTestProcess(event : Event) : void
 	{
-		var suiteArray:Array = new Array();
-			suiteArray.push(new MainSuite());
-		
-		testRunner.startTests( suiteArray );
+		testRunner.startTests([new MainSuite()]);
 	}
 	
 	]]>
